@@ -1,6 +1,8 @@
 {
   "cleanUrls": true,
   "rewrites": [
+    { "source": "/politica-privacidad", "destination": "/index.html" },
+    { "source": "/terminos-condiciones", "destination": "/index.html" },
     {
       "source": "/((?!api/|recursos/|_next/|static/|assets/|[\\w-]+\\.\\w+).*)",
       "destination": "/index.html"
