@@ -146,6 +146,45 @@ const templates: Record<string, { subject: string; html: (nombre: string, empres
 
 // ═══════════ FUNCIÓN DE ENVÍO ORIGINAL ═══════════
 
+export async function sendLeadNotification(leadData: {
+  nombre: string;
+  email: string;
+  empresa?: string;
+  fuente: string;
+}): Promise<{ success: boolean; error?: string }> {
+  if (!RESEND_API_KEY) {
+    console.info('[Email Notification] API key no configurada.');
+    return { success: false, error: 'API key no configurada' };
+  }
+
+  try {
+    await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${RESEND_API_KEY}`,
+      },
+      body: JSON.stringify({
+        from: FROM_EMAIL,
+        to: 'globalservices.ven@gmail.com',
+        subject: `🔔 NUEVO LEAD: ${leadData.nombre} (${leadData.fuente.toUpperCase()})`,
+        html: `
+          <h2 style="color:#0EA5E9;font-size:20px;margin-bottom:12px;">¡Nuevo Lead Registrado en la Web!</h2>
+          <p style="color:#FFFFFF;font-size:14px;margin-bottom:6px;"><strong>Nombre:</strong> ${leadData.nombre}</p>
+          <p style="color:#FFFFFF;font-size:14px;margin-bottom:6px;"><strong>Email:</strong> ${leadData.email}</p>
+          <p style="color:#FFFFFF;font-size:14px;margin-bottom:6px;"><strong>Empresa:</strong> ${leadData.empresa || 'No especificada'}</p>
+          <p style="color:#FFFFFF;font-size:14px;margin-bottom:6px;"><strong>Fuente:</strong> ${leadData.fuente.toUpperCase()}</p>
+          <p style="color:#6B7280;font-size:12px;margin-top:20px;border-top:1px solid #333345;padding-top:10px;">Enviado automáticamente por el Sistema B2B de CSSG.</p>
+        `,
+      }),
+    });
+    return { success: true };
+  } catch (err) {
+    console.error('[Email Notification] Error de red:', err);
+    return { success: false, error: 'Error de red' };
+  }
+}
+
 export async function sendNurtureEmail(
   to: string,
   nombre: string,
@@ -183,6 +222,14 @@ export async function sendNurtureEmail(
       console.error('[Email Nurturing] Error de Resend:', err);
       return { success: false, error: err };
     }
+
+    // Enviar aviso directo a globalservices.ven@gmail.com
+    sendLeadNotification({
+      nombre,
+      email: to,
+      empresa,
+      fuente,
+    }).catch(e => console.error('Error enviando notificación de lead:', e));
 
     return { success: true };
   } catch (err) {
