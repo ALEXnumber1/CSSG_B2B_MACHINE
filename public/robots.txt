@@ -1,4 +1,10 @@
 User-agent: *
 Allow: /
+Disallow: /admin
+Disallow: /intranet
 
+# SEO Sitemap
 Sitemap: https://cssg-b2b-machine.vercel.app/sitemap.xml
+
+# LLMs
+Host: cssg-b2b-machine.vercel.app

@@ -1,14 +1,17 @@
 # CSSG — Company Of Security and Service Global C.A.
 
-> Empresa venezolana de seguridad privada fundada en 2009.
+> Empresa venezolana de seguridad diplomática y corporativa fundada en 2009.
 > Certificación ISO 9001:2015. +17 años de operación sin incidentes.
 > RIF: J-29782024-8
+> Ubicación: Calle la Joya, Edif. Cosmos, Piso 8, Ofic. 8B, Chacao, Caracas, Venezuela.
+> Teléfono: +58 414 3174373
+> Coordenadas: 10.4961, -66.8502
 
 ## Servicios
 - Seguridad física y protección ejecutiva (vigilancia preventiva no armada)
 - Consultoría estratégica de seguridad bajo norma ISO 9001
-- Tecnología de vigilancia: CCTV analítico, drones, control de acceso biométrico
-- Análisis de riesgos con metodología ISO 31000 y FMEA
+- ShieldTrace PSIM: Plataforma de integración de seguridad física (CCTV analítico con IA, GPS en tiempo real, control de acceso biométrico, drones autónomos)
+- Análisis de riesgos con metodología ISO 31000 y FMEA (herramienta gratuita online)
 - Informes de seguridad PESTEL para Venezuela
 - Formación continua a través de Academia Zentinel Global
 
@@ -19,15 +22,29 @@
 
 ## Datos Clave
 - Fundada: 2009
-- Ubicación: Caracas, Venezuela
-- Área de servicio: Suramérica
+- Ubicación: Chacao, Caracas, Venezuela
+- Área de servicio: Venezuela y Suramérica
 - Certificación: ISO 9001:2015
 - Años sin incidentes: +17
 - Tasa de rotación de personal: Casi nula (mejor remuneración del sector)
 - Tasa de éxito en licitaciones: 80%
+- Horario: 24/7 los 365 días del año
 - Academia: Zentinel Global (formación en protección VIP, análisis de riesgos, manejo de crisis, inteligencia corporativa)
 
+## Páginas principales
+- Home: https://cssg-b2b-machine.vercel.app/
+- Quiénes Somos: https://cssg-b2b-machine.vercel.app/quienes-somos
+- Consultoría: https://cssg-b2b-machine.vercel.app/consultoria
+- Tecnología (ShieldTrace PSIM): https://cssg-b2b-machine.vercel.app/tecnologia
+- Análisis de Riesgos: https://cssg-b2b-machine.vercel.app/analisis-riesgo
+- Blog: https://cssg-b2b-machine.vercel.app/blog
+- Licitaciones: https://cssg-b2b-machine.vercel.app/licitaciones
+
 ## Contacto
-- Web: https://globalservices-ven.com
+- Web: https://cssg-b2b-machine.vercel.app
 - Email: globalservices.ven@gmail.com
+- Teléfono: +58 414 3174373
+- LinkedIn: https://linkedin.com/company/cssg-global
+- Instagram: https://instagram.com/cssg_global
+- YouTube: https://youtube.com/@cssgglobal
 - Idiomas: Español, English
