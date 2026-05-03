@@ -52,20 +52,26 @@ function baseTemplate(content: string): string {
 
 const templates: Record<string, { subject: string; html: (nombre: string, empresa?: string) => string }> = {
   contacto: {
-    subject: 'Recibimos su solicitud — CSSG',
+    subject: 'Su solicitud y diagnóstico de seguridad están siendo procesados — CSSG',
     html: (nombre) => baseTemplate(`
-      <h2 style="color:#FFFFFF;font-size:22px;margin:0 0 16px;">Hola ${nombre},</h2>
-      <p style="color:#9CA3AF;font-size:14px;line-height:1.7;margin:0 0 16px;">
-        Hemos recibido su solicitud de contacto. Un ejecutivo de nuestro equipo comercial
-        se comunicará con usted en las próximas <strong style="color:#E2E8F0;">24 horas hábiles</strong>.
+      <h2 style="color:#FFFFFF;font-size:24px;margin:0 0 16px;font-weight:700;">Estimado/a ${nombre},</h2>
+      <p style="color:#9CA3AF;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Recibimos sus datos con éxito. En un entorno corporativo donde la continuidad de la operación y el blindaje de activos son prioridades críticas, valoramos la confianza depositada en CSSG.
       </p>
-      <p style="color:#9CA3AF;font-size:14px;line-height:1.7;margin:0 0 24px;">
-        Mientras tanto, lo invitamos a conocer nuestra herramienta gratuita de
-        análisis de vulnerabilidades, diseñada bajo estándares ISO 31000:
+      <div style="background-color:#0EA5E910;border:1px solid #0EA5E930;border-radius:12px;padding:24px;margin:24px 0;">
+        <p style="color:#E2E8F0;font-size:15px;margin:0 0 8px;font-weight:600;">¿Qué sucede a continuación?</p>
+        <ul style="color:#9CA3AF;font-size:14px;line-height:1.8;margin:0;padding-left:20px;">
+          <li>Un <strong style="color:#0EA5E9;">Analista Senior de Riesgos</strong> evaluará la información de su solicitud.</li>
+          <li>Le contactaremos en las próximas <strong style="color:#E2E8F0;">24 horas hábiles</strong> para agendar una sesión explicativa de 15 minutos.</li>
+          <li>Diseñaremos un plan estratégico a medida según sus vulnerabilidades específicas.</li>
+        </ul>
+      </div>
+      <p style="color:#E2E8F0;font-size:15px;line-height:1.7;margin:0 0 24px;font-weight:600;">
+        Nuestra misión es simple: Más de 17 años de experiencia y Cero Incidentes en Embajadas y Corporaciones de Alto Nivel.
       </p>
       <div style="text-align:center;">
-        <a href="https://globalservices-ven.com/analisis-riesgo" style="display:inline-block;background-color:#0EA5E9;color:#FFFFFF;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
-          Evaluar mis vulnerabilidades
+        <a href="https://globalservices-ven.com/analisis-riesgo" style="display:inline-block;background-color:#0EA5E9;color:#FFFFFF;padding:14px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:15px;box-shadow:0 4px 14px 0 rgba(14, 165, 233, 0.4);">
+          Diagnosticar mis vulnerabilidades (ISO 31000)
         </a>
       </div>
     `),
