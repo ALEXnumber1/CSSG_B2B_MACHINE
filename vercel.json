@@ -1,23 +1,8 @@
 {
+  "cleanUrls": true,
   "rewrites": [
     {
-      "source": "/recursos/analizador",
-      "destination": "/recursos/analizador.html"
-    },
-    {
-      "source": "/recursos/pestel",
-      "destination": "/recursos/pestel.html"
-    },
-    {
-      "source": "/recursos/consultoria",
-      "destination": "/recursos/consultoria.html"
-    },
-    {
-      "source": "/recursos/shieldtrace",
-      "destination": "/recursos/shieldtrace.html"
-    },
-    {
-      "source": "/(.*)",
+      "source": "/((?!api/|recursos/|_next/|static/|assets/|[\\w-]+\\.\\w+).*)",
       "destination": "/index.html"
     }
   ]
