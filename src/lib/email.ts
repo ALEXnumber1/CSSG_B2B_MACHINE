@@ -20,26 +20,26 @@ function baseTemplate(content: string): string {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body style="margin:0;padding:0;background-color:#0B0B0F;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;">
+<body style="margin:0;padding:0;background-color:#F8FAFC;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;-webkit-font-smoothing:antialiased;">
   <div style="max-width:600px;margin:0 auto;padding:40px 24px;">
     <!-- Header -->
     <div style="text-align:center;margin-bottom:32px;">
-      <img src="https://globalservices-ven.com/logo.png" alt="CSSG" style="width:60px;height:60px;border-radius:50%;" />
-      <p style="color:#0EA5E9;font-size:8px;letter-spacing:1px;text-transform:uppercase;margin-top:8px;margin-bottom:0;">Company Of Security And Service Global C.A.</p>
-      <p style="color:#6B7280;font-size:7px;letter-spacing:1px;text-transform:uppercase;margin-top:2px;">RIF: J-29782024-8</p>
+      <img src="https://globalservices-ven.com/logo.png" alt="CSSG" style="width:64px;height:64px;border-radius:50%;" />
+      <p style="color:#0284C7;font-size:10px;letter-spacing:1px;text-transform:uppercase;margin-top:8px;margin-bottom:0;font-weight:700;">Company Of Security And Service Global C.A.</p>
+      <p style="color:#64748B;font-size:8px;letter-spacing:1px;text-transform:uppercase;margin-top:2px;">RIF: J-29782024-8</p>
     </div>
     
     <!-- Content -->
-    <div style="background-color:#1A1A24;border:1px solid #333345;border-radius:16px;padding:32px;margin-bottom:24px;">
+    <div style="background-color:#FFFFFF;border:1px solid #E2E8F0;border-radius:16px;padding:32px;margin-bottom:24px;box-shadow:0 1px 3px 0 rgba(0, 0, 0, 0.05);">
       ${content}
     </div>
     
     <!-- Footer -->
-    <div style="text-align:center;padding-top:24px;border-top:1px solid #333345;">
-      <p style="color:#6B7280;font-size:12px;margin:0;">Company Of Security and Service Global</p>
-      <p style="color:#4B5563;font-size:11px;margin:4px 0 0;">Caracas, Venezuela · ISO 9001 · +17 años de experiencia</p>
-      <p style="color:#4B5563;font-size:10px;margin:16px 0 0;">
-        <a href="https://globalservices-ven.com" style="color:#0EA5E9;text-decoration:none;">globalservices-ven.com</a> · 
+    <div style="text-align:center;padding-top:24px;border-top:1px solid #E2E8F0;">
+      <p style="color:#475569;font-size:12px;margin:0;font-weight:600;">Company Of Security and Service Global</p>
+      <p style="color:#64748B;font-size:11px;margin:4px 0 0;">Caracas, Venezuela · ISO 9001 · +17 años de experiencia</p>
+      <p style="color:#64748B;font-size:10px;margin:16px 0 0;">
+        <a href="https://globalservices-ven.com" style="color:#0284C7;text-decoration:none;font-weight:600;">globalservices-ven.com</a> · 
         Si no desea recibir más correos, responda a este email con "CANCELAR"
       </p>
     </div>
@@ -50,27 +50,33 @@ function baseTemplate(content: string): string {
 
 // ═══════════ EMAILS POR FUENTE ═══════════
 
-const templates: Record<string, { subject: string; html: (nombre: string, empresa?: string) => string }> = {
+const templates: Record<string, { subject: string | ((nombre: string, empresa?: string) => string); html: (nombre: string, empresa?: string) => string }> = {
   contacto: {
-    subject: 'Su solicitud y diagnóstico de seguridad están siendo procesados — CSSG',
-    html: (nombre) => baseTemplate(`
-      <h2 style="color:#FFFFFF;font-size:24px;margin:0 0 16px;font-weight:700;">Estimado/a ${nombre},</h2>
-      <p style="color:#9CA3AF;font-size:15px;line-height:1.7;margin:0 0 16px;">
-        Recibimos sus datos con éxito. En un entorno corporativo donde la continuidad de la operación y el blindaje de activos son prioridades críticas, valoramos la confianza depositada en CSSG.
+    subject: (nombre, empresa) => `[EVALUACIÓN] Solicitud de Seguridad para ${empresa || 'su organización'} — Hola ${nombre}`,
+    html: (nombre, empresa) => baseTemplate(`
+      <h2 style="color:#0F172A;font-size:24px;margin:0 0 16px;font-weight:700;">Estimado/a ${nombre},</h2>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Hemos recibido la información de su solicitud${empresa ? ` en representación de <strong style="color:#0284C7;">${empresa}</strong>` : ''}.
       </p>
-      <div style="background-color:#0EA5E910;border:1px solid #0EA5E930;border-radius:12px;padding:24px;margin:24px 0;">
-        <p style="color:#E2E8F0;font-size:15px;margin:0 0 8px;font-weight:600;">¿Qué sucede a continuación?</p>
-        <ul style="color:#9CA3AF;font-size:14px;line-height:1.8;margin:0;padding-left:20px;">
-          <li>Un <strong style="color:#0EA5E9;">Analista Senior de Riesgos</strong> evaluará la información de su solicitud.</li>
-          <li>Le contactaremos en las próximas <strong style="color:#E2E8F0;">24 horas hábiles</strong> para agendar una sesión explicativa de 15 minutos.</li>
-          <li>Diseñaremos un plan estratégico a medida según sus vulnerabilidades específicas.</li>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        En un entorno empresarial complejo donde la continuidad de operaciones y el blindaje de infraestructura crítica no admiten margen de error, en CSSG tomamos su seguridad con el máximo rigor estratégico.
+      </p>
+
+      <div style="background-color:#F1F5F9;border:1px solid #E2E8F0;border-radius:12px;padding:24px;margin:24px 0;">
+        <p style="color:#1E293B;font-size:16px;margin:0 0 12px;font-weight:700;">Lo que esto significa para usted:</p>
+        <ul style="color:#334155;font-size:14px;line-height:1.8;margin:0;padding-left:20px;">
+          <li style="margin-bottom:8px;">✔️ Un <strong style="color:#0F172A;">Especialista Senior en Seguridad Corporativa</strong> está revisando sus requerimientos.</li>
+          <li style="margin-bottom:8px;">✔️ Le contactaremos en las próximas <strong style="color:#0F172A;">24 horas hábiles</strong> para agendar una sesión explicativa de 15 minutos.</li>
+          <li style="margin-bottom:8px;">✔️ Recibirá una <strong style="color:#0284C7;">Auditoría de Vulnerabilidad preliminar</strong> basada en los datos suministrados.</li>
         </ul>
       </div>
-      <p style="color:#E2E8F0;font-size:15px;line-height:1.7;margin:0 0 24px;font-weight:600;">
-        Nuestra misión es simple: Más de 17 años de experiencia y Cero Incidentes en Embajadas y Corporaciones de Alto Nivel.
+
+      <p style="color:#1E293B;font-size:15px;line-height:1.7;margin:0 0 24px;font-weight:600;">
+        ¿Por qué confiar en CSSG? Nuestra tasa de éxito es simple: Más de 17 años de experiencia y Cero Incidentes protegiendo embajadas del G7 y corporaciones internacionales en Venezuela.
       </p>
-      <div style="text-align:center;">
-        <a href="https://globalservices-ven.com/analisis-riesgo" style="display:inline-block;background-color:#0EA5E9;color:#FFFFFF;padding:14px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:15px;box-shadow:0 4px 14px 0 rgba(14, 165, 233, 0.4);">
+
+      <div style="text-align:center;margin:32px 0 16px;">
+        <a href="https://globalservices-ven.com/analisis-riesgo" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;box-shadow:0 4px 14px 0 rgba(2, 132, 199, 0.4);">
           Diagnosticar mis vulnerabilidades (ISO 31000)
         </a>
       </div>
@@ -78,72 +84,68 @@ const templates: Record<string, { subject: string; html: (nombre: string, empres
   },
 
   riesgo: {
-    subject: 'Su informe de vulnerabilidades está listo — CSSG',
+    subject: (nombre, empresa) => `📋 Su informe de vulnerabilidades para ${empresa || 'su organización'} está listo — CSSG`,
     html: (nombre, empresa) => baseTemplate(`
-      <h2 style="color:#FFFFFF;font-size:22px;margin:0 0 16px;">Hola ${nombre},</h2>
-      <p style="color:#9CA3AF;font-size:14px;line-height:1.7;margin:0 0 16px;">
-        El informe de vulnerabilidades${empresa ? ` de <strong style="color:#E2E8F0;">${empresa}</strong>` : ''} 
-        ha sido generado exitosamente. Ya debería tener el PDF descargado en su equipo.
+      <h2 style="color:#0F172A;font-size:24px;margin:0 0 16px;font-weight:700;">Hola ${nombre},</h2>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0- 16px;">
+        El informe preliminar de vulnerabilidades${empresa ? ` para <strong style="color:#0284C7;">${empresa}</strong>` : ''} ha sido generado exitosamente.
       </p>
-      <p style="color:#9CA3AF;font-size:14px;line-height:1.7;margin:0 0 16px;">
-        Si los resultados indican áreas de mejora, nuestro equipo de consultores puede 
-        ayudarle a diseñar un plan de acción concreto y medible.
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Nuestros analistas han procesado las variables ingresadas y el sistema ha generado su diagnóstico inicial. Si su score presenta áreas críticas, cada minuto cuenta para corregir vulnerabilidades en el perímetro, protección física o seguridad de la información.
       </p>
-      <p style="color:#9CA3AF;font-size:14px;line-height:1.7;margin:0 0 24px;">
-        <strong style="color:#E2E8F0;">¿Sabía que una consultoría estratégica puede reducir hasta un 40% los costos 
-        de su proyecto de seguridad?</strong>
-      </p>
-      <div style="text-align:center;">
-        <a href="https://globalservices-ven.com/consultoria" style="display:inline-block;background-color:#0EA5E9;color:#FFFFFF;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
-          Agendar consulta gratuita
+
+      <div style="background-color:#F1F5F9;border:1px solid #E2E8F0;border-radius:12px;padding:24px;margin:24px 0;">
+        <p style="color:#1E293B;font-size:16px;margin:0 0 12px;font-weight:700;">Próximos pasos recomendados:</p>
+        <ul style="color:#334155;font-size:14px;line-height:1.8;margin:0;padding-left:20px;">
+          <li style="margin-bottom:8px;">✔️ Revise el PDF generado para entender sus brechas de seguridad.</li>
+          <li style="margin-bottom:8px;">✔️ Agende una sesión gratuita de 15 minutos para interpretar los resultados a profundidad.</li>
+          <li style="margin-bottom:8px;">✔️ Conozca cómo nuestro plan estratégico puede reducir hasta un 40% sus costos actuales en seguridad.</li>
+        </ul>
+      </div>
+
+      <div style="text-align:center;margin:32px 0 16px;">
+        <a href="https://globalservices-ven.com/consultoria" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;box-shadow:0 4px 14px 0 rgba(2, 132, 199, 0.4);">
+          Agendar Sesión de Consulta Gratuita
         </a>
       </div>
     `),
   },
 
   consultoria: {
-    subject: 'Pre-entrevista registrada — CSSG Consultoría',
+    subject: (nombre, empresa) => `📅 Pre-entrevista confirmada para ${empresa || 'su organización'} — CSSG Consultoría`,
     html: (nombre, empresa) => baseTemplate(`
-      <h2 style="color:#FFFFFF;font-size:22px;margin:0 0 16px;">Hola ${nombre},</h2>
-      <p style="color:#9CA3AF;font-size:14px;line-height:1.7;margin:0 0 16px;">
-        Hemos recibido su solicitud de pre-entrevista${empresa ? ` para <strong style="color:#E2E8F0;">${empresa}</strong>` : ''}.
-        Nuestro equipo de consultoría está revisando los detalles de su proyecto.
+      <h2 style="color:#0F172A;font-size:24px;margin:0 0 16px;font-weight:700;">Estimado/a ${nombre},</h2>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Hemos recibido su solicitud de pre-entrevista estratégica${empresa ? ` para <strong style="color:#0284C7;">${empresa}</strong>` : ''}.
       </p>
-      <div style="background-color:#0EA5E910;border:1px solid #0EA5E930;border-radius:12px;padding:20px;margin:16px 0;">
-        <p style="color:#E2E8F0;font-size:14px;margin:0 0 8px;font-weight:600;">Próximos pasos:</p>
-        <ol style="color:#9CA3AF;font-size:13px;line-height:1.8;margin:0;padding-left:20px;">
-          <li>Un consultor senior revisará su caso (24-48h)</li>
-          <li>Le contactaremos para agendar la pre-entrevista</li>
-          <li>Recibirá un informe preliminar personalizado</li>
+      <div style="background-color:#F1F5F9;border:1px solid #E2E8F0;border-radius:12px;padding:24px;margin:24px 0;">
+        <p style="color:#1E293B;font-size:16px;margin:0 0 12px;font-weight:700;">Plan de Acción en Marcha:</p>
+        <ol style="color:#334155;font-size:14px;line-height:1.8;margin:0;padding-left:20px;">
+          <li style="margin-bottom:8px;">Un Consultor Senior evaluará el contexto operativo de su organización.</li>
+          <li style="margin-bottom:8px;">Le contactaremos para acordar el horario exacto de la sesión (15 minutos).</li>
+          <li style="margin-bottom:8px;">Le entregaremos un mapa de mitigación de riesgos de alto nivel sin costo.</li>
         </ol>
       </div>
-      <p style="color:#9CA3AF;font-size:14px;line-height:1.7;margin:0;">
-        Con una tasa de éxito del <strong style="color:#10B981;">80% en licitaciones y proyectos</strong>, 
-        su proyecto está en buenas manos.
+      <p style="color:#1E293B;font-size:15px;line-height:1.7;margin:0;">
+        Contamos con una tasa de éxito del <strong style="color:#10B981;">80% en proyectos críticos de seguridad</strong>. Su proyecto está en manos de profesionales certificados.
       </p>
     `),
   },
 
   pestel: {
-    subject: 'Su Informe PESTEL de Seguridad Venezuela 2026 — CSSG',
-    html: (nombre) => baseTemplate(`
-      <h2 style="color:#FFFFFF;font-size:22px;margin:0 0 16px;">Hola ${nombre},</h2>
-      <p style="color:#9CA3AF;font-size:14px;line-height:1.7;margin:0 0 16px;">
-        Gracias por su interés en nuestro <strong style="color:#E2E8F0;">Informe de Seguridad Venezuela 2026</strong>.
-        Le enviaremos el enlace de descarga a este correo en breve.
+    subject: (nombre, empresa) => `📚 Informe PESTEL 2026 listo para ${empresa || 'su organización'} — CSSG`,
+    html: (nombre, empresa) => baseTemplate(`
+      <h2 style="color:#0F172A;font-size:24px;margin:0 0 16px;font-weight:700;">Hola ${nombre},</h2>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Gracias por solicitar el <strong style="color:#0F172A;">Informe de Seguridad Venezuela 2026</strong>.
       </p>
-      <p style="color:#9CA3AF;font-size:14px;line-height:1.7;margin:0 0 16px;">
-        Este informe analiza las 6 dimensiones PESTEL que impactan la seguridad 
-        pública y privada en el país, con datos actualizados y recomendaciones 
-        específicas por sector.
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Este reporte evalúa las 6 dimensiones PESTEL (Política, Económica, Social, Tecnológica, Ecológica y Legal) que impactan directamente el panorama corporativo de seguridad en el país. Conocer estos datos es el primer paso para proteger su empresa contra contingencias imprevistas.
       </p>
-      <p style="color:#9CA3AF;font-size:14px;line-height:1.7;margin:0 0 24px;">
-        Si desea un análisis personalizado para su organización, le invitamos a 
-        utilizar nuestra herramienta gratuita:
-      </p>
-      <div style="text-align:center;">
-        <a href="https://globalservices-ven.com/analisis-riesgo" style="display:inline-block;background-color:#0EA5E9;color:#FFFFFF;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
-          Analizar mis vulnerabilidades
+
+      <div style="text-align:center;margin:32px 0 16px;">
+        <a href="https://globalservices-ven.com/analisis-riesgo" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;box-shadow:0 4px 14px 0 rgba(2, 132, 199, 0.4);">
+          Evaluar mis vulnerabilidades de forma gratuita
         </a>
       </div>
     `),
@@ -223,7 +225,7 @@ export async function sendNurtureEmail(
       body: JSON.stringify({
         from: FROM_EMAIL,
         to,
-        subject: template.subject,
+        subject: typeof template.subject === 'function' ? template.subject(nombre, empresa) : template.subject,
         html: template.html(nombre, empresa),
       }),
     });
