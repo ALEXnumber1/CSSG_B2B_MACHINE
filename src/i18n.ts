@@ -409,6 +409,15 @@ const resources = {
       "rrhh.sections.officers.login.pass": "Contraseña de Acceso",
       "rrhh.sections.officers.login.btn": "Entrar al Sistema",
       "rrhh.sections.officers.login.warning": "Este sistema de gestión es para uso exclusivo del personal autorizado de CSSG. El acceso no autorizado será monitorizado y está estrictamente prohibido.",
+      location: {
+        badge: "Presencia Nacional",
+        title_1: "Donde la Estrategia",
+        title_2: "Encuentra el Terreno",
+        desc: "Nuestra base de operaciones principal se encuentra en el corazón financiero de Caracas, permitiendo una respuesta táctica inmediata en todo el territorio nacional.",
+        office_name: "Headquarters - Torre de Control",
+        office_address: "Calle la Joya, entre Av. Francisco de Miranda y Libertador, Edificio Cosmos, Piso 8, Oficina 8B, Chacao, Caracas 1060.",
+        view_maps: "Ver en Google Maps"
+      },
       admin: esAdmin,
       rrhh: esRRHH
     },
@@ -807,6 +816,15 @@ const resources = {
       "rrhh.sections.officers.login.pass": "Access Password",
       "rrhh.sections.officers.login.btn": "Sign In",
       "rrhh.sections.officers.login.warning": "This management system is for the exclusive use of authorized CSSG personnel. Unauthorized access is strictly prohibited.",
+      location: {
+        badge: "National Presence",
+        title_1: "Where Strategy",
+        title_2: "Meets the Ground",
+        desc: "Our main base of operations is located in the financial heart of Caracas, allowing immediate tactical response across the entire national territory.",
+        office_name: "Headquarters - Control Tower",
+        office_address: "Calle la Joya, between Av. Francisco de Miranda and Libertador, Edificio Cosmos, 8th Floor, Office 8B, Chacao, Caracas 1060.",
+        view_maps: "View on Google Maps"
+      },
       admin: enAdmin,
       rrhh: enRRHH
     },

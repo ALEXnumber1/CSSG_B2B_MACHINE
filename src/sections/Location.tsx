@@ -8,8 +8,8 @@ export default function Location() {
   const offices = [
     {
       city: 'Caracas',
-      name: 'Headquarters - Torre de Control',
-      address: 'Calle la Joya, entre Av. Francisco de Miranda y Libertador, Edificio Cosmos, Piso 8, Oficina 8B, Chacao, Caracas 1060.',
+      name: t('location.office_name') || 'Headquarters - Torre de Control',
+      address: t('location.office_address') || 'Calle la Joya, entre Av. Francisco de Miranda y Libertador, Edificio Cosmos, Piso 8, Oficina 8B, Chacao, Caracas 1060.',
       phone: '+58 414-3174373',
       mobile: '+58 414-3174373',
       email: 'operaciones@cssg-global.com',
