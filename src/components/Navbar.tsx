@@ -135,13 +135,13 @@ export default function Navbar() {
                 onClick={() => changeLanguage('en')}
                 className={`flex items-center gap-2 px-3 py-1.5 rounded-md transition-all text-xs font-medium ${i18n.language.startsWith('en') ? 'bg-sky-500/20 text-sky-400' : 'text-gray-400 hover:text-white'}`}
               >
-                <img src="https://flagcdn.com/us.svg" alt="Miami" className="w-4 h-3 object-cover rounded-[2px]" /> <span className="hidden xl:inline">Miami</span>
+                <img src="https://flagcdn.com/us.svg" alt="Miami" className="w-4 h-3 object-cover rounded-[2px]" /> <span className="inline">Miami</span>
               </button>
               <button 
                 onClick={() => changeLanguage('es')}
                 className={`flex items-center gap-2 px-3 py-1.5 rounded-md transition-all text-xs font-medium ${i18n.language.startsWith('es') ? 'bg-sky-500/20 text-sky-400' : 'text-gray-400 hover:text-white'}`}
               >
-                <img src="https://flagcdn.com/ve.svg" alt="Venezuela" className="w-4 h-3 object-cover rounded-[2px]" /> <span className="hidden xl:inline">Venezuela</span>
+                <img src="https://flagcdn.com/ve.svg" alt="Venezuela" className="w-4 h-3 object-cover rounded-[2px]" /> <span className="inline">Venezuela</span>
               </button>
             </div>
 
