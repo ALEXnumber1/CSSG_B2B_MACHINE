@@ -1,0 +1,23 @@
+{
+  "badge": "Protocol Status: Secure Integrity Channel",
+  "title_1": "Shielded",
+  "title_2": "Integrity Channel",
+  "desc": "Confidential incident reporting under E2EE encryption protocols. International standards of transparency and anonymity guaranteed by CSSG Intelligence.",
+  "anon_title": "Anonymity Guarantee",
+  "anon_desc": "This channel does not track your IP or log your browser metadata. Your identity will remain 100% protected unless you voluntarily choose to provide it.",
+  "identity": "Identity (Optional)",
+  "identity_ph": "Anonymous Handling",
+  "subject": "Subject *",
+  "subject_ph": "Brief report title",
+  "matrix": "Incident Documentation Matrix",
+  "shield": "E2EE SHIELDED",
+  "details_ph": "Describe the event under objective corporate intelligence criteria...",
+  "verify": "Secure entry point verified",
+  "btn_sending": "Encrypting & Sending...",
+  "btn_submit": "Issue Alert",
+  "success_title": "Report Encrypted & Received",
+  "success_desc": "The review protocol has been activated. If you provided contact information, the board of directors will communicate with you confidentially.",
+  "btn_new": "New Report",
+  "error_alert": "A network error occurred while attempting to encrypt the message. Please try again.",
+  "anonymous_default": "Anonymous"
+}

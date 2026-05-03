@@ -1,0 +1,134 @@
+{
+  "header": {
+    "badge": "ISO 31000 · Estándares Globales · FMEA",
+    "title_1": "Analizador de Vulnerabilidades",
+    "title_2": "Tácticas",
+    "desc": "Cuantifique la exposición real de sus instalaciones con una evaluación calibrada por estándares diplomáticos del G7.",
+    "methodology_btn": "Conocer la metodología",
+    "live_engine": "Live Scanning Engine",
+    "version": "CSSG v3.1"
+  },
+  "methodology": {
+    "title": "Marco Metodológico",
+    "id_title": "Identificación",
+    "id_desc": "Catalogamos los activos críticos de su organización: talento humano, información sensible e infraestructura física.",
+    "fmea_title": "Análisis FMEA",
+    "fmea_desc": "Cada control de seguridad se evalúa según su <strong class='text-white/80'>peso de impacto</strong> (1-10), derivado del Análisis de Modos de Falla y Efectos utilizado en ingeniería crítica.",
+    "quant_title": "Cuantificación",
+    "quant_desc": "El <strong class='text-white/80'>Índice de Protección Global</strong> es un porcentaje ponderado que refleja cuántos controles críticos están implementados en sus instalaciones.",
+    "note": "<strong class='text-gray-400'>Nota:</strong> Esta herramienta proporciona una evaluación indicativa basada en criterios internacionales. Para un diagnóstico exhaustivo con inspección física, CSSG despliega un equipo de analistas certificados a nivel ejecutivo que realizan el levantamiento completo bajo estándar ISO 31000:2018."
+  },
+  "context": {
+    "title": "Contexto Operativo",
+    "desc": "Esta información se utilizará para personalizar su informe final.",
+    "entity": "Entidad Evaluada (Opc.)",
+    "entity_ph": "Instalación/Empresa",
+    "location": "Ubicación",
+    "location_ph": "Ej. CDMX, México",
+    "sector": "Sector",
+    "sector_ph": "Ej. Logística, Finanzas",
+    "exposure": "Nivel Exposición",
+    "exp_select": "Seleccionar...",
+    "exp_low": "Bajo",
+    "exp_med": "Medio",
+    "exp_high": "Alto",
+    "exp_crit": "Crítico"
+  },
+  "pillars": {
+    "perimetro": {
+      "title": "Seguridad Perimetral",
+      "subtitle": "Protección de la primera línea de defensa",
+      "p1_label": "Barreras físicas reforzadas",
+      "p1_detail": "Muros perimetrales, vallas anti-escalada, concertinas o bolardos anti-empotramiento que delimiten el 100% del perímetro.",
+      "p2_label": "Iluminación táctica con respaldo",
+      "p2_detail": "Luminarias de alta intensidad (>300 lux en zonas críticas) con fuente de energía autónoma (UPS/generador) ante cortes.",
+      "p3_label": "Detección de intrusión temprana",
+      "p3_detail": "Sensores infrarrojos, microondas, fibra óptica perimetral o LiDAR que detecten amenazas ANTES de la brecha.",
+      "p4_label": "CCTV perimetral con analítica de video",
+      "p4_detail": "Cámaras con AI integrada capaces de identificar patrones de comportamiento sospechoso y generar alertas automáticas.",
+      "p5_label": "Procedimiento de patrullaje documentado",
+      "p5_detail": "Rutas aleatorias de patrullaje con verificación GPS/NFC, frecuencia mínima cada 30 minutos y protocolo de reporte."
+    },
+    "accesos": {
+      "title": "Control de Accesos",
+      "subtitle": "Regulación del flujo de personas y vehículos",
+      "a1_label": "Autenticación biométrica o MFA",
+      "a1_detail": "Sistemas de huella dactilar, reconocimiento facial o iris combinados con tarjeta/PIN para áreas restringidas.",
+      "a2_label": "Gestión de visitantes con trazabilidad",
+      "a2_detail": "Registro digital de visitantes con foto, documento, motivo de visita, anfitrión y hora de entrada/salida verificable.",
+      "a3_label": "Exclusas y zonas de contención",
+      "a3_detail": "Puntos de acceso con doble puerta (mantrap) donde solo una puede estar abierta simultáneamente, impidiendo piggybacking.",
+      "a4_label": "Control vehicular con inspección",
+      "a4_detail": "Barrera vehicular con verificación de carga, espejos de inspección y registro de placas (ANPR) en accesos.",
+      "a5_label": "Segregación de zonas por nivel de acceso",
+      "a5_detail": "Clasificación de áreas en Pública, Restringida y Crítica con controles diferenciados para cada nivel."
+    },
+    "procedimientos": {
+      "title": "Seguridad Procedimental",
+      "subtitle": "Protocolos, planes y capacidad operativa",
+      "pr1_label": "Plan de Continuidad de Negocio (BCP)",
+      "pr1_detail": "Documento vigente que garantice la operación mínima viable ante desastres naturales, incidentes o ataques dirigidos.",
+      "pr2_label": "Protocolos de emergencia y evacuación",
+      "pr2_detail": "Planes probados con simulacros semestrales, rutas de evacuación señalizadas y puntos de encuentro definidos.",
+      "pr3_label": "Evaluación periódica de riesgos",
+      "pr3_detail": "Auditorías de seguridad con frecuencia mínima trimestral, utilizando matrices de probabilidad×impacto documentadas.",
+      "pr4_label": "Programa de capacitación continua",
+      "pr4_detail": "Entrenamiento certificado para personal de seguridad con mínimo 40 horas anuales en tácticas, primeros auxilios y protocolos.",
+      "pr5_label": "Cadena de custodia y documentación",
+      "pr5_detail": "Sistema formal de reportes de incidentes, cadena de custodia de evidencias y registros auditables durante 5+ años."
+    },
+    "inteligencia": {
+      "title": "Inteligencia de Vigilancia",
+      "subtitle": "Monitoreo avanzado y capacidad de respuesta",
+      "i1_label": "Centro de Comando y Control (C2)",
+      "i1_detail": "Sala de monitoreo 24/7 con operadores certificados, pantallas integradas y comunicación redundante con las fuerzas del orden.",
+      "i2_label": "Tiempo de respuesta documentado ≤ 3 min",
+      "i2_detail": "Capacidad de despliegue de fuerza de reacción en menos de 3 minutos desde la detección de amenaza hasta la intervención.",
+      "i3_label": "Integración de sistemas (PSIM)",
+      "i3_detail": "Plataforma de gestión de seguridad que unifique CCTV, intrusión, accesos e incendio en una sola interfaz operativa.",
+      "i4_label": "Análisis de inteligencia y amenazas",
+      "i4_detail": "Capacidad de recopilar, analizar y actuar sobre información de amenazas del entorno: criminalidad, espionaje, sabotaje.",
+      "i5_label": "Comunicaciones cifradas y redundantes",
+      "i5_detail": "Radios digitales con encriptación AES-256, respaldo satelital y protocolo de comunicación de crisis probado."
+    }
+  },
+  "dashboard": {
+    "index_title": "Índice de Protección Global",
+    "coverage_title": "Cobertura por Pilar",
+    "critical_breaches": "Brechas Críticas Detectadas",
+    "weight": "Peso",
+    "hide_detail": "Ocultar detalle",
+    "view_detail": "Ver criterio profesional",
+    "index_label": "Índice",
+    "cta_desc": "Personalice y descargue un informe ejecutivo en PDF con los resultados de su diagnóstico en sitio.",
+    "cta_btn": "Descargar Informe Ejecutivo (PDF)",
+    "cta_footer": "Equipos certificados · Cobertura nacional · Informe ejecutivo"
+  },
+  "levels": {
+    "optimal": "Protección Óptima",
+    "adequate": "Protección Adecuada",
+    "moderate": "Vulnerabilidad Moderada",
+    "high": "Riesgo Elevado",
+    "critical": "Riesgo Crítico"
+  },
+  "modal": {
+    "title": "Descargar Informe Privado",
+    "desc": "Por favor, ingrese sus datos corporativos para generar y visualizar su informe ejecutivo pdf.",
+    "name": "Nombre Completo",
+    "job": "Cargo / Posición (Opcional)",
+    "company": "Empresa / Organización",
+    "email": "Correo Corporativo",
+    "phone": "Teléfono de Contacto",
+    "cancel": "Cancelar",
+    "generating": "Generando...",
+    "btn": "Obtener PDF",
+    "error": "Hubo un error al generar el PDF. Por favor, inténtelo de nuevo."
+  },
+  "seo": {
+    "title": "Ayúdanos a Seguir Innovando",
+    "desc": "¿Este informe impulsado por Inteligencia Artificial Avanzada te ha sido de utilidad? Nuestro objetivo es democratizar la seguridad corporativa. Como intercambio por esta herramienta de alto valor, te invitamos a dejar tu reseña o agradecimiento público.",
+    "placeholder": "Escribe tu testimonio de la evaluación...",
+    "btn": "Publicar Agradecimiento",
+    "recent": "Comentarios Recientes"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "hero": {
+    "badge": "Elite Recruitment & Selection",
+    "title_1": "Develop your professional career at",
+    "title_2": "CSSG Global",
+    "subtitle": "Join the most prestigious private security team in Venezuela. We offer career stability, continuous technical training at our Zentinel Global academy, and a fair compensation structure under G7 standards of excellence."
+  },
+  "sections": {
+    "recruitment": {
+      "title": "Recruitment Center",
+      "subtitle": "Official application form for officers and tactical personnel",
+      "form": {
+        "name": "Full Name",
+        "email": "Email Address",
+        "phone": "Phone / WhatsApp",
+        "position": "Area of Expertise",
+        "experience": "Years of Proven Experience",
+        "cv": "Upload Curriculum Vitae (PDF)",
+        "submit": "Submit Elite Application",
+        "success": "Application Received Successfully! Our HR tactical team will review your profile.",
+        "placeholder_name": "Full name of the candidate",
+        "placeholder_email": "email@example.com",
+        "placeholder_phone": "+58 412 123-4567",
+        "opt_officer": "Preventive Security Officer",
+        "opt_tactical": "Immediate Reaction Force",
+        "opt_it": "Electronic Security / IT",
+        "opt_admin": "Administration / Logistics"
+      }
+    },
+    "officers": {
+      "title": "Officer Portal",
+      "subtitle": "Exclusive access for active personnel",
+      "login": {
+        "title": "Authorized Personnel Login",
+        "id": "Officer Credential (ID)",
+        "pass": "Access Password",
+        "btn": "Enter System",
+        "warning": "This management system is for the exclusive use of authorized CSSG personnel. Unauthorized access will be monitored and is strictly prohibited."
+      }
+    }
+  }
+}

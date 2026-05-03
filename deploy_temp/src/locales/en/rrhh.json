@@ -1,0 +1,42 @@
+{
+  "hero": {
+    "badge": "Join the Security Elite",
+    "title_1": "Career at",
+    "title_2": "CSSG Global",
+    "subtitle": "We look for professionals with unwavering integrity to protect the country's most critical missions. Continuous training, stability, and the best compensation in the sector."
+  },
+  "sections": {
+    "recruitment": {
+      "title": "Recruitment Center",
+      "subtitle": "Application for officers and tactical personnel",
+      "form": {
+        "name": "Full Name",
+        "email": "Email Address",
+        "phone": "Phone / WhatsApp",
+        "position": "Position of Interest",
+        "experience": "Years of Experience",
+        "cv": "Upload CV (PDF)",
+        "submit": "Submit Elite Application",
+        "success": "Application Received! Our tactical team will review your profile.",
+        "placeholder_name": "e.g. John Doe",
+        "placeholder_email": "john.doe@email.com",
+        "placeholder_phone": "+1 555 123 4567",
+        "opt_officer": "Security Officer",
+        "opt_tactical": "Reaction Force",
+        "opt_it": "Electronic Security / IT",
+        "opt_admin": "Administration / Logistics"
+      }
+    },
+    "officers": {
+      "title": "Officer Portal",
+      "subtitle": "Exclusive access for active personnel",
+      "login": {
+        "title": "Personnel Access",
+        "id": "Officer ID",
+        "pass": "Password",
+        "btn": "Enter System",
+        "warning": "This system is for the exclusive use of authorized CSSG personnel. Unauthorized access is strictly prohibited."
+      }
+    }
+  }
+}

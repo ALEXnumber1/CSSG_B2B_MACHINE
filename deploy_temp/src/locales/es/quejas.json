@@ -1,0 +1,23 @@
+{
+  "badge": "Protocol Status: Secure Integrity Channel",
+  "title_1": "Canal de",
+  "title_2": "Integridad Blindado",
+  "desc": "Reporte confidencial de incidentes bajo protocolos de cifrado E2EE. Estándares internacionales de transparencia y anonimato garantizados por CSSG Intelligence.",
+  "anon_title": "Garantía de Anonimato",
+  "anon_desc": "Este canal no rastrea su IP ni registra metadatos de su navegador. Su identidad permanecerá 100% protegida a menos que usted decida proporcionarla voluntariamente.",
+  "identity": "Identidad (Opcional)",
+  "identity_ph": "Manejo Anónimo",
+  "subject": "Asunto *",
+  "subject_ph": "Breve título del reporte",
+  "matrix": "Incident Documentation Matrix",
+  "shield": "E2EE SHIELDED",
+  "details_ph": "Describa el evento bajo criterios objetivos de inteligencia corporativa...",
+  "verify": "Secure entry point verified",
+  "btn_sending": "Cifrando y Enviando...",
+  "btn_submit": "Emitir Alerta",
+  "success_title": "Reporte Cifrado y Recibido",
+  "success_desc": "El protocolo de revisión ha sido activado. Si proporcionó un medio de contacto, la junta directiva se comunicará con usted de forma confidencial.",
+  "btn_new": "Nuevo Reporte",
+  "error_alert": "Se produjo un error de red al intentar cifrar el mensaje. Intente de nuevo.",
+  "anonymous_default": "Anónimo"
+}

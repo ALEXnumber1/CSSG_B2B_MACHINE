@@ -1,0 +1,74 @@
+{
+  "hero": {
+    "badge": "Alta Ingeniería & Tech",
+    "title_1": "Ecosistema de",
+    "title_2": "Seguridad",
+    "desc": "Venezuela se levanta y el modelo antiguo ya no es suficiente. Sea el líder disruptivo que su organización necesita: implemente drones, robótica y analítica avanzada para reducir costos operativos y maximizar la efectividad real.",
+    "btn": "Solicitar Información / Agendar Reunión Corta Explicativa"
+  },
+  "niches": {
+    "n1_title": "Drones y Robótica Táctica",
+    "n1_desc": "Vigilancia aérea y patrullaje automatizado para grandes perímetros sin depender exclusivamente de personal físico.",
+    "n1_f1": "Patrullaje con drones autónomos para perímetros extensos con detección térmica.",
+    "n1_f2": "Sensores de movimiento de largo alcance integrados a redes tácticas.",
+    "n1_f3": "Robótica de inspección perimetral para zonas de alto riesgo.",
+    "n1_f4": "Integración con centros de mando C2 para respuesta inmediata.",
+    
+    "n2_title": "IA y Analítica Forense",
+    "n2_desc": "Sistemas que aprenden y detectan amenazas antes de que ocurran, eliminando el error humano en el monitoreo.",
+    "n2_f1": "Reconocimiento facial y de placas (LPR) con base de datos en tiempo real.",
+    "n2_f2": "Detección de comportamiento anómalo mediante algoritmos de Deep Learning.",
+    "n2_f3": "Búsqueda inteligente de sospechosos por filtros de vestimenta y rasgos.",
+    "n2_f4": "Alertas críticas preventivas antes de que se consume la intrusión.",
+    
+    "n3_title": "Ingeniería de Seguridad",
+    "n3_desc": "Diseño de infraestructura crítica con barreras físicas inteligentes y control de acceso biométrico.",
+    "n3_f1": "Cercos eléctricos de alta tecnología con monitoreo de voltaje remoto.",
+    "n3_f2": "Tanqueras y bolardos automáticos con resistencia a impactos vehiculares.",
+    "n3_f3": "Lectores multibiométricos (huella, rostro, iris) para zonas restringidas.",
+    "n3_f4": "Sistemas de iluminación táctica con activación por movimiento e IA.",
+    
+    "btn": "Solicitar Información / Agendar Reunión Corta Explicativa"
+  },
+  "portfolio": {
+    "badge": "Portfolio",
+    "title": "Proyectos Realizados",
+    "desc": "Una muestra de los proyectos que hemos ejecutado para nuestros clientes.",
+    "status_done": "Completado",
+    "status_prog": "En progreso",
+    
+    "p1_title": "Perímetro Residencial Premium",
+    "p1_type": "Ingeniería",
+    "p1_desc": "Muro perimetral con cerco eléctrico y portón automatizado para complejo residencial de alto nivel.",
+    
+    "p2_title": "Sistema CCTV Corporativo",
+    "p2_type": "CCTV",
+    "p2_desc": "Red de 48 cámaras IP con monitoreo centralizado para sede corporativa multinacional.",
+    
+    "p3_title": "Automatización de Acceso",
+    "p3_type": "Ingeniería",
+    "p3_desc": "Control de acceso vehicular y peatonal con lectores biométricos y barreras automáticas.",
+    
+    "p4_title": "Vigilancia Inteligente Industrial",
+    "p4_type": "Cámaras IA",
+    "p4_desc": "Cámaras con analítica de video para detección de intrusión en planta industrial.",
+    
+    "p5_title": "Perímetro Diplomático",
+    "p5_type": "Ingeniería + CCTV",
+    "p5_desc": "Proyecto integral de seguridad perimetral con CCTV y control de acceso para delegación diplomática.",
+    
+    "p6_title": "Upgrade Tecnológico Bancario",
+    "p6_type": "CCTV",
+    "p6_desc": "Migración de sistema analógico a IP con analítica de video para red de sucursales bancarias."
+  },
+  "cta": {
+    "title": "¿Busca optimizar sus costos de seguridad?",
+    "desc": "La tecnología bien aplicada no es un gasto, es una inversión que disminuye sus costos fijos. Permítanos diseñar su proyecto disruptivo.",
+    "btn": "Solicitar Información / Agendar Reunión Corta Explicativa"
+  },
+  "transversal": {
+    "title": "Conoce Nuestros",
+    "title_highlight": "Proyectos Transversales",
+    "desc": "Soluciones integrales que fusionan múltiples capas de inteligencia para blindar infraestructuras complejas."
+  }
+}

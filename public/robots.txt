@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cssg-b2b-machine.vercel.app/sitemap.xml

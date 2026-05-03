@@ -1,0 +1,61 @@
+{
+  "pestel": {
+    "title": "PESTEL Analysis Methodology",
+    "desc": "The PESTEL analysis evaluates six external environment dimensions that directly impact the security strategies of any organization operating in Venezuela.",
+    "p_title": "Political",
+    "p_desc": "Institutionalization of territorial control: A transition from informal structures to state supervision channels is observed, minimizing the visibility of autonomous operational commands and consolidating a unified command environment in critical areas.",
+    "e_title": "Economic",
+    "e_desc": "Correlation between liquidity and asset risk: Economic volatility and corporate cash flow restrictions act as triggers for opportunistic crimes, increasing the need for vulnerability audits in the supply chain.",
+    "s_title": "Social",
+    "s_desc": "Circular migration dynamics (IOM Reports): Instability in the permanence of returnees impacts the turnover of basic security personnel, requiring greater investment in elite officer selection and loyalty processes.",
+    "t_title": "Technological",
+    "t_desc": "Video Intelligence and Predictive Analytics: Replacement of passive surveillance with IP systems featuring AI pattern detection, allowing tactical response times < 30 seconds to detected perimeter breaches.",
+    "ec_title": "Ecological",
+    "ec_desc": "Critical Infrastructure Resilience: Increase in contingency plans due to the instability of basic services, prioritizing security systems with energy autonomy and high resistance to extreme environmental factors.",
+    "l_title": "Legal",
+    "l_desc": "Regulatory Adaptability: Evolution of the Digesservisp regulatory framework for the integration of private security technologies, requiring corporations to strictly comply with tactical and labor certifications."
+  },
+  "hero": {
+    "badge": "Public Consultation · Free Download",
+    "title_1": "Security",
+    "title_2": "Report 2026",
+    "desc": "Exhaustive PESTEL analysis of the security landscape in Venezuela. Validated by human specialists and optimized through high-fidelity AI."
+  },
+  "summary": {
+    "title": "Executive Summary",
+    "p1": "The security landscape in Venezuela presents a structural reconfiguration in 2026. The <strong class='text-gray-200'>deactivation of informal control structures</strong> and their transition to institutional channels marks a shift in patrol and surveillance protocols in urban centers.",
+    "p2": "At the socio-economic level, <strong class='text-gray-200'>latent discontent driven by economic restriction</strong> acts as a catalyst for operational risks. Organizations must consider atypical demographic factors, such as the circular migration reported by the <strong class='text-gray-200'>IOM</strong>, where the reentry of citizens into national territory is transient, affecting human talent stability and long-term planning.",
+    "p3": "This PESTEL analysis is not intended to pass value judgments, but to provide an <strong class='text-gray-200'>impartial analytical matrix</strong> for the protection of critical infrastructures and diplomatic missions, ensuring that business continuity is based on verifiable environmental realities rather than media perceptions.",
+    "stat1_value": "+17 years",
+    "stat1_desc": "of data and operational experience analyzed",
+    "stat2_value": "6 dimensions",
+    "stat2_desc": "of PESTEL analysis applied to security",
+    "stat3_value": "Free",
+    "stat3_desc": "available for public download"
+  },
+  "cta": {
+    "badge": "Free Download",
+    "title": "Download Full Report",
+    "desc": "Access the full PESTEL report in PDF format. We only need your details to send you the download link.",
+    "success_title": "Report Successfully Drafted!",
+    "success_desc": "The PESTEL analysis is now available for your review. If the automatic download did not start, use the button below.",
+    "btn_download": "Download Certified PDF",
+    "btn_new": "New Analysis",
+    "preview": "Report Preview",
+    "name": "Name",
+    "name_ph": "Your name",
+    "org": "Organization",
+    "org_ph": "Company or institution",
+    "email": "Email",
+    "email_ph": "email@example.com",
+    "error": "Error sending. Please try again.",
+    "btn_submit": "Download PESTEL Report (PDF)",
+    "processing": "Processing..."
+  },
+  "seo": {
+    "title": "CSSG: Authority in Public and Private Security in Venezuela",
+    "p1": "With over 17 years of continuous operation without incidents, <strong class='text-gray-300'>Company Of Security and Service Global (CSSG)</strong> has positioned itself as a benchmark in <strong class='text-gray-300'>corporate security in Caracas</strong> and throughout Venezuela. Our private surveillance services, comprehensive security consulting, and protection technology serve embassies, international corporations, and high-level organizations.",
+    "p2": "This <strong class='text-gray-300'>Venezuela 2026 security report</strong> is part of our commitment to transparency and industry education. Through <strong class='text-gray-300'>PESTEL analysis applied to security</strong>, we provide a complete view of the political, economic, social, technological, ecological, and legal factors affecting the <strong class='text-gray-300'>private security industry in Venezuela</strong>.",
+    "p3": "Whether you are looking for a <strong class='text-gray-300'>risk analysis in Caracas</strong>, need <strong class='text-gray-300'>comprehensive security consulting</strong> for your organization, or wish to understand the <strong class='text-gray-300'>operational risk in Venezuela</strong>, this report is your starting point. For a personalized assessment, we invite you to use our free risk analysis tool or schedule a consultation with our team."
+  }
+}

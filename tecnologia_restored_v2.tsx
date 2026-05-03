@@ -1,0 +1,2 @@
+"import { motion } from 'framer-motion';\nimport { Wrench, Camera, Cpu, FolderKanban, ArrowRight, CheckCircle2, Building2 } from 'lucide-react';\nimport { useTranslation } from 'react-i18next';\n\nexport default function Tecnologia() {\n  const { t } = use
+<truncated 10006 bytes>

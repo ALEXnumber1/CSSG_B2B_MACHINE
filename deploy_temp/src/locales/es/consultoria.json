@@ -1,0 +1,68 @@
+{
+  "stats": {
+    "success": "80%",
+    "success_label": "Tasa de éxito en licitaciones y proyectos",
+    "years": "+17",
+    "years_label": "Años de experiencia en el sector",
+    "certified": "100%",
+    "certified_label": "Consultores certificados"
+  },
+  "steps": {
+    "s1_title": "Diagnóstico",
+    "s1_desc": "Evaluamos su situación actual, identificamos riesgos y oportunidades de mejora.",
+    "s2_title": "Estrategia",
+    "s2_desc": "Desarrollamos un plan a medida con objetivos claros, tiempos y presupuesto definidos.",
+    "s3_title": "Implementación",
+    "s3_desc": "Ejecutamos el plan con nuestro equipo de consultores, acompañándolos en cada paso.",
+    "s4_title": "Seguimiento",
+    "s4_desc": "Monitoreamos los resultados y aplicamos mejoras continuas bajo la metodología accountability partner."
+  },
+  "hero": {
+    "badge": "Inversión Estratégica",
+    "title_1": "Consultoría para",
+    "title_2": "Alta Gerencia",
+    "desc": "¿Está pagando por vigilancia o invirtiendo en protección operativa? Rediseñamos su estrategia de seguridad para optimizar su presupuesto, reducir riesgos legales y asegurar la continuidad de su negocio en la Venezuela actual.",
+    "btn": "Optimizar Mi Presupuesto de Seguridad"
+  },
+  "methodology": {
+    "title": "Ingeniería de Proyectos B2B",
+    "desc": "Nuestra consultoría no es un gasto, es una reingeniería de procesos. Aplicamos metodologías disruptivas para que su infraestructura sea infranqueable al menor costo operativo posible."
+  },
+  "team": {
+    "badge": "Expertos en Disrupción",
+    "title": "Consultores de Élite para Proyectos de Envergadura",
+    "desc": "Armamos equipos multidisciplinarios certificados en ISO 31000 y Gestión de Riesgos Tácticos. Nos enfocamos en lo que le importa a un director: resultados, rentabilidad y control total.",
+    "li1": "Optimización real de costos fijos de seguridad",
+    "li2": "Integración de nuevas tecnologías en proyectos antiguos",
+    "li3": "Dominio absoluto del marco legal y cumplimiento",
+    "li4": "Asesoría para procesos de licitación pública y privada",
+    "stat1_val": "80%",
+    "stat1_desc": "de efectividad en la reducción de vulnerabilidades críticas",
+    "stat2_val": "40%",
+    "stat2_desc": "de ahorro promedio en costos operativos anuales para nuestros clientes"
+  },
+  "form": {
+    "badge": "Sin compromiso",
+    "title": "Agende su Pre-Entrevista Gratuita",
+    "desc": "Cuéntenos sobre su proyecto y nuestro equipo le preparará un informe preliminar con recomendaciones personalizadas.",
+    "success_title": "Solicitud Recibida",
+    "success_desc": "Nuestro equipo de consultoría se pondrá en contacto a la brevedad con su informe preliminar.",
+    "success_btn": "Enviar otra solicitud",
+    "name": "Nombre Completo",
+    "name_ph": "Su nombre",
+    "company": "Empresa",
+    "company_ph": "Nombre de la organización",
+    "email": "Correo Electrónico",
+    "email_ph": "correo@empresa.com",
+    "type": "Tipo de Proyecto",
+    "opt_select": "Seleccione un tipo",
+    "opt_lic": "Licitación pública o privada",
+    "opt_aud": "Auditoría de seguridad",
+    "opt_pro": "Proyecto de seguridad nuevo",
+    "opt_opt": "Optimización de costos",
+    "opt_other": "Otro",
+    "error": "Hubo un error al enviar. Por favor intente nuevamente.",
+    "btn_loading": "Enviando...",
+    "btn": "Agendar Pre-Entrevista Gratuita"
+  }
+}

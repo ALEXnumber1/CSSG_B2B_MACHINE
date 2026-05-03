@@ -1,0 +1,121 @@
+{
+  "login": {
+    "title": "Administrative Panel",
+    "subtitle": "CSSG · CRM Pipeline",
+    "pwd_ph": "Password",
+    "btn": "Access"
+  },
+  "header": {
+    "title": "Leads Pipeline",
+    "subtitle": "Internal CRM · CSSG",
+    "btn_refresh": "Refresh"
+  },
+  "stats": {
+    "total": "Total Leads",
+    "week": "This week",
+    "score": "Average Score",
+    "hot": "Hot Leads (40+)"
+  },
+  "filters": {
+    "search_ph": "Search by name, company, or email...",
+    "all_sources": "All sources"
+  },
+  "kanban": {
+    "empty": "No leads",
+    "name_na": "No name",
+    "pts": "pts"
+  },
+  "modal": {
+    "company_na": "No company",
+    "email": "Email",
+    "phone": "Phone",
+    "source": "Source",
+    "score": "Score",
+    "date": "Date",
+    "points": "points",
+    "message": "Message",
+    "move": "Move in pipeline",
+    "notes": "Internal notes",
+    "notes_ph": "Add notes about this lead...",
+    "btn_saving": "Saving...",
+    "btn_save": "Save notes",
+    "emails_sent": "Emails sent:",
+    "seq_active": "Active nurturing sequence",
+    "seq_paused": "Paused sequence"
+  },
+  "time": {
+    "m": "{{count}}m ago",
+    "h": "{{count}}h ago",
+    "d": "{{count}}d ago",
+    "mo": "{{count}}mo ago"
+  },
+  "estados": {
+    "nuevo": "New",
+    "contactado": "Contacted",
+    "negociacion": "In Negotiation",
+    "cerrado_ganado": "Closed ✓",
+    "cerrado_perdido": "Lost"
+  },
+  "fuentes": {
+    "contacto": "Contact",
+    "riesgo": "Risk Analysis",
+    "consultoria": "Consulting",
+    "pestel": "PESTEL Report",
+    "scraper": "Outbound"
+  },
+  "tabs": {
+    "crm": "CRM Pipeline",
+    "prospectar": "Prospect",
+    "contenido": "Content"
+  },
+  "prospectar": {
+    "title": "B2B Prospecting",
+    "subtitle": "Import leads from CSV or add them manually to feed your pipeline.",
+    "import_csv": "Import CSV",
+    "csv_ph": "Paste your CSV here...\nname,company,email,phone,sector,location\nJohn Doe,ABC Company,john@abc.com,04141234567,Manufacturing,Caracas",
+    "process_csv": "Process CSV",
+    "example": "Example",
+    "add_manual": "Add Manual",
+    "ph": {
+      "nombre": "Name",
+      "empresa": "Company",
+      "correo": "Email",
+      "telefono": "Phone",
+      "sector": "Sector",
+      "ubicacion": "Location"
+    },
+    "btn_add": "Add to list",
+    "preview_title": "{{count}} leads ready to import",
+    "btn_clean": "Clean",
+    "btn_save": "Save to Pipeline",
+    "btn_saving": "Saving...",
+    "status_saved": "✅ {{count}} saved",
+    "status_dupes": "⚠️ {{count}} duplicates skipped",
+    "table": {
+      "name": "Name",
+      "company": "Company",
+      "email": "Email",
+      "phone": "Phone",
+      "sector": "Sector",
+      "status": "Status",
+      "valid": "✓ Valid"
+    }
+  },
+  "contenido": {
+    "title": "Authority Engine",
+    "subtitle": "Manage your articles and generate authority content with Artificial Intelligence.",
+    "btn_new": "New Post",
+    "btn_ai": "Generate with AI",
+    "table_title": "Published Articles and Drafts",
+    "no_posts": "No articles yet. Start by creating a new one or using AI.",
+    "status_published": "Published",
+    "status_draft": "Draft",
+    "table": {
+      "title": "Title / Slug",
+      "category": "Category",
+      "date": "Date",
+      "status": "Status",
+      "actions": "Actions"
+    }
+  }
+}

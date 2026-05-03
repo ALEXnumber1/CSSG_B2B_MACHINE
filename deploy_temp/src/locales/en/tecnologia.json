@@ -1,0 +1,68 @@
+{
+  "hero": {
+    "badge": "High Engineering & Tech",
+    "title_1": "Security",
+    "title_2": "Ecosystem",
+    "desc": "From civil perimeter engineering to advanced AI analytics. We protect your infrastructure with international standards."
+  },
+  "niches": {
+    "n1_title": "Civil Security Engineering",
+    "n1_desc": "Design, construction, and maintenance of the infrastructure that protects your perimeter.",
+    "n1_f1": "Perimeter wall construction",
+    "n1_f2": "Perimeter fences and concertinas",
+    "n1_f3": "Electric and automated gates",
+    "n1_f4": "Maintenance of security structures",
+    
+    "n2_title": "CCTV and CECOM Systems",
+    "n2_desc": "Professional closed-circuit television with elite monitoring centers (CECOM).",
+    "n2_f1": "Installation of fixed and PTZ IP cameras",
+    "n2_f2": "Design and assembly of CECOM rooms",
+    "n2_f3": "Integration with alarm panels",
+    "n2_f4": "Cloud and local recording",
+    
+    "n3_title": "AI Cameras",
+    "n3_desc": "Video analytics and AI technology for proactive suspect detection.",
+    "n3_f1": "Smart intrusion detection",
+    "n3_f2": "Suspect search by filters",
+    "n3_f3": "Behavioral analytics",
+    "n3_f4": "Automatic \"SUSPECT\" alerts",
+    
+    "btn": "Request Information"
+  },
+  "portfolio": {
+    "badge": "Portfolio",
+    "title": "Completed Projects",
+    "desc": "A sample of the projects we have executed for our clients.",
+    "status_done": "Completed",
+    "status_prog": "In progress",
+    
+    "p1_title": "Premium Residential Perimeter",
+    "p1_type": "Engineering",
+    "p1_desc": "Perimeter wall with electric fence and automated gate for a high-level residential complex.",
+    
+    "p2_title": "Corporate CCTV System",
+    "p2_type": "CCTV",
+    "p2_desc": "Network of 48 IP cameras with centralized monitoring for a multinational corporate headquarters.",
+    
+    "p3_title": "Access Automation",
+    "p3_type": "Engineering",
+    "p3_desc": "Vehicular and pedestrian access control with biometric readers and automatic barriers.",
+    
+    "p4_title": "Industrial Smart Surveillance",
+    "p4_type": "AI Cameras",
+    "p4_desc": "Cameras with video analytics for intrusion detection in an industrial plant.",
+    
+    "p5_title": "Diplomatic Perimeter",
+    "p5_type": "Engineering + CCTV",
+    "p5_desc": "Comprehensive perimeter security project with CCTV and access control for a diplomatic delegation.",
+    
+    "p6_title": "Bank Tech Upgrade",
+    "p6_type": "CCTV",
+    "p6_desc": "Migration from analog to IP system with video analytics for a network of bank branches."
+  },
+  "cta": {
+    "title": "Do you have a security project in mind?",
+    "desc": "Our engineering team will evaluate your project without obligation and provide a detailed quote.",
+    "btn": "Request Specialized Quote"
+  }
+}

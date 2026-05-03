@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#0B0B0F] text-slate-200 antialiased selection:bg-sky-500/30 selection:text-sky-200 m-0 p-0;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    @apply bg-[#1A1A24]/60 backdrop-blur-lg border border-[#333345] shadow-2xl;
+  }
+  .glass-card-hover {
+    @apply hover:border-sky-500/50 hover:bg-[#1A1A24]/80 transition-all duration-300;
+  }
+  
+  .text-glow {
+    text-shadow: 0 0 20px rgba(14, 165, 233, 0.4);
+  }
+
+  .glass-morphism {
+    @apply bg-white/[0.03] backdrop-blur-xl border border-white/[0.05] shadow-[0_8px_32px_0_rgba(0,0,0,0.37)];
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2.5s linear infinite;
+  }
+
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  .bg-mesh {
+    background-color: #0B0B0F;
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(14, 165, 233, 0.08) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(30, 58, 138, 0.1) 0px, transparent 50%);
+  }
+
+  /* Custom scrollbar for a more integrated look */
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-sky-500/20 rounded-full hover:bg-sky-500/40 transition-colors;
+  }
+
+  /* Blog Article Prose */
+  .prose-cssg {
+    @apply text-gray-300 text-base leading-relaxed;
+  }
+  .prose-cssg h2 {
+    @apply text-xl font-bold text-white mt-10 mb-4 tracking-tight;
+  }
+  .prose-cssg h3 {
+    @apply text-lg font-semibold text-white mt-8 mb-3;
+  }
+  .prose-cssg p {
+    @apply mb-5 leading-relaxed;
+  }
+  .prose-cssg strong {
+    @apply text-white font-semibold;
+  }
+  .prose-cssg a {
+    @apply text-sky-400 hover:text-sky-300 underline underline-offset-2 transition-colors;
+  }
+  .prose-cssg ul, .prose-cssg ol {
+    @apply mb-5 pl-6 space-y-2;
+  }
+  .prose-cssg li {
+    @apply text-gray-400;
+  }
+  .prose-cssg ul li {
+    @apply list-disc;
+  }
+  .prose-cssg ol li {
+    @apply list-decimal;
+  }
+}

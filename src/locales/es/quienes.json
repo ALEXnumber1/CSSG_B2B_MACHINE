@@ -1,0 +1,86 @@
+{
+  "history_badge": "Legado de Seguridad",
+  "history_title": "Legado de Seguridad para la tranquilidad de nuestros clientes",
+  "history_desc": "CSSG es confianza, profesionalismo y tranquilidad",
+  "zentinel_title": "Alianza Zentinel Global",
+  "zentinel_desc": "La Alianza con ZentinelGlobaL e-learning especializada en Capacitaciones para Guardias de seguridad de élite, manteniendolos al día en las materias de Derechos Humanos, atencion al cliente, Uso progresivo de la Fuerza, HSEQ, Objetos sospechosos, Cadena de Custodia, Primeros Auxilios, CCTV, ISO 9001:2015",
+  "mission_title": "Nuestra Misión",
+  "mission_desc": "Contribuir al bienestar y la tranquilidad de la sociedad venezolana ofreciendo a empresas, instituciones y residencias un servicio de vigilancia y seguridad sin armamento que proteja a sus personas y sus bienes. Lo hacemos mediante un equipo de profesionales comprometidos con la ética y los derechos humanos, respaldado por tecnologías emergentes, innovación en respuesta a situaciones de crisis y soluciones personalizadas adaptadas a cada cliente.",
+  "vision_title": "Nuestra Visión",
+  "vision_desc": "Convertirnos en la empresa de vigilancia y seguridad privada sin armamento más reconocida de Venezuela por la calidad de nuestros servicios, basándonos en el mejoramiento de los procesos, la excelencia de nuestro personal y el uso estratégico de tecnologías emergentes, proyectándose hacia la expansión internacional como un referente de las empresas de vigilancia y seguridad privada adaptada a las exigencias del entorno y de nuestros clientes.",
+  "philosophy_title": "El Factor Humano",
+  "philosophy_desc": "En CSSG, la seguridad no es un gasto, es una inversión en talento. Liderar la tabla salarial del sector no es solo una política ética; es nuestra mejor estrategia de defensa. Un oficial bien remunerado y valorado es un oficial leal, alerta y comprometido con la vida de nuestros protegidos.",
+  "conduct_title": "Código de Conducta",
+  "conduct_subtitle": "Los principios que guían cada decisión y cada acción de nuestro equipo táctico.",
+  "conduct": {
+    "integ_title": "Integridad Táctica",
+    "integ_desc": "Transparencia absoluta en la gestión de riesgos y operaciones.",
+    "resp_title": "Respeto Institucional",
+    "resp_desc": "Preservamos la dignidad y los valores de las organizaciones que protegemos.",
+    "conf_title": "Sigilo Operativo",
+    "conf_desc": "Protección hermética de la información y activos estratégicos.",
+    "prof_title": "Disciplina",
+    "prof_desc": "Formación continua bajo estándares de embajadas del G7.",
+    "exc_title": "Excelencia ISO",
+    "exc_desc": "Procesos auditados bajo la norma ISO 9001:2015 para una mejora infinita.",
+    "comp_title": "Compromiso Vital",
+    "comp_desc": "La continuidad operativa de su negocio es nuestra misión suprema."
+  },
+  "cert_title": "Certificaciones",
+  "cert_subtitle": "Respaldados por las credenciales más exigentes de la industria global.",
+  "cert": {
+    "iso_badge": "Gestión de Calidad ISO 9001:2015",
+    "iso_desc": "Certificación internacional que garantiza procesos auditados, trazabilidad total y una cultura de excelencia en cada despliegue táctico y administrativo.",
+    "dig_badge": "Digesservisp",
+    "dig_desc": "Habilitación legal completa emitida por el Ministerio de Relaciones Interiores para operar con máximo rigor en todo el territorio venezolano."
+  },
+  "team_title": "Centro de Mando Directivo",
+  "team_subtitle": "Estrategas con décadas de experiencia en inteligencia, operaciones y gestión corporativa.",
+  "team": {
+    "ceo": "CEO",
+    "ops": "Director de Operaciones",
+    "ops_mgr": "Gerente de Operaciones",
+    "it_mgr": "Gerente de IT & Innovación",
+    "legal": "Asesor Legal Corporativo",
+    "legal_advisor": "Consultor Jurídico Senior",
+    "members": {
+      "alexander": {
+        "dept": "Dirección General",
+        "bio": "Experto en Seguridad y Negocios (MBA), administrador y Expolicía Condecorado. Formado militarmente y con 16 años de trayectoria policial en áreas preventivas e investigativas. Fundó CSSG con la visión de que oficiales bien remunerados elevan la cadena de valor y protección al cliente en Venezuela."
+      },
+      "juan": {
+        "dept": "Gerencia General",
+        "bio": "Especialista en gestión administrativa y financiera con amplia trayectoria en la optimización de recursos y liderazgo de equipos multidisciplinarios en el sector de seguridad corporativa."
+      },
+      "charles": {
+        "dept": "Operaciones",
+        "bio": "Especialista en supervisión táctica y coordinación de campo, garantizando el cumplimiento estricto de los protocolos de seguridad en cada puesto operativo."
+      },
+      "orlando": {
+        "dept": "Tecnología e Innovación",
+        "bio": "Especialista en infraestructura de redes y seguridad informática, liderando la transformación digital y la integración de sistemas de monitoreo inteligente para la protección de activos críticos."
+      },
+      "franklin": {
+        "dept": "Consultoría Jurídica",
+        "bio": "Estratega legal con amplia trayectoria en derecho corporativo y cumplimiento normativo; garantiza el blindaje jurídico y la transparencia institucional de nuestras operaciones."
+      },
+      "ninsa": {
+        "dept": "Dirección Ejecutiva",
+        "bio": "Estratega institucional encargada de la coordinación ejecutiva y el enlace estratégico entre la dirección general y las áreas operativas, garantizando la excelencia institucional."
+      }
+    }
+  },
+  "officers_badge": "Élite CSSG",
+  "officers_title": "Reconocimiento al Valor",
+  "officers_subtitle": "Nuestros oficiales son la primera línea de defensa. Premiamos la excelencia operativa y la lealtad inquebrantable.",
+  "officers": {
+    "month": "Oficial del Mes - MARZO",
+    "year": "Oficial del Año 2025",
+    "tbd": "En evaluación",
+    "male": "Oficial Masculino",
+    "female": "Oficial Femenina"
+  },
+  "cta_title": "¿Listo para blindar su organización?",
+  "cta_desc": "Únase al legado de 17 años de éxito. Obtenga un análisis de vulnerabilidades gratuito hoy mismo.",
+  "cta_btn": "Solicitar Análisis Operativo"
+}

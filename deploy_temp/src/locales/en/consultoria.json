@@ -1,0 +1,68 @@
+{
+  "stats": {
+    "success": "80%",
+    "success_label": "Success rate in tenders and projects",
+    "years": "+17",
+    "years_label": "Years of industry experience",
+    "certified": "100%",
+    "certified_label": "Certified consultants"
+  },
+  "steps": {
+    "s1_title": "Diagnosis",
+    "s1_desc": "We evaluate your current situation, identifying risks and opportunities for improvement.",
+    "s2_title": "Strategy",
+    "s2_desc": "We develop a customized plan with clear objectives, timelines, and budgets.",
+    "s3_title": "Implementation",
+    "s3_desc": "We execute the plan with our team of consultants, guiding you every step of the way.",
+    "s4_title": "Monitoring",
+    "s4_desc": "We monitor the results and apply continuous improvements under the accountability partner methodology."
+  },
+  "hero": {
+    "badge": "Professional Service",
+    "title_1": "Consulting in",
+    "title_2": "Comprehensive Security",
+    "desc": "A strategic consulting can reduce up to 40% of the costs of your security project, making it a highly profitable investment. Let us prove it to you.",
+    "btn": "Schedule Tactical Consulting"
+  },
+  "methodology": {
+    "title": "Our Methodology",
+    "desc": "We work under the Accountability Partner methodology, becoming your strategic ally to achieve objectives. Each stage is aligned with ISO standards and the most demanding industry certifications."
+  },
+  "team": {
+    "badge": "Our Team",
+    "title": "Consultants tailored to your project",
+    "desc": "We assemble teams of consultants with the best profiles in the Latin American industry. Each project receives a team designed specifically for your needs, with certified professionals in ISO standards, risk management, electronic security, and engineering.",
+    "li1": "Certified ISO 9001 and ISO 31000 professionals",
+    "li2": "Experience in public and private tenders",
+    "li3": "Deep knowledge of Venezuelan regulations",
+    "li4": "Consultants with a track record in LATAM",
+    "stat1_val": "80%",
+    "stat1_desc": "success rate in tenders and awarded security projects",
+    "stat2_val": "40%",
+    "stat2_desc": "average cost reduction for clients undergoing prior consulting"
+  },
+  "form": {
+    "badge": "No commitment",
+    "title": "Schedule your Free Pre-Interview",
+    "desc": "Tell us about your project and our team will prepare a preliminary report with personalized recommendations.",
+    "success_title": "Request Received",
+    "success_desc": "Our consulting team will contact you shortly with your preliminary report.",
+    "success_btn": "Submit another request",
+    "name": "Full Name",
+    "name_ph": "Your name",
+    "company": "Company",
+    "company_ph": "Organization name",
+    "email": "Email",
+    "email_ph": "email@company.com",
+    "type": "Project Type",
+    "opt_select": "Select a type",
+    "opt_lic": "Public or private tender",
+    "opt_aud": "Security audit",
+    "opt_pro": "New security project",
+    "opt_opt": "Cost optimization",
+    "opt_other": "Other",
+    "error": "There was an error sending. Please try again.",
+    "btn_loading": "Sending...",
+    "btn": "Schedule Free Pre-Interview"
+  }
+}

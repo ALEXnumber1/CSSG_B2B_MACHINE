@@ -1,0 +1,38 @@
+{
+  "login": {
+    "title": "Corporate Portal",
+    "subtitle": "Exclusive Platform for CSSG Officers",
+    "id_label": "Corporate ID",
+    "id_ph": "ID-VZL-8832",
+    "pwd_label": "Access Key",
+    "pwd_ph": "••••••••••••",
+    "btn_auth": "Verifying credentials...",
+    "btn_submit": "Start Secure Session",
+    "warning": "Every access attempt is corporately logged under the current IP. Infiltration or social engineering on this portal is subject to legal action.",
+    "error": "Network Error: Could not contact central server."
+  },
+  "dashboard": {
+    "title": "CSSG Command Center",
+    "status": "Encrypted Connection · Alpha-1 Station",
+    "btn_logout": "Disconnect",
+    "stats": {
+      "leads": "Strategic Leads",
+      "alerts": "Critical Alerts",
+      "compliance": "Average Compliance",
+      "ops": "Active Operations",
+      "live": "Live"
+    },
+    "table": {
+      "title": "Recent Intelligence Records",
+      "col_entity": "Entity / Company",
+      "col_contact": "Contact",
+      "col_score": "Score",
+      "col_date": "Date",
+      "col_action": "Action",
+      "loading": "Querying encrypted records...",
+      "empty": "No tactical records in the central database.",
+      "na": "N/A",
+      "btn_view": "View Full Profile"
+    }
+  }
+}

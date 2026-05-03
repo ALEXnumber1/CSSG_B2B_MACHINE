@@ -1,0 +1,38 @@
+{
+  "login": {
+    "title": "Portal Corporativo",
+    "subtitle": "Plataforma exclusiva para Oficiales CSSG",
+    "id_label": "ID Corporativo",
+    "id_ph": "ID-VZL-8832",
+    "pwd_label": "Clave de Acceso",
+    "pwd_ph": "••••••••••••",
+    "btn_auth": "Verificando credenciales...",
+    "btn_submit": "Iniciar Sesión Segura",
+    "warning": "Todo intento de acceso es registrado corporativamente bajo la IP actual. La infiltración o ingeniería social en este portal está sujeta a acciones legales.",
+    "error": "Error de red: No se pudo contactar al servidor central."
+  },
+  "dashboard": {
+    "title": "CSSG Command Center",
+    "status": "Conexión Encriptada · Estación Alpha-1",
+    "btn_logout": "Desconectar",
+    "stats": {
+      "leads": "Leads Estratégicos",
+      "alerts": "Alertas Críticas",
+      "compliance": "Cumplimiento Promedio",
+      "ops": "Operaciones Activas",
+      "live": "Live"
+    },
+    "table": {
+      "title": "Registros de Inteligencia Recientes",
+      "col_entity": "Entidad / Empresa",
+      "col_contact": "Contacto",
+      "col_score": "Puntuación",
+      "col_date": "Fecha",
+      "col_action": "Acción",
+      "loading": "Consultando registros encriptados...",
+      "empty": "No hay registros tácticos en la base de datos central.",
+      "na": "N/A",
+      "btn_view": "Ver Perfil Completo"
+    }
+  }
+}

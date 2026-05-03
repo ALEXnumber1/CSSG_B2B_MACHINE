@@ -1,0 +1,156 @@
+{
+  "hero": {
+    "badge": "Inversión Estratégica en Continuidad",
+    "title_white": "Consultoría Profesional",
+    "title_blue": "Para Protección de Activos y Continuidad de Negocio",
+    "desc_p1": "La seguridad no es un gasto operativo; es la inversión que blinda el cumplimiento de sus objetivos organizacionales. Rediseñamos su estrategia con visión de Alta Gerencia.",
+    "desc_p2": "Agregamos tecnología de punta (Hardware como un Servicio HaaS con IA avanzada) para que tu gestión de seguridad fluya positivamente.",
+    "cta": "SOLICITAR INFORMACIÓN"
+  },
+  "ticker": {
+    "message": "Acceder a nuestra consultoría te otorga un gerente de seguridad integral a la medida de su negocio o gestión, SHIELDTRACE PSIM, ¡Gratis por 4 meses!"
+  },
+  "authority": {
+    "badge": "Liderazgo Comprobado",
+    "title": "Panel de Expertos Diversificados y Certificados",
+    "desc": "Al contratar a CSSG, no obtiene solo un consultor; obtiene el respaldo de un equipo multidisciplinario con trayectoria real. Nuestra consultoría bien gestionada garantiza resultados tangibles.",
+    "metrics": {
+      "roi": "+40%",
+      "roi_label": "Aumento en ROI de Seguridad",
+      "incidents": "-50%",
+      "incidents_label": "Reducción de Incidentes Críticos",
+      "kpi": "100%",
+      "kpi_label": "Cumplimiento de KPIs (Humano y Automatizado)"
+    },
+    "points": [
+      "Mitigación drástica de márgenes de error operativos",
+      "Certificados ISO 9001 en gestión de calidad",
+      "Consultores certificados en Gestión Táctica de Riesgos",
+      "Experiencia en proyectos de infraestructura crítica"
+    ]
+  },
+  "methodology": {
+    "badge": "Metodología Auditada",
+    "title": "Accountability Partner: Acompañamiento Real",
+    "desc": "Bajamos la estrategia a un plano táctico real y entendible. No entregamos teoría, nos hacemos responsables de los resultados.",
+    "phases": [
+      {
+        "id": "01",
+        "title": "Auditoría / Diagnóstico",
+        "text": "Identificación exhaustiva de vulnerabilidades y puntos ciegos."
+      },
+      {
+        "id": "02",
+        "title": "Estrategia",
+        "text": "Diseño de plan maestro adaptado a su realidad operativa y presupuesto."
+      },
+      {
+        "id": "03",
+        "title": "Implementación",
+        "text": "Ejecución táctica apoyada en nuestro brazo tecnológico HaaS."
+      },
+      {
+        "id": "04",
+        "title": "Seguimiento",
+        "text": "Control continuo de métricas y mitigación dinámica de riesgos."
+      }
+    ]
+  },
+  "social_proof": {
+    "badge": "Resultados Comprobados",
+    "title": "Impacto Real en Números",
+    "metrics": {
+      "projects": "+33",
+      "projects_label": "Proyectos Asesorados",
+      "savings": "+$7M",
+      "savings_label": "USD Ahorrados a Clientes",
+      "incidents": "Cero",
+      "incidents_label": "Incidentes Críticos"
+    },
+    "disclaimer": {
+      "title": "Acuerdo de Confidencialidad (NDA)",
+      "text": "Todos nuestros proyectos están bajo estrictos acuerdos de confidencialidad. No revelamos la identidad de nuestros clientes para proteger sus activos y operaciones. Sin embargo, estamos facultados para compartir los detalles técnicos de las soluciones implementadas y resultados obtenidos como referencia de éxito."
+    },
+    "cases": [
+      {
+        "title": "Optimización de Retail Masivo",
+        "result": "Reducción del 28% en pérdidas por 'merma' en 6 meses mediante auditoría táctica."
+      },
+      {
+        "title": "Seguridad en Banca Privada",
+        "result": "Digitalización al 100% de la gestión de riesgos humanos y respuesta automatizada."
+      },
+      {
+        "title": "Logística y Distribución",
+        "result": "Ahorro de $1.2M anuales en pólizas de seguro tras implementación de ShieldTrace."
+      }
+    ]
+  },
+  "meeting_cta": {
+    "title": "¿Listo para optimizar su gestión?",
+    "btn": "AGENDAR REUNIÓN EXPLICATIVA (15 MIN)",
+    "btn_short": "Solicitar Diagnóstico",
+    "note": "Sesión de diagnóstico rápido sin compromiso."
+  },
+  "technology": {
+    "badge": "El Brazo Tecnológico",
+    "title": "¿Qué es SHIELDTRACE PSIM?",
+    "psim_def": "PSIM (Physical Security Information Management): Es una plataforma de software que integra múltiples dispositivos de seguridad no conectados, controlándolos a través de una interfaz de usuario integral e inteligente.",
+    "concept_title": "De la Palabra a la Acción en Campo",
+    "concept_desc": "Las consultorías tradicionales se quedan en informes. Con CSSG, pasamos a la ejecución real. Combinamos expertos certificados con tecnología de punta para responder al ritmo de las situaciones actuales.",
+    "haas_title": "Beneficios de Nuestro Modelo HaaS",
+    "haas_benefits": [
+      "Inversión Cero CAPEX: Sin costos iniciales por hardware.",
+      "Mantenimiento Proactivo: Reemplazo inmediato ante fallas.",
+      "Actualización Continua: Siempre contará con la última versión de IA.",
+      "Escalabilidad Táctica: Crece según su necesidad operativa."
+    ],
+    "compliance": "Gestión basada en estándares ISO 9001, ISO 31000 y Best Practices globales. Diseñado para potenciar al Gerente de Seguridad o suplir la falta de un profesional en el área, garantizando una gestión de nivel internacional.",
+    "accountability_note": "Recordatorio Vital: Bajo nuestra metodología Accountability Partner, nuestra responsabilidad no termina hasta que sus objetivos organizacionales estén 100% blindados."
+  },
+  "offer": {
+    "badge": "Oferta de Aceleración",
+    "title": "Inicie su Transformación Hoy",
+    "desc": "Al contratar nuestra Consultoría Profesional, CSSG le otorga el ecosistema ShieldTrace sin costo inicial.",
+    "highlight": "4 meses de HaaS GRATIS",
+    "inclusion": "Incluye Tablet Industrial Grade + Licencia Software ShieldTrace.",
+    "pricing": {
+      "org": "$80/mes",
+      "org_label": "Organizaciones",
+      "prof": "$40/mes",
+      "prof_label": "Profesionales"
+    },
+    "note": "Precios aplicables tras culminar el periodo gratuito de 4 meses."
+  },
+  "form": {
+    "title": "Solicitar Diagnóstico Inicial",
+    "desc": "Complete sus datos para agendar una sesión estratégica con nuestro panel de expertos y reclamar sus 4 meses de HaaS.",
+    "name": "Nombre Completo",
+    "company": "Empresa / Organización",
+    "email": "Correo Corporativo",
+    "type": "Prioridad Operativa",
+    "btn": "¡QUIERO MI DIAGNÓSTICO AHORA!"
+  },
+  "faq": {
+    "badge": "Resolviendo Dudas",
+    "title": "Preguntas Frecuentes",
+    "questions": [
+      {
+        "q": "¿Qué tan rápido es el despliegue del HaaS?",
+        "a": "Tras la auditoría inicial (Fase 1), el hardware ShieldTrace se entrega y configura en menos de 72 horas hábiles."
+      },
+      {
+        "q": "¿Es compatible con mis cámaras actuales?",
+        "a": "Sí. ShieldTrace PSIM es agnóstico, se integra con el 95% de las marcas de CCTV y control de acceso del mercado."
+      },
+      {
+        "q": "¿Qué pasa después de los 4 meses gratis?",
+        "a": "Puede optar por mantener el servicio mediante una suscripción mensual fija o devolver el hardware sin penalización."
+      },
+      {
+        "q": "¿La consultoría es presencial o remota?",
+        "a": "Híbrida. Realizamos diagnósticos técnicos in-situ y seguimientos estratégicos vía dashboard digital."
+      }
+    ]
+  }
+}

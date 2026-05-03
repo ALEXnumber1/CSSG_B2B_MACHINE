@@ -1,0 +1,59 @@
+{
+  "history_badge": "Legado de Seguridad",
+  "history_title": "Legado de Seguridad, Futuro de Inteligencia",
+  "history_desc": "Desde 2009, CSSG ha redefinido el estándar de protección en entornos complejos. Con más de 17 años de operación continua sin incidentes, somos el baluarte de organizaciones que no permiten margen de error.",
+  "zentinel_title": "Alianza Zentinel Global",
+  "zentinel_desc": "Como socios estratégicos de Zentinel Global, integramos protocolos internacionales y tecnología de vanguardia para ofrecer una continuidad operativa blindada en toda la región.",
+  "mission_title": "Nuestra Misión",
+  "mission_desc": "Blindar la continuidad operativa de nuestros clientes mediante la convergencia de talento humano de élite y tecnología de vanguardia, garantizando un entorno de confianza absoluta bajo estándares diplomáticos.",
+  "vision_title": "Nuestra Visión",
+  "vision_desc": "Consolidarnos como la autoridad indiscutible en inteligencia operativa y seguridad corporativa en Latinoamérica, transformando la prevención en un activo estratégico para el crecimiento de nuestros clientes.",
+  "philosophy_title": "El Factor Humano",
+  "philosophy_desc": "En CSSG, la seguridad no es un gasto, es una inversión en talento. Liderar la tabla salarial del sector no es solo una política ética; es nuestra mejor estrategia de defensa. Un oficial bien remunerado y valorado es un oficial leal, alerta y comprometido con la vida de nuestros protegidos.",
+  "conduct_title": "Código de Conducta",
+  "conduct_subtitle": "Los principios que guían cada decisión y cada acción de nuestro equipo táctico.",
+  "conduct": {
+    "integ_title": "Integridad Táctica",
+    "integ_desc": "Transparencia absoluta en la gestión de riesgos y operaciones.",
+    "resp_title": "Respeto Institucional",
+    "resp_desc": "Preservamos la dignidad y los valores de las organizaciones que protegemos.",
+    "conf_title": "Sigilo Operativo",
+    "conf_desc": "Protección hermética de la información y activos estratégicos.",
+    "prof_title": "Disciplina",
+    "prof_desc": "Formación continua bajo estándares de embajadas del G7.",
+    "exc_title": "Excelencia ISO",
+    "exc_desc": "Procesos auditados bajo la norma ISO 9001:2015 para una mejora infinita.",
+    "comp_title": "Compromiso Vital",
+    "comp_desc": "La continuidad operativa de su negocio es nuestra misión suprema."
+  },
+  "cert_title": "Certificaciones",
+  "cert_subtitle": "Respaldados por las credenciales más exigentes de la industria global.",
+  "cert": {
+    "iso_badge": "Gestión de Calidad ISO 9001:2015",
+    "iso_desc": "Certificación internacional que garantiza procesos auditados, trazabilidad total y una cultura de excelencia en cada despliegue táctico y administrativo.",
+    "dig_badge": "Digesservisp",
+    "dig_desc": "Habilitación legal completa emitida por el Ministerio de Relaciones Interiores para operar con máximo rigor en todo el territorio venezolano."
+  },
+  "team_title": "Centro de Mando Directivo",
+  "team_subtitle": "Estrategas con décadas de experiencia en inteligencia, operaciones y gestión corporativa.",
+  "team": {
+    "ops": "Director de Operaciones Tácticas",
+    "adj": "Enlace Estratégico Ejecutivo",
+    "com": "Director Institucional",
+    "it": "Arquitecto de Inteligencia",
+    "legal": "Garantía Jurídica"
+  },
+  "officers_badge": "Élite CSSG",
+  "officers_title": "Reconocimiento al Valor",
+  "officers_subtitle": "Nuestros oficiales son la primera línea de defensa. Premiamos la excelencia operativa y la lealtad inquebrantable.",
+  "officers": {
+    "month": "Oficial del Mes - MARZO",
+    "year": "Oficial del Año 2025",
+    "tbd": "En evaluación",
+    "male": "Oficial Masculino",
+    "female": "Oficial Femenina"
+  },
+  "cta_title": "¿Listo para blindar su organización?",
+  "cta_desc": "Únase al legado de 17 años de éxito. Obtenga un análisis de vulnerabilidades gratuito hoy mismo.",
+  "cta_btn": "Solicitar Análisis Operativo"
+}

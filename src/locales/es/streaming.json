@@ -1,0 +1,29 @@
+{
+  "badge": "Sistema Zentinel",
+  "title": "CENTRO DE MANDO TÁCTICO",
+  "status_online": "Sistema Online",
+  "encrypted": "Línea Cifrada",
+  "local_time": "Hora Local",
+  "live_badge": "Transmisión en Vivo",
+  "tactical_data": "Datos Tácticos",
+  "latency": "Latencia",
+  "protocol": "Protocolo",
+  "bitrate": "Tasa de Bits",
+  "command_logs": "Logs de Mando",
+  "invite_btn": "Invitar Aliados",
+  "secure_stream": "Streaming Seguro",
+  "e2ee": "E2EE Activo",
+  "logs": {
+    "init": "SISTEMA: INICIANDO PROTOCOLO SEGURO TLS 1.3...",
+    "encrypt": "SISTEMA: CIFRANDO STREAM VIA AES-256...",
+    "handshake": "RED: ESTABILIZANDO HANDSHAKE @ 24ms...",
+    "security": "SEGURIDAD: CAPA ZERO-TRUST ACTIVA.",
+    "ready": "MANDO: LISTO PARA COMUNICACIONES CRÍTICAS."
+  },
+  "toast_copy": "Enlace de invitación copiado al portapapeles",
+  "tools": {
+    "chat": "Chat",
+    "stats": "Estadísticas",
+    "sos": "S.O.S"
+  }
+}

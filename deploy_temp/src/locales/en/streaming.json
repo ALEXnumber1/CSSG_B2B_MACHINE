@@ -1,0 +1,29 @@
+{
+  "badge": "Zentinel System",
+  "title": "TACTICAL COMMAND CENTER",
+  "status_online": "System Online",
+  "encrypted": "Encrypted Line",
+  "local_time": "Local Time",
+  "live_badge": "Live Transmission",
+  "tactical_data": "Tactical Data",
+  "latency": "Latency",
+  "protocol": "Protocol",
+  "bitrate": "Bitrate",
+  "command_logs": "Command Logs",
+  "invite_btn": "Invite Allies",
+  "secure_stream": "Secure Stream",
+  "e2ee": "E2EE Active",
+  "logs": {
+    "init": "SYSTEM: INITIATING SECURE PROTOCOL TLS 1.3...",
+    "encrypt": "SYSTEM: ENCRYPTING STREAM VIA AES-256...",
+    "handshake": "NETWORK: STABILIZING HANDSHAKE @ 24ms...",
+    "security": "SECURITY: ZERO-TRUST LAYER ACTIVE.",
+    "ready": "COMMAND: READY FOR MISSION CRITICAL COMMS."
+  },
+  "toast_copy": "Invitation link copied to clipboard",
+  "tools": {
+    "chat": "Chat",
+    "stats": "Stats",
+    "sos": "S.O.S"
+  }
+}

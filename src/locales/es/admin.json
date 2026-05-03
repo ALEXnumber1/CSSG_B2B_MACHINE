@@ -1,0 +1,122 @@
+{
+  "btn_nurturing": "Procesar Secuencias",
+  "login": {
+    "title": "Panel Administrativo",
+    "subtitle": "CSSG · CRM Pipeline",
+    "pwd_ph": "Contraseña",
+    "btn": "Acceder"
+  },
+  "header": {
+    "title": "Pipeline de Leads",
+    "subtitle": "CRM interno · CSSG",
+    "btn_refresh": "Actualizar"
+  },
+  "stats": {
+    "total": "Total Leads",
+    "week": "Esta semana",
+    "score": "Score promedio",
+    "hot": "Leads calientes (40+)"
+  },
+  "filters": {
+    "search_ph": "Buscar por nombre, empresa o correo...",
+    "all_sources": "Todas las fuentes"
+  },
+  "kanban": {
+    "empty": "Sin leads",
+    "name_na": "Sin nombre",
+    "pts": "pts"
+  },
+  "modal": {
+    "company_na": "Sin empresa",
+    "email": "Email",
+    "phone": "Teléfono",
+    "source": "Fuente",
+    "score": "Score",
+    "date": "Fecha",
+    "points": "puntos",
+    "message": "Mensaje",
+    "move": "Mover en pipeline",
+    "notes": "Notas internas",
+    "notes_ph": "Agregar notas sobre este lead...",
+    "btn_saving": "Guardando...",
+    "btn_save": "Guardar notas",
+    "emails_sent": "Emails enviados:",
+    "seq_active": "Secuencia de nurturing activa",
+    "seq_paused": "Secuencia pausada"
+  },
+  "time": {
+    "m": "hace {{count}}m",
+    "h": "hace {{count}}h",
+    "d": "hace {{count}}d",
+    "mo": "hace {{count}}mo"
+  },
+  "estados": {
+    "nuevo": "Nuevo",
+    "contactado": "Contactado",
+    "negociacion": "En Negociación",
+    "cerrado_ganado": "Cerrado ✓",
+    "cerrado_perdido": "Perdido"
+  },
+  "fuentes": {
+    "contacto": "Contacto",
+    "riesgo": "Análisis Riesgo",
+    "consultoria": "Consultoría",
+    "pestel": "Informe PESTEL",
+    "scraper": "Outbound"
+  },
+  "tabs": {
+    "crm": "CRM Pipeline",
+    "prospectar": "Prospectar",
+    "contenido": "Contenido"
+  },
+  "prospectar": {
+    "title": "Prospección B2B",
+    "subtitle": "Importe leads desde CSV o agréguelos manualmente para alimentar su pipeline.",
+    "import_csv": "Importar CSV",
+    "csv_ph": "Pegue su CSV aquí...\nnombre,empresa,correo,telefono,sector,ubicacion\nJuan Pérez,Empresa ABC,juan@abc.com,04141234567,Manufactura,Caracas",
+    "process_csv": "Procesar CSV",
+    "example": "Ejemplo",
+    "add_manual": "Agregar Manual",
+    "ph": {
+      "nombre": "Nombre",
+      "empresa": "Empresa",
+      "correo": "Correo",
+      "telefono": "Teléfono",
+      "sector": "Sector",
+      "ubicacion": "Ubicación"
+    },
+    "btn_add": "Agregar al listado",
+    "preview_title": "{{count}} leads listos para importar",
+    "btn_clean": "Limpiar",
+    "btn_save": "Guardar en Pipeline",
+    "btn_saving": "Guardando...",
+    "status_saved": "✅ {{count}} guardados",
+    "status_dupes": "⚠️ {{count}} duplicados omitidos",
+    "table": {
+      "name": "Nombre",
+      "company": "Empresa",
+      "email": "Email",
+      "phone": "Teléfono",
+      "sector": "Sector",
+      "status": "Estado",
+      "valid": "✓ Válido"
+    }
+  },
+  "contenido": {
+    "title": "Authority Engine",
+    "subtitle": "Gestione sus artículos y genere contenido de autoridad con Inteligencia Artificial.",
+    "btn_new": "Nuevo Post",
+    "btn_ai": "Generar con IA",
+    "table_title": "Artículos Publicados y Borradores",
+    "no_posts": "Aún no hay artículos. Comience creando uno nuevo o usando la IA.",
+    "status_published": "Publicado",
+    "status_draft": "Borrador",
+    "table": {
+      "title": "Título / Slug",
+      "category": "Categoría",
+      "date": "Fecha",
+      "status": "Estado",
+      "actions": "Acciones"
+    }
+  }
+}

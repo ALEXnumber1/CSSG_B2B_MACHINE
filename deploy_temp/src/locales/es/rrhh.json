@@ -1,0 +1,42 @@
+{
+  "hero": {
+    "badge": "Únete a la Élite de Seguridad",
+    "title_1": "Carrera en",
+    "title_2": "CSSG Global",
+    "subtitle": "Buscamos profesionales con integridad inquebrantable para proteger las misiones más críticas del país. Formación continua, estabilidad y la mejor remuneración del sector."
+  },
+  "sections": {
+    "recruitment": {
+      "title": "Centro de Reclutamiento",
+      "subtitle": "Postulación para oficiales y personal táctico",
+      "form": {
+        "name": "Nombre Completo",
+        "email": "Correo Electrónico",
+        "phone": "Teléfono / WhatsApp",
+        "position": "Posición de Interés",
+        "experience": "Años de Experiencia",
+        "cv": "Cargar Currículum (PDF)",
+        "submit": "Enviar Postulación de Élite",
+        "success": "¡Postulación Recibida! Nuestro equipo táctico revisará tu perfil.",
+        "placeholder_name": "Ej. Juan Pérez",
+        "placeholder_email": "juan.perez@email.com",
+        "placeholder_phone": "+58 414 1234567",
+        "opt_officer": "Oficial de Seguridad",
+        "opt_tactical": "Fuerza de Reacción",
+        "opt_it": "Seguridad Electrónica / IT",
+        "opt_admin": "Administración / Logística"
+      }
+    },
+    "officers": {
+      "title": "Portal de Oficiales",
+      "subtitle": "Acceso exclusivo para personal activo",
+      "login": {
+        "title": "Acceso de Personal",
+        "id": "ID de Oficial",
+        "pass": "Contraseña",
+        "btn": "Entrar al Sistema",
+        "warning": "Este sistema es para uso exclusivo de personal autorizado de CSSG. El acceso no autorizado está estrictamente prohibido."
+      }
+    }
+  }
+}

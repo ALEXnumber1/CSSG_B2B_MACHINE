@@ -1,0 +1,86 @@
+{
+  "history_badge": "Security Legacy",
+  "history_title": "Security Legacy for our clients' peace of mind",
+  "history_desc": "CSSG is trust, professionalism, and peace of mind",
+  "zentinel_title": "Zentinel Global Alliance",
+  "zentinel_desc": "The Alliance with ZentinelGlobaL e-learning specialized in Trainings for Elite Security Guards, keeping them up to date in Human Rights, customer service, Progressive Use of Force, HSEQ, Suspicious Objects, Chain of Custody, First Aid, CCTV, ISO 9001:2015",
+  "mission_title": "Our Mission",
+  "mission_desc": "To contribute to the well-being and tranquility of Venezuelan society by offering companies, institutions, and residences an unarmed surveillance and security service that protects their people and their assets. We do it through a team of professionals committed to ethics and human rights, backed by emerging technologies, innovation in response to crisis situations, and personalized solutions adapted to each client.",
+  "vision_title": "Our Vision",
+  "vision_desc": "To become the most recognized unarmed private surveillance and security company in Venezuela for the quality of our services, based on the improvement of processes, the excellence of our personnel, and the strategic use of emerging technologies, projecting towards international expansion as a benchmark for private surveillance and security companies adapted to the demands of the environment and our clients.",
+  "philosophy_title": "The Human Factor",
+  "philosophy_desc": "At CSSG, security is not an expense, it is an investment in talent. Leading the sector's salary scale is not just an ethical policy; it is our best defense strategy. A well-remunerated and valued officer is a loyal, alert, and committed officer with the lives of our protected.",
+  "conduct_title": "Code of Conduct",
+  "conduct_subtitle": "The principles that guide every decision and every action of our tactical team.",
+  "conduct": {
+    "integ_title": "Tactical Integrity",
+    "integ_desc": "Absolute transparency in risk management and operations.",
+    "resp_title": "Institutional Respect",
+    "resp_desc": "We preserve the dignity and values of the organizations we protect.",
+    "conf_title": "Operational Secrecy",
+    "conf_desc": "Hermetic protection of information and strategic assets.",
+    "prof_title": "Discipline",
+    "prof_desc": "Continuous training under G7 embassy standards.",
+    "exc_title": "ISO Excellence",
+    "exc_desc": "Processes audited under the ISO 9001:2015 standard for infinite improvement.",
+    "comp_title": "Vital Commitment",
+    "comp_desc": "The operational continuity of your business is our supreme mission."
+  },
+  "cert_title": "Certifications",
+  "cert_subtitle": "Backed by the most demanding credentials in the global industry.",
+  "cert": {
+    "iso_badge": "ISO 9001:2015 Quality Management",
+    "iso_desc": "International certification that guarantees audited processes, total traceability, and a culture of excellence in every tactical and administrative deployment.",
+    "dig_badge": "Digesservisp",
+    "dig_desc": "Full legal authorization issued by the Ministry of Interior Relations to operate with maximum rigor throughout the Venezuelan territory."
+  },
+  "team_title": "Executive Command Center",
+  "team_subtitle": "Strategists with decades of experience in intelligence, operations, and corporate management.",
+  "team": {
+    "ceo": "CEO",
+    "ops": "Director of Operations",
+    "ops_mgr": "Operations Manager",
+    "it_mgr": "IT & Innovation Manager",
+    "legal": "Corporate Legal Advisor",
+    "legal_advisor": "Senior Legal Consultant",
+    "members": {
+      "alexander": {
+        "dept": "General Management",
+        "bio": "Security and Business Expert (MBA), administrator and Decorated Former Police Officer. Militarily trained with 16 years of police experience in preventive and investigative areas. Founded CSSG with the vision that well-paid officers elevate the value chain and customer protection in Venezuela."
+      },
+      "juan": {
+        "dept": "General Management",
+        "bio": "Specialist in administrative and financial management with extensive experience in resource optimization and leadership of multidisciplinary teams in the corporate security sector."
+      },
+      "charles": {
+        "dept": "Operations",
+        "bio": "Specialist in tactical supervision and field coordination, ensuring strict compliance with security protocols at each operational post."
+      },
+      "orlando": {
+        "dept": "Technology & Innovation",
+        "bio": "Specialist in network infrastructure and IT security, leading digital transformation and the integration of smart monitoring systems for critical asset protection."
+      },
+      "franklin": {
+        "dept": "Legal Consulting",
+        "bio": "Legal strategist with extensive experience in corporate law and regulatory compliance; ensures legal shielding and institutional transparency of our operations."
+      },
+      "ninsa": {
+        "dept": "Executive Management",
+        "bio": "Institutional strategist in charge of executive coordination and the strategic link between general management and operational areas, guaranteeing institutional excellence."
+      }
+    }
+  },
+  "officers_badge": "Elite CSSG",
+  "officers_title": "Recognition of Valor",
+  "officers_subtitle": "Our officers are the first line of defense. We reward operational excellence and unwavering loyalty.",
+  "officers": {
+    "month": "Officer of the Month - MARCH",
+    "year": "Officer of the Year 2025",
+    "tbd": "Under evaluation",
+    "male": "Male Officer",
+    "female": "Female Officer"
+  },
+  "cta_title": "Ready to shield your organization?",
+  "cta_desc": "Join the 17-year legacy of success. Get a free vulnerability analysis today.",
+  "cta_btn": "Request Operational Analysis"
+}

@@ -1,0 +1,134 @@
+{
+  "header": {
+    "badge": "ISO 31000 · Global Standards · FMEA",
+    "title_1": "Tactical Vulnerability",
+    "title_2": "Analyzer",
+    "desc": "Quantify the real exposure of your facilities with an evaluation calibrated by G7 diplomatic standards.",
+    "methodology_btn": "Understand the methodology",
+    "live_engine": "Live Scanning Engine",
+    "version": "CSSG v3.1"
+  },
+  "methodology": {
+    "title": "Methodological Framework",
+    "id_title": "Identification",
+    "id_desc": "We catalog the critical assets of your organization: human talent, sensitive information, and physical infrastructure.",
+    "fmea_title": "FMEA Analysis",
+    "fmea_desc": "Each security control is evaluated according to its <strong class='text-white/80'>impact weight</strong> (1-10), derived from Failure Modes and Effects Analysis used in critical engineering.",
+    "quant_title": "Quantification",
+    "quant_desc": "The <strong class='text-white/80'>Global Protection Index</strong> is a weighted percentage reflecting how many critical controls are implemented in your facilities.",
+    "note": "<strong class='text-gray-400'>Note:</strong> This tool provides an indicative evaluation based on international criteria. For an exhaustive diagnosis with physical inspection, CSSG deploys a team of executive-certified analysts who perform a full survey under ISO 31000:2018 standard."
+  },
+  "context": {
+    "title": "Operational Context",
+    "desc": "This information will be used to customize your final report.",
+    "entity": "Evaluated Entity (Opt.)",
+    "entity_ph": "Facility/Company",
+    "location": "Location",
+    "location_ph": "e.g. CDMX, Mexico",
+    "sector": "Sector",
+    "sector_ph": "e.g. Logistics, Finance",
+    "exposure": "Exposure Level",
+    "exp_select": "Select...",
+    "exp_low": "Low",
+    "exp_med": "Medium",
+    "exp_high": "High",
+    "exp_crit": "Critical"
+  },
+  "pillars": {
+    "perimetro": {
+      "title": "Perimeter Security",
+      "subtitle": "Protection of the first line of defense",
+      "p1_label": "Reinforced physical barriers",
+      "p1_detail": "Perimeter walls, anti-climb fences, concertinas, or anti-ram bollards defining 100% of the perimeter.",
+      "p2_label": "Tactical lighting with backup",
+      "p2_detail": "High-intensity luminaires (>300 lux in critical zones) with autonomous power source (UPS/generator) during outages.",
+      "p3_label": "Early intrusion detection",
+      "p3_detail": "Infrared sensors, microwaves, perimeter fiber optics, or LiDAR detecting threats BEFORE the breach.",
+      "p4_label": "Perimeter CCTV with video analytics",
+      "p4_detail": "Integrated AI cameras capable of identifying suspicious behavior patterns and generating automatic alerts.",
+      "p5_label": "Documented patrol procedure",
+      "p5_detail": "Random patrol routes with GPS/NFC verification, minimum frequency every 30 minutes, and reporting protocol."
+    },
+    "accesos": {
+      "title": "Access Control",
+      "subtitle": "Regulation of people and vehicle flow",
+      "a1_label": "Biometric or MFA authentication",
+      "a1_detail": "Fingerprint, facial recognition, or iris systems combined with card/PIN for restricted areas.",
+      "a2_label": "Visitor management with traceability",
+      "a2_detail": "Digital visitor log with photo, ID, reason for visit, host, and verifiable entry/exit time.",
+      "a3_label": "Mantrap and containment zones",
+      "a3_detail": "Double-door access points (mantrap) where only one can be open simultaneously, preventing piggybacking.",
+      "a4_label": "Vehicular control with inspection",
+      "a4_detail": "Vehicle barrier with cargo verification, inspection mirrors, and license plate reading (ANPR) at access points.",
+      "a5_label": "Zone segregation by access level",
+      "a5_detail": "Classification of areas into Public, Restricted, and Critical with differentiated controls for each level."
+    },
+    "procedimientos": {
+      "title": "Procedural Security",
+      "subtitle": "Protocols, plans, and operational capacity",
+      "pr1_label": "Business Continuity Plan (BCP)",
+      "pr1_detail": "Current document ensuring minimum viable operation against natural disasters, incidents, or targeted attacks.",
+      "pr2_label": "Emergency and evacuation protocols",
+      "pr2_detail": "Tested plans with semi-annual drills, marked evacuation routes, and defined meeting points.",
+      "pr3_label": "Periodic risk assessment",
+      "pr3_detail": "Security audits with minimum quarterly frequency, using documented probability×impact matrices.",
+      "pr4_label": "Continuous training program",
+      "pr4_detail": "Certified training for security personnel with minimum 40 hours annually in tactics, first aid, and protocols.",
+      "pr5_label": "Chain of custody and documentation",
+      "pr5_detail": "Formal incident reporting system, evidence chain of custody, and auditable records for 5+ years."
+    },
+    "inteligencia": {
+      "title": "Surveillance Intelligence",
+      "subtitle": "Advanced monitoring and response capability",
+      "i1_label": "Command and Control Center (C2)",
+      "i1_detail": "24/7 monitoring room with certified operators, integrated displays, and redundant communication with law enforcement.",
+      "i2_label": "Documented response time ≤ 3 min",
+      "i2_detail": "Reaction force deployment capacity in under 3 minutes from threat detection to intervention.",
+      "i3_label": "System integration (PSIM)",
+      "i3_detail": "Security management platform unifying CCTV, intrusion, access, and fire into a single operational interface.",
+      "i4_label": "Intelligence and threat analysis",
+      "i4_detail": "Ability to collect, analyze, and act on environmental threat info: crime, espionage, sabotage.",
+      "i5_label": "Encrypted and redundant communications",
+      "i5_detail": "Digital radios with AES-256 encryption, satellite backup, and tested crisis communication protocol."
+    }
+  },
+  "dashboard": {
+    "index_title": "Global Protection Index",
+    "coverage_title": "Coverage by Pillar",
+    "critical_breaches": "Critical Breaches Detected",
+    "weight": "Weight",
+    "hide_detail": "Hide detail",
+    "view_detail": "View professional criteria",
+    "index_label": "Index",
+    "cta_desc": "Customize and download an executive PDF report with the results of your on-site diagnosis.",
+    "cta_btn": "Download Executive Report (PDF)",
+    "cta_footer": "Certified teams · National coverage · Executive report"
+  },
+  "levels": {
+    "optimal": "Optimal Protection",
+    "adequate": "Adequate Protection",
+    "moderate": "Moderate Vulnerability",
+    "high": "High Risk",
+    "critical": "Critical Risk"
+  },
+  "modal": {
+    "title": "Download Private Report",
+    "desc": "Please enter your corporate data to generate and view your executive pdf report.",
+    "name": "Full Name",
+    "job": "Job Title (Optional)",
+    "company": "Company / Organization",
+    "email": "Corporate Email",
+    "phone": "Contact Phone",
+    "cancel": "Cancel",
+    "generating": "Generating...",
+    "btn": "Get PDF",
+    "error": "There was an error generating the PDF. Please try again."
+  },
+  "seo": {
+    "title": "Help Us Keep Innovating",
+    "desc": "Was this advanced AI-driven report useful to you? Our goal is to democratize corporate security. In exchange for this high-value tool, we invite you to leave a public review or acknowledgment.",
+    "placeholder": "Write your testimony of the evaluation...",
+    "btn": "Publish Acknowledgment",
+    "recent": "Recent Comments"
+  }
+}

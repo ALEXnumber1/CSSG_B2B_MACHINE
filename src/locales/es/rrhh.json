@@ -1,0 +1,42 @@
+{
+  "hero": {
+    "badge": "Reclutamiento y Selección de Élite",
+    "title_1": "Desarrolle su carrera profesional en",
+    "title_2": "CSSG Global",
+    "subtitle": "Forme parte del equipo de seguridad privada más prestigioso de Venezuela. Ofrecemos estabilidad laboral, capacitación técnica continua en nuestra academia Zentinel Global y una estructura de remuneración justa bajo estándares de excelencia G7."
+  },
+  "sections": {
+    "recruitment": {
+      "title": "Centro de Reclutamiento",
+      "subtitle": "Formulario de postulación oficial para oficiales y personal táctico",
+      "form": {
+        "name": "Nombre y Apellido",
+        "email": "Correo Electrónico",
+        "phone": "Teléfono / WhatsApp",
+        "position": "Área de Especialidad",
+        "experience": "Años de Experiencia Comprobada",
+        "cv": "Cargar Currículum Vitae (PDF)",
+        "submit": "Enviar Postulación de Élite",
+        "success": "¡Postulación Recibida con Éxito! Nuestro equipo táctico de RRHH revisará su perfil.",
+        "placeholder_name": "Nombre completo del candidato",
+        "placeholder_email": "correo@ejemplo.com",
+        "placeholder_phone": "+58 412 123-4567",
+        "opt_officer": "Oficial de Seguridad Preventiva",
+        "opt_tactical": "Fuerza de Reacción Inmediata",
+        "opt_it": "Seguridad Electrónica / IT",
+        "opt_admin": "Administración / Logística"
+      }
+    },
+    "officers": {
+      "title": "Portal de Oficiales",
+      "subtitle": "Acceso exclusivo para personal activo",
+      "login": {
+        "title": "Ingreso de Personal Autorizado",
+        "id": "Credencial de Oficial (ID)",
+        "pass": "Contraseña de Acceso",
+        "btn": "Entrar al Sistema",
+        "warning": "Este sistema de gestión es para uso exclusivo del personal autorizado de CSSG. El acceso no autorizado será monitorizado y está estrictamente prohibido."
+      }
+    }
+  }
+}

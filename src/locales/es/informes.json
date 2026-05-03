@@ -1,0 +1,61 @@
+{
+  "pestel": {
+    "title": "Metodología de Análisis PESTEL",
+    "desc": "El análisis PESTEL evalúa seis dimensiones del entorno externo que impactan directamente en las estrategias de seguridad de cualquier organización que opere en Venezuela.",
+    "p_title": "Político",
+    "p_desc": "Institucionalización del control territorial: Se observa una transición desde estructuras informales hacia canales de supervisión estatal, minimizando la visibilidad de comandos operacionales autónomos y consolidando un entorno de mando unificado en zonas críticas.",
+    "e_title": "Económico",
+    "e_desc": "Correlación entre liquidez y riesgo patrimonial: La volatilidad económica y la restricción de flujo de caja corporativo actúan como disparadores de delitos oportunistas, incrementando la necesidad de auditorías de vulnerabilidad en la cadena de suministros.",
+    "s_title": "Social",
+    "s_desc": "Dinámicas de migración circular (Reportes OIM): La inestabilidad en la permanencia de retornados impacta la rotación de personal básico de vigilancia, exigiendo una mayor inversión en procesos de selección y fidelización de oficiales de élite.",
+    "t_title": "Tecnológico",
+    "t_desc": "Inteligencia de Video y Analítica Predictiva: Sustitución de la vigilancia pasiva por sistemas IP con detección de patrones AI, permitiendo tiempos de respuesta táctica < 30 segundos ante brechas perimetrales detectadas.",
+    "ec_title": "Ecológico",
+    "ec_desc": "Resiliencia de Infraestructuras Críticas: Incremento de planes de contingencia ante la inestabilidad de servicios básicos, priorizando sistemas de seguridad con autonomía energética y alta resistencia a factores ambientales extremos.",
+    "l_title": "Legal",
+    "l_desc": "Adaptabilidad Normativa: Evolución del marco regulatorio Digesservisp para la integración de tecnologías de seguridad privada, exigiendo a las corporaciones un cumplimiento riguroso de certificaciones tácticas y laborales."
+  },
+  "hero": {
+    "badge": "Consulta Pública · Descarga Gratuita",
+    "title_1": "Informe de",
+    "title_2": "Seguridad 2026",
+    "desc": "Análisis PESTEL exhaustivo del panorama de seguridad en Venezuela. Validado por especialistas humanos y optimizado mediante IA de alta fidelidad."
+  },
+  "summary": {
+    "title": "Resumen Ejecutivo",
+    "p1": "El panorama de seguridad en Venezuela presenta una reconfiguración estructural en 2026. La <strong class='text-gray-200'>desactivación de estructuras de control informal</strong> y su transición hacia canales institucionales marca un cambio en los protocolos de patrullaje y vigilancia en centros urbanos.",
+    "p2": "A nivel socio-económico, el <strong class='text-gray-200'>descontento latente e impulsado por la restricción económica</strong> actúa como un catalizador de riesgos operativos. Las organizaciones deben considerar factores demográficos atípicos, como la migración circular reportada por la <strong class='text-gray-200'>OIM</strong>, donde el reingreso de ciudadanos al territorio nacional es transitorio, afectando la estabilidad del talento humano y la planificación de largo plazo.",
+    "p3": "Este análisis PESTEL no pretende emitir juicios de valor, sino proporcionar una <strong class='text-gray-200'>matriz analítica imparcial</strong> para la protección de infraestructuras críticas y misiones diplomáticas, asegurando que la continuidad del negocio se base en realidades de entorno verificables y no en percepciones mediáticas.",
+    "stat1_value": "+17 años",
+    "stat1_desc": "de datos y experiencia operativa analizados",
+    "stat2_value": "6 dimensiones",
+    "stat2_desc": "de análisis PESTEL aplicado a seguridad",
+    "stat3_value": "Gratuito",
+    "stat3_desc": "disponible para descarga pública"
+  },
+  "cta": {
+    "badge": "Descarga Gratuita",
+    "title": "Descargar Informe Completo",
+    "desc": "Acceda al informe PESTEL completo en formato PDF. Solo necesitamos sus datos para enviarle el enlace de descarga.",
+    "success_title": "¡Informe Redactado Exitosamente!",
+    "success_desc": "El análisis PESTEL ya está disponible para su revisión. Si la descarga automática no se inició, use el botón a continuación.",
+    "btn_download": "Descargar PDF Certificado",
+    "btn_new": "Nuevo Análisis",
+    "preview": "Vista Previa del Informe",
+    "name": "Nombre",
+    "name_ph": "Su nombre",
+    "org": "Organización",
+    "org_ph": "Empresa o institución",
+    "email": "Correo Electrónico",
+    "email_ph": "correo@ejemplo.com",
+    "error": "Error al enviar. Intente nuevamente.",
+    "btn_submit": "Descargar Informe PESTEL (PDF)",
+    "processing": "Procesando..."
+  },
+  "seo": {
+    "title": "CSSG: Autoridad en Seguridad Pública y Privada en Venezuela",
+    "p1": "Con más de 17 años de operación continua sin incidentes, <strong class='text-gray-300'>Company Of Security and Service Global (CSSG)</strong> se ha posicionado como referente en <strong class='text-gray-300'>seguridad corporativa en Caracas</strong> y toda Venezuela. Nuestros servicios de vigilancia privada, consultoría en seguridad integral y tecnología de protección atienden a embajadas, corporaciones internacionales y organizaciones de alto nivel.",
+    "p2": "Este <strong class='text-gray-300'>informe de seguridad Venezuela 2026</strong> es parte de nuestro compromiso con la transparencia y la educación del sector. Mediante el <strong class='text-gray-300'>análisis PESTEL aplicado a seguridad</strong>, proporcionamos una visión completa de los factores políticos, económicos, sociales, tecnológicos, ecológicos y legales que afectan la industria de la <strong class='text-gray-300'>seguridad privada en Venezuela</strong>.",
+    "p3": "Ya sea que busque un <strong class='text-gray-300'>análisis de riesgo en Caracas</strong>, necesite <strong class='text-gray-300'>consultoría de seguridad integral</strong> para su organización, o desee entender el <strong class='text-gray-300'>riesgo operativo en Venezuela</strong>, este informe es su punto de partida. Para una evaluación personalizada, le invitamos a utilizar nuestra herramienta gratuita de análisis de riesgos o agendar una consulta con nuestro equipo."
+  }
+}
