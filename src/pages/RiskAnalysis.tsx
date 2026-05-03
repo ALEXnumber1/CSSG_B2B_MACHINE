@@ -577,38 +577,38 @@ export default function RiskAnalysis() {
               <div className="w-10 h-10 rounded-xl bg-sky-500/10 flex items-center justify-center border border-sky-500/20">
                 <Info className="w-5 h-5 text-sky-400" />
               </div>
-              <h3 className="text-xl font-bold text-white">{t('risk.methodology.title')}</h3>
+              <h3 className="text-xl font-bold text-white">{t('risk.methodology.title') || "Marco Metodológico"}</h3>
             </div>
 
             <div className="grid md:grid-cols-3 gap-6 mb-8">
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <Target className="w-4 h-4 text-sky-400" />
-                  <h4 className="font-semibold text-white text-sm">{t('risk.methodology.id_title')}</h4>
+                  <h4 className="font-semibold text-white text-sm">{t('risk.methodology.id_title') || "Identificación"}</h4>
                 </div>
-                <p className="text-gray-400 text-sm leading-relaxed" dangerouslySetInnerHTML={{__html: t('risk.methodology.id_desc')}}>
+                <p className="text-gray-400 text-sm leading-relaxed" dangerouslySetInnerHTML={{__html: t('risk.methodology.id_desc') || "Catalogamos los activos críticos de su organización: talento humano, información sensible e infraestructura física."}}>
                 </p>
               </div>
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <AlertTriangle className="w-4 h-4 text-amber-400" />
-                  <h4 className="font-semibold text-white text-sm">{t('risk.methodology.fmea_title')}</h4>
+                  <h4 className="font-semibold text-white text-sm">{t('risk.methodology.fmea_title') || "Análisis FMEA"}</h4>
                 </div>
-                <p className="text-gray-400 text-sm leading-relaxed" dangerouslySetInnerHTML={{__html: t('risk.methodology.fmea_desc')}}>
+                <p className="text-gray-400 text-sm leading-relaxed" dangerouslySetInnerHTML={{__html: t('risk.methodology.fmea_desc') || "Cada control de seguridad se evalúa según su <strong class='text-white/80'>peso de impacto</strong> (1-10), derivado del Análisis de Modos de Falla y Efectos utilizado en ingeniería crítica."}}>
                 </p>
               </div>
               <div className="space-y-3">
                 <div className="flex items-center gap-2">
                   <BarChart3 className="w-4 h-4 text-emerald-400" />
-                  <h4 className="font-semibold text-white text-sm">{t('risk.methodology.quant_title')}</h4>
+                  <h4 className="font-semibold text-white text-sm">{t('risk.methodology.quant_title') || "Cuantificación"}</h4>
                 </div>
-                <p className="text-gray-400 text-sm leading-relaxed" dangerouslySetInnerHTML={{__html: t('risk.methodology.quant_desc')}}>
+                <p className="text-gray-400 text-sm leading-relaxed" dangerouslySetInnerHTML={{__html: t('risk.methodology.quant_desc') || "El <strong class='text-white/80'>Índice de Protección Global</strong> es un porcentaje ponderado que refleja cuántos controles críticos están implementados en sus instalaciones."}}>
                 </p>
               </div>
             </div>
 
             <div className="border-t border-white/5 pt-6">
-              <p className="text-xs text-gray-500 leading-relaxed" dangerouslySetInnerHTML={{__html: t('risk.methodology.note')}}>
+              <p className="text-xs text-gray-500 leading-relaxed" dangerouslySetInnerHTML={{__html: t('risk.methodology.note') || "<strong class='text-gray-400'>Nota:</strong> Esta herramienta proporciona una evaluación indicativa basada en criterios internacionales. Para un diagnóstico exhaustivo con inspección física, CSSG despliega un equipo de analistas certificados a nivel ejecutivo que realizan el levantamiento completo bajo estándar ISO 31000:2018."}}>
               </p>
             </div>
           </div>
