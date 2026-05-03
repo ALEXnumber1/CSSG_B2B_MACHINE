@@ -49,9 +49,14 @@ export default function Tecnologia() {
       id: 'ingenieria',
       image: "/images/tec_ingenieria.png",
       icon: <Wrench className="w-6 h-6" />,
-      title: t('niches.n1_title'),
-      desc: t('niches.n1_desc'),
-      features: [t('niches.n1_f1'), t('niches.n1_f2'), t('niches.n1_f3'), t('niches.n1_f4')],
+      title: t('niches.n1_title') || 'Drones y Robótica Táctica',
+      desc: t('niches.n1_desc') || 'Vigilancia aérea y patrullaje automatizado para grandes perímetros sin depender exclusivamente de personal físico.',
+      features: [
+        t('niches.n1_f1') || 'Patrullaje con drones autónomos para perímetros extensos con detección térmica.',
+        t('niches.n1_f2') || 'Sensores de movimiento de largo alcance integrados a redes tácticas.',
+        t('niches.n1_f3') || 'Robótica de inspección perimetral para zonas de alto riesgo.',
+        t('niches.n1_f4') || 'Integración con centros de mando C2 para respuesta inmediata.'
+      ],
       color: 'from-sky-500/20 to-indigo-500/20',
       border: 'border-sky-500/30'
     },
@@ -59,9 +64,14 @@ export default function Tecnologia() {
       id: 'cctv',
       image: "/images/tec_cecom.png",
       icon: <Camera className="w-6 h-6" />,
-      title: t('niches.n2_title'),
-      desc: t('niches.n2_desc'),
-      features: [t('niches.n2_f1'), t('niches.n2_f2'), t('niches.n2_f3'), t('niches.n2_f4')],
+      title: t('niches.n2_title') || 'IA y Analítica Forense',
+      desc: t('niches.n2_desc') || 'Sistemas que aprenden y detectan amenazas antes de que ocurran, eliminando el error humano en el monitoreo.',
+      features: [
+        t('niches.n2_f1') || 'Reconocimiento facial y de placas (LPR) con base de datos en tiempo real.',
+        t('niches.n2_f2') || 'Detección de comportamiento anómalo mediante algoritmos de Deep Learning.',
+        t('niches.n2_f3') || 'Búsqueda inteligente de sospechosos por filtros de vestimenta y rasgos.',
+        t('niches.n2_f4') || 'Alertas críticas preventivas antes de que se consume la intrusión.'
+      ],
       color: 'from-emerald-500/20 to-teal-500/20',
       border: 'border-emerald-500/30'
     },
@@ -69,9 +79,14 @@ export default function Tecnologia() {
       id: 'ia',
       image: "/images/tec_ia.png",
       icon: <Cpu className="w-6 h-6" />,
-      title: t('niches.n3_title'),
-      desc: t('niches.n3_desc'),
-      features: [t('niches.n3_f1'), t('niches.n3_f2'), t('niches.n3_f3'), t('niches.n3_f4')],
+      title: t('niches.n3_title') || 'Ingeniería de Seguridad',
+      desc: t('niches.n3_desc') || 'Diseño de infraestructura crítica con barreras físicas inteligentes y control de acceso biométrico.',
+      features: [
+        t('niches.n3_f1') || 'Cercos eléctricos de alta tecnología con monitoreo de voltaje remoto.',
+        t('niches.n3_f2') || 'Tanqueras y bolardos automáticos con resistencia a impactos vehiculares.',
+        t('niches.n3_f3') || 'Lectores multibiométricos (huella, rostro, iris) para zonas restringidas.',
+        t('niches.n3_f4') || 'Sistemas de iluminación táctica con activación por movimiento e IA.'
+      ],
       color: 'from-amber-500/20 to-orange-500/20',
       border: 'border-amber-500/30'
     }
