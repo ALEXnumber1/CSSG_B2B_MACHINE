@@ -125,9 +125,9 @@ export default function Tecnologia() {
             </div>
             
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter text-white leading-tight">
-              La seguridad corporativa <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-orange-400 to-red-400">sigue siendo reactiva.</span> <br />
+              La seguridad corporativa <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-orange-400 to-red-400">es reactiva.</span> <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-white to-sky-400 bg-[length:200%_auto] animate-gradient-x">
-                Eso ya no es suficiente.
+                La suya será predictiva.
               </span>
             </h1>
             

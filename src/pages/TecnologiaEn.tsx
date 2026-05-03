@@ -116,9 +116,9 @@ export default function TecnologiaEn() {
             </div>
             
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter text-white leading-tight">
-              Corporate security <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-orange-400 to-red-400">is still reactive.</span> <br />
+              Corporate security <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-orange-400 to-red-400">is reactive.</span> <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-white to-sky-400 bg-[length:200%_auto] animate-gradient-x">
-                That is no longer enough.
+                Yours will be predictive.
               </span>
             </h1>
             
