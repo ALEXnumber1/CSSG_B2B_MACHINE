@@ -8,7 +8,7 @@
  */
 
 const RESEND_API_KEY = import.meta.env.VITE_RESEND_API_KEY || '';
-const FROM_EMAIL = 'CSSG <noreply@globalservices-ven.com>'; // Cambiar cuando se verifique el dominio en Resend
+const FROM_EMAIL = 'onboarding@resend.dev'; // Usar dominio de onboarding verificado por defecto en Resend
 
 // ═══════════ TEMPLATES ═══════════
 
@@ -158,7 +158,7 @@ export async function sendLeadNotification(leadData: {
   }
 
   try {
-    await fetch('https://api.resend.com/emails', {
+    const res = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -178,6 +178,11 @@ export async function sendLeadNotification(leadData: {
         `,
       }),
     });
+    if (!res.ok) {
+      const err = await res.text();
+      console.error('[Email Notification] Error de Resend:', err);
+      return { success: false, error: err };
+    }
     return { success: true };
   } catch (err) {
     console.error('[Email Notification] Error de red:', err);
