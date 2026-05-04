@@ -83,7 +83,7 @@ const templates: Record<string, { subject: string | ((nombre: string, empresa?: 
   },
 
   riesgo: {
-    subject: (nombre, empresa) => `📋 Su informe de vulnerabilidades para ${empresa || 'su organización'} está listo — CSSG`,
+    subject: (_nombre, empresa) => `📋 Su informe de vulnerabilidades para ${empresa || 'su organización'} está listo — CSSG`,
     html: (nombre, empresa) => baseTemplate(`
       <h2 style="color:#0F172A;font-size:24px;margin:0 0 16px;font-weight:700;">Hola ${nombre},</h2>
       <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0- 16px;">
@@ -111,7 +111,7 @@ const templates: Record<string, { subject: string | ((nombre: string, empresa?: 
   },
 
   consultoria: {
-    subject: (nombre, empresa) => `📅 Pre-entrevista confirmada para ${empresa || 'su organización'} — CSSG Consultoría`,
+    subject: (_nombre, empresa) => `📅 Pre-entrevista confirmada para ${empresa || 'su organización'} — CSSG Consultoría`,
     html: (nombre, empresa) => baseTemplate(`
       <h2 style="color:#0F172A;font-size:24px;margin:0 0 16px;font-weight:700;">Estimado/a ${nombre},</h2>
       <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
@@ -132,8 +132,8 @@ const templates: Record<string, { subject: string | ((nombre: string, empresa?: 
   },
 
   pestel: {
-    subject: (nombre, empresa) => `📚 Informe PESTEL 2026 listo para ${empresa || 'su organización'} — CSSG`,
-    html: (nombre, empresa) => baseTemplate(`
+    subject: (_nombre, empresa) => `📚 Informe PESTEL 2026 listo para ${empresa || 'su organización'} — CSSG`,
+    html: (nombre, _empresa) => baseTemplate(`
       <h2 style="color:#0F172A;font-size:24px;margin:0 0 16px;font-weight:700;">Hola ${nombre},</h2>
       <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
         Gracias por solicitar el <strong style="color:#0F172A;">Informe de Seguridad Venezuela 2026</strong>.
@@ -252,7 +252,7 @@ export async function sendNurtureEmail(
 
 // ═══════════ TEMPLATES DE SECUENCIAS (MULTI-EMAIL) ═══════════
 
-const sequenceTemplates: Record<string, { subject: string; html: (nombre: string, empresa?: string) => string }> = {
+const sequenceTemplates: Record<string, { subject: string | ((nombre: string, empresa?: string) => string); html: (nombre: string, empresa?: string) => string }> = {
   // ── CONTACTO: 3 emails ──
   contacto_1: templates.contacto, // Reusar el email original como #1
   contacto_2: {
@@ -480,7 +480,7 @@ export async function sendSequenceEmail(
       body: JSON.stringify({
         from: FROM_EMAIL,
         to,
-        subject: template.subject,
+        subject: typeof template.subject === 'function' ? template.subject(nombre, empresa) : template.subject,
         html: template.html(nombre, empresa),
       }),
     });

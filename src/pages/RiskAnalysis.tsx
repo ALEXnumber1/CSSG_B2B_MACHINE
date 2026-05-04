@@ -9,7 +9,6 @@ import {
   AlertTriangle,
   CheckCircle2,
   ChevronRight,
-  ChevronDown,
   Info,
   Target,
   Activity,
@@ -353,7 +352,6 @@ export default function RiskAnalysis() {
   const [checked, setChecked] = useState<Record<string, boolean>>({});
   const [expandedPillar, setExpandedPillar] = useState<string | null>('perimetro');
   const [expandedDetails, setExpandedDetails] = useState<Record<string, boolean>>({});
-  const [showMethodology, setShowMethodology] = useState(true);
 
   const [contextData, setContextData] = useState({ location: '', sector: '', exposure: '', targetOrganization: '' });
   const [leadData, setLeadData] = useState({ name: '', jobTitle: '', company: '', email: '', phone: '' });
@@ -421,8 +419,8 @@ export default function RiskAnalysis() {
     if (!reportRef.current) return;
     setIsGenerating(true);
     
+    // Iniciar secuencias y guardado en DB de forma segura (no bloqueante)
     try {
-      // Iniciar secuencia de nurturing
       await startSequence(
         'lead-' + Date.now(),
         leadData.email,
@@ -430,7 +428,11 @@ export default function RiskAnalysis() {
         'riesgo',
         leadData.company
       );
-      // 1. Guardar datos en Supabase antes de generar el PDF
+    } catch (err) {
+      console.warn('Error al iniciar secuencia:', err);
+    }
+
+    try {
       const { error: supabaseError } = await supabase
         .from('risk_assessments')
         .insert([{
@@ -450,10 +452,12 @@ export default function RiskAnalysis() {
 
       if (supabaseError) {
         console.warn('Advertencia: No se pudo guardar el lead en Supabase:', supabaseError.message);
-        // Continuamos con la generación del PDF aunque falle la base de datos para no bloquear al usuario
       }
+    } catch (err) {
+      console.warn('Error al insertar en risk_assessments:', err);
+    }
 
-      // 1b. Insertar en pipeline de leads (CRM)
+    try {
       const { error: crmError } = await supabase.from('leads').insert([{
         nombre: leadData.name,
         correo: leadData.email,
@@ -468,13 +472,20 @@ export default function RiskAnalysis() {
       if (crmError) {
         console.warn('Advertencia: No se pudo guardar el lead en el CRM:', crmError.message);
       }
+    } catch (err) {
+      console.warn('Error al insertar en leads CRM:', err);
+    }
 
-      // 1c. Email de bienvenida automático
+    try {
       if (leadData.email) {
         sendNurtureEmail(leadData.email, leadData.name, 'riesgo', leadData.company);
       }
+    } catch (err) {
+      console.warn('Error al enviar el email:', err);
+    }
 
-      // 2. Generar PDF
+    // 2. Generar PDF
+    try {
       const canvas = await html2canvas(reportRef.current, {
         scale: 2,
         useCORS: true,

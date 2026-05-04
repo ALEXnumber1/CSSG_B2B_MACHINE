@@ -11,9 +11,9 @@ import {
   Building, 
   Users, 
   Bell, 
-  Calendar, 
   ClipboardList, 
-  LogOut 
+  LogOut,
+  CheckCircle2
 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { sendNurtureEmail } from '../lib/email';
