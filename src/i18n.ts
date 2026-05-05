@@ -360,7 +360,9 @@ const resources = {
         title_1: 'Centro de Operaciones',
         title_2: 'Caracas, Venezuela',
         desc: 'Base operativa principal para misiones críticas y seguridad diplomática en todo el territorio nacional.',
-        view_maps: 'Ver Ubicación en Google Maps'
+        view_maps: 'Ver Ubicación en Google Maps',
+        office_name: 'Headquarters - Torre de Control',
+        office_address: 'Calle la Joya, entre Av. Francisco de Miranda y Libertador, Edificio Cosmos, Piso 8, Oficina 8B, Chacao, Caracas 1060.'
       },
       floating_cta: {
         title: '¿Protección sin incidentes?',
@@ -758,7 +760,9 @@ const resources = {
         title_1: 'Operations Center',
         title_2: 'Caracas, Venezuela',
         desc: 'Primary operational base for critical missions and diplomatic security throughout the national territory.',
-        view_maps: 'View Location on Google Maps'
+        view_maps: 'View Location on Google Maps',
+        office_name: 'Headquarters - Control Tower',
+        office_address: 'Calle la Joya, entre Av. Francisco de Miranda y Libertador, Edificio Cosmos, Floor 8, Office 8B, Chacao, Caracas 1060.'
       },
       floating_cta: {
         title: 'Protection without incidents?',
