@@ -76,23 +76,7 @@ const MethodologyVSL: React.FC = () => {
                 </div>
               </div>
 
-              {/* Social Proof Badge */}
-              <div className="mt-6 flex items-center justify-between px-2">
-                <div className="flex items-center gap-4">
-                  <div className="flex -space-x-3">
-                    {[1,2,3].map(i => (
-                      <div key={i} className="w-8 h-8 rounded-full border-2 border-[#030305] bg-gray-800 overflow-hidden shadow-xl">
-                        <img src={`https://i.pravatar.cc/100?img=${i+10}`} alt="User" />
-                      </div>
-                    ))}
-                  </div>
-                  <span className="text-[10px] text-gray-500 font-bold uppercase tracking-widest">{t('methodology.proof')}</span>
-                </div>
-                <div className="flex items-center gap-2 text-sky-500/50">
-                  <Shield className="w-3.5 h-3.5" />
-                  <span className="text-[8px] font-black uppercase tracking-tighter">Certified Protocol</span>
-                </div>
-              </div>
+
             </div>
 
           </div>
