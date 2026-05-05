@@ -62,10 +62,11 @@ const MethodologyVSL: React.FC = () => {
               <div className="relative aspect-video rounded-3xl overflow-hidden border border-white/20 shadow-2xl shadow-sky-500/10 group-hover/vsl:shadow-sky-500/20 transition-all duration-700 bg-black">
                 <iframe 
                   className="w-full h-full grayscale-[30%] group-hover/vsl:grayscale-0 transition-all duration-700"
-                  src="https://www.youtube.com/embed/S_vLz87z7aM?autoplay=0&mute=1&controls=1&modestbranding=1&rel=0" 
+                  src="https://www.youtube.com/embed/BO_nhYkWHLw?autoplay=0&mute=0&controls=1&modestbranding=1&rel=0" 
                   title="CSSG Tactical Operations"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
                 ></iframe>
                 
                 <div className="absolute inset-0 pointer-events-none border-[15px] border-black" />

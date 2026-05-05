@@ -14,17 +14,18 @@ export default function Hero() {
   return (
     <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden flex items-center min-h-[100vh]">
       {/* Cinematic Video Background */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        <iframe 
-          src="https://www.youtube.com/embed/BO_nhYkWHLw?autoplay=1&mute=1&loop=1&playlist=BO_nhYkWHLw&controls=0&showinfo=0&rel=0&playsinline=1&modestbranding=1"
-          className="absolute top-1/2 left-1/2 w-[100vw] h-[56.25vw] min-h-[100vh] min-w-[177.77vh] -translate-x-1/2 -translate-y-1/2 opacity-20 grayscale brightness-50"
-          allow="autoplay; encrypted-media"
-          title="CSSG Background Video"
-        />
+      <div className="absolute inset-0 z-0">
+        <video 
+          autoPlay 
+          muted 
+          loop 
+          playsInline 
+          className="absolute inset-0 w-full h-full object-cover opacity-20 grayscale brightness-50"
+        >
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-security-camera-monitoring-a-parking-lot-4467-large.mp4" type="video/mp4" />
+        </video>
         <div className="absolute inset-0 bg-gradient-to-b from-[#030305] via-[#030305]/40 to-[#030305]" />
-        <div className="absolute inset-0 pointer-events-auto">
-          <HeroSpline />
-        </div>
+        <HeroSpline />
         {/* Laser Scanning Effect */}
         <motion.div 
           animate={{ top: ["-10%", "110%"] }}
