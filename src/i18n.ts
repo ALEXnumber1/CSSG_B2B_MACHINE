@@ -188,8 +188,8 @@ const resources = {
       },
       methodology: {
         badge: 'Exclusive for Directors',
-        title: 'Nuestra Metodología',
-        title_highlight: 'EN 90 SEGUNDOS',
+        title: 'Conoce a CSSG,',
+        title_highlight: 'Gestión basada en Satisfacer a nuestros clientes',
         desc_pre: 'Descubra por qué las misiones diplomáticas más exigentes confían en el estándar ',
         desc_highlight: 'INCIDENTES CERO',
         desc_post: ' de CSSG.',
@@ -586,8 +586,8 @@ const resources = {
       },
       methodology: {
         badge: 'Exclusive for Directors',
-        title: 'Our Methodology',
-        title_highlight: 'IN 90 SECONDS',
+        title: 'Meet CSSG,',
+        title_highlight: 'Management based on Satisfying our clients',
         desc_pre: 'Discover why the most demanding diplomatic missions trust the ',
         desc_highlight: 'ZERO INCIDENTS',
         desc_post: ' of CSSG.',
