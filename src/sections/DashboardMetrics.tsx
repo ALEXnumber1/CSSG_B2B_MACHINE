@@ -116,7 +116,7 @@ export default function DashboardMetrics() {
                 </div>
               </div>
               
-              <div className="grid grid-cols-2 gap-8 mt-10 border-t border-white/5 pt-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-10 border-t border-white/5 pt-8">
                 <div>
                   <p className="text-[10px] text-gray-500 uppercase tracking-widest mb-1">Operación Continua</p>
                   <p className="text-xl font-bold text-white">+17 Años</p>

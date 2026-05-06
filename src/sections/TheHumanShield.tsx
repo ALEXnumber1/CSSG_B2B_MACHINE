@@ -133,7 +133,7 @@ export default function TheHumanShield() {
               </div>
             </div>
 
-            <div className="pt-8 grid grid-cols-2 gap-6">
+            <div className="pt-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <div className="flex items-center gap-2 text-white font-bold text-sm uppercase">
                   <TrendingUp className="text-sky-400" size={18} /> +400%

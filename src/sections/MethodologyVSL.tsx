@@ -20,7 +20,7 @@ const MethodologyVSL: React.FC = () => {
           {/* Background Decorative Element */}
           <div className="absolute top-0 right-0 w-1/2 h-full bg-sky-500/5 blur-[120px] rounded-full pointer-events-none" />
 
-          <div className="relative z-10 px-8 py-16 md:px-20 md:py-24 flex flex-col lg:flex-row items-center gap-16">
+          <div className="relative z-10 px-6 py-16 md:px-12 xl:px-20 md:py-24 flex flex-col xl:flex-row items-center gap-12 xl:gap-16">
             
             {/* Left side: Sales Copy */}
             <div className="flex-1 text-center lg:text-left">
@@ -55,7 +55,7 @@ const MethodologyVSL: React.FC = () => {
             </div>
 
             {/* Right side: Cinematic Video Wrapper */}
-            <div className="w-full lg:w-[550px] xl:w-[650px] relative group/vsl">
+            <div className="w-full xl:w-[550px] 2xl:w-[650px] relative group/vsl">
               <div className="absolute -top-4 -left-4 w-12 h-12 border-t-2 border-l-2 border-sky-500/40 rounded-tl-2xl z-20 pointer-events-none" />
               <div className="absolute -bottom-4 -right-4 w-12 h-12 border-b-2 border-r-2 border-sky-500/40 rounded-br-2xl z-20 pointer-events-none" />
               
