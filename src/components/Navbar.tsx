@@ -59,7 +59,7 @@ export default function Navbar() {
           </Link>
           
           {/* Desktop Menu */}
-          <div className="hidden lg:flex gap-1 text-sm font-medium text-gray-300 items-center">
+          <div className="hidden xl:flex gap-1 text-sm font-medium text-gray-300 items-center">
             {navLinks.map((link) => (
               <Link
                 key={link.to}
@@ -161,7 +161,7 @@ export default function Navbar() {
 
           {/* Mobile Hamburger */}
           <button 
-            className="lg:hidden text-white p-2 hover:bg-white/5 rounded-lg transition-colors"
+            className="xl:hidden text-white p-2 hover:bg-white/5 rounded-lg transition-colors"
             onClick={() => setMobileOpen(!mobileOpen)}
           >
             {mobileOpen ? <X /> : <Menu />}
@@ -176,7 +176,7 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'tween', duration: 0.3 }}
-              className="fixed inset-0 z-[60] bg-[#07080a] pt-6 pb-12 px-6 flex flex-col overflow-y-auto lg:hidden"
+              className="fixed inset-0 z-[60] bg-[#07080a] pt-6 pb-12 px-6 flex flex-col overflow-y-auto xl:hidden"
             >
               {/* Top Row with Logo and Close Button */}
               <div className="flex items-center justify-between mb-6">
