@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Zap, Shield } from 'lucide-react';
+import { Zap } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import AuditModal from '../components/AuditModal';
 
