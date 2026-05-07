@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /intranet
+
+# SEO Sitemap
+Sitemap: https://cssg-global.com/sitemap.xml
+
+# LLMs
+Host: cssg-global.com
