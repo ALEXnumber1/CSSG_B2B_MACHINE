@@ -112,7 +112,7 @@ export default function Hero() {
                 y: { delay: 1.2, duration: 5, repeat: Infinity, ease: "easeInOut" },
                 rotate: { delay: 1.2, duration: 7, repeat: Infinity, ease: "easeInOut" }
               }}
-              className="w-[500px] h-[500px] xl:w-[600px] xl:h-[600px] object-contain brightness-110 contrast-110 saturate-110 drop-shadow-[0_0_100px_rgba(234,179,8,0.5)]"
+              className="w-[350px] h-[350px] lg:w-[400px] lg:h-[400px] xl:w-[500px] xl:h-[500px] object-contain brightness-110 contrast-110 saturate-110 drop-shadow-[0_0_100px_rgba(234,179,8,0.5)]"
             />
           </div>
         </div>
