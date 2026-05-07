@@ -53,6 +53,11 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/quienes-somos" element={<QuienesSomos />} />
             <Route path="/consultoria" element={<Consultoria />} />
+            {/* SEO Optimized Links for Consulting */}
+            <Route path="/consultoria-seguridad-caracas" element={<Consultoria />} />
+            <Route path="/auditoria-seguridad-iso-31000" element={<Consultoria />} />
+            <Route path="/analisis-riesgos-corporativos-venezuela" element={<Consultoria />} />
+            <Route path="/optimizacion-costos-seguridad" element={<Consultoria />} />
             <Route path="/tecnologia" element={<Tecnologia />} />
             <Route path="/informes" element={<Informes />} />
             <Route path="/intranet" element={<Intranet />} />
