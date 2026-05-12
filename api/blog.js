@@ -120,9 +120,9 @@ export default async function handler(req, res) {
         <meta property="og:title" content="${postTitle}">
         <meta property="og:description" content="${postDescription}">
         <meta property="og:image" content="${postImage}">
-        <meta property="og:url" content="${baseUrl}/blog/${slug}">
-        <meta property="twitter:card" content="summary_large_image">
-        <meta property="twitter:image" content="${postImage}">
+        <meta property="og:url" content="${baseUrl}/blog/${slug}" />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:image" content="${postImage}" />
       </head>
       <body>
         <script>
