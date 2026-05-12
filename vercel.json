@@ -1,18 +1,17 @@
 {
   "cleanUrls": true,
-  "trailingSlash": false,
   "rewrites": [
     {
-      "source": "/api/:path*",
-      "destination": "/api/:path*"
-    },
-    {
-      "source": "/sitemap.xml",
-      "destination": "/api/sitemap"
+      "source": "/analisis-riesgo",
+      "destination": "/index.html"
     },
     {
       "source": "/blog/:slug",
       "destination": "/api/blog"
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "/api/sitemap"
     },
     {
       "source": "/(.*)",
