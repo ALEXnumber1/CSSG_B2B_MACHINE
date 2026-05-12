@@ -80,8 +80,13 @@ export default async function handler(req, res) {
   const baseUrl = `${protocol}://${host}`;
 
   try {
-    // Fetch the actual SPA index.html from Vercel
-    const htmlResponse = await fetch(`${baseUrl}/index.html`);
+    // Fetch the actual SPA index.html from Vercel (using root to avoid cleanUrls .html redirect issues)
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 3500);
+    
+    const htmlResponse = await fetch(`${baseUrl}/`, { signal: controller.signal });
+    clearTimeout(timeoutId);
+    
     let html = await htmlResponse.text();
 
     // Replace the Open Graph tags dynamically
@@ -118,10 +123,12 @@ export default async function handler(req, res) {
         <meta property="og:url" content="${baseUrl}/blog/${slug}">
         <meta property="twitter:card" content="summary_large_image">
         <meta property="twitter:image" content="${postImage}">
-        <meta http-equiv="refresh" content="0;url=/">
       </head>
       <body>
-        <script>window.location.href = "/blog/${slug}";</script>
+        <script>
+          // Avoid infinite loop by redirecting to root with a query parameter
+          window.location.href = "/?redirect=/blog/${slug}";
+        </script>
       </body>
       </html>
     `;
