@@ -10,6 +10,10 @@
       "destination": "/api/sitemap"
     },
     {
+      "source": "/analisis-riesgo",
+      "destination": "/index.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
