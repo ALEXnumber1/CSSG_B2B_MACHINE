@@ -2,22 +2,6 @@
   "cleanUrls": true,
   "rewrites": [
     {
-      "source": "/consultoria-seguridad-caracas",
-      "destination": "/consultoria-seguridad-caracas/index.html"
-    },
-    {
-      "source": "/auditoria-seguridad-iso-31000",
-      "destination": "/auditoria-seguridad-iso-31000/index.html"
-    },
-    {
-      "source": "/analisis-riesgos-corporativos-venezuela",
-      "destination": "/analisis-riesgos-corporativos-venezuela/index.html"
-    },
-    {
-      "source": "/optimizacion-costos-seguridad",
-      "destination": "/optimizacion-costos-seguridad/index.html"
-    },
-    {
       "source": "/blog/:slug",
       "destination": "/api/blog"
     },
