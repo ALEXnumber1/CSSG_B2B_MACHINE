@@ -111,10 +111,22 @@ export function parseCSV(csvText: string): ScrapedLead[] {
 // ═══════════════════════════════════════════════
 
 /**
- * Valida un email con formato básico
+ * Valida un email con formato básico y filtra direcciones genéricas de bajo valor (ruido)
  */
 export function isValidEmail(email: string): boolean {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  const basicRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!basicRegex.test(email)) return false;
+
+  const blacklist = [
+    'noreply', 'no-reply', 'support', 'soporte', 'info', 'contacto', 
+    'ventas', 'sales', 'admin', 'webmaster', 'newsletter', 'marketing',
+    'privacy', 'legal', 'billing', 'facturacion', 'root', 'postmaster'
+  ];
+
+  const prefix = email.split('@')[0].toLowerCase();
+  
+  // Si el prefijo está en la lista negra, lo marcamos como inválido para el motor de leads
+  return !blacklist.some(word => prefix === word || prefix.includes(word + '.'));
 }
 
 /**
@@ -143,8 +155,44 @@ export function validateLead(lead: ScrapedLead): string[] {
 // ═══════════════════════════════════════════════
 
 /**
+ * Inteligencia Artificial para calificación de leads usando Groq (Llama 3)
+ */
+export async function qualifyLeadWithAI(lead: { nombre: string, empresa: string, correo: string }): Promise<{ categoria: string, razon: string, score_ajustado: number } | null> {
+  const GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY;
+  if (!GROQ_API_KEY) return null;
+
+  try {
+    const prompt = `Actúa como un experto en ventas B2B para una empresa de seguridad corporativa en Venezuela. 
+    Analiza este lead y califica su potencial de cierre. 
+    Nombre: ${lead.nombre}, Empresa: ${lead.empresa}, Email: ${lead.correo}.
+    
+    Devuelve ÚNICAMENTE un JSON válido con esta estructura:
+    { "categoria": "alto|medio|bajo", "razon": "máximo 15 palabras", "score_ajustado": número entre 1 y 100 }`;
+
+    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${GROQ_API_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        model: 'llama3-8b-8192',
+        messages: [{ role: 'user', content: prompt }],
+        response_format: { type: 'json_object' }
+      })
+    });
+
+    const data = await response.json();
+    return JSON.parse(data.choices[0].message.content);
+  } catch (err) {
+    console.error('[AI Scoring Error]', err);
+    return null;
+  }
+}
+
+/**
  * Guarda una lista de leads scrapeados en la tabla leads de Supabase.
- * Asigna fuente 'scraper' y score inicial de 10.
+ * Asigna fuente 'scraper' y califica con IA si está disponible.
  */
 export async function saveScrapedLeads(
   leads: ScrapedLead[]
@@ -168,8 +216,8 @@ export async function saveScrapedLeads(
       }
     }
 
-    // Insertar
-    const { error } = await supabase.from('leads').insert([{
+    // Insertar con score inicial
+    const { data: newLead, error } = await supabase.from('leads').insert([{
       nombre: lead.nombre,
       empresa: lead.empresa,
       correo: lead.correo,
@@ -177,12 +225,23 @@ export async function saveScrapedLeads(
       fuente: 'scraper',
       score: 10,
       estado: 'nuevo',
-    }]);
+    }]).select('id').single();
 
     if (error) {
       errors.push(`Error guardando ${lead.empresa || lead.nombre}: ${error.message}`);
     } else {
       saved++;
+
+      // Calificación Inteligente con IA (Asíncrona)
+      qualifyLeadWithAI(lead).then(async (aiResult) => {
+        if (aiResult && newLead) {
+          await supabase.from('leads').update({
+            score: aiResult.score_ajustado,
+            notas: `[IA] Categoría: ${aiResult.categoria.toUpperCase()}. Razón: ${aiResult.razon}`
+          }).eq('id', newLead.id);
+          console.log(`[AI Success] Lead ${lead.correo} calificado con ${aiResult.score_ajustado}pts`);
+        }
+      });
     }
   }
 

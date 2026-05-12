@@ -61,7 +61,7 @@ export default function TermsAndConditions() {
               <h2 className="text-xl md:text-2xl font-bold tracking-tight">2. Propiedad Intelectual</h2>
             </div>
             <p className="text-gray-400 leading-relaxed text-sm md:text-base">
-              Todos los contenidos que se muestran o se ponen a disposición a través de este sitio web, incluyendo textos, gráficos, logotipos, iconos, imágenes, código fuente, patentes de software (incluyendo la suite de software ShieldTrace PSIM) están protegidos por leyes de propiedad intelectual de los Estados Unidos de América y de la República Bolivariana de Venezuela.
+              Todos los contenidos que se muestran o se ponen a disposición a través de este sitio web, incluyendo textos, gráficos, logotipos, iconos, imágenes, código fuente, patentes de software (incluyendo la suite de software ShieldTrace PSIM) están protegidos por las leyes de propiedad intelectual de la República Bolivariana de Venezuela y tratados internacionales aplicables.
             </p>
             <p className="text-gray-400 leading-relaxed text-sm">
               Está estrictamente prohibida la copia, reproducción, modificación o distribución no autorizada de estos materiales sin el consentimiento expreso y por escrito de CSSG.
@@ -78,7 +78,7 @@ export default function TermsAndConditions() {
               Como usuario de este portal, usted se compromete a:
             </p>
             <ul className="list-disc pl-6 space-y-2 text-sm text-gray-400">
-              <li>No utilizar el sitio web para fines ilegales o no autorizados por la legislación vigente de EE.UU. y Venezuela.</li>
+              <li>No utilizar el sitio web para fines ilegales o no autorizados por la legislación vigente en la República Bolivariana de Venezuela, Estados Unidos, la Unión Europea o el Reino Unido.</li>
               <li>No intentar vulnerar las medidas de seguridad perimetrales de la plataforma.</li>
               <li>Suministrar información verídica y verificable en los formularios de contacto y postulación.</li>
             </ul>
@@ -102,7 +102,7 @@ export default function TermsAndConditions() {
               <h2 className="text-xl md:text-2xl font-bold tracking-tight">5. Jurisdicción y Legislación Aplicable</h2>
             </div>
             <p className="text-gray-400 leading-relaxed text-sm md:text-base">
-              Estos Términos y Condiciones se rigen e interpretan de acuerdo con las leyes federales de los Estados Unidos de América y las leyes de la República Bolivariana de Venezuela. Cualquier controversia será resuelta en los tribunales competentes de cada jurisdicción correspondiente al domicilio operativo de CSSG.
+              Estos Términos y Condiciones se rigen e interpretan principalmente de acuerdo con las leyes de la República Bolivariana de Venezuela. Sin embargo, reconocemos y nos adherimos a las normativas de protección y derechos del consumidor establecidas en los Estados Unidos de América, la Unión Europea (GDPR) y el Reino Unido (UK GDPR), en la medida que sean aplicables a los usuarios que accedan a nuestros servicios desde dichas jurisdicciones.
             </p>
           </section>
 

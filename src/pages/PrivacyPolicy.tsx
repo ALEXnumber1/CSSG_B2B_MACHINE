@@ -25,14 +25,14 @@ export default function PrivacyPolicy() {
         >
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-sky-500/30 bg-sky-500/10 mb-6 backdrop-blur-md">
             <Shield className="w-4 h-4 text-sky-400" />
-            <span className="text-[10px] font-black text-sky-300 uppercase tracking-widest">Compromiso Legal y Transparencia</span>
+            <span className="text-[10px] font-black text-sky-300 uppercase tracking-widest">Protección de Datos y Hábeas Data</span>
           </div>
           <h1 className="text-4xl md:text-6xl font-black tracking-tighter text-white mb-6 leading-none">
             Políticas de Privacidad <br />
             <span className="text-sky-400">& Cookies</span>
           </h1>
           <p className="text-gray-400 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-            Cómo recopilamos, protegemos y gestionamos la información de nuestros usuarios y clientes bajo marcos regulatorios de Estados Unidos, Venezuela y regulaciones internacionales.
+            Cómo recopilamos, protegemos y gestionamos la información de nuestros usuarios y clientes conforme al marco legal y normativo aplicable en Venezuela, Estados Unidos, la Unión Europea y el Reino Unido.
           </p>
         </motion.div>
 
@@ -53,12 +53,13 @@ export default function PrivacyPolicy() {
               Esta Política de Privacidad describe las prácticas de recopilación de datos de <strong>Company Of Security And Service Global C.A. (CSSG)</strong>, aplicables a nuestros portales web, herramientas tecnológicas de protección como ShieldTrace PSIM y cualquier otro servicio digital asociado.
             </p>
             <p className="text-gray-400 leading-relaxed text-sm md:text-base">
-              Nuestras prácticas de privacidad están alineadas con los siguientes marcos regulatorios nacionales e internacionales:
+              Nuestras prácticas de privacidad y protección de datos están rigurosamente alineadas con los siguientes marcos legales aplicables a nuestras operaciones globales:
             </p>
             <ul className="list-disc pl-6 space-y-2 text-sm text-gray-400">
+              <li><strong>Venezuela:</strong> Constitución de la República Bolivariana (Artículos 28 y 60, Hábeas Data), Ley Especial Contra los Delitos Informáticos y Ley de Infogobierno.</li>
               <li><strong>Estados Unidos:</strong> Ley de Privacidad del Consumidor de California (CCPA), Ley de Protección de la Privacidad Infantil en Internet (COPPA) y regulaciones federales aplicables.</li>
-              <li><strong>Venezuela:</strong> Artículo 28 de la Constitución de la República Bolivariana de Venezuela (Derecho de Hábeas Data), Ley sobre Mensajes de Datos y Firmas Electrónicas, y la Ley de Infogobierno.</li>
-              <li><strong>Ámbito Internacional (GDPR / RGPD):</strong> En caso de accesos o procesamiento de datos de ciudadanos de la Unión Europea.</li>
+              <li><strong>Unión Europea (GDPR):</strong> Reglamento General de Protección de Datos (RGPD) garantizando principios de licitud, lealtad y minimización para ciudadanos europeos.</li>
+              <li><strong>Reino Unido (UK GDPR):</strong> Cumplimiento de la Ley de Protección de Datos de 2018 y el UK GDPR para el tratamiento de datos de residentes en el Reino Unido.</li>
             </ul>
           </section>
 
@@ -135,12 +136,12 @@ export default function PrivacyPolicy() {
               <h2 className="text-xl md:text-2xl font-bold tracking-tight">5. Sus Derechos de Privacidad</h2>
             </div>
             <p className="text-gray-400 leading-relaxed text-sm md:text-base">
-              Garantizamos el pleno ejercicio de sus derechos ARCO (Acceso, Rectificación, Cancelación y Oposición):
+              Garantizamos el pleno ejercicio de sus derechos (Hábeas Data, ARCO, GDPR, UK GDPR y CCPA):
             </p>
             <ul className="list-disc pl-6 space-y-2 text-sm text-gray-400">
-              <li><strong>Acceso y Rectificación:</strong> Puede solicitar ver la información personal que tenemos sobre usted y corregir cualquier dato inexacto.</li>
-              <li><strong>Eliminación (Hábeas Data / GDPR / CCPA):</strong> Tiene derecho a solicitar la eliminación de sus datos personales de nuestras bases de datos en cualquier momento.</li>
-              <li><strong>Oposición al marketing:</strong> Puede darse de baja o rechazar los correos electrónicos o llamadas de contacto comercial.</li>
+              <li><strong>Acceso y Rectificación:</strong> Puede solicitar conocer qué datos personales tenemos bajo nuestro resguardo y corregir cualquier información inexacta.</li>
+              <li><strong>Cancelación y Derecho al Olvido:</strong> Tiene pleno derecho a exigir la eliminación, actualización o destrucción de sus datos personales de nuestras bases de datos en cualquier momento.</li>
+              <li><strong>Oposición, Portabilidad y Consentimiento:</strong> Puede solicitar la portabilidad de sus datos, revocar su consentimiento para el procesamiento y oponerse a recibir comunicaciones comerciales o de marketing.</li>
             </ul>
             <p className="text-gray-400 leading-relaxed text-sm md:text-base">
               Para ejercer cualquiera de estos derechos, por favor envíe una solicitud formal a: <a href="mailto:privacidad@globalservices-ven.com" className="text-sky-400 underline">privacidad@globalservices-ven.com</a>.

@@ -18,6 +18,14 @@
       "destination": "/optimizacion-costos-seguridad/index.html"
     },
     {
+      "source": "/blog/:slug",
+      "destination": "/api/blog"
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "/api/sitemap"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

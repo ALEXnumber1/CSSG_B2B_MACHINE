@@ -8,7 +8,8 @@
  */
 
 const RESEND_API_KEY = import.meta.env.VITE_RESEND_API_KEY || '';
-const FROM_EMAIL = 'onboarding@resend.dev'; // Usar dominio de onboarding verificado por defecto en Resend
+// CAMBIO IMPORTANTE: Una vez verificado el dominio en Resend, cambiar esto a 'Nombre <info@cssg-global.com>'
+const FROM_EMAIL = 'CSSG <onboarding@resend.dev>'; 
 
 // ═══════════ TEMPLATES ═══════════
 
