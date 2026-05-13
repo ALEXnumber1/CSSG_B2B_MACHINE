@@ -93,16 +93,24 @@ export default async function handler(req, res) {
     html = html.replace(/<title>.*?<\/title>/, `<title>${postTitle}</title>`);
     html = html.replace(/<meta name="description" content=".*?"\s*\/?>/, `<meta name="description" content="${postDescription}" />`);
     
-    // Replace OG Tags
-    html = html.replace(/<meta property="og:title" content=".*?"\s*\/?>/g, `<meta property="og:title" content="${postTitle}" />`);
-    html = html.replace(/<meta property="og:description" content=".*?"\s*\/?>/g, `<meta property="og:description" content="${postDescription}" />`);
-    html = html.replace(/<meta property="og:image" content=".*?"\s*\/?>/g, `<meta property="og:image" content="${postImage}" />`);
-    html = html.replace(/<meta property="og:url" content=".*?"\s*\/?>/g, `<meta property="og:url" content="${baseUrl}/blog/${slug}" />`);
+    // Replace OG Tags (Case insensitive and globally)
+    html = html.replace(/<meta property="og:title" content=".*?"\s*\/?>/gi, `<meta property="og:title" content="${postTitle}" />`);
+    html = html.replace(/<meta property="og:description" content=".*?"\s*\/?>/gi, `<meta property="og:description" content="${postDescription}" />`);
+    html = html.replace(/<meta property="og:image" content=".*?"\s*\/?>/gi, `<meta property="og:image" content="${postImage}" />`);
+    html = html.replace(/<meta property="og:url" content=".*?"\s*\/?>/gi, `<meta property="og:url" content="${baseUrl}/blog/${slug}" />`);
     
+    // Add missing tags for LinkedIn if they don't exist, or replace them
+    const linkedinTags = `
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/jpeg" />
+    `;
+    html = html.replace('</head>', `${linkedinTags}</head>`);
+
     // Replace Twitter Tags
-    html = html.replace(/<meta property="twitter:title" content=".*?"\s*\/?>/g, `<meta property="twitter:title" content="${postTitle}" />`);
-    html = html.replace(/<meta property="twitter:description" content=".*?"\s*\/?>/g, `<meta property="twitter:description" content="${postDescription}" />`);
-    html = html.replace(/<meta property="twitter:image" content=".*?"\s*\/?>/g, `<meta property="twitter:image" content="${postImage}" />`);
+    html = html.replace(/<meta property="twitter:title" content=".*?"\s*\/?>/gi, `<meta property="twitter:title" content="${postTitle}" />`);
+    html = html.replace(/<meta property="twitter:description" content=".*?"\s*\/?>/gi, `<meta property="twitter:description" content="${postDescription}" />`);
+    html = html.replace(/<meta property="twitter:image" content=".*?"\s*\/?>/gi, `<meta property="twitter:image" content="${postImage}" />`);
 
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=300');

@@ -39,6 +39,36 @@ const routes = [
     title: 'Optimización de Costos de Seguridad | CSSG',
     description: 'Reduzca los costos operativos de su esquema de seguridad sin comprometer la calidad mediante integración de tecnología PSIM.',
     image: 'https://cssg-global.com/images/seo-costos.png'
+  },
+  {
+    path: 'analisis-riesgo',
+    title: 'Análisis de Riesgo Gratuito ISO 31000 | CSSG',
+    description: 'Realice un autodiagnóstico de seguridad corporativa basado en la norma ISO 31000. Obtenga su nivel de riesgo y recomendaciones inmediatas.',
+    image: 'https://cssg-global.com/risk_analysis_cta.png'
+  },
+  {
+    path: 'quienes-somos',
+    title: 'Quiénes Somos | CSSG - +17 Años de Trayectoria Impecable',
+    description: 'Conozca la historia, misión y el equipo directivo de CSSG. Expertos en seguridad diplomática y corporativa con certificación ISO 9001:2015.',
+    image: 'https://cssg-global.com/formal_guards.png'
+  },
+  {
+    path: 'tecnologia',
+    title: 'Tecnología de Vanguardia ShieldTrace PSIM | CSSG',
+    description: 'Integración de CCTV analítico, drones de vigilancia y control biométrico. Gestión operativa basada en datos para máxima eficiencia.',
+    image: 'https://cssg-global.com/shieldtrace_tablet_dashboard_1777552473752.png'
+  },
+  {
+    path: 'licitaciones',
+    title: 'Licitaciones y Proyectos de Seguridad | CSSG',
+    description: 'Participamos en licitaciones de alto nivel para embajadas y corporaciones internacionales. Calidad garantizada.',
+    image: 'https://cssg-global.com/svc_licitaciones.png'
+  },
+  {
+    path: 'partners',
+    title: 'Nuestros Partners y Alianzas Globales | CSSG',
+    description: 'Colaboramos con empresas líderes mundiales en tecnología de seguridad para ofrecer las mejores soluciones en Venezuela.',
+    image: 'https://cssg-global.com/zentinel_logo.jpg'
   }
 ];
 
@@ -46,22 +76,22 @@ routes.forEach(route => {
   let newHtml = originalHtml;
   
   // Update Title
-  newHtml = newHtml.replace(/<title>.*?<\/title>/g, `<title>${route.title}</title>`);
-  newHtml = newHtml.replace(/<meta property="og:title" content=".*?"\s*\/>/g, `<meta property="og:title" content="${route.title}" />`);
-  newHtml = newHtml.replace(/<meta property="twitter:title" content=".*?"\s*\/>/g, `<meta property="twitter:title" content="${route.title}" />`);
+  newHtml = newHtml.replace(/<title>.*?<\/title>/gi, `<title>${route.title}</title>`);
+  newHtml = newHtml.replace(/<meta property="og:title" content=".*?"\s*\/?>/gi, `<meta property="og:title" content="${route.title}" />`);
+  newHtml = newHtml.replace(/<meta property="twitter:title" content=".*?"\s*\/?>/gi, `<meta property="twitter:title" content="${route.title}" />`);
   
   // Update Description
-  newHtml = newHtml.replace(/<meta name="description" content=".*?"\s*\/>/g, `<meta name="description" content="${route.description}" />`);
-  newHtml = newHtml.replace(/<meta property="og:description" content=".*?"\s*\/>/g, `<meta property="og:description" content="${route.description}" />`);
-  newHtml = newHtml.replace(/<meta property="twitter:description" content=".*?"\s*\/>/g, `<meta property="twitter:description" content="${route.description}" />`);
+  newHtml = newHtml.replace(/<meta name="description" content=".*?"\s*\/?>/gi, `<meta name="description" content="${route.description}" />`);
+  newHtml = newHtml.replace(/<meta property="og:description" content=".*?"\s*\/?>/gi, `<meta property="og:description" content="${route.description}" />`);
+  newHtml = newHtml.replace(/<meta property="twitter:description" content=".*?"\s*\/?>/gi, `<meta property="twitter:description" content="${route.description}" />`);
   
   // Update Image
-  newHtml = newHtml.replace(/<meta property="og:image" content=".*?"\s*\/>/g, `<meta property="og:image" content="${route.image}" />`);
-  newHtml = newHtml.replace(/<meta property="twitter:image" content=".*?"\s*\/>/g, `<meta property="twitter:image" content="${route.image}" />`);
+  newHtml = newHtml.replace(/<meta property="og:image" content=".*?"\s*\/?>/gi, `<meta property="og:image" content="${route.image}" />`);
+  newHtml = newHtml.replace(/<meta property="twitter:image" content=".*?"\s*\/?>/gi, `<meta property="twitter:image" content="${route.image}" />`);
   
   // Update Canonical URL
-  newHtml = newHtml.replace(/<link rel="canonical" href=".*?"\s*\/>/g, `<link rel="canonical" href="https://cssg-global.com/${route.path}" />`);
-  newHtml = newHtml.replace(/<meta property="og:url" content=".*?"\s*\/>/g, `<meta property="og:url" content="https://cssg-global.com/${route.path}" />`);
+  newHtml = newHtml.replace(/<link rel="canonical" href=".*?"\s*\/?>/gi, `<link rel="canonical" href="https://cssg-global.com/${route.path}" />`);
+  newHtml = newHtml.replace(/<meta property="og:url" content=".*?"\s*\/?>/gi, `<meta property="og:url" content="https://cssg-global.com/${route.path}" />`);
 
   const routeDir = path.join(distDir, route.path);
   if (!fs.existsSync(routeDir)) {
