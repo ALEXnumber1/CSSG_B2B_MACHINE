@@ -132,8 +132,10 @@ export default function Consultoria() {
                 transition={{ duration: 0.8 }}
               >
                 <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-sky-500/30 bg-sky-500/10 mb-6 md:mb-8">
-                  <ShieldCheck className="w-4 h-4 text-sky-400" />
-                  <span className="text-[10px] md:text-xs font-black text-sky-300 uppercase tracking-widest">{t('hero.badge')}</span>
+                  <ShieldCheck className="w-4 h-4 text-sky-400 shrink-0" />
+                  <h2 className="text-[10px] md:text-xs font-black text-sky-300 uppercase tracking-widest m-0">
+                    Consultoria Integral de Seguridad | Calidad Certificada ISO 9001:2015
+                  </h2>
                 </div>
                 <h1 className="text-4xl md:text-7xl font-black tracking-tighter text-white mb-6 md:mb-8 leading-[1] md:leading-[0.9]">
                   {t('hero.title_white')} <br />

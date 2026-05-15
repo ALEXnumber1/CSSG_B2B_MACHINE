@@ -23,6 +23,12 @@ const routes = [
     image: 'https://cssg-global.com/images/seo-caracas.png'
   },
   {
+    path: 'consultoria',
+    title: 'Consultoria Integral de Seguridad | Calidad Certificada ISO 9001:2015',
+    description: 'Diagnóstico integral de seguridad y consultoría estratégica bajo la norma ISO 9001:2015. Reduzca costos operativos y optimice la protección de sus activos críticos.',
+    image: 'https://cssg-global.com/consultoria_card.png'
+  },
+  {
     path: 'auditoria-seguridad-iso-31000',
     title: 'Auditoría de Seguridad ISO 31000 | CSSG',
     description: 'Análisis y gestión de riesgos corporativos bajo la normativa internacional ISO 31000. Protege los activos críticos de tu empresa.',
@@ -54,7 +60,7 @@ const routes = [
   },
   {
     path: 'tecnologia',
-    title: 'Tecnología de Vanguardia ShieldTrace PSIM | CSSG',
+    title: 'Tecnología Aplicada al Servicio | Calidad Garantizada',
     description: 'Integración de CCTV analítico, drones de vigilancia y control biométrico. Gestión operativa basada en datos para máxima eficiencia.',
     image: 'https://cssg-global.com/shieldtrace_tablet_dashboard_1777552473752.png'
   },

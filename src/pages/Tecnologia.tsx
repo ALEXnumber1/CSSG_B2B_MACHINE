@@ -120,8 +120,8 @@ export default function Tecnologia() {
           {/* Tagline & Main Headline */}
           <div className="text-center max-w-4xl mx-auto mb-20 space-y-8">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-sky-500/30 bg-sky-500/10 backdrop-blur-md">
-              <Zap className="w-3.5 h-3.5 text-sky-400 animate-pulse" />
-              <span className="text-[10px] font-black text-sky-300 uppercase tracking-[0.3em]">Tecnología de Anticipación</span>
+              <Zap className="w-3.5 h-3.5 text-sky-400 animate-pulse shrink-0" />
+              <h2 className="text-[10px] font-black text-sky-300 uppercase tracking-[0.3em] m-0">Tecnología Aplicada al Servicio | Calidad Garantizada</h2>
             </div>
             
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter text-white leading-tight">
