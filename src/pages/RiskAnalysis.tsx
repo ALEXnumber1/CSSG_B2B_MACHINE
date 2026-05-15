@@ -503,17 +503,16 @@ export default function RiskAnalysis() {
         heightLeft -= pageHeight;
       }
 
-      // Descarga manual con nombre explícito (evita UUID de Cloudflare)
+      // Descarga via Data URI — Cloudflare no puede interceptar esto
       const fileName = `Informe_Seguridad_${(leadData.company || 'CSSG').replace(/[^a-zA-Z0-9_\-]/g, '_')}.pdf`;
-      const pdfBlob = pdf.output('blob');
-      const blobUrl = URL.createObjectURL(pdfBlob);
+      const dataUri = pdf.output('datauristring');
       const downloadLink = document.createElement('a');
-      downloadLink.href = blobUrl;
+      downloadLink.href = dataUri;
       downloadLink.download = fileName;
+      downloadLink.style.display = 'none';
       document.body.appendChild(downloadLink);
       downloadLink.click();
       document.body.removeChild(downloadLink);
-      setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
       
       setShowLeadModal(false);
       // Activar modal de feedback tras guardar
