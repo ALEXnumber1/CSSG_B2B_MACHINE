@@ -116,7 +116,7 @@ export default function ContactForm() {
                     </div>
                     <div>
                       <p className="text-gray-400 text-xs font-bold uppercase tracking-tighter mb-1">Teléfono Directo</p>
-                      <a href="tel:+584143174373" className="text-white text-lg font-black hover:text-sky-400 transition-colors">+58 414 3174373</a>
+                      <a href="tel:+584241782091" className="text-white text-lg font-black hover:text-sky-400 transition-colors">+58 424 1782091</a>
                     </div>
                   </li>
                   <li className="flex items-start gap-4">

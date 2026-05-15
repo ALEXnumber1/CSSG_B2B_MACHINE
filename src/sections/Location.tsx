@@ -10,8 +10,8 @@ export default function Location() {
       city: 'Caracas',
       name: t('location.office_name') || 'Headquarters - Torre de Control',
       address: t('location.office_address') || 'Calle la Joya, entre Av. Francisco de Miranda y Libertador, Edificio Cosmos, Piso 8, Oficina 8B, Chacao, Caracas 1060.',
-      phone: '+58 414-3174373',
-      mobile: '+58 414-3174373',
+      phone: '+58 424-1782091',
+      mobile: '+58 424-1782091',
       email: 'operaciones@cssg-global.com',
       hours: '24/7 Monitoring & Response',
       mapsUrl: 'https://maps.google.com/?q=Edificio+Cosmos+Chacao+Caracas'
