@@ -503,16 +503,19 @@ export default function RiskAnalysis() {
         heightLeft -= pageHeight;
       }
 
-      // Descarga via Data URI — Cloudflare no puede interceptar esto
-      const fileName = `Informe_Seguridad_${(leadData.company || 'CSSG').replace(/[^a-zA-Z0-9_\-]/g, '_')}.pdf`;
-      const dataUri = pdf.output('datauristring');
-      const downloadLink = document.createElement('a');
-      downloadLink.href = dataUri;
-      downloadLink.download = fileName;
-      downloadLink.style.display = 'none';
-      document.body.appendChild(downloadLink);
-      downloadLink.click();
-      document.body.removeChild(downloadLink);
+      // Abrir PDF en nueva pestaña — Cloudflare no puede interceptar window.open
+      const pdfBlob = pdf.output('blob');
+      const pdfUrl = URL.createObjectURL(pdfBlob);
+      const newWindow = window.open(pdfUrl, '_blank');
+      
+      // Si el popup fue bloqueado, intentar descarga directa como fallback
+      if (!newWindow || newWindow.closed) {
+        const fileName = `Informe_Seguridad_${(leadData.company || 'CSSG').replace(/[^a-zA-Z0-9_\-]/g, '_')}.pdf`;
+        pdf.save(fileName);
+      }
+      
+      // Limpiar después de un momento
+      setTimeout(() => URL.revokeObjectURL(pdfUrl), 30000);
       
       setShowLeadModal(false);
       // Activar modal de feedback tras guardar
