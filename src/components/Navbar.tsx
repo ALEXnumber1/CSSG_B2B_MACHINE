@@ -231,7 +231,7 @@ export default function Navbar() {
                 <div className="p-4 bg-white/5 border border-white/10 rounded-xl space-y-4">
                   <div className="flex items-center gap-3">
                     <span className="text-sky-400">📞</span>
-                    <a href="tel:+584241782091" className="text-sm text-white font-black hover:text-sky-400 transition-colors">+58 424 1782091</a>
+                    <a href="tel:+5804241782091" className="text-sm text-white font-black hover:text-sky-400 transition-colors">+5804241782091</a>
                   </div>
                 </div>
 

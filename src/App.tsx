@@ -138,7 +138,7 @@ function App() {
                       </li>
                       <li className="flex items-center gap-3 text-xs">
                         <span className="text-sky-400">📞</span>
-                        <a href="tel:+584241782091" className="text-gray-300 hover:text-sky-400 transition-colors font-mono font-bold">+58 424 1782091</a>
+                        <a href="tel:+5804241782091" className="text-gray-300 hover:text-sky-400 transition-colors font-mono font-bold">+5804241782091</a>
                       </li>
                       <li><Link to="/admin" className="hover:text-sky-400 transition-colors">{t('footer.admin')}</Link></li>
                       <li><a href={EXTERNAL_LINKS.recruitmentEmail} className="hover:text-sky-400 transition-colors">{t('footer.recruitment')}</a></li>
@@ -175,7 +175,7 @@ function App() {
           </div>
         </div>
         <a
-          href="tel:+584241782091"
+          href="tel:+5804241782091"
           className="bg-sky-500 text-white px-4 py-2.5 rounded-lg text-xs font-black uppercase tracking-widest shadow-[0_0_20px_rgba(14,165,233,0.4)] flex items-center gap-2"
         >
           <span>Llamar</span>
