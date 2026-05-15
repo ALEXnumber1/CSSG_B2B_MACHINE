@@ -503,7 +503,17 @@ export default function RiskAnalysis() {
         heightLeft -= pageHeight;
       }
 
-      pdf.save(`Informe_Seguridad_${leadData.company || 'CSSG'}.pdf`);
+      // Descarga manual con nombre explícito (evita UUID de Cloudflare)
+      const fileName = `Informe_Seguridad_${(leadData.company || 'CSSG').replace(/[^a-zA-Z0-9_\-]/g, '_')}.pdf`;
+      const pdfBlob = pdf.output('blob');
+      const blobUrl = URL.createObjectURL(pdfBlob);
+      const downloadLink = document.createElement('a');
+      downloadLink.href = blobUrl;
+      downloadLink.download = fileName;
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+      setTimeout(() => URL.revokeObjectURL(blobUrl), 1000);
       
       setShowLeadModal(false);
       // Activar modal de feedback tras guardar
