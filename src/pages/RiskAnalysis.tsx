@@ -419,78 +419,66 @@ export default function RiskAnalysis() {
     if (!reportRef.current) return;
     setIsGenerating(true);
     
-    // Iniciar secuencias y guardado en DB de forma segura (no bloqueante)
-    try {
-      await startSequence(
-        'lead-' + Date.now(),
-        leadData.email,
-        leadData.name,
-        'riesgo',
-        leadData.company
-      );
-    } catch (err) {
-      console.warn('Error al iniciar secuencia:', err);
-    }
-
-    try {
-      const { error: supabaseError } = await supabase
-        .from('risk_assessments')
-        .insert([{
-          lead_name: leadData.name,
-          job_title: leadData.jobTitle,
-          company: leadData.company,
-          email: leadData.email,
-          phone: leadData.phone,
-          target_organization: contextData.targetOrganization,
-          location: contextData.location,
-          sector: contextData.sector,
-          exposure: contextData.exposure,
-          score: protectionScore,
-          pillars: pillarStats.map(p => ({ title: p.pillar.title, checked: p.checked, total: p.total })),
-          vulnerabilities: vulnerabilities
-        }]);
-
-      if (supabaseError) {
-        console.warn('Advertencia: No se pudo guardar el lead en Supabase:', supabaseError.message);
-      }
-    } catch (err) {
-      console.warn('Error al insertar en risk_assessments:', err);
-    }
-
-    try {
-      const { error: crmError } = await supabase.from('leads').insert([{
-        nombre: leadData.name,
-        correo: leadData.email,
-        empresa: leadData.company || contextData.targetOrganization,
-        telefono: leadData.phone,
+    // 1. Guardar en DB y enviar emails en paralelo (NO bloquear el PDF)
+    const dbPromises = [
+      startSequence('lead-' + Date.now(), leadData.email, leadData.name, 'riesgo', leadData.company).catch(err => console.warn('Error secuencia:', err)),
+      supabase.from('risk_assessments').insert([{
+        lead_name: leadData.name, job_title: leadData.jobTitle, company: leadData.company,
+        email: leadData.email, phone: leadData.phone,
+        target_organization: contextData.targetOrganization, location: contextData.location,
+        sector: contextData.sector, exposure: contextData.exposure, score: protectionScore,
+        pillars: pillarStats.map(p => ({ title: p.pillar.title, checked: p.checked, total: p.total })),
+        vulnerabilities: vulnerabilities
+      }]).then(r => r.error && console.warn('DB risk_assessments:', r.error.message)),
+      supabase.from('leads').insert([{
+        nombre: leadData.name, correo: leadData.email,
+        empresa: leadData.company || contextData.targetOrganization, telefono: leadData.phone,
         mensaje: `Score: ${protectionScore}/100 | Sector: ${contextData.sector} | Ubicación: ${contextData.location}`,
-        fuente: 'riesgo',
-        score: 30,
-        estado: 'nuevo'
-      }]);
-
-      if (crmError) {
-        console.warn('Advertencia: No se pudo guardar el lead en el CRM:', crmError.message);
-      }
-    } catch (err) {
-      console.warn('Error al insertar en leads CRM:', err);
+        fuente: 'riesgo', score: 30, estado: 'nuevo'
+      }]).then(r => r.error && console.warn('DB leads:', r.error.message)),
+    ];
+    if (leadData.email) {
+      dbPromises.push(
+        Promise.resolve().then(() => sendNurtureEmail(leadData.email, leadData.name, 'riesgo', leadData.company)).catch(err => console.warn('Email error:', err))
+      );
     }
+    // Lanzar en paralelo, no esperar
+    Promise.allSettled(dbPromises);
 
+    // 2. Generar PDF — mover template al viewport momentáneamente para html2canvas
     try {
-      if (leadData.email) {
-        sendNurtureEmail(leadData.email, leadData.name, 'riesgo', leadData.company);
-      }
-    } catch (err) {
-      console.warn('Error al enviar el email:', err);
-    }
+      const el = reportRef.current;
+      // Guardar estilos originales
+      const origStyles = {
+        position: el.style.position,
+        top: el.style.top,
+        left: el.style.left,
+        zIndex: el.style.zIndex,
+      };
+      // Mover al viewport (fuera de vista del usuario pero dentro del DOM visible)
+      el.style.position = 'fixed';
+      el.style.top = '0';
+      el.style.left = '-9999px';
+      el.style.zIndex = '-1';
 
-    // 2. Generar PDF
-    try {
-      const canvas = await html2canvas(reportRef.current, {
+      // Esperar un frame para que el navegador re-renderice
+      await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+
+      const canvas = await html2canvas(el, {
         scale: 2,
         useCORS: true,
+        allowTaint: true,
         logging: false,
+        backgroundColor: '#ffffff',
+        windowWidth: 800,
+        windowHeight: 1120,
       });
+
+      // Restaurar estilos originales
+      el.style.position = origStyles.position;
+      el.style.top = origStyles.top;
+      el.style.left = origStyles.left;
+      el.style.zIndex = origStyles.zIndex;
       
       const imgData = canvas.toDataURL('image/png');
       const pdf = new jsPDF({
