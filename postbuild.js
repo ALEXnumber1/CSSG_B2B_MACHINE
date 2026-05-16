@@ -75,6 +75,12 @@ const routes = [
     title: 'Nuestros Partners y Alianzas Globales | CSSG',
     description: 'Colaboramos con empresas líderes mundiales en tecnología de seguridad para ofrecer las mejores soluciones en Venezuela.',
     image: 'https://cssg-global.com/zentinel_logo.jpg'
+  },
+  {
+    path: 'consultoria/escudo-diplomatico',
+    title: 'SERVICIO DE PROTECCION A PERSONALIDADES DE ELITE | CSSG',
+    description: 'Servicio exclusivo de protección a personalidades de élite. Conformamos esquemas de seguridad a un nivel diplomático. Filtro High-Ticket.',
+    image: 'https://cssg-global.com/secuestro.webp'
   }
 ];
 
