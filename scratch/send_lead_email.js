@@ -1,5 +1,5 @@
 const RESEND_API_KEY = "re_bpLzvtv9_3e3chS1vo7JfKT8GfyB56wDB";
-const FROM_EMAIL = 'onboarding@resend.dev';
+const FROM_EMAIL = 'CSSG <operaciones@cssg-global.com>';
 
 async function sendMail() {
   console.log('Enviando email con logo dorado a globalservices.ven@gmail.com');
@@ -71,7 +71,7 @@ async function sendMail() {
       },
       body: JSON.stringify({
         from: FROM_EMAIL,
-        to: 'globalservices.ven@gmail.com',
+        to: 'nickysebas@gmail.com',
         subject: '[EVALUACIÓN] Solicitud de Seguridad para su organización — Hola Nicky Rujano',
         html: html,
       }),

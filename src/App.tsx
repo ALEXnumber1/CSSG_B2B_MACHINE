@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { motion, AnimatePresence } from 'framer-motion'
 import Navbar from './components/Navbar'
@@ -8,6 +8,7 @@ import Quejas from './pages/Quejas'
 import RiskAnalysis from './pages/RiskAnalysis'
 import QuienesSomos from './pages/QuienesSomos'
 import Consultoria from './pages/Consultoria'
+import EscudoDiplomatico from './pages/EscudoDiplomatico'
 import Tecnologia from './pages/Tecnologia'
 import Informes from './pages/Informes'
 import Admin from './pages/Admin'
@@ -23,12 +24,25 @@ import ScrollToTop from './components/ScrollToTop'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import TermsAndConditions from './pages/TermsAndConditions'
 
-function App() {
+function AppContent() {
   const { t, i18n } = useTranslation();
   const year = new Date().getFullYear();
+  const location = useLocation();
+  const isStandaloneLanding = location.pathname === '/consultoria/escudo-diplomatico';
+
+  if (isStandaloneLanding) {
+    return (
+      <>
+        <ScrollToTop />
+        <Routes>
+          <Route path="/consultoria/escudo-diplomatico" element={<EscudoDiplomatico />} />
+        </Routes>
+      </>
+    );
+  }
 
   return (
-    <BrowserRouter>
+    <>
       <ScrollToTop />
       <div className="min-h-screen font-sans flex flex-col relative overflow-x-hidden">
         {/* Background ambient glow */}
@@ -58,6 +72,7 @@ function App() {
                 <Route path="/auditoria-seguridad-iso-31000" element={<Consultoria />} />
                 <Route path="/analisis-riesgos-corporativos-venezuela" element={<Consultoria />} />
                 <Route path="/optimizacion-costos-seguridad" element={<Consultoria />} />
+                <Route path="/consultoria/escudo-diplomatico" element={<EscudoDiplomatico />} />
                 <Route path="/tecnologia" element={<Tecnologia />} />
                 <Route path="/informes" element={<Informes />} />
                 <Route path="/intranet" element={<Intranet />} />
@@ -182,8 +197,16 @@ function App() {
           <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
         </a>
       </div>
-    </BrowserRouter>
+    </>
   )
+}
+
+function App() {
+  return (
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
+  );
 }
 
 export default App
