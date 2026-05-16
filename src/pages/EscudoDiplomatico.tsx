@@ -170,7 +170,7 @@ export default function EscudoDiplomatico() {
             ¿QUÉ ES EL <span style={{ color: GOLD }}>ESCUDO DIPLOMÁTICO</span>?
           </h2>
           <p className="text-center text-[15px] leading-[1.8] max-w-3xl mx-auto mb-14" style={{ color: '#a0a0a0' }}>
-            No es un servicio de escoltas tradicionales. Es una cápsula de inteligencia preventiva e inmunidad ejecutiva. El 95% de los CEO cometen el error de contratar personal armado visible que no disuade a las amenazas, sino que les indica dónde está el objetivo de alto valor. Nosotros neutralizamos la amenaza días antes de que usted salga de su casa.
+            No es un servicio de escoltas tradicionales. Es una cápsula de inteligencia preventiva e inmunidad ejecutiva. El 95% de los CEO cometen el error de contratar personal armado visible que no disuade a las amenazas, sino que les indica dónde está el objetivo de alto valor. Nosotros identificamos y exponemos la amenaza días antes de que usted salga de su casa.
           </p>
 
           {/* Comparison boxes */}
@@ -222,12 +222,8 @@ export default function EscudoDiplomatico() {
       </section>
 
       {/* ═══ SECTION 4: LOS 3 NIVELES ═══ */}
-      <section className="py-20 px-6 relative" style={{
-        backgroundImage: "url('/ESCOLTA.jpg')",
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed',
-        backgroundRepeat: 'no-repeat'
+      <section className="py-20 px-6 relative bg-no-repeat bg-cover bg-top md:bg-center md:bg-fixed" style={{
+        backgroundImage: "url('/ESCOLTA.jpg')"
       }}>
         {/* Dark overlay */}
         <div className="absolute inset-0" style={{ background: 'rgba(10, 10, 10, 0.85)' }} />
