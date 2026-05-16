@@ -80,7 +80,7 @@ const routes = [
     path: 'consultoria/escudo-diplomatico',
     title: 'SERVICIO DE PROTECCION A PERSONALIDADES DE ELITE | CSSG',
     description: 'Servicio exclusivo de protección a personalidades de élite. Conformamos esquemas de seguridad a un nivel diplomático. Filtro High-Ticket.',
-    image: 'https://cssg-global.com/secuestro.webp'
+    image: 'https://cssg-global.com/seo_escudo.jpg'
   }
 ];
 
