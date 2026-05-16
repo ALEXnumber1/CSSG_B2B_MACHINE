@@ -420,7 +420,7 @@ export default function RiskAnalysis() {
     setIsGenerating(true);
     
     // 1. Guardar en DB y enviar emails en paralelo (NO bloquear el PDF)
-    const dbPromises = [
+    const dbPromises: any[] = [
       startSequence('lead-' + Date.now(), leadData.email, leadData.name, 'riesgo', leadData.company).catch(err => console.warn('Error secuencia:', err)),
       supabase.from('risk_assessments').insert([{
         lead_name: leadData.name, job_title: leadData.jobTitle, company: leadData.company,

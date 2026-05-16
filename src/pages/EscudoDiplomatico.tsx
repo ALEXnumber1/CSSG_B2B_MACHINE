@@ -7,7 +7,9 @@ import { sendLeadNotification } from '../lib/email';
 const GOLD = '#D4AF37';
 const RED = '#ef4444';
 
-const fadeUp = {
+import type { Variants } from 'framer-motion';
+
+const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } },
 };
