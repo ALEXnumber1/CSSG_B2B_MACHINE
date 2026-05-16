@@ -24,6 +24,8 @@ import esStreaming from './locales/es/streaming.json';
 import enStreaming from './locales/en/streaming.json';
 import esRRHH from './locales/es/rrhh.json';
 import enRRHH from './locales/en/rrhh.json';
+import esEscudo from './locales/es/escudo.json';
+import enEscudo from './locales/en/escudo.json';
 
 const resources = {
   es: {
@@ -424,7 +426,8 @@ const resources = {
     admin: esAdmin,
     blog: esBlog.blog,
     streaming: esStreaming,
-    rrhh: esRRHH
+    rrhh: esRRHH,
+    escudo: esEscudo
   },
   en: {
     translation: {
@@ -824,7 +827,8 @@ const resources = {
     admin: enAdmin,
     blog: enBlog.blog,
     streaming: enStreaming,
-    rrhh: enRRHH
+    rrhh: enRRHH,
+    escudo: enEscudo
   }
 };
 
@@ -834,7 +838,7 @@ i18n
   .init({
     resources,
     fallbackLng: 'es',
-    ns: ['translation', 'quienes', 'consultoria', 'tecnologia', 'risk', 'informes', 'quejas', 'intranet', 'admin', 'blog', 'streaming', 'rrhh'],
+    ns: ['translation', 'quienes', 'consultoria', 'tecnologia', 'risk', 'informes', 'quejas', 'intranet', 'admin', 'blog', 'streaming', 'rrhh', 'escudo'],
     defaultNS: 'translation',
     interpolation: {
       escapeValue: false,

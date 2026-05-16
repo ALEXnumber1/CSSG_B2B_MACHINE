@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Shield, AlertTriangle, Lock, Eye, EyeOff, Radio, ChevronRight, X as XIcon, Check } from 'lucide-react';
@@ -15,6 +16,7 @@ const fadeUp: Variants = {
 };
 
 export default function EscudoDiplomatico() {
+  const { t, i18n } = useTranslation();
   const year = new Date().getFullYear();
   const [formData, setFormData] = useState({
     nombre: '',
@@ -90,9 +92,27 @@ export default function EscudoDiplomatico() {
               <p className="text-[9px] tracking-wider uppercase" style={{ color: GOLD }}>Consultoría en Seguridad y Servicios Generales</p>
             </div>
           </div>
-          <button onClick={scrollToForm} className="px-5 py-2 text-xs font-black uppercase tracking-widest rounded border transition-all hover:scale-105" style={{ color: '#0a0a0a', background: GOLD, borderColor: GOLD }}>
-            Solicitar Acceso
-          </button>
+          <div className="flex items-center gap-3">
+            {/* Language Toggle */}
+            <div className="flex items-center bg-black/40 border border-white/10 rounded-lg p-1 hidden sm:flex">
+              <button 
+                onClick={() => i18n.changeLanguage('en')}
+                className={`flex items-center gap-2 px-3 py-1 text-xs font-medium rounded-md transition-all ${i18n.language.startsWith('en') ? 'bg-sky-500/20 text-sky-400' : 'text-gray-400 hover:text-white'}`}
+              >
+                <img src="https://flagcdn.com/us.svg" alt="Miami" className="w-4 h-3 object-cover rounded-[2px]" /> Miami
+              </button>
+              <button 
+                onClick={() => i18n.changeLanguage('es')}
+                className={`flex items-center gap-2 px-3 py-1 text-xs font-medium rounded-md transition-all ${i18n.language.startsWith('es') ? 'bg-sky-500/20 text-sky-400' : 'text-gray-400 hover:text-white'}`}
+              >
+                <img src="https://flagcdn.com/ve.svg" alt="Venezuela" className="w-4 h-3 object-cover rounded-[2px]" /> Venezuela
+              </button>
+            </div>
+            
+            <button onClick={scrollToForm} className="px-5 py-2 text-xs font-black uppercase tracking-widest rounded border transition-all hover:scale-105" style={{ color: '#0a0a0a', background: GOLD, borderColor: GOLD }}>
+              {t("escudo:nav_access")}
+            </button>
+          </div>
         </div>
       </nav>
 
@@ -124,7 +144,7 @@ export default function EscudoDiplomatico() {
             </span>
           </h1>
           <h2 className="text-xl sm:text-2xl font-bold mb-10" style={{ color: '#a0a0a0' }}>
-            Descubre el <span className="text-white font-black">ESCUDO DIPLOMÁTICO</span>
+            Descubre el <span className="text-white font-black">{t("escudo:paradigm_title_2")}</span>
           </h2>
           <button onClick={scrollToForm} className="group px-8 py-4 rounded-lg text-sm font-black uppercase tracking-widest transition-all hover:scale-105 shadow-lg" style={{ color: '#0a0a0a', background: `linear-gradient(135deg, ${GOLD}, #f5e6a3)`, boxShadow: `0 0 40px ${GOLD}30` }}>
             Pida una Cita Ya <span className="text-[10px] opacity-70">(Briefing de 10 Min)</span>
@@ -167,7 +187,7 @@ export default function EscudoDiplomatico() {
       <section className="py-20 px-6">
         <motion.div className="max-w-5xl mx-auto" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
           <h2 className="text-3xl sm:text-4xl font-black text-white text-center mb-6 tracking-tight">
-            ¿QUÉ ES EL <span style={{ color: GOLD }}>ESCUDO DIPLOMÁTICO</span>?
+            ¿QUÉ ES EL <span style={{ color: GOLD }}>{t("escudo:paradigm_title_2")}</span>?
           </h2>
           <p className="text-center text-[15px] leading-[1.8] max-w-3xl mx-auto mb-14" style={{ color: '#a0a0a0' }}>
             No es un servicio de escoltas tradicionales. Es una cápsula de inteligencia preventiva e inmunidad ejecutiva. El 95% de los CEO cometen el error de contratar personal armado visible que no disuade a las amenazas, sino que les indica dónde está el objetivo de alto valor. Nosotros identificamos y exponemos la amenaza días antes de que usted salga de su casa.
@@ -239,22 +259,22 @@ export default function EscudoDiplomatico() {
             {[
               {
                 icon: <Eye className="w-6 h-6" />,
-                level: 'Nivel 1',
-                title: 'Inteligencia Preventiva',
+                level: t('escudo:lvl1_badge'),
+                title: t('escudo:lvl1_title'),
                 subtitle: 'El 90% de la operación',
-                desc: 'Mapeo diario de rutas, análisis de entorno y reportes exclusivos de inteligencia en tiempo real desde nuestro Centro de Operaciones. Identificamos y exponemos la amenaza antes de que usted pise la calle.',
+                desc: t('escudo:lvl1_desc'),
               },
               {
                 icon: <EyeOff className="w-6 h-6" />,
-                level: 'Nivel 2',
-                title: 'Anillo Disuasivo',
+                level: t('escudo:lvl2_badge'),
+                title: t('escudo:lvl2_title'),
                 subtitle: 'La Sombra Invisible',
-                desc: 'Unidades de avanzada encubiertas en sus zonas de tránsito. Actúan como una red de alerta temprana indetectable, en comunicación encriptada directa con sus choferes. Nadie sabe que están ahí.',
+                desc: t('escudo:lvl2_desc'),
               },
               {
                 icon: <Radio className="w-6 h-6" />,
-                level: 'Nivel 3',
-                title: 'Unidad Táctica',
+                level: t('escudo:lvl3_badge'),
+                title: t('escudo:lvl3_title'),
                 subtitle: 'El Botón Nuclear',
                 desc: 'Si el entorno colapsa inexplicablemente, ejecutamos extracciones seguras en minutos. Contamos con fuerza de reacción de élite y enlace gubernamental directo. Su póliza de vida absoluta.',
               },
@@ -325,8 +345,8 @@ export default function EscudoDiplomatico() {
             <div className="flex items-center gap-3 mb-8">
               <Shield className="w-6 h-6" style={{ color: GOLD }} />
               <div>
-                <h3 className="text-white font-black text-lg">Pida una cita ya</h3>
-                <p className="text-xs" style={{ color: '#666' }}>Briefing de 10 min</p>
+                <h3 className="text-white font-black text-lg">{t("escudo:form_title")}</h3>
+                <p className="text-xs" style={{ color: '#666' }}>{t("escudo:form_subtitle")}</p>
               </div>
             </div>
 
@@ -335,13 +355,13 @@ export default function EscudoDiplomatico() {
                 <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: `${GOLD}15`, border: `1px solid ${GOLD}30` }}>
                   <Check className="w-8 h-8" style={{ color: GOLD }} />
                 </div>
-                <h4 className="text-white font-black text-xl mb-2">Solicitud Recibida</h4>
-                <p className="text-sm" style={{ color: '#888' }}>Un oficial de inteligencia revisará su perfil y le contactará en las próximas 24 horas.</p>
+                <h4 className="text-white font-black text-xl mb-2">{t("escudo:form_success_title")}</h4>
+                <p className="text-sm" style={{ color: '#888' }}>{t("escudo:form_success_desc")}</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-widest mb-2" style={{ color: '#666' }}>Nombre Completo</label>
+                  <label className="block text-xs font-bold uppercase tracking-widest mb-2" style={{ color: '#666' }}>{t("escudo:form_name")}</label>
                   <input type="text" name="nombre" required value={formData.nombre} onChange={handleChange}
                     className="w-full px-4 py-3 rounded-lg text-white text-sm focus:outline-none transition-colors"
                     style={{ background: '#1a1a1a', border: '1px solid #2a2a2a' }}
@@ -350,7 +370,7 @@ export default function EscudoDiplomatico() {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-widest mb-2" style={{ color: '#666' }}>Cargo / Posición</label>
+                  <label className="block text-xs font-bold uppercase tracking-widest mb-2" style={{ color: '#666' }}>{t("escudo:form_position")}</label>
                   <input type="text" name="cargo" required value={formData.cargo} onChange={handleChange}
                     className="w-full px-4 py-3 rounded-lg text-white text-sm focus:outline-none transition-colors"
                     style={{ background: '#1a1a1a', border: '1px solid #2a2a2a' }}
@@ -359,7 +379,7 @@ export default function EscudoDiplomatico() {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-widest mb-2" style={{ color: '#666' }}>Empresa Transnacional / Corporación</label>
+                  <label className="block text-xs font-bold uppercase tracking-widest mb-2" style={{ color: '#666' }}>{t("escudo:form_company")}</label>
                   <input type="text" name="empresa" required value={formData.empresa} onChange={handleChange}
                     className="w-full px-4 py-3 rounded-lg text-white text-sm focus:outline-none transition-colors"
                     style={{ background: '#1a1a1a', border: '1px solid #2a2a2a' }}
@@ -368,7 +388,7 @@ export default function EscudoDiplomatico() {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-bold uppercase tracking-widest mb-2" style={{ color: '#666' }}>¿Cuál es su mayor vulnerabilidad?</label>
+                  <label className="block text-xs font-bold uppercase tracking-widest mb-2" style={{ color: '#666' }}>{t("escudo:form_vuln")}</label>
                   <select name="vulnerabilidad" required value={formData.vulnerabilidad} onChange={handleChange}
                     className="w-full px-4 py-3 rounded-lg text-sm focus:outline-none transition-colors appearance-none cursor-pointer"
                     style={{ background: '#1a1a1a', border: '1px solid #2a2a2a', color: formData.vulnerabilidad ? 'white' : '#666' }}
