@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { Shield, ArrowRight } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import LeadModal from '../components/LeadModal';
 import AuditModal from '../components/AuditModal';
@@ -10,20 +10,31 @@ export default function Hero() {
   const { t, i18n } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAuditModalOpen, setIsAuditModalOpen] = useState(false);
+  const [showVideo, setShowVideo] = useState(false);
+
+  useEffect(() => {
+    // Retrasar la carga del video pesado para no bloquear el FCP/LCP inicial
+    const timer = setTimeout(() => {
+      setShowVideo(true);
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden flex items-center min-h-[100vh]">
       {/* Cinematic Video Background */}
       <div className="absolute inset-0 z-0">
-        <video 
-          autoPlay 
-          muted 
-          loop 
-          playsInline 
-          className="absolute inset-0 w-full h-full object-cover opacity-20 grayscale brightness-50"
-        >
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-security-camera-monitoring-a-parking-lot-4467-large.mp4" type="video/mp4" />
-        </video>
+        {showVideo && (
+          <video 
+            autoPlay 
+            muted 
+            loop 
+            playsInline 
+            className="absolute inset-0 w-full h-full object-cover opacity-20 grayscale brightness-50"
+          >
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-security-camera-monitoring-a-parking-lot-4467-large.mp4" type="video/mp4" />
+          </video>
+        )}
         <div className="absolute inset-0 bg-gradient-to-b from-[#030305] via-[#030305]/40 to-[#030305]" />
         <HeroSpline />
         {/* Laser Scanning Effect */}
@@ -99,6 +110,7 @@ export default function Hero() {
             <motion.img 
               src="/logo.png" 
               alt="CSSG Logo"
+              fetchPriority="high"
               initial={{ opacity: 0, scale: 0.7 }}
               animate={{ 
                 opacity: 1, 
