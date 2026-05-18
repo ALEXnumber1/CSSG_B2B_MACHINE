@@ -10,21 +10,23 @@ export default function Hero() {
   const { t, i18n } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAuditModalOpen, setIsAuditModalOpen] = useState(false);
-  const [showVideo, setShowVideo] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
-    // Retrasar la carga del video pesado para no bloquear el FCP/LCP inicial
-    const timer = setTimeout(() => {
-      setShowVideo(true);
-    }, 1500);
-    return () => clearTimeout(timer);
+    // Detectar si es escritorio para evitar descargar el video de 6MB en móviles
+    const checkIsDesktop = () => {
+      setIsDesktop(window.innerWidth >= 768);
+    };
+    checkIsDesktop();
+    window.addEventListener('resize', checkIsDesktop);
+    return () => window.removeEventListener('resize', checkIsDesktop);
   }, []);
 
   return (
     <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden flex items-center min-h-[100vh]">
       {/* Cinematic Video Background */}
       <div className="absolute inset-0 z-0">
-        {showVideo && (
+        {isDesktop && (
           <video 
             autoPlay 
             muted 
