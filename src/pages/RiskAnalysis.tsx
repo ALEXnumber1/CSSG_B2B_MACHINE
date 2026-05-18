@@ -517,14 +517,14 @@ export default function RiskAnalysis() {
       // Limpiar después de un momento
       setTimeout(() => URL.revokeObjectURL(pdfUrl), 30000);
       
-      setShowLeadModal(false);
-      // Activar modal de feedback tras guardar
+      // Activar modal de feedback tras guardar (solo si fue exitoso)
       setTimeout(() => setShowFeedbackModal(true), 1000);
     } catch (error) {
       console.error('Error al generar PDF:', error);
       alert('Hubo un error al generar el PDF. Por favor, inténtelo de nuevo.');
     } finally {
       setIsGenerating(false);
+      setShowLeadModal(false);
     }
   };
 
@@ -959,10 +959,9 @@ export default function RiskAnalysis() {
       </AnimatePresence>
 
       {/* FEEDBACK & GOOGLE REVIEW MODAL */}
-      <AnimatePresence>
         {showFeedbackModal && (
           <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 bg-black/90 backdrop-blur-md" onClick={() => setShowFeedbackModal(false)} />
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="absolute inset-0 bg-black/80 backdrop-blur-sm" onClick={() => setShowFeedbackModal(false)} />
             <motion.div 
               initial={{ opacity: 0, scale: 0.9, y: 20 }} 
               animate={{ opacity: 1, scale: 1, y: 0 }} 

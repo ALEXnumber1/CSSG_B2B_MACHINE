@@ -58,6 +58,10 @@ export default function Admin() {
   });
   const [savingScraped, setSavingScraped] = useState(false);
   
+  // Risk Assessment State
+  const [selectedLeadRisk, setSelectedLeadRisk] = useState<any>(null);
+  const [loadingRisk, setLoadingRisk] = useState(false);
+  
   // Blog state
   const [posts, setPosts] = useState<any[]>([]);
   const [editingPost, setEditingPost] = useState<any>(null);
@@ -261,6 +265,28 @@ const savePost = async () => {
     if (selectedLead?.id === id) setSelectedLead(prev => prev ? { ...prev, estado: newEstado } : null);
   };
 
+  const handleSelectLead = async (lead: Lead) => {
+    setSelectedLead(lead);
+    setEditNotas(lead.notas || '');
+    setLoadingRisk(true);
+    setSelectedLeadRisk(null);
+    try {
+      const { data, error } = await supabase
+        .from('risk_assessments')
+        .select('*')
+        .or(`email.eq.${lead.correo},lead_name.eq.${lead.nombre}`)
+        .order('created_at', { ascending: false })
+        .limit(1);
+      
+      if (data && data.length > 0) {
+        setSelectedLeadRisk(data[0]);
+      }
+    } catch (e) {
+      console.error("Error fetching risk:", e);
+    }
+    setLoadingRisk(false);
+  };
+
   const handleDeleteLead = async (id: string) => {
     if(confirm('¿Seguro que desea eliminar esta postulación?')) {
       await supabase.from('leads').delete().eq('id', id);
@@ -431,16 +457,16 @@ const savePost = async () => {
                       {colLeads.map((lead) => {
                         const src = fuenteLabels[lead.fuente] || { label: lead.fuente, color: 'text-gray-400 bg-white/5' };
                         return (
-                          <div key={lead.id} onClick={() => { setSelectedLead(lead); setEditNotas(lead.notas || ''); }} className="bg-white/[0.04] border border-white/[0.08] rounded-xl p-4 cursor-pointer hover:border-sky-500/20 transition-all group">
+                          <div key={lead.id} onClick={() => handleSelectLead(lead)} className="bg-white/[0.04] border border-white/[0.08] rounded-xl p-4 cursor-pointer hover:border-sky-500/20 transition-all group shadow-sm hover:shadow-sky-500/10">
                             <div className="flex items-start justify-between mb-2">
                               <span className={`text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${src.color}`}>{src.label}</span>
-                              <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${scoreColor(lead.score || 0)}`}>{lead.score || 0}pts</span>
+                              <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border flex items-center gap-1 ${scoreColor(lead.score || 0)}`}><Zap className="w-3 h-3"/> {lead.score || 0}</span>
                             </div>
                             <h3 className="text-white font-semibold text-sm truncate">{lead.nombre || 'N/A'}</h3>
                             <p className="text-gray-500 text-xs truncate">{lead.empresa}</p>
                             <div className="flex items-center justify-between mt-3">
                               <span className="text-[10px] text-gray-600">{timeAgo(lead.created_at)}</span>
-                              <ChevronRight className="w-3 h-3 text-gray-600 opacity-0 group-hover:opacity-100" />
+                              <ChevronRight className="w-3 h-3 text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity" />
                             </div>
                           </div>
                         );
@@ -636,27 +662,115 @@ const savePost = async () => {
       <AnimatePresence>
         {selectedLead && (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4" onClick={() => setSelectedLead(null)}>
-            <motion.div onClick={e => e.stopPropagation()} className="bg-[#0D0F16] border border-white/10 rounded-2xl w-full max-w-2xl overflow-hidden shadow-2xl">
-               <div className="p-6 border-b border-white/5 flex justify-between items-center bg-white/[0.02]">
-                 <h2 className="text-xl font-bold text-white">{selectedLead.nombre}</h2>
-                 <button onClick={() => setSelectedLead(null)} className="text-gray-500 hover:text-white transition-colors cursor-pointer"><X/></button>
-               </div>
-               <div className="p-8 space-y-6">
-                 <div className="grid grid-cols-2 gap-6">
-                   <div><label className="text-[10px] uppercase tracking-widest text-gray-500 mb-1 block">Email</label><div className="text-sky-400">{selectedLead.correo}</div></div>
-                   <div><label className="text-[10px] uppercase tracking-widest text-gray-500 mb-1 block">Empresa</label><div className="text-white">{selectedLead.empresa}</div></div>
-                 </div>
-                 <div><label className="text-[10px] uppercase tracking-widest text-gray-500 mb-1 block">Mensaje</label><div className="text-gray-300 text-sm bg-black/20 p-4 rounded-lg border border-white/5 italic">\"{selectedLead.mensaje}\"</div></div>
+            <motion.div onClick={e => e.stopPropagation()} className="bg-[#0D0F16] border border-white/10 rounded-2xl w-full max-w-4xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden">
+               <div className="p-6 border-b border-white/5 flex justify-between items-center bg-white/[0.02] shrink-0">
                  <div>
-                   <label className="text-[10px] uppercase tracking-widest text-gray-500 mb-1 block">Notas del Administrador</label>
-                   <textarea value={editNotas} onChange={e => setEditNotas(e.target.value)} className="w-full bg-black/40 border border-white/10 rounded-lg p-4 text-white text-sm focus:outline-none focus:border-sky-500" rows={4} placeholder="Escriba notas de seguimiento..." />
+                   <h2 className="text-xl font-black text-white flex items-center gap-3">
+                     {selectedLead.nombre}
+                     {selectedLead.score && selectedLead.score >= 40 && <span className="bg-orange-500/20 text-orange-400 border border-orange-500/30 text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider">Hot Lead</span>}
+                   </h2>
+                   <div className="text-sm text-sky-400 mt-1">{selectedLead.empresa}</div>
                  </div>
-                 <div className="flex justify-between items-center pt-4">
-                    <select value={selectedLead.estado} onChange={(e) => updateLeadEstado(selectedLead.id, e.target.value)} className="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm text-white focus:outline-none">
-                     {estadoColumns.map(c => <option key={c.key} value={c.key} className="bg-[#0D0F16]">{c.label}</option>)}
+                 <button onClick={() => setSelectedLead(null)} className="text-gray-500 hover:text-white transition-colors cursor-pointer p-2 bg-white/5 rounded-full"><X className="w-5 h-5"/></button>
+               </div>
+               
+               <div className="flex-1 overflow-y-auto custom-scrollbar p-6">
+                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                   {/* Columna Izquierda: Info básica */}
+                   <div className="space-y-6">
+                     <div className="bg-white/5 rounded-xl p-5 border border-white/10">
+                       <h3 className="text-xs uppercase tracking-widest text-gray-400 mb-4 font-bold flex items-center gap-2"><User className="w-4 h-4 text-sky-400" /> Detalles de Contacto</h3>
+                       <div className="space-y-4">
+                         <div><label className="text-[10px] uppercase tracking-widest text-gray-500 mb-1 block">Email</label><div className="text-white text-sm bg-black/30 p-2 rounded border border-white/5">{selectedLead.correo}</div></div>
+                         <div><label className="text-[10px] uppercase tracking-widest text-gray-500 mb-1 block">Teléfono</label><div className="text-white text-sm bg-black/30 p-2 rounded border border-white/5">{selectedLead.telefono || 'No proporcionado'}</div></div>
+                         <div><label className="text-[10px] uppercase tracking-widest text-gray-500 mb-1 block">Origen / Fuente</label><div className="text-white text-sm bg-black/30 p-2 rounded border border-white/5">{selectedLead.fuente}</div></div>
+                       </div>
+                     </div>
+                     
+                     <div className="bg-white/5 rounded-xl p-5 border border-white/10">
+                       <h3 className="text-xs uppercase tracking-widest text-gray-400 mb-4 font-bold flex items-center gap-2"><Database className="w-4 h-4 text-sky-400" /> Mensaje Original</h3>
+                       <div className="text-gray-300 text-sm bg-black/30 p-4 rounded-lg border border-white/5 italic">"{selectedLead.mensaje || 'Sin mensaje'}"</div>
+                     </div>
+
+                     <div className="bg-white/5 rounded-xl p-5 border border-white/10">
+                       <h3 className="text-xs uppercase tracking-widest text-gray-400 mb-4 font-bold flex items-center gap-2"><PenTool className="w-4 h-4 text-sky-400" /> Notas del Ejecutivo</h3>
+                       <textarea value={editNotas} onChange={e => setEditNotas(e.target.value)} className="w-full bg-black/30 border border-white/10 rounded-lg p-4 text-white text-sm focus:outline-none focus:border-sky-500" rows={4} placeholder="Escriba notas de seguimiento, acuerdos o recordatorios..." />
+                     </div>
+                   </div>
+
+                   {/* Columna Derecha: Inteligencia Artificial */}
+                   <div className="space-y-6">
+                     <div className="bg-gradient-to-br from-indigo-900/20 to-purple-900/10 rounded-xl p-5 border border-indigo-500/20 h-full flex flex-col">
+                       <h3 className="text-xs uppercase tracking-widest text-indigo-400 mb-4 font-bold flex items-center gap-2">
+                         <Zap className="w-4 h-4" /> Inteligencia Artificial de Gemini
+                       </h3>
+                       
+                       {loadingRisk ? (
+                         <div className="flex-1 flex items-center justify-center flex-col gap-3">
+                           <RefreshCw className="w-6 h-6 text-indigo-400 animate-spin" />
+                           <p className="text-xs text-indigo-300/60 uppercase tracking-widest">Buscando análisis...</p>
+                         </div>
+                       ) : selectedLeadRisk ? (
+                         <div className="space-y-4">
+                           <div className="flex items-center justify-between p-3 bg-black/40 rounded-lg border border-indigo-500/20">
+                             <span className="text-xs text-gray-400">Puntaje de Riesgo Calculado</span>
+                             <span className={`text-lg font-black ${selectedLeadRisk.score > 50 ? 'text-red-400' : 'text-orange-400'}`}>{selectedLeadRisk.score}/100</span>
+                           </div>
+                           
+                           {selectedLeadRisk.vulnerabilities && selectedLeadRisk.vulnerabilities.length > 0 && (
+                             <div>
+                               <h4 className="text-[10px] uppercase tracking-widest text-indigo-300 mb-2">Vulnerabilidades Detectadas (OSINT)</h4>
+                               <ul className="space-y-2">
+                                 {selectedLeadRisk.vulnerabilities.map((v: any, i: number) => (
+                                   <li key={i} className="text-xs text-gray-300 bg-indigo-500/10 p-2 rounded border border-indigo-500/20 flex gap-2 items-start">
+                                     <span className="text-indigo-400 mt-0.5">•</span>
+                                     <span dangerouslySetInnerHTML={{__html: v.description || v}}></span>
+                                   </li>
+                                 ))}
+                               </ul>
+                             </div>
+                           )}
+
+                           {selectedLeadRisk.pillars && (
+                             <div>
+                               <h4 className="text-[10px] uppercase tracking-widest text-indigo-300 mb-2 mt-4">Análisis por Pilares</h4>
+                               <div className="grid grid-cols-2 gap-2">
+                                 {selectedLeadRisk.pillars.map((p: any, i: number) => (
+                                   <div key={i} className="bg-black/30 p-2 rounded border border-white/5">
+                                     <div className="text-[10px] text-gray-400">{p.name || p.categoria}</div>
+                                     <div className="text-xs font-bold text-white mt-1">{p.status || p.nivel}</div>
+                                   </div>
+                                 ))}
+                               </div>
+                             </div>
+                           )}
+                         </div>
+                       ) : (
+                         <div className="flex-1 flex items-center justify-center flex-col gap-3 text-center">
+                           <div className="w-12 h-12 rounded-full bg-indigo-500/10 flex items-center justify-center border border-indigo-500/20">
+                             <Search className="w-5 h-5 text-indigo-400/50" />
+                           </div>
+                           <p className="text-xs text-gray-500">No hay análisis de riesgo de IA<br/>disponible para este lead todavía.</p>
+                           <button className="px-4 py-2 mt-2 bg-indigo-600/20 hover:bg-indigo-600/40 text-indigo-400 border border-indigo-500/30 text-xs font-bold rounded-lg transition-all">
+                             Generar Análisis Ahora
+                           </button>
+                         </div>
+                       )}
+                     </div>
+                   </div>
+                 </div>
+               </div>
+               
+               <div className="p-6 border-t border-white/5 flex justify-between items-center bg-black/40 shrink-0">
+                  <div className="flex items-center gap-3">
+                    <label className="text-xs text-gray-400 uppercase tracking-widest">Estado del Embudo:</label>
+                    <select value={selectedLead.estado} onChange={(e) => updateLeadEstado(selectedLead.id, e.target.value)} className="bg-sky-900/20 border border-sky-500/30 rounded-lg px-4 py-2 text-sm text-sky-400 font-bold focus:outline-none appearance-none">
+                     {estadoColumns.map(c => <option key={c.key} value={c.key} className="bg-[#0D0F16] text-white">{c.label}</option>)}
                    </select>
-                   <button onClick={saveNotas} className="px-6 py-2 bg-sky-600 hover:bg-sky-500 text-white font-bold rounded-lg transition-all cursor-pointer">Guardar Notas</button>
-                 </div>
+                  </div>
+                 <button onClick={saveNotas} className="px-8 py-2.5 bg-sky-600 hover:bg-sky-500 text-white font-black uppercase tracking-widest text-xs rounded-xl transition-all cursor-pointer shadow-lg shadow-sky-900/20 flex items-center gap-2">
+                   <Save className="w-4 h-4" /> Actualizar CRM
+                 </button>
                </div>
             </motion.div>
           </motion.div>
