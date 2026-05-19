@@ -32,23 +32,23 @@
 - Academia: Zentinel Global (formación en protección VIP, análisis de riesgos, manejo de crisis, inteligencia corporativa)
 
 ## Páginas principales
-- Home: https://globalservices-ven.com/
-- Quiénes Somos: https://globalservices-ven.com/quienes-somos
-- Consultoría: https://globalservices-ven.com/consultoria
-- Tecnología (ShieldTrace PSIM): https://globalservices-ven.com/tecnologia
-- Análisis de Riesgos: https://globalservices-ven.com/analisis-riesgo
-- Blog: https://globalservices-ven.com/blog
-- Licitaciones: https://globalservices-ven.com/licitaciones
+- Home: https://cssg-global.com/
+- Quiénes Somos: https://cssg-global.com/quienes-somos
+- Consultoría: https://cssg-global.com/consultoria
+- Tecnología (ShieldTrace PSIM): https://cssg-global.com/tecnologia
+- Análisis de Riesgos: https://cssg-global.com/analisis-riesgo
+- Blog: https://cssg-global.com/blog
+- Licitaciones: https://cssg-global.com/licitaciones
 
 ## Enlaces Especializados (SEO y Servicios Específicos)
-- Consultoría de Seguridad en Caracas: https://globalservices-ven.com/consultoria-seguridad-caracas
-- Auditoría de Seguridad ISO 31000: https://globalservices-ven.com/auditoria-seguridad-iso-31000
-- Análisis de Riesgos Corporativos en Venezuela: https://globalservices-ven.com/analisis-riesgos-corporativos-venezuela
-- Optimización de Costos Operativos de Seguridad: https://globalservices-ven.com/optimizacion-costos-seguridad
+- Consultoría de Seguridad en Caracas: https://cssg-global.com/consultoria-seguridad-caracas
+- Auditoría de Seguridad ISO 31000: https://cssg-global.com/auditoria-seguridad-iso-31000
+- Análisis de Riesgos Corporativos en Venezuela: https://cssg-global.com/analisis-riesgos-corporativos-venezuela
+- Optimización de Costos Operativos de Seguridad: https://cssg-global.com/optimizacion-costos-seguridad
 
 ## Contacto
-- Web: https://globalservices-ven.com
-- Email: operaciones@globalservices-ven.com
+- Web: https://cssg-global.com
+- Email: operaciones@cssg-global.com
 - Teléfono: +5804241782091
 - LinkedIn: https://linkedin.com/company/cssg-global
 - Instagram: https://instagram.com/cssg_global

@@ -5,7 +5,7 @@ const supabaseKey = process.env.VITE_SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default async function handler(req, res) {
-  const baseUrl = 'https://globalservices-ven.com';
+  const baseUrl = 'https://cssg-global.com';
   
   // 1. Rutas estáticas y de consultoría especializada
   const staticRoutes = [

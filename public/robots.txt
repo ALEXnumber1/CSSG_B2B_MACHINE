@@ -4,7 +4,7 @@ Disallow: /admin
 Disallow: /intranet
 
 # SEO Sitemap
-Sitemap: https://globalservices-ven.com/sitemap.xml
+Sitemap: https://cssg-global.com/sitemap.xml
 
 # LLMs
-Host: globalservices-ven.com
+Host: cssg-global.com
