@@ -23,6 +23,7 @@ import TacticalChat from './components/TacticalChat'
 import ScrollToTop from './components/ScrollToTop'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import TermsAndConditions from './pages/TermsAndConditions'
+import CookieConsent from './components/CookieConsent'
 
 function AppContent() {
   const { t, i18n } = useTranslation();
@@ -177,6 +178,7 @@ function AppContent() {
       </div>
       <FloatingCTA />
       <TacticalChat />
+      <CookieConsent />
 
       {/* Mobile Fixed Contact Bar */}
       <div className="lg:hidden fixed bottom-0 left-0 right-0 z-[100] bg-[#0B0B0F]/95 backdrop-blur-md border-t border-white/10 p-4 flex items-center justify-between shadow-[0_-10px_30px_rgba(0,0,0,0.5)]">

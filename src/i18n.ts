@@ -413,6 +413,12 @@ const resources = {
       "rrhh.sections.officers.login.pass": "Contraseña de Acceso",
       "rrhh.sections.officers.login.btn": "Entrar al Sistema",
       "rrhh.sections.officers.login.warning": "Este sistema de gestión es para uso exclusivo del personal autorizado de CSSG. El acceso no autorizado será monitorizado y está estrictamente prohibido.",
+      cookieConsent: {
+        message: 'Utilizamos cookies propias y de terceros para optimizar su experiencia y analizar el tráfico de nuestro portal.',
+        accept: 'Aceptar',
+        decline: 'Rechazar',
+        moreInfo: 'Más información'
+      },
       admin: esAdmin,
       rrhh: esRRHH
     },
@@ -814,6 +820,12 @@ const resources = {
       "rrhh.sections.officers.login.pass": "Access Password",
       "rrhh.sections.officers.login.btn": "Sign In",
       "rrhh.sections.officers.login.warning": "This management system is for the exclusive use of authorized CSSG personnel. Unauthorized access is strictly prohibited.",
+      cookieConsent: {
+        message: 'We use our own and third-party cookies to optimize your experience and analyze traffic on our portal.',
+        accept: 'Accept',
+        decline: 'Decline',
+        moreInfo: 'More info'
+      },
       admin: enAdmin,
       rrhh: enRRHH
     },
