@@ -170,7 +170,7 @@ const savePost = async () => {
     // Body
     doc.setTextColor(15, 23, 42);
     doc.setFontSize(16);
-    doc.text(lead.nombre.toUpperCase(), 20, 55);
+    doc.text((lead.nombre || '').toUpperCase(), 20, 55);
     
     doc.setDrawColor(14, 165, 233);
     doc.line(20, 58, 60, 58);
@@ -185,7 +185,7 @@ const savePost = async () => {
     doc.setFont('helvetica', 'bold');
     doc.text('POSTULACIÓN Y EXPERIENCIA', 20, 105);
     doc.setFont('helvetica', 'normal');
-    doc.text(`Cargo de Interés: ${lead.empresa.replace('CANDIDATO: ', '')}`, 20, 112);
+    doc.text(`Cargo de Interés: ${(lead.empresa || '').replace('CANDIDATO: ', '')}`, 20, 112);
     doc.text(`Fecha de Registro: ${new Date(lead.created_at).toLocaleDateString()}`, 20, 119);
     
     doc.setFont('helvetica', 'bold');
@@ -206,7 +206,7 @@ const savePost = async () => {
     doc.setTextColor(150, 150, 150);
     doc.text('Este documento es una exportación oficial del CRM de CSSG.', pageWidth / 2, 285, { align: 'center' });
 
-    doc.save(`CV_${lead.nombre.replace(/ /g, '_')}.pdf`);
+    doc.save(`CV_${(lead.nombre || 'Candidato').replace(/ /g, '_')}.pdf`);
   };
 
   const generateWithAI = () => {
@@ -310,6 +310,7 @@ const savePost = async () => {
   };
 
   const timeAgo = (dateStr: string) => {
+    if (!dateStr) return '—';
     const diff = Date.now() - new Date(dateStr).getTime();
     const mins = Math.floor(diff / 60000);
     if (mins < 60) return t('admin.time.m', { count: mins });
@@ -609,7 +610,7 @@ const savePost = async () => {
                           <div className="text-xs text-gray-500">ID: {lead.id.slice(0,8)}</div>
                         </td>
                         <td className="p-4">
-                          <div className="text-white text-xs">{lead.empresa.replace('CANDIDATO: ', '')}</div>
+                          <div className="text-white text-xs">{(lead.empresa || '').replace('CANDIDATO: ', '')}</div>
                         </td>
                         <td className="p-4">
                           <div className="text-sky-400 text-xs">{lead.correo}</div>
