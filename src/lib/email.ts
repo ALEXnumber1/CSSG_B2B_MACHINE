@@ -25,7 +25,7 @@ function baseTemplate(content: string): string {
   <div style="max-width:600px;margin:0 auto;padding:40px 24px;">
     <!-- Header -->
     <div style="text-align:center;margin-bottom:32px;">
-      <img src="https://cssg-b2b-machine.vercel.app/logo.png" alt="CSSG - Company Of Security And Service Global" style="width:120px;height:auto;margin-bottom:8px;" />
+      <img src="https://globalservices-ven.com/logo.png" alt="CSSG - Company Of Security And Service Global" style="width:120px;height:auto;margin-bottom:8px;" />
       <p style="color:#64748B;font-size:9px;letter-spacing:1px;text-transform:uppercase;margin-top:4px;margin-bottom:0;">RIF: J-29782024-8</p>
     </div>
     
