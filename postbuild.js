@@ -81,6 +81,54 @@ const routes = [
     title: 'SERVICIO DE PROTECCION A PERSONALIDADES DE ELITE | CSSG',
     description: 'Servicio exclusivo de protección a personalidades de élite. Conformamos esquemas de seguridad a un nivel diplomático. Filtro High-Ticket.',
     image: 'https://cssg-global.com/seo_escudo.jpg'
+  },
+  {
+    path: 'admin',
+    title: 'Panel de Administración | CSSG',
+    description: 'Acceso administrativo para la gestión de leads, postulaciones y contenidos de CSSG.',
+    image: 'https://cssg-global.com/logo.png'
+  },
+  {
+    path: 'portal-rrhh',
+    title: 'Portal de Empleo y RRHH | CSSG',
+    description: 'Únete a nuestro equipo táctico y de seguridad. Envía tu postulación a través de nuestro portal de reclutamiento.',
+    image: 'https://cssg-global.com/logo.png'
+  },
+  {
+    path: 'quejas',
+    title: 'Línea de Quejas y Denuncias | CSSG',
+    description: 'Canal de comunicación seguro y confidencial para quejas, reclamos o sugerencias.',
+    image: 'https://cssg-global.com/logo.png'
+  },
+  {
+    path: 'intranet',
+    title: 'Intranet Corporativa | CSSG',
+    description: 'Acceso exclusivo para empleados y oficiales activos de CSSG.',
+    image: 'https://cssg-global.com/logo.png'
+  },
+  {
+    path: 'informes',
+    title: 'Generación de Informes de Seguridad | CSSG',
+    description: 'Consulte y descargue sus informes de análisis de vulnerabilidades y seguridad física.',
+    image: 'https://cssg-global.com/logo.png'
+  },
+  {
+    path: 'blog',
+    title: 'Blog de Seguridad e Inteligencia Predictiva | CSSG',
+    description: 'Artículos de análisis, tendencias de seguridad y recomendaciones de expertos en protección corporativa.',
+    image: 'https://cssg-global.com/logo.png'
+  },
+  {
+    path: 'politica-privacidad',
+    title: 'Política de Privacidad | CSSG',
+    description: 'Lea los términos de privacidad y protección de datos confidenciales de CSSG.',
+    image: 'https://cssg-global.com/logo.png'
+  },
+  {
+    path: 'terminos-condiciones',
+    title: 'Términos y Condiciones de Uso | CSSG',
+    description: 'Términos de servicio y condiciones de uso del portal web de CSSG.',
+    image: 'https://cssg-global.com/logo.png'
   }
 ];
 

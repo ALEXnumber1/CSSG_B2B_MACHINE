@@ -46,6 +46,8 @@
   "form_title": "Request an appointment",
   "form_subtitle": "10-min briefing",
   "form_name": "Full Name",
+  "form_email": "Email Address",
+  "form_phone": "Contact Phone",
   "form_position": "Job Title / Position",
   "form_company": "Multinational / Corporation",
   "form_vuln": "What is your greatest vulnerability?",
@@ -57,5 +59,14 @@
   "form_btn": "REQUEST EVALUATION",
   "form_success_title": "Request Received",
   "form_success_desc": "An intelligence officer will review your profile and contact you within 24 hours.",
-  "footer_note": "All information provided is protected under an implicit Non-Disclosure Agreement (NDA) and military-grade encryption."
+  "footer_note": "All information provided is protected under an implicit Non-Disclosure Agreement (NDA) and military-grade encryption.",
+  "airport_title_1": "VIP AIRPORT LOGISTICS",
+  "airport_title_2": "& ASSISTANCE",
+  "airport_desc": "We guarantee a secure, discreet, and frictionless transit from the moment you land to your final destination.",
+  "service_meet_greet_title": "Meet & Greet",
+  "service_meet_greet_desc": "Pickup at arrival gate + escort to exit",
+  "service_concierge_title": "Airport Concierge",
+  "service_concierge_desc": "Meet & Greet + fast-track processing + VIP lounge + transport",
+  "service_vip_assistance_title": "VIP Airport Assistance",
+  "service_vip_assistance_desc": "Premium assistance for executives/ambassadors (highly relevant for your Diplomatic Shield)"
 }

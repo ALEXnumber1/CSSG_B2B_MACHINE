@@ -62,7 +62,9 @@
     "riesgo": "Risk Analysis",
     "consultoria": "Consulting",
     "pestel": "PESTEL Report",
-    "scraper": "Outbound"
+    "scraper": "Outbound",
+    "escudo_diplomatico": "Diplomatic Shield",
+    "portal_rrhh": "Portal RRHH"
   },
   "tabs": {
     "crm": "CRM Pipeline",

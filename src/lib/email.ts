@@ -158,6 +158,7 @@ export async function sendLeadNotification(leadData: {
   nombre: string;
   email: string;
   empresa?: string;
+  telefono?: string;
   fuente: string;
 }): Promise<{ success: boolean; error?: string }> {
   if (!RESEND_API_KEY) {
@@ -180,6 +181,7 @@ export async function sendLeadNotification(leadData: {
           <h2 style="color:#0EA5E9;font-size:20px;margin-bottom:12px;">¡Nuevo Lead Registrado en la Web!</h2>
           <p style="color:#FFFFFF;font-size:14px;margin-bottom:6px;"><strong>Nombre:</strong> ${leadData.nombre}</p>
           <p style="color:#FFFFFF;font-size:14px;margin-bottom:6px;"><strong>Email:</strong> ${leadData.email}</p>
+          ${leadData.telefono ? `<p style="color:#FFFFFF;font-size:14px;margin-bottom:6px;"><strong>Teléfono:</strong> ${leadData.telefono}</p>` : ''}
           <p style="color:#FFFFFF;font-size:14px;margin-bottom:6px;"><strong>Empresa:</strong> ${leadData.empresa || 'No especificada'}</p>
           <p style="color:#FFFFFF;font-size:14px;margin-bottom:6px;"><strong>Fuente:</strong> ${leadData.fuente.toUpperCase()}</p>
           <p style="color:#6B7280;font-size:12px;margin-top:20px;border-top:1px solid #333345;padding-top:10px;">Enviado automáticamente por el Sistema B2B de CSSG.</p>

@@ -46,6 +46,8 @@
   "form_title": "Pida una cita ya",
   "form_subtitle": "Briefing de 10 min",
   "form_name": "Nombre Completo",
+  "form_email": "Correo Electrónico",
+  "form_phone": "Teléfono de Contacto",
   "form_position": "Cargo / Posición",
   "form_company": "Empresa Transnacional / Corporación",
   "form_vuln": "¿Cuál es su mayor vulnerabilidad?",
@@ -57,5 +59,14 @@
   "form_btn": "SOLICITAR EVALUACIÓN",
   "form_success_title": "Solicitud Recibida",
   "form_success_desc": "Un oficial de inteligencia revisará su perfil y le contactará en las próximas 24 horas.",
-  "footer_note": "Toda la información proporcionada está protegida bajo un acuerdo de confidencialidad (NDA) implícito y cifrado de grado militar."
+  "footer_note": "Toda la información proporcionada está protegida bajo un acuerdo de confidencialidad (NDA) implícito y cifrado de grado militar.",
+  "airport_title_1": "LOGÍSTICA Y ASISTENCIA",
+  "airport_title_2": "AEROPORTUARIA VIP",
+  "airport_desc": "Garantizamos un tránsito seguro, discreto y sin fricciones desde el momento en que aterriza hasta su destino final.",
+  "service_meet_greet_title": "Meet & Greet",
+  "service_meet_greet_desc": "Recogida en puerta de llegada + acompañamiento hasta salida",
+  "service_concierge_title": "Airport Concierge",
+  "service_concierge_desc": "Meet & Greet + trámites rápidos + sala VIP + transporte",
+  "service_vip_assistance_title": "VIP Airport Assistance",
+  "service_vip_assistance_desc": "Asistencia premium para ejecutivos/embajadores (muy relevante para tu Escudo Diplomático)"
 }

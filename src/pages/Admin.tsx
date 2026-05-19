@@ -271,7 +271,7 @@ const savePost = async () => {
     setLoadingRisk(true);
     setSelectedLeadRisk(null);
     try {
-      const { data, error } = await supabase
+      const { data } = await supabase
         .from('risk_assessments')
         .select('*')
         .or(`email.eq.${lead.correo},lead_name.eq.${lead.nombre}`)
@@ -326,6 +326,8 @@ const savePost = async () => {
     consultoria: { label: t('admin.fuentes.consultoria'), color: 'text-indigo-400 bg-indigo-500/10' },
     pestel: { label: t('admin.fuentes.pestel'), color: 'text-emerald-400 bg-emerald-500/10' },
     scraper: { label: t('admin.fuentes.scraper'), color: 'text-violet-400 bg-violet-500/10' },
+    escudo_diplomatico: { label: t('admin.fuentes.escudo_diplomatico'), color: 'text-amber-400 bg-amber-500/10' },
+    'Portal RRHH': { label: t('admin.fuentes.portal_rrhh'), color: 'text-emerald-400 bg-emerald-500/10' },
   };
 
   const estadoColumns = [
@@ -684,6 +686,28 @@ const savePost = async () => {
                          <div><label className="text-[10px] uppercase tracking-widest text-gray-500 mb-1 block">Email</label><div className="text-white text-sm bg-black/30 p-2 rounded border border-white/5">{selectedLead.correo}</div></div>
                          <div><label className="text-[10px] uppercase tracking-widest text-gray-500 mb-1 block">Teléfono</label><div className="text-white text-sm bg-black/30 p-2 rounded border border-white/5">{selectedLead.telefono || 'No proporcionado'}</div></div>
                          <div><label className="text-[10px] uppercase tracking-widest text-gray-500 mb-1 block">Origen / Fuente</label><div className="text-white text-sm bg-black/30 p-2 rounded border border-white/5">{selectedLead.fuente}</div></div>
+                         {selectedLead.fuente === 'escudo_diplomatico' && (() => {
+                           const cargoMatch = (selectedLead.mensaje || '').match(/Cargo:\s*(.*?)\s*\|/);
+                           const vulnMatch = (selectedLead.mensaje || '').match(/Vulnerabilidad:\s*(.*)/);
+                           const cargo = cargoMatch ? cargoMatch[1] : null;
+                           const vulnerabilidad = vulnMatch ? vulnMatch[1] : null;
+                           return (
+                             <>
+                               {cargo && (
+                                 <div>
+                                   <label className="text-[10px] uppercase tracking-widest text-amber-500 mb-1 block">Cargo / Posición (Escudo)</label>
+                                   <div className="text-white text-sm bg-black/30 p-2 rounded border border-amber-500/20">{cargo}</div>
+                                 </div>
+                               )}
+                               {vulnerabilidad && (
+                                 <div>
+                                   <label className="text-[10px] uppercase tracking-widest text-amber-500 mb-1 block">Vulnerabilidad Principal</label>
+                                   <div className="text-white text-sm bg-black/30 p-2 rounded border border-amber-500/20">{vulnerabilidad}</div>
+                                 </div>
+                               )}
+                             </>
+                           );
+                         })()}
                        </div>
                      </div>
                      

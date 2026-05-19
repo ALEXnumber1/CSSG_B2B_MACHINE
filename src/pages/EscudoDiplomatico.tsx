@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Shield, AlertTriangle, Lock, Eye, EyeOff, Radio, ChevronRight, X as XIcon, Check } from 'lucide-react';
+import { Shield, AlertTriangle, Lock, Eye, EyeOff, Radio, ChevronRight, X as XIcon, Check, Sparkles, ConciergeBell, Plane } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { sendLeadNotification } from '../lib/email';
 
@@ -20,6 +20,8 @@ export default function EscudoDiplomatico() {
   const year = new Date().getFullYear();
   const [formData, setFormData] = useState({
     nombre: '',
+    correo: '',
+    telefono: '',
     cargo: '',
     empresa: '',
     vulnerabilidad: '',
@@ -49,9 +51,9 @@ export default function EscudoDiplomatico() {
     try {
       await supabase.from('leads').insert([{
         nombre: formData.nombre,
-        correo: `escudo-${Date.now()}@pendiente.com`,
+        correo: formData.correo,
         empresa: formData.empresa,
-        telefono: 'N/A',
+        telefono: formData.telefono,
         mensaje: `[ESCUDO DIPLOMÁTICO] Cargo: ${formData.cargo} | Vulnerabilidad: ${formData.vulnerabilidad}`,
         fuente: 'escudo_diplomatico',
         score: 50,
@@ -59,7 +61,8 @@ export default function EscudoDiplomatico() {
       }]);
       await sendLeadNotification({
         nombre: formData.nombre,
-        email: 'escudo-diplomatico@cssg-global.com',
+        email: formData.correo,
+        telefono: formData.telefono,
         empresa: formData.empresa,
         fuente: 'escudo_diplomatico',
       });
@@ -301,6 +304,71 @@ export default function EscudoDiplomatico() {
         </motion.div>
       </section>
 
+      {/* ═══ SECTION: SERVICIOS AEROPORTUARIOS ═══ */}
+      <section className="py-20 px-6 relative" style={{ background: 'linear-gradient(180deg, #0a0a0a 0%, #111 50%, #0a0a0a 100%)' }}>
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] rounded-full blur-[180px] opacity-10" style={{ background: GOLD }} />
+        </div>
+        <motion.div className="max-w-5xl mx-auto relative z-10" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
+          <h2 className="text-3xl sm:text-4xl font-black text-white text-center mb-4 tracking-tight">
+            {t('escudo:airport_title_1')} <span style={{ color: GOLD }}>{t('escudo:airport_title_2')}</span>
+          </h2>
+          <p className="text-center text-sm max-w-2xl mx-auto mb-16" style={{ color: '#888' }}>
+            {t('escudo:airport_desc')}
+          </p>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                icon: <Sparkles className="w-6 h-6" />,
+                title: t('escudo:service_meet_greet_title'),
+                desc: t('escudo:service_meet_greet_desc'),
+              },
+              {
+                icon: <ConciergeBell className="w-6 h-6" />,
+                title: t('escudo:service_concierge_title'),
+                desc: t('escudo:service_concierge_desc'),
+              },
+              {
+                icon: <Plane className="w-6 h-6" />,
+                title: t('escudo:service_vip_assistance_title'),
+                desc: t('escudo:service_vip_assistance_desc'),
+                highlight: true,
+              },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.15 }}
+                className="p-8 rounded-2xl border group hover:border-opacity-80 transition-all flex flex-col justify-between"
+                style={{ 
+                  background: item.highlight ? 'linear-gradient(135deg, #161616 0%, #1d170a 100%)' : '#141414', 
+                  borderColor: item.highlight ? `${GOLD}40` : `${GOLD}15`,
+                  boxShadow: item.highlight ? `0 4px 20px rgba(212,175,55,0.05)` : 'none'
+                }}
+              >
+                <div>
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-6" style={{ background: `${GOLD}10`, border: `1px solid ${GOLD}25`, color: GOLD }}>
+                    {item.icon}
+                  </div>
+                  <h3 className="text-lg font-black text-white mb-3 flex items-center gap-2">
+                    {item.title}
+                    {item.highlight && (
+                      <span className="text-[9px] px-2 py-0.5 rounded-full uppercase tracking-wider font-extrabold bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/30">
+                        Muy Relevante
+                      </span>
+                    )}
+                  </h3>
+                  <p className="text-sm leading-[1.8]" style={{ color: item.highlight ? '#ddd' : '#999' }}>{item.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </section>
+
       {/* ═══ SECTION 5: FILTRO Y FORMULARIO ═══ */}
       <section className="py-20 px-6 relative" id="formulario-escudo">
         <div className="absolute top-0 left-0 right-0">
@@ -363,6 +431,24 @@ export default function EscudoDiplomatico() {
                 <div>
                   <label className="block text-xs font-bold uppercase tracking-widest mb-2" style={{ color: '#666' }}>{t("escudo:form_name")}</label>
                   <input type="text" name="nombre" required value={formData.nombre} onChange={handleChange}
+                    className="w-full px-4 py-3 rounded-lg text-white text-sm focus:outline-none transition-colors"
+                    style={{ background: '#1a1a1a', border: '1px solid #2a2a2a' }}
+                    onFocus={e => e.target.style.borderColor = `${GOLD}50`}
+                    onBlur={e => e.target.style.borderColor = '#2a2a2a'}
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-widest mb-2" style={{ color: '#666' }}>{t("escudo:form_email")}</label>
+                  <input type="email" name="correo" required value={formData.correo} onChange={handleChange}
+                    className="w-full px-4 py-3 rounded-lg text-white text-sm focus:outline-none transition-colors"
+                    style={{ background: '#1a1a1a', border: '1px solid #2a2a2a' }}
+                    onFocus={e => e.target.style.borderColor = `${GOLD}50`}
+                    onBlur={e => e.target.style.borderColor = '#2a2a2a'}
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-bold uppercase tracking-widest mb-2" style={{ color: '#666' }}>{t("escudo:form_phone")}</label>
+                  <input type="tel" name="telefono" required value={formData.telefono} onChange={handleChange}
                     className="w-full px-4 py-3 rounded-lg text-white text-sm focus:outline-none transition-colors"
                     style={{ background: '#1a1a1a', border: '1px solid #2a2a2a' }}
                     onFocus={e => e.target.style.borderColor = `${GOLD}50`}
