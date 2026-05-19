@@ -48,8 +48,8 @@ const resources = {
       },
       hero: {
         badge: 'Fundada en 2009 · Certificación ISO 9001:2015',
-        title_1: 'Líderes en Seguridad Corporativa y',
-        title_2: 'Estrategias de Seguridad Privada',
+        title_1: 'Empresa de Seguridad Corporativa y Diplomática en Caracas',
+        title_2: '17 años protegiendo embajadas del G7',
         title_3: 'INCIDENTES CERO',
         subtitle: 'Protección de misiones diplomáticas e infraestructuras críticas con estándares G7. 17 años de operaciones impecables en Venezuela para organizaciones que exigen precisión absoluta.',
         btn_audit: 'Asegurar Mi Instalación Ahora',
@@ -449,8 +449,8 @@ const resources = {
       },
       hero: {
         badge: 'Founded in 2009 · ISO 9001:2015 Certified',
-        title_1: 'Leaders in Corporate Security &',
-        title_2: 'Private Security Strategies',
+        title_1: 'Corporate & Diplomatic Security Company in Caracas',
+        title_2: '17 Years Protecting G7 Embassies',
         title_3: 'ZERO INCIDENTS',
         subtitle: 'Protecting diplomatic missions and critical infrastructure with G7 standards. 17 years of flawless operations in Venezuela for organizations demanding absolute precision.',
         btn_audit: 'Secure My Facility Now',

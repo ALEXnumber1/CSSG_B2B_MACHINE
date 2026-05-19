@@ -7,7 +7,7 @@ export default async function handler(req, res) {
 
   let postTitle = 'Blog | CSSG';
   let postDescription = 'Artículos, análisis y metodologías de seguridad corporativa y protección ejecutiva.';
-  let postImage = 'https://cssg-global.com/images/default-blog.png';
+  let postImage = 'https://globalservices-ven.com/images/default-blog.png';
 
   // Hardcoded posts list as fallback
   const hardcodedPosts = {
