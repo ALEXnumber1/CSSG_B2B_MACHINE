@@ -36,7 +36,7 @@ export default function Partners() {
       <div className="absolute inset-0 z-20 pointer-events-none bg-gradient-to-r from-black via-transparent to-black" />
       
       <div className="container mx-auto px-6 mb-10 text-center relative z-30">
-        <span className="text-[10px] font-bold tracking-[0.4em] text-sky-400/80 uppercase">
+        <span className="text-xs font-black tracking-[0.4em] text-yellow-400 uppercase drop-shadow-[0_0_12px_rgba(234,179,8,0.4)]">
           {t('partners.title')}
         </span>
       </div>

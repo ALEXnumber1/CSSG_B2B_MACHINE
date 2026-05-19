@@ -109,7 +109,7 @@ const resources = {
         digeservisp_label: 'DIGESERVISP'
       },
       partners: {
-        title: 'Confianza Validada por Instituciones Líderes',
+        title: 'NUESTROS CLIENTES',
         p1: 'EMBAJADA DEL REINO UNIDO',
         p2: 'EMBAJADA DE CANADÁ',
         p3: 'EMBAJADA DE BRASIL',
@@ -510,7 +510,7 @@ const resources = {
         digeservisp_label: 'DIGESERVISP'
       },
       partners: {
-        title: 'Trust Validated by Leading Institutions',
+        title: 'OUR CLIENTS',
         p1: 'BRITISH EMBASSY',
         p2: 'CANADIAN EMBASSY',
         p3: 'BRAZILIAN EMBASSY',
