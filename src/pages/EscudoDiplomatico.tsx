@@ -27,6 +27,7 @@ export default function EscudoDiplomatico() {
     vulnerabilidad: '',
   });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [errorMsg, setErrorMsg] = useState('');
 
   useEffect(() => {
     document.title = "SERVICIO DE PROTECCION A PERSONALIDADES DE ELITE | CSSG";
@@ -48,8 +49,9 @@ export default function EscudoDiplomatico() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('loading');
+    setErrorMsg('');
     try {
-      await supabase.from('leads').insert([{
+      const { error: insertError } = await supabase.from('leads').insert([{
         nombre: formData.nombre,
         correo: formData.correo,
         empresa: formData.empresa,
@@ -59,15 +61,32 @@ export default function EscudoDiplomatico() {
         score: 50,
         estado: 'nuevo',
       }]);
-      await sendLeadNotification({
-        nombre: formData.nombre,
-        email: formData.correo,
-        telefono: formData.telefono,
-        empresa: formData.empresa,
-        fuente: 'escudo_diplomatico',
-      });
+
+      if (insertError) {
+        console.error("Supabase Insert Error:", insertError);
+        throw new Error(insertError.message || JSON.stringify(insertError));
+      }
+
+      // Intentar enviar la notificación por correo (no bloquea el flujo si falla)
+      try {
+        const emailRes = await sendLeadNotification({
+          nombre: formData.nombre,
+          email: formData.correo,
+          telefono: formData.telefono,
+          empresa: formData.empresa,
+          fuente: 'escudo_diplomatico',
+        });
+        if (!emailRes.success) {
+          console.warn("Email Notification Warning:", emailRes.error);
+        }
+      } catch (emailErr) {
+        console.warn("Email Send Exception (Non-blocking):", emailErr);
+      }
+
       setStatus('success');
-    } catch {
+    } catch (err: any) {
+      console.error("Error submitting Escudo Form:", err);
+      setErrorMsg(err.message || 'Error de conexión o de base de datos.');
       setStatus('error');
     }
   };
@@ -492,7 +511,7 @@ export default function EscudoDiplomatico() {
 
                 {status === 'error' && (
                   <p className="text-xs text-center p-3 rounded-lg" style={{ color: RED, background: `${RED}10` }}>
-                    Error al enviar. Intente de nuevo o contacte directamente.
+                    Error: {errorMsg || 'Intente de nuevo o contacte directamente.'}
                   </p>
                 )}
 
