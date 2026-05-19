@@ -69,6 +69,13 @@ export const SEQUENCES: Record<string, Sequence> = {
       { day: 7, templateKey: 'pestel_3', scoreBonus: 10 },    // "Análisis personalizado"
     ],
   },
+  escudo_diplomatico: {
+    id: 'escudo_diplomatico',
+    name: 'Secuencia Escudo Diplomático',
+    emails: [
+      { day: 0, templateKey: 'escudo_diplomatico_1', scoreBonus: 0 },
+    ],
+  },
 };
 
 // ═══════════════════════════════════════════════

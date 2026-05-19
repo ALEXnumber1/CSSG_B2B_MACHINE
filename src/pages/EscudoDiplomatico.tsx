@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Shield, AlertTriangle, Lock, Eye, EyeOff, Radio, ChevronRight, X as XIcon, Check, Sparkles, ConciergeBell, Plane } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { sendLeadNotification } from '../lib/email';
+import { startSequence } from '../lib/sequences';
 
 const GOLD = '#D4AF37';
 const RED = '#ef4444';
@@ -51,7 +52,7 @@ export default function EscudoDiplomatico() {
     setStatus('loading');
     setErrorMsg('');
     try {
-      const { error: insertError } = await supabase.from('leads').insert([{
+      const { data: newLead, error: insertError } = await supabase.from('leads').insert([{
         nombre: formData.nombre,
         correo: formData.correo,
         empresa: formData.empresa,
@@ -60,7 +61,7 @@ export default function EscudoDiplomatico() {
         fuente: 'escudo_diplomatico',
         score: 50,
         estado: 'nuevo',
-      }]);
+      }]).select('id').single();
 
       if (insertError) {
         console.error("Supabase Insert Error:", insertError);
@@ -81,6 +82,15 @@ export default function EscudoDiplomatico() {
         }
       } catch (emailErr) {
         console.warn("Email Send Exception (Non-blocking):", emailErr);
+      }
+
+      // Iniciar la secuencia de nurturing (envía el primer email del Escudo Diplomático inmediatamente)
+      try {
+        if (newLead) {
+          await startSequence(newLead.id, formData.correo, formData.nombre, 'escudo_diplomatico', formData.empresa);
+        }
+      } catch (seqErr) {
+        console.warn("Sequence Start Exception (Non-blocking):", seqErr);
       }
 
       setStatus('success');

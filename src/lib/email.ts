@@ -150,6 +150,38 @@ const templates: Record<string, { subject: string | ((nombre: string, empresa?: 
       </div>
     `),
   },
+
+  escudo_diplomatico: {
+    subject: (nombre) => `🔒 Solicitud de Evaluación: Escudo Diplomático CSSG — Hola ${nombre}`,
+    html: (nombre, empresa) => baseTemplate(`
+      <h2 style="color:#0F172A;font-size:24px;margin:0 0 16px;font-weight:700;">Estimado/a ${nombre},</h2>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Hemos recibido su solicitud de calificación para el servicio exclusivo de **Escudo Diplomático** de CSSG${empresa ? ` en representación de <strong style="color:#D4AF37;">${empresa}</strong>` : ''}.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Debido a los rigurosos estándares y al carácter confidencial de este servicio (diseñado originalmente bajo parámetros G7 para delegaciones internacionales y directivos de élite), el acceso a nuestro esquema de protección está limitado y sujeto a una evaluación de seguridad preliminar.
+      </p>
+
+      <div style="background-color:#FFFDF5;border:1px solid #F3E5AB;border-radius:12px;padding:24px;margin:24px 0;border-left:4px solid #D4AF37;">
+        <p style="color:#856404;font-size:16px;margin:0 0 12px;font-weight:700;">Próximos pasos en su calificación:</p>
+        <ul style="color:#334155;font-size:14px;line-height:1.8;margin:0;padding-left:20px;">
+          <li style="margin-bottom:8px;">✔️ Nuestro <strong>Comité de Evaluación Táctica</strong> revisará los datos suministrados de forma estrictamente confidencial.</li>
+          <li style="margin-bottom:8px;">✔️ Un <strong>Consultor Especialista Senior</strong> se pondrá en contacto con usted a través de los canales seguros proporcionados en un plazo de <strong>12 a 24 horas</strong>.</li>
+          <li style="margin-bottom:8px;">✔️ Si cumple con el perfil requerido, programaremos una entrevista presencial o virtual cifrada.</li>
+        </ul>
+      </div>
+
+      <p style="color:#1E293B;font-size:15px;line-height:1.7;margin:0 0 24px;font-weight:600;">
+        Si desea acelerar el proceso o requiere asistencia inmediata para una situación de riesgo inminente, puede contactar directamente a nuestra central de operaciones 24/7.
+      </p>
+
+      <div style="text-align:center;margin:32px 0 16px;">
+        <a href="tel:+5804241782091" style="display:inline-block;background-color:#D4AF37;color:#FFFFFF;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;box-shadow:0 4px 14px 0 rgba(212, 175, 55, 0.4);">
+          Llamar a Central Operativa B2B
+        </a>
+      </div>
+    `),
+  },
 };
 
 // ═══════════ FUNCIÓN DE ENVÍO ORIGINAL ═══════════
@@ -452,6 +484,9 @@ const sequenceTemplates: Record<string, { subject: string | ((nombre: string, em
       </div>
     `),
   },
+
+  // ── ESCUDO DIPLOMATICO: 1 email ──
+  escudo_diplomatico_1: templates.escudo_diplomatico,
 };
 
 // ═══════════ FUNCIÓN DE ENVÍO PARA SECUENCIAS ═══════════
