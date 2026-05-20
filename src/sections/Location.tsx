@@ -10,24 +10,22 @@ export default function Location() {
       city: 'Caracas',
       name: t('location.office_name') || 'Headquarters - Torre de Control',
       address: t('location.office_address') || 'Calle la Joya, entre Av. Francisco de Miranda y Libertador, Edificio Cosmos, Piso 8, Oficina 8B, Chacao, Caracas 1060.',
-      phone: '+5804241782091',
-      mobile: '+5804241782091',
+      phone: '+584241782091',
+      phoneDisplay: '+58 424-178-2091',
+      mobile: '+584241782091',
       email: 'operaciones@cssg-global.com',
       hours: '24/7 Monitoring & Response',
       mapsUrl: 'https://maps.google.com/?q=Edificio+Cosmos+Chacao+Caracas'
     }
-
   ];
 
   return (
     <section className="py-24 bg-[#030305] relative overflow-hidden" id="ubicacion">
-      {/* Background elements */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-sky-900/5 rounded-full blur-[120px] -z-10" />
       
       <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col lg:flex-row gap-12 items-center">
           
-          {/* Text Content */}
           <div className="lg:w-1/2 space-y-8">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -73,7 +71,7 @@ export default function Location() {
                           <div className="w-8 h-8 bg-sky-500/20 rounded-lg flex items-center justify-center">
                             <Phone className="w-4 h-4 text-sky-400" />
                           </div>
-                          {office.phone}
+                          {office.phoneDisplay}
                         </a>
                         <a href={`mailto:${office.email}`} className="flex items-center gap-3 text-white hover:text-sky-400 transition-colors text-base font-bold">
                           <div className="w-8 h-8 bg-sky-500/20 rounded-lg flex items-center justify-center">
@@ -98,7 +96,6 @@ export default function Location() {
             </div>
           </div>
 
-          {/* Map Visual Component */}
           <div className="lg:w-1/2 w-full aspect-square md:aspect-video lg:aspect-square relative">
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -106,7 +103,6 @@ export default function Location() {
               viewport={{ once: true }}
               className="w-full h-full bg-white/[0.02] border border-white/5 rounded-3xl overflow-hidden relative group"
             >
-              {/* Google Maps Iframe */}
               <div className="absolute inset-0 bg-[#0A0C12]">
                 <iframe 
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3923.18123456789!2d-66.853123456789!3d10.490123456789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c2a588b5e67909b%3A0x8849b6b772096781!2sEdificio+Cosmos!5e0!3m2!1ses!2sve!4v1714360000000!5m2!1ses!2sve"
@@ -116,39 +112,22 @@ export default function Location() {
                   referrerPolicy="no-referrer-when-downgrade"
                 ></iframe>
                 
-                {/* Tactical Overlay */}
                 <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-[#0A0C12] via-transparent to-transparent opacity-60" />
                 <div className="absolute inset-0 pointer-events-none border-[20px] border-[#0A0C12]" />
                 
-                {/* RED TACTICAL MARKER - Calle La Joya */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[60%] z-20 flex flex-col items-center pointer-events-none">
-                  {/* Pulse Effect */}
                   <motion.div 
-                    animate={{ 
-                      scale: [1, 1.8, 1],
-                      opacity: [0.6, 0, 0.6]
-                    }}
-                    transition={{ 
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeOut"
-                    }}
+                    animate={{ scale: [1, 1.8, 1], opacity: [0.6, 0, 0.6] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
                     className="absolute w-12 h-12 bg-red-500 rounded-full"
                   />
                   <motion.div 
-                    animate={{ 
-                      scale: [1, 1.4, 1],
-                    }}
-                    transition={{ 
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
+                    animate={{ scale: [1, 1.4, 1] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                   >
                     <MapPin className="w-10 h-10 text-red-500 drop-shadow-[0_0_15px_rgba(239,68,68,0.8)]" fill="currentColor" fillOpacity={0.3} />
                   </motion.div>
                   
-                  {/* Callout Label */}
                   <motion.div 
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -159,7 +138,6 @@ export default function Location() {
                   </motion.div>
                 </div>
 
-                {/* Overlay Card on Map */}
                 <div className="absolute bottom-6 left-6 right-6 bg-black/80 backdrop-blur-md border border-sky-500/30 rounded-2xl p-4 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
                   <div className="flex items-center justify-between">
                     <div>
@@ -175,7 +153,6 @@ export default function Location() {
                 </div>
               </div>
               
-              {/* Scanline Effect */}
               <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent via-sky-500/5 to-transparent h-20 w-full animate-scan" style={{ top: '-100%' }} />
             </motion.div>
           </div>
