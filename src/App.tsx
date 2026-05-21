@@ -7,6 +7,7 @@ import FloatingCTA from './components/FloatingCTA'
 import TacticalChat from './components/TacticalChat'
 import ScrollToTop from './components/ScrollToTop'
 import CookieConsent from './components/CookieConsent'
+import FeedbackButton from './components/FeedbackButton'
 import { EXTERNAL_LINKS } from './lib/externalLinks'
 
 const Home = lazy(() => import('./pages/Home'))
@@ -182,6 +183,7 @@ function AppContent() {
       </div>
       <FloatingCTA />
       <TacticalChat />
+      <FeedbackButton />
       <CookieConsent />
 
       <div className="lg:hidden fixed bottom-0 left-0 right-0 z-[100] bg-[#0B0B0F]/95 backdrop-blur-md border-t border-white/10 p-4 flex items-center justify-between shadow-[0_-10px_30px_rgba(0,0,0,0.5)]">
