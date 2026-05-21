@@ -1,22 +1,38 @@
-import Anthropic from '@anthropic-ai/sdk';
+const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
 
-const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+const SYSTEM_PROMPT = `Eres el agente de inteligencia comercial de CSSG (Company Of Security And Service Global C.A.), firma venezolana de seguridad corporativa y diplomática con +12 años sin incidentes, certificación ISO 9001:2015 y estándar diplomático G7.
 
-const SYSTEM_PROMPT = `Eres el agente de inteligencia comercial de CSSG (Company Of Security And Service Global C.A.), firma venezolana de seguridad corporativa y diplomática.
+Metodología de riesgo: FMEA referenciada en ISO 31000:2018. Score = (Probabilidad × 0.4) + (Impacto × 0.6). Máximo 100. Lead caliente (score > 50): contactar en 12 horas.
 
-Contexto de la empresa:
-- +12 años sin incidentes de seguridad
-- Certificación ISO 9001:2015
-- Estándar diplomático G7 (embajadas, corporaciones de alto valor)
-- Alianza estratégica con Zentinel Global
-- Personal de seguridad mejor remunerado de Venezuela
+INSTRUCCIÓN CRÍTICA: Responde SIEMPRE con JSON válido únicamente, sin texto adicional, sin markdown, sin explicaciones fuera del JSON.`;
 
-Metodología de riesgo: FMEA referenciada en ISO 31000:2018 y ASIS ORM.1:2017.
-Fórmula de score: (Probabilidad × 0.4) + (Impacto × 0.6). Máximo 100.
+async function callGemini(prompt) {
+  const apiKey = process.env.GEMINI_API_KEY;
+  if (!apiKey) throw new Error('GEMINI_API_KEY not configured');
 
-Lead caliente (score > 50): contactar en 12 horas máximo.
+  const response = await fetch(`${GEMINI_API_URL}?key=${apiKey}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
+      contents: [{ role: 'user', parts: [{ text: prompt }] }],
+      generationConfig: {
+        temperature: 0.3,
+        maxOutputTokens: 512,
+        responseMimeType: 'application/json',
+      },
+    }),
+  });
 
-INSTRUCCIÓN: Responde SIEMPRE en JSON válido, sin texto adicional fuera del JSON.`;
+  if (!response.ok) {
+    const err = await response.text();
+    throw new Error(`Gemini error ${response.status}: ${err}`);
+  }
+
+  const data = await response.json();
+  const raw = data.candidates?.[0]?.content?.parts?.[0]?.text || '{}';
+  return JSON.parse(raw);
+}
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -29,16 +45,15 @@ export default async function handler(req, res) {
   }
 
   const { action, lead } = req.body;
-
   if (!action || !lead) {
     return res.status(400).json({ error: 'Missing action or lead data' });
   }
 
   try {
-    let userMessage = '';
+    let prompt = '';
 
     if (action === 'score') {
-      userMessage = `Evalúa este lead y devuelve JSON con: { "score": number (0-100), "category": "Hot Lead"|"Warm Lead"|"Cold Lead", "reasoning": string (máx 50 palabras en español) }
+      prompt = `Evalúa este lead y devuelve JSON con exactamente estas claves: { "score": number (0-100), "category": "Hot Lead" | "Warm Lead" | "Cold Lead", "reasoning": string (máx 50 palabras en español) }
 
 Lead:
 - Nombre: ${lead.nombre || 'N/D'}
@@ -48,9 +63,7 @@ Lead:
 - Fuente: ${lead.fuente || 'N/D'}`;
 
     } else if (action === 'draft_email') {
-      userMessage = `Redacta un correo de seguimiento para este lead. Devuelve JSON con: { "subject": string, "body": string (HTML básico, máx 200 palabras) }
-
-El tono debe ser: profesional, cálido, orientado a soluciones. Menciona brevemente la capacidad de CSSG en el área de interés del lead.
+      prompt = `Redacta un correo de seguimiento en español para este lead. Devuelve JSON con exactamente estas claves: { "subject": string, "body": string (HTML básico, máx 200 palabras, tono profesional y cálido) }
 
 Lead:
 - Nombre: ${lead.nombre || 'N/D'}
@@ -62,30 +75,8 @@ Lead:
       return res.status(400).json({ error: `Unknown action: ${action}` });
     }
 
-    const response = await client.messages.create({
-      model: 'claude-haiku-4-5-20251001',
-      max_tokens: 512,
-      system: [
-        {
-          type: 'text',
-          text: SYSTEM_PROMPT,
-          cache_control: { type: 'ephemeral' },
-        },
-      ],
-      messages: [{ role: 'user', content: userMessage }],
-    });
-
-    const raw = response.content[0]?.text || '{}';
-    let parsed;
-    try {
-      parsed = JSON.parse(raw);
-    } catch {
-      // Si el modelo devuelve texto con markdown fences, extraer el JSON
-      const match = raw.match(/```(?:json)?\s*([\s\S]*?)```/);
-      parsed = match ? JSON.parse(match[1].trim()) : { raw };
-    }
-
-    return res.status(200).json({ success: true, action, result: parsed });
+    const result = await callGemini(prompt);
+    return res.status(200).json({ success: true, action, result });
 
   } catch (error) {
     console.error('[Agent Error]', error);
