@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef } from 'react';
+import { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import {
@@ -21,13 +21,13 @@ import {
   Building,
   X,
 } from 'lucide-react';
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
+import { pdf } from '@react-pdf/renderer';
 import { supabase } from '../lib/supabase';
 import { startSequence } from '../lib/sequences';
 import { sendNurtureEmail } from '../lib/email';
 import SecurityRadar3D from '../components/SecurityRadar3D';
-import ReportTemplate, { type ReportData } from '../components/ReportTemplate';
+import { type ReportData } from '../components/ReportTemplate';
+import { RiskReportPDF } from '../lib/pdf/documents/RiskReport';
 
 import esRisk from '../locales/es/risk.json';
 import enRisk from '../locales/en/risk.json';
@@ -358,7 +358,6 @@ export default function RiskAnalysis() {
   const [showLeadModal, setShowLeadModal] = useState(false);
   const [isGenerating, setIsGenerating] = useState(false);
   const [showFeedbackModal, setShowFeedbackModal] = useState(false);
-  const reportRef = useRef<HTMLDivElement>(null);
 
   /* ── Cálculo del índice de protección ── */
   const protectionScore = useMemo(() => {
@@ -397,127 +396,59 @@ export default function RiskAnalysis() {
     );
   }, [checked]);
 
-  /* ── Datos para el reporte ── */
-  const reportData: ReportData = useMemo(() => ({
-    leadName: leadData.name,
-    jobTitle: leadData.jobTitle,
-    company: leadData.company,
-    email: leadData.email,
-    phone: leadData.phone,
-    targetOrganization: contextData.targetOrganization,
-    location: contextData.location,
-    sector: contextData.sector,
-    exposure: contextData.exposure,
-    score: protectionScore,
-    pillars: pillarStats.map(p => ({ title: p.pillar.title, checked: p.checked, total: p.total })),
-    vulnerabilities: vulnerabilities,
-  }), [leadData, contextData, protectionScore, pillarStats, vulnerabilities]);
-
   /* ── Generación de PDF ── */
   const handleGeneratePDF = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!reportRef.current) return;
     setIsGenerating(true);
-    
-    // 1. Guardar en DB y enviar emails en paralelo (NO bloquear el PDF)
-    const dbPromises: any[] = [
-      startSequence('lead-' + Date.now(), leadData.email, leadData.name, 'riesgo', leadData.company).catch(err => console.warn('Error secuencia:', err)),
-      supabase.from('risk_assessments').insert([{
+
+    // 1. Guardar en DB y enviar emails en paralelo (no bloquear la generación del PDF)
+    const dbFns: (() => Promise<unknown>)[] = [
+      () => startSequence('lead-' + Date.now(), leadData.email, leadData.name, 'riesgo', leadData.company).catch(err => console.warn('Error secuencia:', err)),
+      async () => { const r = await supabase.from('risk_assessments').insert([{
         lead_name: leadData.name, job_title: leadData.jobTitle, company: leadData.company,
         email: leadData.email, phone: leadData.phone,
         target_organization: contextData.targetOrganization, location: contextData.location,
         sector: contextData.sector, exposure: contextData.exposure, score: protectionScore,
         pillars: pillarStats.map(p => ({ title: p.pillar.title, checked: p.checked, total: p.total })),
         vulnerabilities: vulnerabilities
-      }]).then(r => r.error && console.warn('DB risk_assessments:', r.error.message)),
-      supabase.from('leads').insert([{
+      }]); if (r.error) console.warn('DB risk_assessments:', r.error.message); },
+      async () => { const r = await supabase.from('leads').insert([{
         nombre: leadData.name, correo: leadData.email,
         empresa: leadData.company || contextData.targetOrganization, telefono: leadData.phone,
         mensaje: `Score: ${protectionScore}/100 | Sector: ${contextData.sector} | Ubicación: ${contextData.location}`,
         fuente: 'riesgo', score: 30, estado: 'nuevo'
-      }]).then(r => r.error && console.warn('DB leads:', r.error.message)),
+      }]); if (r.error) console.warn('DB leads:', r.error.message); },
     ];
     if (leadData.email) {
-      dbPromises.push(
-        Promise.resolve().then(() => sendNurtureEmail(leadData.email, leadData.name, 'riesgo', leadData.company)).catch(err => console.warn('Email error:', err))
-      );
+      dbFns.push(() => sendNurtureEmail(leadData.email, leadData.name, 'riesgo', leadData.company).catch(err => console.warn('Email error:', err)));
     }
-    // Lanzar en paralelo, no esperar
-    Promise.allSettled(dbPromises);
+    Promise.allSettled(dbFns.map(fn => fn()));
 
-    // 2. Generar PDF — mover template al viewport momentáneamente para html2canvas
+    // 2. Generar PDF con @react-pdf/renderer (nativo, sin html2canvas)
     try {
-      const el = reportRef.current;
-      // Guardar estilos originales
-      const origStyles = {
-        position: el.style.position,
-        top: el.style.top,
-        left: el.style.left,
-        zIndex: el.style.zIndex,
+      const reportData: ReportData = {
+        leadName: leadData.name,
+        jobTitle: leadData.jobTitle,
+        company: leadData.company,
+        email: leadData.email,
+        phone: leadData.phone,
+        location: contextData.location,
+        sector: contextData.sector,
+        exposure: contextData.exposure,
+        targetOrganization: contextData.targetOrganization,
+        score: protectionScore,
+        pillars: pillarStats.map(p => ({ title: p.pillar.title, checked: p.checked, total: p.total })),
+        vulnerabilities: vulnerabilities,
       };
-      // Mover al viewport (fuera de vista del usuario pero dentro del DOM visible)
-      el.style.position = 'fixed';
-      el.style.top = '0';
-      el.style.left = '-9999px';
-      el.style.zIndex = '-1';
 
-      // Esperar un frame para que el navegador re-renderice
-      await new Promise(r => requestAnimationFrame(() => requestAnimationFrame(r)));
+      const blob = await pdf(<RiskReportPDF data={reportData} />).toBlob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Informe_Vulnerabilidad_${(leadData.company || 'CSSG').replace(/[^a-zA-Z0-9_-]/g, '_')}.pdf`;
+      a.click();
+      setTimeout(() => URL.revokeObjectURL(url), 30000);
 
-      const canvas = await html2canvas(el, {
-        scale: 2,
-        useCORS: true,
-        allowTaint: true,
-        logging: false,
-        backgroundColor: '#ffffff',
-        windowWidth: 800,
-        windowHeight: 1120,
-      });
-
-      // Restaurar estilos originales
-      el.style.position = origStyles.position;
-      el.style.top = origStyles.top;
-      el.style.left = origStyles.left;
-      el.style.zIndex = origStyles.zIndex;
-      
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF({
-        orientation: 'portrait',
-        unit: 'mm',
-        format: 'a4'
-      });
-      
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pageHeight = pdf.internal.pageSize.getHeight();
-      const imgHeight = (canvas.height * pdfWidth) / canvas.width;
-      let heightLeft = imgHeight;
-      let position = 0;
-
-      pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, imgHeight);
-      heightLeft -= pageHeight;
-
-      while (heightLeft >= 0) {
-        position = heightLeft - imgHeight;
-        pdf.addPage();
-        pdf.addImage(imgData, 'PNG', 0, position, pdfWidth, imgHeight);
-        heightLeft -= pageHeight;
-      }
-
-      // Abrir PDF en nueva pestaña — Cloudflare no puede interceptar window.open
-      const pdfBlob = pdf.output('blob');
-      const pdfUrl = URL.createObjectURL(pdfBlob);
-      const newWindow = window.open(pdfUrl, '_blank');
-      
-      // Si el popup fue bloqueado, intentar descarga directa como fallback
-      if (!newWindow || newWindow.closed) {
-        const fileName = `Informe_Seguridad_${(leadData.company || 'CSSG').replace(/[^a-zA-Z0-9_\-]/g, '_')}.pdf`;
-        pdf.save(fileName);
-      }
-      
-      // Limpiar después de un momento
-      setTimeout(() => URL.revokeObjectURL(pdfUrl), 30000);
-      
-      // Activar modal de feedback tras guardar (solo si fue exitoso)
       setTimeout(() => setShowFeedbackModal(true), 1000);
     } catch (error) {
       console.error('Error al generar PDF:', error);
@@ -1053,7 +984,6 @@ export default function RiskAnalysis() {
         </div>
       </section>
 
-      <ReportTemplate ref={reportRef} data={reportData} />
     </div>
   );
 }
