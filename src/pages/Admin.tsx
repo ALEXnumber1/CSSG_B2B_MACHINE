@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { supabase } from '../lib/supabase';
@@ -11,7 +11,6 @@ import {
 import { parseCSV, generateSampleCSV, saveScrapedLeads, type ScrapedLead } from '../lib/scraper';
 import { processSequences } from '../lib/sequences';
 
-const ADMIN_PASS = 'cssg2026';
 
 type Lead = {
   id: string;
@@ -36,7 +35,12 @@ export default function Admin() {
   
   // Auth state
   const [auth, setAuth] = useState(false);
-  const [pass, setPass] = useState('');
+  const [authLoading, setAuthLoading] = useState(true);
+  const [loginEmail, setLoginEmail] = useState('');
+  const [loginPass, setLoginPass] = useState('');
+  const [loginError, setLoginError] = useState('');
+  const [loginLoading, setLoginLoading] = useState(false);
+  const emailRef = useRef<HTMLInputElement>(null);
   
   // Tabs state
   const [activeTab, setActiveTab] = useState<'crm' | 'prospectar' | 'contenido' | 'talento'>('crm');
@@ -67,6 +71,31 @@ export default function Admin() {
   const [editingPost, setEditingPost] = useState<any>(null);
   const [showPostModal, setShowPostModal] = useState(false);
   const [savingPost, setSavingPost] = useState(false);
+
+  // Restore session on mount and listen for auth changes
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setAuth(!!session);
+      setAuthLoading(false);
+    });
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setAuth(!!session);
+    });
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoginLoading(true);
+    setLoginError('');
+    const { error } = await supabase.auth.signInWithPassword({ email: loginEmail, password: loginPass });
+    if (error) setLoginError(error.message);
+    setLoginLoading(false);
+  };
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+  };
 
   const fetchLeads = useCallback(async () => {
     setLoading(true);
@@ -348,6 +377,14 @@ const savePost = async () => {
     return true;
   });
 
+  if (authLoading) {
+    return (
+      <div className="flex-1 flex items-center justify-center bg-[#030305] min-h-screen">
+        <div className="w-6 h-6 border-2 border-sky-500/30 border-t-sky-500 rounded-full animate-spin" />
+      </div>
+    );
+  }
+
   if (!auth) {
     return (
       <div className="flex-1 flex items-center justify-center bg-[#030305] py-24 px-6 min-h-screen">
@@ -360,9 +397,30 @@ const savePost = async () => {
             <h1 className="text-xl font-bold text-white">{t('admin.login.title')}</h1>
             <p className="text-gray-500 text-xs mt-1">{t('admin.login.subtitle')}</p>
           </div>
-          <form onSubmit={(e) => { e.preventDefault(); if (pass === ADMIN_PASS) setAuth(true); }}>
-            <input type="password" value={pass} onChange={(e) => setPass(e.target.value)} placeholder={t('admin.login.pwd_ph')} className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-white mb-4 focus:outline-none focus:border-sky-500 transition-colors" autoFocus />
-            <button type="submit" className="w-full bg-sky-600 hover:bg-sky-500 text-white font-semibold py-3 rounded-lg transition-all cursor-pointer">
+          <form onSubmit={handleLogin} className="space-y-3">
+            <input
+              ref={emailRef}
+              type="email"
+              required
+              value={loginEmail}
+              onChange={(e) => setLoginEmail(e.target.value)}
+              placeholder="correo@cssg-global.com"
+              className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-sky-500 transition-colors"
+              autoFocus
+            />
+            <input
+              type="password"
+              required
+              value={loginPass}
+              onChange={(e) => setLoginPass(e.target.value)}
+              placeholder={t('admin.login.pwd_ph')}
+              className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-sky-500 transition-colors"
+            />
+            {loginError && (
+              <p className="text-red-400 text-xs text-center">{loginError}</p>
+            )}
+            <button type="submit" disabled={loginLoading} className="w-full bg-sky-600 hover:bg-sky-500 text-white font-semibold py-3 rounded-lg transition-all cursor-pointer disabled:opacity-50 flex items-center justify-center gap-2">
+              {loginLoading && <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />}
               {t('admin.login.btn')}
             </button>
           </form>
@@ -397,6 +455,10 @@ const savePost = async () => {
               <button onClick={fetchLeads} className="flex items-center gap-2 px-6 py-2.5 bg-sky-600 hover:bg-sky-500 text-white rounded-xl font-bold transition-all shadow-lg shadow-sky-900/20">
                 <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
                 {t('admin.header.btn_refresh')}
+              </button>
+              <button onClick={handleLogout} className="flex items-center gap-2 px-4 py-2.5 bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white border border-white/10 rounded-xl font-medium transition-all text-sm">
+                <X className="w-4 h-4" />
+                Salir
               </button>
             </div>
         </div>
