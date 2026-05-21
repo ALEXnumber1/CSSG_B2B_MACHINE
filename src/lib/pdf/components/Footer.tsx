@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet } from '@react-pdf/renderer';
-import { colors, sizes, spacing, CORPORATE } from '../theme';
+import { colors, spacing, CORPORATE } from '../theme';
 
 const styles = StyleSheet.create({
   container: {

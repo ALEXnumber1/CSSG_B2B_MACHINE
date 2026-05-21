@@ -1,32 +1,34 @@
 import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { motion, AnimatePresence } from 'framer-motion'
+import { lazy, Suspense } from 'react'
 import Navbar from './components/Navbar'
-import Home from './pages/Home'
-import Intranet from './pages/Intranet'
-import Quejas from './pages/Quejas'
-import RiskAnalysis from './pages/RiskAnalysis'
-import QuienesSomos from './pages/QuienesSomos'
-import Consultoria from './pages/Consultoria'
-import EscudoDiplomatico from './pages/EscudoDiplomatico'
-import Tecnologia from './pages/Tecnologia'
-import TecnologiaEn from './pages/TecnologiaEn'
-import StreamingMeeting from './pages/StreamingMeeting'
-import NotFound from './pages/NotFound'
-import Informes from './pages/Informes'
-import Admin from './pages/Admin'
-import Blog from './pages/Blog'
-import BlogPost from './pages/BlogPost'
 import FloatingCTA from './components/FloatingCTA'
-import Licitaciones from './pages/Licitaciones'
-import Partners from './pages/Partners'
-import { EXTERNAL_LINKS } from './lib/externalLinks'
-import PortalRRHH from './pages/PortalRRHH'
 import TacticalChat from './components/TacticalChat'
 import ScrollToTop from './components/ScrollToTop'
-import PrivacyPolicy from './pages/PrivacyPolicy'
-import TermsAndConditions from './pages/TermsAndConditions'
 import CookieConsent from './components/CookieConsent'
+import { EXTERNAL_LINKS } from './lib/externalLinks'
+
+const Home = lazy(() => import('./pages/Home'))
+const Intranet = lazy(() => import('./pages/Intranet'))
+const Quejas = lazy(() => import('./pages/Quejas'))
+const RiskAnalysis = lazy(() => import('./pages/RiskAnalysis'))
+const QuienesSomos = lazy(() => import('./pages/QuienesSomos'))
+const Consultoria = lazy(() => import('./pages/Consultoria'))
+const EscudoDiplomatico = lazy(() => import('./pages/EscudoDiplomatico'))
+const Tecnologia = lazy(() => import('./pages/Tecnologia'))
+const TecnologiaEn = lazy(() => import('./pages/TecnologiaEn'))
+const StreamingMeeting = lazy(() => import('./pages/StreamingMeeting'))
+const NotFound = lazy(() => import('./pages/notfound'))
+const Informes = lazy(() => import('./pages/Informes'))
+const Admin = lazy(() => import('./pages/Admin'))
+const Blog = lazy(() => import('./pages/Blog'))
+const BlogPost = lazy(() => import('./pages/BlogPost'))
+const Licitaciones = lazy(() => import('./pages/Licitaciones'))
+const Partners = lazy(() => import('./pages/Partners'))
+const PortalRRHH = lazy(() => import('./pages/PortalRRHH'))
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
+const TermsAndConditions = lazy(() => import('./pages/TermsAndConditions'))
 
 function AppContent() {
   const { t, i18n } = useTranslation();
@@ -38,9 +40,11 @@ function AppContent() {
     return (
       <>
         <ScrollToTop />
-        <Routes>
-          <Route path="/consultoria/escudo-diplomatico" element={<EscudoDiplomatico />} />
-        </Routes>
+        <Suspense fallback={null}>
+          <Routes>
+            <Route path="/consultoria/escudo-diplomatico" element={<EscudoDiplomatico />} />
+          </Routes>
+        </Suspense>
       </>
     );
   }
@@ -66,32 +70,34 @@ function AppContent() {
             className="flex-1 flex flex-col"
           >
             <div className="flex-1 flex flex-col">
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/quienes-somos" element={<QuienesSomos />} />
-                <Route path="/consultoria" element={<Consultoria />} />
-                <Route path="/consultoria-seguridad-caracas" element={<Consultoria />} />
-                <Route path="/auditoria-seguridad-iso-31000" element={<Consultoria />} />
-                <Route path="/analisis-riesgos-corporativos-venezuela" element={<Consultoria />} />
-                <Route path="/optimizacion-costos-seguridad" element={<Consultoria />} />
-                <Route path="/consultoria/escudo-diplomatico" element={<EscudoDiplomatico />} />
-                <Route path="/tecnologia" element={<Tecnologia />} />
-                <Route path="/en/technology" element={<TecnologiaEn />} />
-                <Route path="/streaming" element={<StreamingMeeting />} />
-                <Route path="/informes" element={<Informes />} />
-                <Route path="/intranet" element={<Intranet />} />
-                <Route path="/quejas" element={<Quejas />} />
-                <Route path="/analisis-riesgo" element={<RiskAnalysis />} />
-                <Route path="/admin" element={<Admin />} />
-                <Route path="/blog" element={<Blog />} />
-                <Route path="/blog/:slug" element={<BlogPost />} />
-                <Route path="/licitaciones" element={<Licitaciones />} />
-                <Route path="/partners" element={<Partners />} />
-                <Route path="/portal-rrhh" element={<PortalRRHH />} />
-                <Route path="/politica-privacidad" element={<PrivacyPolicy />} />
-                <Route path="/terminos-condiciones" element={<TermsAndConditions />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
+              <Suspense fallback={null}>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/quienes-somos" element={<QuienesSomos />} />
+                  <Route path="/consultoria" element={<Consultoria />} />
+                  <Route path="/consultoria-seguridad-caracas" element={<Consultoria />} />
+                  <Route path="/auditoria-seguridad-iso-31000" element={<Consultoria />} />
+                  <Route path="/analisis-riesgos-corporativos-venezuela" element={<Consultoria />} />
+                  <Route path="/optimizacion-costos-seguridad" element={<Consultoria />} />
+                  <Route path="/consultoria/escudo-diplomatico" element={<EscudoDiplomatico />} />
+                  <Route path="/tecnologia" element={<Tecnologia />} />
+                  <Route path="/en/technology" element={<TecnologiaEn />} />
+                  <Route path="/streaming" element={<StreamingMeeting />} />
+                  <Route path="/informes" element={<Informes />} />
+                  <Route path="/intranet" element={<Intranet />} />
+                  <Route path="/quejas" element={<Quejas />} />
+                  <Route path="/analisis-riesgo" element={<RiskAnalysis />} />
+                  <Route path="/admin" element={<Admin />} />
+                  <Route path="/blog" element={<Blog />} />
+                  <Route path="/blog/:slug" element={<BlogPost />} />
+                  <Route path="/licitaciones" element={<Licitaciones />} />
+                  <Route path="/partners" element={<Partners />} />
+                  <Route path="/portal-rrhh" element={<PortalRRHH />} />
+                  <Route path="/politica-privacidad" element={<PrivacyPolicy />} />
+                  <Route path="/terminos-condiciones" element={<TermsAndConditions />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </Suspense>
             </div>
 
             <footer className="border-t border-[#333345] py-16 text-sm text-gray-400 bg-[#030305] relative z-20">
