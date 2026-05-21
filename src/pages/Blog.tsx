@@ -124,9 +124,10 @@ export default function Blog() {
   }, []);
 
   const hardcodedPosts = getBlogPosts(t);
-  const dbSlugs = new Set(hardcodedPosts.map(p => p.slug));
-  const filteredDbPosts = dbPosts.filter(p => !dbSlugs.has(p.slug));
-  const allPosts = [...filteredDbPosts, ...hardcodedPosts];
+  // DB posts take priority: show hardcoded only if slug is not in DB
+  const dbSlugSet = new Set(dbPosts.map(p => p.slug));
+  const fallbackPosts = hardcodedPosts.filter(p => !dbSlugSet.has(p.slug));
+  const allPosts = [...dbPosts, ...fallbackPosts];
   const featured = allPosts.find(p => p.featured) || allPosts[0];
   const rest = allPosts.filter(p => p.slug !== featured?.slug);
 
