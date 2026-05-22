@@ -65,7 +65,7 @@ export default function BlogPost() {
           date: data.created_at,
           readTime: data.read_time,
           categoryColor: 'text-sky-400 bg-sky-500/10',
-          image: hcPost?.image || data.image || data.image_url || 'https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=1200&q=80'
+          image: data.image_url || data.image || hcPost?.image || 'https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=1200&q=80'
         });
         setContent(data.content);
       } else if (hcPost) {
