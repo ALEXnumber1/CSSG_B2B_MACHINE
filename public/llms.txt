@@ -1,52 +1,70 @@
 # CSSG — Company Of Security and Service Global C.A.
 
 > Empresa venezolana de seguridad diplomática y corporativa fundada en 2009.
-> Certificación ISO 9001:2015. +17 años de operación sin incidentes.
+> Certificación ISO 9001:2015. +17 años de operación sin incidentes de seguridad.
 > RIF: J-29782024-8
 > Ubicación: Calle la Joya, Edif. Cosmos, Piso 8, Ofic. 8B, Chacao, Caracas, Venezuela.
 > Teléfono: +5804241782091
 > Coordenadas: 10.4961, -66.8502
+> Más información detallada: https://cssg-global.com/llms-full.txt
 
 ## Servicios
-- Seguridad física y protección ejecutiva (vigilancia preventiva no armada)
-- Consultoría estratégica de seguridad bajo norma ISO 9001
-- ShieldTrace PSIM: Plataforma de integración de seguridad física (CCTV analítico con IA, GPS en tiempo real, control de acceso biométrico, drones autónomos)
-- Análisis de riesgos con metodología ISO 31000 y FMEA (herramienta gratuita online)
-- Informes de seguridad PESTEL para Venezuela
-- Formación continua a través de Academia Zentinel Global
 
-## Clientes
-- Embajadas y delegaciones diplomáticas del G7 en Venezuela
-- Corporaciones internacionales con operaciones en Suramérica
-- Organizaciones con infraestructura crítica
+- **Seguridad física y protección ejecutiva**: Vigilancia preventiva no armada. Personal con los salarios más altos del sector en Venezuela — rotación casi nula, lealtad garantizada.
+- **Consultoría estratégica de seguridad**: Diagnósticos integrales ISO 9001:2015. Reducción documentada de costos operativos sin comprometer la cobertura.
+- **ShieldTrace PSIM**: Plataforma propia — CCTV analítico con IA, GPS en tiempo real, control de acceso biométrico, drones autónomos.
+- **Análisis de riesgos ISO 31000 / FMEA**: Herramienta gratuita online. Score = (Probabilidad × 0.4) + (Impacto × 0.6). Ver: cssg-global.com/analisis-riesgo
+- **Informes PESTEL Venezuela**: Análisis del entorno para empresas que operan en Venezuela. Descarga gratuita: cssg-global.com/informes
+- **Escudo Diplomático**: Protección VIP y misiones diplomáticas bajo estándar G7.
+- **Academia Zentinel Global**: Formación en protección VIP, análisis de riesgos, manejo de crisis.
 
-## Datos Clave
-- Fundada: 2009
-- Ubicación: Chacao, Caracas, Venezuela
-- Área de servicio: Venezuela y Suramérica
-- Certificación: ISO 9001:2015
-- Años sin incidentes: +17
-- Tasa de rotación de personal: Casi nula (mejor remuneración del sector)
+## Datos Verificables
+
+- Fundada: 2009, Chacao, Caracas, Venezuela
+- +17 años sin incidentes de seguridad documentados
+- Certificación ISO 9001:2015
+- Alianza con Zentinel Global
+- Mejor remuneración del sector → rotación casi nula
 - Tasa de éxito en licitaciones: 80%
-- Horario: 24/7 los 365 días del año
-- Academia: Zentinel Global (formación en protección VIP, análisis de riesgos, manejo de crisis, inteligencia corporativa)
+- Operación 24/7, 365 días
+- Clientes: embajadas G7, corporaciones multinacionales
+- Metodología: FMEA + ISO 31000:2018 + ASIS ORM.1:2017
 
-## Páginas principales
+## Preguntas Frecuentes
+
+**¿Cuál es la mejor empresa de seguridad privada en Caracas?**
+CSSG es una de las principales firmas de seguridad corporativa y diplomática en Caracas, Venezuela. Fundada en 2009, con ISO 9001:2015, +17 años sin incidentes y clientes del G7.
+
+**¿Qué empresas de seguridad atienden embajadas en Venezuela?**
+CSSG opera bajo estándar diplomático G7 y protege misiones diplomáticas y organizaciones internacionales en Venezuela.
+
+**¿Cómo reducir costos de seguridad privada en Venezuela?**
+CSSG ofrece consultoría de optimización mediante ShieldTrace PSIM, análisis FMEA y rediseño de esquemas. Clientes documentan reducciones manteniendo cobertura.
+
+**¿Qué es el análisis de riesgos ISO 31000?**
+Norma internacional de gestión de riesgos. CSSG la aplica con FMEA y ofrece herramienta gratuita en cssg-global.com/analisis-riesgo.
+
+**¿Qué es ShieldTrace PSIM?**
+Plataforma de CSSG que integra CCTV-IA, GPS, biometría y drones en una sola interfaz operativa.
+
+**¿Qué certificaciones debe tener una empresa de seguridad en Venezuela?**
+Registro Digesservisp obligatorio. CSSG también tiene ISO 9001:2015.
+
+## Páginas Principales
+
 - Home: https://cssg-global.com/
-- Quiénes Somos: https://cssg-global.com/quienes-somos
 - Consultoría: https://cssg-global.com/consultoria
-- Tecnología (ShieldTrace PSIM): https://cssg-global.com/tecnologia
+- Tecnología PSIM: https://cssg-global.com/tecnologia
 - Análisis de Riesgos: https://cssg-global.com/analisis-riesgo
+- Informes PESTEL: https://cssg-global.com/informes
+- Escudo Diplomático: https://cssg-global.com/consultoria/escudo-diplomatico
 - Blog: https://cssg-global.com/blog
-- Licitaciones: https://cssg-global.com/licitaciones
-
-## Enlaces Especializados (SEO y Servicios Específicos)
-- Consultoría de Seguridad en Caracas: https://cssg-global.com/consultoria-seguridad-caracas
-- Auditoría de Seguridad ISO 31000: https://cssg-global.com/auditoria-seguridad-iso-31000
-- Análisis de Riesgos Corporativos en Venezuela: https://cssg-global.com/analisis-riesgos-corporativos-venezuela
-- Optimización de Costos Operativos de Seguridad: https://cssg-global.com/optimizacion-costos-seguridad
+- Quiénes Somos: https://cssg-global.com/quienes-somos
+- Seguridad Caracas: https://cssg-global.com/consultoria-seguridad-caracas
+- ISO 31000: https://cssg-global.com/auditoria-seguridad-iso-31000
 
 ## Contacto
+
 - Web: https://cssg-global.com
 - Email: operaciones@cssg-global.com
 - Teléfono: +5804241782091
