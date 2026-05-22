@@ -401,28 +401,32 @@ export default function RiskAnalysis() {
     e.preventDefault();
     setIsGenerating(true);
 
-    // 1. Guardar en DB y enviar emails en paralelo (no bloquear la generación del PDF)
-    const dbFns: (() => Promise<unknown>)[] = [
-      () => startSequence('lead-' + Date.now(), leadData.email, leadData.name, 'riesgo', leadData.company).catch(err => console.warn('Error secuencia:', err)),
-      async () => { const r = await supabase.from('risk_assessments').insert([{
-        lead_name: leadData.name, job_title: leadData.jobTitle, company: leadData.company,
-        email: leadData.email, phone: leadData.phone,
-        target_organization: contextData.targetOrganization, location: contextData.location,
-        sector: contextData.sector, exposure: contextData.exposure, score: protectionScore,
-        pillars: pillarStats.map(p => ({ title: p.pillar.title, checked: p.checked, total: p.total })),
-        vulnerabilities: vulnerabilities
-      }]); if (r.error) console.warn('DB risk_assessments:', r.error.message); },
-      async () => { const r = await supabase.from('leads').insert([{
-        nombre: leadData.name, correo: leadData.email,
-        empresa: leadData.company || contextData.targetOrganization, telefono: leadData.phone,
-        mensaje: `Score: ${protectionScore}/100 | Sector: ${contextData.sector} | Ubicación: ${contextData.location}`,
-        fuente: 'riesgo', score: 30, estado: 'nuevo'
-      }]); if (r.error) console.warn('DB leads:', r.error.message); },
-    ];
+    // 1. Guardar en CRM y enviar emails (en background, sin bloquear el PDF)
+    const saveToDb = async () => {
+      const [leadRes, riskRes] = await Promise.all([
+        supabase.from('leads').insert([{
+          nombre: leadData.name, correo: leadData.email,
+          empresa: leadData.company || contextData.targetOrganization, telefono: leadData.phone,
+          mensaje: `Score: ${protectionScore}/100 | Sector: ${contextData.sector} | Ubicación: ${contextData.location}`,
+          fuente: 'riesgo', score: 30, estado: 'nuevo',
+        }]),
+        supabase.from('risk_assessments').insert([{
+          lead_name: leadData.name, job_title: leadData.jobTitle, company: leadData.company,
+          email: leadData.email, phone: leadData.phone,
+          target_organization: contextData.targetOrganization, location: contextData.location,
+          sector: contextData.sector, exposure: contextData.exposure, score: protectionScore,
+          pillars: pillarStats.map(p => ({ title: p.pillar.title, checked: p.checked, total: p.total })),
+          vulnerabilities: vulnerabilities,
+        }]),
+      ]);
+      if (leadRes.error) console.error('[CRM] leads insert error:', leadRes.error.message, leadRes.error.details);
+      if (riskRes.error) console.error('[CRM] risk_assessments insert error:', riskRes.error.message, riskRes.error.details);
+    };
+    saveToDb().catch(err => console.error('[CRM] save failed:', err));
     if (leadData.email) {
-      dbFns.push(() => sendNurtureEmail(leadData.email, leadData.name, 'riesgo', leadData.company).catch(err => console.warn('Email error:', err)));
+      startSequence('lead-' + Date.now(), leadData.email, leadData.name, 'riesgo', leadData.company).catch(err => console.warn('[Email] secuencia error:', err));
+      sendNurtureEmail(leadData.email, leadData.name, 'riesgo', leadData.company).catch(err => console.warn('[Email] nurture error:', err));
     }
-    Promise.allSettled(dbFns.map(fn => fn()));
 
     // 2. Generar PDF con @react-pdf/renderer (nativo, sin html2canvas)
     try {

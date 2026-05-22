@@ -317,9 +317,20 @@ const savePost = async () => {
   };
 
   const handleDeleteLead = async (id: string) => {
-    if(confirm('¿Seguro que desea eliminar esta postulación?')) {
-      await supabase.from('leads').delete().eq('id', id);
-      fetchLeads();
+    if(confirm('¿Eliminar este lead del CRM? Esta acción no se puede deshacer.')) {
+      const { error } = await supabase.from('leads').delete().eq('id', id);
+      if (error) alert('Error al eliminar: ' + error.message);
+      else { fetchLeads(); setSelectedLead(null); }
+    }
+  };
+
+  const handleDeleteAllTestLeads = async () => {
+    const count = leads.length;
+    if (!count) return;
+    if(confirm(`¿Eliminar TODOS los ${count} leads del CRM? Esta acción no se puede deshacer.`)) {
+      const { error } = await supabase.from('leads').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+      if (error) alert('Error al limpiar: ' + error.message);
+      else { fetchLeads(); setSelectedLead(null); }
     }
   };
 
@@ -456,6 +467,10 @@ const savePost = async () => {
                 <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
                 {t('admin.header.btn_refresh')}
               </button>
+              <button onClick={handleDeleteAllTestLeads} className="flex items-center gap-2 px-4 py-2.5 bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 rounded-xl font-bold transition-all text-sm">
+                <Trash2 className="w-4 h-4" />
+                Limpiar CRM
+              </button>
               <button onClick={handleLogout} className="flex items-center gap-2 px-4 py-2.5 bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white border border-white/10 rounded-xl font-medium transition-all text-sm">
                 <X className="w-4 h-4" />
                 Salir
@@ -522,16 +537,25 @@ const savePost = async () => {
                       {colLeads.map((lead) => {
                         const src = fuenteLabels[lead.fuente] || { label: lead.fuente, color: 'text-gray-400 bg-white/5' };
                         return (
-                          <div key={lead.id} onClick={() => handleSelectLead(lead)} className="bg-white/[0.04] border border-white/[0.08] rounded-xl p-4 cursor-pointer hover:border-sky-500/20 transition-all group shadow-sm hover:shadow-sky-500/10">
-                            <div className="flex items-start justify-between mb-2">
-                              <span className={`text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${src.color}`}>{src.label}</span>
-                              <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border flex items-center gap-1 ${scoreColor(lead.score || 0)}`}><Zap className="w-3 h-3"/> {lead.score || 0}</span>
-                            </div>
-                            <h3 className="text-white font-semibold text-sm truncate">{lead.nombre || 'N/A'}</h3>
-                            <p className="text-gray-500 text-xs truncate">{lead.empresa}</p>
-                            <div className="flex items-center justify-between mt-3">
-                              <span className="text-[10px] text-gray-600">{timeAgo(lead.created_at)}</span>
-                              <ChevronRight className="w-3 h-3 text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+                          <div key={lead.id} className="bg-white/[0.04] border border-white/[0.08] rounded-xl p-4 hover:border-sky-500/20 transition-all group shadow-sm hover:shadow-sky-500/10 relative">
+                            <button
+                              onClick={(e) => { e.stopPropagation(); handleDeleteLead(lead.id); }}
+                              className="absolute top-2 right-2 p-1 opacity-0 group-hover:opacity-100 hover:text-red-400 text-gray-600 transition-all cursor-pointer"
+                              title="Eliminar lead"
+                            >
+                              <Trash2 className="w-3.5 h-3.5" />
+                            </button>
+                            <div onClick={() => handleSelectLead(lead)} className="cursor-pointer">
+                              <div className="flex items-start justify-between mb-2">
+                                <span className={`text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${src.color}`}>{src.label}</span>
+                                <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border flex items-center gap-1 ${scoreColor(lead.score || 0)}`}><Zap className="w-3 h-3"/> {lead.score || 0}</span>
+                              </div>
+                              <h3 className="text-white font-semibold text-sm truncate pr-5">{lead.nombre || 'N/A'}</h3>
+                              <p className="text-gray-500 text-xs truncate">{lead.empresa}</p>
+                              <div className="flex items-center justify-between mt-3">
+                                <span className="text-[10px] text-gray-600">{timeAgo(lead.created_at)}</span>
+                                <ChevronRight className="w-3 h-3 text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+                              </div>
                             </div>
                           </div>
                         );
