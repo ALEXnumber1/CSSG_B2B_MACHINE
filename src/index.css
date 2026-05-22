@@ -87,3 +87,39 @@
     @apply list-decimal;
   }
 }
+
+/* Tablas del Blog */
+.prose-cssg table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  background-color: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+.prose-cssg thead {
+  background-color: rgba(14,165,233,0.1);
+}
+.prose-cssg th {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #7dd3fc;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.prose-cssg td {
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  color: #cbd5e1;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.prose-cssg tr:last-child td {
+  border-bottom: none;
+}
+.prose-cssg tr:hover td {
+  background-color: rgba(255,255,255,0.02);
+}
