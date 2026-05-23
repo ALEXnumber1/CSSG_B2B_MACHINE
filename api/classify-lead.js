@@ -21,7 +21,7 @@ const supabaseUrl = process.env.VITE_SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.VITE_SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-const GROQ_API_KEY = process.env.VITE_GROQ_API_KEY;
+const GROQ_API_KEY = process.env.GROQ_API_KEY || process.env.VITE_GROQ_API_KEY;
 
 async function callGroq(prompt) {
   const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {

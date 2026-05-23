@@ -16,7 +16,7 @@ const supabaseUrl = process.env.VITE_SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.VITE_SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-const RESEND_API_KEY = process.env.VITE_RESEND_API_KEY;
+const RESEND_API_KEY = process.env.RESEND_API_KEY || process.env.VITE_RESEND_API_KEY;
 const FROM_EMAIL = 'CSSG <operaciones@cssg-global.com>';
 
 // Días hasta el siguiente email por BP (day-0 → day-N del siguiente email)
