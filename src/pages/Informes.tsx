@@ -4,7 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { Download, FileText, Globe, TrendingUp, Users, Cpu, Leaf, Scale, ShieldCheck, CheckCircle2 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { sendNurtureEmail } from '../lib/email';
-import { jsPDF } from 'jspdf';
+import { pdf } from '@react-pdf/renderer';
+import { PestelReportPDF } from '../lib/pdf/documents/PestelReport';
 import IntelligenceCenter from '../sections/IntelligenceCenter';
 
 const LOCALES = {
@@ -209,186 +210,22 @@ export default function Informes() {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
 
   const generatePDF = async () => {
-    const doc = new jsPDF();
-    const pageWidth = doc.internal.pageSize.getWidth();
     const now = new Date();
-    const monthNames = ["ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE"];
-    const currentMonthYear = `${monthNames[now.getMonth()]} ${now.getFullYear()}`;
-    
-    // --- PÁGINA 1: PORTADA EJECUTIVA ---
-    // Cabecera estilizada
-    doc.setFillColor(248, 250, 252);
-    doc.rect(0, 0, pageWidth, 75, 'F');
-    doc.setFillColor(14, 165, 233);
-    doc.rect(0, 0, pageWidth, 2, 'F');
-
-    const loadLogo = () => {
-      return new Promise<void>((resolve) => {
-        const img = new Image();
-        img.src = '/logo_full.png';
-        img.onload = () => {
-          doc.addImage(img, 'PNG', (pageWidth / 2) - 30, 8, 60, 60);
-          resolve();
-        };
-        img.onerror = () => {
-          console.warn('No se pudo cargar el logo oficial, usando fallback textual.');
-          doc.setTextColor(14, 165, 233);
-          doc.setFontSize(10);
-          doc.setFont('helvetica', 'bold');
-          doc.text('COMPANY OF SECURITY AND SERVICE GLOBAL', pageWidth / 2, 20, { align: 'center' });
-          resolve();
-        };
-      });
-    };
-
-    await loadLogo();
-    
-    doc.setTextColor(15, 23, 42);
-    doc.setFontSize(22);
-    doc.setFont('helvetica', 'bold');
-    doc.text('INFORME DE SEGURIDAD', pageWidth / 2, 80, { align: 'center' });
-    doc.setFontSize(26);
-    doc.text('(PESTEL) VENEZUELA', pageWidth / 2, 90, { align: 'center' });
-    
-    doc.setTextColor(100, 116, 139);
-    doc.setFontSize(10);
-    doc.setFont('helvetica', 'normal');
-    doc.text(`ANÁLISIS TÁCTICO - PERIODO DE EVALUACIÓN: ${currentMonthYear}`, pageWidth / 2, 97, { align: 'center' });
-
-    // SECCIÓN 1: CONTEXTO HISTÓRICO
-    doc.setTextColor(15, 23, 42);
-    doc.setFontSize(16);
-    doc.text('Contexto Histórico y Evolución', 20, 115);
-    doc.setDrawColor(14, 165, 233);
-    doc.line(20, 117, 40, 117);
-
-    doc.setFontSize(11);
-    doc.setFont('helvetica', 'bold');
-    doc.text('Periodo 2022-2023: Fase de Reactivación', 20, 130);
-    doc.setFontSize(10);
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(71, 85, 105);
-    const hist1 = 'Caracterizado por la reactivación formal de misiones diplomáticas y corporaciones multinacionales post-pandemia. El enfoque principal fue la auditoría de activos fijos y la reconfiguración de la seguridad física tradicional.';
-    doc.text(doc.splitTextToSize(hist1, pageWidth - 40), 20, 135);
-
-    doc.setFontSize(11);
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(15, 23, 42);
-    doc.text('Periodo 2024-2025: Integración Tecnológica e ISO', 20, 160);
-    doc.setFontSize(10);
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(71, 85, 105);
-    const hist2 = 'Marcado por la migración masiva hacia sistemas de videovigilancia asistidos por Inteligencia Artificial y la estandarización de procesos bajo las normas ISO 18788 y 9001. La seguridad electrónica consolidó la inversión corporativa.';
-    doc.text(doc.splitTextToSize(hist2, pageWidth - 40), 20, 165);
-
-    // Resumen Ejecutivo del Periodo Actual
-    doc.setFontSize(14);
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(15, 23, 42);
-    doc.text('Resumen Ejecutivo del Periodo Actual', 20, 195);
-    doc.setFontSize(10);
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(71, 85, 105);
-    const summaryText = 'El panorama de seguridad en Venezuela para el ciclo 2026 exige una transición de la vigilancia reactiva hacia la inteligencia operativa proactiva. Se identifica una reconfiguración de los nodos de control y una creciente dependencia de la autonomía tecnológica frente a la inestabilidad de suministros. Este informe sintetiza datos críticos para la continuidad del negocio y la protección de misiones diplomáticas de alto nivel.';
-    doc.text(doc.splitTextToSize(summaryText, pageWidth - 40), 20, 201);
-
-    // Indicaciones de Uso
-    doc.setFontSize(8);
-    doc.setFont('helvetica', 'italic');
-    doc.setTextColor(148, 163, 184);
-    doc.text('Este documento es una consulta técnica pública emitida por el motor de IA de CSSG y validada por nuestra dirección táctica.', 20, 275);
-
-    // --- PÁGINA 2: ANÁLISIS PESTEL DETALLADO ---
-    doc.addPage();
-    let yPos = 30;
-    
-    doc.setFontSize(18);
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(15, 23, 42);
-    doc.text('Matriz Analítica de Entorno (PESTEL)', 20, yPos);
-    yPos += 15;
-    
-    pestelFactors.forEach(factor => {
-      if (yPos > 240) {
-        doc.addPage();
-        yPos = 30;
-      }
-      
-      doc.setFillColor(241, 245, 249);
-      doc.rect(18, yPos - 5, pageWidth - 36, 35, 'F');
-      
-      doc.setFontSize(12);
-      doc.setFont('helvetica', 'bold');
-      doc.setTextColor(14, 165, 233);
-      doc.text(`${factor.letter} - Dimensión ${factor.title}`, 22, yPos + 2);
-      
-      doc.setTextColor(30, 41, 59);
-      doc.setFontSize(9);
-      doc.setFont('helvetica', 'normal');
-      
-      const extendedDesc = `${factor.desc} Análisis Validado: La Dirección Táctica de CSSG recomienda la integración de protocolos de redundancia operativa para mitigar los riesgos asociados a esta dimensión durante el periodo en curso.`;
-      
-      const desc = doc.splitTextToSize(extendedDesc, pageWidth - 48);
-      doc.text(desc, 22, yPos + 10);
-      yPos += 45;
-    });
-    
-    // --- PÁGINA 3: REFERENCIAS, FIRMA Y DISCLAIMER ---
-    doc.addPage();
-    yPos = 30;
-    
-    doc.setFontSize(14);
-    doc.setFont('helvetica', 'bold');
-    doc.setTextColor(15, 23, 42);
-    doc.text('Referencias y Fuentes de Información', 20, yPos);
-    yPos += 10;
-    
-    doc.setFontSize(9);
-    doc.setFont('helvetica', 'normal');
-    doc.setTextColor(71, 85, 105);
-    const references = [
-      '1. Organización Internacional para las Migraciones (OIM) - Informe 2026.',
-      '2. Digesservisp - Normativa Técnica de Seguridad Privada.',
-      '3. Zentinel Global - Matriz de Análisis de Riesgos en Entornos Críticos.',
-      '4. World Economic Forum - Global Risks Report (LatAm Context).',
-      '5. CSSG Private Intelligence - Reporte de Prevención de Pérdidas.'
-    ];
-    references.forEach(ref => {
-      doc.text(ref, 20, yPos);
-      yPos += 6;
-    });
-    
-    // Signature
-    yPos += 40;
-    doc.setDrawColor(226, 232, 240);
-    doc.line(70, yPos, 140, yPos);
-    doc.setTextColor(15, 23, 42);
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(11);
-    doc.text('Dirección General', pageWidth / 2, yPos + 8, { align: 'center' });
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(9);
-    doc.text('Company Of Security and Service Global', pageWidth / 2, yPos + 14, { align: 'center' });
-
-    // DISCLAIMER FINAL
-    yPos += 40;
-    doc.setFontSize(7);
-    doc.setFont('helvetica', 'italic');
-    doc.setTextColor(148, 163, 184);
-    const disclaimerText = 'AVISO LEGAL: Este documento ha sido generado mediante un motor de Inteligencia Artificial especializada y posteriormente REVISADO Y VALIDADO por especialistas humanos de CSSG. Debido a la naturaleza dinámica de los datos, la información presentada sirve como guía estratégica y debe ser verificada en campo. CSSG garantiza la solvencia técnica de este análisis bajo los estándares de seguridad corporativa vigentes.';
-    doc.text(doc.splitTextToSize(disclaimerText, pageWidth - 40), 20, yPos);
-
-    // --- Footer General ---
-    const pageCount = (doc as any).internal.getNumberOfPages();
-    for (let i = 1; i <= pageCount; i++) {
-      doc.setPage(i);
-      doc.setFontSize(8);
-      doc.setTextColor(148, 163, 184);
-      doc.text('INFORME TÉCNICO CSSG - DISTRIBUCIÓN PÚBLICA AUTORIZADA', pageWidth / 2, 285, { align: 'center' });
-      doc.text(`Página ${i} de ${pageCount}`, pageWidth - 20, 285, { align: 'right' });
-    }
-    
-    doc.save(`CSSG_Informe_Pestel_${monthNames[now.getMonth()]}_2026.pdf`);
+    const monthNames = ["ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"];
+    const blob = await pdf(
+      <PestelReportPDF
+        nombre={formData.nombre}
+        correo={formData.correo}
+        organizacion={formData.organizacion}
+        pestelFactors={pestelFactors}
+      />
+    ).toBlob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `CSSG_Informe_Pestel_${monthNames[now.getMonth()]}_${now.getFullYear()}.pdf`;
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 30000);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -396,7 +233,7 @@ export default function Informes() {
     setStatus('loading');
     
     try {
-      generatePDF();
+      await generatePDF();
       setStatus('success');
     } catch (pdfErr) {
       console.error('PDF Generation Error:', pdfErr);

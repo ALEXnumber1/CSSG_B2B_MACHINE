@@ -1,10 +1,43 @@
 User-agent: *
 Allow: /
+
+# Rutas internas / portales privados (no indexar)
 Disallow: /admin
+Disallow: /admin/
 Disallow: /intranet
+Disallow: /intranet/
+Disallow: /portal-rrhh
+Disallow: /portal-rrhh/
+Disallow: /streaming
+Disallow: /streaming/
+
+# Endpoints internos
+Disallow: /api/
 
 # SEO Sitemap
 Sitemap: https://cssg-global.com/sitemap.xml
 
-# LLMs
+# GEO — AI & LLM Crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+# LLM Context Files
+# https://cssg-global.com/llms.txt
+# https://cssg-global.com/llms-full.txt
+
 Host: cssg-global.com

@@ -1,17 +1,15 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { supabase } from '../lib/supabase';
 import { jsPDF } from 'jspdf';
-import { 
-  Lock, X, Search, Filter, RefreshCw, User, 
+import {
+  Lock, X, Search, Filter, RefreshCw, User,
   Calendar, ChevronRight, Save,
-  BarChart3, Users, Zap, Upload, Plus, Trash2, Database, FileSpreadsheet, PenTool, UserPlus, Download, Send
+  BarChart3, Users, Zap, Upload, Plus, Trash2, Database, FileSpreadsheet, PenTool, UserPlus, Download, Send, Target
 } from 'lucide-react';
-import { parseCSV, generateSampleCSV, saveScrapedLeads, type ScrapedLead } from '../lib/scraper';
-import { processSequences } from '../lib/sequences';
+import { parseCSV, generateSampleCSV, saveScrapedLeads, validateLead, type ScrapedLead } from '../lib/scraper';
 
-const ADMIN_PASS = 'cssg2026';
 
 type Lead = {
   id: string;
@@ -29,6 +27,10 @@ type Lead = {
   ultimo_contacto: string;
   emails_enviados: number;
   secuencia_activa: boolean;
+  bp?: number;
+  bp_nombre?: string;
+  temperatura?: string;
+  nota_estrategica?: string;
 };
 
 export default function Admin() {
@@ -36,10 +38,15 @@ export default function Admin() {
   
   // Auth state
   const [auth, setAuth] = useState(false);
-  const [pass, setPass] = useState('');
+  const [authLoading, setAuthLoading] = useState(true);
+  const [loginEmail, setLoginEmail] = useState('');
+  const [loginPass, setLoginPass] = useState('');
+  const [loginError, setLoginError] = useState('');
+  const [loginLoading, setLoginLoading] = useState(false);
+  const emailRef = useRef<HTMLInputElement>(null);
   
   // Tabs state
-  const [activeTab, setActiveTab] = useState<'crm' | 'prospectar' | 'contenido' | 'talento'>('crm');
+  const [activeTab, setActiveTab] = useState<'crm' | 'prospectar' | 'outbound' | 'contenido' | 'talento' | 'estratega'>('crm');
 
   // CRM state
   const [leads, setLeads] = useState<Lead[]>([]);
@@ -54,9 +61,15 @@ export default function Admin() {
   const [scrapedLeads, setScrapedLeads] = useState<ScrapedLead[]>([]);
   const [csvText, setCsvText] = useState('');
   const [manualLead, setManualLead] = useState<ScrapedLead>({
-    nombre: '', empresa: '', correo: '', telefono: '', sector: '', ubicacion: 'Caracas', fuente_url: 'Manual', confianza: 'alta'
+    nombre: '', empresa: '', correo: '', telefono: '', cargo: '', sector: '', ubicacion: 'Caracas', fuente_url: 'Manual', confianza: 'alta'
   });
+  const [saveScrapedResult, setSaveScrapedResult] = useState<{ saved: number; duplicates: number; errors: string[] } | null>(null);
   const [savingScraped, setSavingScraped] = useState(false);
+
+  // Outbound state
+  const [launchingIds, setLaunchingIds] = useState<Set<string>>(new Set());
+  const [launchingBpGroup, setLaunchingBpGroup] = useState<number | null>(null);
+  const [launchResult, setLaunchResult] = useState<{ launched: number; errors: string[] } | null>(null);
   
   // Risk Assessment State
   const [selectedLeadRisk, setSelectedLeadRisk] = useState<any>(null);
@@ -67,6 +80,92 @@ export default function Admin() {
   const [editingPost, setEditingPost] = useState<any>(null);
   const [showPostModal, setShowPostModal] = useState(false);
   const [savingPost, setSavingPost] = useState(false);
+
+  // Estratega IA state
+  const [tacticResult, setTacticResult] = useState<any>(null);
+  const [analyzingPipeline, setAnalyzingPipeline] = useState(false);
+  const [tacticError, setTacticError] = useState('');
+
+  const TACTIC_PRIORITY_COLOR: Record<string, string> = {
+    urgente: 'text-red-400 bg-red-500/10 border-red-500/30',
+    alta: 'text-orange-400 bg-orange-500/10 border-orange-500/30',
+    media: 'text-yellow-400 bg-yellow-500/10 border-yellow-500/30',
+  };
+  const TACTIC_CANAL_ICON: Record<string, string> = {
+    email: '📧', linkedin: '💼', whatsapp: '💬',
+    llamada: '📞', contenido_organico: '✍️', ads: '📢',
+  };
+
+  const analyzePipeline = async () => {
+    setAnalyzingPipeline(true);
+    setTacticError('');
+    setTacticResult(null);
+    try {
+      const CRON_SECRET = (import.meta as any).env?.VITE_CRON_SECRET || '';
+      const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
+      const stats = {
+        total_leads: leads.length,
+        hot_leads: leads.filter((l: Lead) => l.score >= 50).length,
+        sin_actividad_7d: leads.filter((l: Lead) => !l.ultimo_contacto || l.ultimo_contacto < sevenDaysAgo).length,
+        leads_nuevos_7d: leads.filter((l: Lead) => l.created_at > sevenDaysAgo).length,
+        por_estado: {
+          nuevo: leads.filter((l: Lead) => l.estado === 'nuevo').length,
+          contactado: leads.filter((l: Lead) => l.estado === 'contactado').length,
+          caliente: leads.filter((l: Lead) => l.estado === 'caliente').length,
+          cerrado: leads.filter((l: Lead) => l.estado === 'cerrado').length,
+        },
+        por_fuente: {
+          scraper: leads.filter((l: Lead) => l.fuente === 'scraper').length,
+          contacto: leads.filter((l: Lead) => l.fuente === 'contacto').length,
+          riesgo: leads.filter((l: Lead) => l.fuente === 'riesgo').length,
+          escudo_diplomatico: leads.filter((l: Lead) => l.fuente === 'escudo_diplomatico').length,
+        },
+        score_promedio: leads.length > 0
+          ? Math.round(leads.reduce((sum: number, l: Lead) => sum + (l.score || 0), 0) / leads.length)
+          : 0,
+        secuencias_activas: leads.filter((l: Lead) => l.secuencia_activa).length,
+        fecha_analisis: new Date().toISOString(),
+      };
+
+      const res = await fetch('/api/agent', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${CRON_SECRET}` },
+        body: JSON.stringify({ action: 'suggest_tactics', stats }),
+      });
+      if (!res.ok) throw new Error(`Error ${res.status}`);
+      const data = await res.json();
+      setTacticResult(data.result);
+    } catch (err) {
+      setTacticError(err instanceof Error ? err.message : 'Error desconocido');
+    } finally {
+      setAnalyzingPipeline(false);
+    }
+  };
+
+  // Restore session on mount and listen for auth changes
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setAuth(!!session);
+      setAuthLoading(false);
+    });
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setAuth(!!session);
+    });
+    return () => subscription.unsubscribe();
+  }, []);
+
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoginLoading(true);
+    setLoginError('');
+    const { error } = await supabase.auth.signInWithPassword({ email: loginEmail, password: loginPass });
+    if (error) setLoginError(error.message);
+    setLoginLoading(false);
+  };
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+  };
 
   const fetchLeads = useCallback(async () => {
     setLoading(true);
@@ -85,13 +184,58 @@ export default function Admin() {
   const runSequences = async () => {
     setIsProcessingSequences(true);
     try {
-      await processSequences();
-      alert("Secuencias procesadas con éxito");
+      const secret = (import.meta as any).env?.VITE_CRON_SECRET || '';
+      const res = await fetch('/api/process-sequences', {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${secret}` },
+      });
+      const data = await res.json();
+      alert(`Secuencias procesadas: ${data.sent} enviadas, ${data.errors} errores`);
     } catch (e) {
       console.error(e);
       alert("Error al procesar secuencias");
     }
     setIsProcessingSequences(false);
+  };
+
+  const launchForLead = async (leadId: string) => {
+    setLaunchingIds(prev => new Set(prev).add(leadId));
+    setLaunchResult(null);
+    try {
+      const secret = (import.meta as any).env?.VITE_CRON_SECRET || '';
+      const res = await fetch('/api/launch-sequence', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${secret}` },
+        body: JSON.stringify({ lead_ids: [leadId] }),
+      });
+      const data = await res.json();
+      setLaunchResult(data);
+      fetchLeads();
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setLaunchingIds(prev => { const s = new Set(prev); s.delete(leadId); return s; });
+    }
+  };
+
+  const launchForGroup = async (bp: number) => {
+    setLaunchingBpGroup(bp);
+    setLaunchResult(null);
+    try {
+      const secret = (import.meta as any).env?.VITE_CRON_SECRET || '';
+      const res = await fetch('/api/launch-sequence', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${secret}` },
+        body: JSON.stringify({ bp, launch_all: true }),
+      });
+      const data = await res.json();
+      setLaunchResult(data);
+      fetchLeads();
+    } catch (e) {
+      console.error(e);
+    } finally {
+      setLaunchingBpGroup(null);
+    }
   };
 
   const fetchPosts = useCallback(async () => {
@@ -288,9 +432,20 @@ const savePost = async () => {
   };
 
   const handleDeleteLead = async (id: string) => {
-    if(confirm('¿Seguro que desea eliminar esta postulación?')) {
-      await supabase.from('leads').delete().eq('id', id);
-      fetchLeads();
+    if(confirm('¿Eliminar este lead del CRM? Esta acción no se puede deshacer.')) {
+      const { error } = await supabase.from('leads').delete().eq('id', id);
+      if (error) alert('Error al eliminar: ' + error.message);
+      else { fetchLeads(); setSelectedLead(null); }
+    }
+  };
+
+  const handleDeleteAllTestLeads = async () => {
+    const count = leads.length;
+    if (!count) return;
+    if(confirm(`¿Eliminar TODOS los ${count} leads del CRM? Esta acción no se puede deshacer.`)) {
+      const { error } = await supabase.from('leads').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+      if (error) alert('Error al limpiar: ' + error.message);
+      else { fetchLeads(); setSelectedLead(null); }
     }
   };
 
@@ -348,6 +503,14 @@ const savePost = async () => {
     return true;
   });
 
+  if (authLoading) {
+    return (
+      <div className="flex-1 flex items-center justify-center bg-[#030305] min-h-screen">
+        <div className="w-6 h-6 border-2 border-sky-500/30 border-t-sky-500 rounded-full animate-spin" />
+      </div>
+    );
+  }
+
   if (!auth) {
     return (
       <div className="flex-1 flex items-center justify-center bg-[#030305] py-24 px-6 min-h-screen">
@@ -360,9 +523,30 @@ const savePost = async () => {
             <h1 className="text-xl font-bold text-white">{t('admin.login.title')}</h1>
             <p className="text-gray-500 text-xs mt-1">{t('admin.login.subtitle')}</p>
           </div>
-          <form onSubmit={(e) => { e.preventDefault(); if (pass === ADMIN_PASS) setAuth(true); }}>
-            <input type="password" value={pass} onChange={(e) => setPass(e.target.value)} placeholder={t('admin.login.pwd_ph')} className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-white mb-4 focus:outline-none focus:border-sky-500 transition-colors" autoFocus />
-            <button type="submit" className="w-full bg-sky-600 hover:bg-sky-500 text-white font-semibold py-3 rounded-lg transition-all cursor-pointer">
+          <form onSubmit={handleLogin} className="space-y-3">
+            <input
+              ref={emailRef}
+              type="email"
+              required
+              value={loginEmail}
+              onChange={(e) => setLoginEmail(e.target.value)}
+              placeholder="correo@cssg-global.com"
+              className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-sky-500 transition-colors"
+              autoFocus
+            />
+            <input
+              type="password"
+              required
+              value={loginPass}
+              onChange={(e) => setLoginPass(e.target.value)}
+              placeholder={t('admin.login.pwd_ph')}
+              className="w-full bg-black/40 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-sky-500 transition-colors"
+            />
+            {loginError && (
+              <p className="text-red-400 text-xs text-center">{loginError}</p>
+            )}
+            <button type="submit" disabled={loginLoading} className="w-full bg-sky-600 hover:bg-sky-500 text-white font-semibold py-3 rounded-lg transition-all cursor-pointer disabled:opacity-50 flex items-center justify-center gap-2">
+              {loginLoading && <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />}
               {t('admin.login.btn')}
             </button>
           </form>
@@ -398,6 +582,14 @@ const savePost = async () => {
                 <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
                 {t('admin.header.btn_refresh')}
               </button>
+              <button onClick={handleDeleteAllTestLeads} className="flex items-center gap-2 px-4 py-2.5 bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 rounded-xl font-bold transition-all text-sm">
+                <Trash2 className="w-4 h-4" />
+                Limpiar CRM
+              </button>
+              <button onClick={handleLogout} className="flex items-center gap-2 px-4 py-2.5 bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white border border-white/10 rounded-xl font-medium transition-all text-sm">
+                <X className="w-4 h-4" />
+                Salir
+              </button>
             </div>
         </div>
 
@@ -408,11 +600,22 @@ const savePost = async () => {
           <button onClick={() => setActiveTab('prospectar')} className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-all cursor-pointer ${activeTab === 'prospectar' ? 'bg-orange-500/15 text-orange-400 border border-orange-500/30' : 'bg-white/[0.03] text-gray-400 border border-white/[0.06] hover:bg-white/[0.06]'}`}>
             <FileSpreadsheet className="w-4 h-4" /> {t('admin.tabs.prospectar')}
           </button>
+          <button onClick={() => { setActiveTab('outbound'); setLaunchResult(null); }} className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-all cursor-pointer ${activeTab === 'outbound' ? 'bg-violet-500/15 text-violet-400 border border-violet-500/30' : 'bg-white/[0.03] text-gray-400 border border-white/[0.06] hover:bg-white/[0.06]'}`}>
+            <Target className="w-4 h-4" /> Outbound
+            {leads.filter(l => l.fuente === 'scraper' && !l.secuencia_activa).length > 0 && (
+              <span className="bg-violet-500/20 text-violet-400 text-[10px] px-1.5 py-0.5 rounded-full font-bold">
+                {leads.filter(l => l.fuente === 'scraper' && !l.secuencia_activa).length}
+              </span>
+            )}
+          </button>
           <button onClick={() => setActiveTab('contenido')} className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-all cursor-pointer ${activeTab === 'contenido' ? 'bg-indigo-500/15 text-indigo-400 border border-indigo-500/30' : 'bg-white/[0.03] text-gray-400 border border-white/[0.06] hover:bg-white/[0.06]'}`}>
             <PenTool className="w-4 h-4" /> {t('admin.tabs.contenido')}
           </button>
           <button onClick={() => setActiveTab('talento')} className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-all cursor-pointer ${activeTab === 'talento' ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/30' : 'bg-white/[0.03] text-gray-400 border border-white/[0.06] hover:bg-white/[0.06]'}`}>
             <UserPlus className="w-4 h-4" /> Talento / RRHH
+          </button>
+          <button onClick={() => setActiveTab('estratega')} className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium transition-all cursor-pointer ${activeTab === 'estratega' ? 'bg-yellow-500/15 text-yellow-400 border border-yellow-500/30' : 'bg-white/[0.03] text-gray-400 border border-white/[0.06] hover:bg-white/[0.06]'}`}>
+            <Zap className="w-4 h-4" /> Estratega IA
           </button>
         </div>
 
@@ -460,16 +663,25 @@ const savePost = async () => {
                       {colLeads.map((lead) => {
                         const src = fuenteLabels[lead.fuente] || { label: lead.fuente, color: 'text-gray-400 bg-white/5' };
                         return (
-                          <div key={lead.id} onClick={() => handleSelectLead(lead)} className="bg-white/[0.04] border border-white/[0.08] rounded-xl p-4 cursor-pointer hover:border-sky-500/20 transition-all group shadow-sm hover:shadow-sky-500/10">
-                            <div className="flex items-start justify-between mb-2">
-                              <span className={`text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${src.color}`}>{src.label}</span>
-                              <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border flex items-center gap-1 ${scoreColor(lead.score || 0)}`}><Zap className="w-3 h-3"/> {lead.score || 0}</span>
-                            </div>
-                            <h3 className="text-white font-semibold text-sm truncate">{lead.nombre || 'N/A'}</h3>
-                            <p className="text-gray-500 text-xs truncate">{lead.empresa}</p>
-                            <div className="flex items-center justify-between mt-3">
-                              <span className="text-[10px] text-gray-600">{timeAgo(lead.created_at)}</span>
-                              <ChevronRight className="w-3 h-3 text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+                          <div key={lead.id} className="bg-white/[0.04] border border-white/[0.08] rounded-xl p-4 hover:border-sky-500/20 transition-all group shadow-sm hover:shadow-sky-500/10 relative">
+                            <button
+                              onClick={(e) => { e.stopPropagation(); handleDeleteLead(lead.id); }}
+                              className="absolute top-2 right-2 p-1 opacity-0 group-hover:opacity-100 hover:text-red-400 text-gray-600 transition-all cursor-pointer"
+                              title="Eliminar lead"
+                            >
+                              <Trash2 className="w-3.5 h-3.5" />
+                            </button>
+                            <div onClick={() => handleSelectLead(lead)} className="cursor-pointer">
+                              <div className="flex items-start justify-between mb-2">
+                                <span className={`text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${src.color}`}>{src.label}</span>
+                                <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border flex items-center gap-1 ${scoreColor(lead.score || 0)}`}><Zap className="w-3 h-3"/> {lead.score || 0}</span>
+                              </div>
+                              <h3 className="text-white font-semibold text-sm truncate pr-5">{lead.nombre || 'N/A'}</h3>
+                              <p className="text-gray-500 text-xs truncate">{lead.empresa}</p>
+                              <div className="flex items-center justify-between mt-3">
+                                <span className="text-[10px] text-gray-600">{timeAgo(lead.created_at)}</span>
+                                <ChevronRight className="w-3 h-3 text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+                              </div>
                             </div>
                           </div>
                         );
@@ -504,17 +716,26 @@ const savePost = async () => {
                     <input key={k} type="text" placeholder={t(`admin.prospectar.ph.${k}`)} value={(manualLead as any)[k]} onChange={(e) => setManualLead({...manualLead, [k]: e.target.value})} className="bg-black/40 border border-white/10 rounded-lg px-3 py-2 text-white text-xs focus:outline-none focus:border-orange-500" />
                   ))}
                 </div>
-                <button onClick={() => { setScrapedLeads(prev => [...prev, manualLead]); setManualLead({nombre:'', empresa:'', correo:'', telefono:'', sector:'', ubicacion:'Caracas', fuente_url:'Manual', confianza:'alta'}); }} className="w-full py-2 bg-white/5 border border-white/10 text-white text-xs font-semibold rounded-lg hover:bg-white/10 transition-all cursor-pointer">{t('admin.prospectar.btn_add')}</button>
+                <button onClick={() => { setScrapedLeads(prev => [...prev, manualLead]); setManualLead({nombre:'', empresa:'', correo:'', telefono:'', cargo:'', sector:'', ubicacion:'Caracas', fuente_url:'Manual', confianza:'alta'}); }} className="w-full py-2 bg-white/5 border border-white/10 text-white text-xs font-semibold rounded-lg hover:bg-white/10 transition-all cursor-pointer">{t('admin.prospectar.btn_add')}</button>
               </div>
             </div>
 
             {scrapedLeads.length > 0 && (
               <div className="bg-white/[0.03] border border-white/[0.06] rounded-xl overflow-hidden">
                 <div className="p-4 border-b border-white/[0.06] flex items-center justify-between bg-white/[0.02]">
-                  <h3 className="text-white font-semibold text-sm">{t('admin.prospectar.preview_title', { count: scrapedLeads.length })}</h3>
+                  <h3 className="text-white font-semibold text-sm">
+                    {t('admin.prospectar.preview_title', { count: scrapedLeads.length })}
+                    {saveScrapedResult && (
+                      <span className="ml-3 text-xs font-normal text-emerald-400">
+                        ✓ {saveScrapedResult.saved} guardados
+                        {saveScrapedResult.duplicates > 0 && `, ${saveScrapedResult.duplicates} duplicados`}
+                        {saveScrapedResult.errors.length > 0 && <span className="text-red-400">, {saveScrapedResult.errors.length} errores</span>}
+                      </span>
+                    )}
+                  </h3>
                   <div className="flex gap-3">
                     <button onClick={() => setScrapedLeads([])} className="px-3 py-1 text-xs text-gray-500 hover:text-red-400 transition-colors cursor-pointer">{t('admin.prospectar.btn_clean')}</button>
-                    <button onClick={async () => { setSavingScraped(true); await saveScrapedLeads(scrapedLeads); setScrapedLeads([]); setSavingScraped(false); fetchLeads(); }} disabled={savingScraped} className="px-4 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-lg transition-all cursor-pointer flex items-center gap-2">
+                    <button onClick={async () => { setSavingScraped(true); setSaveScrapedResult(null); const r = await saveScrapedLeads(scrapedLeads); setScrapedLeads([]); setSaveScrapedResult(r); setSavingScraped(false); fetchLeads(); }} disabled={savingScraped} className="px-4 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-lg transition-all cursor-pointer flex items-center gap-2">
                       {savingScraped ? <RefreshCw className="w-3 h-3 animate-spin" /> : <Save className="w-3 h-3" />} {savingScraped ? t('admin.prospectar.btn_saving') : t('admin.prospectar.btn_save')}
                     </button>
                   </div>
@@ -530,7 +751,7 @@ const savePost = async () => {
                           <td className="p-3 font-medium">{lead.nombre}</td>
                           <td className="p-3">{lead.empresa}</td>
                           <td className="p-3 text-sky-400">{lead.correo}</td>
-                          <td className="p-3"><span className="text-emerald-400 bg-emerald-500/10 px-2 py-1 rounded">{t('admin.prospectar.table.valid')}</span></td>
+                          <td className="p-3">{(() => { const errs = validateLead(lead); return errs.length === 0 ? <span className="text-emerald-400 bg-emerald-500/10 px-2 py-1 rounded">{t('admin.prospectar.table.valid')}</span> : <span className="text-red-400 bg-red-500/10 px-2 py-1 rounded" title={errs.join(', ')}>⚠ {errs[0]}</span>; })()}</td>
                           <td className="p-3"><button onClick={() => setScrapedLeads(prev => prev.filter((_, i) => i !== idx))} className="text-gray-600 hover:text-red-400 cursor-pointer"><X className="w-4 h-4" /></button></td>
                         </tr>
                       ))}
@@ -541,6 +762,150 @@ const savePost = async () => {
             )}
           </div>
         )}
+
+        {activeTab === 'outbound' && (() => {
+          const outboundLeads = leads.filter(l => l.fuente === 'scraper' && !l.secuencia_activa);
+          const bpGroups: { bp: number; label: string; color: string; accent: string; icon: string }[] = [
+            { bp: 1, label: 'BP1 — Ricardo (El Guardián)',          color: 'border-sky-500/30 bg-sky-500/5',    accent: 'text-sky-400 bg-sky-500/10 border-sky-500/20',    icon: '🛡️' },
+            { bp: 2, label: 'BP2 — Ana (La Administradora)',         color: 'border-teal-500/30 bg-teal-500/5',  accent: 'text-teal-400 bg-teal-500/10 border-teal-500/20',  icon: '📋' },
+            { bp: 3, label: 'BP3 — Julio (El Estratega)',            color: 'border-violet-500/30 bg-violet-500/5', accent: 'text-violet-400 bg-violet-500/10 border-violet-500/20', icon: '🎯' },
+            { bp: 4, label: 'BP4 — Carlos (El Venezolano Global)',   color: 'border-amber-500/30 bg-amber-500/5', accent: 'text-amber-400 bg-amber-500/10 border-amber-500/20', icon: '🌎' },
+          ];
+          const tempColor = (t: string | undefined) => {
+            if (t === 'caliente') return 'text-red-400 bg-red-500/10';
+            if (t === 'tibio')    return 'text-amber-400 bg-amber-500/10';
+            return 'text-sky-400 bg-sky-500/10';
+          };
+          const unclassified = outboundLeads.filter(l => !l.bp);
+          return (
+            <div className="space-y-6">
+              <div className="bg-gradient-to-r from-violet-500/10 to-transparent border border-violet-500/20 rounded-2xl p-6 flex items-start justify-between gap-4">
+                <div>
+                  <h2 className="text-xl font-bold text-white mb-1 flex items-center gap-2">
+                    <Target className="w-5 h-5 text-violet-400" /> Outbound — Grupos por Buyer Persona
+                  </h2>
+                  <p className="text-gray-400 text-sm">
+                    Leads scrapeados clasificados por IA. Revisa cada grupo y lanza la secuencia cuando estés listo.
+                    Los emails se envían en los días programados vía el cron diario.
+                  </p>
+                </div>
+                <button onClick={fetchLeads} className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-gray-400 hover:text-white text-xs font-medium transition-all cursor-pointer shrink-0">
+                  <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} /> Actualizar
+                </button>
+              </div>
+
+              {launchResult && (
+                <div className={`border rounded-xl p-4 flex items-center gap-3 ${launchResult.errors.length === 0 ? 'bg-emerald-500/10 border-emerald-500/30' : 'bg-amber-500/10 border-amber-500/30'}`}>
+                  <span className="text-xl">{launchResult.errors.length === 0 ? '✅' : '⚠️'}</span>
+                  <div>
+                    <p className={`text-sm font-semibold ${launchResult.errors.length === 0 ? 'text-emerald-400' : 'text-amber-400'}`}>
+                      {launchResult.launched} secuencia{launchResult.launched !== 1 ? 's' : ''} lanzada{launchResult.launched !== 1 ? 's' : ''}
+                    </p>
+                    {launchResult.errors.length > 0 && (
+                      <ul className="mt-1 space-y-0.5">
+                        {launchResult.errors.map((e, i) => <li key={i} className="text-amber-300/80 text-xs">· {e}</li>)}
+                      </ul>
+                    )}
+                  </div>
+                  <button onClick={() => setLaunchResult(null)} className="ml-auto text-gray-500 hover:text-white cursor-pointer"><X className="w-4 h-4" /></button>
+                </div>
+              )}
+
+              {outboundLeads.length === 0 && (
+                <div className="bg-white/[0.02] border border-white/[0.06] rounded-xl p-12 text-center">
+                  <Target className="w-10 h-10 text-gray-600 mx-auto mb-3" />
+                  <p className="text-gray-500 text-sm">No hay leads pendientes de secuencia outbound.</p>
+                  <p className="text-gray-600 text-xs mt-1">Importa leads en la pestaña Prospectar — el webhook los clasificará automáticamente.</p>
+                </div>
+              )}
+
+              {bpGroups.map(({ bp, label, color, accent, icon }) => {
+                const groupLeads = outboundLeads.filter(l => l.bp === bp);
+                if (groupLeads.length === 0) return null;
+                const isLaunchingGroup = launchingBpGroup === bp;
+                return (
+                  <div key={bp} className={`border rounded-2xl overflow-hidden ${color}`}>
+                    <div className="px-5 py-4 flex items-center justify-between border-b border-white/[0.06] bg-black/20">
+                      <div className="flex items-center gap-3">
+                        <span className="text-xl">{icon}</span>
+                        <div>
+                          <span className={`text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border ${accent}`}>{label}</span>
+                          <span className="text-gray-500 text-xs ml-3">{groupLeads.length} lead{groupLeads.length !== 1 ? 's' : ''} pendiente{groupLeads.length !== 1 ? 's' : ''}</span>
+                        </div>
+                      </div>
+                      <button
+                        onClick={() => launchForGroup(bp)}
+                        disabled={isLaunchingGroup}
+                        className="flex items-center gap-2 px-4 py-2 bg-violet-600/20 hover:bg-violet-600/30 text-violet-300 border border-violet-500/30 rounded-lg text-xs font-bold transition-all disabled:opacity-50 cursor-pointer"
+                      >
+                        {isLaunchingGroup
+                          ? <><RefreshCw className="w-3.5 h-3.5 animate-spin" /> Lanzando…</>
+                          : <><Send className="w-3.5 h-3.5" /> Lanzar grupo ({groupLeads.length})</>}
+                      </button>
+                    </div>
+                    <div className="divide-y divide-white/[0.04]">
+                      {groupLeads.map(lead => {
+                        const isLaunching = launchingIds.has(lead.id);
+                        return (
+                          <div key={lead.id} className="px-5 py-4 flex items-start gap-4 hover:bg-white/[0.02] transition-colors group">
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center gap-2 flex-wrap mb-1">
+                                <span className="text-white font-semibold text-sm truncate">{lead.nombre || 'Sin nombre'}</span>
+                                {lead.temperatura && (
+                                  <span className={`text-[10px] font-bold uppercase px-2 py-0.5 rounded-full ${tempColor(lead.temperatura)}`}>
+                                    {lead.temperatura}
+                                  </span>
+                                )}
+                                <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border flex items-center gap-1 ${scoreColor(lead.score || 0)}`}>
+                                  <Zap className="w-3 h-3" /> {lead.score || 0}
+                                </span>
+                              </div>
+                              <p className="text-gray-500 text-xs truncate">{lead.empresa}</p>
+                              {lead.nota_estrategica && (
+                                <p className="text-gray-400 text-xs mt-1.5 italic leading-relaxed line-clamp-2">{lead.nota_estrategica}</p>
+                              )}
+                            </div>
+                            <button
+                              onClick={() => launchForLead(lead.id)}
+                              disabled={isLaunching}
+                              className="flex items-center gap-1.5 px-3 py-1.5 bg-white/5 hover:bg-violet-600/20 text-gray-400 hover:text-violet-300 border border-white/10 hover:border-violet-500/30 rounded-lg text-xs font-semibold transition-all disabled:opacity-50 cursor-pointer shrink-0"
+                            >
+                              {isLaunching
+                                ? <RefreshCw className="w-3 h-3 animate-spin" />
+                                : <Send className="w-3 h-3" />}
+                              Lanzar
+                            </button>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              })}
+
+              {unclassified.length > 0 && (
+                <div className="border border-white/10 rounded-2xl overflow-hidden bg-white/[0.02]">
+                  <div className="px-5 py-4 flex items-center gap-3 border-b border-white/[0.06] bg-black/20">
+                    <span className="text-xl">❓</span>
+                    <div>
+                      <span className="text-xs font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border text-gray-400 bg-white/5 border-white/10">Sin clasificar</span>
+                      <span className="text-gray-500 text-xs ml-3">{unclassified.length} lead{unclassified.length !== 1 ? 's' : ''} — webhook pendiente</span>
+                    </div>
+                  </div>
+                  <div className="divide-y divide-white/[0.04]">
+                    {unclassified.map(lead => (
+                      <div key={lead.id} className="px-5 py-3 flex items-center gap-3">
+                        <span className="text-white text-sm font-medium flex-1 truncate">{lead.nombre || 'Sin nombre'}</span>
+                        <span className="text-gray-500 text-xs truncate">{lead.empresa}</span>
+                        <span className="text-gray-600 text-[10px]">El webhook classify-lead clasificará este lead al próximo deploy</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          );
+        })()}
 
         {activeTab === 'contenido' && (
           <div className="space-y-6">
@@ -586,6 +951,125 @@ const savePost = async () => {
                  </table>
                </div>
             </div>
+          </div>
+        )}
+
+        {activeTab === 'estratega' && (
+          <div className="space-y-6">
+            <div className="bg-gradient-to-r from-yellow-500/10 to-transparent border border-yellow-500/20 rounded-2xl p-6 flex items-start justify-between gap-4">
+              <div>
+                <h2 className="text-xl font-bold text-white mb-1 flex items-center gap-2">
+                  <Zap className="w-5 h-5 text-yellow-400" /> Estratega IA
+                </h2>
+                <p className="text-gray-400 text-sm">
+                  Analiza el pipeline y genera recomendaciones tácticas B2B para los próximos 7 días,
+                  basadas en neuromarketing y los 4 buyer personas de CSSG.
+                </p>
+              </div>
+              <button
+                onClick={analyzePipeline}
+                disabled={analyzingPipeline || leads.length === 0}
+                className="flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold bg-yellow-500/15 text-yellow-400 border border-yellow-500/30 hover:bg-yellow-500/25 transition-all disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer shrink-0"
+              >
+                {analyzingPipeline
+                  ? <><RefreshCw className="w-4 h-4 animate-spin" /> Analizando…</>
+                  : <><Zap className="w-4 h-4" /> Analizar Pipeline</>}
+              </button>
+            </div>
+
+            {tacticError && (
+              <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-4 text-red-400 text-sm">
+                Error al conectar con el agente: {tacticError}. Verifica que VITE_CRON_SECRET esté configurado.
+              </div>
+            )}
+
+            {!tacticResult && !analyzingPipeline && !tacticError && (
+              <div className="bg-white/[0.02] border border-white/[0.06] rounded-xl p-10 text-center">
+                <BarChart3 className="w-10 h-10 text-gray-600 mx-auto mb-3" />
+                <p className="text-gray-500 text-sm">Haz clic en "Analizar Pipeline" para obtener recomendaciones tácticas personalizadas.</p>
+                <p className="text-gray-600 text-xs mt-1">{leads.length} leads cargados en el CRM</p>
+              </div>
+            )}
+
+            {analyzingPipeline && (
+              <div className="bg-white/[0.02] border border-white/[0.06] rounded-xl p-10 text-center">
+                <div className="w-8 h-8 border-2 border-yellow-500/40 border-t-yellow-400 rounded-full animate-spin mx-auto mb-3" />
+                <p className="text-gray-400 text-sm">El agente está analizando el pipeline y construyendo recomendaciones…</p>
+              </div>
+            )}
+
+            {tacticResult && !analyzingPipeline && (
+              <div className="space-y-4">
+                <div className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-5">
+                  <p className="text-xs uppercase tracking-widest text-gray-500 mb-2 font-bold">Diagnóstico del pipeline</p>
+                  <p className="text-white text-sm leading-relaxed">{tacticResult.resumen_pipeline}</p>
+                </div>
+
+                {tacticResult.alerta_churn && (
+                  <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-4 flex items-start gap-3">
+                    <span className="text-red-400 text-lg shrink-0">⚠️</span>
+                    <div>
+                      <p className="text-xs uppercase tracking-widest text-red-400 mb-1 font-bold">Alerta de riesgo</p>
+                      <p className="text-red-300 text-sm">{tacticResult.alerta_churn}</p>
+                    </div>
+                  </div>
+                )}
+
+                {tacticResult.oportunidad_rapida && (
+                  <div className="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-4 flex items-start gap-3">
+                    <span className="text-emerald-400 text-lg shrink-0">⚡</span>
+                    <div>
+                      <p className="text-xs uppercase tracking-widest text-emerald-400 mb-1 font-bold">Oportunidad rápida esta semana</p>
+                      <p className="text-emerald-300 text-sm">{tacticResult.oportunidad_rapida}</p>
+                    </div>
+                  </div>
+                )}
+
+                <div>
+                  <p className="text-xs uppercase tracking-widest text-gray-500 mb-3 font-bold">
+                    Recomendaciones tácticas ({tacticResult.recomendaciones?.length || 0})
+                  </p>
+                  <div className="space-y-3">
+                    {(tacticResult.recomendaciones || []).map((rec: any, i: number) => (
+                      <motion.div
+                        key={i}
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: i * 0.08 }}
+                        className="bg-white/[0.03] border border-white/[0.06] rounded-xl p-5 hover:bg-white/[0.05] transition-colors"
+                      >
+                        <div className="flex items-center gap-2 flex-wrap mb-3">
+                          <span className={`text-[10px] font-bold uppercase px-2 py-0.5 rounded-full border ${TACTIC_PRIORITY_COLOR[rec.prioridad] || TACTIC_PRIORITY_COLOR.media}`}>
+                            {rec.prioridad}
+                          </span>
+                          {rec.bp_target !== 'todos' && (
+                            <span className="text-[10px] font-bold uppercase px-2 py-0.5 rounded-full bg-sky-500/10 text-sky-400 border border-sky-500/20">
+                              BP{rec.bp_target}
+                            </span>
+                          )}
+                          <span className="text-[10px] text-gray-500 font-medium">
+                            {TACTIC_CANAL_ICON[rec.canal] || '🎯'} {rec.canal}
+                          </span>
+                        </div>
+                        <p className="text-white font-semibold text-sm mb-2">{rec.titulo}</p>
+                        <p className="text-gray-300 text-sm leading-relaxed mb-3">{rec.accion_concreta}</p>
+                        <div className="bg-black/20 rounded-lg p-3 border-l-2 border-yellow-500/40">
+                          <p className="text-[11px] text-yellow-400/80 font-medium uppercase tracking-wider mb-1">Por qué funciona</p>
+                          <p className="text-gray-400 text-xs leading-relaxed">{rec.razon_neuropsicologica}</p>
+                        </div>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => setTacticResult(null)}
+                  className="text-xs text-gray-600 hover:text-gray-400 transition-colors cursor-pointer"
+                >
+                  Limpiar resultados
+                </button>
+              </div>
+            )}
           </div>
         )}
 

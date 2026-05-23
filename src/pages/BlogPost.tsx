@@ -15,11 +15,69 @@ const LOCALES = {
   en: enBlog.blog
 };
 
+type FaqItem = { question: string; answer: string };
+
+function injectSeoTags(slug: string, post: { title: string; excerpt?: string; image?: string; created_at?: string; date?: string }, faq: FaqItem[]) {
+  const canonicalUrl = `https://cssg-global.com/blog/${slug}`;
+  const ids = ['blog-canonical', 'blog-article-ld', 'blog-faq-ld'];
+
+  // Canonical
+  let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+  if (!canonical) {
+    canonical = document.createElement('link');
+    canonical.rel = 'canonical';
+    canonical.id = 'blog-canonical';
+    document.head.appendChild(canonical);
+  }
+  const prevCanonical = canonical.href;
+  canonical.href = canonicalUrl;
+
+  // Article schema
+  const articleScript = document.createElement('script');
+  articleScript.type = 'application/ld+json';
+  articleScript.id = 'blog-article-ld';
+  articleScript.textContent = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.excerpt || '',
+    image: post.image || 'https://cssg-global.com/images/default-blog.png',
+    datePublished: post.created_at || post.date || new Date().toISOString(),
+    author: { '@type': 'Organization', name: 'CSSG', url: 'https://cssg-global.com' },
+    publisher: { '@type': 'Organization', name: 'CSSG', logo: { '@type': 'ImageObject', url: 'https://cssg-global.com/logo.png' } },
+    mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
+  });
+  document.head.appendChild(articleScript);
+
+  // FAQPage schema
+  if (faq.length > 0) {
+    const faqScript = document.createElement('script');
+    faqScript.type = 'application/ld+json';
+    faqScript.id = 'blog-faq-ld';
+    faqScript.textContent = JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faq.map(f => ({
+        '@type': 'Question',
+        name: f.question,
+        acceptedAnswer: { '@type': 'Answer', text: f.answer },
+      })),
+    });
+    document.head.appendChild(faqScript);
+  }
+
+  return () => {
+    ids.forEach(id => document.getElementById(id)?.remove());
+    if (prevCanonical && canonical) canonical.href = prevCanonical;
+  };
+}
+
 export default function BlogPost() {
   const { i18n } = useTranslation();
   const { slug } = useParams();
   const [post, setPost] = useState<BlogEntry | null>(null);
   const [content, setContent] = useState<string>('');
+  const [faq, setFaq] = useState<FaqItem[]>([]);
   const [loading, setLoading] = useState(true);
 
   const currentLang = (i18n.language || 'es').startsWith('en') ? 'en' : 'es';
@@ -68,14 +126,22 @@ export default function BlogPost() {
           image: data.image_url || data.image || hcPost?.image || 'https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=1200&q=80'
         });
         setContent(data.content);
+        setFaq(Array.isArray(data.faq) ? data.faq : []);
       } else if (hcPost) {
         setPost(hcPost);
         setContent(t(`blog.articles.${slug}`));
+        setFaq([]);
       }
       setLoading(false);
     };
     fetchPost();
   }, [slug, currentLang]);
+
+  // Inyectar canonical + Article/FAQPage JSON-LD en el <head>
+  useEffect(() => {
+    if (!post || !slug) return;
+    return injectSeoTags(slug, post as any, faq);
+  }, [post, slug, faq]);
 
   if (loading) return <div className="min-h-screen bg-[#030305]" />;
 

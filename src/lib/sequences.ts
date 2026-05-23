@@ -76,6 +76,58 @@ export const SEQUENCES: Record<string, Sequence> = {
       { day: 0, templateKey: 'escudo_diplomatico_1', scoreBonus: 0 },
     ],
   },
+
+  // ─── Secuencias OUTBOUND (leads scrapeados, no inbound) ───────────────
+  // Arco: miedo → dolor → prueba social → CTA bajo fricción → urgencia pérdida → ask directo (BP1)
+  // REGLA: NUNCA activar estas secuencias en leads inbound (distintas reglas de tono)
+
+  bp1: {
+    id: 'bp1',
+    name: 'Outbound BP1 — Ricardo (El Guardián)',
+    emails: [
+      { day: 0,  templateKey: 'bp1_outbound_1', scoreBonus: 0  }, // Miedo: incidente que destruye contrato
+      { day: 2,  templateKey: 'bp1_outbound_2', scoreBonus: 5  }, // Dolor: ¿cómo documenta su gestión hoy?
+      { day: 6,  templateKey: 'bp1_outbound_3', scoreBonus: 10 }, // Prueba social: embajada G7 sin incidentes
+      { day: 13, templateKey: 'bp1_outbound_4', scoreBonus: 15 }, // CTA: muestra Informe Ejecutivo Mensual
+      { day: 20, templateKey: 'bp1_outbound_5', scoreBonus: 5  }, // Urgencia: costo de cada mes sin KPIs
+      { day: 29, templateKey: 'bp1_outbound_6', scoreBonus: 10 }, // Ask directo: reunión de par a par
+    ],
+  },
+
+  bp2: {
+    id: 'bp2',
+    name: 'Outbound BP2 — Ana (La Administradora)',
+    emails: [
+      { day: 0,  templateKey: 'bp2_outbound_1', scoreBonus: 0  }, // Miedo: cobro excesivo sin poder verificar
+      { day: 2,  templateKey: 'bp2_outbound_2', scoreBonus: 5  }, // Dolor: la última factura con cargos sin explicar
+      { day: 6,  templateKey: 'bp2_outbound_3', scoreBonus: 10 }, // Prueba social: condominio redujo factura 40%
+      { day: 13, templateKey: 'bp2_outbound_4', scoreBonus: 15 }, // CTA: diagnóstico gratuito 8 preguntas
+      { day: 20, templateKey: 'bp2_outbound_5', scoreBonus: 5  }, // Urgencia: ahorro acumulado que pierde cada mes
+    ],
+  },
+
+  bp3: {
+    id: 'bp3',
+    name: 'Outbound BP3 — Julio (El Estratega)',
+    emails: [
+      { day: 0,  templateKey: 'bp3_outbound_1', scoreBonus: 0  }, // Miedo: vendor que falla auditoría DSS/OSAC
+      { day: 4,  templateKey: 'bp3_outbound_2', scoreBonus: 5  }, // Dolor: ¿su documentación está HQ-ready?
+      { day: 9,  templateKey: 'bp3_outbound_3', scoreBonus: 10 }, // Prueba social: ESRM framework post-transición
+      { day: 17, templateKey: 'bp3_outbound_4', scoreBonus: 15 }, // CTA: muestra SC1 Compliance Package
+      { day: 27, templateKey: 'bp3_outbound_5', scoreBonus: 10 }, // Urgencia: CPEs vencen, legado sin documentar
+    ],
+  },
+
+  bp4: {
+    id: 'bp4',
+    name: 'Outbound BP4 — Carlos (El Venezolano Global)',
+    emails: [
+      { day: 0,  templateKey: 'bp4_outbound_1', scoreBonus: 0  }, // Miedo: el ejecutivo que llegó sin protocolo
+      { day: 3,  templateKey: 'bp4_outbound_2', scoreBonus: 5  }, // Dolor: ¿qué pasa con su equipo si algo ocurre?
+      { day: 9,  templateKey: 'bp4_outbound_3', scoreBonus: 10 }, // Prueba social: cobertura aeropuerto+estadía
+      { day: 19, templateKey: 'bp4_outbound_4', scoreBonus: 15 }, // CTA: PDF Protocolo ejecutivos en Venezuela
+    ],
+  },
 };
 
 // ═══════════════════════════════════════════════
@@ -229,6 +281,45 @@ export async function pauseSequence(leadId: string): Promise<void> {
     .update({ completed: true })
     .eq('lead_id', leadId)
     .eq('completed', false);
+}
+
+/**
+ * Inicia la secuencia outbound correcta para un lead scrapeado.
+ * Valida que no tenga secuencia activa y que no esté dado de baja antes de enviar.
+ */
+export async function startOutboundSequence(
+  leadId: string,
+  leadEmail: string,
+  leadName: string,
+  bp: 1 | 2 | 3 | 4,
+  empresa?: string,
+): Promise<{ started: boolean; reason?: string }> {
+  // Verificar que no tenga ya una secuencia activa
+  const { data: existing } = await supabase
+    .from('email_sequences')
+    .select('id')
+    .eq('lead_id', leadId)
+    .eq('completed', false)
+    .limit(1);
+
+  if (existing && existing.length > 0) {
+    return { started: false, reason: 'Lead ya tiene secuencia activa' };
+  }
+
+  // Verificar que el lead no haya dado de baja
+  const { data: lead } = await supabase
+    .from('leads')
+    .select('unsubscribed')
+    .eq('id', leadId)
+    .single();
+
+  if ((lead as any)?.unsubscribed) {
+    return { started: false, reason: 'Lead dado de baja (unsubscribed)' };
+  }
+
+  const sequenceKey = `bp${bp}` as keyof typeof SEQUENCES;
+  await startSequence(leadId, leadEmail, leadName, sequenceKey, empresa);
+  return { started: true };
 }
 
 /**
