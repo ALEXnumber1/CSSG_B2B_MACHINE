@@ -487,6 +487,618 @@ const sequenceTemplates: Record<string, { subject: string | ((nombre: string, em
 
   // ── ESCUDO DIPLOMATICO: 1 email ──
   escudo_diplomatico_1: templates.escudo_diplomatico,
+
+  // ════════════════════════════════════════════════════════════════════════
+  // SECUENCIAS OUTBOUND — Leads scrapeados (frío)
+  // Tono: profesional outbound. NUNCA frases de inbound ("gracias por contactarnos").
+  // Arco: miedo → dolor → prueba social → CTA baja fricción → urgencia → ask directo
+  // ════════════════════════════════════════════════════════════════════════
+
+  // ── BP1 OUTBOUND: Ricardo Campos — El Guardián (6 emails) ──────────────
+  // Lenguaje obligatorio: KPIs, cogestión, ISO 31000, OSAC, renovación de contrato
+
+  bp1_outbound_1: {
+    subject: 'Un gerente de seguridad sin informe ejecutivo puede perder su contrato',
+    html: (nombre) => baseTemplate(`
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">Estimado ${nombre},</p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        En Venezuela, el principal motivo de no renovación de contratos de gerentes de seguridad no
+        es un incidente operativo. Es la <strong style="color:#0F172A;">incapacidad de demostrar su gestión</strong>
+        ante quienes toman la decisión.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Cuando llega la auditoría o la reunión de renovación, la pregunta no es "¿hubo algún problema?"
+        sino "¿puede mostrarme los KPIs del último trimestre?" — y la mayoría no tiene respuesta documentada.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        El 2026 trajo nuevas exigencias de cumplimiento DSS y OSAC para organizaciones con presencia
+        diplomática en Venezuela. Los gerentes que no tengan documentación de gestión lista para su
+        directivo en los próximos 90 días enfrentan una conversación muy difícil.
+      </p>
+      <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
+        CSSG — Company Of Security And Service Global C.A.<br>
+        operaciones@cssg-global.com · cssg-global.com
+      </p>
+      <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">Si prefiere no recibir más información de CSSG, responda con la palabra DETENER.</p>
+    `),
+  },
+
+  bp1_outbound_2: {
+    subject: '¿Cómo documenta hoy su gestión de seguridad ante la junta directiva?',
+    html: (nombre) => baseTemplate(`
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">Estimado ${nombre},</p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Una pregunta directa: si hoy su Director General o Embajador le pidiera
+        un reporte ejecutivo de la gestión de seguridad del último trimestre,
+        <strong style="color:#0F172A;">¿cuánto tiempo le tomaría tenerlo listo?</strong>
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Los gerentes de seguridad que responden "dos horas o menos" tienen algo en común:
+        su gestión opera bajo un sistema que documenta KPIs en tiempo real, no cuando la
+        auditoría ya está encima.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        La diferencia entre un gerente de seguridad que renueva su contrato año tras año y uno
+        que no, raramente está en los incidentes. Está en la <strong style="color:#0F172A;">visibilidad
+        de su gestión ante quien decide.</strong>
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        En CSSG trabajamos con gerentes de seguridad bajo un modelo de cogestión donde
+        la documentación y los KPIs son parte del servicio — no trabajo adicional para usted.
+      </p>
+      <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
+        CSSG — operaciones@cssg-global.com · cssg-global.com
+      </p>
+      <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">Si prefiere no recibir más información de CSSG, responda con la palabra DETENER.</p>
+    `),
+  },
+
+  bp1_outbound_3: {
+    subject: 'De "centro de costos" a "activo estratégico": un caso real en Caracas',
+    html: (nombre) => baseTemplate(`
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">Estimado ${nombre},</p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        <strong style="color:#0F172A;">El desafío:</strong> Un gerente de seguridad de una organización
+        internacional en Chacao llegó a la reunión anual de renovación con un contrato en riesgo.
+        Su directivo regional, recién llegado de sede central, solicitó el reporte de KPIs del año,
+        el registro de incidentes con resolución documentada y la evidencia de alineación con OSAC.
+        No existía ninguno de los tres.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        <strong style="color:#0F172A;">La intervención:</strong> CSSG implementó cogestión operativa
+        bajo su dirección durante 60 días: Informe Ejecutivo Mensual con su firma, Dashboard de KPIs
+        en tiempo real y alineación documental con los estándares OSAC e ISO 31000.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        <strong style="color:#10B981;">El resultado:</strong> Contrato renovado con aumento
+        presupuestario del 15%. El directivo regional presentó el modelo de gestión como
+        referencia para otras sedes de la región. El gerente pasó de estar en riesgo de no
+        renovación a ser propuesto como modelo de buenas prácticas.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Este es exactamente el tipo de trabajo que hacemos en CSSG: operar bajo su mando,
+        hacerlo brillar ante su directivo.
+      </p>
+      <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
+        CSSG — operaciones@cssg-global.com · cssg-global.com
+      </p>
+      <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">Si prefiere no recibir más información de CSSG, responda con la palabra DETENER.</p>
+    `),
+  },
+
+  bp1_outbound_4: {
+    subject: 'Muestra gratuita: así luce el Informe Ejecutivo Mensual que usamos',
+    html: (nombre) => baseTemplate(`
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">Estimado ${nombre},</p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Queremos mostrarle algo concreto. El Informe Ejecutivo Mensual que entregamos a nuestros
+        clientes tiene una característica que los gerentes de seguridad valoran especialmente:
+        <strong style="color:#0F172A;">lleva el nombre del gerente, no el de CSSG.</strong>
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Dos páginas, lenguaje ejecutivo, KPIs visuales y resumen de gestión listo para
+        presentar ante cualquier directivo. Es el documento que hace que quien lo firma
+        sea percibido como el estratega — no el responsable de guardias.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Si quiere ver un ejemplo del formato, responda a este correo y le envío una muestra
+        en menos de 24 horas. Sin compromiso.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        También puede solicitar una sesión de 15 minutos para ver el Dashboard de KPIs
+        en tiempo real — el mismo que usamos con organizaciones internacionales en Chacao y Baruta.
+      </p>
+      <div style="text-align:left;margin:24px 0;">
+        <a href="mailto:operaciones@cssg-global.com?subject=Muestra%20Informe%20Ejecutivo" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
+          Solicitar muestra del Informe
+        </a>
+      </div>
+      <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
+        CSSG — operaciones@cssg-global.com · cssg-global.com
+      </p>
+      <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">Si prefiere no recibir más información de CSSG, responda con la palabra DETENER.</p>
+    `),
+  },
+
+  bp1_outbound_5: {
+    subject: 'Cada mes sin KPIs documentados es un mes más cerca de perder la renovación',
+    html: (nombre) => baseTemplate(`
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">Estimado ${nombre},</p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Si su próxima reunión de renovación de contrato es en los próximos 6 meses,
+        el tiempo para construir un historial de gestión documentada se está acabando.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Los directivos y embajadores que aprueban contratos de seguridad en 2026 no solo
+        preguntan "¿hubo incidentes?". Preguntan: ¿tiene alineación con OSAC?,
+        ¿puede mostrarme el dashboard de KPIs?, ¿está su gestión documentada bajo ISO 31000?
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Un gerente de seguridad que llega a esa reunión con documentación sólida bajo su
+        nombre renueva. Uno que llega con buenas intenciones pero sin evidencia pierde —
+        <strong style="color:#0F172A;">incluso si no hubo ningún incidente en el año.</strong>
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        En CSSG podemos implementar el sistema de cogestión y documentación en 30 días.
+        ¿Le interesa una conversación de 15 minutos esta semana?
+      </p>
+      <div style="text-align:left;margin:24px 0;">
+        <a href="mailto:operaciones@cssg-global.com?subject=Conversacion%2015%20min%20-%20BP1" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
+          Agendar 15 minutos
+        </a>
+      </div>
+      <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
+        CSSG — operaciones@cssg-global.com · cssg-global.com
+      </p>
+      <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">Si prefiere no recibir más información de CSSG, responda con la palabra DETENER.</p>
+    `),
+  },
+
+  bp1_outbound_6: {
+    subject: '¿Conversamos 15 minutos esta semana? — De colega a colega',
+    html: (nombre) => baseTemplate(`
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">Estimado ${nombre},</p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Le he escrito en las últimas semanas sobre documentación de gestión, KPIs y
+        renovación de contratos — temas que creo son relevantes para cualquier gerente
+        de seguridad en Venezuela en 2026.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        No es un pitch de ventas. Es una conversación entre dos profesionales del sector
+        de seguridad. En CSSG tenemos un modelo de cogestión que ha funcionado con
+        organizaciones internacionales en Chacao y Baruta, y quiero contarle cómo
+        funciona en 15 minutos — usted decide si tiene sentido para su contexto.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Si no es el momento adecuado, lo entiendo completamente. Pero si tiene
+        15 minutos esta semana, le invito a que hablemos.
+      </p>
+      <div style="text-align:left;margin:24px 0;">
+        <a href="mailto:operaciones@cssg-global.com?subject=15%20min%20-%20cogestión" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
+          Proponer horario
+        </a>
+      </div>
+      <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
+        CSSG — operaciones@cssg-global.com · cssg-global.com
+      </p>
+      <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">Si prefiere no recibir más información de CSSG, responda con la palabra DETENER.</p>
+    `),
+  },
+
+  // ── BP2 OUTBOUND: Ana Castillo — La Administradora (5 emails) ──────────
+  // REGLA CRÍTICA: CERO términos técnicos de seguridad. Precio fijo, sencillez, rapidez.
+
+  bp2_outbound_1: {
+    subject: '¿Alguien puede explicarle ese cargo extra de la última factura de seguridad?',
+    html: (nombre) => baseTemplate(`
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">Estimado/a ${nombre},</p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Según estudios del sector en Venezuela, el 70% de las empresas y edificios
+        paga un promedio de 30% más de lo que debería en sus servicios de vigilancia
+        y seguridad. Y la mayoría no lo sabe — porque nadie se lo explica claramente.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Las facturas llegan con cargos de "supervisión adicional", "horas extra de protocolo"
+        o "mantenimiento de equipos" sin que nadie haya aprobado esos servicios previamente.
+        Cuando se llama para preguntar, la respuesta es vaga o simplemente nadie contesta.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        No debería funcionar así. Una empresa seria le entrega una factura de 3 renglones,
+        un precio fijo mensual sin sorpresas, y contesta cuando la llaman.
+      </p>
+      <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
+        CSSG — operaciones@cssg-global.com · cssg-global.com
+      </p>
+      <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">Si prefiere no recibir más información de CSSG, responda con la palabra DETENER.</p>
+    `),
+  },
+
+  bp2_outbound_2: {
+    subject: 'El fin de semana en que la empresa de seguridad no contestó',
+    html: (nombre) => baseTemplate(`
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">Estimado/a ${nombre},</p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Son las 11 PM de un sábado. Un propietario llama para reportar que el guardia del
+        turno nocturno no aparece por los pasillos desde hace dos horas. Usted llama a la
+        empresa de seguridad. Nadie contesta. El lunes le explican que hubo "un problema
+        de turno" — y que viene reflejado en la factura del mes con un cargo adicional.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Esta situación la vivió más de la mitad de los administradores en Caracas el año pasado.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        En CSSG tenemos supervisión en tiempo real — usted puede ver desde su teléfono
+        dónde está cada guardia, cuándo hizo cada ronda. Y si llama, le contestamos.
+      </p>
+      <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
+        CSSG — operaciones@cssg-global.com · cssg-global.com
+      </p>
+      <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">Si prefiere no recibir más información de CSSG, responda con la palabra DETENER.</p>
+    `),
+  },
+
+  bp2_outbound_3: {
+    subject: 'Cómo un edificio en Caracas redujo su factura de seguridad en un 38%',
+    html: (nombre) => baseTemplate(`
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">Estimado/a ${nombre},</p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        <strong style="color:#0F172A;">El problema:</strong> Un edificio residencial en el este
+        de Caracas llevaba 2 años con la misma empresa de vigilancia. La factura subía cada
+        trimestre con cargos que la administradora no podía explicar ante la junta de propietarios.
+        Los guardias raramente completaban las rondas. Cuando había un problema, tardaban 40 minutos
+        en responder.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        <strong style="color:#0F172A;">Lo que hicimos:</strong> Un diagnóstico gratuito de
+        30 minutos reveló que el edificio pagaba por servicios que no recibía. Implementamos
+        supervisión en tiempo real y precio fijo mensual con contrato de 3 renglones.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        <strong style="color:#10B981;">El resultado:</strong> 38% de reducción en la factura
+        mensual sin reducir el personal. El reporte mensual de 1 página que la administradora
+        puede reenviar directamente a la junta sin editar. Cero llamadas sin respuesta desde entonces.
+      </p>
+      <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
+        CSSG — operaciones@cssg-global.com · cssg-global.com
+      </p>
+      <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">Si prefiere no recibir más información de CSSG, responda con la palabra DETENER.</p>
+    `),
+  },
+
+  bp2_outbound_4: {
+    subject: 'Diagnóstico gratuito: ¿cuánto está pagando de más? (5 minutos, 8 preguntas)',
+    html: (nombre) => baseTemplate(`
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">Estimado/a ${nombre},</p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Tenemos una herramienta gratuita que en 8 preguntas y 5 minutos le dice
+        si su servicio de vigilancia actual está dentro del rango correcto de precio
+        y calidad para Venezuela.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        El resultado llega en semáforo: <strong style="color:#10B981;">verde</strong> si
+        todo está bien, <strong style="color:#EAB308;">amarillo</strong> si hay oportunidades
+        de mejora, <strong style="color:#EF4444;">rojo</strong> si hay cobros que deberían
+        revisarse de inmediato.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        No le pedimos datos confidenciales ni nombre de su empresa. Solo 8 preguntas
+        sobre cómo funciona su servicio actualmente.
+      </p>
+      <div style="text-align:left;margin:24px 0;">
+        <a href="https://cssg-global.com/consultoria" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
+          Hacer el diagnóstico gratuito
+        </a>
+      </div>
+      <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
+        CSSG — operaciones@cssg-global.com · cssg-global.com
+      </p>
+      <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">Si prefiere no recibir más información de CSSG, responda con la palabra DETENER.</p>
+    `),
+  },
+
+  bp2_outbound_5: {
+    subject: 'Cada mes sin revisar su factura de seguridad es dinero que no vuelve',
+    html: (nombre) => baseTemplate(`
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">Estimado/a ${nombre},</p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Si paga, por ejemplo, $800 al mes en vigilancia y está pagando un 30% de más,
+        eso son <strong style="color:#0F172A;">$2,880 al año</strong> que salen de su
+        presupuesto sin justificación.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        No importa si lleva 1 año o 5 años con el mismo proveedor — nunca es tarde para
+        hacer una revisión. El diagnóstico gratuito que le ofrecemos no requiere cambiar
+        de empresa ni firmar nada. Solo le muestra si lo que paga corresponde a lo que recibe.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Si quiere que un especialista lo revise directamente con usted, puede escribirnos
+        a este correo o solicitar una llamada de 15 minutos.
+      </p>
+      <div style="text-align:left;margin:24px 0;">
+        <a href="mailto:operaciones@cssg-global.com?subject=Revisión%20factura%20seguridad" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
+          Solicitar revisión gratuita
+        </a>
+      </div>
+      <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
+        CSSG — operaciones@cssg-global.com · cssg-global.com
+      </p>
+      <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">Si prefiere no recibir más información de CSSG, responda con la palabra DETENER.</p>
+    `),
+  },
+
+  // ── BP3 OUTBOUND: Julio Marval — El Estratega (5 emails) ───────────────
+  // REGLA CRÍTICA: Inglés técnico obligatorio. ESRM, DSS, OSAC, ISO 31000, CPP.
+
+  bp3_outbound_1: {
+    subject: 'When your Venezuelan vendor fails the DSS audit — and you weren\'t warned',
+    html: (nombre) => baseTemplate(`
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">Dear ${nombre},</p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        The most common compliance gap we see in LATAM security operations is not an
+        operational failure — it's a <strong style="color:#0F172A;">documentation gap
+        that surfaces during the DSS or OSAC review cycle.</strong>
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Local vendors in Venezuela can operate competently on the ground. But when HQ
+        requests the post-incident report in English, the OSAC self-assessment, or the
+        ISO 31000-aligned risk register, the gap becomes visible — and it's the Security
+        Manager who answers for it, not the vendor.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        In 2026, OSAC regional priorities for Venezuela have shifted. Security operations
+        that aren't already aligned with the updated DSS compliance checklist are running
+        a documentation risk that won't surface until the review is already underway.
+      </p>
+      <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
+        CSSG — operaciones@cssg-global.com · cssg-global.com
+      </p>
+      <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">If you prefer not to receive further communications from CSSG, reply with STOP.</p>
+    `),
+  },
+
+  bp3_outbound_2: {
+    subject: 'Is your Venezuela security operation HQ-ready today?',
+    html: (nombre) => baseTemplate(`
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">Dear ${nombre},</p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        One question that exposes most LATAM security programs:
+      </p>
+      <p style="color:#0F172A;font-size:16px;line-height:1.7;margin:0 0 16px;font-weight:600;font-style:italic;">
+        "If HQ scheduled an unannounced DSS review for next week, how much of your
+        Venezuela documentation is already in English and ready for submission?"
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        For most Security Managers operating in Venezuela, the honest answer involves
+        at least 2-3 weeks of documentation work before they'd feel confident. That's
+        the window where a compliance gap can damage a career.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        At CSSG, we work embedded with LATAM Security Managers as a co-managed ESRM
+        partner. Our SC1 Compliance Package keeps your Venezuela operation continuously
+        HQ-ready: DSS checklist, OSAC self-assessment, and ISO 31000 risk register —
+        in English, updated monthly, ready for submission.
+      </p>
+      <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
+        CSSG — operaciones@cssg-global.com · cssg-global.com
+      </p>
+      <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">If you prefer not to receive further communications from CSSG, reply with STOP.</p>
+    `),
+  },
+
+  bp3_outbound_3: {
+    subject: 'How we helped a LATAM CSO pass DSS review after a failed first attempt',
+    html: (nombre) => baseTemplate(`
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">Dear ${nombre},</p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        <strong style="color:#0F172A;">The challenge:</strong> A LATAM Security Manager
+        for a multinational with Venezuela operations failed the first DSS compliance
+        review due to documentation gaps — post-incident reports not in English, no
+        OSAC self-assessment on file, and a risk register that didn't align with
+        ISO 31000 framework requirements.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        <strong style="color:#0F172A;">The intervention:</strong> CSSG deployed our SC1
+        Compliance Package, rebuilding the documentation layer from the ground up:
+        bilingual post-incident reporting (4-hour SLA), OSAC-aligned self-assessment,
+        and monthly KPI dashboard formatted for HQ submission.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        <strong style="color:#10B981;">The result:</strong> Passed the DSS review in the
+        second cycle. Regional HQ adopted the documentation model as the standard for
+        other LATAM offices. The Security Manager earned recognition from the regional
+        CSO — and their compliance framework survived their own rotation 18 months later.
+      </p>
+      <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
+        CSSG — operaciones@cssg-global.com · cssg-global.com
+      </p>
+      <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">If you prefer not to receive further communications from CSSG, reply with STOP.</p>
+    `),
+  },
+
+  bp3_outbound_4: {
+    subject: 'Sample SC1 Compliance Package: DSS/OSAC/ISO 31000 ready for HQ review',
+    html: (nombre) => baseTemplate(`
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">Dear ${nombre},</p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        We'd like to show you exactly what the SC1 Compliance Package looks like
+        in practice — not a brochure, but the actual document structure your HQ
+        security audit would receive from us.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        The package includes: DSS compliance checklist (Venezuela-specific), OSAC
+        self-assessment formatted for submission, ISO 31000 risk register with
+        monthly update cycle, and post-incident report template with 4-hour SLA.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        If you'd like to see a sample, reply to this email and we'll send it within
+        24 hours. No forms, no sales calls required — just the document.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        We also have an ESRM Readiness Assessment (12-point self-diagnostic) available
+        if you'd like to benchmark your current Venezuela operation before we connect.
+      </p>
+      <div style="text-align:left;margin:24px 0;">
+        <a href="mailto:operaciones@cssg-global.com?subject=SC1%20Sample%20Request" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
+          Request SC1 Sample
+        </a>
+      </div>
+      <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
+        CSSG — operaciones@cssg-global.com · cssg-global.com
+      </p>
+      <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">If you prefer not to receive further communications from CSSG, reply with STOP.</p>
+    `),
+  },
+
+  bp3_outbound_5: {
+    subject: 'The 90-day window: what most Security Managers don\'t realize until it\'s gone',
+    html: (nombre) => baseTemplate(`
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">Dear ${nombre},</p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        The first 90 days in a new security leadership role are the highest-leverage
+        window you'll ever have — and the shortest. During that window, you set the
+        compliance baseline, choose your vendors, and establish the documentation
+        standard that your successor will inherit.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        After 90 days, whatever isn't built is assumed to not exist when HQ asks.
+        And the cost of rebuilding it during an active compliance review cycle is
+        significantly higher — in time, in reputation, and in internal political capital.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        If you're within your first year in your current role and your Venezuela
+        operation doesn't yet have a continuously HQ-ready documentation layer,
+        we should talk. I'd rather have a 15-minute call now than you deal with
+        a compliance gap during your review cycle.
+      </p>
+      <div style="text-align:left;margin:24px 0;">
+        <a href="mailto:operaciones@cssg-global.com?subject=15-min%20call%20-%20Venezuela%20compliance" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
+          Schedule 15-minute call
+        </a>
+      </div>
+      <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
+        CSSG — operaciones@cssg-global.com · cssg-global.com
+      </p>
+      <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">If you prefer not to receive further communications from CSSG, reply with STOP.</p>
+    `),
+  },
+
+  // ── BP4 OUTBOUND: Carlos Mendoza — El Venezolano Global (4 emails) ─────
+  // REGLA CRÍTICA: "Coordinado desde Miami, ejecutado en Caracas". Sin terminología corporativa.
+
+  bp4_outbound_1: {
+    subject: 'El ejecutivo venezolano que llegó a Maiquetía sin que nadie lo esperara',
+    html: (nombre) => baseTemplate(`
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">Estimado ${nombre},</p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        En 2024, un ejecutivo venezolano radicado en Miami tomó un vuelo de negocios
+        a Caracas. Llegó a Maiquetía a las 10 PM, sin coordinación previa, en un taxi
+        que tomó en la terminal sin verificar. Entre el aeropuerto y el hotel, fue
+        víctima de un secuestro exprés que le costó $4,200 y tres horas de su vida.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        No era la primera vez que viajaba a Venezuela. Conocía los riesgos.
+        Pero esa noche "lo manejó como siempre" — improvisando.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Cada año decenas de ejecutivos venezolanos de la diáspora pasan por Venezuela
+        con inversiones, propiedades o equipos locales. La mayoría improvisa la
+        seguridad porque no sabe que existe otra opción coordinada desde Miami.
+      </p>
+      <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
+        CSSG — operaciones@cssg-global.com · cssg-global.com · Miami, FL
+      </p>
+      <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">Si prefiere no recibir más información de CSSG, responda con la palabra DETENER.</p>
+    `),
+  },
+
+  bp4_outbound_2: {
+    subject: '¿Qué pasaría con su equipo en Venezuela si ocurre algo ahora?',
+    html: (nombre) => baseTemplate(`
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">Estimado ${nombre},</p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Una pregunta que la mayoría de venezolanos en Miami evita hacerse:
+      </p>
+      <p style="color:#0F172A;font-size:16px;line-height:1.7;margin:0 0 16px;font-weight:600;font-style:italic;">
+        "Si esta noche ocurre algo que afecte a su equipo o sus activos en Venezuela,
+        ¿a quién llama? ¿Cuánto tarda en responder?"
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        La realidad es que la mayoría no tiene un número de emergencia real que
+        funcione a las 2 AM. Tienen el celular personal de alguien de confianza
+        — que quizás contesta, quizás no.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        En CSSG operamos en Caracas con respuesta 24/7 y coordinación desde Miami.
+        Cuando algo ocurre con su equipo o sus activos en Venezuela, usted llama
+        a un número que siempre contesta — y la respuesta ya está coordinada
+        desde este lado antes de que cuelgue.
+      </p>
+      <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
+        CSSG — operaciones@cssg-global.com · cssg-global.com · Miami, FL
+      </p>
+      <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">Si prefiere no recibir más información de CSSG, responda con la palabra DETENER.</p>
+    `),
+  },
+
+  bp4_outbound_3: {
+    subject: 'Coordinado desde Miami, ejecutado en Caracas: así funciona',
+    html: (nombre) => baseTemplate(`
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">Estimado ${nombre},</p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        <strong style="color:#0F172A;">La situación:</strong> Un empresario venezolano
+        radicado en Doral tenía un viaje de trabajo a Caracas con reuniones en La Castellana.
+        Su última visita había sido improvisada — llegó en taxi de Maiquetía a las 8 PM
+        y tardó 2 horas más de lo previsto. No quería repetirlo.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        <strong style="color:#0F172A;">Lo que coordinamos:</strong> Desde Miami activamos
+        su protocolo 48 horas antes del vuelo: briefing de situación de seguridad en Caracas
+        esa semana, traslado verificado desde Maiquetía con nuestro equipo esperándolo,
+        y cobertura discreta durante sus reuniones. Su equipo local tuvo nuestro número
+        de emergencia activo durante toda la estadía.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        <strong style="color:#10B981;">El resultado:</strong> Llegó, hizo sus reuniones,
+        regresó. Sin improviso, sin stress. "Por primera vez en años salí de Venezuela
+        sin la sensación de haber tenido suerte."
+      </p>
+      <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
+        CSSG — operaciones@cssg-global.com · cssg-global.com · Miami, FL
+      </p>
+      <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">Si prefiere no recibir más información de CSSG, responda con la palabra DETENER.</p>
+    `),
+  },
+
+  bp4_outbound_4: {
+    subject: 'PDF gratuito: Protocolo de seguridad para ejecutivos que viajan a Venezuela',
+    html: (nombre) => baseTemplate(`
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">Estimado ${nombre},</p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Tenemos un protocolo de 2 páginas que les damos a los ejecutivos antes de
+        viajar a Venezuela. Cubre lo que debe hacer antes de salir de Miami,
+        lo que no debe improvisar al llegar a Maiquetía, y el número que debe
+        tener activo durante toda su estadía.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Es gratuito. No tiene forma ni registro. Solo responda a este correo con
+        "Protocolo" y se lo enviamos de vuelta en minutos.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Si además quiere conversar sobre su próximo viaje o la situación de su
+        equipo en Venezuela, coordinamos una llamada de 15 minutos desde Miami
+        cuando sea conveniente para usted.
+      </p>
+      <div style="text-align:left;margin:24px 0;">
+        <a href="mailto:operaciones@cssg-global.com?subject=Protocolo%20Venezuela" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
+          Solicitar protocolo gratuito
+        </a>
+      </div>
+      <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
+        CSSG — operaciones@cssg-global.com · cssg-global.com · Miami, FL
+      </p>
+      <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">Si prefiere no recibir más información de CSSG, responda con la palabra DETENER.</p>
+    `),
+  },
 };
 
 // ═══════════ FUNCIÓN DE ENVÍO PARA SECUENCIAS ═══════════
