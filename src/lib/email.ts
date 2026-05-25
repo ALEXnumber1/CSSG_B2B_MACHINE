@@ -1,15 +1,19 @@
 /**
  * Módulo de Email Nurturing — CSSG
  * 
- * Usa Resend API para enviar emails automáticos post-captura.
- * Para activar: agregar VITE_RESEND_API_KEY en .env.local
+ * ⚠️  SEGURIDAD: La RESEND_API_KEY NO se usa en el frontend.
+ * Todas las llamadas de email pasan por /api/send-email (Vercel Function).
+ * La clave nunca se expone en el bundle de producción.
  * 
  * Documentación: https://resend.com/docs
  */
 
-const RESEND_API_KEY = import.meta.env.VITE_RESEND_API_KEY || '';
-// CAMBIO IMPORTANTE: Una vez verificado el dominio en Resend, cambiar esto a 'Nombre <info@cssg-global.com>'
-const FROM_EMAIL = 'CSSG <operaciones@cssg-global.com>'; // Update with verified domain 
+// La API key ahora vive únicamente en el servidor (variables de entorno de Vercel)
+// El frontend llama a /api/send-email en su lugar
+const EMAIL_API = '/api/send-email';
+
+// El FROM_EMAIL se configura ahora en /api/send-email (servidor)
+// Actualizar en api/send-email.js: const FROM_EMAIL = 'CSSG <info@cssg-global.com>'
 
 // ═══════════ TEMPLATES ═══════════
 
@@ -193,36 +197,22 @@ export async function sendLeadNotification(leadData: {
   telefono?: string;
   fuente: string;
 }): Promise<{ success: boolean; error?: string }> {
-  if (!RESEND_API_KEY) {
-    console.info('[Email Notification] API key no configurada.');
-    return { success: false, error: 'API key no configurada' };
-  }
-
   try {
-    const res = await fetch('https://api.resend.com/emails', {
+    const res = await fetch(EMAIL_API, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${RESEND_API_KEY}`,
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        from: FROM_EMAIL,
-        to: 'globalservices.ven@gmail.com',
-        subject: `🔔 NUEVO LEAD: ${leadData.nombre} (${leadData.fuente.toUpperCase()})`,
-        html: `
-          <h2 style="color:#0EA5E9;font-size:20px;margin-bottom:12px;">¡Nuevo Lead Registrado en la Web!</h2>
-          <p style="color:#FFFFFF;font-size:14px;margin-bottom:6px;"><strong>Nombre:</strong> ${leadData.nombre}</p>
-          <p style="color:#FFFFFF;font-size:14px;margin-bottom:6px;"><strong>Email:</strong> ${leadData.email}</p>
-          ${leadData.telefono ? `<p style="color:#FFFFFF;font-size:14px;margin-bottom:6px;"><strong>Teléfono:</strong> ${leadData.telefono}</p>` : ''}
-          <p style="color:#FFFFFF;font-size:14px;margin-bottom:6px;"><strong>Empresa:</strong> ${leadData.empresa || 'No especificada'}</p>
-          <p style="color:#FFFFFF;font-size:14px;margin-bottom:6px;"><strong>Fuente:</strong> ${leadData.fuente.toUpperCase()}</p>
-          <p style="color:#6B7280;font-size:12px;margin-top:20px;border-top:1px solid #333345;padding-top:10px;">Enviado automáticamente por el Sistema B2B de CSSG.</p>
-        `,
+        type: 'lead',
+        nombre: leadData.nombre,
+        email: leadData.email,
+        empresa: leadData.empresa,
+        telefono: leadData.telefono,
+        fuente: leadData.fuente,
       }),
     });
     if (!res.ok) {
       const err = await res.text();
-      console.error('[Email Notification] Error de Resend:', err);
+      console.error('[Email Notification] Error del servidor:', err);
       return { success: false, error: err };
     }
     return { success: true };
@@ -232,17 +222,13 @@ export async function sendLeadNotification(leadData: {
   }
 }
 
+
 export async function sendNurtureEmail(
   to: string,
   nombre: string,
   fuente: string,
   empresa?: string
 ): Promise<{ success: boolean; error?: string }> {
-  if (!RESEND_API_KEY) {
-    console.info('[Email Nurturing] API key no configurada. Email no enviado a:', to);
-    return { success: false, error: 'API key no configurada' };
-  }
-
   const template = templates[fuente];
   if (!template) {
     console.warn('[Email Nurturing] Fuente desconocida:', fuente);
@@ -250,15 +236,15 @@ export async function sendNurtureEmail(
   }
 
   try {
-    const res = await fetch('https://api.resend.com/emails', {
+    const res = await fetch(EMAIL_API, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${RESEND_API_KEY}`,
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        from: FROM_EMAIL,
-        to,
+        type: 'nurture',
+        email: to,
+        nombre,
+        fuente,
+        empresa,
         subject: typeof template.subject === 'function' ? template.subject(nombre, empresa) : template.subject,
         html: template.html(nombre, empresa),
       }),
@@ -266,17 +252,13 @@ export async function sendNurtureEmail(
 
     if (!res.ok) {
       const err = await res.text();
-      console.error('[Email Nurturing] Error de Resend:', err);
+      console.error('[Email Nurturing] Error del servidor:', err);
       return { success: false, error: err };
     }
 
-    // Enviar aviso directo a globalservices.ven@gmail.com
-    sendLeadNotification({
-      nombre,
-      email: to,
-      empresa,
-      fuente,
-    }).catch(e => console.error('Error enviando notificación de lead:', e));
+    // También notificar internamente
+    sendLeadNotification({ nombre, email: to, empresa, fuente })
+      .catch(e => console.error('Error enviando notificación de lead:', e));
 
     return { success: true };
   } catch (err) {
@@ -1109,11 +1091,6 @@ export async function sendSequenceEmail(
   templateKey: string,
   empresa?: string
 ): Promise<{ success: boolean; error?: string }> {
-  if (!RESEND_API_KEY) {
-    console.info(`[Sequence Email] API key no configurada. Template: ${templateKey}, To: ${to}`);
-    return { success: false, error: 'API key no configurada' };
-  }
-
   const template = sequenceTemplates[templateKey];
   if (!template) {
     console.warn(`[Sequence Email] Template no encontrado: ${templateKey}`);
@@ -1121,15 +1098,15 @@ export async function sendSequenceEmail(
   }
 
   try {
-    const res = await fetch('https://api.resend.com/emails', {
+    const res = await fetch(EMAIL_API, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${RESEND_API_KEY}`,
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        from: FROM_EMAIL,
-        to,
+        type: 'sequence',
+        email: to,
+        nombre,
+        empresa,
+        templateKey,
         subject: typeof template.subject === 'function' ? template.subject(nombre, empresa) : template.subject,
         html: template.html(nombre, empresa),
       }),
@@ -1137,7 +1114,7 @@ export async function sendSequenceEmail(
 
     if (!res.ok) {
       const err = await res.text();
-      console.error('[Sequence Email] Error de Resend:', err);
+      console.error('[Sequence Email] Error del servidor:', err);
       return { success: false, error: err };
     }
 

@@ -168,40 +168,30 @@ export interface BPClassification {
 }
 
 /**
- * Llama a Groq/Llama3 para calificación rápida de score (legado).
+ * Inteligencia Artificial para calificación de leads usando Groq (Llama 3)
+ * La API key vive solo en el servidor — este módulo llama al proxy /api/qualify-lead
  */
 export async function qualifyLeadWithAI(lead: { nombre: string, empresa: string, correo: string }): Promise<{ categoria: string, razon: string, score_ajustado: number } | null> {
-  const GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY;
-  if (!GROQ_API_KEY) return null;
-
   try {
-    const prompt = `Actúa como un experto en ventas B2B para una empresa de seguridad corporativa en Venezuela.
-    Analiza este lead y califica su potencial de cierre.
-    Nombre: ${lead.nombre}, Empresa: ${lead.empresa}, Email: ${lead.correo}.
-
-    Devuelve ÚNICAMENTE un JSON válido con esta estructura:
-    { "categoria": "alto|medio|bajo", "razon": "máximo 15 palabras", "score_ajustado": número entre 1 y 100 }`;
-
-    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+    const response = await fetch('/api/qualify-lead', {
       method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${GROQ_API_KEY}`,
-        'Content-Type': 'application/json'
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        model: 'llama3-8b-8192',
-        messages: [{ role: 'user', content: prompt }],
-        response_format: { type: 'json_object' }
-      })
+        nombre: lead.nombre,
+        empresa: lead.empresa,
+        correo: lead.correo,
+      }),
     });
 
+    if (!response.ok) return null;
     const data = await response.json();
-    return JSON.parse(data.choices[0].message.content);
+    return data.result ?? null;
   } catch (err) {
     console.error('[AI Scoring Error]', err);
     return null;
   }
 }
+
 
 /**
  * Clasifica un lead en uno de los 4 buyer personas de CSSG usando Groq.

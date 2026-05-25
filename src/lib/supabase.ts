@@ -1,8 +1,15 @@
 import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://vqisebdthsowhpfpugrb.supabase.co';
-const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZxaXNlYmR0aHNvd2hwZnB1Z3JiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcxNjE2MTAsImV4cCI6MjA5MjczNzYxMH0.9TZZ_6mx7vcaYoaeT5PmH02OrOzad6KMHiBwospgxOw';
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
-// Inicializamos el cliente principal de Supabase
-// Se requiere fallback para evitar que el sitio no cargue si no hay variables de entorno (.env)
+if (!supabaseUrl || !supabaseAnonKey) {
+  throw new Error(
+    '[CSSG] Variables de entorno de Supabase no configuradas.\n' +
+    'Asegúrate de tener VITE_SUPABASE_URL y VITE_SUPABASE_ANON_KEY en tu archivo .env.local\n' +
+    'y en las variables de entorno de Vercel.'
+  );
+}
+
+// Cliente de Supabase — las credenciales se leen solo desde variables de entorno
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);

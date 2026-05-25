@@ -24,3 +24,7 @@ dist-ssr
 *.sw?
 
 .vercel
+
+# Archivos internos de trabajo — no van al repo público
+CLAUDE_MASTER.md
+scratch/

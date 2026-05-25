@@ -1,5 +1,19 @@
 {
   "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "destination": "https://cssg-global.com/$1",
+      "permanent": true,
+      "has": [{ "type": "host", "value": "globalservices-ven.com" }]
+    },
+    {
+      "source": "/(.*)",
+      "destination": "https://cssg-global.com/$1",
+      "permanent": true,
+      "has": [{ "type": "host", "value": "www.globalservices-ven.com" }]
+    }
+  ],
   "crons": [
     {
       "path": "/api/process-sequences",
