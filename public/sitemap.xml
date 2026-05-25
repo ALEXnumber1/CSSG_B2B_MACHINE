@@ -61,10 +61,58 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://cssg-global.com/blog</loc>
+    <loc>https://cssg-global.com/consultoria/escudo-diplomatico</loc>
     <lastmod>2026-05-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://cssg-global.com/blog</loc>
+    <lastmod>2026-05-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cssg-global.com/blog/como-elegir-empresa-seguridad-privada-venezuela</loc>
+    <lastmod>2026-04-12</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cssg-global.com/blog/seguridad-corporativa-caracas-guia-completa</loc>
+    <lastmod>2026-03-20</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://cssg-global.com/blog/sueldo-minimo-vigilantes-venezuela</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cssg-global.com/blog/rrhh-socio-critico-seguridad</loc>
+    <lastmod>2026-04-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cssg-global.com/blog/5-errores-seguridad-corporativa</loc>
+    <lastmod>2026-04-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cssg-global.com/blog/iso-9001-seguridad-privada-importancia</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://cssg-global.com/blog/analisis-pestel-seguridad-venezuela</loc>
+    <lastmod>2026-03-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://cssg-global.com/licitaciones</loc>
