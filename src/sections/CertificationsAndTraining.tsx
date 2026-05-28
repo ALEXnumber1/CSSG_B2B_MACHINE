@@ -151,6 +151,26 @@ export default function CertificationsAndTraining() {
           </motion.div>
         </div>
 
+        {/* Cyber Essentials Badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-12 flex flex-col items-center gap-4"
+        >
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded border border-sky-500/20 bg-sky-500/5">
+            <ShieldCheck className="w-3.5 h-3.5 text-sky-400" />
+            <span className="text-[10px] font-bold text-sky-300 uppercase tracking-[0.2em]">Cyber Essentials Certified</span>
+          </div>
+          <iframe
+            src="https://registry.blockmarktech.com/certificates/8310c0a4-9539-4caa-809a-4e68b3448881/widget/?tooltip_position=corner&theme=transparent"
+            style={{ border: 'none', height: '132px', width: '132px' }}
+            title="Cyber Essentials Certificate"
+            loading="lazy"
+          />
+        </motion.div>
+
       </div>
     </section>
   );
