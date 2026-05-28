@@ -168,12 +168,28 @@ function AppContent() {
                   </div>
                 </div>
 
-                <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+                {/* Certification badges */}
+                <div className="py-10 border-t border-white/5 flex flex-wrap justify-center items-center gap-8">
+                  <div className="flex flex-col items-center gap-2">
+                    <img src="/CERTIFICADO 9001 INGLES.jpg" alt="ISO 9001:2015 Certificate" className="h-20 w-auto opacity-70 hover:opacity-100 transition-opacity rounded-lg" />
+                    <span className="text-[9px] text-sky-400 font-bold uppercase tracking-widest">ISO 9001:2015</span>
+                  </div>
+                  <div className="flex flex-col items-center gap-2">
+                    <iframe
+                      src="https://registry.blockmarktech.com/certificates/8310c0a4-9539-4caa-809a-4e68b3448881/widget/?tooltip_position=corner&theme=transparent"
+                      style={{ border: 'none', height: '132px', width: '132px' }}
+                      title="Cyber Essentials Certificate"
+                      loading="lazy"
+                    />
+                    <span className="text-[9px] text-sky-400 font-bold uppercase tracking-widest">Cyber Essentials</span>
+                  </div>
+                </div>
+
+                <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
                   <p className="text-[10px] text-gray-600 uppercase tracking-widest">{t('footer.rights', { year })}</p>
                   <div className="flex gap-8 text-[10px] text-gray-500 uppercase tracking-widest">
                     <Link to="/politica-privacidad" className="hover:text-gray-300 transition-colors cursor-pointer">{t('footer.privacy')}</Link>
                     <Link to="/terminos-condiciones" className="hover:text-gray-300 transition-colors cursor-pointer">{t('footer.terms')}</Link>
-                    <span className="hover:text-gray-300 transition-colors cursor-pointer">ISO 9001:2015</span>
                   </div>
                 </div>
               </div>
