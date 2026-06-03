@@ -70,7 +70,7 @@ const routes = [
     title: 'Tecnología Aplicada al Servicio | Calidad Garantizada',
     description: 'Integración de CCTV analítico, drones de vigilancia y control biométrico. Gestión operativa basada en datos para máxima eficiencia.',
     image: 'https://cssg-global.com/shieldtrace_tablet_dashboard_1777552473752.png',
-    jsonld: { "@context": "https://schema.org", "@type": "Product", "name": "ShieldTrace PSIM", "description": "Plataforma de integración de seguridad física (PSIM) con CCTV analítico con IA, GPS en tiempo real, control de acceso biométrico y drones autónomos.", "brand": { "@type": "Brand", "name": "CSSG" }, "offers": { "@type": "Offer", "availability": "https://schema.org/InStock", "url": "https://cssg-global.com/tecnologia" } }
+    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "ShieldTrace PSIM — Plataforma de Seguridad Integrada", "description": "Plataforma de integración de seguridad física (PSIM) con CCTV analítico con IA, GPS en tiempo real, control de acceso biométrico y drones autónomos.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "serviceType": "Plataforma PSIM de Seguridad Física", "areaServed": { "@type": "Country", "name": "Venezuela" }, "url": "https://cssg-global.com/tecnologia" }
   },
   {
     path: 'licitaciones',
@@ -105,6 +105,55 @@ const routes = [
     description: 'Artículos de análisis, tendencias de seguridad y recomendaciones de expertos en protección corporativa.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
     jsonld: { "@context": "https://schema.org", "@type": "Blog", "name": "Blog de Inteligencia de Seguridad — CSSG", "description": "Análisis, tendencias y recomendaciones de expertos en seguridad corporativa y diplomática en Venezuela.", "url": "https://cssg-global.com/blog", "publisher": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } } }
+  },
+  {
+    path: 'blog/como-elegir-empresa-seguridad-privada-venezuela',
+    title: 'Cómo elegir una empresa de seguridad privada en Venezuela | CSSG',
+    description: 'Guía práctica para seleccionar una empresa de seguridad corporativa en Venezuela. Criterios clave: certificaciones, experiencia, tecnología y respaldo legal.',
+    image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
+    jsonld: { "@context": "https://schema.org", "@type": "Article", "headline": "Cómo elegir una empresa de seguridad privada en Venezuela", "description": "Guía práctica para seleccionar una empresa de seguridad corporativa en Venezuela.", "datePublished": "2026-04-12", "dateModified": "2026-04-12", "author": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/como-elegir-empresa-seguridad-privada-venezuela" } }
+  },
+  {
+    path: 'blog/seguridad-corporativa-caracas-guia-completa',
+    title: 'Seguridad Corporativa en Caracas: Guía Completa 2026 | CSSG',
+    description: 'Todo lo que necesitas saber sobre seguridad corporativa en Caracas. Protocolos, tecnología y estrategias para proteger tu empresa en Venezuela.',
+    image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
+    jsonld: { "@context": "https://schema.org", "@type": "Article", "headline": "Seguridad Corporativa en Caracas: Guía Completa 2026", "description": "Todo lo que necesitas saber sobre seguridad corporativa en Caracas.", "datePublished": "2026-03-20", "dateModified": "2026-03-20", "author": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/seguridad-corporativa-caracas-guia-completa" } }
+  },
+  {
+    path: 'blog/sueldo-minimo-vigilantes-venezuela',
+    title: 'Sueldo Mínimo de Vigilantes en Venezuela 2026 | CSSG',
+    description: 'Conoce el sueldo mínimo legal de vigilantes y guardias de seguridad en Venezuela 2026. Análisis salarial del sector de seguridad privada.',
+    image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
+    jsonld: { "@context": "https://schema.org", "@type": "Article", "headline": "Sueldo Mínimo de Vigilantes en Venezuela 2026", "description": "Análisis salarial del sector de seguridad privada en Venezuela.", "datePublished": "2026-05-01", "dateModified": "2026-05-01", "author": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/sueldo-minimo-vigilantes-venezuela" } }
+  },
+  {
+    path: 'blog/rrhh-socio-critico-seguridad',
+    title: 'RRHH como Socio Crítico en la Seguridad Corporativa | CSSG',
+    description: 'Cómo el departamento de Recursos Humanos es clave para una estrategia de seguridad corporativa efectiva en Venezuela.',
+    image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
+    jsonld: { "@context": "https://schema.org", "@type": "Article", "headline": "RRHH como Socio Crítico en la Seguridad Corporativa", "description": "El rol estratégico de Recursos Humanos en la seguridad corporativa.", "datePublished": "2026-04-26", "dateModified": "2026-04-26", "author": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/rrhh-socio-critico-seguridad" } }
+  },
+  {
+    path: 'blog/5-errores-seguridad-corporativa',
+    title: '5 Errores Críticos en Seguridad Corporativa que Debes Evitar | CSSG',
+    description: 'Los 5 errores más comunes en seguridad corporativa en Venezuela y cómo evitarlos para proteger tu empresa de amenazas reales.',
+    image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
+    jsonld: { "@context": "https://schema.org", "@type": "Article", "headline": "5 Errores Críticos en Seguridad Corporativa que Debes Evitar", "description": "Los 5 errores más comunes en seguridad corporativa en Venezuela.", "datePublished": "2026-04-05", "dateModified": "2026-04-05", "author": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/5-errores-seguridad-corporativa" } }
+  },
+  {
+    path: 'blog/iso-9001-seguridad-privada-importancia',
+    title: 'Por qué ISO 9001 es Clave en la Seguridad Privada | CSSG',
+    description: 'Descubre por qué la certificación ISO 9001:2015 es fundamental para garantizar calidad y confiabilidad en una empresa de seguridad privada.',
+    image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
+    jsonld: { "@context": "https://schema.org", "@type": "Article", "headline": "Por qué ISO 9001 es Clave en la Seguridad Privada", "description": "La importancia de la certificación ISO 9001:2015 en seguridad privada.", "datePublished": "2026-03-28", "dateModified": "2026-03-28", "author": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/iso-9001-seguridad-privada-importancia" } }
+  },
+  {
+    path: 'blog/analisis-pestel-seguridad-venezuela',
+    title: 'Análisis PESTEL de Seguridad en Venezuela 2026 | CSSG',
+    description: 'Análisis completo de los factores Políticos, Económicos, Sociales, Tecnológicos, Ecológicos y Legales que impactan la seguridad en Venezuela.',
+    image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
+    jsonld: { "@context": "https://schema.org", "@type": "Article", "headline": "Análisis PESTEL de Seguridad en Venezuela 2026", "description": "Factores PESTEL que impactan la seguridad corporativa en Venezuela.", "datePublished": "2026-03-15", "dateModified": "2026-03-15", "author": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/analisis-pestel-seguridad-venezuela" } }
   },
   {
     path: 'admin',
