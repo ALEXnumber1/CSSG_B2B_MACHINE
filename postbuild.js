@@ -67,7 +67,7 @@ const routes = [
   },
   {
     path: 'tecnologia',
-    title: 'ShieldTrace PSIM — Sistema de Seguridad Integrada | CSSG Venezuela',
+    title: 'ShieldTrace PSIM — Sistema de Seguridad Integrada | CSSG | Caracas · Miami',
     description: 'ShieldTrace PSIM unifica CCTV analítico con IA, GPS en tiempo real, control de acceso biométrico y drones autónomos en un solo dashboard. Tecnología de seguridad corporativa en Venezuela.',
     image: 'https://cssg-global.com/shieldtrace_tablet_dashboard_1777552473752.png',
     jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "ShieldTrace PSIM — Plataforma de Seguridad Integrada", "description": "Plataforma de integración de seguridad física (PSIM) con CCTV analítico con IA, GPS en tiempo real, control de acceso biométrico y drones autónomos.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "serviceType": "Plataforma PSIM de Seguridad Física", "areaServed": { "@type": "Country", "name": "Venezuela" }, "url": "https://cssg-global.com/tecnologia" }
