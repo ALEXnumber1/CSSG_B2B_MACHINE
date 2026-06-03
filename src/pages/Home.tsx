@@ -40,8 +40,9 @@ export default function Home() {
       <div className="hidden md:block">
         <TheHumanShield />
         <MarketComparison />
-        <CertificationsAndTraining />
       </div>
+
+      <CertificationsAndTraining />
 
       <Partners />
       <ConsultingAndTech />
