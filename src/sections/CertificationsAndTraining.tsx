@@ -151,24 +151,54 @@ export default function CertificationsAndTraining() {
           </motion.div>
         </div>
 
-        {/* Cyber Essentials Badge */}
+        {/* Cyber Essentials Card */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.3 }}
-          className="mt-12 flex flex-col items-center gap-4"
+          className="mt-12 group relative bg-white/[0.04] backdrop-blur-3xl border-2 border-emerald-500/30 rounded-[2rem] p-8 md:p-12 shadow-[0_0_50px_rgba(16,185,129,0.08)]"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded border border-sky-500/20 bg-sky-500/5">
-            <ShieldCheck className="w-3.5 h-3.5 text-sky-400" />
-            <span className="text-[10px] font-bold text-sky-300 uppercase tracking-[0.2em]">Cyber Essentials Certified</span>
+          <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
+
+            {/* Left — iframe widget */}
+            <div className="flex flex-col items-center gap-3 shrink-0">
+              <iframe
+                src="https://registry.blockmarktech.com/certificates/8310c0a4-9539-4caa-809a-4e68b3448881/widget/?tooltip_position=corner&theme=transparent"
+                style={{ border: 'none', height: '160px', width: '160px' }}
+                title="Cyber Essentials Certificate"
+                loading="lazy"
+              />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded border border-emerald-500/20 bg-emerald-500/5">
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="text-[9px] font-black text-emerald-400 uppercase tracking-[0.2em]">Certificación Activa</span>
+              </div>
+            </div>
+
+            {/* Right — description */}
+            <div className="flex-1 text-center md:text-left">
+              <div className="flex items-center justify-center md:justify-start gap-3 mb-4">
+                <div className="w-12 h-12 border-2 border-emerald-500/20 rounded-lg flex items-center justify-center bg-emerald-500/5">
+                  <ShieldCheck className="w-7 h-7 text-emerald-400" />
+                </div>
+                <div>
+                  <p className="text-[10px] text-emerald-500 font-black uppercase tracking-widest">UK Government Scheme</p>
+                  <p className="text-[8px] text-gray-500">National Cyber Security Centre</p>
+                </div>
+              </div>
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">Cyber Essentials</h3>
+              <p className="text-gray-400 text-sm leading-relaxed max-w-xl">
+                Certificación otorgada por el <span className="text-emerald-400 font-bold">Gobierno del Reino Unido</span> que verifica que CSSG cumple con los controles esenciales de ciberseguridad. Garantiza la protección de la información de nuestros clientes frente a amenazas digitales.
+              </p>
+              <div className="flex flex-wrap gap-3 mt-6 justify-center md:justify-start">
+                {['Protección de datos', 'Seguridad perimetral', 'Control de acceso', 'Actualizaciones seguras'].map((item) => (
+                  <span key={item} className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[10px] font-bold text-emerald-400 uppercase tracking-wider">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
           </div>
-          <iframe
-            src="https://registry.blockmarktech.com/certificates/8310c0a4-9539-4caa-809a-4e68b3448881/widget/?tooltip_position=corner&theme=transparent"
-            style={{ border: 'none', height: '132px', width: '132px' }}
-            title="Cyber Essentials Certificate"
-            loading="lazy"
-          />
         </motion.div>
 
       </div>
