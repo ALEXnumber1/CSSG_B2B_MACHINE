@@ -9,6 +9,7 @@ import {
   BarChart3, Users, Zap, Upload, Plus, Trash2, Database, FileSpreadsheet, PenTool, UserPlus, Download, Send, Target
 } from 'lucide-react';
 import { parseCSV, generateSampleCSV, saveScrapedLeads, validateLead, type ScrapedLead } from '../lib/scraper';
+import ShieldTraceAudit from '../components/ShieldTraceAudit';
 
 
 type Lead = {
@@ -84,6 +85,7 @@ export default function Admin() {
   // Estratega IA state
   const [tacticResult, setTacticResult] = useState<any>(null);
   const [analyzingPipeline, setAnalyzingPipeline] = useState(false);
+  const [isAuditOpen, setIsAuditOpen] = useState(false);
   const [tacticError, setTacticError] = useState('');
 
   const TACTIC_PRIORITY_COLOR: Record<string, string> = {
@@ -570,8 +572,15 @@ const savePost = async () => {
             </p>
           </div>
           <div className="flex gap-4">
-              <button 
-                onClick={runSequences} 
+              <button
+                onClick={() => setIsAuditOpen(true)}
+                className="flex items-center gap-2 px-6 py-2.5 bg-sky-500/10 hover:bg-sky-500/20 text-sky-400 border border-sky-500/30 rounded-xl font-bold transition-all"
+              >
+                <Plus className="w-4 h-4" />
+                Cargar Infraestructura
+              </button>
+              <button
+                onClick={runSequences}
                 disabled={isProcessingSequences}
                 className="flex items-center gap-2 px-6 py-2.5 bg-amber-600/20 hover:bg-amber-600/30 text-amber-400 border border-amber-600/30 rounded-xl font-bold transition-all disabled:opacity-50"
               >
@@ -1322,6 +1331,8 @@ const savePost = async () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <ShieldTraceAudit isOpen={isAuditOpen} onClose={() => setIsAuditOpen(false)} />
     </div>
   );
 }
