@@ -67,8 +67,8 @@ const routes = [
   },
   {
     path: 'tecnologia',
-    title: 'Tecnología Aplicada al Servicio | Calidad Garantizada',
-    description: 'Integración de CCTV analítico, drones de vigilancia y control biométrico. Gestión operativa basada en datos para máxima eficiencia.',
+    title: 'ShieldTrace PSIM — Sistema de Seguridad Integrada | CSSG Venezuela',
+    description: 'ShieldTrace PSIM unifica CCTV analítico con IA, GPS en tiempo real, control de acceso biométrico y drones autónomos en un solo dashboard. Tecnología de seguridad corporativa en Venezuela.',
     image: 'https://cssg-global.com/shieldtrace_tablet_dashboard_1777552473752.png',
     jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "ShieldTrace PSIM — Plataforma de Seguridad Integrada", "description": "Plataforma de integración de seguridad física (PSIM) con CCTV analítico con IA, GPS en tiempo real, control de acceso biométrico y drones autónomos.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "serviceType": "Plataforma PSIM de Seguridad Física", "areaServed": { "@type": "Country", "name": "Venezuela" }, "url": "https://cssg-global.com/tecnologia" }
   },
@@ -207,8 +207,8 @@ routes.forEach(route => {
   newHtml = newHtml.replace(/<meta property="og:description" content=".*?"\s*\/?>/gi, `<meta property="og:description" content="${route.description}" />`);
   newHtml = newHtml.replace(/<meta property="twitter:description" content=".*?"\s*\/?>/gi, `<meta property="twitter:description" content="${route.description}" />`);
   
-  // Update Image
-  newHtml = newHtml.replace(/<meta property="og:image" content=".*?"\s*\/?>/gi, `<meta property="og:image" content="${route.image}" />`);
+  // Update Image — regex covers both <meta property="og:image"> and <meta name="image" property="og:image">
+  newHtml = newHtml.replace(/<meta [^>]*property="og:image"[^>]*>/gi, `<meta name="image" property="og:image" content="${route.image}" />`);
   newHtml = newHtml.replace(/<meta property="twitter:image" content=".*?"\s*\/?>/gi, `<meta property="twitter:image" content="${route.image}" />`);
   
   // Update Canonical URL
