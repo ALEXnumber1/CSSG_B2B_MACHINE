@@ -176,8 +176,8 @@ export default function CertificationsAndTraining() {
             </div>
 
             {/* Right — description */}
-            <div className="flex-1 text-center md:text-left">
-              <div className="flex items-center justify-center md:justify-start gap-3 mb-4">
+            <div className="flex-1 text-center">
+              <div className="flex items-center justify-center gap-3 mb-4">
                 <div className="w-12 h-12 border-2 border-emerald-500/20 rounded-lg flex items-center justify-center bg-emerald-500/5">
                   <ShieldCheck className="w-7 h-7 text-emerald-400" />
                 </div>
@@ -187,10 +187,10 @@ export default function CertificationsAndTraining() {
                 </div>
               </div>
               <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">Cyber Essentials</h3>
-              <p className="text-gray-400 text-sm leading-relaxed max-w-xl">
+              <p className="text-gray-400 text-sm leading-relaxed mx-auto max-w-xl">
                 Certificación otorgada por el <span className="text-emerald-400 font-bold">Gobierno del Reino Unido</span> que verifica que CSSG cumple con los controles esenciales de ciberseguridad. Garantiza la protección de la información de nuestros clientes frente a amenazas digitales.
               </p>
-              <div className="flex flex-wrap gap-3 mt-6 justify-center md:justify-start">
+              <div className="flex flex-wrap gap-3 mt-6 justify-center">
                 {['Protección de datos', 'Seguridad perimetral', 'Control de acceso', 'Actualizaciones seguras'].map((item) => (
                   <span key={item} className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[10px] font-bold text-emerald-400 uppercase tracking-wider">
                     {item}
