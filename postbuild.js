@@ -104,7 +104,10 @@ const routes = [
     title: 'Blog de Seguridad e Inteligencia Predictiva | CSSG | Caracas · Miami',
     description: 'Artículos de análisis, tendencias de seguridad y recomendaciones de expertos en protección corporativa.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
-    jsonld: { "@context": "https://schema.org", "@type": "Blog", "name": "Blog de Inteligencia de Seguridad — CSSG", "description": "Análisis, tendencias y recomendaciones de expertos en seguridad corporativa y diplomática en Venezuela.", "url": "https://cssg-global.com/blog", "publisher": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } } }
+    jsonld: [
+      { "@context": "https://schema.org", "@type": "Blog", "name": "Blog de Inteligencia de Seguridad — CSSG", "description": "Análisis, tendencias y recomendaciones de expertos en seguridad corporativa y diplomática en Venezuela.", "url": "https://cssg-global.com/blog", "publisher": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "blogPost": [ { "@type": "BlogPosting", "headline": "Cómo elegir una empresa de seguridad privada en Venezuela", "url": "https://cssg-global.com/blog/como-elegir-empresa-seguridad-privada-venezuela", "datePublished": "2026-04-12" }, { "@type": "BlogPosting", "headline": "Seguridad Corporativa en Caracas: Guía Completa 2026", "url": "https://cssg-global.com/blog/seguridad-corporativa-caracas-guia-completa", "datePublished": "2026-03-20" }, { "@type": "BlogPosting", "headline": "Sueldo Mínimo de Vigilantes en Venezuela 2026", "url": "https://cssg-global.com/blog/sueldo-minimo-vigilantes-venezuela", "datePublished": "2026-05-01" }, { "@type": "BlogPosting", "headline": "RRHH como Socio Crítico en la Seguridad Corporativa", "url": "https://cssg-global.com/blog/rrhh-socio-critico-seguridad", "datePublished": "2026-04-26" }, { "@type": "BlogPosting", "headline": "5 Errores Críticos en Seguridad Corporativa que Debes Evitar", "url": "https://cssg-global.com/blog/5-errores-seguridad-corporativa", "datePublished": "2026-04-05" }, { "@type": "BlogPosting", "headline": "Por qué ISO 9001 es Clave en la Seguridad Privada", "url": "https://cssg-global.com/blog/iso-9001-seguridad-privada-importancia", "datePublished": "2026-03-28" }, { "@type": "BlogPosting", "headline": "Análisis PESTEL de Seguridad en Venezuela 2026", "url": "https://cssg-global.com/blog/analisis-pestel-seguridad-venezuela", "datePublished": "2026-03-15" } ] },
+      { "@context": "https://schema.org", "@type": "ItemList", "name": "Artículos de Inteligencia de Seguridad — CSSG", "url": "https://cssg-global.com/blog", "numberOfItems": 7, "itemListElement": [ { "@type": "ListItem", "position": 1, "url": "https://cssg-global.com/blog/como-elegir-empresa-seguridad-privada-venezuela", "name": "Cómo elegir una empresa de seguridad privada en Venezuela" }, { "@type": "ListItem", "position": 2, "url": "https://cssg-global.com/blog/sueldo-minimo-vigilantes-venezuela", "name": "Sueldo Mínimo de Vigilantes en Venezuela 2026" }, { "@type": "ListItem", "position": 3, "url": "https://cssg-global.com/blog/rrhh-socio-critico-seguridad", "name": "RRHH como Socio Crítico en la Seguridad Corporativa" }, { "@type": "ListItem", "position": 4, "url": "https://cssg-global.com/blog/5-errores-seguridad-corporativa", "name": "5 Errores Críticos en Seguridad Corporativa que Debes Evitar" }, { "@type": "ListItem", "position": 5, "url": "https://cssg-global.com/blog/seguridad-corporativa-caracas-guia-completa", "name": "Seguridad Corporativa en Caracas: Guía Completa 2026" }, { "@type": "ListItem", "position": 6, "url": "https://cssg-global.com/blog/iso-9001-seguridad-privada-importancia", "name": "Por qué ISO 9001 es Clave en la Seguridad Privada" }, { "@type": "ListItem", "position": 7, "url": "https://cssg-global.com/blog/analisis-pestel-seguridad-venezuela", "name": "Análisis PESTEL de Seguridad en Venezuela 2026" } ] }
+    ]
   },
   {
     path: 'blog/como-elegir-empresa-seguridad-privada-venezuela',
@@ -215,10 +218,13 @@ routes.forEach(route => {
   newHtml = newHtml.replace(/<link rel="canonical" href=".*?"\s*\/?>/gi, `<link rel="canonical" href="https://cssg-global.com/${route.path}" />`);
   newHtml = newHtml.replace(/<meta property="og:url" content=".*?"\s*\/?>/gi, `<meta property="og:url" content="https://cssg-global.com/${route.path}" />`);
 
-  // Inject per-route JSON-LD schema
+  // Inject per-route JSON-LD schema (supports single object or array)
   if (route.jsonld) {
-    const jsonldTag = `<script type="application/ld+json">\n    ${JSON.stringify(route.jsonld, null, 2)}\n    </script>\n  </head>`;
-    newHtml = newHtml.replace(/<\/head>/, jsonldTag);
+    const schemas = Array.isArray(route.jsonld) ? route.jsonld : [route.jsonld];
+    const jsonldTags = schemas
+      .map(s => `<script type="application/ld+json">\n    ${JSON.stringify(s, null, 2)}\n    </script>`)
+      .join('\n  ');
+    newHtml = newHtml.replace(/<\/head>/, `${jsonldTags}\n  </head>`);
   }
 
   const routeDir = path.join(distDir, route.path);
