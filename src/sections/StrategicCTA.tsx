@@ -20,10 +20,11 @@ export default function StrategicCTA() {
           <div className="flex flex-col lg:flex-row items-stretch">
             {/* Left side: Large Image */}
             <div className="lg:w-1/2 relative min-h-[300px] md:min-h-[400px] lg:min-h-[600px]">
-              <img 
-                src="/diplomatic_security.png" 
-                alt={t('strategic_cta.img_alt')} 
+              <img
+                src="/diplomatic_security.png"
+                alt={t('strategic_cta.img_alt')}
                 className="absolute inset-0 w-full h-full object-cover grayscale-[20%] hover:grayscale-0 transition-all duration-1000"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#0D0F16] lg:block hidden" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0D0F16] via-transparent to-transparent lg:hidden block" />

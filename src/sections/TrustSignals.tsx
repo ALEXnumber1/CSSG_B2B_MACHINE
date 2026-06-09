@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import { BadgeCheck } from 'lucide-react';
 
 export default function TrustSignals() {
   const { t } = useTranslation();
@@ -55,7 +56,7 @@ export default function TrustSignals() {
               <span className="text-xs text-sky-400 font-black uppercase tracking-[0.2em]">{t('trust.digeservisp_label')}</span>
             </div>
             <div className="w-12 h-12 rounded-lg border border-white/10 bg-white/5 flex items-center justify-center group-hover:border-white/30 transition-colors">
-              <img src="/RESOLUCION DIGESERVIP.png" alt="DIGESERVISP" className="w-8 h-8 object-contain grayscale group-hover:grayscale-0 transition-all" />
+              <BadgeCheck className="w-8 h-8 text-sky-500/60 group-hover:text-sky-400 transition-colors" />
             </div>
           </a>
 

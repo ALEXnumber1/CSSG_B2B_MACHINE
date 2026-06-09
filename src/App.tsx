@@ -171,7 +171,7 @@ function AppContent() {
                 {/* Certification badges */}
                 <div className="py-10 border-t border-white/5 flex flex-wrap justify-center items-center gap-8">
                   <div className="flex flex-col items-center gap-2">
-                    <img src="/CERTIFICADO 9001 INGLES.jpg" alt="ISO 9001:2015 Certificate" className="h-20 w-auto opacity-70 hover:opacity-100 transition-opacity rounded-lg" />
+                    <img src="/CERTIFICADO 9001 INGLES.jpg" alt="ISO 9001:2015 Certificate" className="h-20 w-auto opacity-70 hover:opacity-100 transition-opacity rounded-lg" loading="lazy" />
                     <span className="text-[9px] text-sky-400 font-bold uppercase tracking-widest">ISO 9001:2015</span>
                   </div>
                   <div className="flex flex-col items-center gap-2">

@@ -72,10 +72,13 @@ export default function CertificationsAndTraining() {
               </p>
               
               <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-black/40 group/cert">
-                <img 
-                  src="/CERTIFICADO 9001 INGLES.jpg" 
-                  alt={t('cert.iso_alt', { defaultValue: 'Official ISO 9001:2015 Certificate' })} 
+                <img
+                  src="/CERTIFICADO 9001 INGLES.jpg"
+                  alt={t('cert.iso_alt', { defaultValue: 'Official ISO 9001:2015 Certificate' })}
                   className="w-full h-auto opacity-70 group-hover:opacity-100 transition-all duration-700 shadow-2xl"
+                  loading="lazy"
+                  width="800"
+                  height="600"
                 />
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/60 pointer-events-none">
                   <span className="text-white font-bold text-xs uppercase tracking-widest px-4 py-2 border border-white/20 rounded-full">{t('cert.iso_btn')}</span>
