@@ -1,5 +1,17 @@
 {
   "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/consultoria/escudo-diplom%C3%A1tico",
+      "destination": "/consultoria/escudo-diplomatico",
+      "permanent": true
+    },
+    {
+      "source": "/consultoria/escudo-diplomático",
+      "destination": "/consultoria/escudo-diplomatico",
+      "permanent": true
+    }
+  ],
   "crons": [
     {
       "path": "/api/process-sequences",

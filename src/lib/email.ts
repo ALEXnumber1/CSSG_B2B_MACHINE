@@ -196,6 +196,9 @@ export async function sendLeadNotification(leadData: {
   empresa?: string;
   telefono?: string;
   fuente: string;
+  cargo?: string;
+  vulnerabilidad?: string;
+  horario?: string;
 }): Promise<{ success: boolean; error?: string }> {
   try {
     const res = await fetch(EMAIL_API, {
@@ -208,6 +211,9 @@ export async function sendLeadNotification(leadData: {
         empresa: leadData.empresa,
         telefono: leadData.telefono,
         fuente: leadData.fuente,
+        cargo: leadData.cargo,
+        vulnerabilidad: leadData.vulnerabilidad,
+        horario: leadData.horario,
       }),
     });
     if (!res.ok) {

@@ -87,8 +87,8 @@ const routes = [
   },
   {
     path: 'consultoria/escudo-diplomatico',
-    title: 'SERVICIO DE PROTECCION A PERSONALIDADES DE ELITE | CSSG | Caracas · Miami',
-    description: 'Servicio exclusivo de protección a personalidades de élite. Conformamos esquemas de seguridad a un nivel diplomático. Filtro High-Ticket.',
+    title: 'Protección Ejecutiva de Nivel Diplomático | CSSG — Escudo Diplomático',
+    description: '¿Su seguridad actual realmente lo protege? Reserve un briefing confidencial de 10 minutos con nuestros especialistas. Protocolo de inmunidad ejecutiva. +17 años · ISO 9001 · Estándar G7.',
     image: 'https://cssg-global.com/seo_escudo.jpg',
     jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Escudo Diplomático — Protección VIP Elite", "description": "Servicio exclusivo de protección a personalidades VIP, dignatarios y misiones diplomáticas bajo estándar G7. Esquemas personalizados 24/7.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "serviceType": "Protección Ejecutiva VIP", "audience": { "@type": "Audience", "audienceType": "Diplomáticos, Ejecutivos de Alto Perfil, Embajadas" } }
   },

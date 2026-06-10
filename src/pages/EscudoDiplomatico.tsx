@@ -26,6 +26,7 @@ export default function EscudoDiplomatico() {
     cargo: '',
     empresa: '',
     vulnerabilidad: '',
+    horario: '',
   });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
@@ -57,7 +58,7 @@ export default function EscudoDiplomatico() {
         correo: formData.correo,
         empresa: formData.empresa,
         telefono: formData.telefono,
-        mensaje: `[ESCUDO DIPLOMÁTICO] Cargo: ${formData.cargo} | Vulnerabilidad: ${formData.vulnerabilidad}`,
+        mensaje: `[ESCUDO DIPLOMÁTICO] Cargo: ${formData.cargo} | Vulnerabilidad: ${formData.vulnerabilidad} | Horario preferido: ${formData.horario}`,
         fuente: 'escudo_diplomatico',
         score: 50,
         estado: 'nuevo',
@@ -76,6 +77,9 @@ export default function EscudoDiplomatico() {
           telefono: formData.telefono,
           empresa: formData.empresa,
           fuente: 'escudo_diplomatico',
+          cargo: formData.cargo,
+          vulnerabilidad: formData.vulnerabilidad,
+          horario: formData.horario,
         });
         if (!emailRes.success) {
           console.warn("Email Notification Warning:", emailRes.error);
@@ -167,7 +171,7 @@ export default function EscudoDiplomatico() {
         </div>
         <motion.div className="max-w-4xl mx-auto text-center relative z-10" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
           <span className="inline-block px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[0.3em] mb-8 border" style={{ color: GOLD, borderColor: `${GOLD}40`, background: `${GOLD}08` }}>
-            Protocolo de Inmunidad Ejecutiva
+            Escudo Diplomático — Estándares G7
           </span>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white leading-[1.1] tracking-tight mb-6" style={{ fontFamily: "'Cinzel', serif" }}>
             CONFORMA TU ESQUEMA DE SEGURIDAD A UN NIVEL{' '}
@@ -185,6 +189,42 @@ export default function EscudoDiplomatico() {
           <p className="mt-4 text-[11px] tracking-widest uppercase" style={{ color: '#666' }}>
             <Lock className="inline w-3 h-3 mr-1 -mt-0.5" /> Estricta confidencialidad garantizada.
           </p>
+        </motion.div>
+      </section>
+
+      {/* ═══ SECTION 1.5: VIDEO DE PRESENTACIÓN ═══ */}
+      <section className="py-16 px-6 relative" style={{ background: '#080808' }}>
+        <motion.div className="max-w-4xl mx-auto relative z-10" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
+
+          {/* Video wrapper — mantiene ratio 16:9 */}
+          <div className="relative w-full rounded-2xl overflow-hidden" style={{ border: `1px solid ${GOLD}25`, boxShadow: `0 0 60px ${GOLD}10` }}>
+            <video
+              src="/videos/escudo-diplomatico.mp4"
+              poster="/diplomatic_security.png"
+              controls
+              playsInline
+              preload="metadata"
+              className="w-full block"
+              style={{ display: 'block', background: '#0a0a0a' }}
+              aria-label="Escudo Diplomático — CSSG Presentación"
+            />
+
+            {/* Barra inferior con credenciales (sobre el video, visible antes de play) */}
+            <div className="pointer-events-none absolute bottom-0 left-0 right-0 px-6 py-5 z-10"
+              style={{ background: 'linear-gradient(transparent, rgba(10,10,10,0.95))', display: 'none' }}
+            />
+          </div>
+
+          {/* Credenciales debajo del video */}
+          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 mt-5">
+            {['+17 años sin incidentes', 'ISO 9001:2015', 'Estándar G7'].map((item) => (
+              <div key={item} className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full" style={{ background: GOLD }} />
+                <span className="text-[11px] font-bold uppercase tracking-widest" style={{ color: `${GOLD}CC` }}>{item}</span>
+              </div>
+            ))}
+          </div>
+
         </motion.div>
       </section>
 
@@ -222,7 +262,7 @@ export default function EscudoDiplomatico() {
             ¿QUÉ ES EL <span style={{ color: GOLD }}>{t("escudo:paradigm_title_2")}</span>?
           </h2>
           <p className="text-center text-[15px] leading-[1.8] max-w-3xl mx-auto mb-14" style={{ color: '#a0a0a0' }}>
-            No es un servicio de escoltas tradicionales. Es una cápsula de inteligencia preventiva e inmunidad ejecutiva. El 95% de los CEO cometen el error de contratar personal armado visible que no disuade a las amenazas, sino que les indica dónde está el objetivo de alto valor. Nosotros identificamos y exponemos la amenaza días antes de que usted salga de su casa.
+            No es un servicio de escoltas tradicionales. Es un protocolo de seguridad bajo estándares diplomáticos G7 — diseñado para entornos de alta exigencia donde la discreción y la anticipación son el verdadero escudo. El 95% de los CEO cometen el error de contratar personal armado visible que no disuade a las amenazas, sino que les indica dónde está el objetivo de alto valor. Nosotros identificamos y neutralizamos la amenaza días antes de que usted salga de su casa.
           </p>
 
           {/* Comparison boxes */}
@@ -267,7 +307,7 @@ export default function EscudoDiplomatico() {
 
           <div className="p-8 rounded-2xl border text-center" style={{ background: '#0f0f0f', borderColor: '#222' }}>
             <p className="text-[15px] leading-[1.9] max-w-3xl mx-auto" style={{ color: '#b0b0b0' }}>
-              No compres <span className="line-through opacity-50">"seguridad"</span>. Compra <strong className="text-white">Inmunidad</strong>. Mapeamos sus rutas, auditamos su entorno y aplicamos protocolos indetectables que mantienen a su familia fuera del radar criminal. Dejamos de reaccionar ante el problema para empezar a <strong style={{ color: GOLD }}>dictar las reglas del entorno</strong>.
+              No contrate <span className="line-through opacity-50">"seguridad"</span>. Active el <strong className="text-white">Escudo Diplomático</strong>. Mapeamos sus rutas, auditamos su entorno y aplicamos políticas de seguridad indetectables que mantienen a su organización fuera del radar de amenazas. Dejamos de reaccionar ante el problema para empezar a <strong style={{ color: GOLD }}>dictar las reglas del entorno</strong>.
             </p>
           </div>
         </motion.div>
@@ -503,6 +543,22 @@ export default function EscudoDiplomatico() {
                   />
                 </div>
                 <div>
+                  <label className="block text-xs font-bold uppercase tracking-widest mb-2" style={{ color: '#666' }}>Horario Preferido para la Cita</label>
+                  <select name="horario" title="Horario preferido para la cita" required value={formData.horario} onChange={handleChange}
+                    className="w-full px-4 py-3 rounded-lg text-sm focus:outline-none transition-colors appearance-none cursor-pointer"
+                    style={{ background: '#1a1a1a', border: '1px solid #2a2a2a', color: formData.horario ? 'white' : '#666' }}
+                    onFocus={e => e.target.style.borderColor = `${GOLD}50`}
+                    onBlur={e => e.target.style.borderColor = '#2a2a2a'}
+                  >
+                    <option value="" disabled>Seleccione un horario</option>
+                    <option value="Lunes – Viernes, Mañana (8am–12pm)">Lunes – Viernes · Mañana (8am–12pm)</option>
+                    <option value="Lunes – Viernes, Tarde (1pm–5pm)">Lunes – Viernes · Tarde (1pm–5pm)</option>
+                    <option value="Sábado, Mañana (9am–12pm)">Sábado · Mañana (9am–12pm)</option>
+                    <option value="Lo antes posible — Urgente">Lo antes posible — Urgente</option>
+                  </select>
+                </div>
+
+                <div>
                   <label className="block text-xs font-bold uppercase tracking-widest mb-2" style={{ color: '#666' }}>{t("escudo:form_vuln")}</label>
                   <select name="vulnerabilidad" required value={formData.vulnerabilidad} onChange={handleChange}
                     className="w-full px-4 py-3 rounded-lg text-sm focus:outline-none transition-colors appearance-none cursor-pointer"
@@ -534,7 +590,7 @@ export default function EscudoDiplomatico() {
                   ) : (
                     <>
                       <Lock className="w-4 h-4" />
-                      Solicitar Evaluación de Calificación
+                      Reservar Mi Briefing Confidencial
                     </>
                   )}
                 </button>
