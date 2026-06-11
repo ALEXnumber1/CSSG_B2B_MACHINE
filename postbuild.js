@@ -194,6 +194,13 @@ const routes = [
     title: 'Términos y Condiciones de Uso | CSSG | Caracas · Miami',
     description: 'Términos de servicio y condiciones de uso del portal web de CSSG.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg'
+  },
+  {
+    path: 'en/technology',
+    title: 'Shieldtrace PSIM — Integrated Security Platform | CSSG | Caracas · Miami',
+    description: 'Shieldtrace PSIM unifies AI-powered CCTV analytics, real-time GPS tracking, biometric access control and autonomous drones in one dashboard. Enterprise security technology in Venezuela.',
+    image: 'https://cssg-global.com/shieldtrace_tablet_dashboard_1777552473752.png',
+    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Shieldtrace PSIM — Integrated Physical Security Management", "description": "Physical security integration platform (PSIM) combining AI-powered CCTV analytics, real-time GPS, biometric access control and autonomous drones for corporate security in Venezuela.", "provider": { "@type": "Organization", "name": "CSSG — Company Of Security And Service Global", "url": "https://cssg-global.com" }, "serviceType": "Physical Security Integration Platform", "areaServed": [{ "@type": "Country", "name": "Venezuela" }, { "@type": "City", "name": "Miami" }], "url": "https://cssg-global.com/en/technology", "inLanguage": "en" }
   }
 ];
 
