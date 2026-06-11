@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optimización de Seguridad Industrial | CSSG Global — Caracas</title>
+    <meta name="description" content="Opera tu seguridad con eficiencia del primer mundo a una fracción de tu costo actual. Plataforma Shieldtrace PSIM + estructura plana. Auditoría gratuita.">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://cssg-global.com/optimizacion/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://cssg-global.com/optimizacion/">
+    <meta property="og:title" content="Optimización Industrial y Seguridad | CSSG Global">
+    <meta property="og:description" content="Opera tu seguridad con eficiencia del primer mundo a una fracción de tu costo actual. Auditoría ESRM gratuita.">
+    <meta name="image" property="og:image" content="https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="CSSG — Company Of Security And Service Global">
+    <!-- Twitter Card -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:image" content="https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg">
+    <meta property="twitter:title" content="Optimización Industrial y Seguridad | CSSG Global">
+
+    <!-- Tailwind CSS vía CDN (página autocontenida) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Iconos Phosphor -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'cssg-blue': '#002855',
+                        'cssg-red':  '#E63946',
+                        'cssg-gray': '#F3F4F6',
+                        'cssg-dark': '#111827',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        .hero-pattern {
+            background-color: #002855;
+            background-image: radial-gradient(rgba(255,255,255,0.08) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .table-container { overflow-x: auto; }
+
+        /* Estado del botón mientras envía */
+        #submitBtn:disabled { opacity: 0.7; cursor: not-allowed; }
+    </style>
+</head>
+<body class="font-sans text-cssg-dark bg-white antialiased">
+
+    <!-- ═══ HEADER ═══ -->
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-50 glass-effect">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-3">
+                    <img class="h-12 w-12 object-contain" src="/logo.png" alt="CSSG Global Logo">
+                    <div class="hidden sm:block">
+                        <p class="font-bold text-cssg-blue text-sm tracking-tight leading-none">CSSG</p>
+                        <p class="text-[10px] text-gray-500 tracking-wider uppercase leading-tight mt-0.5">Company of Security and Service Global</p>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <a href="#contacto" class="bg-cssg-blue hover:bg-blue-800 text-white font-bold py-2 px-6 rounded-md transition duration-300 shadow-md text-sm">
+                        Auditoría Gratuita
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ═══ SECCIÓN 1: HÉROE ═══ -->
+    <section class="hero-pattern text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20 lg:py-32 flex flex-col lg:flex-row items-center gap-12">
+
+            <!-- Texto Principal -->
+            <div class="lg:w-3/5 text-center lg:text-left">
+                <span class="inline-block py-1 px-3 rounded-full bg-red-600/20 text-red-400 font-semibold text-sm mb-6 border border-red-500/30">
+                    El modelo de seguridad tradicional está muriendo. ¿Tú sigues pagando su gasto ocioso?
+                </span>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+                    Opera tu seguridad con eficiencia del primer mundo,
+                    <span class="text-blue-400"> a una fracción de tu costo actual.</span>
+                </h1>
+                <p class="text-lg sm:text-xl text-gray-300 mb-10 max-w-3xl mx-auto lg:mx-0">
+                    La tecnología debe desplomar tus costos operativos, no ser una excusa para cobrarte más. Conoce cómo nuestra plataforma <strong>Shieldtrace PSIM</strong> sustituye la mano de obra ineficiente y te devuelve el control total de tu empresa desde tu celular.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                    <a href="#contacto" class="bg-cssg-red hover:bg-red-700 text-white font-bold text-lg py-4 px-8 rounded-lg transition duration-300 shadow-lg text-center flex items-center justify-center group">
+                        Agendar Reunión Exploratoria Sin Costo
+                        <i class="ph ph-arrow-right ml-2 group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+                <p class="mt-4 text-sm text-gray-400">
+                    <i class="ph ph-shield-check text-green-400 mr-1"></i> Cero presupuestos invasivos. Primero escuchamos, luego diagnosticamos.
+                </p>
+            </div>
+
+            <!-- Dashboard / Imagen Shieldtrace -->
+            <div class="lg:w-2/5">
+                <div class="bg-gray-800 rounded-2xl shadow-2xl overflow-hidden border-4 border-gray-700 transform rotate-2 hover:rotate-0 transition duration-500">
+                    <div class="bg-gray-900 px-4 py-2 flex items-center gap-2 border-b border-gray-700">
+                        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                        <span class="text-xs text-gray-400 ml-2">Shieldtrace PSIM</span>
+                    </div>
+                    <!-- Imagen real: Shieldtrace en acción frente a edificio tipo embajada -->
+                    <img src="/shieldtrace1.png"
+                         alt="Plataforma Shieldtrace PSIM en uso"
+                         class="w-full h-auto opacity-90 hover:opacity-100 transition object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ SECCIÓN 2: EL ENEMIGO (Burocracia) ═══ -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl font-extrabold text-cssg-blue mb-4">El Impuesto Oculto que pagas todos los meses: La Burocracia.</h2>
+                <div class="w-24 h-1 bg-cssg-red mx-auto"></div>
+            </div>
+
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2">
+                    <!-- Imagen real: Operador en centro de control con Shieldtrace -->
+                    <img src="/shieldtrace_tablet_dashboard_1777552473752.png"
+                         alt="Centro de control de seguridad moderno con tecnología PSIM"
+                         class="rounded-xl shadow-lg w-full object-cover">
+                </div>
+                <div class="md:w-1/2 space-y-6 text-lg text-gray-600">
+                    <p>
+                        La mayoría de las empresas de seguridad en Venezuela te cobran por su propia ineficiencia. Facturan lo suficiente para mantener una <strong>pirámide de gerentes, directores y supervisores zonales.</strong>
+                    </p>
+                    <p>
+                        ¿Quién paga el precio? <strong>Tú y los vigilantes.</strong> Mientras tú pagas facturas altas, quienes realmente hacen el trabajo reciben sueldos bajos. Esto produce una rotación de personal altísima.
+                    </p>
+                    <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg">
+                        <p class="text-red-800 font-semibold italic">
+                            "Una alta rotación significa desconocidos cuidando tu empresa, creando estructuras sumamente INSEGURAS."
+                        </p>
+                    </div>
+                    <p>
+                        Peor aún: usan la instalación de cámaras como una excusa para subirte la mensualidad, cuando la tecnología fue ideada exactamente para lo contrario: <strong>abaratar tus costos operativos.</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ SECCIÓN 3: LA PARADOJA DE LA AUTORIDAD ═══ -->
+    <section class="py-20 bg-cssg-gray">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col-reverse md:flex-row items-center gap-12">
+                <div class="md:w-1/2 space-y-6">
+                    <h2 class="text-3xl font-extrabold text-cssg-blue leading-tight">
+                        ¿Cómo es posible que seamos la empresa que MÁS le paga a sus vigilantes y la que MENOS te cobra a ti?
+                    </h2>
+                    <p class="text-lg text-gray-600">
+                        No es magia, es eficiencia estructural. En CSSG operamos con una <strong>estructura administrativa plana</strong>. Eliminamos la burocracia corporativa y apoyamos a nuestro personal con la Inteligencia Artificial de Shieldtrace.
+                    </p>
+                    <p class="text-lg text-gray-600">
+                        Esto nos permite pagar los mejores salarios del mercado a nuestros oficiales, garantizando <strong>retención, lealtad y cero rotación</strong> en tus instalaciones. Transferimos ese ahorro estructural directamente a tu factura final.
+                    </p>
+                    <ul class="space-y-4 mt-6">
+                        <li class="flex items-center text-gray-700 font-medium">
+                            <i class="ph-fill ph-check-circle text-green-500 text-2xl mr-3"></i>
+                            +17 años sin una sola incidencia de seguridad.
+                        </li>
+                        <li class="flex items-center text-gray-700 font-medium">
+                            <i class="ph-fill ph-check-circle text-green-500 text-2xl mr-3"></i>
+                            Certificación de calidad ISO 9001:2015.
+                        </li>
+                        <li class="flex items-center text-gray-700 font-medium">
+                            <i class="ph-fill ph-check-circle text-green-500 text-2xl mr-3"></i>
+                            El personal mejor remunerado del sector en Venezuela.
+                        </li>
+                    </ul>
+                </div>
+                <div class="md:w-1/2">
+                    <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-100">
+                        <!-- Imagen real: equipo de oficiales CSSG en lobby corporativo -->
+                        <img src="/formal_guards.png"
+                             alt="Equipo de oficiales CSSG en formación"
+                             class="w-full rounded-xl mb-6 object-cover">
+                        <h3 class="text-base font-bold text-center text-gray-800 mb-6">Misiones diplomáticas e industrias de alta criticidad nos confían su seguridad:</h3>
+                        <div class="grid grid-cols-2 gap-6 items-center">
+                            <!-- TODO: Reemplazar con logos reales de clientes cuando estén disponibles -->
+                            <div class="flex justify-center p-4 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition">
+                                <img src="https://placehold.co/150x80/F3F4F6/002855?text=Embajada+G7" alt="Embajada G7" class="h-12 w-auto object-contain">
+                                <!-- TODO: Reemplazar con imagen real -->
+                            </div>
+                            <div class="flex justify-center p-4 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition">
+                                <img src="https://placehold.co/150x80/F3F4F6/002855?text=Corporación+Internacional" alt="Corporación Internacional" class="h-12 w-auto object-contain">
+                                <!-- TODO: Reemplazar con imagen real -->
+                            </div>
+                            <div class="flex justify-center p-4 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition">
+                                <img src="https://placehold.co/150x80/F3F4F6/002855?text=Industria+Manufacturera" alt="Industria Manufacturera" class="h-12 w-auto object-contain">
+                                <!-- TODO: Reemplazar con imagen real -->
+                            </div>
+                            <div class="flex justify-center p-4 grayscale opacity-70 hover:grayscale-0 hover:opacity-100 transition">
+                                <img src="/zentinel_logo.jpg" alt="Zentinel Global — Socio Tecnológico" class="h-12 w-auto object-contain">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ SECCIÓN 4: CONTRASTE (Tabla) ═══ -->
+    <section class="py-20 bg-white">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-extrabold text-cssg-blue mb-4">Por qué cambiar a CSSG no es un gasto, es una optimización financiera</h2>
+                <p class="text-lg text-gray-500">Compara el modelo obsoleto frente al ecosistema inteligente.</p>
+            </div>
+
+            <div class="bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-200">
+                <div class="grid md:grid-cols-2">
+                    <!-- Columna Negativa -->
+                    <div class="p-8 bg-red-50/50">
+                        <div class="flex items-center justify-center mb-6">
+                            <i class="ph-fill ph-x-circle text-red-500 text-4xl mr-3"></i>
+                            <h3 class="text-2xl font-bold text-gray-800">Agencias Tradicionales</h3>
+                        </div>
+                        <ul class="space-y-6">
+                            <li class="flex items-start">
+                                <i class="ph ph-x text-red-500 mt-1 mr-3 font-bold flex-shrink-0"></i>
+                                <div>
+                                    <strong class="block text-gray-900">Pirámide Burocrática</strong>
+                                    <span class="text-gray-600 text-sm">Pagas los lujos de sus directivos mientras el vigilante de tu planta cobra salario mínimo.</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="ph ph-x text-red-500 mt-1 mr-3 font-bold flex-shrink-0"></i>
+                                <div>
+                                    <strong class="block text-gray-900">Alta Rotación (Peligro)</strong>
+                                    <span class="text-gray-600 text-sm">Cambian de personal cada mes. Nunca sabes exactamente quién tiene las llaves de tu empresa.</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="ph ph-x text-red-500 mt-1 mr-3 font-bold flex-shrink-0"></i>
+                                <div>
+                                    <strong class="block text-gray-900">Tecnología como Gasto</strong>
+                                    <span class="text-gray-600 text-sm">Te alquilan cámaras y te cobran mantenimientos eternos como un costo adicional inflado.</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Columna Positiva -->
+                    <div class="p-8 bg-blue-50 border-t md:border-t-0 md:border-l border-gray-200 relative">
+                        <div class="absolute top-0 right-0 bg-cssg-blue text-white text-xs font-bold px-3 py-1 rounded-bl-lg">
+                            LA SOLUCIÓN LÓGICA
+                        </div>
+                        <div class="flex items-center justify-center mb-6 mt-4">
+                            <i class="ph-fill ph-check-circle text-green-500 text-4xl mr-3"></i>
+                            <h3 class="text-2xl font-bold text-cssg-blue">El Ecosistema CSSG</h3>
+                        </div>
+                        <ul class="space-y-6">
+                            <li class="flex items-start">
+                                <i class="ph ph-check text-green-500 mt-1 mr-3 font-bold flex-shrink-0"></i>
+                                <div>
+                                    <strong class="block text-gray-900">Estructura Plana</strong>
+                                    <span class="text-gray-600 text-sm">Eliminamos la burocracia para pagarle mejor al personal operativo y cobrarte menos a ti.</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="ph ph-check text-green-500 mt-1 mr-3 font-bold flex-shrink-0"></i>
+                                <div>
+                                    <strong class="block text-gray-900">Lealtad y Retención</strong>
+                                    <span class="text-gray-600 text-sm">Personal bien pagado y comprometido garantiza cero rotación en tus instalaciones críticas.</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="ph ph-check text-green-500 mt-1 mr-3 font-bold flex-shrink-0"></i>
+                                <div>
+                                    <strong class="block text-gray-900">Tecnología como Ahorro</strong>
+                                    <span class="text-gray-600 text-sm">Te integramos nuestra plataforma <strong>Shieldtrace a costo $0</strong> para sustituir nómina física innecesaria.</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ SECCIÓN 5: EL BONO LETAL ═══ -->
+    <section class="py-16 bg-cssg-blue text-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 opacity-5 transform rotate-12 pointer-events-none">
+            <i class="ph-fill ph-shield-star text-[300px]"></i>
+        </div>
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <div class="inline-flex items-center justify-center space-x-2 bg-yellow-500 text-cssg-blue font-bold px-4 py-1 rounded-full mb-6 text-sm">
+                <i class="ph-fill ph-star"></i>
+                <span>BONO EXCLUSIVO</span>
+            </div>
+            <h2 class="text-3xl md:text-4xl font-extrabold mb-6">Protección Nivel Embajada, Presupuesto Nivel Industrial.</h2>
+            <p class="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
+                A los clientes que inician la cogestión con nosotros, les incluimos sin costo adicional nuestro servicio de <strong>Escudo de Reacción Industrial.</strong>
+            </p>
+            <p class="mt-4 text-blue-200 max-w-3xl mx-auto">
+                Es exactamente el mismo protocolo de respuesta táctica inmediata que exigen las misiones diplomáticas del G7, adaptado a tu industria. Si Shieldtrace detecta una intrusión crítica de madrugada, no enviamos a un supervisor tradicional a mirar; <strong>desplegamos a nuestro equipo élite de extracción.</strong> Intervención quirúrgica, no bultos uniformados.
+            </p>
+            <a href="#contacto" class="inline-block mt-8 bg-white text-cssg-blue font-bold py-3 px-8 rounded-lg hover:bg-gray-100 transition shadow-lg">
+                Quiero Este Bono — Agendar Ahora
+            </a>
+        </div>
+    </section>
+
+    <!-- ═══ SECCIÓN 6: FORMULARIO / CTA ═══ -->
+    <section id="contacto" class="py-24 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-white rounded-3xl shadow-xl overflow-hidden">
+                <div class="grid md:grid-cols-5">
+
+                    <!-- Información Izquierda -->
+                    <div class="md:col-span-2 bg-gray-900 p-10 text-white flex flex-col justify-between">
+                        <div>
+                            <img src="/logo.png" alt="CSSG" class="h-12 w-12 object-contain mb-6 opacity-80">
+                            <h3 class="text-2xl font-bold mb-4">Nuestro enfoque no es venderte, es auditarte.</h3>
+                            <p class="text-gray-300 text-sm mb-6 leading-relaxed">
+                                No vas a recibir un PDF con precios genéricos. Nuestro proceso inicia con una breve llamada exploratoria de 15 minutos.
+                            </p>
+                            <p class="text-gray-300 text-sm leading-relaxed">
+                                Si vemos que podemos ayudarte, avanzaremos a realizar una <strong>Auditoría de Seguridad (ESRM)</strong> presencial gratuita. Te mostraremos dónde estás perdiendo dinero antes de siquiera hablar de presupuestos.
+                            </p>
+                        </div>
+                        <div class="mt-8 pt-8 border-t border-gray-700">
+                            <div class="flex items-start mb-4">
+                                <i class="ph-fill ph-shield-check text-green-400 text-2xl mr-3 mt-1 flex-shrink-0"></i>
+                                <div>
+                                    <h4 class="font-bold text-sm">Garantía de 90 Días</h4>
+                                    <p class="text-xs text-gray-400 mt-1">Si en 3 meses no mejoramos tus tiempos de respuesta y optimizamos tu presupuesto, puedes deshacer el contrato sin penalidad.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Formulario Derecha -->
+                    <div class="md:col-span-3 p-10">
+                        <h3 class="text-xl font-bold text-gray-800 mb-6">Agendar Llamada Exploratoria (15 min)</h3>
+
+                        <!-- Estado éxito -->
+                        <div id="formSuccess" class="hidden text-center py-10">
+                            <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
+                                <i class="ph-fill ph-check-circle text-green-500 text-4xl"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-gray-800 mb-2">¡Solicitud Recibida!</h4>
+                            <p class="text-gray-500 text-sm">Un especialista CSSG revisará tu perfil y te contactará en las próximas 24 horas. Revisa tu correo.</p>
+                        </div>
+
+                        <!-- Estado error -->
+                        <div id="formError" class="hidden mb-4 p-3 rounded-lg bg-red-50 border border-red-200">
+                            <p class="text-red-700 text-sm text-center">Error al enviar. Por favor intenta de nuevo o escríbenos directamente a <a href="mailto:operaciones@cssg-global.com" class="underline">operaciones@cssg-global.com</a></p>
+                        </div>
+
+                        <form id="leadForm" class="space-y-4">
+                            <div>
+                                <label for="nombre" class="block text-sm font-medium text-gray-700 mb-1">Nombre y Apellido</label>
+                                <input type="text" id="nombre" name="nombre" required
+                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-cssg-blue focus:border-cssg-blue outline-none transition bg-gray-50"
+                                    placeholder="Ej: Carlos Rodríguez">
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label for="empresa" class="block text-sm font-medium text-gray-700 mb-1">Empresa / Industria</label>
+                                    <input type="text" id="empresa" name="empresa" required
+                                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-cssg-blue focus:border-cssg-blue outline-none transition bg-gray-50"
+                                        placeholder="Ej: Manufactura S.A.">
+                                </div>
+                                <div>
+                                    <label for="ciudad" class="block text-sm font-medium text-gray-700 mb-1">Ciudad de Operación</label>
+                                    <input type="text" id="ciudad" name="ciudad" required
+                                        class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-cssg-blue focus:border-cssg-blue outline-none transition bg-gray-50"
+                                        placeholder="Ej: Caracas">
+                                </div>
+                            </div>
+                            <div>
+                                <label for="telefono" class="block text-sm font-medium text-gray-700 mb-1">Teléfono Móvil (WhatsApp)</label>
+                                <input type="tel" id="telefono" name="telefono" required
+                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-cssg-blue focus:border-cssg-blue outline-none transition bg-gray-50"
+                                    placeholder="Ej: +58 424 000 0000">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Correo Electrónico</label>
+                                <input type="email" id="email" name="email" required
+                                    class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-cssg-blue focus:border-cssg-blue outline-none transition bg-gray-50"
+                                    placeholder="correo@empresa.com">
+                            </div>
+
+                            <button type="submit" id="submitBtn"
+                                class="w-full bg-cssg-blue hover:bg-blue-900 text-white font-bold text-lg py-4 px-8 rounded-lg transition duration-300 mt-2 shadow-md flex items-center justify-center gap-2">
+                                <span id="btnText">Solicitar Auditoría Gratuita</span>
+                                <span id="btnSpinner" class="hidden">
+                                    <svg class="animate-spin h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8z"></path>
+                                    </svg>
+                                </span>
+                            </button>
+                            <p class="text-xs text-center text-gray-500">
+                                <i class="ph ph-lock-key"></i> Tu información es confidencial. Solo abrimos 5 espacios por semana.
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="bg-gray-900 text-gray-400 py-8 text-center border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4">
+            <img src="/logo.png" alt="CSSG" class="h-10 w-10 object-contain mx-auto mb-3 opacity-40">
+            <p>&copy; 2026 CSSG Company of Security and Service Global C.A. · RIF J-29782024-8</p>
+            <p class="text-sm mt-2">Plataforma Shieldtrace PSIM | Certificación ISO 9001:2015</p>
+            <div class="flex items-center justify-center gap-4 mt-3 text-xs">
+                <a href="/politica-privacidad" class="hover:text-white transition">Política de Privacidad</a>
+                <span>·</span>
+                <a href="/terminos-condiciones" class="hover:text-white transition">Términos y Condiciones</a>
+                <span>·</span>
+                <a href="/" class="hover:text-white transition">cssg-global.com</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ═══ SCRIPT: Envío de formulario al endpoint real ═══ -->
+    <script>
+        document.getElementById('leadForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const btn       = document.getElementById('submitBtn');
+            const btnText   = document.getElementById('btnText');
+            const btnSpin   = document.getElementById('btnSpinner');
+            const errDiv    = document.getElementById('formError');
+            const successDiv = document.getElementById('formSuccess');
+
+            const nombre   = document.getElementById('nombre').value.trim();
+            const empresa  = document.getElementById('empresa').value.trim();
+            const ciudad   = document.getElementById('ciudad').value.trim();
+            const telefono = document.getElementById('telefono').value.trim();
+            const email    = document.getElementById('email').value.trim();
+
+            // Estado loading
+            btn.disabled = true;
+            btnText.textContent = 'Enviando...';
+            btnSpin.classList.remove('hidden');
+            errDiv.classList.add('hidden');
+
+            try {
+                const res = await fetch('/api/send-email', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        type: 'lead',
+                        nombre: nombre,
+                        email: email,
+                        empresa: empresa,
+                        telefono: telefono,
+                        fuente: 'optimizacion_industrial',
+                        cargo: `Campaña Industrial | Ciudad: ${ciudad}`,
+                    })
+                });
+
+                if (!res.ok) throw new Error('Error del servidor');
+
+                // Éxito: ocultar formulario, mostrar confirmación
+                document.getElementById('leadForm').classList.add('hidden');
+                successDiv.classList.remove('hidden');
+
+            } catch (err) {
+                errDiv.classList.remove('hidden');
+                btn.disabled = false;
+                btnText.textContent = 'Solicitar Auditoría Gratuita';
+                btnSpin.classList.add('hidden');
+            }
+        });
+    </script>
+
+</body>
+</html>
