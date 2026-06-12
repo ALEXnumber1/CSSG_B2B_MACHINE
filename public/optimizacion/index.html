@@ -246,20 +246,82 @@ nav{position:sticky;top:0;z-index:100;background:rgba(7,7,11,.85);-webkit-backdr
 .epi-box::before{content:'"';position:absolute;top:-18px;left:18px;font-size:60px;color:rgba(14,165,233,.2);font-family:'DM Serif Display',serif;line-height:1}
 .epi-box p{font-size:14.5px;color:#bae6fd;line-height:1.75;font-style:italic;padding-top:8px}
 
-/* ═══ MECHANISM ═════════════════════════════════════════════════════ */
-.mech-sec{background:var(--bg2);overflow:hidden;position:relative}
-.mech-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black,transparent)}
-.mech-g{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;position:relative;z-index:1}
+/* ═══ MECHANISM — HUD FUTURISTA ════════════════════════════════════ */
+@property --hud-angle{syntax:'<angle>';initial-value:0deg;inherits:false}
+@keyframes hudSpin{to{--hud-angle:360deg}}
+@keyframes scanLine{0%{top:-2px;opacity:0}8%{opacity:.8}92%{opacity:.6}100%{top:100%;opacity:0}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes glitchSlide{0%,100%{clip-path:inset(0 0 100% 0)}10%{clip-path:inset(20% 0 60% 0)}20%{clip-path:inset(50% 0 30% 0)}30%{clip-path:inset(10% 0 70% 0)}40%{clip-path:inset(40% 0 40% 0)}50%,90%{clip-path:inset(0 0 100% 0)}}
+
+.mech-sec{background:var(--bg);overflow:hidden;position:relative;padding:100px 0}
+.mech-sec-bg{position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(14,165,233,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(14,165,233,.025) 1px,transparent 1px);
+  background-size:40px 40px;
+  mask-image:radial-gradient(ellipse 90% 90% at 50% 50%,black,transparent);
+  pointer-events:none}
+.mech-sec-glow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:400px;background:radial-gradient(ellipse,rgba(14,165,233,.04) 0%,rgba(79,70,229,.03) 40%,transparent 70%);pointer-events:none}
+
+.mech-g{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;position:relative;z-index:1}
 @media(max-width:900px){.mech-g{grid-template-columns:1fr}}
-.mech-c{padding:36px 30px;background:var(--card);border:1px solid var(--border);border-radius:22px;transition:border-color .3s,transform .3s,box-shadow .3s;position:relative;overflow:hidden;perspective:800px}
-.mech-c::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(14,165,233,.05),transparent 70%);opacity:0;transition:opacity .3s}
-.mech-c:hover{border-color:rgba(14,165,233,.2);transform:translateY(-8px) rotateX(2deg);box-shadow:0 30px 60px rgba(0,0,0,.4)}
-.mech-c:hover::after{opacity:1}
-.mech-deco-n{position:absolute;top:14px;right:20px;font-size:64px;font-weight:900;color:rgba(14,165,233,.05);letter-spacing:-.04em;line-height:1;pointer-events:none}
-.mech-ico{width:52px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px;background:rgba(14,165,233,.07);border:1px solid rgba(14,165,233,.15);margin-bottom:18px;box-shadow:0 0 20px rgba(14,165,233,.1);transition:box-shadow .3s,transform .3s;position:relative;z-index:1}
-.mech-c:hover .mech-ico{box-shadow:0 0 30px rgba(14,165,233,.3);transform:scale(1.1)}
-.mech-c h3{font-size:17px;font-weight:800;margin-bottom:10px;color:#fff;position:relative;z-index:1}
-.mech-c p{font-size:13.5px;color:var(--t2);line-height:1.75;position:relative;z-index:1}
+
+/* HUD card wrapper — rotating border via conic-gradient */
+.mech-cw{position:relative;border-radius:20px;padding:2px;background:conic-gradient(from var(--hud-angle) at 50% 50%,transparent 0%,rgba(14,165,233,.15) 15%,rgba(79,70,229,.2) 30%,transparent 45%);animation:hudSpin 6s linear infinite;transition:background .3s}
+.mech-cw:hover{animation-duration:1.5s}
+.mech-cw:hover{background:conic-gradient(from var(--hud-angle) at 50% 50%,transparent 0%,rgba(14,165,233,.5) 12%,rgba(79,70,229,.6) 25%,transparent 40%)}
+
+.mech-c{position:relative;border-radius:18px;background:#08080f;overflow:hidden;padding:32px 28px;cursor:default;height:100%}
+
+/* Scan line */
+.mech-scan{position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 0%,rgba(14,165,233,.6) 30%,rgba(255,255,255,.8) 50%,rgba(14,165,233,.6) 70%,transparent 100%);top:-2px;opacity:0;pointer-events:none;z-index:5}
+.mech-cw:hover .mech-scan{animation:scanLine 2s ease-in-out infinite}
+
+/* Inner grid texture */
+.mech-c::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(14,165,233,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(14,165,233,.015) 1px,transparent 1px);background-size:20px 20px;pointer-events:none}
+
+/* Top glow */
+.mech-c::after{content:'';position:absolute;top:0;left:0;right:0;height:80px;background:linear-gradient(to bottom,rgba(14,165,233,.06),transparent);pointer-events:none;transition:opacity .3s}
+.mech-cw:hover .mech-c::after{opacity:2}
+
+/* System ID bar */
+.mech-sys{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;position:relative;z-index:2}
+.mech-sys-id{font-size:9px;font-weight:700;letter-spacing:.2em;color:rgba(14,165,233,.5);text-transform:uppercase;font-family:'Courier New',monospace}
+.mech-sys-st{display:flex;align-items:center;gap:6px;font-size:9px;font-weight:700;letter-spacing:.15em;color:rgba(16,185,129,.6);text-transform:uppercase;font-family:'Courier New',monospace}
+.mech-sys-dot{width:5px;height:5px;border-radius:50%;background:#10b981;animation:blink 2s ease-in-out infinite}
+
+/* Icon ring */
+.mech-ico-w{position:relative;width:64px;height:64px;margin-bottom:20px;flex-shrink:0}
+.mech-ico-ring{position:absolute;inset:-6px;border-radius:50%;border:1px solid rgba(14,165,233,.2);animation:hudSpin 4s linear infinite}
+.mech-ico-ring2{position:absolute;inset:-14px;border-radius:50%;border:1px dashed rgba(14,165,233,.08);animation:hudSpin 8s linear infinite reverse}
+.mech-ico-inner{width:64px;height:64px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:28px;background:rgba(14,165,233,.06);border:1px solid rgba(14,165,233,.15);position:relative;z-index:1;box-shadow:0 0 20px rgba(14,165,233,.08);transition:box-shadow .3s,background .3s}
+.mech-cw:hover .mech-ico-inner{background:rgba(14,165,233,.12);box-shadow:0 0 40px rgba(14,165,233,.25)}
+
+/* Content */
+.mech-num{font-size:9px;font-weight:700;letter-spacing:.2em;color:rgba(255,255,255,.15);text-transform:uppercase;margin-bottom:6px;font-family:'Courier New',monospace;position:relative;z-index:2}
+.mech-c h3{font-size:18px;font-weight:900;letter-spacing:-.02em;margin-bottom:10px;color:#fff;position:relative;z-index:2;transition:color .3s}
+.mech-cw:hover .mech-c h3{color:var(--skyf)}
+.mech-body{font-size:13.5px;color:rgba(156,163,175,.7);line-height:1.8;position:relative;z-index:2;transition:color .3s}
+.mech-cw:hover .mech-body{color:rgba(156,163,175,1)}
+
+/* Feature pills */
+.mech-pills{display:flex;flex-wrap:wrap;gap:6px;margin-top:18px;position:relative;z-index:2}
+.mech-pill{font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:100px;border:1px solid rgba(14,165,233,.2);color:rgba(14,165,233,.6);background:rgba(14,165,233,.04);transition:border-color .3s,color .3s,background .3s}
+.mech-cw:hover .mech-pill{border-color:rgba(14,165,233,.4);color:var(--skyf);background:rgba(14,165,233,.08)}
+
+/* Progress bar "system readiness" */
+.mech-bar{margin-top:20px;position:relative;z-index:2}
+.mech-bar-lbl{display:flex;justify-content:space-between;font-size:9px;letter-spacing:.1em;color:rgba(255,255,255,.2);margin-bottom:5px;font-family:'Courier New',monospace;text-transform:uppercase}
+.mech-bar-track{height:2px;background:rgba(255,255,255,.05);border-radius:1px;overflow:hidden}
+.mech-bar-fill{height:100%;border-radius:1px;background:linear-gradient(90deg,var(--sky),var(--indigo));width:0;transition:width 1.4s cubic-bezier(.16,1,.3,1)}
+.mech-bar-fill.animated{width:var(--w)}
+
+/* Deco corner brackets */
+.mech-c .bk{position:absolute;width:12px;height:12px;pointer-events:none;z-index:3}
+.mech-c .bk-tl{top:10px;left:10px;border-top:1px solid rgba(14,165,233,.3);border-left:1px solid rgba(14,165,233,.3)}
+.mech-c .bk-tr{top:10px;right:10px;border-top:1px solid rgba(14,165,233,.3);border-right:1px solid rgba(14,165,233,.3)}
+.mech-c .bk-bl{bottom:10px;left:10px;border-bottom:1px solid rgba(14,165,233,.3);border-left:1px solid rgba(14,165,233,.3)}
+.mech-c .bk-br{bottom:10px;right:10px;border-bottom:1px solid rgba(14,165,233,.3);border-right:1px solid rgba(14,165,233,.3)}
 
 /* ═══ STEPS ═════════════════════════════════════════════════════════ */
 .steps-sec{background:var(--bg)}
@@ -763,10 +825,11 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 <!-- ══════════════════════════════════════════════════════
      MECHANISM
 ══════════════════════════════════════════════════════ -->
-<section class="mech-sec sec">
-  <div class="mech-grid-bg"></div>
+<section class="mech-sec">
+  <div class="mech-sec-bg"></div>
+  <div class="mech-sec-glow"></div>
   <div class="wrap">
-    <div style="text-align:center;margin-bottom:56px" class="rv">
+    <div style="text-align:center;margin-bottom:60px" class="rv">
       <span class="tag tag-b">El nuevo mecanismo</span>
       <h2 class="h2" style="margin:14px auto;max-width:700px">
         El <span class="grad-text">Sistema Escudo Industrial</span>:<br>La arquitectura que cambia la ecuación
@@ -774,24 +837,97 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
       <p class="sh" style="margin:0 auto">No es una mejora del modelo tradicional. Es un reemplazo completo. Tres componentes que operan como uno solo:</p>
     </div>
     <div class="mech-g">
-      <div class="mech-c rv">
-        <div class="mech-deco-n">01</div>
-        <div class="mech-ico">🏗</div>
-        <h3>Estructura Plana</h3>
-        <p>Sin capas intermedias. El ahorro que generamos al eliminar burocracia se distribuye entre tu tarifa reducida y el salario élite de nuestros oficiales. Ambos ganan.</p>
+
+      <!-- CARD 1 -->
+      <div class="mech-cw rv">
+        <div class="mech-c">
+          <div class="mech-scan"></div>
+          <div class="bk bk-tl"></div><div class="bk bk-tr"></div>
+          <div class="bk bk-bl"></div><div class="bk bk-br"></div>
+          <div class="mech-sys">
+            <span class="mech-sys-id">SYS-ESI // MOD-01</span>
+            <span class="mech-sys-st"><span class="mech-sys-dot"></span>ACTIVO</span>
+          </div>
+          <div class="mech-ico-w">
+            <div class="mech-ico-ring"></div>
+            <div class="mech-ico-ring2"></div>
+            <div class="mech-ico-inner">🏗</div>
+          </div>
+          <div class="mech-num">// COMPONENTE 01 DE 03</div>
+          <h3>Estructura Plana</h3>
+          <p class="mech-body">Sin capas intermedias. El ahorro que generamos al eliminar burocracia se distribuye entre tu tarifa reducida y el salario élite de nuestros oficiales. <strong style="color:rgba(255,255,255,.8)">Ambos ganan — nadie pierde.</strong></p>
+          <div class="mech-pills">
+            <span class="mech-pill">Cero burocracia</span>
+            <span class="mech-pill">-40% estructura</span>
+            <span class="mech-pill">Salario élite</span>
+          </div>
+          <div class="mech-bar">
+            <div class="mech-bar-lbl"><span>Eficiencia operativa</span><span>94%</span></div>
+            <div class="mech-bar-track"><div class="mech-bar-fill" style="--w:94%"></div></div>
+          </div>
+        </div>
       </div>
-      <div class="mech-c rv d1">
-        <div class="mech-deco-n">02</div>
-        <div class="mech-ico">🖥</div>
-        <h3>Shieldtrace PSIM</h3>
-        <p>CCTV con IA, GPS en tiempo real, control de acceso biométrico y alertas automáticas en un solo panel. Incluido en tu contrato — sin costo adicional.</p>
+
+      <!-- CARD 2 -->
+      <div class="mech-cw rv d1">
+        <div class="mech-c">
+          <div class="mech-scan"></div>
+          <div class="bk bk-tl"></div><div class="bk bk-tr"></div>
+          <div class="bk bk-bl"></div><div class="bk bk-br"></div>
+          <div class="mech-sys">
+            <span class="mech-sys-id">SYS-ESI // MOD-02</span>
+            <span class="mech-sys-st"><span class="mech-sys-dot"></span>EN LÍNEA</span>
+          </div>
+          <div class="mech-ico-w">
+            <div class="mech-ico-ring"></div>
+            <div class="mech-ico-ring2"></div>
+            <div class="mech-ico-inner">🖥</div>
+          </div>
+          <div class="mech-num">// COMPONENTE 02 DE 03</div>
+          <h3>Shieldtrace PSIM</h3>
+          <p class="mech-body">CCTV con IA, GPS en tiempo real, control de acceso biométrico y alertas automáticas en un solo panel. <strong style="color:rgba(255,255,255,.8)">Incluido en tu contrato — $0 adicional.</strong></p>
+          <div class="mech-pills">
+            <span class="mech-pill">IA integrada</span>
+            <span class="mech-pill">GPS real-time</span>
+            <span class="mech-pill">Biometría</span>
+          </div>
+          <div class="mech-bar">
+            <div class="mech-bar-lbl"><span>Cobertura de monitoreo</span><span>100%</span></div>
+            <div class="mech-bar-track"><div class="mech-bar-fill" style="--w:100%"></div></div>
+          </div>
+        </div>
       </div>
-      <div class="mech-c rv d2">
-        <div class="mech-deco-n">03</div>
-        <div class="mech-ico">🛡</div>
-        <h3>Equipo de Lealtad Total</h3>
-        <p>El oficial que entra hoy seguirá en 3 años. Conoce cada rincón, cada protocolo, cada persona. La lealtad del personal élite es tu ventaja operacional más poderosa.</p>
+
+      <!-- CARD 3 -->
+      <div class="mech-cw rv d2">
+        <div class="mech-c">
+          <div class="mech-scan"></div>
+          <div class="bk bk-tl"></div><div class="bk bk-tr"></div>
+          <div class="bk bk-bl"></div><div class="bk bk-br"></div>
+          <div class="mech-sys">
+            <span class="mech-sys-id">SYS-ESI // MOD-03</span>
+            <span class="mech-sys-st"><span class="mech-sys-dot"></span>VERIFICADO</span>
+          </div>
+          <div class="mech-ico-w">
+            <div class="mech-ico-ring"></div>
+            <div class="mech-ico-ring2"></div>
+            <div class="mech-ico-inner">🛡</div>
+          </div>
+          <div class="mech-num">// COMPONENTE 03 DE 03</div>
+          <h3>Equipo de Lealtad Total</h3>
+          <p class="mech-body">El oficial que entra hoy seguirá en 3 años. Conoce cada rincón, cada protocolo, cada persona. <strong style="color:rgba(255,255,255,.8)">La lealtad del personal élite es tu ventaja operacional más poderosa.</strong></p>
+          <div class="mech-pills">
+            <span class="mech-pill">0% rotación</span>
+            <span class="mech-pill">17 años activo</span>
+            <span class="mech-pill">Lealtad total</span>
+          </div>
+          <div class="mech-bar">
+            <div class="mech-bar-lbl"><span>Índice de retención</span><span>100%</span></div>
+            <div class="mech-bar-track"><div class="mech-bar-fill" style="--w:100%"></div></div>
+          </div>
+        </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -1173,6 +1309,16 @@ if(hnum){
   });
   hio.observe(hnum);
 }
+
+/* ── PROGRESS BARS ── */
+const barIO = new IntersectionObserver(es=>{
+  es.forEach(e=>{
+    if(!e.isIntersecting)return;
+    e.target.querySelectorAll('.mech-bar-fill').forEach(b=>b.classList.add('animated'));
+    barIO.unobserve(e.target);
+  });
+},{threshold:.4});
+document.querySelectorAll('.mech-cw').forEach(el=>barIO.observe(el));
 
 /* ── FORM ── */
 document.getElementById('leadForm').addEventListener('submit',async function(e){
