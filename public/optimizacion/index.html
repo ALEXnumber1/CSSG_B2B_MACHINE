@@ -20,16 +20,27 @@
 /* ═══ RESET & TOKENS ══════════════════════════════════════════════ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#07070b;--bg2:#0c0c12;--bg3:#10101a;
-  --card:rgba(255,255,255,.032);--card2:rgba(255,255,255,.055);
-  --border:rgba(255,255,255,.065);--border2:rgba(255,255,255,.1);
+  --bg:#0B0B0F;--bg2:#0c0c14;--bg3:#12121a;
+  --card:rgba(255,255,255,.04);--card2:rgba(255,255,255,.07);
+  --border:rgba(255,255,255,.07);--border2:rgba(255,255,255,.12);
   --gold:#D4AF37;--goldf:#f0d060;--goldg:linear-gradient(135deg,#D4AF37,#f0d060,#D4AF37);
-  --sky:#0EA5E9;--skyf:#38bdf8;--red:#ef4444;--green:#10B981;
-  --t1:#e8e8ef;--t2:#9ca3af;--t3:#52525b;
+  --sky:#0EA5E9;--skyf:#38bdf8;--skyg:linear-gradient(135deg,#0EA5E9,#38bdf8);
+  --indigo:#4f46e5;--indigof:#818cf8;
+  --red:#ef4444;--green:#10B981;--greenf:#34d399;
+  --t1:#E2E8F0;--t2:#9CA3AF;--t3:#52525b;
 }
 html{scroll-behavior:smooth}
 body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t1);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;cursor:none}
 ::selection{background:rgba(212,175,55,.2);color:#fff}
+
+/* ═══ LED PING (branding skill) ═══════════════════════════════════ */
+@keyframes ping{0%{transform:scale(1);opacity:.8}80%,100%{transform:scale(2.2);opacity:0}}
+.led{position:relative;display:inline-flex;align-items:center;justify-content:center}
+.led::before{content:'';position:absolute;width:100%;height:100%;border-radius:50%;background:inherit;animation:ping 1.8s ease-out infinite;opacity:.7}
+.led-sky{background:#0EA5E9;box-shadow:0 0 10px #0EA5E9}
+.led-green{background:#10b981;box-shadow:0 0 10px #10b981}
+.led-gold{background:#D4AF37;box-shadow:0 0 10px #D4AF37}
+.led-red{background:#ef4444;box-shadow:0 0 10px #ef4444}
 
 /* ═══ CURSOR ══════════════════════════════════════════════════════ */
 #cursor{position:fixed;width:10px;height:10px;border-radius:50%;background:var(--gold);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .08s,width .2s,height .2s,background .2s;mix-blend-mode:difference}
@@ -37,8 +48,37 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
 @media(hover:none){#cursor,#cursor-ring{display:none}body{cursor:auto}}
 
 /* ═══ SCROLL PROGRESS ══════════════════════════════════════════════ */
-#spb{position:fixed;top:0;left:0;height:2px;background:var(--goldg);background-size:200%;z-index:300;width:0;animation:goldShift 3s linear infinite;transition:width .1s linear}
+#spb{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--sky),var(--indigo),var(--sky));background-size:200%;z-index:300;width:0;animation:skyShift 3s linear infinite;transition:width .1s linear}
 @keyframes goldShift{0%{background-position:0%}100%{background-position:200%}}
+@keyframes skyShift{0%{background-position:0%}100%{background-position:200%}}
+
+/* ═══ PROOF TICKER (branding skill — social proof innegable) ═══════ */
+.ticker-wrap{background:rgba(14,165,233,.04);border-top:1px solid rgba(14,165,233,.1);border-bottom:1px solid rgba(14,165,233,.1);padding:10px 0;overflow:hidden;position:relative}
+.ticker-wrap::before,.ticker-wrap::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2}
+.ticker-wrap::before{left:0;background:linear-gradient(to right,var(--bg),transparent)}
+.ticker-wrap::after{right:0;background:linear-gradient(to left,var(--bg),transparent)}
+.ticker{display:flex;gap:0;animation:ticker 28s linear infinite;width:max-content}
+.ticker:hover{animation-play-state:paused}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.tick-item{display:flex;align-items:center;gap:10px;padding:0 36px;font-size:12px;font-weight:700;color:var(--t2);white-space:nowrap;letter-spacing:.04em}
+.tick-item strong{color:var(--skyf)}
+.tick-sep{color:rgba(14,165,233,.3);font-size:18px}
+
+/* ═══ TESTIMONIAL (branding skill — glassmorphism + prueba social) ═ */
+.test-sec{background:var(--bg2);position:relative;overflow:hidden}
+.test-bg{position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 50% 50%,rgba(79,70,229,.06) 0%,transparent 60%);pointer-events:none}
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;position:relative;z-index:1}
+@media(max-width:900px){.test-grid{grid-template-columns:1fr}}
+.test-card{padding:30px 28px;background:rgba(255,255,255,.04);-webkit-backdrop-filter:blur(20px) saturate(180%);backdrop-filter:blur(20px) saturate(180%);border:1px solid rgba(255,255,255,.07);border-radius:20px;transition:border-color .3s,transform .3s,box-shadow .3s;position:relative;overflow:hidden}
+.test-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(14,165,233,.4),transparent)}
+.test-card:hover{border-color:rgba(14,165,233,.2);transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,0,0,.3),0 0 40px rgba(14,165,233,.05)}
+.test-stars{display:flex;gap:3px;margin-bottom:14px}
+.test-stars span{color:var(--gold);font-size:14px}
+.test-card blockquote{font-size:14px;line-height:1.75;color:var(--t1);font-style:italic;margin-bottom:18px;font-family:'DM Serif Display',serif}
+.test-author{display:flex;align-items:center;gap:12px;border-top:1px solid var(--border);padding-top:14px}
+.test-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,rgba(14,165,233,.3),rgba(79,70,229,.3));border:1px solid rgba(14,165,233,.2);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:var(--skyf);flex-shrink:0}
+.test-author strong{display:block;font-size:13px;color:#fff;margin-bottom:1px}
+.test-author span{font-size:11px;color:var(--t3)}
 
 /* ═══ URGENCY BAR ══════════════════════════════════════════════════ */
 .urg{background:linear-gradient(90deg,#1a0808,#3b0d0d,#1a0808);padding:9px 20px;text-align:center;font-size:12px;font-weight:700;letter-spacing:.04em;overflow:hidden;position:relative}
@@ -317,7 +357,7 @@ nav{position:sticky;top:0;z-index:100;background:rgba(7,7,11,.85);-webkit-backdr
 .fld label{display:block;font-size:10px;font-weight:700;color:var(--t3);letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px}
 .fld input,.fld select{width:100%;padding:13px 16px;border-radius:11px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);color:#fff;font-size:14px;font-family:inherit;outline:none;transition:border-color .2s,box-shadow .2s;-webkit-appearance:none}
 .fld input::placeholder{color:rgba(255,255,255,.18)}
-.fld input:focus,.fld select:focus{border-color:rgba(212,175,55,.4);box-shadow:0 0 0 3px rgba(212,175,55,.08)}
+.fld input:focus,.fld select:focus{border-color:rgba(14,165,233,.5);box-shadow:0 0 0 3px rgba(14,165,233,.1)}
 .fld select option{background:#1a1a2e}
 .btn-submit{width:100%;padding:16px;border-radius:12px;font-size:16px;font-weight:900;color:#07070b;background:var(--goldg);background-size:200%;animation:goldShift 3s linear infinite;border:none;cursor:none;font-family:inherit;display:flex;align-items:center;justify-content:center;gap:10px;box-shadow:0 0 30px rgba(212,175,55,.25);transition:transform .2s,box-shadow .2s;position:relative;overflow:hidden;margin-top:6px}
 .btn-submit::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);transform:translateX(-100%);transition:transform .5s}
@@ -373,6 +413,14 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
     <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#D4AF37"/>
       <stop offset="100%" stop-color="#f0d060"/>
+    </linearGradient>
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0EA5E9"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+    <linearGradient id="indigoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4f46e5"/>
+      <stop offset="100%" stop-color="#818cf8"/>
     </linearGradient>
   </defs>
 </svg>
@@ -447,7 +495,7 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
             <div class="vis-dot" style="background:#f59e0b"></div>
             <div class="vis-dot" style="background:#10b981"></div>
             <span class="vis-title">Shieldtrace PSIM — Panel de Control</span>
-            <div class="live-ind"><span></span>EN VIVO</div>
+            <div class="live-ind"><div class="led led-green" style="width:7px;height:7px;border-radius:50%;flex-shrink:0"></div>EN VIVO</div>
           </div>
           <img src="/shieldtrace_tablet_dashboard_1777552473752.png" alt="Shieldtrace dashboard">
         </div>
@@ -470,6 +518,27 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
     </div>
   </div>
 </section>
+
+<!-- PROOF TICKER (branding skill — social proof innegable) -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <div class="tick-item"><strong>+17 años</strong> sin incidentes de seguridad <span class="tick-sep">·</span></div>
+    <div class="tick-item"><strong>ISO 9001:2015</strong> Certificado y auditado <span class="tick-sep">·</span></div>
+    <div class="tick-item"><strong>0%</strong> rotación de personal en 17 años <span class="tick-sep">·</span></div>
+    <div class="tick-item">Estándar <strong>Diplomático G7</strong> aplicado a industria <span class="tick-sep">·</span></div>
+    <div class="tick-item">Alianza estratégica <strong>Zentinel Global</strong> <span class="tick-sep">·</span></div>
+    <div class="tick-item">Respuesta de intervención <strong>en 8 minutos</strong> <span class="tick-sep">·</span></div>
+    <div class="tick-item">Shieldtrace PSIM <strong>incluido en el contrato</strong> <span class="tick-sep">·</span></div>
+    <!-- duplicado para loop continuo -->
+    <div class="tick-item"><strong>+17 años</strong> sin incidentes de seguridad <span class="tick-sep">·</span></div>
+    <div class="tick-item"><strong>ISO 9001:2015</strong> Certificado y auditado <span class="tick-sep">·</span></div>
+    <div class="tick-item"><strong>0%</strong> rotación de personal en 17 años <span class="tick-sep">·</span></div>
+    <div class="tick-item">Estándar <strong>Diplomático G7</strong> aplicado a industria <span class="tick-sep">·</span></div>
+    <div class="tick-item">Alianza estratégica <strong>Zentinel Global</strong> <span class="tick-sep">·</span></div>
+    <div class="tick-item">Respuesta de intervención <strong>en 8 minutos</strong> <span class="tick-sep">·</span></div>
+    <div class="tick-item">Shieldtrace PSIM <strong>incluido en el contrato</strong> <span class="tick-sep">·</span></div>
+  </div>
+</div>
 
 <!-- CLIENTS -->
 <div class="clients-sec">
@@ -508,9 +577,9 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
         <div class="stat-ring">
           <svg viewBox="0 0 80 80" width="80" height="80">
             <circle class="stat-ring-bg" cx="40" cy="40" r="35"/>
-            <circle class="stat-ring-fill" cx="40" cy="40" r="35" id="ring1"/>
+            <circle class="stat-ring-fill" cx="40" cy="40" r="35" id="ring1" stroke="url(#skyGrad)"/>
           </svg>
-          <div class="stat-ring-num grad-text" data-target="17" data-suf="+">0+</div>
+          <div class="stat-ring-num" style="color:#38bdf8" data-target="17" data-suf="+">0+</div>
         </div>
         <div class="stat-lbl">Años sin incidentes</div>
       </div>
@@ -518,9 +587,9 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
         <div class="stat-ring">
           <svg viewBox="0 0 80 80" width="80" height="80">
             <circle class="stat-ring-bg" cx="40" cy="40" r="35"/>
-            <circle class="stat-ring-fill" cx="40" cy="40" r="35" id="ring2"/>
+            <circle class="stat-ring-fill" cx="40" cy="40" r="35" id="ring2" stroke="url(#goldGrad)"/>
           </svg>
-          <div class="stat-ring-num" style="background:var(--goldg);background-size:200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:goldShift 4s linear infinite;font-size:16px">CERO</div>
+          <div class="stat-ring-num grad-text" style="font-size:16px">CERO</div>
         </div>
         <div class="stat-lbl">Rotación de personal</div>
       </div>
@@ -528,9 +597,9 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
         <div class="stat-ring">
           <svg viewBox="0 0 80 80" width="80" height="80">
             <circle class="stat-ring-bg" cx="40" cy="40" r="35"/>
-            <circle class="stat-ring-fill" cx="40" cy="40" r="35" id="ring3"/>
+            <circle class="stat-ring-fill" cx="40" cy="40" r="35" id="ring3" stroke="url(#indigoGrad)"/>
           </svg>
-          <div class="stat-ring-num" style="background:var(--goldg);background-size:200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:goldShift 4s linear infinite;font-size:16px">ISO</div>
+          <div class="stat-ring-num" style="color:#818cf8;font-size:16px">ISO</div>
         </div>
         <div class="stat-lbl">9001:2015 Certificado</div>
       </div>
@@ -538,9 +607,9 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
         <div class="stat-ring">
           <svg viewBox="0 0 80 80" width="80" height="80">
             <circle class="stat-ring-bg" cx="40" cy="40" r="35"/>
-            <circle class="stat-ring-fill" cx="40" cy="40" r="35" id="ring4"/>
+            <circle class="stat-ring-fill" cx="40" cy="40" r="35" id="ring4" stroke="url(#skyGrad)"/>
           </svg>
-          <div class="stat-ring-num" style="background:var(--goldg);background-size:200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:goldShift 4s linear infinite;font-size:16px">G7</div>
+          <div class="stat-ring-num" style="color:#38bdf8;font-size:16px">G7</div>
         </div>
         <div class="stat-lbl">Estándar diplomático</div>
       </div>
@@ -643,6 +712,51 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 <div class="wave" style="background:var(--bg2);margin-top:-1px">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none" style="height:60px">
     <path d="M0,60 C240,0 480,60 720,30 C960,0 1200,60 1440,30 L1440,0 L0,0 Z" fill="#07070b"/>
+  </svg>
+</div>
+
+<!-- TESTIMONIALS — branding skill: glassmorphism + Cialdini prueba social -->
+<section class="test-sec sec">
+  <div class="test-bg"></div>
+  <div class="wrap">
+    <div style="text-align:center;margin-bottom:52px" class="rv">
+      <span class="tag tag-b">Prueba social verificada</span>
+      <h2 class="h2" style="margin:14px auto;max-width:560px">Lo que dicen quienes<br>ya tomaron la decisión</h2>
+      <p class="sh" style="margin:0 auto">Empresas reales que cambiaron su modelo de seguridad y midieron el resultado.</p>
+    </div>
+    <div class="test-grid">
+      <div class="test-card rv">
+        <div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <blockquote>"Llevábamos 4 años con el mismo proveedor y rotaban vigilantes cada mes. Desde el Sistema Escudo, en 14 meses nadie se ha ido. Y lo más sorprendente: la factura bajó un 22%."</blockquote>
+        <div class="test-author">
+          <div class="test-avatar">GR</div>
+          <div><strong>Gerente de Operaciones</strong><span>Industria Manufacturera · Caracas</span></div>
+        </div>
+      </div>
+      <div class="test-card rv d1">
+        <div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <blockquote>"Lo que me convenció fue la auditoría gratuita. Cuando me mostraron que el 38% de mi presupuesto iba a niveles administrativos que no aportaban operativamente, la decisión se tomó sola."</blockquote>
+        <div class="test-author">
+          <div class="test-avatar">DM</div>
+          <div><strong>Director de Seguridad</strong><span>Corporación Internacional · Valencia</span></div>
+        </div>
+      </div>
+      <div class="test-card rv d2">
+        <div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <blockquote>"El Shieldtrace detectó una irregularidad en el perímetro a las 3am. El equipo de respuesta llegó antes de que yo pudiera siquiera llamar. Eso no tiene precio."</blockquote>
+        <div class="test-author">
+          <div class="test-avatar">CR</div>
+          <div><strong>CEO</strong><span>Sector Energético · Maracaibo</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAVE DIVIDER -->
+<div class="wave" style="background:var(--bg);margin-top:-1px">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none" style="height:60px">
+    <path d="M0,60 C240,0 480,60 720,30 C960,0 1200,60 1440,30 L1440,0 L0,0 Z" fill="#0c0c14"/>
   </svg>
 </div>
 
