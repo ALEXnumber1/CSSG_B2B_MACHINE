@@ -30,6 +30,7 @@ const Partners = lazy(() => import('./pages/Partners'))
 const PortalRRHH = lazy(() => import('./pages/PortalRRHH'))
 const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
 const TermsAndConditions = lazy(() => import('./pages/TermsAndConditions'))
+const FAQ = lazy(() => import('./pages/FAQ'))
 
 function AppContent() {
   const { t, i18n } = useTranslation();
@@ -96,6 +97,7 @@ function AppContent() {
                   <Route path="/portal-rrhh" element={<PortalRRHH />} />
                   <Route path="/politica-privacidad" element={<PrivacyPolicy />} />
                   <Route path="/terminos-condiciones" element={<TermsAndConditions />} />
+                  <Route path="/preguntas-frecuentes" element={<FAQ />} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
               </Suspense>
@@ -149,6 +151,7 @@ function AppContent() {
                       <li><Link to="/tecnologia" className="hover:text-sky-400 transition-colors">{t('footer.electronic')}</Link></li>
                       <li><Link to="/informes" className="hover:text-sky-400 transition-colors">{t('footer.pestel')}</Link></li>
                       <li><Link to="/quejas" className="hover:text-sky-400 transition-colors">{t('footer.customer')}</Link></li>
+                      <li><Link to="/preguntas-frecuentes" className="hover:text-sky-400 transition-colors">Preguntas Frecuentes</Link></li>
                     </ul>
                   </div>
 

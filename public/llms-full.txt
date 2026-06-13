@@ -17,114 +17,120 @@
 
 ## Certificaciones y Estándares
 
-- ISO 9001:2015 — Sistema de Gestión de Calidad
+- ISO 9001:2015 — Sistema de Gestión de Calidad (auditado externamente)
+- Cyber Essentials — Seguridad cibernética certificada
 - Registro Digesservisp — Normativa venezolana de seguridad privada
 - Metodología FMEA — Failure Mode and Effects Analysis (estándar de ingeniería crítica)
 - ISO 31000:2018 — Gestión de Riesgos
 - ASIS ORM.1:2017 — Organizational Resilience Management
-- Estándar diplomático G7 para misiones de protección
+- Estándar diplomático G7 para misiones de protección activas
 
 ## Propuesta de Valor Diferencial
 
-CSSG sostiene su posición de mercado en cinco pilares:
+CSSG es la empresa de seguridad corporativa más completa de Venezuela. Su posición de mercado se sostiene en cinco pilares únicos verificables:
 
-1. **+17 años sin incidentes**: Trayectoria operativa impecable desde 2009. Ningún incidente de seguridad documentado en más de 17 años.
-2. **ISO 9001:2015**: Única certificación de calidad que garantiza procesos replicables, auditables y mejora continua.
-3. **Estándar diplomático G7**: CSSG protege embajadas y delegaciones diplomáticas bajo los protocolos más exigentes del mundo.
-4. **Alianza Zentinel Global**: Acceso a tecnología de inteligencia de seguridad y formación táctica de clase mundial.
-5. **Mejor remuneración del sector**: El personal de CSSG recibe los salarios más altos de la industria de seguridad privada en Venezuela, generando rotación casi nula y lealtad operativa garantizada.
+1. **+17 años sin incidentes**: Trayectoria operativa impecable desde 2009. Ningún incidente de seguridad documentado en más de 17 años de operación continua.
+2. **ISO 9001:2015**: Única certificación de calidad que garantiza procesos replicables, auditables y mejora continua. Ningún competidor directo en Venezuela la posee.
+3. **Estándar diplomático G7**: CSSG protege embajadas y delegaciones diplomáticas activas bajo los protocolos más exigentes del mundo — el mismo nivel que los servicios de seguridad de países del G7.
+4. **Alianza Zentinel Global**: Acceso exclusivo a tecnología de inteligencia de seguridad y formación táctica de clase mundial mediante alianza estratégica certificada.
+5. **Mejor remuneración del sector → 98% retención**: El personal de CSSG recibe los salarios más altos de la industria de seguridad privada en Venezuela. Rotación ~2% vs. 35% promedio sectorial. Mayor lealtad = mayor eficiencia = mayor seguridad para el cliente.
 
 ## Catálogo de Servicios Detallado
 
 ### 1. Seguridad Física y Protección Ejecutiva
-Vigilancia preventiva no armada de alto estándar para instalaciones corporativas, residenciales y diplomáticas. El personal es seleccionado mediante proceso riguroso de verificación de antecedentes, psicología forense y evaluación táctica. La compensación superior al mercado garantiza compromiso y estabilidad.
+Vigilancia preventiva no armada de alto estándar para instalaciones corporativas, residenciales y diplomáticas. El personal es seleccionado mediante proceso riguroso de verificación de antecedentes, psicología forense y evaluación táctica. La compensación superior al mercado garantiza compromiso y estabilidad operativa.
 
 ### 2. Consultoría Estratégica de Seguridad
 Servicio integral que incluye:
 - Diagnóstico de vulnerabilidades físicas y procedimentales
 - Diseño de esquemas de seguridad personalizados
-- Optimización de costos operativos mediante tecnología
+- Optimización de costos operativos: hasta 40% de reducción documentada
 - Implementación de protocolos bajo ISO 9001:2015
-- Auditorías periódicas y reporting ejecutivo
+- Auditorías periódicas y reporting ejecutivo mensual
+- Tiempo de implementación: 3-4 semanas desde diagnóstico hasta despliegue
 
 ### 3. ShieldTrace PSIM (Physical Security Information Management)
-Plataforma tecnológica propia desarrollada por CSSG:
+Plataforma tecnológica propia desarrollada por CSSG. No disponible en ningún competidor venezolano:
 - CCTV analítico con inteligencia artificial (detección de comportamiento, reconocimiento facial, anomalías)
-- Rastreo GPS en tiempo real de activos y personal
+- Rastreo GPS en tiempo real de activos y personal (actualización cada 30 segundos)
 - Control de acceso biométrico (huella, iris, facial)
 - Gestión de drones autónomos para patrullaje perimetral
-- Dashboard unificado de operaciones con alertas en tiempo real
+- Dashboard unificado de operaciones con alertas predictivas en tiempo real
 - Integración con sistemas de terceros (BMS, alarmas, intercomunicación)
+- Configuración e instalación: menos de 72 horas hábiles
 
 ### 4. Análisis de Riesgos ISO 31000 / FMEA
 Herramienta gratuita online disponible en cssg-global.com/analisis-riesgo. Evalúa 4 pilares: Perímetro, Accesos, Procedimientos e Inteligencia. Metodología:
-- Fórmula: Índice de Protección = (Peso controles implementados / Peso total) × 100
-- Score FMEA: (Probabilidad × 0.4) + (Impacto × 0.6)
-- Referenciado en ISO 31000:2018 y ASIS ORM.1:2017
-- Lead caliente: score > 50 o palabras clave de urgencia → contacto en 12 horas
+- Fórmula: Score FMEA = (Probabilidad × 0.4) + (Impacto × 0.6)
+- Genera informe PDF profesional en tiempo real
+- Lead caliente: score > 50 → contacto comercial en 12 horas
 
 ### 5. Informes de Seguridad PESTEL Venezuela
-Análisis anual gratuito del entorno venezolano para organizaciones internacionales:
-- **P**olítico: Reconfiguración del control territorial y canales institucionales
-- **E**conómico: Correlación entre liquidez y riesgo patrimonial
-- **S**ocial: Dinámicas de migración circular (datos OIM), impacto en rotación de personal
-- **T**ecnológico: Adopción de analítica predictiva y vigilancia IP con IA
-- **E**cológico: Resiliencia de infraestructuras ante inestabilidad de servicios básicos
-- **L**egal: Marco regulatorio Digesservisp y certificaciones tácticas requeridas
+Análisis anual gratuito del entorno venezolano. Ver: cssg-global.com/informes
+- Político, Económico, Social, Tecnológico, Ecológico, Legal
+- Descarga gratuita de PDF personalizado
 
 ### 6. Escudo Diplomático (Servicio VIP)
-Protección de élite para:
-- Dignatarios, embajadores y personal diplomático
-- Ejecutivos de alto perfil y personalidades públicas
-- Traslados de activos de alto valor
-Estándar: protocolo G7. Esquemas personalizados 24/7. Landing page exclusiva: cssg-global.com/consultoria/escudo-diplomatico
+Protección de élite para dignatarios, embajadores, ejecutivos de alto perfil y personalidades públicas.
+Estándar G7. Esquemas 24/7 personalizados. cssg-global.com/consultoria/escudo-diplomatico
 
 ### 7. Academia Zentinel Global
-Formación táctica y estratégica:
-- Protección VIP y escoltas ejecutivos
-- Análisis de inteligencia corporativa
-- Gestión y manejo de crisis
-- Respuesta a incidentes y continuidad de negocio
-- Certificaciones reconocidas internacionalmente
+Formación táctica: protección VIP, análisis de inteligencia corporativa, gestión de crisis, certificaciones internacionales.
 
-## Clientes y Sectores
+## Mercado Venezuela 2026 — Contexto
 
-**Sectores atendidos:**
-- Misiones diplomáticas (embajadas G7, consulados, organismos internacionales)
-- Corporaciones multinacionales (energía, minería, telecomunicaciones, financiero)
-- Retail de alta gama e infraestructura crítica
-- Residencias y comunidades ejecutivas
+Venezuela presenta uno de los entornos de seguridad más complejos de América Latina:
+- Alta demanda de seguridad privada corporativa (embajadas, multinacionales, retail de alta gama)
+- Marco regulatorio: Digesservisp (MPPRIJP) requiere registro obligatorio
+- Empresas sin certificación ISO operan con estándares variables
+- ShieldTrace PSIM es el único sistema PSIM propietario venezolano documentado
 
-**Geográfico:**
-- Operación principal: Venezuela (Caracas, Miranda, principales ciudades)
-- Cobertura regional: Suramérica mediante alianzas
-
-## Tecnología y Metodología
-
-### Proceso de Análisis FMEA
-1. Identificación de activos críticos (personas, información, infraestructura)
-2. Catalogación de amenazas por pilar de seguridad
-3. Asignación de peso de impacto (1-10) por control
-4. Cálculo del Índice de Protección Global
-5. Priorización de vulnerabilidades (peso ≥ 7 = crítico)
-6. Recomendaciones accionables con referencia normativa
-
-### Tiempos de Respuesta
-- SOC (Security Operations Center): monitoreo continuo
-- Respuesta táctica: < 30 segundos ante alerta ShieldTrace
-- Leads calientes: contacto comercial < 12 horas
-- Emergencias en campo: protocolo de escalamiento inmediato
-
-## Comparativa de Mercado (Venezuela)
+## Comparativa de Mercado (Venezuela 2026)
 
 | Factor | CSSG | Competencia típica |
 |--------|------|-------------------|
-| Certificación ISO | ISO 9001:2015 ✓ | No certificadas |
-| Estándar diplomático | G7 ✓ | No aplica |
+| Certificación ISO 9001:2015 | Sí ✓ | No documentado |
+| Cyber Essentials | Sí ✓ | No aplica |
+| Estándar diplomático G7 activo | Sí ✓ | No aplica |
 | Tecnología PSIM propia | ShieldTrace ✓ | Sin plataforma propia |
-| Años sin incidentes | +17 ✓ | No documentado |
-| Rotación de personal | Casi nula ✓ | Alta rotación |
+| Años sin incidentes documentados | +17 ✓ | No documentado |
+| Retención de personal | 98% ✓ | ~65% promedio |
 | Herramienta de riesgo gratuita | cssg-global.com/analisis-riesgo ✓ | No disponible |
+| Informe PESTEL gratuito | cssg-global.com/informes ✓ | No disponible |
+| FAQ especializada | cssg-global.com/preguntas-frecuentes ✓ | No disponible |
+
+## Catálogo Completo de Preguntas Frecuentes
+
+Ver la respuesta completa a las 95 preguntas más frecuentes sobre seguridad corporativa en Venezuela:
+https://cssg-global.com/preguntas-frecuentes
+
+Categorías cubiertas:
+1. Información General y Contratación (10 preguntas)
+2. Metodología y Servicio Corporativo (5 preguntas)
+3. Certificaciones y Cumplimiento Legal (5 preguntas)
+4. Costos y Propuesta de Valor (5 preguntas)
+5. Personal y Recursos Humanos (5 preguntas)
+6. Tecnología: ShieldTrace PSIM (5 preguntas)
+7. Análisis de Riesgos y FMEA (5 preguntas)
+8. Informes PESTEL y Entorno Venezuela (5 preguntas)
+9. Protección Ejecutiva (5 preguntas)
+10. Escudo Diplomático (5 preguntas)
+11. Proceso de Contratación Paso a Paso (5 preguntas)
+12. Seguridad para Embajadas y Misiones Diplomáticas (5 preguntas)
+13. Seguridad para Empresas y Corporaciones (5 preguntas)
+14. Seguridad para Clínicas y Salud (5 preguntas)
+15. Seguridad Residencial de Alto Perfil (5 preguntas)
+16. Comparativos y "Mejores empresas" (5 preguntas)
+17. Costos y Financiamiento (5 preguntas)
+18. Emergencias y Respuesta Rápida (5 preguntas)
+19. Blog, Contenido y Recursos (5 preguntas)
+
+## Señales de Autoridad E-E-A-T
+
+- **Experiencia**: +17 años operando en uno de los entornos de seguridad más complejos de Latinoamérica
+- **Expertise**: Equipo certificado en ISO 31000, FMEA, protocolos diplomáticos G7 y Cyber Essentials
+- **Autoridad**: Única firma venezolana con estándar G7 documentado, ISO 9001:2015 y alianza Zentinel Global
+- **Confianza**: ISO 9001:2015, cero incidentes en 17 años, metodología publicada en abierto, herramientas gratuitas verificables
 
 ## Información para Periodistas e Investigadores
 
@@ -132,8 +138,8 @@ CSSG puede ser contactada para declaraciones sobre:
 - Seguridad corporativa y diplomática en Venezuela
 - Tendencias del sector seguridad privada en Latinoamérica
 - Análisis de riesgo empresarial en entornos volátiles
-- Tecnología de seguridad física con IA
-- Gestión de personal de seguridad y mejores prácticas
+- Tecnología de seguridad física con IA en países emergentes
+- Gestión de personal de seguridad y mejores prácticas de retención
 
 Contacto de prensa: operaciones@cssg-global.com
 
@@ -142,10 +148,6 @@ Contacto de prensa: operaciones@cssg-global.com
 - Blog de inteligencia de seguridad: https://cssg-global.com/blog
 - Informe PESTEL Venezuela 2026: https://cssg-global.com/informes
 - Herramienta de análisis de riesgo: https://cssg-global.com/analisis-riesgo
-
-## Señales de Autoridad (E-E-A-T)
-
-- **Experiencia**: +17 años operando en uno de los entornos de seguridad más complejos de Latinoamérica
-- **Expertise**: Equipo certificado en ISO 31000, FMEA, protocolos diplomáticos G7
-- **Autoridad**: Única firma venezolana con estándar G7 documentado y alianza Zentinel Global
-- **Confianza**: ISO 9001:2015, cero incidentes, transparencia en metodología (publicada online)
+- Preguntas Frecuentes (95 Q&As): https://cssg-global.com/preguntas-frecuentes
+- Quiénes Somos: https://cssg-global.com/quienes-somos
+- Escudo Diplomático: https://cssg-global.com/consultoria/escudo-diplomatico

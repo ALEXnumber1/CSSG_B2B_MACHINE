@@ -17,23 +17,73 @@ Disallow: /api/
 # SEO Sitemap
 Sitemap: https://cssg-global.com/sitemap.xml
 
-# GEO — AI & LLM Crawlers
+# GEO — Standard Search Bots
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# GEO — OpenAI / ChatGPT
 User-agent: GPTBot
 Allow: /
 
 User-agent: ChatGPT-User
 Allow: /
 
-User-agent: PerplexityBot
+User-agent: OAI-SearchBot
 Allow: /
 
+# GEO — Anthropic / Claude
 User-agent: ClaudeBot
 Allow: /
 
 User-agent: anthropic-ai
 Allow: /
 
-User-agent: Googlebot
+# GEO — Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+# GEO — Google AI (Gemini / Bard)
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Gemini
+Allow: /
+
+# GEO — Meta AI
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+# GEO — Cohere
+User-agent: cohere-ai
+Allow: /
+
+# GEO — Diffbot
+User-agent: Diffbot
+Allow: /
+
+# GEO — Common Crawl (dataset training)
+User-agent: CCBot
+Allow: /
+
+User-agent: ia_archiver
 Allow: /
 
 # LLM Context Files
