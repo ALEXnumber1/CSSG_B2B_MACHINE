@@ -40,8 +40,9 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-[#030305] via-[#030305]/40 to-[#030305]" />
         <HeroSpline />
         {/* Laser Scanning Effect */}
-        <motion.div 
-          animate={{ top: ["-10%", "110%"] }}
+        <motion.div
+          style={{ top: 0 }}
+          animate={{ y: ["0vh", "100vh"] }}
           transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
           className="absolute left-0 right-0 h-[2px] bg-sky-500/30 z-20 shadow-[0_0_20px_rgba(14,165,233,0.5)]"
         />

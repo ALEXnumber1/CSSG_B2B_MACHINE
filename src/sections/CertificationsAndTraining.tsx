@@ -73,8 +73,10 @@ export default function CertificationsAndTraining() {
               
               <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-black/40 group/cert">
                 <img
-                  src="/CERTIFICADO 9001 INGLES.jpg"
+                  src="/certificado_iso.webp"
                   alt={t('cert.iso_alt', { defaultValue: 'Official ISO 9001:2015 Certificate' })}
+                  width="800"
+                  height="1132"
                   className="w-full h-auto opacity-70 group-hover:opacity-100 transition-all duration-700 shadow-2xl"
                   loading="lazy"
                   width="800"

@@ -125,8 +125,12 @@ export default function Testimonios() {
       {/* Hero con imagen */}
       <section className="relative h-[70vh] min-h-[520px] flex items-end overflow-hidden">
         <img
-          src="/testimonios_hero.png"
+          src="/testimonios_hero.webp"
           alt="Vigilantes CSSG con cliente en ambiente corporativo"
+          width="1920"
+          height="1080"
+          fetchPriority="high"
+          decoding="async"
           className="absolute inset-0 w-full h-full object-cover object-center"
         />
         {/* Gradiente sobre la imagen */}
