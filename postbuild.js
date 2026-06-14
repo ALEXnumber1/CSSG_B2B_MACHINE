@@ -220,6 +220,25 @@ const routes = [
     }
   },
   {
+    path: 'testimonios',
+    title: 'Opiniones y Testimonios de Clientes | CSSG | Seguridad Corporativa Venezuela',
+    description: 'Lee las opiniones verificadas de clientes, colaboradores y usuarios de CSSG. Comparte tu experiencia con la empresa de seguridad corporativa líder de Venezuela.',
+    image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
+    jsonld: {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "CSSG — Company Of Security And Service Global",
+      "url": "https://cssg-global.com",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "bestRating": "5",
+        "worstRating": "1",
+        "ratingCount": "1"
+      }
+    }
+  },
+  {
     path: 'en/technology',
     title: 'Shieldtrace PSIM — Integrated Security Platform | CSSG | Caracas · Miami',
     description: 'Shieldtrace PSIM unifies AI-powered CCTV analytics, real-time GPS tracking, biometric access control and autonomous drones in one dashboard. Enterprise security technology in Venezuela.',
@@ -271,7 +290,7 @@ routes.forEach(route => {
       'analisis-riesgo': 'Análisis de Riesgo', 'informes': 'Informes PESTEL', 'blog': 'Blog',
       'licitaciones': 'Licitaciones', 'partners': 'Partners', 'portal-rrhh': 'Portal RRHH',
       'quejas': 'Quejas', 'escudo-diplomatico': 'Escudo Diplomático',
-      'preguntas-frecuentes': 'Preguntas Frecuentes', 'en': 'EN', 'technology': 'Technology',
+      'preguntas-frecuentes': 'Preguntas Frecuentes', 'testimonios': 'Opiniones', 'en': 'EN', 'technology': 'Technology',
       'consultoria-seguridad-caracas': 'Consultoría Seguridad Caracas',
       'auditoria-seguridad-iso-31000': 'Auditoría ISO 31000',
       'analisis-riesgos-corporativos-venezuela': 'Análisis de Riesgos Venezuela',

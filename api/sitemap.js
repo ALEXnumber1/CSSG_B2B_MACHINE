@@ -22,6 +22,7 @@ export default async function handler(req, res) {
     { path: '/optimizacion/', priority: '0.8', lastmod: '2026-06-11' },
     { path: '/en/technology', priority: '0.8', lastmod: '2026-06-12' },
     { path: '/preguntas-frecuentes', priority: '0.8', lastmod: '2026-06-13' },
+    { path: '/testimonios', priority: '0.7', lastmod: '2026-06-13' },
     { path: '/blog', priority: '0.8', lastmod: today },
     { path: '/licitaciones', priority: '0.7', lastmod: '2026-05-19' },
     { path: '/partners', priority: '0.6', lastmod: '2026-05-19' },
