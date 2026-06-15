@@ -21,13 +21,11 @@ import {
   Building,
   X,
 } from 'lucide-react';
-import { pdf } from '@react-pdf/renderer';
 import { supabase } from '../lib/supabase';
 import { startSequence } from '../lib/sequences';
 import { sendNurtureEmail } from '../lib/email';
 import SecurityRadar3D from '../components/SecurityRadar3D';
 import { type ReportData } from '../components/ReportTemplate';
-import { RiskReportPDF } from '../lib/pdf/documents/RiskReport';
 
 import esRisk from '../locales/es/risk.json';
 import enRisk from '../locales/en/risk.json';
@@ -445,6 +443,10 @@ export default function RiskAnalysis() {
         vulnerabilities: vulnerabilities,
       };
 
+      const [{ pdf }, { RiskReportPDF }] = await Promise.all([
+        import('@react-pdf/renderer'),
+        import('../lib/pdf/documents/RiskReport'),
+      ]);
       const logoUrl = `${window.location.origin}/logo.png`;
       const blob = await pdf(<RiskReportPDF data={reportData} logoUrl={logoUrl} />).toBlob();
       const url = URL.createObjectURL(blob);
@@ -838,7 +840,12 @@ export default function RiskAnalysis() {
                 {t('risk.dashboard.cta_desc')}
               </p>
               <button
-                onClick={() => setShowLeadModal(true)}
+                onClick={() => {
+                  setShowLeadModal(true);
+                  // Pre-cargar el chunk PDF mientras el usuario llena el formulario
+                  import('@react-pdf/renderer');
+                  import('../lib/pdf/documents/RiskReport');
+                }}
                 className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-semibold text-sm transition-colors cursor-pointer"
               >
                 <Download className="w-4 h-4" />
