@@ -67,9 +67,10 @@ function getScoreCategory(score: number) {
 
 interface RiskReportPDFProps {
   data: ReportData;
+  logoUrl?: string;
 }
 
-export const RiskReportPDF = ({ data }: RiskReportPDFProps) => (
+export const RiskReportPDF = ({ data, logoUrl }: RiskReportPDFProps) => (
   <Document
     title={`Informe de Vulnerabilidad — ${data.company}`}
     author="CSSG — Company Of Security And Service Global C.A."
@@ -77,7 +78,7 @@ export const RiskReportPDF = ({ data }: RiskReportPDFProps) => (
     creator="CSSG Risk Analyzer"
   >
     <Page size="A4" style={styles.page}>
-      <PDFHeader documentType="INFORME DE VULNERABILIDAD" />
+      <PDFHeader documentType="INFORME DE VULNERABILIDAD" logoUrl={logoUrl} />
       <PDFFooter />
 
       <InfoGrid

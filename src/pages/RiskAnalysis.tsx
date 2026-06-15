@@ -445,7 +445,8 @@ export default function RiskAnalysis() {
         vulnerabilities: vulnerabilities,
       };
 
-      const blob = await pdf(<RiskReportPDF data={reportData} />).toBlob();
+      const logoUrl = `${window.location.origin}/logo.png`;
+      const blob = await pdf(<RiskReportPDF data={reportData} logoUrl={logoUrl} />).toBlob();
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
