@@ -166,14 +166,30 @@ export default function CertificationsAndTraining() {
         >
           <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
 
-            {/* Left — iframe widget */}
+            {/* Left — badge estático Cyber Essentials */}
             <div className="flex flex-col items-center gap-3 shrink-0">
-              <iframe
-                src="https://registry.blockmarktech.com/certificates/8310c0a4-9539-4caa-809a-4e68b3448881/widget/?tooltip_position=corner&theme=transparent"
-                style={{ border: 'none', height: '160px', width: '160px' }}
-                title="Cyber Essentials Certificate"
-                loading="lazy"
-              />
+              <a
+                href="https://registry.blockmarktech.com/certificates/8310c0a4-9539-4caa-809a-4e68b3448881/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-[160px] h-[160px] rounded-2xl bg-gradient-to-br from-emerald-950/80 to-emerald-900/40 border-2 border-emerald-500/30 flex flex-col items-center justify-center gap-2 p-4 hover:border-emerald-400/60 transition-all hover:shadow-[0_0_30px_rgba(16,185,129,0.2)]"
+              >
+                <svg width="60" height="68" viewBox="0 0 60 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M30 2L4 13V34C4 49.5 15.5 63.5 30 67C44.5 63.5 56 49.5 56 34V13L30 2Z" fill="url(#ceGrad)" stroke="rgba(16,185,129,0.5)" strokeWidth="1.5"/>
+                  <defs>
+                    <linearGradient id="ceGrad" x1="30" y1="2" x2="30" y2="67" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stopColor="#065f46"/>
+                      <stop offset="100%" stopColor="#022c22"/>
+                    </linearGradient>
+                  </defs>
+                  <path d="M20 34L27 41L42 26" stroke="#34d399" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                <div className="text-center">
+                  <div className="text-[9px] font-black text-emerald-400 tracking-[0.12em] uppercase leading-tight">CYBER</div>
+                  <div className="text-[9px] font-black text-emerald-400 tracking-[0.12em] uppercase leading-tight">ESSENTIALS</div>
+                  <div className="text-[7px] font-bold text-emerald-300/80 tracking-[0.08em] uppercase mt-1">CERTIFIED</div>
+                </div>
+              </a>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded border border-emerald-500/20 bg-emerald-500/5">
                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                 <span className="text-[9px] font-black text-emerald-400 uppercase tracking-[0.2em]">Certificación Activa</span>

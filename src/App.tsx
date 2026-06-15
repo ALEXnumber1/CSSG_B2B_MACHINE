@@ -181,12 +181,28 @@ function AppContent() {
                     <span className="text-[9px] text-sky-400 font-bold uppercase tracking-widest">ISO 9001:2015</span>
                   </div>
                   <div className="flex flex-col items-center gap-2">
-                    <iframe
-                      src="https://registry.blockmarktech.com/certificates/8310c0a4-9539-4caa-809a-4e68b3448881/widget/?tooltip_position=corner&theme=transparent"
-                      style={{ border: 'none', height: '132px', width: '132px' }}
-                      title="Cyber Essentials Certificate"
-                      loading="lazy"
-                    />
+                    <a
+                      href="https://registry.blockmarktech.com/certificates/8310c0a4-9539-4caa-809a-4e68b3448881/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-[132px] h-[132px] rounded-xl bg-gradient-to-br from-emerald-950/80 to-emerald-900/40 border-2 border-emerald-500/30 flex flex-col items-center justify-center gap-1.5 p-3 hover:border-emerald-400/60 transition-all"
+                    >
+                      <svg width="48" height="54" viewBox="0 0 60 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M30 2L4 13V34C4 49.5 15.5 63.5 30 67C44.5 63.5 56 49.5 56 34V13L30 2Z" fill="url(#ceGrad2)" stroke="rgba(16,185,129,0.5)" strokeWidth="1.5"/>
+                        <defs>
+                          <linearGradient id="ceGrad2" x1="30" y1="2" x2="30" y2="67" gradientUnits="userSpaceOnUse">
+                            <stop offset="0%" stopColor="#065f46"/>
+                            <stop offset="100%" stopColor="#022c22"/>
+                          </linearGradient>
+                        </defs>
+                        <path d="M20 34L27 41L42 26" stroke="#34d399" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                      <div className="text-center">
+                        <div className="text-[7.5px] font-black text-emerald-400 tracking-[0.1em] uppercase leading-tight">CYBER</div>
+                        <div className="text-[7.5px] font-black text-emerald-400 tracking-[0.1em] uppercase leading-tight">ESSENTIALS</div>
+                        <div className="text-[6px] font-bold text-emerald-300/80 tracking-[0.08em] uppercase mt-0.5">CERTIFIED</div>
+                      </div>
+                    </a>
                     <span className="text-[9px] text-sky-400 font-bold uppercase tracking-widest">Cyber Essentials</span>
                   </div>
                 </div>
