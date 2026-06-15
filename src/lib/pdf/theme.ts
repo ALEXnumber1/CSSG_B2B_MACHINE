@@ -1,15 +1,6 @@
 import { StyleSheet, Font } from '@react-pdf/renderer';
 
-Font.register({
-  family: 'Inter',
-  fonts: [
-    { src: 'https://fonts.gstatic.com/s/inter/v19/UcCO3FwrK3iLTeHuS_nVMrMxCp50ojIw2boKoduKmMEVuLyfMZhrib2Bg-4.ttf', fontWeight: 400 },
-    { src: 'https://fonts.gstatic.com/s/inter/v19/UcCO3FwrK3iLTeHuS_nVMrMxCp50ojIw2boKoduKmMEVuI6fMZhrib2Bg-4.ttf', fontWeight: 500 },
-    { src: 'https://fonts.gstatic.com/s/inter/v19/UcCO3FwrK3iLTeHuS_nVMrMxCp50ojIw2boKoduKmMEVuFuYMZhrib2Bg-4.ttf', fontWeight: 700 },
-    { src: 'https://fonts.gstatic.com/s/inter/v19/UcCO3FwrK3iLTeHuS_nVMrMxCp50ojIw2boKoduKmMEVuGKYMZhrib2Bg-4.ttf', fontWeight: 900 },
-  ],
-});
-
+// Helvetica es una fuente estándar PDF — no requiere descarga de red
 Font.registerHyphenationCallback((word) => [word]);
 
 export const colors = {
@@ -61,7 +52,7 @@ export const spacing = {
 
 export const baseStyles = StyleSheet.create({
   page: {
-    fontFamily: 'Inter',
+    fontFamily: 'Helvetica',
     fontSize: sizes.base,
     color: colors.slate800,
     backgroundColor: colors.white,

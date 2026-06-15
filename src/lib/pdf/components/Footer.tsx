@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   },
   row: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 4 },
   legal: { fontSize: 7, color: colors.slate500, fontWeight: 500 },
-  rif: { fontSize: 7, color: colors.slate400, fontFamily: 'Inter', letterSpacing: 0.4 },
+  rif: { fontSize: 7, color: colors.slate400, letterSpacing: 0.4 },
   meta: { flexDirection: 'row', gap: 8, alignItems: 'center' },
   iso: { fontSize: 7, color: colors.sky600, fontWeight: 700, letterSpacing: 0.5 },
   page: { fontSize: 7, color: colors.slate500, fontWeight: 700 },
