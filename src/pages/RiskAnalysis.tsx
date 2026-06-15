@@ -25,7 +25,6 @@ import { supabase } from '../lib/supabase';
 import { startSequence } from '../lib/sequences';
 import { sendNurtureEmail } from '../lib/email';
 import SecurityRadar3D from '../components/SecurityRadar3D';
-import { type ReportData } from '../components/ReportTemplate';
 
 import esRisk from '../locales/es/risk.json';
 import enRisk from '../locales/en/risk.json';
@@ -426,29 +425,30 @@ export default function RiskAnalysis() {
       sendNurtureEmail(leadData.email, leadData.name, 'riesgo', leadData.company).catch(err => console.warn('[Email] nurture error:', err));
     }
 
-    // 2. Generar PDF con @react-pdf/renderer (nativo, sin html2canvas)
+    // 2. Generar PDF en el servidor (Node.js — no bloquea el browser)
     try {
-      const reportData: ReportData = {
-        leadName: leadData.name,
-        jobTitle: leadData.jobTitle,
-        company: leadData.company,
-        email: leadData.email,
-        phone: leadData.phone,
-        location: contextData.location,
-        sector: contextData.sector,
-        exposure: contextData.exposure,
-        targetOrganization: contextData.targetOrganization,
-        score: protectionScore,
-        pillars: pillarStats.map(p => ({ title: p.pillar.title, checked: p.checked, total: p.total })),
-        vulnerabilities: vulnerabilities,
-      };
+      const res = await fetch('/api/generate-pdf', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          leadName: leadData.name,
+          jobTitle: leadData.jobTitle,
+          company: leadData.company,
+          email: leadData.email,
+          phone: leadData.phone,
+          location: contextData.location,
+          sector: contextData.sector,
+          exposure: contextData.exposure,
+          targetOrganization: contextData.targetOrganization,
+          score: protectionScore,
+          pillars: pillarStats.map(p => ({ title: p.pillar.title, checked: p.checked, total: p.total })),
+          vulnerabilities: vulnerabilities,
+        }),
+      });
 
-      const [{ pdf }, { RiskReportPDF }] = await Promise.all([
-        import('@react-pdf/renderer'),
-        import('../lib/pdf/documents/RiskReport'),
-      ]);
-      const logoUrl = `${window.location.origin}/logo.png`;
-      const blob = await pdf(<RiskReportPDF data={reportData} logoUrl={logoUrl} />).toBlob();
+      if (!res.ok) throw new Error(`Server error ${res.status}`);
+
+      const blob = await res.blob();
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
