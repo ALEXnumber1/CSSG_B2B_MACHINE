@@ -166,11 +166,20 @@ export default function CertificationsAndTraining() {
 
             {/* Left — badge estático Cyber Essentials */}
             <div className="flex flex-col items-center gap-3 shrink-0">
-              <iframe
-                src="https://registry.blockmarktech.com/certificates/8310c0a4-9539-4caa-809a-4e68b3448881/widget/?tooltip_position=corner&theme=transparent"
-                className="border-none w-[171px] h-[171px]"
-                title="Cyber Essentials Certificate"
-              />
+              <a
+                href="https://registry.blockmarktech.com/certificates/8310c0a4-9539-4caa-809a-4e68b3448881/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block hover:opacity-90 transition-opacity"
+              >
+                <img
+                  src="/cyber-essentials-badge.png"
+                  alt="Cyber Essentials Certified — IASME / NCSC"
+                  width={171}
+                  height={171}
+                  className="rounded-xl"
+                />
+              </a>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded border border-emerald-500/20 bg-emerald-500/5">
                 <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                 <span className="text-[9px] font-black text-emerald-400 uppercase tracking-[0.2em]">Certificación Activa</span>
