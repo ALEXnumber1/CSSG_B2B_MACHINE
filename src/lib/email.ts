@@ -505,7 +505,7 @@ const sequenceTemplates: Record<string, { subject: string | ((nombre: string, em
       </p>
       <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
         CSSG — Company Of Security And Service Global C.A.<br>
-        operaciones@cssg-global.com · cssg-global.com
+        gerencia@globalservices-ven.com · cssg-global.com
       </p>
       <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">Si prefiere no recibir más información de CSSG, responda con la palabra DETENER.</p>
     `),
@@ -535,7 +535,7 @@ const sequenceTemplates: Record<string, { subject: string | ((nombre: string, em
         la documentación y los KPIs son parte del servicio — no trabajo adicional para usted.
       </p>
       <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
-        CSSG — operaciones@cssg-global.com · cssg-global.com
+        CSSG — gerencia@globalservices-ven.com · cssg-global.com
       </p>
       <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">Si prefiere no recibir más información de CSSG, responda con la palabra DETENER.</p>
     `),
@@ -568,7 +568,7 @@ const sequenceTemplates: Record<string, { subject: string | ((nombre: string, em
         hacerlo brillar ante su directivo.
       </p>
       <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
-        CSSG — operaciones@cssg-global.com · cssg-global.com
+        CSSG — gerencia@globalservices-ven.com · cssg-global.com
       </p>
       <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">Si prefiere no recibir más información de CSSG, responda con la palabra DETENER.</p>
     `),
@@ -597,12 +597,12 @@ const sequenceTemplates: Record<string, { subject: string | ((nombre: string, em
         en tiempo real — el mismo que usamos con organizaciones internacionales en Chacao y Baruta.
       </p>
       <div style="text-align:left;margin:24px 0;">
-        <a href="mailto:operaciones@cssg-global.com?subject=Muestra%20Informe%20Ejecutivo" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
+        <a href="mailto:gerencia@globalservices-ven.com?subject=Muestra%20Informe%20Ejecutivo" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
           Solicitar muestra del Informe
         </a>
       </div>
       <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
-        CSSG — operaciones@cssg-global.com · cssg-global.com
+        CSSG — gerencia@globalservices-ven.com · cssg-global.com
       </p>
       <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">Si prefiere no recibir más información de CSSG, responda con la palabra DETENER.</p>
     `),
@@ -631,12 +631,12 @@ const sequenceTemplates: Record<string, { subject: string | ((nombre: string, em
         ¿Le interesa una conversación de 15 minutos esta semana?
       </p>
       <div style="text-align:left;margin:24px 0;">
-        <a href="mailto:operaciones@cssg-global.com?subject=Conversacion%2015%20min%20-%20BP1" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
+        <a href="mailto:gerencia@globalservices-ven.com?subject=Conversacion%2015%20min%20-%20BP1" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
           Agendar 15 minutos
         </a>
       </div>
       <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
-        CSSG — operaciones@cssg-global.com · cssg-global.com
+        CSSG — gerencia@globalservices-ven.com · cssg-global.com
       </p>
       <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">Si prefiere no recibir más información de CSSG, responda con la palabra DETENER.</p>
     `),
@@ -662,12 +662,12 @@ const sequenceTemplates: Record<string, { subject: string | ((nombre: string, em
         15 minutos esta semana, le invito a que hablemos.
       </p>
       <div style="text-align:left;margin:24px 0;">
-        <a href="mailto:operaciones@cssg-global.com?subject=15%20min%20-%20cogestión" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
+        <a href="mailto:gerencia@globalservices-ven.com?subject=15%20min%20-%20cogestión" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
           Proponer horario
         </a>
       </div>
       <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
-        CSSG — operaciones@cssg-global.com · cssg-global.com
+        CSSG — gerencia@globalservices-ven.com · cssg-global.com
       </p>
       <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">Si prefiere no recibir más información de CSSG, responda con la palabra DETENER.</p>
     `),
@@ -695,7 +695,7 @@ const sequenceTemplates: Record<string, { subject: string | ((nombre: string, em
         un precio fijo mensual sin sorpresas, y contesta cuando la llaman.
       </p>
       <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
-        CSSG — operaciones@cssg-global.com · cssg-global.com
+        CSSG — gerencia@globalservices-ven.com · cssg-global.com
       </p>
       <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">Si prefiere no recibir más información de CSSG, responda con la palabra DETENER.</p>
     `),
@@ -719,7 +719,7 @@ const sequenceTemplates: Record<string, { subject: string | ((nombre: string, em
         dónde está cada guardia, cuándo hizo cada ronda. Y si llama, le contestamos.
       </p>
       <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
-        CSSG — operaciones@cssg-global.com · cssg-global.com
+        CSSG — gerencia@globalservices-ven.com · cssg-global.com
       </p>
       <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">Si prefiere no recibir más información de CSSG, responda con la palabra DETENER.</p>
     `),
@@ -747,7 +747,7 @@ const sequenceTemplates: Record<string, { subject: string | ((nombre: string, em
         puede reenviar directamente a la junta sin editar. Cero llamadas sin respuesta desde entonces.
       </p>
       <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
-        CSSG — operaciones@cssg-global.com · cssg-global.com
+        CSSG — gerencia@globalservices-ven.com · cssg-global.com
       </p>
       <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">Si prefiere no recibir más información de CSSG, responda con la palabra DETENER.</p>
     `),
@@ -778,7 +778,7 @@ const sequenceTemplates: Record<string, { subject: string | ((nombre: string, em
         </a>
       </div>
       <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
-        CSSG — operaciones@cssg-global.com · cssg-global.com
+        CSSG — gerencia@globalservices-ven.com · cssg-global.com
       </p>
       <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">Si prefiere no recibir más información de CSSG, responda con la palabra DETENER.</p>
     `),
@@ -803,12 +803,12 @@ const sequenceTemplates: Record<string, { subject: string | ((nombre: string, em
         a este correo o solicitar una llamada de 15 minutos.
       </p>
       <div style="text-align:left;margin:24px 0;">
-        <a href="mailto:operaciones@cssg-global.com?subject=Revisión%20factura%20seguridad" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
+        <a href="mailto:gerencia@globalservices-ven.com?subject=Revisión%20factura%20seguridad" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
           Solicitar revisión gratuita
         </a>
       </div>
       <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
-        CSSG — operaciones@cssg-global.com · cssg-global.com
+        CSSG — gerencia@globalservices-ven.com · cssg-global.com
       </p>
       <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">Si prefiere no recibir más información de CSSG, responda con la palabra DETENER.</p>
     `),
@@ -838,7 +838,7 @@ const sequenceTemplates: Record<string, { subject: string | ((nombre: string, em
         a documentation risk that won't surface until the review is already underway.
       </p>
       <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
-        CSSG — operaciones@cssg-global.com · cssg-global.com
+        CSSG — gerencia@globalservices-ven.com · cssg-global.com
       </p>
       <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">If you prefer not to receive further communications from CSSG, reply with STOP.</p>
     `),
@@ -867,7 +867,7 @@ const sequenceTemplates: Record<string, { subject: string | ((nombre: string, em
         in English, updated monthly, ready for submission.
       </p>
       <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
-        CSSG — operaciones@cssg-global.com · cssg-global.com
+        CSSG — gerencia@globalservices-ven.com · cssg-global.com
       </p>
       <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">If you prefer not to receive further communications from CSSG, reply with STOP.</p>
     `),
@@ -897,7 +897,7 @@ const sequenceTemplates: Record<string, { subject: string | ((nombre: string, em
         CSO — and their compliance framework survived their own rotation 18 months later.
       </p>
       <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
-        CSSG — operaciones@cssg-global.com · cssg-global.com
+        CSSG — gerencia@globalservices-ven.com · cssg-global.com
       </p>
       <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">If you prefer not to receive further communications from CSSG, reply with STOP.</p>
     `),
@@ -926,12 +926,12 @@ const sequenceTemplates: Record<string, { subject: string | ((nombre: string, em
         if you'd like to benchmark your current Venezuela operation before we connect.
       </p>
       <div style="text-align:left;margin:24px 0;">
-        <a href="mailto:operaciones@cssg-global.com?subject=SC1%20Sample%20Request" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
+        <a href="mailto:gerencia@globalservices-ven.com?subject=SC1%20Sample%20Request" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
           Request SC1 Sample
         </a>
       </div>
       <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
-        CSSG — operaciones@cssg-global.com · cssg-global.com
+        CSSG — gerencia@globalservices-ven.com · cssg-global.com
       </p>
       <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">If you prefer not to receive further communications from CSSG, reply with STOP.</p>
     `),
@@ -959,12 +959,12 @@ const sequenceTemplates: Record<string, { subject: string | ((nombre: string, em
         a compliance gap during your review cycle.
       </p>
       <div style="text-align:left;margin:24px 0;">
-        <a href="mailto:operaciones@cssg-global.com?subject=15-min%20call%20-%20Venezuela%20compliance" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
+        <a href="mailto:gerencia@globalservices-ven.com?subject=15-min%20call%20-%20Venezuela%20compliance" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
           Schedule 15-minute call
         </a>
       </div>
       <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
-        CSSG — operaciones@cssg-global.com · cssg-global.com
+        CSSG — gerencia@globalservices-ven.com · cssg-global.com
       </p>
       <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">If you prefer not to receive further communications from CSSG, reply with STOP.</p>
     `),
@@ -993,7 +993,7 @@ const sequenceTemplates: Record<string, { subject: string | ((nombre: string, em
         seguridad porque no sabe que existe otra opción coordinada desde Miami.
       </p>
       <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
-        CSSG — operaciones@cssg-global.com · cssg-global.com · Miami, FL
+        CSSG — gerencia@globalservices-ven.com · cssg-global.com · Miami, FL
       </p>
       <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">Si prefiere no recibir más información de CSSG, responda con la palabra DETENER.</p>
     `),
@@ -1022,7 +1022,7 @@ const sequenceTemplates: Record<string, { subject: string | ((nombre: string, em
         desde este lado antes de que cuelgue.
       </p>
       <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
-        CSSG — operaciones@cssg-global.com · cssg-global.com · Miami, FL
+        CSSG — gerencia@globalservices-ven.com · cssg-global.com · Miami, FL
       </p>
       <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">Si prefiere no recibir más información de CSSG, responda con la palabra DETENER.</p>
     `),
@@ -1051,7 +1051,7 @@ const sequenceTemplates: Record<string, { subject: string | ((nombre: string, em
         sin la sensación de haber tenido suerte."
       </p>
       <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
-        CSSG — operaciones@cssg-global.com · cssg-global.com · Miami, FL
+        CSSG — gerencia@globalservices-ven.com · cssg-global.com · Miami, FL
       </p>
       <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">Si prefiere no recibir más información de CSSG, responda con la palabra DETENER.</p>
     `),
@@ -1077,12 +1077,12 @@ const sequenceTemplates: Record<string, { subject: string | ((nombre: string, em
         cuando sea conveniente para usted.
       </p>
       <div style="text-align:left;margin:24px 0;">
-        <a href="mailto:operaciones@cssg-global.com?subject=Protocolo%20Venezuela" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
+        <a href="mailto:gerencia@globalservices-ven.com?subject=Protocolo%20Venezuela" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:12px 28px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
           Solicitar protocolo gratuito
         </a>
       </div>
       <p style="color:#64748B;font-size:12px;margin:32px 0 0;">
-        CSSG — operaciones@cssg-global.com · cssg-global.com · Miami, FL
+        CSSG — gerencia@globalservices-ven.com · cssg-global.com · Miami, FL
       </p>
       <p style="font-size:11px;color:#9CA3AF;margin:8px 0 0;">Si prefiere no recibir más información de CSSG, responda con la palabra DETENER.</p>
     `),

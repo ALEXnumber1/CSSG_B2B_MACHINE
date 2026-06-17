@@ -13,7 +13,7 @@ export default function Location() {
       phone: '+584241782091',
       phoneDisplay: '+58 424-178-2091',
       mobile: '+584241782091',
-      email: 'operaciones@cssg-global.com',
+      email: 'gerencia@globalservices-ven.com',
       hours: '24/7 Monitoring & Response',
       mapsUrl: 'https://maps.google.com/?q=Edificio+Cosmos+Chacao+Caracas'
     }

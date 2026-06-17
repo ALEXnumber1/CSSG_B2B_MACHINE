@@ -125,7 +125,7 @@ export default function ContactForm() {
                     </div>
                     <div>
                       <p className="text-gray-400 text-xs font-bold uppercase tracking-tighter mb-1">Correo Electrónico</p>
-                      <p className="text-white text-sm">operaciones@cssg-global.com</p>
+                      <p className="text-white text-sm">gerencia@globalservices-ven.com</p>
                     </div>
                   </li>
                 </ul>
