@@ -1,759 +1,618 @@
-import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useEffect } from 'react';
-import { 
-  ArrowRight, 
-  CheckCircle2, 
-  Users, 
-  Award, 
-  ShieldCheck, 
-  Cpu, 
-  Zap,
-  Globe,
-  Lock,
-  BarChart3, 
-  MousePointer2,
-  TrendingUp,
-  CalendarDays,
-  Target,
-  ChevronDown,
-  MessageSquare
+import { motion, useInView } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { useState, useRef } from 'react';
+import {
+  Search, Globe, Brain, RefreshCw, Scale,
+  Server, BookOpen, Award, ArrowRight, ChevronRight,
+  ShieldCheck, Target, Users, CheckCircle2, Zap
 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { startSequence } from '../lib/sequences';
 import { useTranslation } from 'react-i18next';
 
-interface ConsultingFormData {
-  nombre: string;
-  empresa: string;
-  correo: string;
-  tipo_proyecto: string;
+const familyIcons = [Search, Globe, Brain, RefreshCw, Scale];
+const familyColors = ['sky', 'indigo', 'violet', 'emerald', 'amber'];
+const familyImages = [
+  '/images/consultoria-hero-premium.png',
+  '/diplomatic_security.png',
+  '/strategic_security.png',
+  '/security_methodology_staircase_climb_1777554286433.png',
+  '/consulting_b2b.png',
+];
+const familyLinks = [
+  '/consultoria/evaluacion-de-riesgos-de-seguridad',
+  '/consultoria/seguridad-misiones-diplomaticas',
+  '/consultoria/due-diligence-corporativa',
+  '/consultoria/continuidad-de-negocio',
+  '/consultoria/asesoria-legal-rrhh-seguridad',
+];
+const familyServiceHrefs = [
+  [
+    '/consultoria/evaluacion-de-riesgos-de-seguridad',
+    '/consultoria/diagnostico-madurez-seguridad',
+    '/consultoria/site-survey-evaluacion-fisica',
+    '/consultoria/auditoria-de-cumplimiento',
+  ],
+  [
+    '/consultoria/seguridad-misiones-diplomaticas',
+    '/consultoria/evaluacion-residencias-cancillerias',
+  ],
+  [
+    '/consultoria/due-diligence-corporativa',
+    '/consultoria/inteligencia-y-analisis-de-riesgo',
+    '/consultoria/amenaza-interna-insider-threat',
+  ],
+  [
+    '/consultoria/continuidad-de-negocio',
+    '/consultoria/gestion-de-crisis-y-respuesta',
+    '/consultoria/proteccion-ejecutiva-analisis-amenazas',
+  ],
+  [
+    '/consultoria/asesoria-legal-rrhh-seguridad',
+  ],
+];
+
+const layerIcons = [Server, BookOpen];
+const layerImages = [
+  '/images/tec_cecom.png',
+  '/professional_security_team_consulting_1777553900162.png',
+];
+const layerServiceHrefs = [
+  [
+    '/consultoria/tecnologia/monitoreo-tiempo-real',
+    '/consultoria/tecnologia/centro-de-mando-cecom',
+    '/consultoria/tecnologia/scoring-de-seguridad',
+  ],
+  [
+    '/consultoria/capacitacion/formacion-personal-seguridad',
+    '/consultoria/capacitacion/respuesta-crisis-equipos',
+    '/consultoria/capacitacion/concienciacion-ejecutiva',
+  ],
+];
+
+const colorAccent: Record<string, { border: string; glow: string; text: string; bg: string; gradient: string }> = {
+  sky:     { border: 'border-sky-500/40',     glow: 'shadow-sky-500/20',    text: 'text-sky-400',     bg: 'bg-sky-500/10',     gradient: 'from-sky-900/60 to-transparent' },
+  indigo:  { border: 'border-indigo-500/40',  glow: 'shadow-indigo-500/20', text: 'text-indigo-400',  bg: 'bg-indigo-500/10',  gradient: 'from-indigo-900/60 to-transparent' },
+  violet:  { border: 'border-violet-500/40',  glow: 'shadow-violet-500/20', text: 'text-violet-400',  bg: 'bg-violet-500/10',  gradient: 'from-violet-900/60 to-transparent' },
+  emerald: { border: 'border-emerald-500/40', glow: 'shadow-emerald-500/20', text: 'text-emerald-400', bg: 'bg-emerald-500/10', gradient: 'from-emerald-900/60 to-transparent' },
+  amber:   { border: 'border-amber-500/40',   glow: 'shadow-amber-500/20',  text: 'text-amber-400',   bg: 'bg-amber-500/10',   gradient: 'from-amber-900/60 to-transparent' },
+};
+
+const accentHex: Record<string, string> = {
+  sky: '#0EA5E9', indigo: '#6366F1', violet: '#8B5CF6', emerald: '#10B981', amber: '#F59E0B',
+};
+
+function FadeIn({ children, delay = 0, className = '' }: { children: React.ReactNode; delay?: number; className?: string }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: '-60px' });
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 28 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
 }
 
 export default function Consultoria() {
-  // Fix: Explicitly use the 'consultoria' namespace to ensure translations load correctly
-  const { t } = useTranslation('consultoria');
-  const [formData, setFormData] = useState<ConsultingFormData>({ 
-    nombre: '', 
-    empresa: '', 
-    correo: '', 
-    tipo_proyecto: '' 
-  });
+  const { t } = useTranslation('consultoria_hub');
+  const [nombre, setNombre] = useState('');
+  const [correo, setCorreo] = useState('');
+  const [empresa, setEmpresa] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-  const [activeFaq, setActiveFaq] = useState<number | null>(null);
-  const [showSticky, setShowSticky] = useState(false);
+  const heroRef = useRef(null);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowSticky(window.scrollY > 800);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const stats = t('hub.stats', { returnObjects: true }) as Array<{ value: string; unit: string; label: string }>;
+  const families = t('hub.families', { returnObjects: true }) as Array<{ badge: string; title: string; desc: string; explore: string; services: string[] }>;
+  const layers = t('hub.layers', { returnObjects: true }) as Array<{ badge: string; title: string; desc: string; services: string[] }>;
+  const diagPoints = t('hub.diag_points', { returnObjects: true }) as string[];
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: { preventDefault(): void }) => {
     e.preventDefault();
     setStatus('loading');
     try {
       const { error } = await supabase.from('leads').insert([{
-        nombre: formData.nombre,
-        correo: formData.correo,
-        empresa: formData.empresa,
-        mensaje: `Interés en Consultoría: ${formData.tipo_proyecto}`,
-        fuente: 'consultoria_v5',
-        score: 60,
+        nombre, correo, empresa,
+        mensaje: 'Solicitud desde hub Risk Advisory Services',
+        fuente: 'consultoria_hub',
+        score: 55,
       }]);
-
       if (error) throw error;
-
-      if (formData.correo) {
-        await startSequence(
-          'lead-' + Date.now(), 
-          formData.correo, 
-          formData.nombre, 
-          'consultoria', 
-          formData.empresa
-        );
-      }
-
+      if (correo) await startSequence('lead-' + Date.now(), correo, nombre, 'consultoria', empresa);
       setStatus('success');
-      setFormData({ nombre: '', empresa: '', correo: '', tipo_proyecto: '' });
-    } catch (err) {
-      console.error('Error submitting form:', err);
+      setNombre(''); setCorreo(''); setEmpresa('');
+    } catch {
       setStatus('error');
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const primaryBtnClass = "inline-flex items-center justify-center gap-3 bg-gradient-to-r from-sky-500 to-indigo-600 text-white px-6 md:px-10 py-4 md:py-5 rounded-2xl font-black text-base md:text-lg shadow-[0_20px_40px_rgba(14,165,233,0.3)] hover:shadow-[0_20px_60px_rgba(14,165,233,0.5)] hover:scale-105 transition-all group w-full sm:w-auto";
-
   return (
-    <div className="flex-1 bg-[#030305] relative z-10 pt-24 md:pt-28 pb-16 md:pb-20 overflow-hidden">
-      
-      {/* Sticky CTA */}
-      <AnimatePresence>
-        {showSticky && (
+    <div className="flex-1 bg-[#030305] relative z-10 overflow-hidden">
+
+      {/* ─── HERO ──────────────────────────────────────────── */}
+      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Background image */}
+        <div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url('/professional_security_team_consulting_1777553900162.png')` }}
+        />
+        {/* Dark overlays */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#030305]/70 via-[#030305]/60 to-[#030305]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#030305]/80 via-transparent to-[#030305]/40" />
+
+        {/* Animated grid lines */}
+        <div className="absolute inset-0 opacity-[0.04]"
+          style={{ backgroundImage: 'linear-gradient(rgba(14,165,233,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(14,165,233,0.5) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
+
+        {/* Animated orbs */}
+        <motion.div
+          className="absolute top-1/4 right-1/4 w-[500px] h-[500px] rounded-full bg-sky-600/10 blur-[100px]"
+          animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.7, 0.4] }}
+          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+        />
+        <motion.div
+          className="absolute bottom-1/3 left-1/4 w-[400px] h-[400px] rounded-full bg-indigo-700/10 blur-[80px]"
+          animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.6, 0.3] }}
+          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
+        />
+
+        <div className="container mx-auto px-6 max-w-7xl relative z-10 pt-32 pb-24">
           <motion.div
-            initial={{ y: 100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 100, opacity: 0 }}
-            className="fixed bottom-6 left-0 right-0 z-[100] px-6 sm:px-0 sm:left-1/2 sm:-translate-x-1/2 sm:w-full sm:max-w-xs"
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            className="max-w-4xl"
           >
-            <a 
-              href="#contacto"
-              className="flex items-center justify-center gap-3 bg-gradient-to-r from-sky-500 to-indigo-600 text-white py-4 px-8 rounded-full font-black shadow-2xl backdrop-blur-md border border-white/20 hover:scale-105 transition-all text-sm uppercase tracking-widest"
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-sky-500/30 bg-sky-500/10 backdrop-blur-sm mb-8"
             >
-              <Zap className="w-4 h-4 fill-current" />
-              {t('meeting_cta.btn_short') || "Solicitar Diagnóstico"}
-            </a>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              <ShieldCheck className="w-4 h-4 text-sky-400" />
+              <span className="text-xs font-black text-sky-300 uppercase tracking-widest">{t('hub.badge')}</span>
+            </motion.div>
 
-      {/* Background Decorative Elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 right-0 w-[400px] md:w-[800px] h-[400px] md:h-[800px] bg-sky-500/5 rounded-full blur-[80px] md:blur-[120px] -translate-y-1/2 translate-x-1/2" />
-        <div className="absolute bottom-0 left-0 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-indigo-500/5 rounded-full blur-[60px] md:blur-[100px] translate-y-1/2 -translate-x-1/2" />
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-[0.02] md:opacity-[0.03] mix-blend-overlay" />
-      </div>
-
-      <div className="container mx-auto px-4 md:px-6 max-w-7xl relative">
-        
-        {/* --- SECTION 1: HERO (INVESTMENT CONCEPT) --- */}
-        <section className="relative mb-20 md:mb-32">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center text-center lg:text-left">
-            <div className="lg:col-span-7">
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
-              >
-                <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-sky-500/30 bg-sky-500/10 mb-6 md:mb-8">
-                  <ShieldCheck className="w-4 h-4 text-sky-400 shrink-0" />
-                  <h2 className="text-[10px] md:text-xs font-black text-sky-300 uppercase tracking-widest m-0">
-                    Consultoria Integral de Seguridad | Calidad Certificada ISO 9001:2015
-                  </h2>
-                </div>
-                <h1 className="text-4xl md:text-7xl font-black tracking-tighter text-white mb-6 md:mb-8 leading-[1] md:leading-[0.9]">
-                  {t('hero.title_white')} <br />
-                  <span className="text-sky-400">
-                    {t('hero.title_blue')}
-                  </span>
-                </h1>
-                
-                {/* Improved Copy/Design Block */}
-                <motion.div 
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5, duration: 1 }}
-                  className="text-lg md:text-xl text-gray-400 font-light leading-relaxed max-w-2xl border-l-0 lg:border-l-4 border-sky-500/50 pl-0 lg:pl-8 mb-8 md:mb-10 mx-auto lg:mx-0 relative group"
-                >
-                  <p className="mb-4">{t('hero.desc_p1')}</p>
-                  <p className="text-yellow-400 font-bold drop-shadow-[0_0_10px_rgba(250,204,21,0.4)] transition-all group-hover:drop-shadow-[0_0_15px_rgba(250,204,21,0.6)]">
-                    {t('hero.desc_p2')}
-                  </p>
-                  {/* Subtle decorative glow for the sidebar */}
-                  <div className="hidden lg:block absolute left-0 top-0 bottom-0 w-1 bg-sky-500 blur-[2px] opacity-0 group-hover:opacity-100 transition-opacity" />
-                </motion.div>
-
-                <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
-                  <motion.a 
-                    href="#contacto"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={primaryBtnClass}
-                  >
-                    {t('hero.cta')}
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
-                  </motion.a>
-                </div>
-              </motion.div>
-            </div>
-            
-            <div className="lg:col-span-5 relative mt-8 lg:mt-0">
-              {/* Official Medal Image Sticker */}
-              <motion.div
-                initial={{ scale: 0, rotate: 45 }}
-                animate={{ scale: 1, rotate: -8 }}
-                transition={{ type: "spring", stiffness: 200, damping: 20, delay: 1 }}
-                whileHover={{ scale: 1.1, rotate: 0 }}
-                className="absolute -top-40 -right-20 md:-right-40 z-[30] w-[400px] h-[400px] md:w-[500px] md:h-[500px] cursor-pointer hidden sm:block drop-shadow-[0_50px_120px_rgba(250,204,21,0.4)]"
-              >
-                <img 
-                  src="/images/medalla.png" 
-                  alt="Garantía 4 Meses Gratis" 
-                  className="w-full h-full object-contain"
-                  style={{ 
-                    imageRendering: 'auto',
-                    filter: 'contrast(1.05) brightness(1.05) drop-shadow(0 0 10px rgba(250,204,21,0.2))'
-                  }}
-                />
-              </motion.div>
-
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1, delay: 0.2 }}
-                className="relative z-10"
-              >
-                <div className="relative rounded-3xl md:rounded-[2.5rem] overflow-hidden border border-white/10 shadow-[0_0_80px_rgba(14,165,233,0.15)] bg-[#0A0B10]">
-                  <img 
-                    src="/consultoria_card.png" 
-                    alt="Asset Protection View" 
-                    className="w-full h-auto object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#030305] via-transparent to-transparent opacity-60" />
-                </div>
-                <div className="hidden sm:block absolute -bottom-6 -left-6 bg-white/5 backdrop-blur-xl border border-white/10 p-6 rounded-2xl shadow-2xl max-w-[200px]">
-                  <Cpu className="w-8 h-8 text-sky-400 mb-3" />
-                  <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-1">Tecnología de Punta</p>
-                  <p className="text-xs text-white font-medium leading-tight">Gestión Operativa basada en Datos.</p>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </section>
-
-        {/* --- TICKER RIBBON --- */}
-        <div className="mb-20 md:mb-32 overflow-hidden border-y border-sky-500/20 py-8 md:py-10 bg-sky-950/20 backdrop-blur-xl group cursor-pointer relative z-20 shadow-[0_0_50px_rgba(14,165,233,0.1)]">
-          <motion.div 
-            animate={{ x: [0, -1800] }}
-            transition={{ 
-              repeat: Infinity, 
-              duration: 25, 
-              ease: "linear" 
-            }}
-            className="flex whitespace-nowrap gap-12 md:gap-20"
-          >
-            {[1, 2, 3, 4, 5].map((i) => (
-              <span key={i} className="text-xl md:text-2xl font-black tracking-tight text-sky-400 group-hover:text-yellow-400 transition-all duration-300 flex items-center gap-6 md:gap-10 drop-shadow-[0_0_8px_rgba(56,189,248,0.5)] group-hover:drop-shadow-[0_0_12px_rgba(250,204,21,0.6)]">
-                {t('ticker.message')}
-                <ShieldCheck className="w-6 h-6 md:w-8 md:h-8 text-sky-500 group-hover:text-yellow-400 transition-colors" />
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter text-white mb-6 leading-[0.95]">
+              {t('hub.title_line1')}<br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-blue-300 to-indigo-400">
+                {t('hub.title_line2')}
               </span>
+            </h1>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+              className="text-lg md:text-xl text-gray-300/80 leading-relaxed max-w-2xl mb-10 border-l-4 border-sky-500/50 pl-6"
+            >
+              {t('hub.intro')}
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.7, duration: 0.6 }}
+              className="flex flex-col sm:flex-row gap-4"
+            >
+              <a href="#diagnostico"
+                className="group inline-flex items-center gap-3 bg-sky-600 text-white px-8 py-4 rounded-xl font-black uppercase tracking-widest text-sm hover:bg-sky-500 transition-all shadow-2xl shadow-sky-900/50 w-fit">
+                {t('hub.cta_primary')}
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </a>
+              <Link to="/consultoria/certificaciones"
+                className="inline-flex items-center gap-3 bg-white/[0.06] backdrop-blur-sm border border-white/[0.12] text-white px-8 py-4 rounded-xl font-black uppercase tracking-widest text-sm hover:bg-white/[0.12] transition-all w-fit">
+                {t('hub.cta_secondary')}
+                <Award className="w-4 h-4" />
+              </Link>
+            </motion.div>
+          </motion.div>
+
+          {/* BENTO STATS */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1, duration: 0.7 }}
+            className="mt-20 grid grid-cols-2 md:grid-cols-12 gap-3"
+          >
+            {/* Primary featured stat */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 1.1, duration: 0.6 }}
+              className="col-span-2 md:col-span-4 relative overflow-hidden p-7 rounded-2xl bg-sky-500/[0.12] border border-sky-500/40 backdrop-blur-md flex flex-col justify-between min-h-[120px]"
+            >
+              <div className="absolute -right-4 -top-4 text-[7rem] font-black text-sky-500/[0.08] leading-none select-none pointer-events-none">+17</div>
+              <div className="text-[9px] font-black text-sky-400/80 uppercase tracking-[0.2em] mb-3">{stats[0].label}</div>
+              <div>
+                <span className="text-5xl md:text-6xl font-black text-white leading-none">{stats[0].value}</span>
+                <span className="text-2xl font-black text-sky-400 ml-1">{stats[0].unit}</span>
+                <p className="text-[10px] text-sky-300/50 mt-1.5 font-bold uppercase tracking-wider">sin un solo incidente de seguridad</p>
+              </div>
+            </motion.div>
+
+            {/* Three secondary stats */}
+            {stats.slice(1).map((s, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.85 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 1.2 + i * 0.09, duration: 0.5 }}
+                className="col-span-1 md:col-span-2 p-5 rounded-2xl bg-white/[0.04] backdrop-blur-md border border-white/[0.07] flex flex-col justify-center text-center hover:border-white/[0.14] transition-all group"
+              >
+                <div className="text-2xl md:text-3xl font-black text-white group-hover:text-sky-300 transition-colors">
+                  {s.value}<span className="text-sky-400 text-lg">{s.unit}</span>
+                </div>
+                <div className="text-[9px] text-gray-600 uppercase tracking-widest font-bold mt-1.5 leading-tight">{s.label}</div>
+              </motion.div>
             ))}
+
+            {/* Certifications strip */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 1.4, duration: 0.6 }}
+              className="col-span-2 md:col-span-4 p-5 rounded-2xl bg-white/[0.03] border border-white/[0.06] backdrop-blur-md flex items-center gap-4 flex-wrap"
+            >
+              {['ISO 9001:2015', 'Cyber Essentials', 'ESRM · ASIS', 'ISO 31000'].map((cert) => (
+                <div key={cert} className="flex items-center gap-1.5">
+                  <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
+                  <span className="text-[10px] text-gray-400 font-bold">{cert}</span>
+                </div>
+              ))}
+            </motion.div>
           </motion.div>
         </div>
 
-        {/* --- SECTION 2: AUTHORITY --- */}
-        <section className="mb-20 md:mb-32">
-          <div className="bg-white/[0.02] border border-white/[0.05] rounded-3xl md:rounded-[3rem] p-6 md:p-20 relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-sky-500/5 to-transparent pointer-events-none" />
-            
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 items-center">
+        {/* Scroll hint */}
+        <motion.div
+          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <div className="w-5 h-8 rounded-full border border-white/20 flex items-start justify-center pt-1.5">
+            <div className="w-1 h-2 rounded-full bg-sky-400/60" />
+          </div>
+        </motion.div>
+      </section>
+
+      {/* ─── MAIN CONTENT ──────────────────────────────────── */}
+      <div className="container mx-auto px-4 md:px-6 max-w-7xl relative pb-24">
+
+        {/* ─── 5 SERVICE FAMILIES — EDITORIAL STRIPS ─── */}
+        <section className="py-24" id="familias">
+
+          {/* Section header + pill nav */}
+          <FadeIn className="mb-16">
+            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
               <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-white/5 border border-white/10 mb-6">
-                  <Award className="w-3.5 h-3.5 text-sky-400" />
-                  <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{t('authority.badge')}</span>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded border border-sky-500/20 bg-sky-500/5 mb-4">
+                  <Target className="w-3 h-3 text-sky-400" />
+                  <span className="text-[10px] font-black text-sky-400 uppercase tracking-widest">{t('hub.families_label')}</span>
                 </div>
-                <h2 className="text-3xl md:text-5xl font-black text-white mb-6 leading-tight">
-                  {t('authority.title')}
-                </h2>
-                <p className="text-gray-400 text-base md:text-lg leading-relaxed mb-8">
-                  {t('authority.desc')}
-                </p>
-                
-                <div className="space-y-4 mb-8">
-                  {(t('authority.points', { returnObjects: true }) as string[]).map((p: string, i: number) => (
-                    <div key={i} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 text-emerald-500 shrink-0" />
-                      <span className="text-sm text-gray-300 font-medium">{p}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
-                  <div className="p-5 md:p-6 rounded-2xl bg-white/5 border border-white/10">
-                    <div className="text-2xl md:text-3xl font-black text-white mb-1">17 Años</div>
-                    <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Trayectoria Líder</p>
-                  </div>
-                  <div className="p-5 md:p-6 rounded-2xl bg-sky-500 text-black border border-sky-400 shadow-xl">
-                    <div className="text-2xl md:text-3xl font-black mb-1">80%</div>
-                    <p className="text-[10px] font-bold text-black/70 uppercase tracking-widest">Éxito en Licitaciones</p>
-                  </div>
-                </div>
+                <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight leading-none">{t('hub.families_title')}</h2>
               </div>
-              
-              <div className="space-y-8 md:space-y-12">
-                {/* 100% KPI Pie Chart */}
-                <div className="flex flex-col sm:flex-row items-center gap-6 md:gap-8 bg-white/[0.03] p-6 md:p-8 rounded-2xl md:rounded-[2rem] border border-white/5 text-center sm:text-left">
-                  <div className="relative w-24 h-24 md:w-32 md:h-32 shrink-0">
-                    <svg className="w-full h-full -rotate-90" viewBox="0 0 128 128">
-                      <circle cx="64" cy="64" r="58" fill="transparent" stroke="rgba(255,255,255,0.05)" strokeWidth="8" />
-                      <motion.circle
-                        cx="64" cy="64" r="58" fill="transparent" stroke="#10b981" strokeWidth="8"
-                        strokeDasharray="364.4" initial={{ strokeDashoffset: 364.4 }}
-                        whileInView={{ strokeDashoffset: 0 }} viewport={{ once: true }}
-                        transition={{ duration: 1.5, ease: "easeOut" }} strokeLinecap="round"
-                      />
-                    </svg>
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-base md:text-xl font-black text-white">100%</span>
-                    </div>
-                  </div>
-                  <div>
-                    <h4 className="text-emerald-400 font-black text-lg md:text-xl mb-1">{t('authority.metrics.kpi')}</h4>
-                    <p className="text-[10px] md:text-xs text-gray-400 font-bold uppercase tracking-wider">{t('authority.metrics.kpi_label')}</p>
-                  </div>
-                </div>
 
-                <div className="bg-white/[0.03] p-6 md:p-8 rounded-2xl md:rounded-[2rem] border border-white/5">
-                  <div className="flex justify-between items-end mb-4">
-                    <div>
-                      <h4 className="text-red-400 font-black text-lg md:text-xl mb-1">{t('authority.metrics.incidents')}</h4>
-                      <p className="text-[10px] md:text-xs text-gray-400 font-bold uppercase tracking-wider">{t('authority.metrics.incidents_label')}</p>
-                    </div>
-                    <ShieldCheck className="w-6 h-6 md:w-8 md:h-8 text-red-500/50" />
-                  </div>
-                  <div className="space-y-3">
-                    <div className="h-3 md:h-4 bg-white/5 rounded-full overflow-hidden">
-                      <motion.div 
-                        initial={{ width: "100%" }}
-                        whileInView={{ width: "50%" }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1.5, ease: "easeOut" }}
-                        className="h-full bg-gradient-to-r from-red-500 to-emerald-500 rounded-full"
-                      />
-                    </div>
-                    <div className="flex justify-between text-[8px] md:text-[10px] font-black text-gray-500 uppercase tracking-widest">
-                      <span>Antes: 100% Riesgo</span>
-                      <span className="text-emerald-400">Después: -50%</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex flex-col sm:flex-row items-center gap-6 md:gap-8 bg-white/[0.03] p-6 md:p-8 rounded-2xl md:rounded-[2rem] border border-white/5 text-center sm:text-left">
-                  <div className="relative w-24 h-24 md:w-28 md:h-28 shrink-0 flex items-center justify-center">
-                    <motion.div 
-                      animate={{ scale: [1, 1.1, 1] }}
-                      transition={{ repeat: Infinity, duration: 2 }}
-                      className="absolute inset-0 bg-sky-500/20 rounded-full blur-xl"
-                    />
-                    <Zap className="w-8 h-8 md:w-10 md:h-10 text-sky-400 relative z-10" />
-                  </div>
-                  <div>
-                    <h4 className="text-sky-400 font-black text-2xl md:text-3xl mb-1">{t('authority.metrics.roi')}</h4>
-                    <p className="text-[10px] md:text-xs text-gray-400 font-bold uppercase tracking-wider">{t('authority.metrics.roi_label')}</p>
-                  </div>
-                </div>
+              {/* Anchor-link pill navigator */}
+              <div className="flex gap-2 overflow-x-auto pb-1 shrink-0" style={{ scrollbarWidth: 'none' }}>
+                {families.map((f, i) => {
+                  const ac = colorAccent[familyColors[i]];
+                  return (
+                    <a key={i} href={`#f${i}`}
+                      className={`shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-full border ${ac.border} ${ac.bg} backdrop-blur-md text-[9px] font-black uppercase tracking-widest ${ac.text} opacity-60 hover:opacity-100 transition-all`}>
+                      <span className="opacity-70">0{i + 1}</span>
+                      <span>{f.title.split(' ')[0]}</span>
+                    </a>
+                  );
+                })}
               </div>
             </div>
-          </div>
-        </section>
+          </FadeIn>
 
-        {/* --- SECTION 3: METHODOLOGY --- */}
-        <section className="mb-20 md:mb-32">
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center text-3xl md:text-6xl font-black text-white mb-12 md:mb-20 px-4 leading-[1.1] max-w-5xl mx-auto"
-          >
-            ¿Cómo logramos tus objetivos organizacionales o de gestión?
-          </motion.h1>
+          {/* Editorial strips */}
+          <div className="space-y-5">
+            {families.map((f, i) => {
+              const Icon = familyIcons[i];
+              const color = familyColors[i];
+              const ac = colorAccent[color];
+              const img = familyImages[i];
+              const link = familyLinks[i];
+              const serviceHrefs = familyServiceHrefs[i];
+              const flip = i % 2 === 1;
 
-          <div className="flex flex-col lg:flex-row gap-12 md:gap-16 items-center">
-            <div className="flex-1 order-2 lg:order-1 w-full">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                className="relative rounded-3xl overflow-hidden border border-white/5 shadow-2xl"
-              >
-                <img 
-                  src="/shieldtrace1.png" 
-                  alt="Tactic Planning with ShieldTrace" 
-                  className="w-full h-auto object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#030305] via-transparent to-transparent opacity-40" />
-              </motion.div>
-            </div>
-            
-            <div className="flex-1 order-1 lg:order-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-indigo-500/10 border border-indigo-500/20 mb-6">
-                <Users className="w-3.5 h-3.5 text-indigo-400" />
-                <span className="text-[10px] font-bold text-indigo-400 uppercase tracking-widest">{t('methodology.badge')}</span>
-              </div>
-              <h2 className="text-3xl md:text-5xl font-black text-white mb-6 leading-tight">
-                {t('methodology.title')}
-              </h2>
-              <p className="text-gray-400 text-base md:text-lg leading-relaxed mb-8 md:mb-10">
-                {t('methodology.desc')}
-              </p>
-              
-              <div className="space-y-6">
-                {(t('methodology.phases', { returnObjects: true }) as any[]).map((phase: any, i: number) => (
-                  <div key={i} className="flex gap-4 md:gap-6 group">
-                    <div className="flex flex-col items-center">
-                      <div className="w-8 h-8 md:w-10 md:h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-[10px] md:text-xs font-black text-sky-400 group-hover:bg-sky-500 group-hover:text-black transition-all">
-                        {phase.id}
+              return (
+                <div key={i} id={`f${i}`}>
+                  <FadeIn delay={0.04}>
+                    <div className={`group relative rounded-3xl overflow-hidden border ${ac.border} hover:shadow-2xl ${ac.glow} transition-all duration-500`}>
+
+                      {/* Accent side bar */}
+                      <div className="absolute top-0 bottom-0 left-0 w-[3px] z-10 transition-all duration-500 group-hover:w-[5px]"
+                        style={{ background: accentHex[color] }} />
+
+                      <div className={`flex flex-col md:flex-row ${flip ? 'md:flex-row-reverse' : ''}`} style={{ minHeight: '340px' }}>
+
+                        {/* ── IMAGE PANEL ── */}
+                        <div className="relative md:w-[42%] min-h-[200px] md:min-h-full overflow-hidden shrink-0">
+                          <div className="absolute inset-0 bg-cover bg-center scale-100 group-hover:scale-105 transition-transform duration-700"
+                            style={{ backgroundImage: `url('${img}')` }} />
+                          {/* gradient toward content side */}
+                          <div className={`absolute inset-0`}
+                            style={{ background: flip
+                              ? `linear-gradient(to left, #08090F 0%, transparent 50%)`
+                              : `linear-gradient(to right, #08090F 0%, transparent 50%)` }} />
+                          <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, #08090F 10%, transparent 60%)' }} />
+
+                          {/* Giant watermark number */}
+                          <div className={`absolute bottom-3 ${flip ? 'left-4' : 'right-4'} text-[8rem] font-black leading-none select-none pointer-events-none`}
+                            style={{ color: accentHex[color], opacity: 0.18 }}>
+                            {String(i + 1).padStart(2, '0')}
+                          </div>
+                        </div>
+
+                        {/* ── CONTENT PANEL ── */}
+                        <div className="flex-1 flex flex-col justify-center px-8 py-10 md:px-12 md:py-10 bg-[#08090F] relative overflow-hidden">
+                          {/* Faint number ghost behind content */}
+                          <div className={`absolute top-1/2 -translate-y-1/2 ${flip ? '-left-6' : '-right-6'} text-[10rem] font-black leading-none select-none pointer-events-none`}
+                            style={{ color: accentHex[color], opacity: 0.04 }}>
+                            {String(i + 1).padStart(2, '0')}
+                          </div>
+
+                          {/* Badge row */}
+                          <div className="flex items-center justify-between mb-5 relative z-10">
+                            <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full border ${ac.border} ${ac.bg}`}>
+                              <Icon className={`w-3.5 h-3.5 ${ac.text}`} />
+                              <span className={`text-[10px] font-black ${ac.text} uppercase tracking-widest`}>{f.badge}</span>
+                            </div>
+                            <span className="text-5xl font-black leading-none" style={{ color: accentHex[color], opacity: 0.15 }}>
+                              {String(i + 1).padStart(2, '0')}
+                            </span>
+                          </div>
+
+                          {/* Title */}
+                          <h3 className="text-2xl md:text-3xl font-black text-white mb-3 tracking-tight leading-tight relative z-10">{f.title}</h3>
+
+                          {/* Description */}
+                          <p className="text-sm text-gray-400 leading-relaxed mb-6 max-w-lg relative z-10">{f.desc}</p>
+
+                          {/* Services grid */}
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1.5 border-t border-white/[0.05] pt-5 mb-6 relative z-10">
+                            {f.services.map((label, si) => (
+                              <Link key={serviceHrefs[si] ?? si} to={serviceHrefs[si] ?? '#'}
+                                className={`flex items-center gap-2 text-xs text-gray-600 py-0.5 transition-colors group/svc`}
+                                style={{ '--hover-color': accentHex[color] } as React.CSSProperties}
+                                onMouseEnter={e => (e.currentTarget.style.color = accentHex[color])}
+                                onMouseLeave={e => (e.currentTarget.style.color = '')}>
+                                <ChevronRight className="w-3 h-3 shrink-0" style={{ color: 'inherit' }} />
+                                {label}
+                              </Link>
+                            ))}
+                          </div>
+
+                          {/* CTA */}
+                          <Link to={link}
+                            className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-widest hover:gap-3 transition-all w-fit relative z-10"
+                            style={{ color: accentHex[color] }}>
+                            {f.explore} <ArrowRight className="w-4 h-4" />
+                          </Link>
+                        </div>
+
                       </div>
-                      {i < 3 && <div className="w-px h-full bg-white/10 group-hover:bg-sky-500/30 transition-all mt-2" />}
                     </div>
-                    <div className="pb-6 md:pb-8">
-                      <h4 className="text-lg md:text-xl font-bold text-white mb-2">{phase.title}</h4>
-                      <p className="text-sm text-gray-500 leading-relaxed">{phase.text}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+                  </FadeIn>
+                </div>
+              );
+            })}
           </div>
         </section>
 
-        {/* --- SECTION: SOCIAL PROOF --- */}
-        <section className="mb-20 md:mb-32 relative">
-          <div className="absolute inset-0 bg-white/[0.01] rounded-[2rem] md:rounded-[4rem] -z-10" />
-          
-          <div className="text-center max-w-4xl mx-auto mb-12 md:mb-20">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-sky-500/10 border border-sky-500/20 mb-6">
-              <BarChart3 className="w-3.5 h-3.5 text-sky-400" />
-              <span className="text-[10px] font-bold text-sky-400 uppercase tracking-widest">{t('social_proof.badge')}</span>
-            </div>
-            <h2 className="text-3xl md:text-6xl font-black text-white mb-6 md:mb-8 tracking-tighter">
-              {t('social_proof.title')}
-            </h2>
-          </div>
+        {/* CECOM FULL-WIDTH BANNER */}
+        <FadeIn>
+          <section className="mb-20 rounded-3xl overflow-hidden relative h-72">
+            <div
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: `url('/cecom_control_center_1777552494604.png')` }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#030305]/95 via-[#030305]/70 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#030305]/80 to-transparent" />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 mb-12 md:mb-20">
-            <motion.div 
-              whileHover={{ y: -5 }}
-              className="p-8 md:p-10 rounded-3xl md:rounded-[2.5rem] bg-gradient-to-br from-white/[0.05] to-transparent border border-white/10 text-center"
-            >
-              <div className="text-5xl md:text-6xl font-black text-white mb-2 tracking-tighter">{t('social_proof.metrics.projects')}</div>
-              <p className="text-gray-400 font-bold uppercase tracking-widest text-[10px] md:text-xs">{t('social_proof.metrics.projects_label')}</p>
-            </motion.div>
-            <motion.div 
-              whileHover={{ y: -5 }}
-              className="p-8 md:p-10 rounded-3xl md:rounded-[2.5rem] bg-gradient-to-br from-sky-500/20 to-sky-500/5 border border-sky-500/20 text-center relative overflow-hidden"
-            >
-              <div className="relative z-10">
-                <div className="text-5xl md:text-6xl font-black text-sky-400 mb-2 tracking-tighter">{t('social_proof.metrics.savings')}</div>
-                <p className="text-sky-300/60 font-bold uppercase tracking-widest text-[10px] md:text-xs">{t('social_proof.metrics.savings_label')}</p>
+            <div className="relative z-10 h-full flex flex-col justify-center px-10 md:px-16 max-w-2xl">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-sky-500/30 bg-sky-500/10 backdrop-blur-sm mb-4 w-fit">
+                <Zap className="w-3 h-3 text-sky-400" />
+                <span className="text-[10px] font-black text-sky-400 uppercase tracking-widest">{t('hub.cecom_badge')}</span>
               </div>
-              <TrendingUp className="absolute -bottom-4 -right-4 w-24 md:w-32 h-24 md:h-32 text-sky-500/10 rotate-12" />
-            </motion.div>
-            <motion.div 
-              whileHover={{ y: -5 }}
-              className="p-8 md:p-10 rounded-3xl md:rounded-[2.5rem] bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 border border-emerald-500/20 text-center sm:col-span-2 md:col-span-1"
-            >
-              <div className="text-5xl md:text-6xl font-black text-emerald-400 mb-2 tracking-tighter">{t('social_proof.metrics.incidents')}</div>
-              <p className="text-emerald-300/60 font-bold uppercase tracking-widest text-[10px] md:text-xs">{t('social_proof.metrics.incidents_label')}</p>
-            </motion.div>
+              <h2 className="text-2xl md:text-3xl font-black text-white mb-3 leading-tight">
+                {t('hub.cecom_title')}
+              </h2>
+              <Link to="/consultoria/tecnologia/centro-de-mando-cecom"
+                className="inline-flex items-center gap-2 text-sky-400 text-sm font-black uppercase tracking-widest hover:gap-3 transition-all w-fit">
+                {t('hub.cecom_link')} <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+          </section>
+        </FadeIn>
+
+        {/* SUPPORT LAYERS */}
+        <section className="mb-24">
+          <FadeIn>
+            <h2 className="text-2xl md:text-3xl font-black text-white mb-2 tracking-tight">{t('hub.layers_title')}</h2>
+            <p className="text-sm text-gray-600 mb-10">{t('hub.layers_sub')}</p>
+          </FadeIn>
+
+          <div className="grid md:grid-cols-2 gap-5 mb-5">
+            {layers.map((layer, i) => {
+              const Icon = layerIcons[i];
+              const img = layerImages[i];
+              const serviceHrefs = layerServiceHrefs[i];
+              return (
+                <FadeIn key={i} delay={i * 0.1}>
+                  <div className="group relative rounded-2xl overflow-hidden border border-white/[0.06] hover:border-sky-500/30 transition-all">
+                    <div className="relative h-36 overflow-hidden">
+                      <div
+                        className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
+                        style={{ backgroundImage: `url('${img}')` }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0A0B10]/60 to-[#0A0B10]" />
+                    </div>
+                    <div className="p-6 bg-[#0A0B10]">
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="w-9 h-9 rounded-xl bg-sky-500/5 flex items-center justify-center">
+                          <Icon className="w-4 h-4 text-sky-400/70" />
+                        </div>
+                        <span className="text-[9px] font-black text-gray-600 uppercase tracking-widest">{layer.badge}</span>
+                      </div>
+                      <h3 className="text-base font-black text-white mb-2 group-hover:text-sky-300 transition-colors">{layer.title}</h3>
+                      <p className="text-xs text-gray-500 leading-relaxed mb-4">{layer.desc}</p>
+                      <div className="space-y-1.5">
+                        {layer.services.map((label, si) => (
+                          <Link key={serviceHrefs[si] ?? si} to={serviceHrefs[si] ?? '#'}
+                            className="flex items-center gap-2 text-xs text-gray-600 hover:text-sky-400 transition-colors py-0.5 group/link">
+                            <ChevronRight className="w-3 h-3 text-gray-700 group-hover/link:text-sky-500 transition-colors" />
+                            {label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </FadeIn>
+              );
+            })}
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-stretch mb-12 md:mb-20">
-            <div className="lg:col-span-7 space-y-4 md:space-y-6">
-              {(t('social_proof.cases', { returnObjects: true }) as any[]).map((c: any, i: number) => (
-                <div key={i} className="group p-6 md:p-8 rounded-3xl bg-white/[0.03] border border-white/5 hover:border-sky-500/30 transition-all">
-                  <div className="flex justify-between items-start mb-4">
-                    <h4 className="text-lg md:text-xl font-bold text-white group-hover:text-sky-400 transition-colors">{c.title}</h4>
-                    <MousePointer2 className="w-5 h-5 text-gray-600 group-hover:text-sky-500 transition-colors" />
-                  </div>
-                  <p className="text-gray-400 text-sm leading-relaxed">{c.result}</p>
+          <div className="grid md:grid-cols-2 gap-5">
+            {[
+              { to: '/consultoria/casos-de-exito', icon: Users, titleKey: 'hub.cases_title', subKey: 'hub.cases_sub' },
+              { to: '/consultoria/certificaciones', icon: Award, titleKey: 'hub.certifications_title', subKey: 'hub.certifications_sub' },
+            ].map((item) => {
+              const Icon = item.icon;
+              return (
+                <FadeIn key={item.to}>
+                  <Link to={item.to}
+                    className="group p-5 rounded-2xl bg-white/[0.02] border border-white/[0.04] hover:border-sky-500/25 transition-all flex items-center gap-4">
+                    <div className="w-10 h-10 rounded-xl bg-sky-500/5 flex items-center justify-center shrink-0 group-hover:bg-sky-500/10 transition-all">
+                      <Icon className="w-4 h-4 text-sky-400/60 group-hover:text-sky-400 transition-colors" />
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="text-sm font-black text-white group-hover:text-sky-400 transition-colors">{t(item.titleKey)}</h4>
+                      <p className="text-xs text-gray-600">{t(item.subKey)}</p>
+                    </div>
+                    <ChevronRight className="w-4 h-4 text-gray-700 group-hover:text-sky-400 transition-colors" />
+                  </Link>
+                </FadeIn>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* SHIELDTRACE TECHNOLOGY STRIP */}
+        <FadeIn>
+          <section className="mb-20 relative rounded-2xl overflow-hidden">
+            <div
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: `url('/shieldtrace_tablet_dashboard_1777552473752.png')` }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#030305]/90 via-[#030305]/75 to-[#030305]/40" />
+            <div className="relative z-10 p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center gap-6">
+              <img src="/shieldtrace1.png" alt="ShieldTrace" className="h-10 object-contain opacity-90" />
+              <div className="flex-1">
+                <p className="text-white font-black text-lg md:text-xl mb-1">{t('hub.tech_title')}</p>
+                <p className="text-gray-400 text-sm">{t('hub.tech_desc')}</p>
+              </div>
+              <Link to="/consultoria/tecnologia/monitoreo-tiempo-real"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-sky-500/30 bg-sky-500/10 text-sky-400 text-xs font-black uppercase tracking-widest hover:bg-sky-500/20 transition-all shrink-0">
+                {t('hub.tech_link')} <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+          </section>
+        </FadeIn>
+
+        {/* CERTIFICATIONS BAR */}
+        <FadeIn>
+          <section className="mb-20">
+            <div className="flex flex-wrap items-center gap-6 py-5 px-7 rounded-2xl bg-white/[0.02] border border-white/[0.04]">
+              <span className="text-[10px] font-black text-gray-600 uppercase tracking-widest">{t('hub.certs_label')}</span>
+              {['ISO 9001:2015 — Cert. 580181', 'Cyber Essentials — Recert. May 2027', 'Marco ESRM · ASIS', 'ISO 31000 · ISO 22301', 'CPTED'].map((cert) => (
+                <div key={cert} className="flex items-center gap-2">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+                  <span className="text-xs text-gray-400 font-bold">{cert}</span>
                 </div>
               ))}
             </div>
+          </section>
+        </FadeIn>
 
-            <div className="lg:col-span-5">
-              <div className="h-full p-8 md:p-10 rounded-3xl md:rounded-[3rem] bg-[#0A0B10] border border-white/10 relative overflow-hidden flex flex-col justify-center">
-                <div className="absolute top-0 right-0 p-8 opacity-5 md:opacity-10">
-                  <Lock className="w-24 md:w-32 h-24 md:h-32 text-white" />
-                </div>
-                <div className="relative z-10">
-                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl md:rounded-2xl bg-white/5 flex items-center justify-center mb-6 md:mb-8 border border-white/10">
-                    <Lock className="w-5 h-5 md:w-6 md:h-6 text-sky-400" />
-                  </div>
-                  <h3 className="text-xl md:text-2xl font-black text-white mb-4 md:mb-6 leading-tight">
-                    {t('social_proof.disclaimer.title')}
-                  </h3>
-                  <p className="text-gray-400 text-sm leading-relaxed mb-6 md:mb-8">
-                    {t('social_proof.disclaimer.text')}
+        {/* CTA SECTION */}
+        <FadeIn>
+          <section id="diagnostico">
+            <div className="grid md:grid-cols-2 rounded-[2.5rem] overflow-hidden border border-white/[0.08]">
+              {/* Left: image + copy */}
+              <div className="relative min-h-[420px] overflow-hidden">
+                <div
+                  className="absolute inset-0 bg-cover bg-center"
+                  style={{ backgroundImage: `url('/consultoria_card.png')` }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-sky-900/90 to-indigo-900/80" />
+                <div className="absolute inset-0 bg-[#030305]/30" />
+                <div className="relative z-10 p-10 md:p-14 h-full flex flex-col justify-center">
+                  <ShieldCheck className="w-10 h-10 text-white/70 mb-6" />
+                  <h2 className="text-3xl md:text-4xl font-black text-white mb-4 leading-tight">
+                    {t('hub.diag_title')}
+                  </h2>
+                  <p className="text-white/70 text-sm leading-relaxed mb-8">
+                    {t('hub.diag_desc')}
                   </p>
-                  <div className="pt-6 md:pt-8 border-t border-white/10">
-                    <p className="text-[10px] font-black text-sky-500 uppercase tracking-widest">Privacidad Garantizada por Contrato</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex flex-col items-center gap-6 md:gap-8 py-12 md:py-16 bg-sky-500/5 rounded-3xl md:rounded-[3rem] border border-sky-500/10 backdrop-blur-sm text-center">
-            <h3 className="text-xl md:text-3xl font-black text-white px-6">
-              {t('meeting_cta.title')}
-            </h3>
-            <div className="px-6 w-full sm:w-auto">
-              <motion.a 
-                href="#contacto"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className={primaryBtnClass}
-              >
-                <CalendarDays className="w-5 h-5 md:w-6 md:h-6" />
-                {t('meeting_cta.btn')}
-                <ArrowRight className="w-5 h-5 md:w-6 md:h-6 group-hover:translate-x-2 transition-transform" />
-              </motion.a>
-            </div>
-            <p className="text-sky-400/60 text-xs md:text-sm font-bold uppercase tracking-widest px-4">
-              {t('meeting_cta.note')}
-            </p>
-          </div>
-        </section>
-
-        {/* --- SECTION 4: DIFFERENTIATOR --- */}
-        <section className="mb-20 md:mb-32 relative">
-          <div className="absolute inset-0 bg-sky-500/5 rounded-3xl md:rounded-[4rem] blur-3xl -z-10" />
-          
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 md:gap-16 items-start">
-            <div className="lg:col-span-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-sky-500/10 border border-sky-500/20 mb-6">
-                <Globe className="w-3.5 h-3.5 text-sky-400" />
-                <span className="text-[10px] font-bold text-sky-400 uppercase tracking-widest">{t('technology.badge')}</span>
-              </div>
-              <h2 className="text-3xl md:text-6xl font-black text-white mb-6 md:mb-8 leading-tight">
-                {t('technology.title')}
-              </h2>
-              
-              <div className="bg-white/5 border border-white/10 rounded-2xl md:rounded-3xl p-6 md:p-8 mb-8 md:mb-10 backdrop-blur-sm">
-                <p className="text-sky-400 font-bold mb-4 text-xs md:text-sm uppercase tracking-widest">Definición Estratégica</p>
-                <p className="text-gray-300 text-sm md:text-base leading-relaxed italic">
-                  {t('technology.psim_def')}
-                </p>
-              </div>
-
-              <div className="space-y-8 md:space-y-12">
-                <div>
-                  <h4 className="text-xl md:text-2xl font-black text-white mb-4 flex items-center gap-3">
-                    <Target className="w-5 h-5 md:w-6 md:h-6 text-sky-500" />
-                    {t('technology.concept_title')}
-                  </h4>
-                  <p className="text-gray-400 text-sm md:text-base leading-relaxed">
-                    {t('technology.concept_desc')}
-                  </p>
-                </div>
-
-                <div>
-                  <h4 className="text-xl md:text-2xl font-black text-white mb-6">{t('technology.haas_title')}</h4>
-                  <div className="grid grid-cols-1 gap-3 md:gap-4">
-                    {(t('technology.haas_benefits', { returnObjects: true }) as string[]).map((b: string, i: number) => (
-                      <div key={i} className="flex items-center gap-3 md:gap-4 bg-white/[0.03] p-4 md:p-5 rounded-xl md:rounded-2xl border border-white/5 hover:border-sky-500/30 transition-all">
-                        <div className="w-2 h-2 rounded-full bg-sky-500 shrink-0" />
-                        <span className="text-xs md:text-sm text-gray-300 font-medium">{b}</span>
+                  <div className="space-y-3">
+                    {diagPoints.map((item) => (
+                      <div key={item} className="flex items-center gap-3">
+                        <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                        <span className="text-sm text-white/80">{item}</span>
                       </div>
                     ))}
                   </div>
                 </div>
-
-                <div className="pt-4 px-4 sm:px-0">
-                  <motion.a 
-                    href="#contacto"
-                    whileHover={{ scale: 1.05 }}
-                    className={primaryBtnClass}
-                  >
-                    SOLICITAR DEMO DE PSIM
-                    <ArrowRight className="w-5 h-5" />
-                  </motion.a>
-                </div>
               </div>
-            </div>
-            
-            <div className="lg:col-span-6 lg:sticky lg:top-32 space-y-6 md:space-y-8 mt-12 lg:mt-0">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className="space-y-6 md:space-y-8"
-              >
-                <div className="relative rounded-2xl md:rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl">
-                  <img 
-                    src="/images/HS1.jpg" 
-                    alt="ShieldTrace Interface" 
-                    className="w-full h-auto object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#030305] via-transparent to-transparent opacity-40" />
-                </div>
 
-                <div className="relative rounded-2xl md:rounded-[3rem] overflow-hidden border border-white/10 shadow-2xl">
-                  <img 
-                    src="/images/HS3.png" 
-                    alt="HaaS Deployment" 
-                    className="w-full h-auto object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-sky-900/40 via-transparent to-transparent" />
-                </div>
-
-                <div className="bg-black/80 backdrop-blur-md border border-sky-500/50 px-6 md:px-8 py-3 md:py-4 rounded-full flex items-center gap-3 md:gap-4 shadow-2xl mx-auto sm:mx-0 w-fit">
-                  <div className="w-2 h-2 md:w-3 md:h-3 rounded-full bg-sky-500 animate-pulse" />
-                  <span className="text-[8px] md:text-[10px] font-black text-white uppercase tracking-widest">Certificación ISO Activa: ShieldTrace Engine</span>
-                </div>
-              </motion.div>
-
-              <div className="space-y-4 md:space-y-6 pt-4">
-                <div className="p-6 md:p-8 rounded-2xl md:rounded-3xl bg-indigo-500/10 border border-indigo-500/20 relative overflow-hidden">
-                  <p className="text-xs md:text-sm text-gray-300 leading-relaxed relative z-10">
-                    {t('technology.compliance')}
-                  </p>
-                  <ShieldCheck className="absolute -bottom-4 -right-4 w-20 md:w-24 h-20 md:h-24 text-indigo-500/10" />
-                </div>
-
-                <div className="p-6 md:p-8 rounded-2xl md:rounded-3xl border border-yellow-500/30 bg-yellow-500/5">
-                  <p className="text-[10px] font-black text-yellow-400 uppercase tracking-widest mb-2">Compromiso Accountability Partner</p>
-                  <p className="text-xs md:text-sm text-gray-400 italic">
-                    {t('technology.accountability_note')}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* --- SECTION 5: FAQ --- */}
-        <section className="mb-20 md:mb-32">
-          <div className="text-center mb-12 md:mb-16">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-indigo-500/10 border border-indigo-500/20 mb-6">
-              <MessageSquare className="w-3.5 h-3.5 text-indigo-400" />
-              <span className="text-[10px] font-bold text-indigo-400 uppercase tracking-widest">{t('faq.badge')}</span>
-            </div>
-            <h2 className="text-3xl md:text-5xl font-black text-white mb-4">{t('faq.title')}</h2>
-          </div>
-
-          <div className="max-w-4xl mx-auto space-y-4 px-2 sm:px-0">
-            {(t('faq.questions', { returnObjects: true }) as any[]).map((faq: any, i: number) => (
-              <div 
-                key={i} 
-                className={`rounded-xl md:rounded-2xl border transition-all duration-300 ${activeFaq === i ? 'bg-white/5 border-sky-500/50' : 'bg-white/[0.02] border-white/10'}`}
-              >
-                <button 
-                  onClick={() => setActiveFaq(activeFaq === i ? null : i)}
-                  className="w-full px-6 md:px-8 py-5 md:py-6 flex items-center justify-between text-left gap-4"
-                >
-                  <span className="font-bold text-white text-base md:text-lg">{faq.q}</span>
-                  <ChevronDown className={`w-5 h-5 text-sky-500 transition-transform shrink-0 ${activeFaq === i ? 'rotate-180' : ''}`} />
-                </button>
-                <AnimatePresence>
-                  {activeFaq === i && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      className="overflow-hidden"
-                    >
-                      <p className="px-6 md:px-8 pb-5 md:pb-6 text-gray-400 text-sm md:text-base leading-relaxed">
-                        {faq.a}
-                      </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* --- SECTION 6: OFFER & CLOSING --- */}
-        <section id="contacto" className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 rounded-3xl md:rounded-[3.5rem] overflow-hidden border border-white/10 bg-[#0A0B10] shadow-[0_40px_100px_rgba(0,0,0,0.8)]">
-            
-            <div className="p-8 md:p-20 bg-gradient-to-br from-sky-600 to-indigo-900 relative">
-              <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
-              <div className="relative z-10">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded bg-black/20 border border-white/20 mb-8">
-                  <Zap className="w-3.5 h-3.5 text-yellow-400" />
-                  <span className="text-[10px] font-bold text-white uppercase tracking-widest">{t('offer.badge')}</span>
-                </div>
-                <h3 className="text-3xl md:text-5xl font-black text-white mb-6 leading-tight">
-                  {t('offer.title')}
-                </h3>
-                <p className="text-white/80 text-base md:text-lg mb-8 md:mb-10 leading-relaxed">
-                  {t('offer.desc')}
-                </p>
-                
-                <div className="bg-black/30 backdrop-blur-md rounded-2xl md:rounded-3xl p-6 md:p-8 mb-8 md:mb-10 border border-white/10">
-                  <div className="text-2xl md:text-3xl font-black text-yellow-400 mb-2">{t('offer.highlight')}</div>
-                  <p className="text-white text-[10px] md:text-sm font-bold opacity-70 mb-6">{t('offer.inclusion')}</p>
-                  <div className="grid grid-cols-2 gap-4 border-t border-white/10 pt-6">
-                    <div>
-                      <div className="text-xl md:text-2xl font-black text-white">{t('offer.pricing.org')}</div>
-                      <p className="text-[8px] md:text-[10px] text-white/50 uppercase font-black">{t('offer.pricing.org_label')}</p>
-                    </div>
-                    <div>
-                      <div className="text-xl md:text-2xl font-black text-white">{t('offer.pricing.prof')}</div>
-                      <p className="text-[8px] md:text-[10px] text-white/50 uppercase font-black">{t('offer.pricing.prof_label')}</p>
-                    </div>
+              {/* Right: form */}
+              <div className="p-10 md:p-14 bg-[#0A0B10]">
+                {status === 'success' ? (
+                  <div className="h-full flex flex-col items-center justify-center text-center gap-4">
+                    <CheckCircle2 className="w-12 h-12 text-emerald-400" />
+                    <h3 className="text-xl font-black text-white">{t('hub.success_title')}</h3>
+                    <p className="text-sm text-gray-400">{t('hub.success_sub')}</p>
                   </div>
-                  <p className="text-[8px] md:text-[10px] text-white/40 mt-6 italic">{t('offer.note')}</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-8 md:p-20 bg-[#0D0F16]">
-              <h4 className="text-xl md:text-2xl font-black text-white mb-2">{t('form.title')}</h4>
-              <p className="text-sm text-gray-500 mb-8 md:mb-10">{t('form.desc')}</p>
-              
-              <form onSubmit={handleSubmit} className="space-y-4 md:space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em]">{t('form.name')}</label>
-                    <input 
-                      type="text" name="nombre" required value={formData.nombre} onChange={handleChange}
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 md:py-4 text-white focus:outline-none focus:border-sky-500 transition-all font-medium text-sm md:text-base" 
-                      placeholder="Ej: Juan Pérez"
-                    />
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em]">{t('form.company')}</label>
-                    <input 
-                      type="text" name="empresa" required value={formData.empresa} onChange={handleChange}
-                      className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 md:py-4 text-white focus:outline-none focus:border-sky-500 transition-all font-medium text-sm md:text-base" 
-                      placeholder="Empresa C.A."
-                    />
-                  </div>
-                </div>
-                <div className="space-y-2">
-                  <label className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em]">{t('form.email')}</label>
-                  <input 
-                    type="email" name="correo" required value={formData.correo} onChange={handleChange}
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 md:py-4 text-white focus:outline-none focus:border-sky-500 transition-all font-medium text-sm md:text-base" 
-                    placeholder="j.perez@empresa.com"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label className="text-[10px] font-black text-gray-500 uppercase tracking-[0.2em]">{t('form.type')}</label>
-                  <select 
-                    name="tipo_proyecto" required value={formData.tipo_proyecto} onChange={handleChange}
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 md:py-4 text-white focus:outline-none focus:border-sky-500 transition-all font-medium appearance-none text-sm md:text-base"
-                  >
-                    <option value="" className="bg-[#0D0F16]">Seleccione su necesidad</option>
-                    <option value="licitacion" className="bg-[#0D0F16]">Optimización de Costos Operativos</option>
-                    <option value="auditoria" className="bg-[#0D0F16]">Auditoría e ISO 31000</option>
-                    <option value="proyecto" className="bg-[#0D0F16]">Implementación de ShieldTrace PSIM</option>
-                    <option value="seguridad" className="bg-[#0D0F16]">Diagnóstico Integral de Riesgos</option>
-                  </select>
-                </div>
-
-                {status === 'success' && (
-                  <div className="p-4 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm rounded-xl text-center font-bold">
-                    ¡Solicitud recibida! Un panel de expertos le contactará pronto.
-                  </div>
+                ) : (
+                  <>
+                    <h3 className="text-xl font-black text-white mb-2">{t('hub.form_title')}</h3>
+                    <p className="text-sm text-gray-500 mb-8">{t('hub.form_sub')}</p>
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                      <input type="text" required value={nombre} onChange={e => setNombre(e.target.value)}
+                        placeholder={t('layout.form_name')}
+                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white text-sm focus:outline-none focus:border-sky-500 transition-all placeholder:text-gray-600" />
+                      <input type="text" value={empresa} onChange={e => setEmpresa(e.target.value)}
+                        placeholder={t('layout.form_company')}
+                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white text-sm focus:outline-none focus:border-sky-500 transition-all placeholder:text-gray-600" />
+                      <input type="email" required value={correo} onChange={e => setCorreo(e.target.value)}
+                        placeholder={t('layout.form_email')}
+                        className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white text-sm focus:outline-none focus:border-sky-500 transition-all placeholder:text-gray-600" />
+                      <motion.button type="submit" disabled={status === 'loading'}
+                        whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
+                        className="w-full bg-sky-600 text-white font-black py-4 rounded-xl hover:bg-sky-500 transition-all disabled:opacity-50 flex items-center justify-center gap-3 text-sm uppercase tracking-widest shadow-lg shadow-sky-900/30">
+                        {status === 'loading' ? t('layout.form_sending') : (<>{t('hub.form_submit')} <ArrowRight className="w-4 h-4" /></>)}
+                      </motion.button>
+                      {status === 'error' && <p className="text-red-400 text-xs text-center">{t('layout.error_msg')}</p>}
+                    </form>
+                    <p className="text-[10px] text-gray-700 uppercase tracking-widest mt-6 text-center font-bold">
+                      ISO 9001:2015 · Cyber Essentials · 17 años sin incidentes
+                    </p>
+                  </>
                 )}
-
-                <button 
-                  type="submit" 
-                  disabled={status === 'loading'}
-                  className="w-full bg-gradient-to-r from-sky-500 to-indigo-600 text-white font-black py-4 md:py-5 rounded-2xl hover:scale-[1.02] transition-all disabled:opacity-50 flex items-center justify-center gap-3 shadow-2xl group text-sm md:text-base"
-                >
-                  {status === 'loading' ? 'Procesando...' : (
-                    <>
-                      <span>{t('form.btn')}</span>
-                      <ShieldCheck className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                    </>
-                  )}
-                </button>
-              </form>
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
+        </FadeIn>
 
       </div>
     </div>

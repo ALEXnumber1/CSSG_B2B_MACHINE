@@ -1,0 +1,154 @@
+{
+  "layout": {
+    "back": "Risk Advisory Services",
+    "breadcrumb_home": "Inicio",
+    "breadcrumb_hub": "Risk Advisory Services",
+    "faq_title": "Preguntas frecuentes",
+    "related_title": "Servicios relacionados",
+    "cert_label": "Respaldado por:",
+    "certs": [
+      "ISO 9001:2015 — Cert. 580181",
+      "Cyber Essentials",
+      "ESRM · ASIS",
+      "ISO 31000 · ISO 22301"
+    ],
+    "form_title": "Cuéntenos su caso",
+    "form_name": "Nombre completo",
+    "form_company": "Empresa u organización",
+    "form_email": "Correo electrónico",
+    "form_cta": "Solicitar consulta",
+    "form_sending": "Enviando...",
+    "form_success": "Recibido.",
+    "form_success_sub": "Le contactamos en menos de 12 horas.",
+    "cta_title": "Solicite una consulta sin compromiso",
+    "cta_desc": "Un especialista senior evalúa su caso y le presenta opciones en menos de 12 horas.",
+    "cta_points": [
+      "Evaluación inicial gratuita",
+      "Sin compromiso de contratación",
+      "Respuesta < 12 horas"
+    ],
+    "error_msg": "Error. Escríbanos a gerencia@globalservices-ven.com"
+  },
+  "hub": {
+    "badge": "Risk Advisory Services · by CSSG Global",
+    "title_line1": "Consultoría",
+    "title_line2": "de Seguridad",
+    "intro": "Evaluamos, diagnosticamos y fortalecemos la postura de seguridad de embajadas del G7, corporaciones multinacionales y ejecutivos de alto perfil en Venezuela.",
+    "cta_primary": "Solicitar Diagnóstico Gratuito",
+    "cta_secondary": "Ver Certificaciones",
+    "stats": [
+      { "value": "+17", "unit": "años", "label": "sin incidentes" },
+      { "value": "ISO", "unit": "9001", "label": "Certificado :2015" },
+      { "value": "G7", "unit": "", "label": "estándar diplomático" },
+      { "value": "20", "unit": "+", "label": "servicios especializados" }
+    ],
+    "families_label": "Líneas de Servicio",
+    "families_title": "Cinco familias de consultoría",
+    "families": [
+      {
+        "badge": "ISO 31000 · ESRM",
+        "title": "Evaluación y Diagnóstico de Riesgos",
+        "desc": "Identificamos y cuantificamos vulnerabilidades antes de que se conviertan en incidentes. Desde diagnósticos de madurez hasta auditorías de cumplimiento DIGESERVISP.",
+        "explore": "Explorar servicios",
+        "services": [
+          "Evaluación de Riesgos (ESRM)",
+          "Diagnóstico de Madurez",
+          "Site Survey Físico (CPTED)",
+          "Auditoría de Cumplimiento"
+        ]
+      },
+      {
+        "badge": "Convención de Viena · G7",
+        "title": "Consultoría Diplomática y de Misiones",
+        "desc": "Protegemos embajadas, cancillerías y residencias oficiales con los estándares que exigen los gobiernos del G7. El foso defensivo más difícil de replicar.",
+        "explore": "Explorar servicios",
+        "services": [
+          "Seguridad para Misiones Diplomáticas",
+          "Evaluación de Residencias y Cancillerías"
+        ]
+      },
+      {
+        "badge": "OSINT · CICPC · SENIAT",
+        "title": "Inteligencia e Investigación",
+        "desc": "Verificamos personas, empresas y entornos operativos con fuentes judiciales, tributarias y de inteligencia abierta. Due diligence, insider threat, análisis de entorno.",
+        "explore": "Explorar servicios",
+        "services": [
+          "Due Diligence Corporativa",
+          "Inteligencia y Análisis de Riesgo",
+          "Gestión de Amenaza Interna"
+        ]
+      },
+      {
+        "badge": "ISO 22301 · BCP",
+        "title": "Resiliencia y Continuidad Operativa",
+        "desc": "Diseñamos planes de continuidad calibrados a los escenarios reales de Venezuela: cortes eléctricos, disturbios, escasez. Su operación no se detiene.",
+        "explore": "Explorar servicios",
+        "services": [
+          "Continuidad de Negocio (BCP)",
+          "Gestión de Crisis y Respuesta",
+          "Protección Ejecutiva — Análisis de Amenazas"
+        ]
+      },
+      {
+        "badge": "LOTTT · DDHH · DIGESERVISP",
+        "title": "Marco Legal y Compliance",
+        "desc": "Asesoría jurídica especializada en derecho laboral de seguridad privada, derechos humanos aplicados y compliance regulatorio. El único componente legal integrado a un esquema de seguridad en Venezuela.",
+        "explore": "Explorar servicios",
+        "services": [
+          "Derecho Laboral para Seguridad Privada",
+          "Protocolos DDHH y Uso de la Fuerza",
+          "Compliance y Due Diligence Legal"
+        ]
+      }
+    ],
+    "cecom_badge": "CECOM 24/7",
+    "cecom_title": "La única consultora en Venezuela con Centro de Mando operativo 24/7",
+    "cecom_link": "Conocer el CECOM",
+    "layers_title": "Capas de soporte y entrega",
+    "layers_sub": "Lo que distingue un diagnóstico de una transformación real",
+    "layers": [
+      {
+        "badge": "CECOM 24/7",
+        "title": "Tecnología y Centro de Mando",
+        "desc": "Visibilidad consolidada del estado de seguridad en tiempo real. Monitoreo centralizado, alertas tempranas y scoring accionable.",
+        "services": [
+          "Monitoreo en Tiempo Real",
+          "Centro de Mando CECOM 24h",
+          "Scoring de Seguridad"
+        ]
+      },
+      {
+        "badge": "DIGESERVISP · 120h",
+        "title": "Capacitación y Formación",
+        "desc": "Programas acreditados para personal de seguridad, equipos corporativos y directivos. Presencial, e-learning o mixto.",
+        "services": [
+          "Formación de Personal de Seguridad",
+          "Respuesta a Crisis para Equipos",
+          "Concienciación Ejecutiva"
+        ]
+      }
+    ],
+    "tech_title": "Tecnología operativa propia",
+    "tech_desc": "Plataforma de inteligencia táctica integrada al CECOM. Capacidad de monitoreo, scoring y alerta en tiempo real.",
+    "tech_link": "Ver capacidades",
+    "certs_label": "Respaldado por:",
+    "diag_badge": "Diagnóstico Gratuito",
+    "diag_title": "Diagnóstico Gratuito de Seguridad",
+    "diag_desc": "Un consultor senior analiza su organización y presenta un informe inicial de vulnerabilidades — sin costo ni compromiso.",
+    "diag_points": [
+      "Evaluación de vulnerabilidades inicial",
+      "Recomendaciones prioritarias",
+      "Sin compromiso de contratación",
+      "Respuesta en menos de 12 horas"
+    ],
+    "form_title": "Solicitar diagnóstico",
+    "form_sub": "Complete el formulario y le contactamos.",
+    "form_submit": "Solicitar diagnóstico",
+    "success_title": "Solicitud recibida",
+    "success_sub": "Un consultor senior le contactará en menos de 12 horas.",
+    "cases_title": "Casos de Éxito",
+    "cases_sub": "Resultados reales de clientes reales",
+    "certifications_title": "Certificaciones y Estándares",
+    "certifications_sub": "ISO 9001:2015 · Cyber Essentials · ISO 31000"
+  }
+}

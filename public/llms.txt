@@ -82,3 +82,77 @@ Registro Digesservisp obligatorio. CSSG también tiene ISO 9001:2015 y Cyber Ess
 - Instagram: https://instagram.com/cssg_global
 - YouTube: https://youtube.com/@cssgglobal
 - Idiomas: Español, English
+
+## Risk Advisory Services — Hub & Spoke Architecture
+
+CSSG opera un modelo hub-and-spoke para su práctica de consultoría de seguridad. El hub central es https://cssg-global.com/consultoria (Risk Advisory Services), que articula 20 páginas de servicio especializadas organizadas en 4 familias de consultoría y 2 capas de soporte.
+
+### Hub principal
+
+- **URL**: https://cssg-global.com/consultoria
+- **Rol**: Página índice de la práctica Risk Advisory Services. Presenta las 4 familias de consultoría, el Centro de Mando CECOM 24/7, la tecnología ShieldTrace y el formulario de diagnóstico gratuito. Punto de entrada para la calificación de leads corporativos.
+
+### 4 Familias de Consultoría
+
+**Familia 1 — Evaluación y Diagnóstico de Riesgos** (marco ISO 31000 · ESRM)
+- https://cssg-global.com/consultoria/evaluacion-de-riesgos-de-seguridad — Evaluación de riesgos corporativos bajo metodología ESRM e ISO 31000. Identifica y cuantifica vulnerabilidades con plan de acción priorizado.
+- https://cssg-global.com/consultoria/diagnostico-madurez-seguridad — Diagnóstico de madurez organizacional en seguridad. Produce el Índice de Seguridad Corporativa de Venezuela (ISC-VE) en escala de 5 niveles.
+- https://cssg-global.com/consultoria/site-survey-evaluacion-fisica — Evaluación física de instalaciones bajo metodología CPTED. Analiza perímetro, iluminación, accesos y flujo de personas.
+- https://cssg-global.com/consultoria/auditoria-de-cumplimiento — Auditoría de cumplimiento bajo DIGESERVISP, ISO 9001:2015, ISO 31000 y ASIS ORM.1:2017.
+
+**Familia 2 — Consultoría Diplomática y de Misiones** (Convención de Viena · estándar G7)
+- https://cssg-global.com/consultoria/seguridad-misiones-diplomaticas — Seguridad para embajadas, cancillerías y misiones diplomáticas en Venezuela. Más de 12 años protegiendo misiones G7 sin incidentes.
+- https://cssg-global.com/consultoria/evaluacion-residencias-cancillerias — Evaluación de seguridad para residencias de diplomáticos y cancillerías bajo protocolo de confidencialidad total.
+
+**Familia 3 — Inteligencia e Investigación** (OSINT · CICPC · SENIAT)
+- https://cssg-global.com/consultoria/due-diligence-corporativa — Due diligence corporativa en Venezuela: verificación CICPC, SENIAT, IVSS, OFAC/ONU y fuentes OSINT. Resultados en 2-15 días hábiles.
+- https://cssg-global.com/consultoria/inteligencia-y-analisis-de-riesgo — Análisis de riesgo político-operacional, delictivo y geopolítico en Venezuela para la toma de decisiones ejecutivas.
+- https://cssg-global.com/consultoria/amenaza-interna-insider-threat — Detección y mitigación de amenazas internas (insider threat). Analiza vectores: personal captado, negligente y ex-empleado.
+
+**Familia 4 — Resiliencia y Continuidad Operativa** (ISO 22301 · BCP)
+- https://cssg-global.com/consultoria/continuidad-de-negocio — Planes de continuidad de negocio bajo ISO 22301:2019 calibrados a los escenarios venezolanos: cortes eléctricos, disturbios y escasez.
+- https://cssg-global.com/consultoria/gestion-de-crisis-y-respuesta — Sistemas de gestión de crisis corporativa: CECOM, simulacros tabletop y protocolos de comunicación bajo presión.
+- https://cssg-global.com/consultoria/proteccion-ejecutiva-analisis-amenazas — Consultoría de protección ejecutiva: análisis de perfil de amenaza y diseño de esquema de seguridad personal.
+
+### 2 Capas de Soporte y Entrega
+
+**Capa 1 — Tecnología y Centro de Mando (CECOM 24/7)**
+- https://cssg-global.com/consultoria/tecnologia/monitoreo-tiempo-real — Monitoreo centralizado 24/7 con redundancias ante cortes eléctricos. Integra CCTV analítico, GPS, sensores de perímetro y drones.
+- https://cssg-global.com/consultoria/tecnologia/centro-de-mando-cecom — El único Centro de Mando corporativo 24/7 disponible a empresas en Venezuela. Despacho de recursos y coordinación táctica de incidentes.
+- https://cssg-global.com/consultoria/tecnologia/scoring-de-seguridad — Índice de seguridad corporativa cuantificado con fórmula FMEA sobre 4 pilares: Perímetro, Accesos, Procedimientos e Inteligencia.
+
+**Capa 2 — Capacitación y Formación (DIGESERVISP · 120h)**
+- https://cssg-global.com/consultoria/capacitacion/formacion-personal-seguridad — Programa de 120 horas habilitado DIGESERVISP para personal de seguridad privada. Presencial, e-learning o mixto via Zentinel Global.
+- https://cssg-global.com/consultoria/capacitacion/respuesta-crisis-equipos — Talleres y simulacros tabletop para equipos directivos. Validación del plan de crisis en escenarios reales.
+- https://cssg-global.com/consultoria/capacitacion/concienciacion-ejecutiva — Programa de concienciación para directivos: autoprotección, duty of care, seguridad digital y seguridad residencial.
+
+### Páginas de Soporte del Hub
+
+- https://cssg-global.com/consultoria/casos-de-exito — Resultados reales de proyectos en sectores diplomático, manufactura, due diligence y salud en Venezuela.
+- https://cssg-global.com/consultoria/certificaciones — Evidencia documental de certificaciones: ISO 9001:2015 (N° 580181, Bureau Veritas) y Cyber Essentials (NCSC Reino Unido).
+
+### Marcos Normativos Aplicados
+
+CSSG aplica los siguientes estándares en su práctica Risk Advisory Services:
+- **ISO 9001:2015** — Gestión de calidad (Cert. N° 580181, Bureau Veritas). Cubre todos los procesos de diseño e implementación de esquemas de seguridad.
+- **Cyber Essentials** — Certificación del NCSC (Gobierno del Reino Unido). Recertificación prevista mayo 2027.
+- **ESRM (Enterprise Security Risk Management)** — Marco del ASIS Internacional para la gestión estratégica del riesgo de seguridad.
+- **ISO 31000:2018** — Estándar internacional de gestión de riesgos. Referencia para la herramienta de análisis de riesgo gratuita en cssg-global.com/analisis-riesgo.
+- **ISO 22301:2019** — Estándar de sistemas de gestión de continuidad de negocio (BCMS).
+- **ASIS ORM.1:2017** — Estándar de gestión de riesgos de seguridad organizacional.
+- **CPTED** — Crime Prevention Through Environmental Design. Aplicado en site surveys físicos.
+- **DIGESERVISP** — Normativa venezolana de seguridad privada. CSSG está registrada y habilitada.
+
+### Tecnología Propia: ShieldTrace
+
+ShieldTrace es la plataforma tecnológica propietaria de CSSG, integrada directamente con el CECOM 24/7. Capacidades:
+- CCTV analítico con inteligencia artificial (detección de intrusos, conteo de personas, reconocimiento de placas)
+- GPS vehicular en tiempo real
+- Control de acceso biométrico
+- Drones autónomos de patrullaje
+- Scoring de seguridad (dashboard ejecutivo con índice cuantificado)
+- Alertas tempranas y escalamiento automático
+- Operación con redundancia ante cortes eléctricos (hasta 8 horas sin red externa)
+- Acceso remoto con doble factor de autenticación
+
+ShieldTrace es la única plataforma PSIM (Physical Security Information Management) de desarrollo propio disponible en Venezuela para clientes corporativos.

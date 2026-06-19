@@ -1,0 +1,154 @@
+{
+  "layout": {
+    "back": "Risk Advisory Services",
+    "breadcrumb_home": "Home",
+    "breadcrumb_hub": "Risk Advisory Services",
+    "faq_title": "Frequently asked questions",
+    "related_title": "Related services",
+    "cert_label": "Backed by:",
+    "certs": [
+      "ISO 9001:2015 — Cert. 580181",
+      "Cyber Essentials",
+      "ESRM · ASIS",
+      "ISO 31000 · ISO 22301"
+    ],
+    "form_title": "Tell us about your case",
+    "form_name": "Full name",
+    "form_company": "Company or organization",
+    "form_email": "Email address",
+    "form_cta": "Request consultation",
+    "form_sending": "Sending...",
+    "form_success": "Received.",
+    "form_success_sub": "We will contact you within 12 hours.",
+    "cta_title": "Request a no-commitment consultation",
+    "cta_desc": "A senior specialist evaluates your case and presents options in less than 12 hours.",
+    "cta_points": [
+      "Free initial assessment",
+      "No hiring commitment",
+      "Response < 12 hours"
+    ],
+    "error_msg": "Error. Write to us at gerencia@globalservices-ven.com"
+  },
+  "hub": {
+    "badge": "Risk Advisory Services · by CSSG Global",
+    "title_line1": "Security",
+    "title_line2": "Consulting",
+    "intro": "We assess, diagnose and strengthen the security posture of G7 embassies, multinational corporations and high-profile executives in Venezuela.",
+    "cta_primary": "Request Free Diagnosis",
+    "cta_secondary": "View Certifications",
+    "stats": [
+      { "value": "+17", "unit": "years", "label": "incident-free" },
+      { "value": "ISO", "unit": "9001", "label": "Certified :2015" },
+      { "value": "G7", "unit": "", "label": "diplomatic standard" },
+      { "value": "20", "unit": "+", "label": "specialized services" }
+    ],
+    "families_label": "Service Lines",
+    "families_title": "Five consulting families",
+    "families": [
+      {
+        "badge": "ISO 31000 · ESRM",
+        "title": "Risk Assessment & Diagnostics",
+        "desc": "We identify and quantify vulnerabilities before they become incidents. From maturity diagnostics to DIGESERVISP compliance audits.",
+        "explore": "Explore services",
+        "services": [
+          "Risk Assessment (ESRM)",
+          "Maturity Diagnostic",
+          "Physical Site Survey (CPTED)",
+          "Compliance Audit"
+        ]
+      },
+      {
+        "badge": "Vienna Convention · G7",
+        "title": "Diplomatic & Mission Consulting",
+        "desc": "We protect embassies, chanceries and official residences to the standards demanded by G7 governments. The most difficult defensive moat to replicate.",
+        "explore": "Explore services",
+        "services": [
+          "Security for Diplomatic Missions",
+          "Residences & Chancery Assessment"
+        ]
+      },
+      {
+        "badge": "OSINT · CICPC · SENIAT",
+        "title": "Intelligence & Investigation",
+        "desc": "We verify individuals, companies and operational environments using judicial, tax and open-source intelligence. Due diligence, insider threat, situational analysis.",
+        "explore": "Explore services",
+        "services": [
+          "Corporate Due Diligence",
+          "Intelligence & Risk Analysis",
+          "Insider Threat Management"
+        ]
+      },
+      {
+        "badge": "ISO 22301 · BCP",
+        "title": "Resilience & Operational Continuity",
+        "desc": "We design continuity plans calibrated to Venezuela's real-world scenarios: power outages, civil unrest, scarcity. Your operation never stops.",
+        "explore": "Explore services",
+        "services": [
+          "Business Continuity (BCP)",
+          "Crisis Management & Response",
+          "Executive Protection — Threat Analysis"
+        ]
+      },
+      {
+        "badge": "LOTTT · DDHH · DIGESERVISP",
+        "title": "Legal Framework & Compliance",
+        "desc": "Specialized legal advisory on private security labor law, applied human rights and regulatory compliance. The only legal component integrated into a security scheme in Venezuela.",
+        "explore": "Explore services",
+        "services": [
+          "Labor Law for Private Security",
+          "Human Rights Protocols & Use of Force",
+          "Legal Compliance & Due Diligence"
+        ]
+      }
+    ],
+    "cecom_badge": "CECOM 24/7",
+    "cecom_title": "The only consultancy in Venezuela with an operational 24/7 Command Center",
+    "cecom_link": "Learn about CECOM",
+    "layers_title": "Support and delivery layers",
+    "layers_sub": "What distinguishes a diagnosis from a real transformation",
+    "layers": [
+      {
+        "badge": "CECOM 24/7",
+        "title": "Technology & Command Center",
+        "desc": "Consolidated real-time visibility of security status. Centralized monitoring, early alerts and actionable scoring.",
+        "services": [
+          "Real-Time Monitoring",
+          "CECOM 24h Command Center",
+          "Security Scoring"
+        ]
+      },
+      {
+        "badge": "DIGESERVISP · 120h",
+        "title": "Training & Development",
+        "desc": "Accredited programs for security personnel, corporate teams and executives. On-site, e-learning or blended.",
+        "services": [
+          "Security Personnel Training",
+          "Crisis Response for Teams",
+          "Executive Security Awareness"
+        ]
+      }
+    ],
+    "tech_title": "Proprietary operational technology",
+    "tech_desc": "Tactical intelligence platform integrated with CECOM. Real-time monitoring, scoring and alert capabilities.",
+    "tech_link": "View capabilities",
+    "certs_label": "Backed by:",
+    "diag_badge": "Free Diagnosis",
+    "diag_title": "Free Security Diagnosis",
+    "diag_desc": "A senior consultant analyzes your organization and delivers an initial vulnerability report — at no cost and with no commitment.",
+    "diag_points": [
+      "Initial vulnerability assessment",
+      "Priority recommendations",
+      "No hiring commitment",
+      "Response within 12 hours"
+    ],
+    "form_title": "Request diagnosis",
+    "form_sub": "Complete the form and we will contact you.",
+    "form_submit": "Request diagnosis",
+    "success_title": "Request received",
+    "success_sub": "A senior consultant will contact you within 12 hours.",
+    "cases_title": "Success Stories",
+    "cases_sub": "Real results from real clients",
+    "certifications_title": "Certifications & Standards",
+    "certifications_sub": "ISO 9001:2015 · Cyber Essentials · ISO 31000"
+  }
+}
