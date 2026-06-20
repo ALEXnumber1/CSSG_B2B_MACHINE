@@ -28,6 +28,8 @@ import esEscudo from './locales/es/escudo.json';
 import enEscudo from './locales/en/escudo.json';
 import esConsultoriaHub from './locales/es/consultoria_hub.json';
 import enConsultoriaHub from './locales/en/consultoria_hub.json';
+import esTestimonios from './locales/es/testimonios.json';
+import enTestimonios from './locales/en/testimonios.json';
 
 const resources = {
   es: {
@@ -436,7 +438,8 @@ const resources = {
     streaming: esStreaming,
     rrhh: esRRHH,
     escudo: esEscudo,
-    consultoria_hub: esConsultoriaHub
+    consultoria_hub: esConsultoriaHub,
+    testimonios: esTestimonios
   },
   en: {
     translation: {
@@ -844,7 +847,8 @@ const resources = {
     streaming: enStreaming,
     rrhh: enRRHH,
     escudo: enEscudo,
-    consultoria_hub: enConsultoriaHub
+    consultoria_hub: enConsultoriaHub,
+    testimonios: enTestimonios
   }
 };
 
@@ -854,7 +858,7 @@ i18n
   .init({
     resources,
     fallbackLng: 'es',
-    ns: ['translation', 'quienes', 'consultoria', 'tecnologia', 'risk', 'informes', 'quejas', 'intranet', 'admin', 'blog', 'streaming', 'rrhh', 'escudo', 'consultoria_hub'],
+    ns: ['translation', 'quienes', 'consultoria', 'tecnologia', 'risk', 'informes', 'quejas', 'intranet', 'admin', 'blog', 'streaming', 'rrhh', 'escudo', 'consultoria_hub', 'testimonios'],
     defaultNS: 'translation',
     interpolation: {
       escapeValue: false,

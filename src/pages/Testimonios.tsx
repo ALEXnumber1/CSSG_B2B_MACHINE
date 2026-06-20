@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Star, Send, CheckCircle, Shield, Users, Building2, Quote, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { supabase } from '../lib/supabase';
+import { useTranslation } from 'react-i18next';
 
 interface TestimonialForm {
   name: string;
@@ -22,10 +23,10 @@ interface Testimonial {
   created_at: string;
 }
 
-const roleLabels = { cliente: 'Cliente', empleado: 'Colaborador CSSG', usuario: 'Usuario' };
 const roleIcons = { cliente: Building2, empleado: Shield, usuario: Users };
 
 function StarRating({ value, onChange, size = 24 }: { value: number; onChange?: (v: number) => void; size?: number }) {
+  const { t } = useTranslation('testimonios');
   const [hover, setHover] = useState(0);
   const active = hover || value;
   return (
@@ -34,7 +35,7 @@ function StarRating({ value, onChange, size = 24 }: { value: number; onChange?: 
         <button
           key={star}
           type="button"
-          aria-label={`Calificación ${star} de 5`}
+          aria-label={t('star_aria', { star })}
           onClick={() => onChange?.(star)}
           onMouseEnter={() => onChange && setHover(star)}
           onMouseLeave={() => onChange && setHover(0)}
@@ -50,8 +51,9 @@ function StarRating({ value, onChange, size = 24 }: { value: number; onChange?: 
   );
 }
 
-function TestimonialCard({ t, index }: { t: Testimonial; index: number }) {
-  const Icon = roleIcons[t.role];
+function TestimonialCard({ item, index }: { item: Testimonial; index: number }) {
+  const { t } = useTranslation('testimonios');
+  const Icon = roleIcons[item.role];
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -66,19 +68,22 @@ function TestimonialCard({ t, index }: { t: Testimonial; index: number }) {
             <Icon size={18} className="text-sky-400" />
           </div>
           <div>
-            <p className="font-bold text-white text-sm">{t.name}</p>
-            <p className="text-sky-400/70 text-xs">{roleLabels[t.role]}{t.company ? ` · ${t.company}` : ''}</p>
+            <p className="font-bold text-white text-sm">{item.name}</p>
+            <p className="text-sky-400/70 text-xs">{t(`roles.${item.role}`)}{item.company ? ` · ${item.company}` : ''}</p>
           </div>
         </div>
-        <StarRating value={t.rating} size={14} />
+        <StarRating value={item.rating} size={14} />
       </div>
-      <p className="text-gray-300 text-sm leading-relaxed italic">"{t.comment}"</p>
-      <p className="text-white/20 text-xs">{new Date(t.created_at).toLocaleDateString('es-VE', { year: 'numeric', month: 'long' })}</p>
+      <p className="text-gray-300 text-sm leading-relaxed italic">"{item.comment}"</p>
+      <p className="text-white/20 text-xs">
+        {new Date(item.created_at).toLocaleDateString(t('date_locale'), { year: 'numeric', month: 'long' })}
+      </p>
     </motion.div>
   );
 }
 
 export default function Testimonios() {
+  const { t } = useTranslation('testimonios');
   const [form, setForm] = useState<TestimonialForm>({ name: '', role: 'cliente', company: '', rating: 0, comment: '' });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -87,17 +92,13 @@ export default function Testimonios() {
   const [filterRole, setFilterRole] = useState<string>('todos');
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
-  const faqs = [
-    { q: '¿Quién puede dejar una opinión?', a: 'Cualquier persona: clientes actuales o anteriores, colaboradores de CSSG y usuarios que hayan interactuado con nuestros servicios o plataforma digital.' },
-    { q: '¿Las opiniones son verificadas?', a: 'Sí. Cada opinión pasa por moderación antes de publicarse para garantizar autenticidad y valor real.' },
-    { q: '¿Puedo enviar mi opinión de forma anónima?', a: 'El nombre es requerido, pero puedes omitir la empresa. Para total anonimato, usa nuestro canal de quejas en /quejas.' },
-    { q: '¿Cuánto tarda en publicarse?', a: 'Nuestro equipo revisa las opiniones dentro de 24-48 horas hábiles.' },
-  ];
+  const faqs = t('faqs', { returnObjects: true }) as Array<{ q: string; a: string }>;
+  const ratings = t('form.ratings', { returnObjects: true }) as string[];
 
   const handleSubmit = async (e: { preventDefault(): void }) => {
     e.preventDefault();
-    if (form.rating === 0) { setError('Selecciona una calificación de 1 a 5 estrellas.'); return; }
-    if (form.comment.trim().length < 20) { setError('El comentario debe tener al menos 20 caracteres.'); return; }
+    if (form.rating === 0) { setError(t('form.error_rating')); return; }
+    if (form.comment.trim().length < 20) { setError(t('form.error_min_chars')); return; }
     setError('');
     setLoading(true);
     try {
@@ -111,18 +112,18 @@ export default function Testimonios() {
       if (dbError) throw dbError;
       setSubmitted(true);
     } catch {
-      setError('Hubo un problema al enviar tu opinión. Intenta de nuevo.');
+      setError(t('form.error_db'));
     } finally {
       setLoading(false);
     }
-  }
+  };
 
-  const filtered = filterRole === 'todos' ? testimonials : testimonials.filter(t => t.role === filterRole);
+  const filtered = filterRole === 'todos' ? testimonials : testimonials.filter(item => item.role === filterRole);
 
   return (
     <div className="min-h-screen bg-[#0B0B0F]">
 
-      {/* Hero con imagen */}
+      {/* Hero */}
       <section className="relative h-[70vh] min-h-[520px] flex items-end overflow-hidden">
         <img
           src="/testimonios_hero.webp"
@@ -133,7 +134,6 @@ export default function Testimonios() {
           decoding="async"
           className="absolute inset-0 w-full h-full object-cover object-center"
         />
-        {/* Gradiente sobre la imagen */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#0B0B0F] via-[#0B0B0F]/60 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0B0B0F]/40 via-transparent to-transparent" />
 
@@ -145,26 +145,26 @@ export default function Testimonios() {
                   <Star key={s} size={16} className="fill-amber-400 text-amber-400" />
                 ))}
               </div>
-              <span className="text-amber-300/80 text-sm font-medium">Opiniones verificadas</span>
+              <span className="text-amber-300/80 text-sm font-medium">{t('hero.verified')}</span>
             </div>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-tight leading-none mb-5">
-              Lo que dicen<br />
+              {t('hero.title_1')}<br />
               <span className="bg-gradient-to-r from-sky-400 to-emerald-400 bg-clip-text text-transparent">
-                quienes nos conocen
+                {t('hero.title_2')}
               </span>
             </h1>
             <p className="text-gray-300 text-lg max-w-xl leading-relaxed">
-              Clientes, colaboradores y usuarios comparten su experiencia real con CSSG.
+              {t('hero.subtitle')}
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Contenido principal */}
+      {/* Main content */}
       <section className="max-w-6xl mx-auto px-6 pt-16 pb-24">
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
 
-          {/* Columna izquierda — Formulario */}
+          {/* Left — Form */}
           <motion.div
             className="lg:col-span-2"
             initial={{ opacity: 0, x: -20 }}
@@ -174,10 +174,8 @@ export default function Testimonios() {
             <div className="sticky top-28">
               <div className="backdrop-blur-xl bg-white/[0.04] border border-white/8 rounded-[2rem] p-8">
                 <div className="mb-7">
-                  <h2 className="text-2xl font-black text-white tracking-tight mb-2">Comparte tu experiencia</h2>
-                  <p className="text-gray-400 text-sm leading-relaxed">
-                    Tu opinión honesta ayuda a otros a tomar mejores decisiones de seguridad.
-                  </p>
+                  <h2 className="text-2xl font-black text-white tracking-tight mb-2">{t('form.heading')}</h2>
+                  <p className="text-gray-400 text-sm leading-relaxed">{t('form.subheading')}</p>
                 </div>
 
                 <AnimatePresence mode="wait">
@@ -191,35 +189,35 @@ export default function Testimonios() {
                       <div className="w-16 h-16 bg-emerald-500/10 border border-emerald-500/20 rounded-full flex items-center justify-center mx-auto">
                         <CheckCircle size={30} className="text-emerald-400" />
                       </div>
-                      <h3 className="text-xl font-black text-white">¡Gracias por compartir!</h3>
-                      <p className="text-gray-400 text-sm">Tu opinión será revisada y publicada en 24-48h.</p>
+                      <h3 className="text-xl font-black text-white">{t('form.success_title')}</h3>
+                      <p className="text-gray-400 text-sm">{t('form.success_sub')}</p>
                       <button
                         type="button"
                         onClick={() => { setSubmitted(false); setForm({ name: '', role: 'cliente', company: '', rating: 0, comment: '' }); }}
                         className="text-sky-400 text-sm font-semibold hover:text-sky-300 transition-colors underline underline-offset-4"
                       >
-                        Enviar otra opinión
+                        {t('form.success_btn')}
                       </button>
                     </motion.div>
                   ) : (
                     <motion.form key="form" onSubmit={handleSubmit} className="space-y-5">
 
                       <div>
-                        <label className="text-white/50 text-xs font-semibold mb-2 block">Nombre completo</label>
+                        <label className="text-white/50 text-xs font-semibold mb-2 block">{t('form.label_name')}</label>
                         <input
                           required
                           value={form.name}
                           onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
-                          placeholder="¿Cómo te llamas?"
+                          placeholder={t('form.placeholder_name')}
                           className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm placeholder:text-white/25 focus:outline-none focus:border-sky-500/40 focus:bg-white/[0.07] transition-all"
                         />
                         <p className="text-white/30 text-xs mt-2 leading-relaxed">
-                          Por razones de seguridad y confidencialidad, puedes usar tus iniciales o simplemente indicar tu cargo — Ej: <span className="text-white/45 italic">Director de Seguridad</span>.
+                          {t('form.name_hint')} <span className="text-white/45 italic">{t('form.name_hint_example')}</span>.
                         </p>
                       </div>
 
                       <div>
-                        <label className="text-white/50 text-xs font-semibold mb-2 block">Eres</label>
+                        <label className="text-white/50 text-xs font-semibold mb-2 block">{t('form.label_role')}</label>
                         <div className="grid grid-cols-3 gap-2">
                           {(['cliente', 'empleado', 'usuario'] as const).map(r => {
                             const Icon = roleIcons[r];
@@ -235,7 +233,7 @@ export default function Testimonios() {
                                 }`}
                               >
                                 <Icon size={15} />
-                                {roleLabels[r].split(' ')[0]}
+                                {t(`roles.${r}`).split(' ')[0]}
                               </button>
                             );
                           })}
@@ -244,37 +242,35 @@ export default function Testimonios() {
 
                       <div>
                         <label className="text-white/50 text-xs font-semibold mb-2 block">
-                          Empresa <span className="text-white/25 font-normal">(opcional)</span>
+                          {t('form.label_company')} <span className="text-white/25 font-normal">({t('form.optional')})</span>
                         </label>
                         <input
                           value={form.company}
                           onChange={e => setForm(f => ({ ...f, company: e.target.value }))}
-                          placeholder="Tu organización"
+                          placeholder={t('form.placeholder_company')}
                           className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm placeholder:text-white/25 focus:outline-none focus:border-sky-500/40 focus:bg-white/[0.07] transition-all"
                         />
                       </div>
 
                       <div>
-                        <label className="text-white/50 text-xs font-semibold mb-3 block">Calificación</label>
+                        <label className="text-white/50 text-xs font-semibold mb-3 block">{t('form.label_rating')}</label>
                         <StarRating value={form.rating} onChange={r => setForm(f => ({ ...f, rating: r }))} size={28} />
                         {form.rating > 0 && (
-                          <p className="text-white/30 text-xs mt-1.5">
-                            {['', 'Muy deficiente', 'Deficiente', 'Regular', 'Bueno', 'Excelente'][form.rating]}
-                          </p>
+                          <p className="text-white/30 text-xs mt-1.5">{ratings[form.rating]}</p>
                         )}
                       </div>
 
                       <div>
-                        <label className="text-white/50 text-xs font-semibold mb-2 block">Tu opinión</label>
+                        <label className="text-white/50 text-xs font-semibold mb-2 block">{t('form.label_comment')}</label>
                         <textarea
                           required
                           rows={4}
                           value={form.comment}
                           onChange={e => setForm(f => ({ ...f, comment: e.target.value }))}
-                          placeholder="Cuéntanos cómo ha sido tu experiencia con CSSG..."
+                          placeholder={t('form.placeholder_comment')}
                           className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white text-sm placeholder:text-white/25 focus:outline-none focus:border-sky-500/40 focus:bg-white/[0.07] transition-all resize-none leading-relaxed"
                         />
-                        <p className="text-white/20 text-xs mt-1">{form.comment.length} caracteres</p>
+                        <p className="text-white/20 text-xs mt-1">{t('form.char_count', { n: form.comment.length })}</p>
                       </div>
 
                       {error && (
@@ -287,9 +283,9 @@ export default function Testimonios() {
                         className="w-full py-3.5 bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-400 hover:to-sky-500 disabled:opacity-50 text-white font-bold text-sm rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg shadow-sky-500/20"
                       >
                         {loading ? (
-                          <span className="animate-pulse">Enviando...</span>
+                          <span className="animate-pulse">{t('form.btn_sending')}</span>
                         ) : (
-                          <><Send size={15} /> Enviar opinión</>
+                          <><Send size={15} /> {t('form.btn_submit')}</>
                         )}
                       </button>
 
@@ -300,16 +296,16 @@ export default function Testimonios() {
             </div>
           </motion.div>
 
-          {/* Columna derecha — Testimonios */}
+          {/* Right — Testimonials */}
           <motion.div
             className="lg:col-span-3 space-y-6"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            {/* Filtros */}
+            {/* Filters */}
             <div className="flex gap-2 flex-wrap">
-              {['todos', 'cliente', 'empleado', 'usuario'].map(r => (
+              {(['todos', 'cliente', 'empleado', 'usuario'] as const).map(r => (
                 <button
                   key={r}
                   type="button"
@@ -320,7 +316,7 @@ export default function Testimonios() {
                       : 'bg-transparent border-white/8 text-white/35 hover:text-white/60 hover:border-white/15'
                   }`}
                 >
-                  {r === 'todos' ? 'Todos' : roleLabels[r as keyof typeof roleLabels]}
+                  {r === 'todos' ? t('filters.all') : t(`roles.${r}`)}
                 </button>
               ))}
             </div>
@@ -328,23 +324,21 @@ export default function Testimonios() {
             {/* Cards */}
             {filtered.length > 0 ? (
               <div className="grid grid-cols-1 gap-4">
-                {filtered.map((t, i) => <TestimonialCard key={t.id} t={t} index={i} />)}
+                {filtered.map((item, i) => <TestimonialCard key={item.id} item={item} index={i} />)}
               </div>
             ) : (
               <div className="flex flex-col items-center justify-center py-20 space-y-4 text-center">
                 <div className="w-16 h-16 rounded-full bg-gradient-to-br from-amber-500/10 to-amber-500/5 border border-amber-500/15 flex items-center justify-center">
                   <Star size={24} className="text-amber-400/60" />
                 </div>
-                <p className="text-white/60 font-semibold">Las primeras opiniones están en camino</p>
-                <p className="text-white/25 text-sm max-w-xs leading-relaxed">
-                  Sé parte de la historia. Tu experiencia con CSSG puede ayudar a otras empresas a protegerse mejor.
-                </p>
+                <p className="text-white/60 font-semibold">{t('empty.title')}</p>
+                <p className="text-white/25 text-sm max-w-xs leading-relaxed">{t('empty.sub')}</p>
               </div>
             )}
 
             {/* FAQ */}
             <div className="mt-8 space-y-2">
-              <p className="text-white/25 text-xs font-semibold uppercase tracking-widest mb-4">Sobre este espacio</p>
+              <p className="text-white/25 text-xs font-semibold uppercase tracking-widest mb-4">{t('faq_section')}</p>
               {faqs.map((faq, idx) => (
                 <div key={idx} className="border border-white/6 rounded-2xl overflow-hidden hover:border-white/10 transition-colors">
                   <button
@@ -377,7 +371,7 @@ export default function Testimonios() {
         </div>
       </section>
 
-      {/* CTA final */}
+      {/* CTA */}
       <section className="max-w-4xl mx-auto px-6 pb-24">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -387,14 +381,14 @@ export default function Testimonios() {
         >
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(14,165,233,0.06)_0%,transparent_70%)]" />
           <div className="relative z-10 space-y-4">
-            <p className="text-sky-400/70 text-sm font-medium">¿Listo para proteger lo que más importa?</p>
-            <h2 className="text-3xl font-black text-white tracking-tight">Agenda una consulta sin costo</h2>
-            <p className="text-gray-400 text-sm">+17 años · ISO 9001:2015 · Estándar Diplomático G7</p>
+            <p className="text-sky-400/70 text-sm font-medium">{t('cta.pre')}</p>
+            <h2 className="text-3xl font-black text-white tracking-tight">{t('cta.title')}</h2>
+            <p className="text-gray-400 text-sm">{t('cta.stats')}</p>
             <Link
               to="/consultoria"
               className="inline-flex items-center gap-2 mt-2 px-7 py-3.5 bg-sky-500 hover:bg-sky-400 text-white font-bold text-sm rounded-xl transition-all shadow-lg shadow-sky-500/25"
             >
-              <Shield size={15} /> Hablar con un especialista
+              <Shield size={15} /> {t('cta.btn')}
             </Link>
           </div>
         </motion.div>

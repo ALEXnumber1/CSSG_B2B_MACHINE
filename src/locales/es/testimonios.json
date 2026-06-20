@@ -1,0 +1,60 @@
+{
+  "roles": {
+    "cliente": "Cliente",
+    "empleado": "Colaborador CSSG",
+    "usuario": "Usuario"
+  },
+  "star_aria": "Calificación {{star}} de 5",
+  "date_locale": "es-VE",
+  "hero": {
+    "verified": "Opiniones verificadas",
+    "title_1": "Lo que dicen",
+    "title_2": "quienes nos conocen",
+    "subtitle": "Clientes, colaboradores y usuarios comparten su experiencia real con CSSG."
+  },
+  "form": {
+    "heading": "Comparte tu experiencia",
+    "subheading": "Tu opinión honesta ayuda a otros a tomar mejores decisiones de seguridad.",
+    "success_title": "¡Gracias por compartir!",
+    "success_sub": "Tu opinión será revisada y publicada en 24-48h.",
+    "success_btn": "Enviar otra opinión",
+    "label_name": "Nombre completo",
+    "placeholder_name": "¿Cómo te llamas?",
+    "name_hint": "Por razones de seguridad y confidencialidad, puedes usar tus iniciales o simplemente indicar tu cargo — Ej:",
+    "name_hint_example": "Director de Seguridad",
+    "label_role": "Eres",
+    "label_company": "Empresa",
+    "optional": "opcional",
+    "placeholder_company": "Tu organización",
+    "label_rating": "Calificación",
+    "ratings": ["", "Muy deficiente", "Deficiente", "Regular", "Bueno", "Excelente"],
+    "label_comment": "Tu opinión",
+    "placeholder_comment": "Cuéntanos cómo ha sido tu experiencia con CSSG...",
+    "char_count": "{{n}} caracteres",
+    "error_rating": "Selecciona una calificación de 1 a 5 estrellas.",
+    "error_min_chars": "El comentario debe tener al menos 20 caracteres.",
+    "error_db": "Hubo un problema al enviar tu opinión. Intenta de nuevo.",
+    "btn_sending": "Enviando...",
+    "btn_submit": "Enviar opinión"
+  },
+  "filters": {
+    "all": "Todos"
+  },
+  "empty": {
+    "title": "Las primeras opiniones están en camino",
+    "sub": "Sé parte de la historia. Tu experiencia con CSSG puede ayudar a otras empresas a protegerse mejor."
+  },
+  "faq_section": "Sobre este espacio",
+  "faqs": [
+    { "q": "¿Quién puede dejar una opinión?", "a": "Cualquier persona: clientes actuales o anteriores, colaboradores de CSSG y usuarios que hayan interactuado con nuestros servicios o plataforma digital." },
+    { "q": "¿Las opiniones son verificadas?", "a": "Sí. Cada opinión pasa por moderación antes de publicarse para garantizar autenticidad y valor real." },
+    { "q": "¿Puedo enviar mi opinión de forma anónima?", "a": "El nombre es requerido, pero puedes omitir la empresa. Para total anonimato, usa nuestro canal de quejas en /quejas." },
+    { "q": "¿Cuánto tarda en publicarse?", "a": "Nuestro equipo revisa las opiniones dentro de 24-48 horas hábiles." }
+  ],
+  "cta": {
+    "pre": "¿Listo para proteger lo que más importa?",
+    "title": "Agenda una consulta sin costo",
+    "stats": "+17 años · ISO 9001:2015 · Estándar Diplomático G7",
+    "btn": "Hablar con un especialista"
+  }
+}

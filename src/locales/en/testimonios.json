@@ -1,0 +1,60 @@
+{
+  "roles": {
+    "cliente": "Client",
+    "empleado": "CSSG Staff",
+    "usuario": "User"
+  },
+  "star_aria": "Rating {{star}} of 5",
+  "date_locale": "en-US",
+  "hero": {
+    "verified": "Verified reviews",
+    "title_1": "What they say",
+    "title_2": "those who know us",
+    "subtitle": "Clients, staff and users share their real experience with CSSG."
+  },
+  "form": {
+    "heading": "Share your experience",
+    "subheading": "Your honest review helps others make better security decisions.",
+    "success_title": "Thank you for sharing!",
+    "success_sub": "Your review will be moderated and published within 24-48h.",
+    "success_btn": "Submit another review",
+    "label_name": "Full name",
+    "placeholder_name": "What's your name?",
+    "name_hint": "For security and confidentiality reasons, you may use your initials or simply state your title — e.g.:",
+    "name_hint_example": "Security Director",
+    "label_role": "You are",
+    "label_company": "Company",
+    "optional": "optional",
+    "placeholder_company": "Your organization",
+    "label_rating": "Rating",
+    "ratings": ["", "Very poor", "Poor", "Fair", "Good", "Excellent"],
+    "label_comment": "Your review",
+    "placeholder_comment": "Tell us about your experience with CSSG...",
+    "char_count": "{{n}} characters",
+    "error_rating": "Please select a rating from 1 to 5 stars.",
+    "error_min_chars": "The comment must be at least 20 characters.",
+    "error_db": "There was a problem submitting your review. Please try again.",
+    "btn_sending": "Sending...",
+    "btn_submit": "Submit review"
+  },
+  "filters": {
+    "all": "All"
+  },
+  "empty": {
+    "title": "The first reviews are on their way",
+    "sub": "Be part of the story. Your experience with CSSG can help other companies protect themselves better."
+  },
+  "faq_section": "About this space",
+  "faqs": [
+    { "q": "Who can leave a review?", "a": "Anyone: current or former clients, CSSG collaborators, and users who have interacted with our services or digital platform." },
+    { "q": "Are reviews verified?", "a": "Yes. Every review goes through moderation before being published to ensure authenticity and real value." },
+    { "q": "Can I submit my review anonymously?", "a": "Your name is required, but you may omit the company. For full anonymity, use our complaints channel at /quejas." },
+    { "q": "How long does it take to publish?", "a": "Our team reviews submissions within 24-48 business hours." }
+  ],
+  "cta": {
+    "pre": "Ready to protect what matters most?",
+    "title": "Schedule a free consultation",
+    "stats": "+17 years · ISO 9001:2015 · G7 Diplomatic Standard",
+    "btn": "Talk to a specialist"
+  }
+}
