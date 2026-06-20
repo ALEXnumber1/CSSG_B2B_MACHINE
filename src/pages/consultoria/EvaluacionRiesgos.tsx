@@ -113,6 +113,23 @@ export default function EvaluacionRiesgos() {
         </div>
       </div>
 
+      {/* ANALISIS DE RIESGO TOOL CTA */}
+      <div className="mb-6 p-8 rounded-3xl border border-sky-500/30 bg-sky-500/5">
+        <div className="flex items-start gap-4 mb-4">
+          <div className="w-10 h-10 rounded-xl bg-sky-500/10 flex items-center justify-center shrink-0">
+            <BarChart3 className="w-5 h-5 text-sky-400" />
+          </div>
+          <div>
+            <p className="text-[10px] font-black text-sky-500/80 uppercase tracking-widest mb-1">Herramienta Gratuita</p>
+            <h3 className="text-lg font-black text-white">Diagnóstico de Riesgo — Resultado en 5 Minutos</h3>
+            <p className="text-sm text-gray-500 mt-1">Antes del assessment formal, obtenga una primera medición objetiva de su exposición. Scoring cuantitativo FMEA por 4 pilares con informe PDF descargable al instante.</p>
+          </div>
+        </div>
+        <Link to="/analisis-riesgo" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs font-black uppercase tracking-widest hover:bg-sky-500/20 transition-all">
+          Iniciar Diagnóstico Gratuito <ArrowRight className="w-3.5 h-3.5" />
+        </Link>
+      </div>
+
       {/* WHITE PAPER CTA */}
       <div className="mb-12 p-8 rounded-3xl border border-yellow-500/30 bg-yellow-500/5">
         <div className="flex items-start gap-4 mb-4">

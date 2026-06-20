@@ -1,5 +1,6 @@
 import ConsultoriaServiceLayout from '../../components/ConsultoriaServiceLayout';
-import { Brain, Globe, TrendingUp, CheckCircle2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Brain, Globe, TrendingUp, CheckCircle2, BarChart3, ArrowRight } from 'lucide-react';
 
 const faqs = [
   {
@@ -76,6 +77,23 @@ export default function InteligenciaRiesgo() {
             </div>
           ))}
         </div>
+      </div>
+
+      {/* ANALISIS DE RIESGO TOOL CTA */}
+      <div className="mt-12 p-8 rounded-3xl border border-sky-500/30 bg-sky-500/5">
+        <div className="flex items-start gap-4 mb-4">
+          <div className="w-10 h-10 rounded-xl bg-sky-500/10 flex items-center justify-center shrink-0">
+            <BarChart3 className="w-5 h-5 text-sky-400" />
+          </div>
+          <div>
+            <p className="text-[10px] font-black text-sky-500/80 uppercase tracking-widest mb-1">Herramienta Gratuita</p>
+            <h3 className="text-lg font-black text-white">Evalúe el Riesgo Interno de su Organización</h3>
+            <p className="text-sm text-gray-500 mt-1">El análisis de inteligencia del entorno se complementa con la evaluación de su vulnerabilidad interna. Scoring FMEA por 4 pilares + informe PDF en 5 minutos — el punto de partida para una visión completa del riesgo.</p>
+          </div>
+        </div>
+        <Link to="/analisis-riesgo" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs font-black uppercase tracking-widest hover:bg-sky-500/20 transition-all">
+          Iniciar Diagnóstico Gratuito <ArrowRight className="w-3.5 h-3.5" />
+        </Link>
       </div>
     </ConsultoriaServiceLayout>
   );

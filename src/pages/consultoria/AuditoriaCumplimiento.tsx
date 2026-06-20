@@ -1,5 +1,6 @@
 import ConsultoriaServiceLayout from '../../components/ConsultoriaServiceLayout';
-import { ClipboardCheck, ShieldCheck, FileText, CheckCircle2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ClipboardCheck, ShieldCheck, FileText, CheckCircle2, BarChart3, ArrowRight } from 'lucide-react';
 
 const frameworks = [
   { label: 'DIGESERVISP', desc: 'Dirección General de Servicios de Seguridad Privada del MININT. Marco regulatorio venezolano obligatorio.' },
@@ -96,6 +97,23 @@ export default function AuditoriaCumplimiento() {
             </div>
           ))}
         </div>
+      </div>
+
+      {/* ANALISIS DE RIESGO TOOL CTA */}
+      <div className="mt-12 p-8 rounded-3xl border border-sky-500/30 bg-sky-500/5">
+        <div className="flex items-start gap-4 mb-4">
+          <div className="w-10 h-10 rounded-xl bg-sky-500/10 flex items-center justify-center shrink-0">
+            <BarChart3 className="w-5 h-5 text-sky-400" />
+          </div>
+          <div>
+            <p className="text-[10px] font-black text-sky-500/80 uppercase tracking-widest mb-1">Herramienta Gratuita</p>
+            <h3 className="text-lg font-black text-white">Evalúe su Perfil de Riesgo Antes de la Auditoría</h3>
+            <p className="text-sm text-gray-500 mt-1">Identifique las vulnerabilidades críticas con nuestro scoring FMEA gratuito y llegue más preparado al proceso de cumplimiento formal. Resultado en 5 minutos con informe PDF descargable.</p>
+          </div>
+        </div>
+        <Link to="/analisis-riesgo" className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-sky-500/10 border border-sky-500/30 text-sky-400 text-xs font-black uppercase tracking-widest hover:bg-sky-500/20 transition-all">
+          Iniciar Diagnóstico Gratuito <ArrowRight className="w-3.5 h-3.5" />
+        </Link>
       </div>
     </ConsultoriaServiceLayout>
   );
