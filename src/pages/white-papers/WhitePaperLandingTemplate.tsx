@@ -60,8 +60,32 @@ function AutoDownload({ url, filename }: { url: string; filename: string }) {
   return null;
 }
 
+function RetryButton({ onClick }: { onClick: () => void }) {
+  return (
+    <motion.button
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      onClick={onClick}
+      className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-white font-black text-sm uppercase tracking-widest transition-all bg-red-600 hover:bg-red-500 shadow-[0_0_30px_rgba(220,38,38,0.3)]"
+    >
+      <AlertCircle className="w-5 h-5" />
+      Error al generar — Reintentar
+      <RefreshCw className="w-4 h-4 opacity-70" />
+    </motion.button>
+  );
+}
+
 function DownloadButton({ pdfDocument, filename, accent }: { pdfDocument: ReactElement<DocumentProps>; filename: string; accent: typeof accentMap['sky'] }) {
   const [generate, setGenerate] = useState(false);
+  const [timedOut, setTimedOut] = useState(false);
+
+  useEffect(() => {
+    if (!generate) { setTimedOut(false); return; }
+    const t = setTimeout(() => setTimedOut(true), 30000);
+    return () => clearTimeout(t);
+  }, [generate]);
+
+  const retry = () => { setGenerate(false); setTimedOut(false); };
 
   if (!generate) {
     return (
@@ -77,22 +101,15 @@ function DownloadButton({ pdfDocument, filename, accent }: { pdfDocument: ReactE
     );
   }
 
+  if (timedOut) {
+    return <RetryButton onClick={retry} />;
+  }
+
   return (
     <BlobProvider document={pdfDocument}>
       {({ url, loading, error }) => {
-        if (error) {
-          return (
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              onClick={() => setGenerate(false)}
-              className={`inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-white font-black text-sm uppercase tracking-widest transition-all bg-red-600 hover:bg-red-500 shadow-[0_0_30px_rgba(220,38,38,0.3)]`}
-            >
-              <AlertCircle className="w-5 h-5" />
-              Error — Reintentar
-              <RefreshCw className="w-4 h-4 opacity-70" />
-            </motion.button>
-          );
+        if (error || (!loading && !url)) {
+          return <RetryButton onClick={retry} />;
         }
 
         return (

@@ -600,9 +600,9 @@ export const WhitePaperDueDiligence = () => (
   <Document
     title="Due Diligence Corporativa en Venezuela: Protocolo de Investigación 2026"
     author="CSSG — Company Of Security And Service Global C.A."
-    subject="Verificación CICPC · SENIAT · IVSS · OSINT · Escritura por Inducción"
+    subject="Verificacion CICPC - SENIAT - IVSS - SAREN - MPPRIJP - OSINT Venezuela"
     creator="CSSG White Paper Engine"
-    keywords="due diligence corporativa Venezuela, verificación antecedentes Venezuela, investigación personas jurídicas Venezuela, CICPC verificación, SENIAT solvencia, OSINT Venezuela, background check Venezuela"
+    keywords="due diligence corporativa Venezuela, verificacion antecedentes Venezuela, investigacion personas juridicas Venezuela, CICPC verificacion, SENIAT solvencia, MPPRIJP, OSINT Venezuela, background check Venezuela"
   >
     {/* ══════════════════════════════════════════════════════════════════════
         COVER PAGE
@@ -627,20 +627,20 @@ export const WhitePaperDueDiligence = () => (
         </View>
         <View style={styles.coverLineBold} />
         <Text style={styles.coverTitle}>
-          Due Diligence Corporativa{'\n'}en Venezuela: Protocolo{'\n'}de Investigación 2026
+          Due Diligence Corporativa{'\n'}en Venezuela: Protocolo{'\n'}de Investigacion 2026
         </Text>
         <Text style={styles.coverSubtitle}>
-          Verificación CICPC · SENIAT · IVSS · OSINT · Escritura por Inducción
+          CICPC - SENIAT - IVSS - SAREN - MPPRIJP - OSINT
         </Text>
         <Text style={styles.coverLocation}>
-          ════  Caracas, Venezuela  ·  2026  ════
+          Caracas, Venezuela  ·  2026
         </Text>
         <View style={styles.coverSpacer} />
         <View style={styles.coverBottomLine} />
         <Text style={styles.coverBottomText}>
           CSSG — Company of Security and Service Global C.A.{'\n'}
           cssg-global.com  ·  gerencia@globalservices-ven.com{'\n'}
-          Distribución libre — Todos los derechos reservados 2026
+          Distribucion libre — Todos los derechos reservados 2026
         </Text>
       </View>
     </Page>
@@ -655,17 +655,17 @@ export const WhitePaperDueDiligence = () => (
         <Text style={styles.indexHeaderTitle}>DUE DILIGENCE CORPORATIVA VENEZUELA — PROTOCOLO 2026</Text>
       </View>
       <View style={styles.indexInner}>
-        <Text style={styles.indexMainTitle}>ÍNDICE GENERAL</Text>
+        <Text style={styles.indexMainTitle}>INDICE GENERAL</Text>
         <View style={styles.indexUnderline} />
-        <TocRow num="01" title="¿Qué es el Due Diligence Corporativo en el Contexto Venezolano?" page="03" />
-        <TocRow num="02" title="Los Riesgos de No Verificar: Casos de Pérdidas Documentadas" page="03" />
-        <TocRow num="03" title="Fuentes Judiciales: Verificación CICPC y Antecedentes Penales en Venezuela" page="04" />
+        <TocRow num="01" title="Que es la Due Diligence Corporativa en el Contexto Venezolano?" page="03" />
+        <TocRow num="02" title="Los Riesgos de No Verificar: Casos de Perdidas Documentadas" page="03" />
+        <TocRow num="03" title="Fuentes Judiciales: CICPC, Antecedentes Penales y MPPRIJP" page="04" />
         <TocRow num="04" title="Fuentes Tributarias y Laborales: SENIAT, IVSS e INPSASEL" page="04" />
         <TocRow num="05" title="Inteligencia de Fuentes Abiertas (OSINT) Aplicada a Venezuela" page="05" />
-        <TocRow num="06" title="La Metodología 'Escritura por Inducción': Cómo Construir el Perfil" page="05" />
-        <TocRow num="07" title="Los Tres Niveles de Investigación: Básico, Estándar y Reforzado" page="06" />
-        <TocRow num="08" title="Red Flags Críticos: Señales de Alerta en Due Diligence Venezuela" page="07" />
-        <TocRow num="09" title="El Informe de Due Diligence: Estructura y Cómo Interpretarlo" page="08" />
+        <TocRow num="06" title="Reporte Basado en Hechos Objetivos (Fact-Based Reporting)" page="05" />
+        <TocRow num="07" title="Los Tres Niveles de Investigacion: Basico, Estandar y Reforzado" page="06" />
+        <TocRow num="08" title="Red Flags Criticos: Senales de Alerta en Due Diligence Venezuela" page="07" />
+        <TocRow num="09" title="El Informe de Due Diligence: Estructura y Como Interpretarlo" page="08" />
         <View style={styles.indexSeparator} />
         <TocRow num="" title="Acerca de CSSG Global" page="09" />
       </View>
@@ -684,42 +684,42 @@ export const WhitePaperDueDiligence = () => (
       <ContentFooter />
 
       <View style={{ marginTop: 36 }}>
-        <Sec title="1. ¿Qué es el Due Diligence Corporativo en el Contexto Venezolano?">
+        <Sec title="1. Que es la Due Diligence Corporativa en el Contexto Venezolano?">
           <Text style={styles.body}>
-            El due diligence corporativa Venezuela es el proceso sistemático de investigación y verificación de personas naturales o jurídicas antes de establecer una relación comercial, laboral o de inversión con ellas. En el contexto venezolano, este proceso adquiere una dimensión adicional de complejidad y criticidad: la opacidad de algunos registros públicos, la dificultad de acceso a fuentes oficiales, y las particularidades del entorno legal y político local exigen un protocolo de investigación específicamente calibrado para Venezuela.
+            La Due Diligence Corporativa en Venezuela es el proceso sistematico de investigacion y verificacion de personas naturales o juridicas antes de establecer una relacion comercial, laboral o de inversion con ellas. En el contexto venezolano, este proceso adquiere una dimension adicional de complejidad y criticidad: la opacidad de algunos registros publicos, la dificultad de acceso a fuentes oficiales, y las particularidades del entorno legal y politico local exigen un protocolo de investigacion especificamente calibrado para Venezuela.
           </Text>
           <Text style={styles.body}>
-            A diferencia del background check Venezuela estándar utilizado en contextos norteamericanos o europeos, el due diligence corporativa Venezuela requiere el cruce de múltiples fuentes específicas del entorno local: el CICPC para antecedentes penales, el SENIAT para situación tributaria, el IVSS para historial laboral y obligaciones parafiscales, el SAREN para verificación de entidades mercantiles, y fuentes OSINT especializadas en el contexto venezolano. La omisión de cualquiera de estas fuentes puede dejar brechas críticas en el perfil del investigado.
+            A diferencia del background check estandar utilizado en contextos norteamericanos o europeos, la Due Diligence Corporativa en Venezuela requiere el cruce de multiples fuentes especificas del entorno local: el CICPC para antecedentes penales, el MPPRIJP como ente oficial emisor, el SENIAT para situacion tributaria, el IVSS para historial laboral y obligaciones parafiscales, el SAREN para verificacion de entidades mercantiles, y fuentes OSINT especializadas en el contexto venezolano. La omision de cualquiera de estas fuentes puede dejar brechas criticas en el perfil del investigado.
           </Text>
           <View style={styles.callout}>
             <Text style={styles.calloutText}>
-              Definición operacional: El due diligence corporativa Venezuela es el proceso de construcción del perfil real de una persona natural o jurídica a través del cruce sistemático de fuentes verificables, con el objetivo de identificar riesgos ocultos antes de comprometer recursos, reputación o responsabilidad legal.
+              Definicion operacional: La Due Diligence Corporativa en Venezuela es el proceso de construccion del perfil real de una persona natural o juridica a traves del cruce sistematico de fuentes verificables y documentadas, con el objetivo de identificar riesgos ocultos antes de comprometer recursos, reputacion o responsabilidad legal de la organizacion contratante.
             </Text>
           </View>
           <Text style={styles.body}>
-            El resultado del proceso no es simplemente una lista de "encontrado / no encontrado" en cada fuente, sino un análisis integrado que construye el perfil real del investigado y lo evalúa en función del contexto específico de la relación propuesta.
+            El resultado del proceso no es simplemente una lista de "encontrado / no encontrado" en cada fuente, sino un analisis integrado que construye el perfil real del investigado y lo evalua en funcion del contexto especifico de la relacion propuesta. El area legal del cliente es quien, con base en las evidencias documentadas, toma la decision final sobre la relacion.
           </Text>
           <Link src="https://cssg-global.com/consultoria/due-diligence-corporativa" style={styles.backlink}>
-            Más información: cssg-global.com/consultoria/due-diligence-corporativa
+            Mas informacion: cssg-global.com/consultoria/due-diligence-corporativa
           </Link>
         </Sec>
 
         <View style={styles.sectionDivider} />
 
-        <Sec title="2. Los Riesgos de No Verificar: Casos de Pérdidas Documentadas">
+        <Sec title="2. Los Riesgos de No Verificar: Casos de Perdidas Documentadas">
           <Text style={styles.body}>
-            Las pérdidas derivadas de la ausencia de due diligence corporativa en Venezuela son de magnitudes que deberían poner en perspectiva cualquier debate sobre el costo del proceso de verificación. Las categorías de pérdida más documentadas incluyen: fraude por parte de socios o proveedores sin antecedentes aparentes pero con patrones históricos de comportamiento fraudulento; filtración de información sensible por parte de empleados con vínculos con competidores o actores adversos; y responsabilidad legal por asociación con personas o empresas sometidas a sanciones internacionales.
+            Las perdidas derivadas de la ausencia de la Due Diligence Corporativa en Venezuela son de magnitudes que deberan poner en perspectiva cualquier debate sobre el costo del proceso de verificacion. Las categorias de perdida mas documentadas incluyen: fraude por parte de socios o proveedores sin antecedentes aparentes pero con patrones historicos de comportamiento fraudulento; filtracion de informacion sensible por parte de empleados con vinculos con competidores o actores adversos; y responsabilidad legal por asociacion con personas o empresas sometidas a sanciones internacionales.
           </Text>
           <View style={styles.warningCallout}>
             <Text style={styles.warningText}>
-              Riesgo OFAC: En Venezuela, la presencia de personas o entidades en listas de sanciones internacionales (OFAC/EEUU, CCEE, ONU) es más frecuente que en la mayoría de los entornos latinoamericanos. Una empresa multinacional que establece relaciones comerciales con una entidad venezolana sancionada puede enfrentar multas de decenas de millones de dólares y pérdida de acceso al sistema financiero internacional.
+              Riesgo OFAC: En Venezuela, la presencia de personas o entidades en listas de sanciones internacionales (OFAC/EEUU, UE (Union Europea), ONU) es mas frecuente que en la mayoria de los entornos latinoamericanos. Una empresa multinacional que establece relaciones comerciales con una entidad venezolana sancionada puede enfrentar multas de decenas de millones de dolares y perdida de acceso al sistema financiero internacional, independientemente de si la empresa contratante conocia o no la situacion del proveedor.
             </Text>
           </View>
           <Text style={styles.body}>
-            El patrón más recurrente de pérdida por ausencia de verificación antecedentes Venezuela en el ámbito laboral es el siguiente: una empresa incorpora a un directivo o empleado de confianza sin realizar due diligence previo; el individuo tiene historial de fraude o vínculos problemáticos que habrían aparecido en una verificación básica; con el tiempo, el individuo aprovecha su posición de confianza para cometer fraude interno, filtrar información o facilitar un incidente de seguridad.
+            El patron mas recurrente de perdida por ausencia de verificacion en el ambito laboral es el siguiente: una empresa incorpora a un directivo o empleado de confianza sin realizar la Due Diligence Corporativa previa; el individuo tiene historial de fraude o vinculos problematicos que habrian aparecido en una verificacion basica; con el tiempo, el individuo aprovecha su posicion de confianza para cometer fraude interno, filtrar informacion o facilitar un incidente de seguridad.
           </Text>
           <Link src="https://cssg-global.com/consultoria/amenaza-interna-insider-threat" style={styles.backlink}>
-            Ver también: cssg-global.com/consultoria/amenaza-interna-insider-threat
+            Ver tambien: cssg-global.com/consultoria/amenaza-interna-insider-threat
           </Link>
         </Sec>
       </View>
@@ -733,20 +733,20 @@ export const WhitePaperDueDiligence = () => (
       <ContentFooter />
 
       <View style={{ marginTop: 36 }}>
-        <Sec title="3. Fuentes Judiciales: Verificación CICPC y Antecedentes Penales en Venezuela">
+        <Sec title="3. Fuentes Judiciales: CICPC, Antecedentes Penales y MPPRIJP">
           <Text style={styles.body}>
-            El CICPC (Cuerpo de Investigaciones Científicas, Penales y Criminalísticas) es el organismo venezolano con competencia exclusiva sobre los registros de antecedentes penales en Venezuela. La verificación CICPC es el punto de partida de cualquier due diligence corporativa seria, ya que es la única fuente que puede confirmar oficialmente la existencia de causas penales abiertas, condenas firmes y órdenes de aprehensión vigentes contra una persona natural.
+            El ente oficial emisor de los certificados de antecedentes penales en Venezuela es el Ministerio del Poder Popular para Relaciones Interiores, Justicia y Paz (MPPRIJP). El CICPC (Cuerpo de Investigaciones Cientificas, Penales y Criminalísticas) opera bajo su estructura y es el organismo con competencia sobre los registros de antecedentes en el territorio nacional. La verificacion a traves del MPPRIJP es el punto de partida de cualquier Due Diligence Corporativa seria, ya que es la unica fuente que puede confirmar oficialmente la existencia de causas penales abiertas, condenas firmes y ordenes de aprehenion vigentes contra una persona natural.
           </Text>
-          <Text style={styles.body}>
-            El proceso de consulta CICPC en el marco del OSINT Venezuela tiene particularidades importantes que los investigadores no especializados en el entorno venezolano suelen desconocer: los registros del CICPC son de acceso restringido y solo pueden ser consultados por la propia persona investigada o por entidades con habilitación específica. Esto hace que la verificación CICPC en el contexto de una due diligence corporativa Venezuela requiera protocolos específicos que garanticen la legalidad del proceso y la autenticidad del resultado.
-          </Text>
-          <View style={styles.callout}>
-            <Text style={styles.calloutText}>
-              Limitación importante: Los registros del CICPC cubren hechos punibles venezolanos. Una persona con condenas en el exterior puede aparecer "sin antecedentes" en el CICPC. Por eso la verificación CICPC debe complementarse con consultas de registros internacionales para sujetos con historial de actividad fuera de Venezuela.
+          <View style={styles.goldCallout}>
+            <Text style={styles.goldCalloutText}>
+              Pilar de Compliance Corporativo — Consentimiento Informado: Los certificados de antecedentes penales emitidos por el MPPRIJP se obtienen solicitandoselos directamente a la persona investigada o procesandolos bajo su consentimiento explicito y documentado. Este principio garantiza la absoluta legalidad, transparencia y auditabilidad del proceso ante casas matrices internacionales, organismos de cumplimiento y auditores externos. Cualquier metodologia de verificacion que omita el consentimiento informado del investigado genera riesgo legal para la organizacion contratante.
             </Text>
           </View>
           <Text style={styles.body}>
-            Adicionalmente a los antecedentes penales formales, el background check Venezuela debe incluir la búsqueda de menciones en registros judiciales públicos (demandas civiles, procesos mercantiles, arbitrajes) que pueden revelar patrones de comportamiento litigioso o conflictivo que no alcanzan la condición de antecedente penal pero son señales de alerta relevantes para la due diligence.
+            Adicionalmente a los antecedentes penales formales, la Due Diligence Corporativa debe incluir la busqueda de menciones en registros judiciales publicos — demandas civiles, procesos mercantiles, arbitrajes — que pueden revelar patrones de comportamiento litigioso o conflictivo que no alcanzan la condicion de antecedente penal pero son senales de alerta relevantes. Las fuentes judiciales deben complementarse con consultas de registros internacionales para sujetos con historial de actividad fuera de Venezuela.
+          </Text>
+          <Text style={styles.body}>
+            Limitacion importante: Los registros del MPPRIJP/CICPC cubren hechos punibles venezolanos. Una persona con condenas en el exterior puede aparecer "sin antecedentes" en Venezuela. Por eso la verificacion CICPC debe complementarse con consultas OSINT y bases de datos de sanciones internacionales (OFAC, ONU, UE) para sujetos con historial de actividad transfronteriza.
           </Text>
         </Sec>
 
@@ -754,16 +754,16 @@ export const WhitePaperDueDiligence = () => (
 
         <Sec title="4. Fuentes Tributarias y Laborales: SENIAT, IVSS e INPSASEL">
           <Text style={styles.body}>
-            Las fuentes tributarias y laborales constituyen la segunda capa fundamental de la due diligence corporativa Venezuela, especialmente cuando el sujeto investigado es una persona jurídica o cuando la relación propuesta implica contratos con el Estado venezolano o con empresas que tienen obligaciones parafiscales. El SENIAT solvencia — la constancia de cumplimiento tributario emitida por el Servicio Nacional Integrado de Administración Aduanera y Tributaria — es un documento cuya verificación revela no solo el cumplimiento formal sino también señales de alerta sobre la estructura fiscal real del investigado.
+            Las fuentes tributarias y laborales constituyen la segunda capa fundamental de la Due Diligence Corporativa en Venezuela, especialmente cuando el sujeto investigado es una persona juridica o cuando la relacion propuesta implica contratos con el Estado venezolano. El SENIAT solvencia — la constancia de cumplimiento tributario emitida por el Servicio Nacional Integrado de Administracion Aduanera y Tributaria — revela no solo el cumplimiento formal sino tambien senales de alerta sobre la estructura fiscal real del investigado.
           </Text>
           <Text style={styles.body}>
-            El IVSS (Instituto Venezolano de los Seguros Sociales) aporta información sobre el historial laboral formal del individuo y el cumplimiento de las obligaciones parafiscales del patrono. En el contexto de la investigación personas jurídicas Venezuela, una empresa con solvencias IVSS irregulares o con un número de trabajadores registrados significativamente inferior al que declara operar es una señal de alerta que merece investigación adicional.
+            El IVSS (Instituto Venezolano de los Seguros Sociales) aporta informacion sobre el historial laboral formal del individuo y el cumplimiento de las obligaciones parafiscales del patrono. En el contexto de la investigacion de personas juridicas, una empresa con solvencias IVSS irregulares o con un numero de trabajadores registrados significativamente inferior al que declara operar es una senal de alerta que merece investigacion adicional. El cruce del IVSS con el curriculum declarado por un candidato permite tambien detectar empleos ficticios o inexistentes en su historial laboral.
           </Text>
           <Text style={styles.body}>
-            El INPSASEL (Instituto Nacional de Prevención, Salud y Seguridad Laborales) es una fuente menos conocida pero relevante para empresas en sectores industriales, construcción o minería: verifica el cumplimiento de las obligaciones en materia de salud y seguridad laboral, que en Venezuela son fuente frecuente de litigios y sanciones. La presencia de expedientes sancionatorios INPSASEL puede ser indicativa de prácticas de gestión negligentes que trascienden el ámbito laboral.
+            El INPSASEL (Instituto Nacional de Prevencion, Salud y Seguridad Laborales) es una fuente relevante para empresas en sectores industriales, construccion o mineria: verifica el cumplimiento de las obligaciones en materia de salud y seguridad laboral. La presencia de expedientes sancionatorios INPSASEL puede ser indicativa de practicas de gestion negligentes que trascienden el ambito laboral.
           </Text>
           <Link src="https://cssg-global.com/consultoria/inteligencia-y-analisis-de-riesgo" style={styles.backlink}>
-            Más información: cssg-global.com/consultoria/inteligencia-y-analisis-de-riesgo
+            Mas informacion: cssg-global.com/consultoria/inteligencia-y-analisis-de-riesgo
           </Link>
         </Sec>
       </View>
@@ -779,35 +779,40 @@ export const WhitePaperDueDiligence = () => (
       <View style={{ marginTop: 36 }}>
         <Sec title="5. Inteligencia de Fuentes Abiertas (OSINT) Aplicada a Venezuela">
           <Text style={styles.body}>
-            La inteligencia de fuentes abiertas (OSINT) en el contexto venezolano requiere un conjunto de habilidades y conocimiento del ecosistema de información local que va mucho más allá de una búsqueda genérica en motores de búsqueda. El OSINT Venezuela efectivo implica el dominio de las fuentes de medios digitales venezolanos relevantes, los registros públicos accesibles online, las bases de datos de sanciones internacionales y las redes sociales con presencia significativa en el entorno venezolano.
+            La inteligencia de fuentes abiertas (OSINT) en el contexto venezolano requiere un conjunto de habilidades y conocimiento del ecosistema de informacion local que va mucho mas alla de una busqueda generica en motores de busqueda. El OSINT Venezuela efectivo implica el dominio de las fuentes de medios digitales venezolanos relevantes, los registros publicos accesibles en linea, las bases de datos de sanciones internacionales y las redes sociales con presencia significativa en el entorno venezolano.
           </Text>
           <Text style={styles.body}>
-            Las fuentes OSINT Venezuela más relevantes para la due diligence corporativa incluyen: registros del SAREN (Sistema Autónomo de Registros y Notarías) para verificación de entidades mercantiles, Registro Mercantil para historial societario, medios digitales venezolanos de cobertura judicial y policial, listas de sanciones OFAC (Office of Foreign Assets Control del Departamento del Tesoro de EEUU), listas de sanciones de la Unión Europea, y la base de datos de la ONU.
+            Las fuentes OSINT Venezuela mas relevantes para la Due Diligence Corporativa incluyen: el SAREN (Sistema Autonomo de Registros y Notarias) para verificacion de entidades mercantiles y Registro Mercantil para historial societario; medios digitales venezolanos de cobertura judicial y policial; lista de sanciones OFAC (Office of Foreign Assets Control del Departamento del Tesoro de EEUU); lista de sanciones de la UE (Union Europea); y base de datos consolidada de la ONU. El cruce sistematico de estas fuentes construye un mapa de vinculos que ninguna fuente aislada puede revelar.
           </Text>
           <View style={styles.goldCallout}>
             <Text style={styles.goldCalloutText}>
-              OSINT estructurado vs. búsqueda casual: El valor del OSINT Venezuela profesional no está en saber que "hay que buscar en Google" sino en saber exactamente dónde buscar, qué patrones interpretar y cómo correlacionar hallazgos dispersos en múltiples fuentes para construir un perfil coherente y accionable.
+              OSINT estructurado vs. busqueda casual: El valor del OSINT profesional no esta en saber que "hay que buscar en Google" sino en saber exactamente donde buscar, que patrones interpretar y como correlacionar hallazgos dispersos en multiples fuentes para construir un perfil coherente y accionable. Un analista experimentado distingue entre fuentes verificables y rumores, entre cobertura periodistica con sustento documental y menciones sin respaldo factual.
             </Text>
           </View>
           <Text style={styles.body}>
-            Una limitación importante del OSINT Venezuela es el ruido informativo y la potencial desinformación en el entorno mediático venezolano. Un analista de inteligencia experimentado en el contexto venezolano sabe distinguir entre fuentes verificables y rumores, entre cobertura periodística con sustento documental y menciones sin respaldo factual.
+            El Beneficiario Final Real — la persona natural que en ultima instancia controla o se beneficia de una persona juridica — frecuentemente no aparece en los registros formales de una empresa. El OSINT estructurado, combinado con el analisis de estructura societaria a traves del SAREN, es la herramienta principal para identificar al Beneficiario Final Real detras de estructuras de titularidad complejas o en jurisdicciones opacas.
           </Text>
         </Sec>
 
         <View style={styles.sectionDivider} />
 
-        <Sec title="6. La Metodología 'Escritura por Inducción': Cómo Construir el Perfil">
+        <Sec title="6. Reporte Basado en Hechos Objetivos (Fact-Based Reporting)">
           <Text style={styles.body}>
-            La escritura por inducción es la metodología de presentación de hallazgos desarrollada por CSSG para los informes de due diligence corporativa Venezuela. A diferencia de la escritura directa — que presenta conclusiones explícitas que pueden generar responsabilidad legal — la escritura por inducción presenta los hallazgos como evidencias que conducen al lector a la conclusión, sin que el redactor necesite formular dicha conclusión de forma explícita.
+            El Reporte Basado en Hechos Objetivos — o Fact-Based Reporting — es el estandar metodologico de presentacion de hallazgos que CSSG aplica en todos sus informes de Due Diligence Corporativa. Su principio rector es presentar evidencias irrefutables y documentadas, permitiendo que el area legal del cliente tome decisiones autonomas sin sesgos ni juicios de valor por parte del investigador.
+          </Text>
+          <View style={styles.callout}>
+            <Text style={styles.calloutText}>
+              Principio etico del Fact-Based Reporting: El investigador presenta hechos documentados y verificables. La conclusion sobre el significado de esos hechos para la relacion comercial propuesta es responsabilidad exclusiva del area legal o de cumplimiento del cliente. Esta separacion de roles garantiza la objetividad del informe y su validez como documento ante terceros, auditores o instancias legales.
+            </Text>
+          </View>
+          <Text style={styles.body}>
+            El Fact-Based Reporting tiene un fundamento practico y etico claro: los informes de investigacion pueden ser usados en contextos litigiosos, auditorias de compliance o procesos de certificacion ante casas matrices internacionales. Un informe que presenta conclusiones subjetivas sobre el caracter del investigado es legalmente debil y metodologicamente incorrecto. Un informe que documenta cronologicamente evidencias objetivas y verificables permite al area legal del cliente construir su propio analisis con base solida.
           </Text>
           <Text style={styles.body}>
-            Esta metodología tiene un fundamento práctico claro en el contexto venezolano: los informes de investigación personas jurídicas Venezuela y personas naturales pueden ser usados en contextos litigiosos donde la redacción importa. Un informe que dice "el sujeto X es un defraudador" es legalmente vulnerable; un informe que documenta cronológicamente las evidencias de comportamiento fraudulento y permite al lector llegar a esa conclusión por sí mismo es igualmente persuasivo pero significativamente más sólido desde el punto de vista legal.
-          </Text>
-          <Text style={styles.body}>
-            La estructura de un informe de due diligence corporativa Venezuela bajo metodología de escritura por inducción sigue el siguiente patrón: (1) Perfil del sujeto con datos verificados, (2) Cronología de hallazgos relevantes presentados como hechos documentados, (3) Análisis de patrones: correlaciones entre los hallazgos que el cliente puede interpretar, (4) Sección de "hechos pendientes de verificación" que requieren acción adicional del cliente, y (5) Resumen ejecutivo que sintetiza el nivel de riesgo sin emitir juicios de valor sobre la persona investigada.
+            La estructura de un informe de Due Diligence Corporativa bajo Fact-Based Reporting sigue el siguiente patron: (1) Perfil del sujeto con datos verificados y fuentes documentadas, (2) Cronologia de hallazgos relevantes presentados como hechos con referencia a la fuente, (3) Correlacion entre hallazgos que el cliente puede evaluar en su contexto, (4) Seccion de "hechos pendientes de verificacion" que requieren accion adicional, y (5) Resumen ejecutivo que sintetiza los hallazgos objetivos sin emitir juicios de valor sobre la persona investigada. La decision final es del cliente.
           </Text>
           <Link src="https://cssg-global.com/consultoria/due-diligence-corporativa" style={styles.backlink}>
-            Más información: cssg-global.com/consultoria/due-diligence-corporativa
+            Mas informacion: cssg-global.com/consultoria/due-diligence-corporativa
           </Link>
         </Sec>
       </View>
@@ -821,75 +826,51 @@ export const WhitePaperDueDiligence = () => (
       <ContentFooter />
 
       <View style={{ marginTop: 36 }}>
-        <Sec title="7. Los Tres Niveles de Investigación: Básico, Estándar y Reforzado">
+        <Sec title="7. Los Tres Niveles de Investigacion: Basico, Estandar y Reforzado">
           <Text style={styles.body}>
-            La due diligence corporativa Venezuela no es un proceso de talla única. El nivel de profundidad de la investigación debe ser proporcional al nivel de riesgo de la relación propuesta: no requiere el mismo nivel de investigación un empleado operativo que un socio estratégico con acceso a información sensible o un directivo con poder de firma sobre activos significativos.
+            La Due Diligence Corporativa en Venezuela no es un proceso de talla unica. El nivel de profundidad de la investigacion debe ser proporcional al nivel de riesgo de la relacion propuesta. La siguiente tabla comparativa permite seleccionar el nivel adecuado segun el perfil del investigado y el tipo de relacion:
           </Text>
 
+          <View style={styles.tableHeader}>
+            <Text style={[styles.tableHeaderCell, { flex: 1.2 }]}>Criterio</Text>
+            <Text style={styles.tableHeaderCell}>Basico</Text>
+            <Text style={styles.tableHeaderCell}>Estandar</Text>
+            <Text style={styles.tableHeaderCell}>Reforzado</Text>
+          </View>
           {[
-            {
-              name: 'Nivel Básico',
-              time: '2-3 días hábiles',
-              accentColor: C.linkBlue,
-              items: [
-                'Verificación de identidad y documentación',
-                'Consulta CICPC — antecedentes penales',
-                'Solvencia SENIAT básica',
-                'Búsqueda en listas de sanciones (OFAC/ONU)',
-                'OSINT básico: redes sociales y medios',
-                'Verificación de referencias laborales inmediatas',
-              ],
-              ideal: 'Personal operativo, empleados de primera línea, proveedores de bajo valor',
-            },
-            {
-              name: 'Nivel Estándar',
-              time: '5-7 días hábiles',
-              accentColor: C.gold,
-              items: [
-                'Todo lo del Nivel Básico',
-                'IVSS — historial laboral e historial parafiscal',
-                'SAREN — verificación registral y societaria',
-                'OSINT extendido: medios judiciales, análisis de redes',
-                'Historial de litigios civiles y mercantiles',
-                'Verificación de afiliaciones y vínculos de primer grado',
-              ],
-              ideal: 'Cargos gerenciales, socios comerciales, proveedores de contratos significativos',
-            },
-            {
-              name: 'Nivel Reforzado',
-              time: '10-15 días hábiles',
-              accentColor: '#10B981',
-              items: [
-                'Todo lo del Nivel Estándar',
-                'Investigación de beneficiarios finales reales',
-                'Verificación internacional (registros de otros países)',
-                'Análisis de vínculos con funcionarios públicos y actores políticos',
-                'Investigación de posibles conflictos de interés',
-                'Entrevistas con referencias extendidas y verificación cruzada',
-                'Informe narrativo completo bajo metodología escritura por inducción',
-              ],
-              ideal: 'Directivos, socios estratégicos, fusiones/adquisiciones, inversiones significativas',
-            },
-          ].map((level, i) => (
-            <View key={i} style={[styles.levelCard, { borderColor: level.accentColor }]}>
-              <View style={styles.levelHeader}>
-                <Text style={[styles.levelName, { color: level.accentColor }]}>{level.name}</Text>
-                <Text style={styles.levelTime}>{level.time}</Text>
-              </View>
-              {level.items.map((item, j) => (
-                <View key={j} style={styles.listItem}>
-                  <Text style={[styles.listBullet, { color: level.accentColor }]}>›</Text>
-                  <Text style={styles.listText}>{item}</Text>
-                </View>
-              ))}
-              <Text style={{ fontSize: 7, color: C.light, fontWeight: 700, textTransform: 'uppercase', letterSpacing: 0.5, marginTop: 6, borderTopWidth: 1, borderTopColor: C.border, paddingTop: 6 }}>
-                Ideal para: {level.ideal}
-              </Text>
+            { criterio: 'Tiempo de entrega', basico: '2-3 dias hab.', estandar: '5-7 dias hab.', reforzado: '10-15 dias hab.' },
+            { criterio: 'Antecedentes MPPRIJP', basico: 'Si', estandar: 'Si', reforzado: 'Si + int.' },
+            { criterio: 'SENIAT solvencia', basico: 'Basica', estandar: 'Completa', reforzado: 'Completa' },
+            { criterio: 'IVSS historial', basico: 'No', estandar: 'Si', reforzado: 'Si + cruce' },
+            { criterio: 'SAREN / Registro', basico: 'No', estandar: 'Si', reforzado: 'Si + historia' },
+            { criterio: 'Listas OFAC/ONU/UE', basico: 'Si', estandar: 'Si', reforzado: 'Si + extendida' },
+            { criterio: 'Beneficiario Final Real', basico: 'No', estandar: 'Parcial', reforzado: 'Si, completo' },
+            { criterio: 'Verificacion int\'l', basico: 'No', estandar: 'No', reforzado: 'Si' },
+            { criterio: 'Fact-Based Report', basico: 'Resumen', estandar: 'Estandar', reforzado: 'Narrativo completo' },
+          ].map((row, i) => (
+            <View key={i} style={[styles.tableRow, { backgroundColor: i % 2 === 0 ? '#F8FAFC' : C.bg }]}>
+              <Text style={[styles.tableCellBold, { flex: 1.2 }]}>{row.criterio}</Text>
+              <Text style={styles.tableCell}>{row.basico}</Text>
+              <Text style={styles.tableCell}>{row.estandar}</Text>
+              <Text style={styles.tableCell}>{row.reforzado}</Text>
             </View>
           ))}
 
+          <Text style={{ fontSize: 7, color: C.light, marginTop: 6, marginBottom: 12 }}>
+            Perfil ideal — Basico: personal operativo, proveedores de bajo valor. Estandar: cargos gerenciales, socios comerciales, contratos significativos. Reforzado: directivos, fusiones/adquisiciones, inversiones estrategicas, embajadas.
+          </Text>
+
+          <View style={[styles.callout, { marginTop: 4 }]}>
+            <Text style={[styles.calloutText, { fontWeight: 700, marginBottom: 3 }]}>
+              CASO DE ESTUDIO 1 — Riesgo OFAC y Beneficiario Final Real (Nivel Reforzado)
+            </Text>
+            <Text style={styles.calloutText}>
+              Una corporacion multinacional contrato a CSSG para realizar la Due Diligence Corporativa de Nivel Reforzado sobre un proveedor logistico venezolano que aparecia sin hallazgos negativos en fuentes basicas. El analisis de Beneficiario Final Real — a traves del cruce del SAREN, registros mercantiles de dos jurisdicciones intermedias y bases de datos OSINT internacionales — revelo que el accionista mayoritario efectivo del proveedor era, a traves de dos empresas de maletin en jurisdicciones opacas, un individuo con designacion OFAC vigente. El informe Fact-Based presento las evidencias documentadas al area legal del cliente. La decision de no contratar al proveedor previno multas estimadas en decenas de millones de dolares y la potencial exclusion del sistema financiero internacional del grupo corporativo.
+            </Text>
+          </View>
+
           <Link src="https://cssg-global.com/white-papers/guia-evaluacion-riesgos-seguridad-venezuela" style={styles.backlink}>
-            Ver también: White Paper Riesgos — cssg-global.com/white-papers/guia-evaluacion-riesgos-seguridad-venezuela
+            Ver tambien: White Paper Riesgos — cssg-global.com/white-papers/guia-evaluacion-riesgos-seguridad-venezuela
           </Link>
         </Sec>
       </View>
@@ -903,35 +884,35 @@ export const WhitePaperDueDiligence = () => (
       <ContentFooter />
 
       <View style={{ marginTop: 36 }}>
-        <Sec title="8. Red Flags Críticos: Señales de Alerta en Due Diligence Venezuela">
+        <Sec title="8. Red Flags Criticos: Senales de Alerta en Due Diligence Venezuela">
           <Text style={styles.body}>
-            El análisis de red flags (señales de alerta) es uno de los componentes de mayor valor añadido del proceso de due diligence corporativa Venezuela. No todos los hallazgos son igualmente relevantes, y la capacidad de distinguir entre una irregularidad administrativa menor y un patrón de comportamiento fraudulento sistémico es lo que diferencia un investigador experimentado de uno que simplemente recopila datos sin interpretarlos.
+            El analisis de Red Flags (senales de alerta) es uno de los componentes de mayor valor anadido del proceso de Due Diligence Corporativa en Venezuela. No todos los hallazgos son igualmente relevantes, y la capacidad de distinguir entre una irregularidad administrativa menor y un patron de comportamiento fraudulento sistemico es lo que diferencia un investigador experimentado de uno que simplemente recopila datos sin interpretarlos.
           </Text>
 
           {[
             {
               title: 'Discrepancias entre patrimonio declarado y evidencia observable',
-              desc: 'Una persona con ingresos formales modestos que exhibe un nivel de vida significativamente superior es una señal de alerta que merece investigación adicional sobre fuentes de ingresos no declaradas.',
+              desc: 'Una persona con ingresos formales modestos que exhibe un nivel de vida significativamente superior es una senal de alerta que merece investigacion adicional sobre fuentes de ingresos no declaradas. Este patron es especialmente relevante en perfiles de alta exposicion a activos o informacion sensible.',
             },
             {
-              title: 'Estructura societaria compleja sin justificación comercial aparente',
-              desc: 'Empresas con múltiples capas de participación societaria, cambios frecuentes de razón social o uso de personas jurídicas en jurisdicciones opacas son indicadoras potenciales de intentos de ocultar la identidad del beneficiario final real.',
+              title: 'Estructura societaria compleja sin justificacion comercial aparente',
+              desc: 'Empresas con multiples capas de participacion societaria, cambios frecuentes de razon social o uso de personas juridicas en jurisdicciones opacas son indicadoras potenciales de intentos de ocultar la identidad del Beneficiario Final Real — el individuo que en ultima instancia controla o se beneficia de la estructura.',
             },
             {
               title: 'Menciones recurrentes en medios judiciales o de seguridad',
-              desc: 'Menciones en medios de cobertura policial, judicial o de seguridad que no resultan en condenas formales pueden igualmente ser señales de riesgo, especialmente cuando se presentan como un patrón reiterado a lo largo del tiempo.',
+              desc: 'Menciones en medios de cobertura policial, judicial o de seguridad que no resultan en condenas formales pueden igualmente ser senales de riesgo, especialmente cuando se presentan como un patron reiterado a lo largo del tiempo. El Fact-Based Reporting documenta estas menciones con su fuente y fecha, sin emitir juicio sobre su veracidad.',
             },
             {
               title: 'Referencias laborales inconsistentes o no verificables',
-              desc: 'Organizaciones que no pueden ser contactadas para verificar referencias, o referencias que proporcionan información contradictoria sobre el historial del investigado, son señales de alerta que indican posible falsificación de antecedentes laborales.',
+              desc: 'Organizaciones que no pueden ser contactadas para verificar referencias, o referencias que proporcionan informacion contradictoria sobre el historial del investigado, son senales de alerta que indican posible falsificacion de antecedentes laborales. El cruce del IVSS con el curriculum declarado permite detectar este patron de forma objetiva y documental.',
             },
             {
-              title: 'Vínculos con personas o entidades en listas de sanciones',
-              desc: 'El vínculo con personas o entidades sancionadas — aunque el investigado no aparezca directamente en las listas — puede representar riesgo de contaminación regulatoria para la organización que establece la relación comercial.',
+              title: 'Vinculos con personas o entidades en Riesgo OFAC o sanciones',
+              desc: 'El vinculo con personas o entidades sancionadas por la OFAC, la UE (Union Europea) o la ONU — aunque el investigado no aparezca directamente en las listas — puede representar Riesgo OFAC para la organizacion que establece la relacion comercial. El analisis de vinculos de segundo y tercer grado es exclusivo del Nivel Reforzado.',
             },
             {
-              title: 'Historial de litigios como patrón sistemático',
-              desc: 'Una persona o empresa con múltiples litigios civiles o mercantiles en su historial — especialmente relacionados con incumplimientos contractuales — es una señal de alerta sobre su conducta habitual en relaciones comerciales.',
+              title: 'Historial de litigios como patron sistematico',
+              desc: 'Una persona o empresa con multiples demandas por incumplimiento de contratos, deudas impagas o arbitrajes perdidos en su historial revela un Riesgo Financiero inaceptable, aun cuando no exista ningun delito penal. Multiples litigios mercantiles son el indicador mas fiable de una conducta contractual problematica que se repetira en la relacion propuesta. Este patron, documentado en el informe Fact-Based, permite al area legal del cliente cuantificar la exposicion al riesgo financiero.',
             },
           ].map((flag, i) => (
             <View key={i} style={styles.redFlagItem}>
@@ -945,9 +926,18 @@ export const WhitePaperDueDiligence = () => (
             </View>
           ))}
 
+          <View style={[styles.callout, { marginTop: 4 }]}>
+            <Text style={[styles.calloutText, { fontWeight: 700, marginBottom: 3 }]}>
+              CASO DE ESTUDIO 2 — Deteccion de Historial Laboral Falso (Nivel Estandar)
+            </Text>
+            <Text style={styles.calloutText}>
+              Durante la Due Diligence Corporativa de Nivel Estandar sobre un candidato a Gerente de Finanzas, el cruce del registro IVSS con el curriculum declarado por el candidato demostro que sus ultimos tres empleos no existian como patronos registrados ante el SENIAT ni como cotizantes ante el IVSS en los periodos declarados. La verificacion de referencias en las empresas listadas confirmo que el candidato nunca habia sido empleado en dichas organizaciones. El informe Fact-Based presento las discrepancias documentadas, permitiendo al area legal del cliente tomar la decision de no contratar, previniendo un potencial fraude interno en el area de mayor exposicion financiera de la organizacion.
+            </Text>
+          </View>
+
           <View style={styles.warningCallout}>
             <Text style={styles.warningText}>
-              Principio metodológico: Un red flag aislado no es necesariamente determinante. Es la acumulación y correlación de múltiples señales de alerta lo que construye el caso para la preocupación. La escritura por inducción permite presentar este patrón al cliente de forma que pueda evaluarlo en el contexto de su propia tolerancia al riesgo.
+              Principio metodologico: Un Red Flag aislado no es necesariamente determinante. Es la acumulacion y correlacion de multiples senales de alerta lo que construye el caso para la preocupacion. El Fact-Based Reporting permite presentar este patron al cliente de forma objetiva y documentada, sin juicios de valor, para que el area legal evalue el cuadro en el contexto de su propia tolerancia al Riesgo Financiero y reputacional.
             </Text>
           </View>
         </Sec>
@@ -962,23 +952,23 @@ export const WhitePaperDueDiligence = () => (
       <ContentFooter />
 
       <View style={{ marginTop: 36 }}>
-        <Sec title="9. El Informe de Due Diligence: Estructura y Cómo Interpretarlo">
+        <Sec title="9. El Informe de Due Diligence: Estructura y Como Interpretarlo">
           <Text style={styles.body}>
-            El informe final de una due diligence corporativa Venezuela bien realizado no es simplemente una recopilación de datos de fuentes — es un documento analítico que integra hallazgos de múltiples fuentes en un perfil coherente y accionable. La estructura estándar del informe CSSG está diseñada para que el cliente pueda tomar una decisión informada sin necesitar conocimientos especializados de inteligencia o investigación.
+            El informe final de una Due Diligence Corporativa en Venezuela bien realizado no es simplemente una recopilacion de datos de fuentes — es un documento analitico bajo el estandar Fact-Based Reporting que integra hallazgos de multiples fuentes en un perfil coherente y accionable. La estructura estandar del informe CSSG esta disenada para que el area legal del cliente pueda tomar una decision informada sin necesitar conocimientos especializados de inteligencia o investigacion.
           </Text>
 
           <View style={styles.tableHeader}>
-            <Text style={[styles.tableHeaderCell, { flex: 0.4 }]}>Sección</Text>
+            <Text style={[styles.tableHeaderCell, { flex: 0.4 }]}>Seccion</Text>
             <Text style={styles.tableHeaderCell}>Contenido</Text>
-            <Text style={[styles.tableHeaderCell, { flex: 0.6 }]}>Cómo usarlo</Text>
+            <Text style={[styles.tableHeaderCell, { flex: 0.6 }]}>Como usarlo</Text>
           </View>
           {[
-            { sec: 'Resumen Ejecutivo', content: 'Nivel de riesgo, hallazgos principales, recomendación', use: 'Lectura inicial para decisión rápida' },
-            { sec: 'Perfil Verificado',  content: 'Datos identitarios confirmados y fuentes',              use: 'Confirmar que se investigó al sujeto correcto' },
-            { sec: 'Hallazgos por Fuente', content: 'Resultados de cada fuente consultada',               use: 'Auditar la trazabilidad del proceso' },
-            { sec: 'Análisis de Patrones', content: 'Correlación de hallazgos relevantes',                use: 'Evaluar el cuadro de riesgo integrado' },
-            { sec: 'Red Flags',          content: 'Señales de alerta identificadas y su peso relativo',   use: 'Decidir si se requiere investigación adicional' },
-            { sec: 'Hechos Pendientes',  content: 'Elementos que requieren acción del cliente',           use: 'Gestionar las diligencias complementarias' },
+            { sec: 'Resumen Ejecutivo', content: 'Nivel de riesgo, hallazgos principales, hechos clave', use: 'Lectura inicial para decision de area legal' },
+            { sec: 'Perfil Verificado',  content: 'Datos identitarios confirmados con fuente y fecha',    use: 'Confirmar que se investigo al sujeto correcto' },
+            { sec: 'Hallazgos por Fuente', content: 'Resultados de cada fuente consultada, documentados', use: 'Auditar trazabilidad y consentimiento del proceso' },
+            { sec: 'Correlacion de Hechos', content: 'Conexion objetiva entre hallazgos relevantes',      use: 'Evaluar el cuadro de riesgo integrado' },
+            { sec: 'Red Flags',          content: 'Senales de alerta identificadas y su documentacion',   use: 'Decidir si se requiere Nivel Reforzado adicional' },
+            { sec: 'Hechos Pendientes',  content: 'Elementos que requieren accion del cliente',           use: 'Gestionar diligencias complementarias' },
           ].map((row, i) => (
             <View key={i} style={styles.tableRow}>
               <Text style={[styles.tableCellBold, { flex: 0.4 }]}>{row.sec}</Text>
@@ -989,11 +979,11 @@ export const WhitePaperDueDiligence = () => (
 
           <Text style={styles.body} />
           <Text style={styles.body}>
-            Un elemento crítico para la correcta interpretación del informe de verificación antecedentes Venezuela es entender qué significa un resultado "sin hallazgos negativos". En el contexto venezolano, donde ciertos registros tienen brechas de cobertura conocidas, un resultado sin hallazgos en fuentes específicas significa que no se encontró información negativa en esas fuentes — no necesariamente que no exista información negativa en otras fuentes o en el comportamiento histórico del investigado.
+            Un elemento critico para la correcta interpretacion del informe es entender que significa un resultado "sin hallazgos negativos". En el contexto venezolano, donde ciertos registros tienen brechas de cobertura conocidas, un resultado sin hallazgos en fuentes especificas significa que no se encontro informacion negativa en esas fuentes — no necesariamente que no exista. El area legal del cliente es quien, con toda la informacion Fact-Based disponible, define si el nivel de verificacion es suficiente para el riesgo de la relacion propuesta.
           </Text>
           <View style={styles.goldCallout}>
             <Text style={styles.goldCalloutText}>
-              Principio de proporcionalidad: El nivel de due diligence debe ser proporcional al nivel de riesgo de la relación. Una relación comercial de bajo valor con bajo acceso a activos sensibles justifica un Nivel Básico. Una fusión, adquisición o incorporación de directivo con acceso a activos críticos justifica un Nivel Reforzado completo.
+              Principio de proporcionalidad: El nivel de la Due Diligence Corporativa debe ser proporcional al nivel de riesgo de la relacion. Una relacion comercial de bajo valor con bajo acceso a activos sensibles justifica un Nivel Basico. Una fusion, adquisicion o incorporacion de directivo con acceso a activos criticos, o cualquier relacion con potencial Riesgo OFAC, justifica un Nivel Reforzado completo con investigacion de Beneficiario Final Real.
             </Text>
           </View>
 
@@ -1002,16 +992,16 @@ export const WhitePaperDueDiligence = () => (
           </Link>
 
           <View style={styles.ctaBox}>
-            <Text style={styles.ctaLabel}>Próximo Paso</Text>
+            <Text style={styles.ctaLabel}>Proximo Paso</Text>
             <Text style={styles.ctaText}>
-              Para iniciar una due diligence corporativa Venezuela con CSSG, contacte al equipo de inteligencia en {CORPORATE.email}. Indique el tipo de relación propuesta y el nivel de investigación requerido. Toda la comunicación inicial se realiza por canal seguro y bajo confidencialidad. Visite {CORPORATE.website} para más información sobre nuestros servicios de due diligence y background check Venezuela.
+              Para iniciar la Due Diligence Corporativa con CSSG, contacte al equipo de inteligencia en {CORPORATE.email}. Indique el tipo de relacion propuesta y el nivel de investigacion requerido. Toda la comunicacion inicial se realiza bajo Consentimiento Informado, canal seguro y confidencialidad garantizada. Visite {CORPORATE.website} para mas informacion sobre nuestros servicios de Due Diligence Corporativa y background check Venezuela.
             </Text>
           </View>
 
           <View style={styles.sectionDivider} />
           <Text style={{ fontSize: 8, color: C.light, lineHeight: 1.6, textAlign: 'center' }}>
-            Este white paper ha sido elaborado por {CORPORATE.legalName} con base en más de 1,200 due diligences realizadas en Venezuela. El contenido tiene fines educativos e informativos. Los procedimientos específicos varían según el caso y contexto.{'\n'}
-            © 2026 {CORPORATE.legalName} · RIF {CORPORATE.rif} · {CORPORATE.website} · Distribución libre con atribución.
+            Este white paper ha sido elaborado por {CORPORATE.legalName} con base en mas de 1,200 due diligences realizadas en Venezuela. El contenido tiene fines educativos e informativos. Los procedimientos especificos varian segun el caso y contexto.{'\n'}
+            {'©'} 2026 {CORPORATE.legalName} · RIF {CORPORATE.rif} · {CORPORATE.website} · Distribucion libre con atribucion.
           </Text>
         </Sec>
       </View>
