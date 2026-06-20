@@ -1,7 +1,7 @@
-import { Suspense, useRef, useState, useEffect, useMemo } from 'react';
+import { Suspense, useRef, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
-import { BlobProvider } from '@react-pdf/renderer';
+import { pdf } from '@react-pdf/renderer';
 import type { DocumentProps } from '@react-pdf/renderer';
 import type { ReactElement } from 'react';
 import { CheckCircle2, Download, ArrowRight, FileText, Award, Shield, BookOpen, CheckCircle, RefreshCw, AlertCircle } from 'lucide-react';
@@ -48,101 +48,76 @@ const accentMap = {
   },
 };
 
-function AutoDownload({ url, filename }: { url: string; filename: string }) {
-  useEffect(() => {
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-  }, [url, filename]);
-  return null;
-}
-
-function RetryButton({ onClick }: { onClick: () => void }) {
-  return (
-    <motion.button
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
-      onClick={onClick}
-      className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-white font-black text-sm uppercase tracking-widest transition-all bg-red-600 hover:bg-red-500 shadow-[0_0_30px_rgba(220,38,38,0.3)]"
-    >
-      <AlertCircle className="w-5 h-5" />
-      Error al generar — Reintentar
-      <RefreshCw className="w-4 h-4 opacity-70" />
-    </motion.button>
-  );
-}
+type BtnState = 'idle' | 'generating' | 'done' | 'error';
 
 function DownloadButton({ pdfDocument, filename, accent }: { pdfDocument: ReactElement<DocumentProps>; filename: string; accent: typeof accentMap['sky'] }) {
-  const [generate, setGenerate] = useState(false);
-  const [timedOut, setTimedOut] = useState(false);
-  // Stable reference — BlobProvider cancels + restarts whenever `document` changes.
-  // Without this, every parent re-render (animations, etc.) spawns a new WebWorker
-  // and cancels the previous one, so the PDF never finishes generating.
+  const [state, setState] = useState<BtnState>('idle');
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const stableDoc = useMemo(() => pdfDocument, []);
 
-  useEffect(() => {
-    if (!generate) { setTimedOut(false); return; }
-    const t = setTimeout(() => setTimedOut(true), 30000);
-    return () => clearTimeout(t);
-  }, [generate]);
+  const handleGenerate = async () => {
+    if (state === 'generating') return;
+    setState('generating');
+    try {
+      const blob = await pdf(stableDoc).toBlob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      setState('done');
+      setTimeout(() => setState('idle'), 3000);
+    } catch {
+      setState('error');
+    }
+  };
 
-  const retry = () => { setGenerate(false); setTimedOut(false); };
-
-  if (!generate) {
+  if (state === 'error') {
     return (
       <motion.button
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
-        onClick={() => setGenerate(true)}
-        className={`inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-white font-black text-sm uppercase tracking-widest transition-all ${accent.button}`}
+        onClick={() => setState('idle')}
+        className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-white font-black text-sm uppercase tracking-widest transition-all bg-red-600 hover:bg-red-500 shadow-[0_0_30px_rgba(220,38,38,0.3)]"
       >
-        <Download className="w-5 h-5" />
-        Descargar White Paper Gratuito (PDF)
+        <AlertCircle className="w-5 h-5" />
+        Error al generar — Reintentar
+        <RefreshCw className="w-4 h-4 opacity-70" />
       </motion.button>
     );
   }
 
-  if (timedOut) {
-    return <RetryButton onClick={retry} />;
-  }
-
   return (
-    <BlobProvider document={stableDoc}>
-      {({ url, loading, error }) => {
-        if (error || (!loading && !url)) {
-          return <RetryButton onClick={retry} />;
-        }
-
-        return (
-          <>
-            <motion.button
-              className={`inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-white font-black text-sm uppercase tracking-widest transition-all ${accent.button} ${loading ? 'opacity-75 cursor-wait' : ''}`}
-            >
-              {loading ? (
-                <>
-                  <motion.div
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-                    className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full"
-                  />
-                  Generando PDF...
-                </>
-              ) : (
-                <>
-                  <CheckCircle className="w-5 h-5" />
-                  ¡Descargando PDF!
-                </>
-              )}
-            </motion.button>
-            {!loading && url && <AutoDownload url={url} filename={filename} />}
-          </>
-        );
-      }}
-    </BlobProvider>
+    <motion.button
+      whileHover={state === 'idle' ? { scale: 1.02 } : {}}
+      whileTap={state === 'idle' ? { scale: 0.98 } : {}}
+      onClick={state === 'idle' ? handleGenerate : undefined}
+      className={`inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-white font-black text-sm uppercase tracking-widest transition-all ${accent.button} ${state === 'generating' ? 'opacity-75 cursor-wait' : ''}`}
+    >
+      {state === 'generating' ? (
+        <>
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+            className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full"
+          />
+          Generando PDF...
+        </>
+      ) : state === 'done' ? (
+        <>
+          <CheckCircle className="w-5 h-5" />
+          ¡Descargando PDF!
+        </>
+      ) : (
+        <>
+          <Download className="w-5 h-5" />
+          Descargar White Paper Gratuito (PDF)
+        </>
+      )}
+    </motion.button>
   );
 }
 
