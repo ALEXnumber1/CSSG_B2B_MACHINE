@@ -5,17 +5,24 @@ export const WP_FILENAME_BCP = 'CSSG-Plan-Continuidad-Negocio-Venezuela-2026.pdf
 
 // ─── Light / printable palette ──────────────────────────────────────────────
 const C = {
-  gold:     '#EAB308',
-  goldDark: '#92650A',
-  dark:     '#0F172A',
-  body:     '#334155',
-  light:    '#64748B',
-  border:   '#E2E8F0',
-  bg:       '#FFFFFF',
-  coverBg:  '#FAFAFA',
-  linkBlue: '#0EA5E9',
+  gold:      '#EAB308',
+  goldLight: '#FEF9C3',
+  goldDark:  '#92650A',
+  dark:      '#0F172A',
+  body:      '#334155',
+  light:     '#64748B',
+  border:    '#E2E8F0',
+  bg:        '#FFFFFF',
+  coverBg:   '#FAFAFA',
+  linkBlue:  '#0EA5E9',
+  green:     '#10B981',
+  greenBg:   '#F0FDF4',
+  greenDark: '#065F46',
+  amber:     '#F59E0B',
+  amberBg:   '#FFFBEB',
+  amberDark: '#92400E',
+  rowAlt:    '#F8FAFC',
 } as const;
-
 
 const styles = StyleSheet.create({
   // ── Cover ────────────────────────────────────────────────────────────────
@@ -27,13 +34,13 @@ const styles = StyleSheet.create({
     fontFamily: 'Helvetica',
   },
   coverTopBar: {
-    height: 5,
+    height: 6,
     backgroundColor: C.gold,
     width: '100%',
   },
   coverInner: {
     paddingHorizontal: 52,
-    paddingTop: 24,
+    paddingTop: 28,
     paddingBottom: 0,
     flex: 1,
     flexDirection: 'column',
@@ -42,49 +49,49 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 48,
+    marginBottom: 36,
   },
   coverHeaderLeft: {
     fontSize: 8,
     fontWeight: 700,
     color: C.dark,
-    letterSpacing: 1.5,
+    letterSpacing: 2,
     textTransform: 'uppercase',
   },
   coverHeaderRight: {
     fontSize: 8,
     fontWeight: 700,
     color: C.gold,
-    letterSpacing: 1.5,
+    letterSpacing: 2,
     textTransform: 'uppercase',
   },
   coverLineTop: {
     height: 0.5,
     backgroundColor: C.gold,
-    marginBottom: 48,
+    marginBottom: 36,
   },
   coverLogoWrap: {
     alignItems: 'center',
-    marginBottom: 24,
+    marginBottom: 20,
   },
   coverLogo: {
-    width: 140,
+    width: 130,
     objectFit: 'contain',
   },
   coverLineAfterLogo: {
     height: 0.5,
     backgroundColor: C.gold,
-    marginBottom: 32,
+    marginBottom: 28,
   },
   coverCompanyBlock: {
     alignItems: 'center',
-    marginBottom: 40,
+    marginBottom: 32,
   },
   coverCompanyName: {
     fontSize: 9,
     fontWeight: 700,
     color: C.dark,
-    letterSpacing: 1,
+    letterSpacing: 1.2,
     textTransform: 'uppercase',
     textAlign: 'center',
     marginBottom: 4,
@@ -96,36 +103,83 @@ const styles = StyleSheet.create({
     letterSpacing: 0.5,
   },
   coverLineBold: {
-    height: 2,
+    height: 3,
     backgroundColor: C.gold,
-    marginBottom: 28,
+    marginBottom: 32,
+  },
+  coverTag: {
+    alignSelf: 'center',
+    backgroundColor: C.gold,
+    paddingHorizontal: 12,
+    paddingVertical: 3,
+    borderRadius: 2,
+    marginBottom: 20,
+  },
+  coverTagText: {
+    fontSize: 7,
+    fontWeight: 700,
+    color: '#FFFFFF',
+    letterSpacing: 1.5,
+    textTransform: 'uppercase',
   },
   coverTitle: {
-    fontSize: 26,
+    fontSize: 28,
     fontWeight: 900,
     color: C.dark,
     textAlign: 'center',
-    lineHeight: 1.25,
-    marginBottom: 12,
-    letterSpacing: -0.3,
+    lineHeight: 1.2,
+    marginBottom: 14,
+    letterSpacing: -0.5,
   },
   coverSubtitle: {
-    fontSize: 12,
+    fontSize: 11,
     fontWeight: 700,
     color: C.gold,
     textAlign: 'center',
-    letterSpacing: 0.3,
-    marginBottom: 40,
+    letterSpacing: 0.2,
+    marginBottom: 28,
+    lineHeight: 1.5,
+  },
+  coverDotsRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 8,
+    marginBottom: 8,
+  },
+  coverDot: {
+    width: 24,
+    height: 1,
+    backgroundColor: C.gold,
   },
   coverLocation: {
     fontSize: 8,
     color: C.body,
     textAlign: 'center',
-    letterSpacing: 1,
+    letterSpacing: 2,
     textTransform: 'uppercase',
   },
   coverSpacer: {
     flex: 1,
+  },
+  coverPillRow: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: 6,
+    marginBottom: 20,
+  },
+  coverPill: {
+    paddingHorizontal: 8,
+    paddingVertical: 3,
+    borderWidth: 0.5,
+    borderColor: C.gold,
+    borderRadius: 12,
+  },
+  coverPillText: {
+    fontSize: 7,
+    color: C.goldDark,
+    fontWeight: 700,
+    letterSpacing: 0.3,
   },
   coverBottomLine: {
     height: 1,
@@ -136,7 +190,7 @@ const styles = StyleSheet.create({
     fontSize: 7,
     color: C.light,
     textAlign: 'center',
-    lineHeight: 1.6,
+    lineHeight: 1.7,
     paddingBottom: 16,
   },
 
@@ -149,7 +203,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Helvetica',
   },
   indexTopBar: {
-    height: 5,
+    height: 6,
     backgroundColor: C.gold,
     width: '100%',
   },
@@ -161,10 +215,10 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderBottomWidth: 0.3,
     borderBottomColor: C.border,
-    marginBottom: 32,
+    marginBottom: 28,
   },
   indexHeaderLogo: {
-    width: 56,
+    width: 52,
     objectFit: 'contain',
   },
   indexHeaderTitle: {
@@ -181,51 +235,66 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 900,
     color: C.gold,
-    marginBottom: 6,
+    marginBottom: 4,
     letterSpacing: -0.2,
+  },
+  indexSubtag: {
+    fontSize: 8,
+    color: C.light,
+    letterSpacing: 0.5,
+    marginBottom: 16,
+    textTransform: 'uppercase',
   },
   indexUnderline: {
     height: 0.5,
     backgroundColor: C.gold,
     marginBottom: 20,
   },
-  indexRow: {
+  // Two-column TOC grid
+  indexGrid: {
     flexDirection: 'row',
-    alignItems: 'flex-end',
-    marginBottom: 10,
-    paddingBottom: 2,
+    flexWrap: 'wrap',
+    gap: 0,
+  },
+  indexCard: {
+    width: '50%',
+    paddingRight: 12,
+    paddingBottom: 10,
+  },
+  indexCardInner: {
+    borderLeftWidth: 2,
+    borderLeftColor: C.border,
+    paddingLeft: 8,
+    paddingVertical: 4,
+  },
+  indexCardInnerLast: {
+    borderLeftWidth: 2,
+    borderLeftColor: C.gold,
+    paddingLeft: 8,
+    paddingVertical: 4,
   },
   indexNum: {
-    fontSize: 8,
+    fontSize: 7,
     fontWeight: 700,
     color: C.gold,
-    width: 24,
     letterSpacing: 0.5,
+    marginBottom: 2,
   },
   indexSectionTitle: {
-    fontSize: 9,
+    fontSize: 8.5,
     fontWeight: 400,
     color: C.body,
-    flex: 1,
+    lineHeight: 1.4,
   },
-  indexDots: {
-    fontSize: 8,
-    color: C.border,
-    flex: 1,
-    textAlign: 'right',
-    letterSpacing: 2,
-  },
-  indexPageNum: {
-    fontSize: 8,
-    fontWeight: 700,
-    color: C.dark,
-    width: 20,
-    textAlign: 'right',
+  indexPageRef: {
+    fontSize: 7,
+    color: C.light,
+    marginTop: 2,
   },
   indexSeparator: {
     height: 0.5,
     backgroundColor: C.border,
-    marginVertical: 12,
+    marginVertical: 14,
   },
   indexBottom: {
     marginTop: 'auto',
@@ -244,7 +313,7 @@ const styles = StyleSheet.create({
   // ── Content pages ────────────────────────────────────────────────────────
   contentPage: {
     fontFamily: 'Helvetica',
-    fontSize: 10.5,
+    fontSize: 10,
     color: C.body,
     backgroundColor: C.bg,
     paddingHorizontal: 52,
@@ -262,7 +331,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 52,
   },
   pageHeaderTopStrip: {
-    height: 2,
+    height: 3,
     backgroundColor: C.gold,
     marginBottom: 6,
   },
@@ -272,7 +341,7 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   pageHeaderLogo: {
-    width: 28,
+    width: 26,
     objectFit: 'contain',
     marginRight: 8,
   },
@@ -280,19 +349,19 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   pageHeaderDocTitle: {
-    fontSize: 8,
+    fontSize: 7,
     color: C.light,
     fontWeight: 700,
     letterSpacing: 0.5,
     marginRight: 6,
   },
   pageHeaderDivider: {
-    fontSize: 8,
+    fontSize: 7,
     color: C.border,
     marginRight: 6,
   },
   pageHeaderPageNum: {
-    fontSize: 8,
+    fontSize: 7,
     color: C.gold,
     fontWeight: 700,
   },
@@ -336,7 +405,7 @@ const styles = StyleSheet.create({
   sectionTitleRow: {
     flexDirection: 'row',
     alignItems: 'stretch',
-    marginBottom: 10,
+    marginBottom: 12,
   },
   sectionLeftBar: {
     width: 4,
@@ -352,91 +421,114 @@ const styles = StyleSheet.create({
     lineHeight: 1.3,
   },
   body: {
-    fontSize: 10.5,
+    fontSize: 10,
     color: C.body,
     lineHeight: 1.75,
-    marginBottom: 8,
+    marginBottom: 10,
+  },
+
+  // ── Callout variants with title labels ───────────────────────────────────
+  calloutLabel: {
+    fontSize: 7,
+    fontWeight: 700,
+    letterSpacing: 1,
+    textTransform: 'uppercase',
+    marginBottom: 4,
   },
   callout: {
-    backgroundColor: '#F0FDF4',
+    backgroundColor: C.greenBg,
     borderLeftWidth: 3,
-    borderLeftColor: '#10B981',
+    borderLeftColor: C.green,
     paddingHorizontal: 12,
-    paddingVertical: 8,
+    paddingVertical: 10,
     marginBottom: 12,
     borderRadius: 3,
   },
   calloutText: {
-    fontSize: 10,
-    color: '#065F46',
-    fontWeight: 500,
+    fontSize: 9.5,
+    color: C.greenDark,
     lineHeight: 1.6,
   },
   goldCallout: {
-    backgroundColor: '#FEFCE8',
+    backgroundColor: C.goldLight,
     borderLeftWidth: 3,
     borderLeftColor: C.gold,
     paddingHorizontal: 12,
-    paddingVertical: 8,
+    paddingVertical: 10,
     marginBottom: 12,
     borderRadius: 3,
   },
   goldCalloutText: {
-    fontSize: 10,
+    fontSize: 9.5,
     color: C.goldDark,
-    fontWeight: 500,
     lineHeight: 1.6,
   },
   warningCallout: {
-    backgroundColor: '#FEF3C7',
+    backgroundColor: C.amberBg,
     borderLeftWidth: 3,
-    borderLeftColor: C.gold,
+    borderLeftColor: C.amber,
     paddingHorizontal: 12,
-    paddingVertical: 8,
+    paddingVertical: 10,
     marginBottom: 12,
     borderRadius: 3,
   },
   warningText: {
-    fontSize: 10,
-    color: '#92400E',
-    fontWeight: 500,
+    fontSize: 9.5,
+    color: C.amberDark,
     lineHeight: 1.6,
   },
+  infoCallout: {
+    backgroundColor: '#EFF6FF',
+    borderLeftWidth: 3,
+    borderLeftColor: '#3B82F6',
+    paddingHorizontal: 12,
+    paddingVertical: 10,
+    marginBottom: 12,
+    borderRadius: 3,
+  },
+  infoCalloutText: {
+    fontSize: 9.5,
+    color: '#1E3A8A',
+    lineHeight: 1.6,
+  },
+
   listItem: {
     flexDirection: 'row',
     gap: 8,
     marginBottom: 6,
   },
   listBullet: {
-    fontSize: 10.5,
+    fontSize: 10,
     color: C.gold,
     fontWeight: 900,
     lineHeight: 1.6,
     width: 10,
   },
   listText: {
-    fontSize: 10.5,
+    fontSize: 10,
     color: C.body,
     lineHeight: 1.6,
     flex: 1,
   },
   backlink: {
-    fontSize: 9,
+    fontSize: 8.5,
     color: C.linkBlue,
     marginTop: 4,
-    marginBottom: 12,
+    marginBottom: 10,
     textDecoration: 'none',
   },
+
+  // ── Tables with alternating rows ─────────────────────────────────────────
   tableHeader: {
     flexDirection: 'row',
     backgroundColor: C.dark,
     paddingHorizontal: 8,
-    paddingVertical: 6,
+    paddingVertical: 7,
     borderRadius: 3,
-    marginBottom: 2,
+    marginBottom: 0,
   },
   tableHeaderCell: {
-    fontSize: 8,
+    fontSize: 7.5,
     color: '#FFFFFF',
     fontWeight: 700,
     textTransform: 'uppercase',
@@ -446,58 +538,81 @@ const styles = StyleSheet.create({
   tableRow: {
     flexDirection: 'row',
     paddingHorizontal: 8,
-    paddingVertical: 6,
+    paddingVertical: 7,
     borderBottomWidth: 1,
     borderBottomColor: C.border,
+    backgroundColor: C.bg,
+  },
+  tableRowAlt: {
+    flexDirection: 'row',
+    paddingHorizontal: 8,
+    paddingVertical: 7,
+    borderBottomWidth: 1,
+    borderBottomColor: C.border,
+    backgroundColor: C.rowAlt,
   },
   tableCell: {
-    fontSize: 9,
+    fontSize: 8.5,
     color: C.body,
     flex: 1,
     lineHeight: 1.5,
   },
   tableCellBold: {
-    fontSize: 9,
+    fontSize: 8.5,
     color: C.dark,
     fontWeight: 700,
     flex: 1,
     lineHeight: 1.5,
   },
+
+  // ── Scenario cards ────────────────────────────────────────────────────────
   scenarioCard: {
-    borderWidth: 1,
-    borderColor: '#A7F3D0',
-    backgroundColor: '#F0FDF4',
-    borderRadius: 4,
+    borderWidth: 0,
+    borderLeftWidth: 3,
+    borderLeftColor: C.green,
+    backgroundColor: C.greenBg,
+    borderRadius: 3,
     paddingHorizontal: 12,
-    paddingVertical: 8,
+    paddingVertical: 9,
     marginBottom: 8,
   },
   scenarioTitle: {
-    fontSize: 9,
+    fontSize: 9.5,
     fontWeight: 900,
-    color: '#065F46',
+    color: C.greenDark,
     marginBottom: 4,
   },
   scenarioDesc: {
-    fontSize: 8,
+    fontSize: 8.5,
     color: '#047857',
     lineHeight: 1.6,
   },
+
+  // ── Component cards (card-style with header row) ──────────────────────────
   componentCard: {
+    flexDirection: 'column',
+    marginBottom: 8,
+    paddingVertical: 9,
+    paddingHorizontal: 10,
+    borderLeftWidth: 3,
+    borderLeftColor: C.green,
+    backgroundColor: '#F8FAFC',
+    borderRadius: 2,
+  },
+  componentCardHeader: {
     flexDirection: 'row',
-    gap: 8,
-    paddingVertical: 8,
-    borderBottomWidth: 1,
-    borderBottomColor: C.border,
+    alignItems: 'center',
+    gap: 7,
+    marginBottom: 4,
   },
   componentNum: {
-    width: 22,
-    height: 22,
-    borderRadius: 11,
-    backgroundColor: '#10B981',
+    width: 20,
+    height: 20,
+    borderRadius: 10,
+    backgroundColor: C.green,
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 1,
+    flexShrink: 0,
   },
   componentNumText: {
     fontSize: 8,
@@ -505,16 +620,17 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
   },
   componentTitle: {
-    fontSize: 9,
+    fontSize: 9.5,
     fontWeight: 700,
     color: C.dark,
-    marginBottom: 2,
   },
   componentDesc: {
-    fontSize: 8,
+    fontSize: 8.5,
     color: C.body,
-    lineHeight: 1.5,
+    lineHeight: 1.6,
+    paddingLeft: 27,
   },
+
   sectionDivider: {
     height: 0.5,
     backgroundColor: C.border,
@@ -525,19 +641,20 @@ const styles = StyleSheet.create({
     borderColor: C.gold,
     borderRadius: 4,
     paddingHorizontal: 16,
-    paddingVertical: 12,
+    paddingVertical: 14,
     marginTop: 16,
+    backgroundColor: '#FEFCE8',
   },
   ctaLabel: {
-    fontSize: 9,
+    fontSize: 7.5,
     fontWeight: 700,
     color: C.gold,
     marginBottom: 6,
     textTransform: 'uppercase',
-    letterSpacing: 1,
+    letterSpacing: 1.5,
   },
   ctaText: {
-    fontSize: 10,
+    fontSize: 9.5,
     color: C.body,
     lineHeight: 1.6,
   },
@@ -584,23 +701,45 @@ const Sec = ({ title, children }: { title: string; children: React.ReactNode }) 
   </View>
 );
 
-// ─── TOC row helper ───────────────────────────────────────────────────────────
-const TocRow = ({ num, title, page }: { num: string; title: string; page: string }) => (
-  <View style={styles.indexRow}>
-    <Text style={styles.indexNum}>{num}</Text>
-    <Text style={styles.indexSectionTitle}>{title}</Text>
-    <Text style={styles.indexDots}>{'· '.repeat(30)}</Text>
-    <Text style={styles.indexPageNum}>{page}</Text>
+// ─── Callout with label ───────────────────────────────────────────────────────
+const LabeledCallout = ({
+  label, text, variant = 'green',
+}: { label: string; text: string; variant?: 'green' | 'gold' | 'amber' | 'blue' }) => {
+  const map = {
+    green: { box: styles.callout,        txt: styles.calloutText,     lbl: C.green  },
+    gold:  { box: styles.goldCallout,    txt: styles.goldCalloutText, lbl: C.gold   },
+    amber: { box: styles.warningCallout, txt: styles.warningText,     lbl: C.amber  },
+    blue:  { box: styles.infoCallout,    txt: styles.infoCalloutText, lbl: '#3B82F6' },
+  };
+  const { box, txt, lbl } = map[variant];
+  return (
+    <View style={box}>
+      <Text style={[styles.calloutLabel, { color: lbl }]}>{label}</Text>
+      <Text style={txt}>{text}</Text>
+    </View>
+  );
+};
+
+// ─── Table row with alternating bg ───────────────────────────────────────────
+const TR = ({
+  cells, bold = false, idx,
+}: { cells: string[]; bold?: boolean; idx: number }) => (
+  <View style={idx % 2 === 0 ? styles.tableRow : styles.tableRowAlt}>
+    {cells.map((c, i) => (
+      <Text key={i} style={i === 0 ? (bold ? styles.tableCellBold : styles.tableCell) : styles.tableCell}>
+        {c}
+      </Text>
+    ))}
   </View>
 );
 
 export const WhitePaperBCP = () => (
   <Document
-    title="Plan de Continuidad de Negocio en Venezuela: Guía ISO 22301:2019"
+    title="Plan de Continuidad de Negocio en Venezuela: Guia ISO 22301:2019"
     author="CSSG — Company Of Security And Service Global C.A."
-    subject="BCP Adaptado a Venezuela · Cortes Eléctricos · Disturbios · Escasez"
+    subject="BCP Adaptado a Venezuela — Cortes Electricos, Disturbios, Escasez"
     creator="CSSG White Paper Engine"
-    keywords="continuidad de negocio Venezuela, BCP Venezuela, ISO 22301 Venezuela, plan contingencia Venezuela, cortes eléctricos continuidad operativa, disturbios Venezuela gestión riesgo, resiliencia empresarial Venezuela, BIA análisis impacto negocio"
+    keywords="continuidad de negocio Venezuela, BCP Venezuela, ISO 22301 Venezuela, plan contingencia Venezuela, cortes electricos continuidad operativa, resiliencia empresarial Venezuela, BIA analisis impacto negocio"
   >
     {/* ══════════════════════════════════════════════════════════════════════
         COVER PAGE
@@ -608,64 +747,115 @@ export const WhitePaperBCP = () => (
     <Page size="A4" style={styles.coverPage}>
       <View style={styles.coverTopBar} />
       <View style={styles.coverInner}>
+        {/* Top bar: CSSG | WHITE PAPER 2026 */}
         <View style={styles.coverHeader}>
           <Text style={styles.coverHeaderLeft}>CSSG</Text>
           <Text style={styles.coverHeaderRight}>WHITE PAPER 2026</Text>
         </View>
         <View style={styles.coverLineTop} />
+
+        {/* Logo */}
         <View style={styles.coverLogoWrap}>
           <Image src="/logo_full.png" style={styles.coverLogo} />
         </View>
         <View style={styles.coverLineAfterLogo} />
+
+        {/* Company identity */}
         <View style={styles.coverCompanyBlock}>
           <Text style={styles.coverCompanyName}>Company of Security and Service Global C.A.</Text>
           <Text style={styles.coverCertLine}>
-            {CORPORATE.rif}  ·  {CORPORATE.iso} — Cert. 580181
+            {CORPORATE.rif}  ·  {CORPORATE.iso}  ·  Cert. 580181
           </Text>
         </View>
         <View style={styles.coverLineBold} />
+
+        {/* Tag */}
+        <View style={styles.coverTag}>
+          <Text style={styles.coverTagText}>ISO 22301:2019 Business Continuity</Text>
+        </View>
+
+        {/* Title */}
         <Text style={styles.coverTitle}>
-          Plan de Continuidad de{'\n'}Negocio en Venezuela:{'\n'}Guía ISO 22301:2019
+          Plan de Continuidad de{'\n'}Negocio en Venezuela:{'\n'}Guia ISO 22301:2019
         </Text>
         <Text style={styles.coverSubtitle}>
-          BCP Adaptado a Venezuela · Cortes Eléctricos · Disturbios · Escasez
+          BCP Adaptado a Venezuela{'\n'}Cortes Electricos  ·  Disturbios  ·  Escasez
         </Text>
-        <Text style={styles.coverLocation}>
-          ════  Caracas, Venezuela  ·  2026  ════
-        </Text>
+
+        {/* Location: simple decoration without box-drawing chars */}
+        <View style={styles.coverDotsRow}>
+          <View style={styles.coverDot} />
+          <Text style={styles.coverLocation}>Caracas, Venezuela  ·  2026</Text>
+          <View style={styles.coverDot} />
+        </View>
+
         <View style={styles.coverSpacer} />
+
+        {/* Credential pills */}
+        <View style={styles.coverPillRow}>
+          <View style={styles.coverPill}>
+            <Text style={styles.coverPillText}>+12 Anos sin incidentes</Text>
+          </View>
+          <View style={styles.coverPill}>
+            <Text style={styles.coverPillText}>ISO 9001:2015</Text>
+          </View>
+          <View style={styles.coverPill}>
+            <Text style={styles.coverPillText}>Estandar G7</Text>
+          </View>
+        </View>
+
         <View style={styles.coverBottomLine} />
         <Text style={styles.coverBottomText}>
           CSSG — Company of Security and Service Global C.A.{'\n'}
           cssg-global.com  ·  gerencia@globalservices-ven.com{'\n'}
-          Distribución libre — Todos los derechos reservados 2026
+          Distribucion libre — Todos los derechos reservados 2026
         </Text>
       </View>
     </Page>
 
     {/* ══════════════════════════════════════════════════════════════════════
-        ÍNDICE
+        INDICE — Two-column grid
     ══════════════════════════════════════════════════════════════════════ */}
     <Page size="A4" style={styles.indexPage}>
       <View style={styles.indexTopBar} />
       <View style={styles.indexHeaderBar}>
         <Image src="/logo_full.png" style={styles.indexHeaderLogo} />
-        <Text style={styles.indexHeaderTitle}>PLAN DE CONTINUIDAD DE NEGOCIO VENEZUELA — GUÍA 2026</Text>
+        <Text style={styles.indexHeaderTitle}>Plan de Continuidad de Negocio Venezuela — Guia 2026</Text>
       </View>
       <View style={styles.indexInner}>
-        <Text style={styles.indexMainTitle}>ÍNDICE GENERAL</Text>
+        <Text style={styles.indexMainTitle}>INDICE GENERAL</Text>
+        <Text style={styles.indexSubtag}>9 secciones  ·  Contenido ejecutivo  ·  Metodologia ISO 22301:2019</Text>
         <View style={styles.indexUnderline} />
-        <TocRow num="01" title="Continuidad de Negocio en Venezuela: Un Imperativo, No una Opción" page="03" />
-        <TocRow num="02" title="Los 4 Escenarios de Disrupción Crítica en el Entorno Venezolano" page="03" />
-        <TocRow num="03" title="ISO 22301:2019 como Marco para la Continuidad de Negocio en Venezuela" page="04" />
-        <TocRow num="04" title="Análisis de Impacto al Negocio (BIA): Cómo Identificar sus Procesos Críticos" page="04" />
-        <TocRow num="05" title="Los 5 Componentes Esenciales de un BCP para Venezuela" page="05" />
-        <TocRow num="06" title="Plan de Continuidad ante Cortes Eléctricos: Soluciones Operativas" page="06" />
-        <TocRow num="07" title="Gestión de Crisis y Comunicación bajo Presión" page="06" />
-        <TocRow num="08" title="Cómo Activar, Probar y Mejorar su Plan de Continuidad" page="07" />
-        <TocRow num="09" title="Conclusiones: Resiliencia Operativa como Ventaja Competitiva" page="08" />
+
+        {/* Two-column grid of TOC entries */}
+        <View style={styles.indexGrid}>
+          {[
+            { num: '01', title: 'Continuidad de Negocio en Venezuela: Un Imperativo, No una Opcion', page: '03' },
+            { num: '02', title: 'Los 4 Escenarios de Disrupcion Critica en el Entorno Venezolano', page: '03' },
+            { num: '03', title: 'ISO 22301:2019 como Marco para la Continuidad de Negocio', page: '04' },
+            { num: '04', title: 'Analisis de Impacto al Negocio (BIA): Procesos Criticos', page: '04' },
+            { num: '05', title: 'Los 5 Componentes Esenciales de un BCP para Venezuela', page: '05' },
+            { num: '06', title: 'Plan de Continuidad ante Cortes Electricos: Soluciones', page: '06' },
+            { num: '07', title: 'Gestion de Crisis y Comunicacion bajo Presion', page: '06' },
+            { num: '08', title: 'Como Activar, Probar y Mejorar su Plan de Continuidad', page: '07' },
+            { num: '09', title: 'Conclusiones: Resiliencia Operativa como Ventaja Competitiva', page: '08' },
+          ].map((row, i) => (
+            <View key={i} style={styles.indexCard}>
+              <View style={i === 8 ? styles.indexCardInnerLast : styles.indexCardInner}>
+                <Text style={styles.indexNum}>{row.num}  ·  Pag. {row.page}</Text>
+                <Text style={styles.indexSectionTitle}>{row.title}</Text>
+              </View>
+            </View>
+          ))}
+        </View>
+
         <View style={styles.indexSeparator} />
-        <TocRow num="" title="Acerca de CSSG Global" page="09" />
+        <View style={styles.indexCard}>
+          <View style={styles.indexCardInner}>
+            <Text style={styles.indexNum}>—  ·  Pag. 09</Text>
+            <Text style={styles.indexSectionTitle}>Acerca de CSSG Global</Text>
+          </View>
+        </View>
       </View>
       <View style={styles.indexBottom}>
         <Text style={styles.indexBottomText}>
@@ -682,49 +872,49 @@ export const WhitePaperBCP = () => (
       <ContentFooter />
 
       <View style={{ marginTop: 36 }}>
-        <Sec title="1. Continuidad de Negocio en Venezuela: Un Imperativo, No una Opción">
+        <Sec title="1. Continuidad de Negocio en Venezuela: Un Imperativo, No una Opcion">
           <Text style={styles.body}>
-            La continuidad de negocio Venezuela no es un ejercicio académico ni una exigencia burocrática para el cumplimiento de certificaciones. Es una necesidad operacional que distingue a las organizaciones que sobreviven y prosperan en el entorno venezolano de las que sucumben ante la primera interrupción significativa. La diferencia entre una organización con un Plan de Continuidad de Negocio (BCP Venezuela) funcional y una que improvisa ante cada crisis no se mide solo en tiempo de recuperación — se mide en clientes perdidos, ingresos no recuperados, personal desmoralizado y reputación dañada.
+            La continuidad de negocio Venezuela no es un ejercicio academico ni una exigencia burocratica para el cumplimiento de certificaciones. Es una necesidad operacional que distingue a las organizaciones que sobreviven y prosperan en el entorno venezolano de las que sucumben ante la primera interrupcion significativa. La diferencia entre una organizacion con un Plan de Continuidad de Negocio (BCP Venezuela) funcional y una que improvisa ante cada crisis no se mide solo en tiempo de recuperacion — se mide en clientes perdidos, ingresos no recuperados, personal desmoralizado y reputacion danada.
           </Text>
           <Text style={styles.body}>
-            El entorno venezolano en 2026 presenta un perfil de disrupción que ningún otro mercado latinoamericano replica en su totalidad: la combinación de cortes eléctricos que promedian entre 4 y 12 horas diarias en zonas industriales, la volatilidad político-social que puede generar disturbios con impacto operacional en cuestión de horas, la escasez crónica de suministros que afecta desde insumos básicos hasta repuestos industriales, y la degradación de la infraestructura de comunicaciones y transporte que convierte las contingencias en disrupciones prolongadas.
+            El entorno venezolano en 2026 presenta un perfil de disrupcion que ningun otro mercado latinoamericano replica en su totalidad: cortes electricos que promedian entre 4 y 12 horas diarias en zonas industriales, volatilidad politico-social que puede generar disturbios con impacto operacional en horas, escasez cronica de suministros, y degradacion de infraestructura de comunicaciones que convierte contingencias en disrupciones prolongadas.
           </Text>
-          <View style={styles.warningCallout}>
-            <Text style={styles.warningText}>
-              Dato crítico 2026: El 73% de las organizaciones evaluadas por CSSG en Venezuela no cuenta con un BCP formal. El 89% de las que experimentaron una interrupción significativa en los últimos 24 meses reportaron que el evento podría haberse gestionado con menor impacto si hubieran tenido procedimientos documentados y probados.
-            </Text>
-          </View>
+          <LabeledCallout
+            label="Dato Critico 2026"
+            variant="amber"
+            text="El 73% de las organizaciones evaluadas por CSSG en Venezuela no cuenta con un BCP formal. El 89% de las que experimentaron una interrupcion significativa en los ultimos 24 meses reportaron que el evento podia haberse gestionado con menor impacto si hubieran tenido procedimientos documentados y probados."
+          />
           <Text style={styles.body}>
-            La resiliencia empresarial Venezuela se construye antes de que ocurra la interrupción, no durante ni después. Una organización que diseña su BCP Venezuela con anticipación no elimina los riesgos del entorno — eso está más allá de su control — pero sí determina con anticipación cómo responderá ante cada escenario de disrupción, quién tomará qué decisión, con qué recursos contará y cuándo considerará que ha alcanzado la recuperación.
+            La resiliencia empresarial Venezuela se construye antes de que ocurra la interrupcion. Una organizacion que disena su BCP Venezuela con anticipacion no elimina los riesgos del entorno — determina con anticipacion como respondera ante cada escenario de disrupcion, quien tomara que decision, con que recursos contara y cuando considerara que ha alcanzado la recuperacion.
           </Text>
           <Link src="https://cssg-global.com/consultoria/continuidad-de-negocio" style={styles.backlink}>
-            Más información: cssg-global.com/consultoria/continuidad-de-negocio
+            Mas informacion: cssg-global.com/consultoria/continuidad-de-negocio
           </Link>
         </Sec>
 
         <View style={styles.sectionDivider} />
 
-        <Sec title="2. Los 4 Escenarios de Disrupción Crítica en el Entorno Venezolano">
+        <Sec title="2. Los 4 Escenarios de Disrupcion Critica en el Entorno Venezolano">
           <Text style={styles.body}>
-            El BCP Venezuela debe ser específico en los escenarios que contempla. Un plan genérico que habla de "interrupciones" sin identificar los escenarios concretos del entorno venezolano es un documento de valor limitado. Los cuatro escenarios de mayor frecuencia e impacto para organizaciones operando en Venezuela son los siguientes:
+            El BCP Venezuela debe ser especifico en los escenarios que contempla. Un plan generico que habla de "interrupciones" sin identificar los escenarios concretos del entorno venezolano es un documento de valor limitado. Los cuatro escenarios de mayor frecuencia e impacto son:
           </Text>
 
           {[
             {
-              title: 'Escenario 1: Cortes eléctricos extendidos (>8 horas)',
-              desc: 'Los cortes eléctricos prolongados afectan simultáneamente la producción, los sistemas tecnológicos, la cadena de frío (crítica para farmacéuticas y alimentos), las comunicaciones y la seguridad perimetral. El plan de continuidad ante cortes eléctricos debe contemplar: generación propia (capacidad, combustible, tiempo de autonomía), priorización de sistemas críticos para operación degradada, y protocolos para personal ante cortes que se extienden más de una jornada laboral.',
+              title: 'Escenario 1 — Cortes electricos extendidos (>8 horas)',
+              desc: 'Los cortes electricos prolongados afectan simultaneamente la produccion, los sistemas tecnologicos, la cadena de frio, las comunicaciones y la seguridad perimetral. El plan debe contemplar: generacion propia con capacidad y autonomia documentadas, prioridad de sistemas criticos en operacion degradada, y protocolos para personal ante cortes que superan una jornada laboral.',
             },
             {
-              title: 'Escenario 2: Disturbios civiles y cierres de vías',
-              desc: 'Los disturbios Venezuela gestión riesgo requieren planes que contemplen: criterios de activación de trabajo remoto, rutas alternas documentadas para personal y transporte de bienes, protocolos de comunicación de emergencia con empleados en zona de conflicto, y criterios de cierre preventivo de instalaciones. La velocidad de activación es crítica: un BCP que se activa 4 horas después de iniciado un disturbio llega tarde.',
+              title: 'Escenario 2 — Disturbios civiles y cierres de vias',
+              desc: 'Requieren planes con criterios de activacion de trabajo remoto, rutas alternas documentadas, protocolos de comunicacion de emergencia con empleados en zona de conflicto, y criterios de cierre preventivo. La velocidad de activacion es critica: un BCP que se activa 4 horas despues de iniciado un disturbio llega tarde.',
             },
             {
-              title: 'Escenario 3: Escasez de suministros críticos',
-              desc: 'La escasez crónica en Venezuela afecta a prácticamente todos los sectores, pero su impacto en la continuidad operacional varía según el perfil de cada organización. El BIA análisis impacto negocio debe identificar específicamente qué insumos tienen un tiempo de agotamiento que podría interrumpir operaciones críticas, y el BCP debe contemplar: inventarios estratégicos de contingencia, proveedores alternativos pre-calificados y estrategias de sustitución temporal.',
+              title: 'Escenario 3 — Escasez de suministros criticos',
+              desc: 'El BIA debe identificar que insumos tienen un tiempo de agotamiento que podria interrumpir operaciones criticas. El BCP debe contemplar inventarios estrategicos de contingencia, proveedores alternativos pre-calificados y estrategias de sustitucion temporal.',
             },
             {
-              title: 'Escenario 4: Incidentes de seguridad con impacto operacional',
-              desc: 'Secuestros, hurtos mayores, daños a instalaciones o incidentes de violencia que afecten directamente la capacidad operativa de la organización requieren protocolos específicos que van más allá de la respuesta de seguridad inmediata: comunicación con empleados y familias, gestión de la continuidad durante la respuesta al incidente, y recuperación de la normalidad operacional posterior al incidente.',
+              title: 'Escenario 4 — Incidentes de seguridad con impacto operacional',
+              desc: 'Secuestros, hurtos mayores, danos a instalaciones o incidentes de violencia requieren protocolos especificos: comunicacion con empleados y familias, gestion de la continuidad durante la respuesta al incidente, y recuperacion de la normalidad operacional. CSSG opera bajo principios de proteccion preventiva y vigilancia estrictamente no armada.',
             },
           ].map((s, i) => (
             <View key={i} style={styles.scenarioCard}>
@@ -746,59 +936,56 @@ export const WhitePaperBCP = () => (
       <View style={{ marginTop: 36 }}>
         <Sec title="3. ISO 22301:2019 como Marco para la Continuidad de Negocio en Venezuela">
           <Text style={styles.body}>
-            La ISO 22301:2019 (Business Continuity Management Systems — Requirements) es el estándar internacional de referencia para los sistemas de gestión de continuidad de negocio. Su versión 2019 introduce una estructura de alto nivel alineada con otros estándares ISO (como ISO 9001 e ISO 31000), lo que facilita la integración del sistema de continuidad de negocio dentro del marco general de gestión de la organización.
+            La ISO 22301:2019 (Business Continuity Management Systems — Requirements) es el estandar internacional de referencia para sistemas de gestion de continuidad de negocio. Su version 2019 introduce una estructura de alto nivel alineada con ISO 9001 e ISO 31000, facilitando la integracion del sistema de continuidad dentro del marco general de gestion de la organizacion.
           </Text>
           <Text style={styles.body}>
-            La ISO 22301 Venezuela establece los requisitos para que una organización implemente, mantenga y mejore continuamente un sistema de gestión de continuidad de negocio. Su aplicación en Venezuela requiere una adaptación del contexto de amenaza: mientras que la norma describe los requisitos en términos genéricos (identificar interrupciones potenciales, evaluar su impacto, diseñar estrategias de respuesta), su implementación práctica en Venezuela debe nombrar explícitamente los escenarios locales y calibrar los tiempos de recuperación objetivo (RTO) a las condiciones reales del entorno.
+            Su aplicacion en Venezuela requiere una adaptacion del contexto de amenaza: mientras la norma describe requisitos en terminos genericos, su implementacion practica debe nombrar explicitamente los escenarios locales y calibrar los tiempos de recuperacion objetivo (RTO) a las condiciones reales del entorno.
           </Text>
-          <View style={styles.callout}>
-            <Text style={styles.calloutText}>
-              Diferencia clave ISO 22301 vs. ISO 31000: Mientras ISO 31000 gestiona el riesgo (probabilidad de que algo malo ocurra), ISO 22301 gestiona la continuidad (cómo la organización opera cuando algo malo ya ocurrió). Son complementarios: ISO 31000 reduce la probabilidad de disrupciones; ISO 22301 reduce su impacto cuando suceden.
-            </Text>
-          </View>
+          <LabeledCallout
+            label="Diferencia Clave: ISO 22301 vs. ISO 31000"
+            variant="blue"
+            text="ISO 31000 gestiona el RIESGO: reduce la probabilidad de que algo malo ocurra. ISO 22301 gestiona la CONTINUIDAD: define como opera la organizacion cuando algo malo ya ocurrio. Son complementarios — ISO 31000 reduce la probabilidad; ISO 22301 reduce el impacto cuando sucede."
+          />
           <Text style={styles.body}>
-            Para organizaciones que reportan a casas matrices internacionales, operar bajo ISO 22301:2019 en Venezuela tiene un valor adicional: demuestra a auditores globales que los riesgos específicos del entorno venezolano están siendo gestionados con rigor metodológico, y no solo "manejados informalmente por el equipo local".
+            Para organizaciones que reportan a casas matrices internacionales, operar bajo ISO 22301:2019 en Venezuela tiene un valor adicional: demuestra a auditores globales que los riesgos especificos del entorno venezolano estan siendo gestionados con rigor metodologico, y no solo "manejados informalmente por el equipo local".
           </Text>
           <Link src="https://cssg-global.com/consultoria/gestion-de-crisis-y-respuesta" style={styles.backlink}>
-            Más información: cssg-global.com/consultoria/gestion-de-crisis-y-respuesta
+            Mas informacion: cssg-global.com/consultoria/gestion-de-crisis-y-respuesta
           </Link>
         </Sec>
 
         <View style={styles.sectionDivider} />
 
-        <Sec title="4. Análisis de Impacto al Negocio (BIA): Cómo Identificar sus Procesos Críticos">
+        <Sec title="4. Analisis de Impacto al Negocio (BIA): Como Identificar sus Procesos Criticos">
           <Text style={styles.body}>
-            El BIA análisis impacto negocio es el fundamento sobre el cual se construye cualquier BCP Venezuela sólido. Sin un BIA bien realizado, el plan de continuidad puede invertir recursos en proteger procesos que la organización puede tolerar tener inoperativos durante días, mientras deja desprotegidos procesos cuya interrupción genera impacto crítico en pocas horas.
+            El BIA (Business Impact Analysis) es el fundamento sobre el cual se construye cualquier BCP Venezuela solido. Sin un BIA bien realizado, el plan puede invertir recursos en proteger procesos que la organizacion puede tolerar inoperativos durante dias, mientras deja desprotegidos procesos cuya interrupcion genera impacto critico en pocas horas.
           </Text>
           <Text style={styles.body}>
-            El proceso de BIA análisis impacto negocio responde a dos preguntas fundamentales: (1) ¿Qué procesos son críticos para la supervivencia operacional de la organización? y (2) ¿Cuánto tiempo puede tolerar cada proceso crítico estar inoperativo antes de que el impacto se vuelva inaceptable? Las respuestas generan los parámetros de RTO (Recovery Time Objective — tiempo máximo de recuperación tolerable) y RPO (Recovery Point Objective — punto máximo de pérdida de datos tolerable) para cada proceso.
+            El BIA responde dos preguntas fundamentales: (1) Que procesos son criticos para la supervivencia operacional? (2) Cuanto tiempo puede tolerar cada proceso critico estar inoperativo? Las respuestas generan los parametros de RTO (Recovery Time Objective — tiempo maximo de recuperacion tolerable) y RPO (Recovery Point Objective — punto maximo de perdida de datos tolerable) para cada proceso.
           </Text>
 
+          {/* BIA Table — corporativa estilizada */}
           <View style={styles.tableHeader}>
-            <Text style={styles.tableHeaderCell}>Proceso</Text>
-            <Text style={styles.tableHeaderCell}>RTO típico Venezuela</Text>
-            <Text style={styles.tableHeaderCell}>Principal amenaza local</Text>
+            <Text style={styles.tableHeaderCell}>Proceso Critico</Text>
+            <Text style={styles.tableHeaderCell}>RTO Tipico Venezuela</Text>
+            <Text style={styles.tableHeaderCell}>Principal Amenaza Local</Text>
           </View>
           {[
-            { proc: 'Facturación y cobros',          rto: '4-8 horas',   amenaza: 'Corte eléctrico + falla de conectividad' },
-            { proc: 'Comunicaciones con clientes',   rto: '2-4 horas',   amenaza: 'Corte eléctrico + falla de conectividad' },
-            { proc: 'Acceso a instalaciones',        rto: '0-1 hora',    amenaza: 'Disturbios + corte eléctrico (control de accesos)' },
-            { proc: 'Cadena de frío / almacenamiento', rto: '2-4 horas', amenaza: 'Corte eléctrico prolongado' },
-            { proc: 'Nómina y pagos a personal',     rto: '24-72 horas', amenaza: 'Falla bancaria + escasez de efectivo' },
+            { proc: 'Facturacion y cobros',           rto: '4 — 8 horas',    amenaza: 'Corte electrico + falla de conectividad' },
+            { proc: 'Comunicaciones con clientes',    rto: '2 — 4 horas',    amenaza: 'Corte electrico + falla de conectividad' },
+            { proc: 'Acceso a instalaciones',         rto: '0 — 1 hora',     amenaza: 'Disturbios + corte electrico (control accesos)' },
+            { proc: 'Cadena de frio / almacenamiento', rto: '2 — 4 horas',   amenaza: 'Corte electrico prolongado' },
+            { proc: 'Nomina y pagos a personal',      rto: '24 — 72 horas',  amenaza: 'Falla bancaria + escasez de efectivo' },
           ].map((row, i) => (
-            <View key={i} style={styles.tableRow}>
-              <Text style={styles.tableCellBold}>{row.proc}</Text>
-              <Text style={styles.tableCell}>{row.rto}</Text>
-              <Text style={styles.tableCell}>{row.amenaza}</Text>
-            </View>
+            <TR key={i} idx={i} bold cells={[row.proc, row.rto, row.amenaza]} />
           ))}
 
           <Text style={styles.body} />
           <Text style={styles.body}>
-            El BIA análisis impacto negocio debe ser realizado con la participación activa de los responsables de cada área de la organización. Son ellos quienes conocen los detalles operacionales que permiten estimar correctamente el impacto de cada interrupción. El error más común en BCPs que no funcionan es que el plan fue diseñado por la dirección sin consultar a los responsables operacionales, generando RTOs aspiracionales que no tienen en cuenta las restricciones reales del proceso.
+            El BIA debe realizarse con la participacion activa de los responsables de cada area. El error mas comun en BCPs que no funcionan es que el plan fue disenado por la direccion sin consultar a los responsables operacionales, generando RTOs aspiracionales que no tienen en cuenta las restricciones reales del proceso.
           </Text>
           <Link src="https://cssg-global.com/white-papers/guia-evaluacion-riesgos-seguridad-venezuela" style={styles.backlink}>
-            Ver también: White Paper Riesgos — cssg-global.com/white-papers/guia-evaluacion-riesgos-seguridad-venezuela
+            Ver tambien: White Paper Riesgos — cssg-global.com/white-papers/guia-evaluacion-riesgos-seguridad-venezuela
           </Link>
         </Sec>
       </View>
@@ -814,43 +1001,43 @@ export const WhitePaperBCP = () => (
       <View style={{ marginTop: 36 }}>
         <Sec title="5. Los 5 Componentes Esenciales de un BCP para Venezuela">
           <Text style={styles.body}>
-            Un BCP Venezuela funcional no es un documento extenso lleno de procedimientos generales — es un conjunto coherente de componentes que se activan coordinadamente cuando ocurre una interrupción. La diferencia entre un BCP que "existe" y un BCP que "funciona" está en si estos cinco componentes han sido diseñados, documentados, comunicados y probados.
+            Un BCP Venezuela funcional no es un documento extenso lleno de procedimientos generales — es un conjunto coherente de componentes que se activan coordinadamente cuando ocurre una interrupcion. La diferencia entre un BCP que "existe" y un BCP que "funciona" esta en si estos cinco componentes han sido disenados, documentados, comunicados y probados.
           </Text>
 
           {[
             {
-              title: 'Criterios de activación y árbol de decisión',
-              desc: 'El BCP Venezuela debe definir explícitamente cuándo se activa: no "ante interrupciones graves" sino con criterios objetivos y medibles. Por ejemplo: "El BCP se activa cuando el corte eléctrico supera 4 horas continuas en horario operativo, cuando un disturbio bloquea el acceso a instalaciones durante más de 2 horas, o cuando cualquier proceso crítico con RTO ≤8 horas está inoperativo." La ausencia de criterios claros de activación es la razón más frecuente por la que los BCPs no se activan cuando se necesitan.',
+              title: 'Criterios de activacion y arbol de decision',
+              desc: 'El BCP Venezuela debe definir explicitamente cuando se activa, con criterios objetivos y medibles. Por ejemplo: "El BCP se activa cuando el corte electrico supera 4 horas continuas en horario operativo, cuando un disturbio bloquea el acceso a instalaciones durante mas de 2 horas, o cuando cualquier proceso critico con RTO menor o igual a 8 horas esta inoperativo." La ausencia de criterios claros de activacion es la razon mas frecuente por la que los BCPs no se activan cuando se necesitan.',
             },
             {
               title: 'Cadena de mando y roles de crisis',
-              desc: 'Cada miembro del Equipo de Gestión de Continuidad (EGC) debe tener roles, responsabilidades y autoridades claramente definidos para cada escenario. Esto incluye el responsable de declarar la continuidad, el coordinador de comunicaciones, el responsable de operaciones degradadas, y el responsable de la recuperación. El árbol de comunicación de emergencia — con datos de contacto actualizados y canales alternativos — es parte indispensable de este componente.',
+              desc: 'Cada miembro del Equipo de Gestion de Continuidad (EGC) debe tener roles, responsabilidades y autoridades claramente definidos para cada escenario. Incluye: responsable de declarar la continuidad, coordinador de comunicaciones, responsable de operaciones degradadas, y responsable de la recuperacion. El arbol de comunicacion de emergencia con canales alternativos es indispensable.',
             },
             {
-              title: 'Estrategias de continuidad por proceso crítico',
-              desc: 'Para cada proceso crítico identificado en el BIA, el BCP Venezuela debe definir una estrategia de continuidad específica: trabajo remoto, sitio alternativo de operaciones, proveedor de respaldo, operación manual temporaria, o reducción temporal del servicio a un nivel mínimo aceptable. Cada estrategia debe ser factible dado el contexto venezolano: una estrategia de trabajo remoto solo funciona si el personal tiene conectividad en casa o en sitios alternativos habilitados.',
+              title: 'Estrategias de continuidad por proceso critico',
+              desc: 'Para cada proceso critico del BIA, el BCP Venezuela debe definir una estrategia especifica: trabajo remoto, sitio alternativo, proveedor de respaldo, operacion manual temporaria, o reduccion temporal del servicio a un nivel minimo aceptable. Cada estrategia debe ser factible en el contexto venezolano.',
             },
             {
-              title: 'Plan de comunicación interna y externa bajo presión',
-              desc: 'La comunicación durante una crisis es tan importante como la respuesta operacional. El BCP Venezuela debe incluir mensajes pre-aprobados para empleados, clientes, proveedores, autoridades y medios ante cada escenario de disrupción contemplado. La preparación previa de estos mensajes evita que durante la crisis el equipo directivo pierda tiempo redactando comunicados en un momento de alta presión y baja disponibilidad cognitiva.',
+              title: 'Plan de comunicacion interna y externa bajo presion',
+              desc: 'El BCP Venezuela debe incluir mensajes pre-aprobados para empleados, clientes, proveedores, autoridades y medios ante cada escenario de disrupcion contemplado. La preparacion previa evita que el equipo directivo pierda tiempo critico redactando comunicados bajo alta presion y baja disponibilidad cognitiva.',
             },
             {
-              title: 'Plan de recuperación y regreso a la normalidad',
-              desc: 'El objetivo del BCP Venezuela no es solo mantener operaciones mínimas durante la interrupción — es recuperar la plena capacidad operativa en el menor tiempo posible. El plan de recuperación debe definir los hitos de recuperación, los criterios para declarar el fin del incidente, los procesos de validación post-crisis y la documentación de lecciones aprendidas para mejorar el plan.',
+              title: 'Plan de recuperacion y regreso a la normalidad',
+              desc: 'El objetivo no es solo mantener operaciones minimas durante la interrupcion — es recuperar la plena capacidad operativa en el menor tiempo posible. El plan de recuperacion debe definir los hitos de recuperacion, los criterios para declarar el fin del incidente, los procesos de validacion post-crisis y la documentacion de lecciones aprendidas.',
             },
           ].map((c, i) => (
             <View key={i} style={styles.componentCard}>
-              <View style={styles.componentNum}>
-                <Text style={styles.componentNumText}>{i + 1}</Text>
-              </View>
-              <View style={{ flex: 1 }}>
+              <View style={styles.componentCardHeader}>
+                <View style={styles.componentNum}>
+                  <Text style={styles.componentNumText}>{i + 1}</Text>
+                </View>
                 <Text style={styles.componentTitle}>{c.title}</Text>
-                <Text style={styles.componentDesc}>{c.desc}</Text>
               </View>
+              <Text style={styles.componentDesc}>{c.desc}</Text>
             </View>
           ))}
           <Link src="https://cssg-global.com/consultoria/gestion-de-crisis-y-respuesta" style={[styles.backlink, { marginTop: 10 }]}>
-            Más información: cssg-global.com/consultoria/gestion-de-crisis-y-respuesta
+            Mas informacion: cssg-global.com/consultoria/gestion-de-crisis-y-respuesta
           </Link>
         </Sec>
       </View>
@@ -864,54 +1051,69 @@ export const WhitePaperBCP = () => (
       <ContentFooter />
 
       <View style={{ marginTop: 36 }}>
-        <Sec title="6. Plan de Continuidad ante Cortes Eléctricos: Soluciones Operativas">
+        <Sec title="6. Plan de Continuidad ante Cortes Electricos: Soluciones Operativas">
           <Text style={styles.body}>
-            El corte eléctrico es la interrupción más frecuente y de mayor impacto acumulado en las operaciones de empresas en Venezuela. A diferencia de otros escenarios de crisis que pueden ser infrecuentes, los cortes eléctricos prolongados son una realidad operacional cotidiana que exige soluciones permanentes, no solo planes de contingencia para casos excepcionales.
+            El corte electrico es la interrupcion mas frecuente y de mayor impacto acumulado en Venezuela. A diferencia de otros escenarios de crisis, los cortes electricos prolongados son una realidad operacional cotidiana que exige soluciones permanentes, no solo planes de contingencia para casos excepcionales.
           </Text>
           <Text style={styles.body}>
-            El plan de continuidad ante cortes eléctricos debe diseñarse en capas de respuesta según la duración del corte: (1) Cortes de 0-2 horas: operación con UPS y baterías de respaldo para sistemas críticos; (2) Cortes de 2-8 horas: activación de generador principal con capacidad de mantener operaciones esenciales; (3) Cortes de 8+ horas: activación del plan completo de operación degradada, con priorización estricta de consumo energético y posible traslado de operaciones a sitio alternativo.
+            El plan de continuidad ante cortes electricos debe disenarse en capas segun la duracion: (1) 0-2 horas: UPS y baterias de respaldo para sistemas criticos; (2) 2-8 horas: activacion de generador principal para operaciones esenciales; (3) 8+ horas: plan completo de operacion degradada con prioridad estricta de consumo y posible traslado a sitio alternativo.
           </Text>
 
+          {/* Electric continuity table — alta comparacion */}
           <View style={styles.tableHeader}>
-            <Text style={styles.tableHeaderCell}>Solución</Text>
+            <Text style={styles.tableHeaderCell}>Solucion</Text>
             <Text style={styles.tableHeaderCell}>Cobertura</Text>
             <Text style={styles.tableHeaderCell}>Consideraciones Venezuela</Text>
           </View>
           {[
-            { sol: 'UPS de larga duración',        cov: 'Servidores, comunicaciones',    cons: 'Batería requiere mantenimiento preventivo; autonomía real 4-6h' },
-            { sol: 'Generador diésel',              cov: 'Instalación completa',           cons: 'Requiere inventario de combustible; escasez diésel es riesgo secundario' },
-            { sol: 'Sistema solar híbrido',         cov: 'Carga base + sistemas críticos', cons: 'Alto costo inicial; eficiente en zonas con alta irradiación solar' },
-            { sol: 'Conectividad satelital backup', cov: 'Comunicaciones',                 cons: 'Independiente de la red terrestre; latencia mayor pero confiable' },
+            { sol: 'UPS de larga duracion',         cov: 'Servidores, comunicaciones',    cons: 'Bateria requiere mantenimiento preventivo; autonomia real 4-6 h' },
+            { sol: 'Generador diesel',               cov: 'Instalacion completa',           cons: 'Requiere inventario de combustible; escasez diesel es riesgo secundario' },
+            { sol: 'Sistema solar hibrido',          cov: 'Carga base + sistemas criticos', cons: 'Alto costo inicial; eficiente en zonas con alta irradiacion solar' },
+            { sol: 'Conectividad satelital backup',  cov: 'Comunicaciones',                 cons: 'Independiente de la red terrestre; latencia mayor pero confiable' },
             { sol: 'Protocolo manual de operaciones', cov: 'Procesos manualizables',       cons: 'Requiere entrenamiento previo; lento pero siempre disponible' },
           ].map((row, i) => (
-            <View key={i} style={styles.tableRow}>
-              <Text style={styles.tableCellBold}>{row.sol}</Text>
-              <Text style={styles.tableCell}>{row.cov}</Text>
-              <Text style={styles.tableCell}>{row.cons}</Text>
-            </View>
+            <TR key={i} idx={i} bold cells={[row.sol, row.cov, row.cons]} />
           ))}
+
           <Text style={styles.body} />
-          <View style={styles.callout}>
-            <Text style={styles.calloutText}>
-              Principio CSSG para cortes eléctricos: La resiliencia ante cortes no se mide por la capacidad del generador — se mide por la capacidad de la organización de seguir atendiendo a sus clientes críticos con la potencia que tiene disponible. La priorización de carga es más importante que la capacidad total.
-            </Text>
-          </View>
+          <LabeledCallout
+            label="Principio CSSG — Resiliencia Electrica"
+            variant="green"
+            text="La resiliencia ante cortes no se mide por la capacidad del generador — se mide por la capacidad de la organizacion de seguir atendiendo a sus clientes criticos con la potencia disponible. La priorizacion de carga es mas importante que la capacidad total instalada."
+          />
           <Link src="https://cssg-global.com/consultoria/tecnologia/centro-de-mando-cecom" style={styles.backlink}>
-            Ver también: cssg-global.com/consultoria/tecnologia/centro-de-mando-cecom
+            Ver tambien: cssg-global.com/consultoria/tecnologia/centro-de-mando-cecom
           </Link>
         </Sec>
 
         <View style={styles.sectionDivider} />
 
-        <Sec title="7. Gestión de Crisis y Comunicación bajo Presión">
+        <Sec title="7. Gestion de Crisis y Comunicacion bajo Presion">
           <Text style={styles.body}>
-            La gestión de crisis y comunicación bajo presión es la dimensión más subestimada del plan contingencia Venezuela. Las organizaciones que tienen buenas soluciones técnicas para las interrupciones operacionales frecuentemente fallan en la comunicación durante la crisis, generando incertidumbre en el personal, malestar en los clientes y daño reputacional que puede ser más costoso que la interrupción misma.
+            La gestion de crisis y comunicacion bajo presion es la dimension mas subestimada del plan de contingencia Venezuela. Las organizaciones que tienen buenas soluciones tecnicas para las interrupciones frecuentemente fallan en la comunicacion durante la crisis, generando incertidumbre en el personal, malestar en los clientes y dano reputacional que puede ser mas costoso que la interrupcion misma.
           </Text>
           <Text style={styles.body}>
-            El primer principio de la comunicación de crisis en el contexto venezolano es la velocidad sobre la perfección: es mejor comunicar rápidamente con información parcial pero verídica que esperar a tener la información completa mientras los rumores se propagan entre el personal y los grupos de WhatsApp. La primera comunicación debe al menos confirmar que la organización es consciente de la situación, que está gestionando activamente y que se informará con actualizaciones.
+            El primer principio de la comunicacion de crisis en el contexto venezolano es la velocidad sobre la perfeccion: es mejor comunicar rapidamente con informacion parcial pero veridica que esperar a tener la informacion completa mientras los rumores se propagan.
           </Text>
+
+          {/* Quick-reference framework */}
+          <View style={[styles.tableHeader, { marginTop: 4 }]}>
+            <Text style={styles.tableHeaderCell}>Audiencia</Text>
+            <Text style={styles.tableHeaderCell}>Mensaje prioritario</Text>
+            <Text style={styles.tableHeaderCell}>Canal recomendado</Text>
+          </View>
+          {[
+            { aud: 'Empleados',          msg: 'Instrucciones de que hacer y donde ir',      canal: 'WhatsApp grupal + llamada directa' },
+            { aud: 'Clientes criticos',  msg: 'Estado del servicio y tiempo estimado de resolucion', canal: 'Email + llamada clave de cuenta' },
+            { aud: 'Proveedores clave',  msg: 'Impacto en compromisos en curso',             canal: 'Email formal + telefono' },
+            { aud: 'Medios (si aplica)', msg: 'Declaracion unica validada por Gerencia',     canal: 'Portavoz oficial designado' },
+          ].map((row, i) => (
+            <TR key={i} idx={i} bold cells={[row.aud, row.msg, row.canal]} />
+          ))}
+
+          <Text style={styles.body} />
           <Text style={styles.body}>
-            Los mensajes pre-aprobados por escenario — un elemento central del BCP Venezuela funcional — permiten que el responsable de comunicaciones emita el primer mensaje en minutos, no en horas. Para cada escenario contemplado en el BCP, debe existir un mensaje inicial pre-aprobado para: empleados (que incluya instrucciones sobre qué hacer), clientes (que minimice el impacto percibido), proveedores clave (que gestione las expectativas sobre compromisos en curso), y si aplica, medios de comunicación.
+            Los mensajes pre-aprobados por escenario — un elemento central del BCP Venezuela funcional — permiten que el responsable de comunicaciones emita el primer mensaje en minutos, no en horas.
           </Text>
         </Sec>
       </View>
@@ -925,54 +1127,53 @@ export const WhitePaperBCP = () => (
       <ContentFooter />
 
       <View style={{ marginTop: 36 }}>
-        <Sec title="8. Cómo Activar, Probar y Mejorar su Plan de Continuidad">
+        <Sec title="8. Como Activar, Probar y Mejorar su Plan de Continuidad">
           <Text style={styles.body}>
-            Un BCP Venezuela que no ha sido probado es, en el mejor de los casos, una hipótesis documentada sobre cómo respondería la organización ante una interrupción. La diferencia entre un plan teóricamente sólido y un plan que funciona en la práctica solo se conoce a través de la prueba. Y la prueba más efectiva, la única que garantiza que el plan es ejecutable bajo presión real, es el simulacro.
+            Un BCP Venezuela que no ha sido probado es, en el mejor de los casos, una hipotesis documentada. La diferencia entre un plan teoricamente solido y un plan que funciona en la practica solo se conoce a traves del simulacro. La prueba mas efectiva es la unica que garantiza que el plan es ejecutable bajo presion real.
           </Text>
           <Text style={styles.body}>
-            CSSG recomienda dos modalidades de prueba para el BCP Venezuela: (1) El simulacro tabletop (escritorio): el equipo de gestión de continuidad se reúne en sala y trabaja un escenario de crisis simulado durante 3-4 horas, tomando decisiones como si la crisis fuera real pero sin activar recursos de operación. Este formato tiene bajo costo y riesgo, y es ideal para validar que el equipo entiende sus roles y que los procedimientos son claros. (2) El ejercicio funcional: una parte de la organización activa realmente los procedimientos de continuidad para un proceso específico — por ejemplo, operando desde el sitio alternativo durante un día — para verificar que las soluciones técnicas y logísticas funcionan como se diseñaron.
+            CSSG recomienda dos modalidades: (1) Simulacro tabletop: el equipo se reune en sala y trabaja un escenario simulado durante 3-4 horas, tomando decisiones como si la crisis fuera real sin activar recursos de operacion. Bajo costo y riesgo. (2) Ejercicio funcional: una parte de la organizacion activa realmente los procedimientos para un proceso especifico — por ejemplo, operando desde el sitio alternativo un dia completo.
           </Text>
+
           <View style={styles.tableHeader}>
             <Text style={styles.tableHeaderCell}>Actividad</Text>
             <Text style={styles.tableHeaderCell}>Frecuencia recomendada</Text>
             <Text style={styles.tableHeaderCell}>Objetivo</Text>
           </View>
           {[
-            { act: 'Revisión y actualización del BCP',     freq: 'Anual (mínimo)', obj: 'Asegurar que el plan refleja la realidad operacional actual' },
-            { act: 'Actualización árbol de comunicación',  freq: 'Semestral',      obj: 'Verificar que los datos de contacto son correctos' },
-            { act: 'Simulacro tabletop',                   freq: 'Semestral',      obj: 'Validar que el equipo conoce sus roles y procedimientos' },
-            { act: 'Ejercicio funcional',                  freq: 'Anual',          obj: 'Verificar que las soluciones técnicas funcionan' },
-            { act: 'Revisión de inventarios de contingencia', freq: 'Trimestral',  obj: 'Garantizar disponibilidad de recursos de emergencia' },
+            { act: 'Revision y actualizacion del BCP',    freq: 'Anual (minimo)',  obj: 'Asegurar que el plan refleja la realidad operacional actual' },
+            { act: 'Actualizacion arbol de comunicacion', freq: 'Semestral',       obj: 'Verificar que los datos de contacto son correctos' },
+            { act: 'Simulacro tabletop',                  freq: 'Semestral',       obj: 'Validar que el equipo conoce sus roles y procedimientos' },
+            { act: 'Ejercicio funcional',                 freq: 'Anual',           obj: 'Verificar que las soluciones tecnicas funcionan' },
+            { act: 'Revision inventarios de contingencia', freq: 'Trimestral',    obj: 'Garantizar disponibilidad de recursos de emergencia' },
           ].map((row, i) => (
-            <View key={i} style={styles.tableRow}>
-              <Text style={styles.tableCellBold}>{row.act}</Text>
-              <Text style={styles.tableCell}>{row.freq}</Text>
-              <Text style={styles.tableCell}>{row.obj}</Text>
-            </View>
+            <TR key={i} idx={i} bold cells={[row.act, row.freq, row.obj]} />
           ))}
+
           <Text style={styles.body} />
-          <View style={styles.goldCallout}>
-            <Text style={styles.goldCalloutText}>
-              Lección aprendida CSSG: El 70% de las mejoras identificadas en un BCP Venezuela provienen de la primera ejecución de un simulacro tabletop, no del proceso de diseño inicial. Esto refuerza que el simulacro no es opcional — es la herramienta de validación más efectiva y eficiente disponible.
-            </Text>
-          </View>
+          <LabeledCallout
+            label="Leccion Aprendida CSSG"
+            variant="gold"
+            text="El 70% de las mejoras identificadas en un BCP Venezuela provienen de la primera ejecucion de un simulacro tabletop, no del proceso de diseno inicial. El simulacro no es opcional — es la herramienta de validacion mas efectiva y eficiente disponible para una organizacion que opera en el entorno venezolano."
+          />
         </Sec>
 
         <View style={styles.sectionDivider} />
 
         <Sec title="9. Conclusiones: Resiliencia Operativa como Ventaja Competitiva">
           <Text style={styles.body}>
-            La resiliencia empresarial Venezuela no es simplemente una capacidad defensiva que protege a la organización de las disrupciones del entorno — es una ventaja competitiva real y cuantificable. Las organizaciones con BCP Venezuela funcional tienen una propuesta de valor superior hacia sus clientes: pueden garantizar niveles de servicio mínimos incluso durante interrupciones que afectan a sus competidores. En el contexto venezolano, donde las interrupciones son frecuentes, esta diferencia es percibida y valorada por los clientes.
+            La resiliencia empresarial Venezuela no es simplemente una capacidad defensiva — es una ventaja competitiva real y cuantificable. Las organizaciones con BCP Venezuela funcional pueden garantizar niveles de servicio minimos incluso durante interrupciones que afectan a sus competidores. En el contexto venezolano, donde las interrupciones son frecuentes, esta diferencia es percibida y valorada por los clientes.
           </Text>
           <Text style={styles.body}>
-            La implementación del plan contingencia Venezuela bajo ISO 22301:2019 también tiene valor en términos de gobernanza corporativa: demuestra a accionistas, financiadores e inversores que la organización gestiona con seriedad los riesgos del entorno operativo venezolano.
+            La implementacion del plan de contingencia Venezuela bajo ISO 22301:2019 tiene valor en terminos de gobernanza corporativa: demuestra a accionistas, financiadores e inversores que la organizacion gestiona con seriedad los riesgos del entorno operativo venezolano.
           </Text>
+
           {[
-            'Un BCP Venezuela no es un documento — es un sistema de gestión activo que requiere mantenimiento, actualización y práctica.',
-            'El BIA análisis impacto negocio es la base: sin él, no sabemos qué proteger primero.',
-            'Los cortes eléctricos exigen soluciones permanentes integradas en la operación, no solo planes de contingencia para emergencias.',
-            'El primer simulacro revela más sobre las brechas del plan que todo el proceso de diseño.',
-            'La resiliencia empresarial Venezuela es una ventaja competitiva frente a organizaciones que improvisan ante cada interrupción.',
+            'Un BCP Venezuela no es un documento — es un sistema de gestion activo que requiere mantenimiento, actualizacion y practica.',
+            'El BIA (Business Impact Analysis) es la base: sin el, no sabemos que proteger primero.',
+            'Los cortes electricos exigen soluciones permanentes integradas en la operacion, no solo planes de contingencia para emergencias.',
+            'El primer simulacro revela mas sobre las brechas del plan que todo el proceso de diseno.',
+            'La Resiliencia Operativa Venezuela es una ventaja competitiva frente a organizaciones que improvisan ante cada interrupcion.',
           ].map((item, i) => (
             <View key={i} style={styles.listItem}>
               <Text style={styles.listBullet}>›</Text>
@@ -981,20 +1182,20 @@ export const WhitePaperBCP = () => (
           ))}
 
           <Link src="https://cssg-global.com/consultoria#diagnostico" style={styles.backlink}>
-            Iniciar diagnóstico: cssg-global.com/consultoria#diagnostico
+            Iniciar diagnostico: cssg-global.com/consultoria#diagnostico
           </Link>
 
           <View style={styles.ctaBox}>
-            <Text style={styles.ctaLabel}>Próximo Paso</Text>
+            <Text style={styles.ctaLabel}>Proximo Paso — Contacte a CSSG</Text>
             <Text style={styles.ctaText}>
-              CSSG ofrece el diseño completo del BCP Venezuela bajo ISO 22301:2019, incluyendo BIA análisis impacto negocio, diseño de estrategias de continuidad adaptadas al entorno venezolano, documentación del plan y simulacro de validación. Contacte al equipo en {CORPORATE.email} o visite {CORPORATE.website} para iniciar el proceso.
+              CSSG disena el BCP Venezuela completo bajo ISO 22301:2019: BIA, estrategias de continuidad adaptadas al entorno venezolano, documentacion del plan y simulacro de validacion. Contacte al equipo en {CORPORATE.email} o visite {CORPORATE.website} para iniciar el proceso.
             </Text>
           </View>
 
           <View style={styles.sectionDivider} />
-          <Text style={{ fontSize: 8, color: C.light, lineHeight: 1.6, textAlign: 'center' }}>
-            Este white paper ha sido elaborado por {CORPORATE.legalName} con base en más de 17 años de operaciones en Venezuela y la implementación de BCPs en más de 80 organizaciones de sectores diversos.{'\n'}
-            © 2026 {CORPORATE.legalName} · RIF {CORPORATE.rif} · {CORPORATE.website} · Distribución libre con atribución.
+          <Text style={{ fontSize: 7.5, color: C.light, lineHeight: 1.6, textAlign: 'center' }}>
+            Este white paper ha sido elaborado por {CORPORATE.legalName} con base en mas de 17 anos de operaciones en Venezuela.{'\n'}
+            Cert. ISO 9001:2015 N° 580181  ·  RIF {CORPORATE.rif}  ·  {CORPORATE.website}  ·  Distribucion libre con atribucion.
           </Text>
         </Sec>
       </View>
