@@ -123,6 +123,18 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
     textTransform: 'uppercase',
   },
+  coverDotsRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 8,
+  },
+  coverDot: {
+    width: 24,
+    height: 1,
+    backgroundColor: C.gold,
+    marginHorizontal: 8,
+  },
   coverSpacer: {
     flex: 1,
   },
@@ -627,10 +639,12 @@ export const WhitePaperRiesgos = () => (
           Metodología ESRM · ISO 31000:2018 · FMEA Aplicado
         </Text>
 
-        {/* Location line */}
-        <Text style={styles.coverLocation}>
-          ════  Caracas, Venezuela  ·  2026  ════
-        </Text>
+        {/* Location line — no box-drawing chars (incompatibles con Helvetica) */}
+        <View style={styles.coverDotsRow}>
+          <View style={styles.coverDot} />
+          <Text style={styles.coverLocation}>Caracas, Venezuela  ·  2026</Text>
+          <View style={styles.coverDot} />
+        </View>
 
         <View style={styles.coverSpacer} />
 
