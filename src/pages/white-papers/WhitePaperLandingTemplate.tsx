@@ -1,10 +1,10 @@
-import { Suspense, useRef } from 'react';
+import { Suspense, useRef, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
-import { PDFDownloadLink } from '@react-pdf/renderer';
+import { BlobProvider } from '@react-pdf/renderer';
 import type { DocumentProps } from '@react-pdf/renderer';
 import type { ReactElement } from 'react';
-import { CheckCircle2, Download, ArrowRight, FileText, Award, Shield, BookOpen } from 'lucide-react';
+import { CheckCircle2, Download, ArrowRight, FileText, Award, Shield, BookOpen, CheckCircle } from 'lucide-react';
 
 export interface WPLandingProps {
   title: string;
@@ -48,33 +48,62 @@ const accentMap = {
   },
 };
 
+function AutoDownload({ url, filename }: { url: string; filename: string }) {
+  useEffect(() => {
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }, [url, filename]);
+  return null;
+}
+
 function DownloadButton({ pdfDocument, filename, accent }: { pdfDocument: ReactElement<DocumentProps>; filename: string; accent: typeof accentMap['sky'] }) {
+  const [generate, setGenerate] = useState(false);
+
+  if (!generate) {
+    return (
+      <motion.button
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        onClick={() => setGenerate(true)}
+        className={`inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-white font-black text-sm uppercase tracking-widest transition-all ${accent.button}`}
+      >
+        <Download className="w-5 h-5" />
+        Descargar White Paper Gratuito (PDF)
+      </motion.button>
+    );
+  }
+
   return (
-    <PDFDownloadLink document={pdfDocument as ReactElement<DocumentProps>} fileName={filename}>
-      {({ loading }) => (
-        <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          className={`inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-white font-black text-sm uppercase tracking-widest transition-all ${accent.button}`}
-        >
-          {loading ? (
-            <>
-              <motion.div
-                animate={{ rotate: 360 }}
-                transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-                className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full"
-              />
-              Generando PDF...
-            </>
-          ) : (
-            <>
-              <Download className="w-5 h-5" />
-              Descargar White Paper Gratuito (PDF)
-            </>
-          )}
-        </motion.button>
+    <BlobProvider document={pdfDocument}>
+      {({ url, loading }) => (
+        <>
+          <motion.button
+            className={`inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-white font-black text-sm uppercase tracking-widest transition-all ${accent.button} ${loading ? 'opacity-75 cursor-wait' : ''}`}
+          >
+            {loading ? (
+              <>
+                <motion.div
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                  className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full"
+                />
+                Generando PDF...
+              </>
+            ) : (
+              <>
+                <CheckCircle className="w-5 h-5" />
+                ¡Descargando PDF!
+              </>
+            )}
+          </motion.button>
+          {!loading && url && <AutoDownload url={url} filename={filename} />}
+        </>
       )}
-    </PDFDownloadLink>
+    </BlobProvider>
   );
 }
 
@@ -156,7 +185,7 @@ export default function WhitePaperLandingTemplate({
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <Suspense
               fallback={
-                <button className={`inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-white font-black text-sm uppercase tracking-widest ${accent.button} opacity-70`}>
+                <button type="button" className={`inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-white font-black text-sm uppercase tracking-widest ${accent.button} opacity-70`}>
                   <Download className="w-5 h-5" />
                   Preparando PDF...
                 </button>
@@ -259,7 +288,7 @@ export default function WhitePaperLandingTemplate({
             <div className="flex justify-center mb-6">
               <Suspense
                 fallback={
-                  <button className={`inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-white font-black text-sm uppercase tracking-widest ${accent.button} opacity-70`}>
+                  <button type="button" className={`inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-white font-black text-sm uppercase tracking-widest ${accent.button} opacity-70`}>
                     <Download className="w-5 h-5" />
                     Preparando PDF...
                   </button>
