@@ -1,4 +1,4 @@
-import { Suspense, useRef, useState, useEffect } from 'react';
+import { Suspense, useRef, useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import { BlobProvider } from '@react-pdf/renderer';
@@ -78,6 +78,11 @@ function RetryButton({ onClick }: { onClick: () => void }) {
 function DownloadButton({ pdfDocument, filename, accent }: { pdfDocument: ReactElement<DocumentProps>; filename: string; accent: typeof accentMap['sky'] }) {
   const [generate, setGenerate] = useState(false);
   const [timedOut, setTimedOut] = useState(false);
+  // Stable reference — BlobProvider cancels + restarts whenever `document` changes.
+  // Without this, every parent re-render (animations, etc.) spawns a new WebWorker
+  // and cancels the previous one, so the PDF never finishes generating.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const stableDoc = useMemo(() => pdfDocument, []);
 
   useEffect(() => {
     if (!generate) { setTimedOut(false); return; }
@@ -106,7 +111,7 @@ function DownloadButton({ pdfDocument, filename, accent }: { pdfDocument: ReactE
   }
 
   return (
-    <BlobProvider document={pdfDocument}>
+    <BlobProvider document={stableDoc}>
       {({ url, loading, error }) => {
         if (error || (!loading && !url)) {
           return <RetryButton onClick={retry} />;
