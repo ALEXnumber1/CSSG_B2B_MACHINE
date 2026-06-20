@@ -740,6 +740,11 @@ export const WhitePaperRiesgos = () => (
           <Text style={styles.body}>
             La consultoría seguridad Caracas bajo metodología ESRM requiere la participación activa de los propietarios del negocio en el proceso de evaluación: son ellos quienes conocen el valor real de cada activo y quienes pueden establecer el umbral de tolerancia al riesgo.
           </Text>
+          <View style={styles.goldCallout}>
+            <Text style={styles.goldCalloutText}>
+              Principio clave del ciclo ESRM: El proceso concluye formalmente cuando los propietarios del negocio — la Alta Dirección, no el departamento de seguridad — aceptan de manera explícita el riesgo residual que permanece tras implementar los controles. Esta responsabilidad no puede delegarse al proveedor de seguridad: es la gerencia quien decide qué nivel de riesgo es tolerable para la organización en función de sus objetivos estratégicos.
+            </Text>
+          </View>
           <Link src="https://cssg-global.com/consultoria/diagnostico-madurez-seguridad" style={styles.backlink}>
             Más información: cssg-global.com/consultoria/diagnostico-madurez-seguridad
           </Link>
@@ -751,6 +756,11 @@ export const WhitePaperRiesgos = () => (
           <Text style={styles.body}>
             El estándar ISO 31000:2018 proporciona los principios, el marco de referencia y el proceso para la gestión del riesgo en cualquier tipo de organización y cualquier contexto. Su versión 2018 introduce mejoras significativas respecto a su predecesora: mayor énfasis en el liderazgo y el compromiso directivo, integración más estrecha con los objetivos organizacionales, y un enfoque en la creación de valor más que en la mera eliminación de riesgos.
           </Text>
+          <View style={styles.callout}>
+            <Text style={styles.calloutText}>
+              Concepto fundamental — Apetito de Riesgo: Antes de evaluar ninguna amenaza, ISO 31000:2018 exige que la Alta Dirección defina su apetito de riesgo: el nivel máximo de exposición que la organización está dispuesta a asumir conscientemente en la búsqueda de sus objetivos estratégicos. Este umbral directivo es el punto de referencia contra el cual se clasifica cada riesgo identificado y determina cuáles requieren mitigación activa y cuáles son aceptables dentro de la operación normal.
+            </Text>
+          </View>
           <Text style={styles.body}>
             En la ISO 31000 Venezuela, el proceso de gestión del riesgo se divide en ocho actividades interconectadas: comunicación y consulta, alcance/contexto/criterios, evaluación del riesgo (que incluye identificación, análisis y valoración), tratamiento del riesgo, monitoreo y revisión, registro e informe. La ISO 31000:2018 es intencionalmente no prescriptiva — no especifica cómo se miden los riesgos — lo que permite complementarla con herramientas cuantitativas como el FMEA.
           </Text>
@@ -774,12 +784,15 @@ export const WhitePaperRiesgos = () => (
       <View style={{ marginTop: 36 }}>
         <Sec title="5. Análisis FMEA en Seguridad: Cómo Calcular el Índice de Riesgo">
           <Text style={styles.body}>
-            El Failure Mode and Effects Analysis (FMEA) es una metodología originalmente desarrollada en ingeniería de procesos para identificar modos de falla potenciales y sus efectos sobre el sistema. Su adaptación al FMEA seguridad corporativa convierte cada vulnerabilidad en un "modo de falla" que puede ser cuantificado con dos variables clave: la probabilidad de ocurrencia y el impacto potencial sobre los activos críticos.
+            El Failure Mode and Effects Analysis (FMEA) es una metodología originalmente desarrollada en ingeniería de procesos para identificar modos de falla potenciales y sus efectos sobre el sistema. Su adaptación al FMEA seguridad corporativa convierte cada vulnerabilidad en un "modo de falla" cuantificable mediante tres variables: la probabilidad de ocurrencia, el impacto potencial sobre los activos críticos, y la capacidad de detección — la primera línea de defensa en operaciones de protección no armada.
           </Text>
           <Text style={styles.body}>
-            La fórmula del índice de seguridad corporativa Venezuela utilizada por CSSG es:{'\n'}
-            <Text style={styles.highlight}>Índice de Riesgo = (Probabilidad × 0.4) + (Impacto × 0.6)</Text>
-            {'\n'}Esta ponderación refleja una decisión metodológica deliberada: en seguridad corporativa, el impacto potencial de un incidente es más relevante que su probabilidad aislada.
+            La fórmula del Número de Prioridad de Riesgo (RPN) utilizada por CSSG es:{'\n'}
+            <Text style={styles.highlight}>Índice de Riesgo (RPN) = Probabilidad × Impacto × Detección</Text>
+            {'\n'}La variable Detección es crítica en contextos de protección no armada: cuando no existe respuesta armada inmediata, identificar la amenaza antes de que se materialice es el control más valioso disponible. Un sistema CCTV activo, una ronda de patrullaje estructurada o un protocolo de verificación de visitantes reducen directamente el índice de Detección y, con ello, el RPN total.
+          </Text>
+          <Text style={styles.body}>
+            Las tres variables se evalúan en escala 1-10: Probabilidad (1=improbable, 10=certeza); Impacto (1=daño mínimo, 10=catastrófico); Detección (1=identificación inmediata garantizada, 10=amenaza indetectable). Un corte eléctrico que deja el CCTV sin respaldo eleva la Detección de 2 a 9 para amenazas perimetrales — multiplicando el RPN por 4.5 sin que ningún otro factor haya cambiado.
           </Text>
 
           <View style={styles.tableHeader}>
@@ -834,6 +847,7 @@ export const WhitePaperRiesgos = () => (
               num: '01',
               title: 'Dependencia tecnológica sin redundancia ante cortes eléctricos',
               desc: 'Las empresas venezolanas que dependen de sistemas CCTV, control de accesos biométrico o plataformas de monitoreo sin respaldo energético adecuado quedan con cobertura cero durante los cortes prolongados — que en Venezuela promedian 4-8 horas diarias en zonas industriales. La vulnerabilidad no está en el sistema tecnológico per se, sino en la ausencia de protocolos de operación degradada que definan cómo opera la seguridad cuando la tecnología no está disponible.',
+              caseStudy: 'CASO DE EJEMPLO 1: Un centro corporativo en Caracas pierde su sistema CCTV biométrico tras un corte eléctrico de 6 horas. El equipo CSSG activa el protocolo de degradación tecnológica: despliega personal adicional en los puntos de control, implementa bitácoras de validación de doble factor (identificación visual + lista de acceso autorizado previamente impresa), y documenta todos los ingresos en formato físico con firma de supervisor. La operación de seguridad se mantiene sin depender de tecnología ni de respuesta armada, preservando la continuidad operacional hasta el restablecimiento del suministro. El índice de Detección sube de 2 a 5 — no de 2 a 9 — gracias al protocolo activado.',
             },
             {
               num: '02',
@@ -862,6 +876,14 @@ export const WhitePaperRiesgos = () => (
                 <Text style={{ fontSize: 11, fontWeight: 700, color: C.dark, flex: 1, lineHeight: 1.3 }}>{v.title}</Text>
               </View>
               <Text style={styles.body}>{v.desc}</Text>
+              {v.caseStudy ? (
+                <View style={[styles.callout, { marginTop: 4 }]}>
+                  <Text style={[styles.calloutText, { fontWeight: 700, marginBottom: 3 }]}>
+                    CASO DE ESTUDIO APLICADO
+                  </Text>
+                  <Text style={styles.calloutText}>{v.caseStudy}</Text>
+                </View>
+              ) : null}
             </View>
           ))}
 
@@ -887,9 +909,9 @@ export const WhitePaperRiesgos = () => (
 
           {[
             { num: 1, name: 'Inicial',    color: '#EF4444', desc: 'La seguridad se gestiona de forma ad hoc y reactiva. No existen políticas formales, los controles dependen de personas individuales, y la organización solo actúa ante incidentes ya ocurridos. Es el nivel de partida más común en PYMES venezolanas sin gestión formal de riesgos.' },
-            { num: 2, name: 'Reactivo',   color: '#F97316', desc: 'Existen algunos procedimientos documentados, pero no son aplicados de forma consistente. La organización tiene controles básicos (vigilantes, cámaras, acceso con guardia) pero sin integración metodológica. Las decisiones de seguridad se toman caso por caso, sin referencia a un marco de riesgo.' },
-            { num: 3, name: 'Definido',   color: C.gold,    desc: 'La organización cuenta con políticas de seguridad formalizadas, roles definidos y un proceso básico de gestión de incidentes. El índice de riesgo está calculado, aunque puede no estar actualizado. Este nivel es el mínimo aceptable para organizaciones con responsabilidades hacia terceros.' },
-            { num: 4, name: 'Gestionado', color: '#3B82F6', desc: 'La seguridad se mide con indicadores cuantificados. Existe un ciclo de inteligencia activo, el personal recibe formación continua, y los controles son evaluados periódicamente contra el contexto de amenaza actualizado. Las decisiones de inversión en seguridad se justifican con datos.' },
+            { num: 2, name: 'Reactivo',   color: '#F97316', desc: 'Existen algunos procedimientos documentados, pero no son aplicados de forma consistente. La organización tiene controles básicos (vigilantes, cámaras, acceso con guardia) pero sin integración metodológica. Las decisiones de seguridad se toman caso por caso, sin referencia a un marco de riesgo. La rotación de personal es alta y el conocimiento de los protocolos es desigual entre el equipo.' },
+            { num: 3, name: 'Definido',   color: C.gold,    desc: 'La organización cuenta con políticas de seguridad formalizadas, roles definidos y un proceso básico de gestión de incidentes. El índice de riesgo está calculado y documentado, aunque puede no estar actualizado. Los controles son consistentes y el personal conoce sus responsabilidades. Este nivel es el mínimo aceptable para organizaciones con responsabilidades hacia terceros o con presencia de activos diplomáticos.' },
+            { num: 4, name: 'Gestionado', color: '#3B82F6', desc: 'La seguridad se mide con indicadores cuantificados y actualizados. Existe un ciclo de inteligencia activo, el personal recibe formación continua en normativas ISO y protocolos operacionales, y los controles son evaluados periódicamente contra el contexto de amenaza actualizado. La rotación de personal es baja gracias a programas de bienestar y compensación competitiva. Las decisiones de inversión en seguridad se justifican con datos y el índice de detección temprana de amenazas mejora sostenidamente.' },
             { num: 5, name: 'Optimizado', color: '#10B981', desc: 'La seguridad está integrada como función estratégica del negocio bajo el modelo ESRM. Existe mejora continua documentada, benchmarking sectorial, y la gestión de riesgos de seguridad forma parte de la planificación estratégica de la organización. Es el nivel de referencia para embajadas del G7 y multinacionales de primer nivel.' },
           ].map((level, i) => (
             <View key={i} style={styles.maturityRow}>
@@ -904,6 +926,16 @@ export const WhitePaperRiesgos = () => (
               </View>
             </View>
           ))}
+
+          <View style={[styles.callout, { marginTop: 8, marginBottom: 8 }]}>
+            <Text style={[styles.calloutText, { fontWeight: 700, marginBottom: 3 }]}>
+              CASO DE ESTUDIO APLICADO — Nivel 4 vs. Nivel 2 (Rotación de Personal)
+            </Text>
+            <Text style={styles.calloutText}>
+              Empresa A (Nivel 2 — Reactivo): Rotación anual del 70% en su equipo de seguridad. El personal nuevo no conoce los protocolos específicos del edificio, los tiempos de respuesta a alertas superan los 8 minutos y la tasa de incidentes no detectados a tiempo es del 40%. La empresa invierte en guardias pero no en su formación continua ni en su bienestar.{'\n'}
+              {'\n'}Empresa B (Nivel 4 — Gestionado): Misma industria, mismo barrio. Rotación anual del 12%. El equipo de protección recibe capacitación trimestral en normativas ISO, protocolos de acceso y análisis de comportamiento. El índice de detección temprana de amenazas perimetrales es del 91%. El diferencial no es tecnológico — es la inversión sostenida en la capacidad humana del equipo de seguridad.
+            </Text>
+          </View>
 
           <View style={styles.callout}>
             <Text style={styles.calloutText}>
