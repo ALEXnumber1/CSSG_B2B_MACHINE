@@ -461,17 +461,18 @@ const styles = StyleSheet.create({
   },
   maturityCard: {
     flexDirection: 'column',
-    marginBottom: 7,
-    paddingVertical: 8,
-    paddingHorizontal: 10,
+    marginBottom: 10,
+    paddingTop: 8,
+    paddingBottom: 10,
+    paddingLeft: 10,
+    paddingRight: 10,
     borderLeftWidth: 3,
     backgroundColor: '#F8FAFC',
   },
   maturityCardHeader: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 7,
-    marginBottom: 4,
+    marginBottom: 6,
   },
   maturityLevel: {
     width: 20,
@@ -479,7 +480,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    flexShrink: 0,
+    marginRight: 8,
   },
   maturityNum: {
     fontSize: 8,
@@ -495,7 +496,7 @@ const styles = StyleSheet.create({
     fontSize: 8,
     color: C.body,
     lineHeight: 1.55,
-    paddingLeft: 27,
+    marginLeft: 28,
   },
   sectionDivider: {
     height: 0.5,
