@@ -915,13 +915,13 @@ export const WhitePaperDueDiligence = () => (
               desc: 'Una persona o empresa con multiples demandas por incumplimiento de contratos, deudas impagas o arbitrajes perdidos en su historial revela un Riesgo Financiero inaceptable, aun cuando no exista ningun delito penal. Multiples litigios mercantiles son el indicador mas fiable de una conducta contractual problematica que se repetira en la relacion propuesta. Este patron, documentado en el informe Fact-Based, permite al area legal del cliente cuantificar la exposicion al riesgo financiero.',
             },
           ].map((flag, i) => (
-            <View key={i} style={styles.redFlagItem}>
-              <View style={{ paddingTop: 4, width: 20 }}>
-                <View style={styles.redFlagBullet} />
+            <View key={i} wrap={false} style={{ marginBottom: 8, borderLeftWidth: 3, borderLeftColor: '#EF4444' }}>
+              <View style={{ backgroundColor: '#FEF2F2', paddingHorizontal: 10, paddingVertical: 5, flexDirection: 'row', alignItems: 'center' }}>
+                <View style={{ width: 7, height: 7, borderRadius: 4, backgroundColor: '#EF4444', marginRight: 7 }} />
+                <Text style={{ fontSize: 9, fontWeight: 700, color: '#991B1B' }}>{flag.title}</Text>
               </View>
-              <View style={{ flex: 1 }}>
-                <Text style={styles.redFlagTitle}>{flag.title}</Text>
-                <Text style={styles.redFlagDesc}>{flag.desc}</Text>
+              <View style={{ backgroundColor: '#FFFAFA', paddingHorizontal: 10, paddingVertical: 7 }}>
+                <Text style={{ fontSize: 8, color: '#334155', lineHeight: 1.6 }}>{flag.desc}</Text>
               </View>
             </View>
           ))}
