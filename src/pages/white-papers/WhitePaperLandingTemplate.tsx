@@ -48,28 +48,23 @@ const accentMap = {
   },
 };
 
-type BtnState = 'idle' | 'generating' | 'done' | 'error';
+type BtnState = 'idle' | 'generating' | 'error';
 
 function DownloadButton({ pdfDocument, filename, accent }: { pdfDocument: ReactElement<DocumentProps>; filename: string; accent: typeof accentMap['sky'] }) {
   const [state, setState] = useState<BtnState>('idle');
+  const [blobUrl, setBlobUrl] = useState<string | null>(null);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const stableDoc = useMemo(() => pdfDocument, []);
 
   const handleGenerate = async () => {
     if (state === 'generating') return;
     setState('generating');
+    setBlobUrl(null);
     try {
       const blob = await pdf(stableDoc).toBlob();
       const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-      setState('done');
-      setTimeout(() => setState('idle'), 3000);
+      setBlobUrl(url);
+      setState('idle');
     } catch {
       setState('error');
     }
@@ -90,6 +85,21 @@ function DownloadButton({ pdfDocument, filename, accent }: { pdfDocument: ReactE
     );
   }
 
+  if (blobUrl) {
+    return (
+      <motion.a
+        href={blobUrl}
+        download={filename}
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        className={`inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-white font-black text-sm uppercase tracking-widest transition-all ${accent.button}`}
+      >
+        <CheckCircle className="w-5 h-5" />
+        ¡PDF listo! — Clic para descargar
+      </motion.a>
+    );
+  }
+
   return (
     <motion.button
       whileHover={state === 'idle' ? { scale: 1.02 } : {}}
@@ -105,11 +115,6 @@ function DownloadButton({ pdfDocument, filename, accent }: { pdfDocument: ReactE
             className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full"
           />
           Generando PDF...
-        </>
-      ) : state === 'done' ? (
-        <>
-          <CheckCircle className="w-5 h-5" />
-          ¡Descargando PDF!
         </>
       ) : (
         <>
