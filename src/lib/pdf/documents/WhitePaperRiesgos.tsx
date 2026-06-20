@@ -459,13 +459,19 @@ const styles = StyleSheet.create({
     flex: 1,
     lineHeight: 1.5,
   },
-  maturityRow: {
+  maturityCard: {
+    flexDirection: 'column',
+    marginBottom: 7,
+    paddingVertical: 8,
+    paddingHorizontal: 10,
+    borderLeftWidth: 3,
+    backgroundColor: '#F8FAFC',
+  },
+  maturityCardHeader: {
     flexDirection: 'row',
-    gap: 8,
-    marginBottom: 6,
-    paddingVertical: 6,
-    borderBottomWidth: 1,
-    borderBottomColor: C.border,
+    alignItems: 'center',
+    gap: 7,
+    marginBottom: 4,
   },
   maturityLevel: {
     width: 20,
@@ -473,6 +479,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
+    flexShrink: 0,
   },
   maturityNum: {
     fontSize: 8,
@@ -480,16 +487,15 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
   },
   maturityTitle: {
-    fontSize: 9,
+    fontSize: 10,
     fontWeight: 700,
     color: C.dark,
-    marginBottom: 2,
   },
   maturityDesc: {
     fontSize: 8,
     color: C.body,
-    lineHeight: 1.5,
-    flex: 1,
+    lineHeight: 1.55,
+    paddingLeft: 27,
   },
   sectionDivider: {
     height: 0.5,
@@ -914,16 +920,14 @@ export const WhitePaperRiesgos = () => (
             { num: 4, name: 'Gestionado', color: '#3B82F6', desc: 'La seguridad se mide con indicadores cuantificados y actualizados. Existe un ciclo de inteligencia activo, el personal recibe formación continua en normativas ISO y protocolos operacionales, y los controles son evaluados periódicamente contra el contexto de amenaza actualizado. La rotación de personal es baja gracias a programas de bienestar y compensación competitiva. Las decisiones de inversión en seguridad se justifican con datos y el índice de detección temprana de amenazas mejora sostenidamente.' },
             { num: 5, name: 'Optimizado', color: '#10B981', desc: 'La seguridad está integrada como función estratégica del negocio bajo el modelo ESRM. Existe mejora continua documentada, benchmarking sectorial, y la gestión de riesgos de seguridad forma parte de la planificación estratégica de la organización. Es el nivel de referencia para embajadas del G7 y multinacionales de primer nivel.' },
           ].map((level, i) => (
-            <View key={i} style={styles.maturityRow}>
-              <View style={{ alignItems: 'center', justifyContent: 'flex-start', width: 32, paddingTop: 2 }}>
+            <View key={i} style={[styles.maturityCard, { borderLeftColor: level.color }]}>
+              <View style={styles.maturityCardHeader}>
                 <View style={[styles.maturityLevel, { backgroundColor: level.color }]}>
                   <Text style={styles.maturityNum}>{level.num}</Text>
                 </View>
+                <Text style={[styles.maturityTitle, { color: level.color }]}>{level.name}</Text>
               </View>
-              <View style={{ flex: 1 }}>
-                <Text style={styles.maturityTitle}>{level.name}</Text>
-                <Text style={styles.maturityDesc}>{level.desc}</Text>
-              </View>
+              <Text style={styles.maturityDesc}>{level.desc}</Text>
             </View>
           ))}
 
