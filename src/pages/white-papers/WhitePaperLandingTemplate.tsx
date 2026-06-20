@@ -4,7 +4,7 @@ import { motion, useInView } from 'framer-motion';
 import { BlobProvider } from '@react-pdf/renderer';
 import type { DocumentProps } from '@react-pdf/renderer';
 import type { ReactElement } from 'react';
-import { CheckCircle2, Download, ArrowRight, FileText, Award, Shield, BookOpen, CheckCircle } from 'lucide-react';
+import { CheckCircle2, Download, ArrowRight, FileText, Award, Shield, BookOpen, CheckCircle, RefreshCw, AlertCircle } from 'lucide-react';
 
 export interface WPLandingProps {
   title: string;
@@ -79,30 +79,47 @@ function DownloadButton({ pdfDocument, filename, accent }: { pdfDocument: ReactE
 
   return (
     <BlobProvider document={pdfDocument}>
-      {({ url, loading }) => (
-        <>
-          <motion.button
-            className={`inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-white font-black text-sm uppercase tracking-widest transition-all ${accent.button} ${loading ? 'opacity-75 cursor-wait' : ''}`}
-          >
-            {loading ? (
-              <>
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-                  className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full"
-                />
-                Generando PDF...
-              </>
-            ) : (
-              <>
-                <CheckCircle className="w-5 h-5" />
-                ¡Descargando PDF!
-              </>
-            )}
-          </motion.button>
-          {!loading && url && <AutoDownload url={url} filename={filename} />}
-        </>
-      )}
+      {({ url, loading, error }) => {
+        if (error) {
+          return (
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => setGenerate(false)}
+              className={`inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-white font-black text-sm uppercase tracking-widest transition-all bg-red-600 hover:bg-red-500 shadow-[0_0_30px_rgba(220,38,38,0.3)]`}
+            >
+              <AlertCircle className="w-5 h-5" />
+              Error — Reintentar
+              <RefreshCw className="w-4 h-4 opacity-70" />
+            </motion.button>
+          );
+        }
+
+        return (
+          <>
+            <motion.button
+              className={`inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-white font-black text-sm uppercase tracking-widest transition-all ${accent.button} ${loading ? 'opacity-75 cursor-wait' : ''}`}
+            >
+              {loading ? (
+                <>
+                  <motion.div
+                    animate={{ rotate: 360 }}
+                    transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                    className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full"
+                  />
+                  Generando PDF...
+                </>
+              ) : (
+                <>
+                  <CheckCircle className="w-5 h-5" />
+                  ¡Descargando PDF!
+                </>
+              )}
+            </motion.button>
+            {!loading && url && <AutoDownload url={url} filename={filename} />}
+          </>
+        );
+      }}
     </BlobProvider>
   );
 }
