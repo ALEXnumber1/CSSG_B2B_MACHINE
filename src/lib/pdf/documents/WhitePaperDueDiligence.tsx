@@ -1,5 +1,5 @@
 import { Document, Page, View, Text, Image, Link, StyleSheet } from '@react-pdf/renderer';
-import { CORPORATE } from '../theme'; // triggers Inter font registration (side-effect)
+import { CORPORATE } from '../theme';
 
 export const WP_FILENAME_DD = 'CSSG-Due-Diligence-Corporativa-Venezuela-2026.pdf';
 
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 0,
     paddingTop: 0,
     paddingBottom: 0,
-    fontFamily: 'Inter',
+    fontFamily: 'Helvetica',
   },
   coverTopBar: {
     height: 5,
@@ -146,7 +146,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 0,
     paddingTop: 0,
     paddingBottom: 0,
-    fontFamily: 'Inter',
+    fontFamily: 'Helvetica',
   },
   indexTopBar: {
     height: 5,
@@ -243,7 +243,7 @@ const styles = StyleSheet.create({
 
   // ── Content pages ────────────────────────────────────────────────────────
   contentPage: {
-    fontFamily: 'Inter',
+    fontFamily: 'Helvetica',
     fontSize: 10.5,
     color: C.body,
     backgroundColor: C.bg,
