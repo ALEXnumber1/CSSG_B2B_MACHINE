@@ -935,14 +935,18 @@ export const WhitePaperRiesgos = () => (
             { num: 4, name: 'Gestionado', color: '#3B82F6', desc: 'La seguridad se mide con indicadores cuantificados y actualizados. Existe un ciclo de inteligencia activo, el personal recibe formación continua en normativas ISO y protocolos operacionales, y los controles son evaluados periódicamente contra el contexto de amenaza actualizado. La rotación de personal es baja gracias a programas de bienestar y compensación competitiva. Las decisiones de inversión en seguridad se justifican con datos y el índice de detección temprana de amenazas mejora sostenidamente.' },
             { num: 5, name: 'Optimizado', color: '#10B981', desc: 'La seguridad está integrada como función estratégica del negocio bajo el modelo ESRM. Existe mejora continua documentada, benchmarking sectorial, y la gestión de riesgos de seguridad forma parte de la planificación estratégica de la organización. Es el nivel de referencia para embajadas del G7 y multinacionales de primer nivel.' },
           ].map((level, i) => (
-            <View key={i} style={[styles.maturityCard, { borderLeftColor: level.color }]}>
-              <View style={styles.maturityCardHeader}>
-                <View style={[styles.maturityLevel, { backgroundColor: level.color }]}>
-                  <Text style={styles.maturityNum}>{level.num}</Text>
+            <View key={i} wrap={false} style={{ marginBottom: 8 }}>
+              {/* Header bar con color sólido */}
+              <View style={{ backgroundColor: level.color, flexDirection: 'row', alignItems: 'center', paddingHorizontal: 10, paddingVertical: 5 }}>
+                <View style={{ width: 18, height: 18, borderRadius: 9, backgroundColor: 'rgba(0,0,0,0.2)', alignItems: 'center', justifyContent: 'center', marginRight: 8 }}>
+                  <Text style={{ fontSize: 8, fontWeight: 900, color: '#FFFFFF' }}>{level.num}</Text>
                 </View>
-                <Text style={[styles.maturityTitle, { color: level.color }]}>{level.name}</Text>
+                <Text style={{ fontSize: 10, fontWeight: 900, color: '#FFFFFF' }}>NIVEL {level.num} — {level.name}</Text>
               </View>
-              <Text style={styles.maturityDesc}>{level.desc}</Text>
+              {/* Descripción */}
+              <View style={{ backgroundColor: '#F8FAFC', paddingHorizontal: 10, paddingVertical: 8, borderLeftWidth: 3, borderLeftColor: level.color }}>
+                <Text style={{ fontSize: 8, color: '#334155', lineHeight: 1.6 }}>{level.desc}</Text>
+              </View>
             </View>
           ))}
 
