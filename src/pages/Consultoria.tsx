@@ -1,9 +1,9 @@
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useState, useRef } from 'react';
 import {
   Search, Globe, Brain, RefreshCw, Scale,
-  Server, BookOpen, Award, ArrowRight, ChevronRight,
+  Server, BookOpen, Award, ArrowRight, ChevronRight, Plus,
   ShieldCheck, Target, Users, CheckCircle2, Zap
 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
@@ -104,6 +104,7 @@ export default function Consultoria() {
   const [correo, setCorreo] = useState('');
   const [empresa, setEmpresa] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [selectedFamily, setSelectedFamily] = useState(0);
   const heroRef = useRef(null);
 
   const stats = t('hub.stats', { returnObjects: true }) as Array<{ value: string; unit: string; label: string }>;
@@ -283,38 +284,24 @@ export default function Consultoria() {
       {/* ─── MAIN CONTENT ──────────────────────────────────── */}
       <div className="container mx-auto px-4 md:px-6 max-w-7xl relative pb-24">
 
-        {/* ─── 5 SERVICE FAMILIES — EDITORIAL STRIPS ─── */}
+        {/* ─── 5 SERVICE FAMILIES — MINIMAL ACCORDION ─── */}
         <section className="py-24" id="familias">
 
-          {/* Section header + pill nav */}
-          <FadeIn className="mb-16">
-            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6">
-              <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded border border-sky-500/20 bg-sky-500/5 mb-4">
-                  <Target className="w-3 h-3 text-sky-400" />
-                  <span className="text-[10px] font-black text-sky-400 uppercase tracking-widest">{t('hub.families_label')}</span>
-                </div>
-                <h2 className="text-4xl md:text-5xl font-black text-white tracking-tight leading-none">{t('hub.families_title')}</h2>
+          {/* Section header */}
+          <FadeIn className="mb-14">
+            <div className="flex flex-col gap-3">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded border border-sky-500/20 bg-sky-500/5 w-fit">
+                <Target className="w-3 h-3 text-sky-400" />
+                <span className="text-[10px] font-black text-sky-400 uppercase tracking-widest">{t('hub.families_label')}</span>
               </div>
-
-              {/* Anchor-link pill navigator */}
-              <div className="flex gap-2 overflow-x-auto pb-1 shrink-0" style={{ scrollbarWidth: 'none' }}>
-                {families.map((f, i) => {
-                  const ac = colorAccent[familyColors[i]];
-                  return (
-                    <a key={i} href={`#f${i}`}
-                      className={`shrink-0 flex items-center gap-1.5 px-3 py-1.5 rounded-full border ${ac.border} ${ac.bg} backdrop-blur-md text-[9px] font-black uppercase tracking-widest ${ac.text} opacity-60 hover:opacity-100 transition-all`}>
-                      <span className="opacity-70">0{i + 1}</span>
-                      <span>{f.title.split(' ')[0]}</span>
-                    </a>
-                  );
-                })}
-              </div>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tighter leading-none">
+                {t('hub.families_title')}
+              </h2>
             </div>
           </FadeIn>
 
-          {/* Editorial strips */}
-          <div className="space-y-5">
+          {/* Accordion */}
+          <div className="border-t border-white/[0.07]">
             {families.map((f, i) => {
               const Icon = familyIcons[i];
               const color = familyColors[i];
@@ -322,88 +309,106 @@ export default function Consultoria() {
               const img = familyImages[i];
               const link = familyLinks[i];
               const serviceHrefs = familyServiceHrefs[i];
-              const flip = i % 2 === 1;
+              const isOpen = selectedFamily === i;
 
               return (
-                <div key={i} id={`f${i}`}>
-                  <FadeIn delay={0.04}>
-                    <div className={`group relative rounded-3xl overflow-hidden border ${ac.border} hover:shadow-2xl ${ac.glow} transition-all duration-500`}>
+                <FadeIn key={i} delay={i * 0.05}>
+                  <div id={`f${i}`} className="border-b border-white/[0.07]">
 
-                      {/* Accent side bar */}
-                      <div className="absolute top-0 bottom-0 left-0 w-[3px] z-10 transition-all duration-500 group-hover:w-[5px]"
-                        style={{ background: accentHex[color] }} />
+                    {/* ── Header row ── */}
+                    <button
+                      type="button"
+                      onClick={() => setSelectedFamily(isOpen ? -1 : i)}
+                      className="w-full text-left py-6 md:py-7 flex items-center gap-5 md:gap-8 group"
+                    >
+                      {/* Counter */}
+                      <span className={`text-[11px] font-black tabular-nums shrink-0 transition-colors ${isOpen ? ac.text : 'text-gray-700 group-hover:text-gray-500'}`}>
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
 
-                      <div className={`flex flex-col md:flex-row ${flip ? 'md:flex-row-reverse' : ''}`} style={{ minHeight: '340px' }}>
+                      {/* Title */}
+                      <span className={`text-lg md:text-2xl lg:text-[1.75rem] font-black tracking-tight transition-colors ${isOpen ? 'text-white' : 'text-gray-400 group-hover:text-white'}`}>
+                        {f.title}
+                      </span>
 
-                        {/* ── IMAGE PANEL ── */}
-                        <div className="relative md:w-[42%] min-h-[200px] md:min-h-full overflow-hidden shrink-0">
-                          <div className="absolute inset-0 bg-cover bg-center scale-100 group-hover:scale-105 transition-transform duration-700"
-                            style={{ backgroundImage: `url('${img}')` }} />
-                          {/* gradient toward content side */}
-                          <div className={`absolute inset-0`}
-                            style={{ background: flip
-                              ? `linear-gradient(to left, #08090F 0%, transparent 50%)`
-                              : `linear-gradient(to right, #08090F 0%, transparent 50%)` }} />
-                          <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, #08090F 10%, transparent 60%)' }} />
+                      {/* Badge — md+ only */}
+                      <span className={`hidden md:inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border text-[9px] font-black uppercase tracking-widest transition-all duration-300 ${isOpen ? `${ac.border} ${ac.bg} ${ac.text}` : 'border-white/[0.07] text-gray-700'}`}>
+                        <Icon className="w-2.5 h-2.5" />
+                        {f.badge}
+                      </span>
 
-                          {/* Giant watermark number */}
-                          <div className={`absolute bottom-3 ${flip ? 'left-4' : 'right-4'} text-[8rem] font-black leading-none select-none pointer-events-none`}
-                            style={{ color: accentHex[color], opacity: 0.18 }}>
-                            {String(i + 1).padStart(2, '0')}
-                          </div>
-                        </div>
+                      <div className="flex-1" />
 
-                        {/* ── CONTENT PANEL ── */}
-                        <div className="flex-1 flex flex-col justify-center px-8 py-10 md:px-12 md:py-10 bg-[#08090F] relative overflow-hidden">
-                          {/* Faint number ghost behind content */}
-                          <div className={`absolute top-1/2 -translate-y-1/2 ${flip ? '-left-6' : '-right-6'} text-[10rem] font-black leading-none select-none pointer-events-none`}
-                            style={{ color: accentHex[color], opacity: 0.04 }}>
-                            {String(i + 1).padStart(2, '0')}
-                          </div>
-
-                          {/* Badge row */}
-                          <div className="flex items-center justify-between mb-5 relative z-10">
-                            <div className={`inline-flex items-center gap-2 px-3 py-1 rounded-full border ${ac.border} ${ac.bg}`}>
-                              <Icon className={`w-3.5 h-3.5 ${ac.text}`} />
-                              <span className={`text-[10px] font-black ${ac.text} uppercase tracking-widest`}>{f.badge}</span>
-                            </div>
-                            <span className="text-5xl font-black leading-none" style={{ color: accentHex[color], opacity: 0.15 }}>
-                              {String(i + 1).padStart(2, '0')}
-                            </span>
-                          </div>
-
-                          {/* Title */}
-                          <h3 className="text-2xl md:text-3xl font-black text-white mb-3 tracking-tight leading-tight relative z-10">{f.title}</h3>
-
-                          {/* Description */}
-                          <p className="text-sm text-gray-400 leading-relaxed mb-6 max-w-lg relative z-10">{f.desc}</p>
-
-                          {/* Services grid */}
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1.5 border-t border-white/[0.05] pt-5 mb-6 relative z-10">
-                            {f.services.map((label, si) => (
-                              <Link key={serviceHrefs[si] ?? si} to={serviceHrefs[si] ?? '#'}
-                                className={`flex items-center gap-2 text-xs text-gray-600 py-0.5 transition-colors group/svc`}
-                                style={{ '--hover-color': accentHex[color] } as React.CSSProperties}
-                                onMouseEnter={e => (e.currentTarget.style.color = accentHex[color])}
-                                onMouseLeave={e => (e.currentTarget.style.color = '')}>
-                                <ChevronRight className="w-3 h-3 shrink-0" style={{ color: 'inherit' }} />
-                                {label}
-                              </Link>
-                            ))}
-                          </div>
-
-                          {/* CTA */}
-                          <Link to={link}
-                            className="inline-flex items-center gap-2 text-sm font-black uppercase tracking-widest hover:gap-3 transition-all w-fit relative z-10"
-                            style={{ color: accentHex[color] }}>
-                            {f.explore} <ArrowRight className="w-4 h-4" />
-                          </Link>
-                        </div>
-
+                      {/* Toggle */}
+                      <div className={`w-7 h-7 rounded-full border flex items-center justify-center shrink-0 transition-all ${isOpen ? `${ac.border} ${ac.bg}` : 'border-white/[0.08] group-hover:border-white/20'}`}>
+                        <motion.div animate={{ rotate: isOpen ? 45 : 0 }} transition={{ duration: 0.22 }}>
+                          <Plus className={`w-3.5 h-3.5 transition-colors ${isOpen ? ac.text : 'text-gray-600'}`} />
+                        </motion.div>
                       </div>
-                    </div>
-                  </FadeIn>
-                </div>
+                    </button>
+
+                    {/* ── Expanded panel ── */}
+                    <AnimatePresence initial={false}>
+                      {isOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                          className="overflow-hidden"
+                        >
+                          <div className="pb-12 grid md:grid-cols-[1fr_38%] gap-8 md:gap-14">
+
+                            {/* Content */}
+                            <div>
+                              <p className="text-gray-400 text-sm leading-relaxed mb-8 border-l-2 pl-5"
+                                style={{ borderColor: accentHex[color] }}>
+                                {f.desc}
+                              </p>
+
+                              {/* Service list */}
+                              <div className="mb-8">
+                                {f.services.map((label, si) => (
+                                  <Link
+                                    key={serviceHrefs[si] ?? si}
+                                    to={serviceHrefs[si] ?? '#'}
+                                    className="flex items-center gap-3 py-3 border-b border-white/[0.05] text-gray-500 hover:border-white/[0.12] transition-all"
+                                    onMouseEnter={e => (e.currentTarget.style.color = accentHex[color])}
+                                    onMouseLeave={e => (e.currentTarget.style.color = '')}
+                                  >
+                                    <ArrowRight className="w-3 h-3 shrink-0" style={{ color: 'inherit' }} />
+                                    <span className="text-xs">{label}</span>
+                                  </Link>
+                                ))}
+                              </div>
+
+                              {/* Explore CTA */}
+                              <Link to={link}
+                                className="inline-flex items-center gap-2 text-xs font-black uppercase tracking-[0.15em] hover:gap-3 transition-all"
+                                style={{ color: accentHex[color] }}>
+                                {f.explore} <ArrowRight className="w-3.5 h-3.5" />
+                              </Link>
+                            </div>
+
+                            {/* Image — hidden on mobile */}
+                            <div className="hidden md:block relative rounded-2xl overflow-hidden min-h-[240px]">
+                              <div className="absolute inset-0 bg-cover bg-center"
+                                style={{ backgroundImage: `url('${img}')` }} />
+                              <div className="absolute inset-0" style={{ background: 'linear-gradient(to top, #030305 0%, transparent 55%)' }} />
+                              <div className="absolute inset-0" style={{ background: 'linear-gradient(to right, #030305 0%, transparent 35%)' }} />
+                              <div className="absolute bottom-3 right-3 text-[5rem] font-black leading-none select-none pointer-events-none"
+                                style={{ color: accentHex[color], opacity: 0.15 }}>
+                                {String(i + 1).padStart(2, '0')}
+                              </div>
+                            </div>
+
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+
+                  </div>
+                </FadeIn>
               );
             })}
           </div>

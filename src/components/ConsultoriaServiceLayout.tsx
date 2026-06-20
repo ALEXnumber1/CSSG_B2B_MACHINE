@@ -64,6 +64,13 @@ export default function ConsultoriaServiceLayout({
   const col = accent[accentColor];
   const heroImg = heroImages[accentColor];
 
+  const firstPeriod = intro.indexOf('. ');
+  const introLead    = firstPeriod !== -1 ? intro.slice(0, firstPeriod + 1) : intro;
+  const introSupport = firstPeriod !== -1 ? intro.slice(firstPeriod + 2)    : '';
+  const colonIdx            = introSupport.lastIndexOf(': ');
+  const introSupportBefore  = colonIdx !== -1 ? introSupport.slice(0, colonIdx + 2) : introSupport;
+  const introSupportEmphasis = colonIdx !== -1 ? introSupport.slice(colonIdx + 2)   : '';
+
   const handleSubmit = async (e: { preventDefault(): void }) => {
     e.preventDefault();
     setStatus('loading');
@@ -147,11 +154,26 @@ export default function ConsultoriaServiceLayout({
         </div>
       </section>
 
-      {/* ── INTRO ─────────────────────────────────────── */}
+      {/* ── INTRO CALLOUT ─────────────────────────────── */}
       <div className="container mx-auto px-4 md:px-6 max-w-5xl relative">
         <FadeIn className="py-12">
-          <div className={`relative pl-6 border-l-4 ${col.bar}`}>
-            <p className="text-lg md:text-xl text-gray-300/90 leading-relaxed">{intro}</p>
+          <div
+            className="max-w-[60ch] border-l-4 border-[#C9A227] rounded-r-lg px-6 py-6 md:px-7 md:py-7 bg-[#13294A] shadow-[0_10px_30px_rgba(0,0,0,.35)]"
+          >
+            <p className="text-[10px] font-black uppercase tracking-[0.2em] mb-3 text-[#C9A227]">
+              El Método
+            </p>
+            <p className="text-base md:text-[1.0625rem] font-medium leading-snug mb-4 text-[#F4F7FB]">
+              {introLead}
+            </p>
+            {introSupport && (
+              <p className="text-sm leading-[1.7] text-[#B9C4D4]">
+                {introSupportBefore}
+                {introSupportEmphasis && (
+                  <span className="text-[#E8EDF4]">{introSupportEmphasis}</span>
+                )}
+              </p>
+            )}
           </div>
         </FadeIn>
 
