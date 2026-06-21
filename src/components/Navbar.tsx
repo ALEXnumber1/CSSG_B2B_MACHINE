@@ -50,7 +50,7 @@ export default function Navbar() {
               className="h-16 w-16 object-contain drop-shadow-[0_0_20px_rgba(234,179,8,0.2)] transition-transform hover:scale-110"
             />
             <div className="hidden sm:block">
-              <h1 className="text-white font-black leading-none tracking-tight text-xl">CSSG</h1>
+              <div className="text-white font-black leading-none tracking-tight text-xl">CSSG</div>
               <div className="flex flex-col mt-0.5">
                 <p className="text-[10px] text-sky-400 font-mono tracking-[0.1em] uppercase whitespace-nowrap font-bold leading-none">Company Of Security And Service Global C.A.</p>
                 <p className="text-[8px] text-gray-500 font-mono tracking-widest uppercase leading-none mt-1">RIF: J-29782024-8</p>
