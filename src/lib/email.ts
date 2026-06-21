@@ -10,7 +10,7 @@
 
 // La API key ahora vive únicamente en el servidor (variables de entorno de Vercel)
 // El frontend llama a /api/send-email en su lugar
-const EMAIL_API = '/api/send-email';
+const EMAIL_API = '/api/mailer';
 
 // El FROM_EMAIL se configura ahora en /api/send-email (servidor)
 // Actualizar en api/send-email.js: const FROM_EMAIL = 'CSSG <info@cssg-global.com>'
