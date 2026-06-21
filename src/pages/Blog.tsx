@@ -114,7 +114,7 @@ export default function Blog() {
             category: p.category || 'Seguridad',
             categoryColor: 'text-sky-400 bg-sky-500/10',
             featured: p.featured,
-            image: p.image || p.image_url || 'https://images.unsplash.com/strategic_security.png'
+            image: p.image || p.image_url || '/og-cssg-opt-2026.jpg'
           }));
           setDbPosts(formatted);
         }
@@ -161,7 +161,8 @@ export default function Blog() {
                       referrerPolicy="no-referrer"
                       loading="lazy"
                       onError={(e) => {
-                        e.currentTarget.src = 'https://images.unsplash.com/strategic_security.png';
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = '/og-cssg-opt-2026.jpg';
                       }}
                       className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
@@ -196,7 +197,8 @@ export default function Blog() {
                             referrerPolicy="no-referrer"
                             loading="lazy"
                             onError={(e) => {
-                              e.currentTarget.src = 'https://images.unsplash.com/strategic_security.png';
+                              e.currentTarget.onerror = null;
+                              e.currentTarget.src = '/og-cssg-opt-2026.jpg';
                             }}
                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                           />

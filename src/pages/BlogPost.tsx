@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { ArrowLeft, Calendar, Clock, Tag, ArrowRight } from 'lucide-react';
 import { getBlogPosts, type BlogEntry } from './Blog';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { supabase } from '../lib/supabase';
 import DOMPurify from 'dompurify';
 
@@ -20,6 +20,10 @@ type FaqItem = { question: string; answer: string };
 function injectSeoTags(slug: string, post: { title: string; excerpt?: string; image?: string; created_at?: string; date?: string }, faq: FaqItem[]) {
   const canonicalUrl = `https://cssg-global.com/blog/${slug}`;
   const ids = ['blog-canonical', 'blog-article-ld', 'blog-faq-ld'];
+
+  // Remove stale tags before injecting new ones
+  document.getElementById('blog-article-ld')?.remove();
+  document.getElementById('blog-faq-ld')?.remove();
 
   // Canonical
   let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
@@ -137,6 +141,8 @@ export default function BlogPost() {
     fetchPost();
   }, [slug, currentLang]);
 
+  const sanitizedContent = useMemo(() => DOMPurify.sanitize(content), [content]);
+
   // Inyectar canonical + Article/FAQPage JSON-LD en el <head>
   useEffect(() => {
     if (!post || !slug) return;
@@ -202,7 +208,8 @@ export default function BlogPost() {
               alt={post.title}
               referrerPolicy="no-referrer"
               onError={(e) => {
-                e.currentTarget.src = 'https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=1200&q=80';
+                e.currentTarget.onerror = null;
+                e.currentTarget.src = '/og-cssg-opt-2026.jpg';
               }}
               className="relative w-full h-[300px] md:h-[450px] object-cover rounded-2xl border border-white/10 shadow-2xl"
             />
@@ -215,7 +222,7 @@ export default function BlogPost() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
           className="prose-cssg"
-          dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(content) }}
+          dangerouslySetInnerHTML={{ __html: sanitizedContent }}
         />
 
         {/* CTA */}
