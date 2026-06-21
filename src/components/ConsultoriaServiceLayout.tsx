@@ -4,6 +4,7 @@ import { useState, useRef } from 'react';
 import { ChevronRight, ArrowLeft, ShieldCheck, CheckCircle2, ArrowRight, ChevronDown } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { startSequence } from '../lib/sequences';
+import { sendLeadNotification } from '../lib/email';
 import { useTranslation } from 'react-i18next';
 
 interface FAQ { q: string; a: string }
@@ -82,6 +83,7 @@ export default function ConsultoriaServiceLayout({
         score: 60,
       }]);
       if (error) throw error;
+      sendLeadNotification({ nombre, email: correo, empresa, fuente: 'consultoria_servicio' }).catch(console.warn);
       if (correo) startSequence('lead-' + Date.now(), correo, nombre, 'consultoria', empresa).catch(console.warn);
       setStatus('success');
       setNombre(''); setCorreo(''); setEmpresa('');

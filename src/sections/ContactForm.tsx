@@ -4,6 +4,7 @@ import { supabase } from '../lib/supabase';
 import { useTranslation } from 'react-i18next';
 import { Send } from 'lucide-react';
 import { startSequence } from '../lib/sequences';
+import { sendLeadNotification } from '../lib/email';
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -50,6 +51,8 @@ export default function ContactForm() {
       }]);
 
       if (supabaseError) throw supabaseError;
+
+      sendLeadNotification({ nombre: formData.nombre, email: formData.correo, empresa: formData.empresa, telefono: formData.telefono, fuente: 'contacto' }).catch(console.warn);
 
       // Start Sequence
       const { data: leadData } = await supabase

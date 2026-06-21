@@ -5,6 +5,7 @@ import { createPortal } from 'react-dom';
 import { supabase } from '../lib/supabase';
 import { useTranslation } from 'react-i18next';
 import { startSequence } from '../lib/sequences';
+import { sendLeadNotification } from '../lib/email';
 
 interface AuditModalProps {
   isOpen: boolean;
@@ -49,6 +50,8 @@ export default function AuditModal({ isOpen, onClose }: AuditModalProps) {
         }]);
 
       if (supabaseError) throw supabaseError;
+
+      sendLeadNotification({ nombre: formData.name, email: formData.email, empresa: formData.company, telefono: formData.phone, fuente: 'Agendamiento Auditoria' }).catch(console.warn);
 
       // Start Sequence
       const { data: leadData } = await supabase

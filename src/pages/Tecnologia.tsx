@@ -3,6 +3,7 @@ import { Wrench, Camera, Cpu, ArrowRight, Mail, Phone, ShieldCheck, Zap, Lock, C
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
 import { supabase } from '../lib/supabase';
+import { sendLeadNotification } from '../lib/email';
 import TecnologiaEn from './TecnologiaEn';
 
 export default function Tecnologia() {
@@ -37,6 +38,7 @@ export default function Tecnologia() {
       }]);
 
       if (error) throw error;
+      sendLeadNotification({ nombre: formData.nombre, email: formData.correo, empresa: formData.empresa, fuente: 'tecnologia_v5' }).catch(console.warn);
       setStatus('success');
     } catch (err) {
       console.error('Error submitting form:', err);

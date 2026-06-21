@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { supabase } from '../lib/supabase';
 import { useTranslation } from 'react-i18next';
 import { startSequence } from '../lib/sequences';
+import { sendLeadNotification } from '../lib/email';
 
 interface LeadModalProps {
   isOpen: boolean;
@@ -61,6 +62,8 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
         alert(`Error al sincronizar con el CRM: ${supabaseError.message}`);
         throw supabaseError;
       }
+
+      sendLeadNotification({ nombre: formData.name, email: formData.email, empresa: formData.company, telefono: formData.phone, fuente: 'portfolio_download' }).catch(console.warn);
 
       // 2. Start Automated Nurturing Sequence
       const { data: leadData } = await supabase

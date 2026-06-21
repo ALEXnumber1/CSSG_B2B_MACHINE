@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Wrench, Camera, Cpu, ArrowRight, Mail, Phone, ShieldCheck, Zap, Lock, CheckCircle2, ChevronDown } from 'lucide-react';
 import { useState } from 'react';
 import { supabase } from '../lib/supabase';
+import { sendLeadNotification } from '../lib/email';
 
 export default function TecnologiaEn() {
   const [expandedIdx, setExpandedIdx] = useState<number | null>(0);
@@ -28,6 +29,7 @@ export default function TecnologiaEn() {
       }]);
 
       if (error) throw error;
+      sendLeadNotification({ nombre: formData.nombre, email: formData.correo, empresa: formData.empresa, fuente: 'tecnologia_v5_en' }).catch(console.warn);
       setStatus('success');
     } catch (err) {
       console.error('Error submitting form:', err);

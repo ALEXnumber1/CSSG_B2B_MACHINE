@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { startSequence } from '../lib/sequences';
+import { sendLeadNotification } from '../lib/email';
 import { useTranslation } from 'react-i18next';
 
 const familyIcons = [Search, Globe, Brain, RefreshCw, Scale];
@@ -123,6 +124,7 @@ export default function Consultoria() {
         score: 55,
       }]);
       if (error) throw error;
+      sendLeadNotification({ nombre, email: correo, empresa, fuente: 'consultoria_hub' }).catch(console.warn);
       if (correo) startSequence('lead-' + Date.now(), correo, nombre, 'consultoria', empresa).catch(console.warn);
       setStatus('success');
       setNombre(''); setCorreo(''); setEmpresa('');

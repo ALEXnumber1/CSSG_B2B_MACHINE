@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, X, Send, Shield, Zap, User } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { supabase } from '../lib/supabase';
+import { sendLeadNotification } from '../lib/email';
 
 interface Message {
   id: string;
@@ -93,6 +94,7 @@ const TacticalChat: React.FC = () => {
         }]);
 
         if (supabaseError) throw supabaseError;
+        sendLeadNotification({ nombre: leadData.name, email: leadData.email, telefono: leadData.phone, empresa: 'Interés Chat IA', fuente: 'Chat IA Táctico' }).catch(console.warn);
       } catch (err) {
         console.error("Error saving lead from chat:", err);
       }
