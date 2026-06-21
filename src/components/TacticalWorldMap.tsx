@@ -97,8 +97,8 @@ export default function TacticalWorldMap() {
             <stop offset="0%" stopColor="#1e3a52" />
             <stop offset="100%" stopColor="#102030" />
           </linearGradient>
-          <filter id="landGlow">
-            <feGaussianBlur stdDeviation="1.5" result="blur" />
+          <filter id="landGlow" x="0%" y="0%" width="100%" height="100%" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="1.5" result="blur" />
             <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
           </filter>
           <radialGradient id="scanGrad" cx="50%" cy="50%" r="50%">

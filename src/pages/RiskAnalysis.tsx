@@ -521,7 +521,10 @@ export default function RiskAnalysis() {
         </div>
 
         {/* ════════════ MAPA TÁCTICO ════════════ */}
-        <div className="max-w-5xl mx-auto mb-16">
+        {/* isolation:isolate + will-change:transform crea capa GPU propia,
+            evitando que el feGaussianBlur del SVG contamine el backdrop-blur
+            de los paneles glass-morphism vecinos */}
+        <div className="max-w-5xl mx-auto mb-16 isolate will-change-transform">
           <TacticalWorldMap />
         </div>
 
