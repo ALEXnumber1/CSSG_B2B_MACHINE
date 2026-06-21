@@ -195,7 +195,7 @@ export default function AuditModal({ isOpen, onClose }: AuditModalProps) {
                         <option value="Auditoría de Riesgos">{t('audit_modal.service_1')}</option>
                         <option value="Consultoría Ejecutiva">{t('audit_modal.service_2')}</option>
                         <option value="Vigilancia Estratégica">{t('audit_modal.service_3')}</option>
-                        <option value="Escolta VIP">{t('audit_modal.service_4')}</option>
+                        <option value="Proteccion Personal Ejecutiva">{t('audit_modal.service_4')}</option>
                         <option value="Otro">{t('audit_modal.service_5')}</option>
                       </select>
                     </div>

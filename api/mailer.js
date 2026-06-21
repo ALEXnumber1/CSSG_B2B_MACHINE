@@ -143,86 +143,199 @@ export default async function handler(req, res) {
         return res.status(502).json({ error: err });
       }
 
-      /* 2. Bienvenida inmediata al lead */
+      /* 2. Bienvenida inmediata al lead — copy corporativo/neuromarketing */
       const fuenteLabel = fuente_label(safeFuente);
+      const primerNombre = safeNombre.split(' ')[0];
+
+      // Asunto dinámico según la fuente — desencadena autoridad + próximo paso, no spam
+      const welcomeSubjects = {
+        escudo_diplomatico: `Su expediente Escudo Diplomático fue asignado — CSSG Global`,
+        riesgo:             `Análisis de riesgo en proceso — Consultor Senior asignado | CSSG`,
+        pestel:             `Su Informe PESTEL está siendo procesado — CSSG Global`,
+        default:            `Su expediente fue asignado a Consultoría Senior | CSSG Global`,
+      };
+      const welcomeSubject = welcomeSubjects[safeFuente] || welcomeSubjects.default;
+
       callResend({
         from: FROM_EMAIL,
         to: safeEmail,
-        subject: `Recibimos su solicitud, ${safeNombre.split(' ')[0]} — CSSG`,
-        html: `
-<!DOCTYPE html>
-<html>
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
-<body style="margin:0;padding:0;background:#060810;font-family:'Segoe UI',Arial,sans-serif;">
-  <div style="max-width:580px;margin:0 auto;padding:40px 20px;">
+        subject: welcomeSubject,
+        html: `<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <!--[if mso]><noscript><xml><o:OfficeDocumentSettings><o:PixelsPerInch>96</o:PixelsPerInch></o:OfficeDocumentSettings></xml></noscript><![endif]-->
+  <title>Confirmación de solicitud — CSSG Global</title>
+</head>
+<body style="margin:0;padding:0;background-color:#f1f5f9;font-family:'Segoe UI',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;">
 
-    <!-- Logo / Header -->
-    <div style="text-align:center;margin-bottom:36px;">
-      <div style="display:inline-block;background:#0EA5E910;border:1px solid #0EA5E930;border-radius:16px;padding:16px 28px;">
-        <p style="color:#0EA5E9;font-size:11px;font-weight:800;letter-spacing:0.25em;text-transform:uppercase;margin:0;">COMPANY OF SECURITY AND SERVICE GLOBAL</p>
-        <p style="color:#ffffff60;font-size:9px;margin:4px 0 0;letter-spacing:0.1em;">RIF J-29782024-8 · ISO 9001:2015</p>
-      </div>
-    </div>
+  <!-- Preheader (invisible, aparece en la vista previa del correo) -->
+  <span style="display:none;font-size:1px;color:#f1f5f9;max-height:0;overflow:hidden;">
+    En las próximas 12 horas hábiles, un especialista de nuestra División de Seguridad Corporativa se pondrá en contacto con usted directamente.
+  </span>
 
-    <!-- Main card -->
-    <div style="background:#0d1117;border:1px solid #0EA5E920;border-radius:20px;padding:36px;margin-bottom:20px;">
+  <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background-color:#f1f5f9;">
+    <tr>
+      <td align="center" style="padding:32px 16px;">
+        <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="max-width:600px;">
 
-      <!-- Check icon -->
-      <div style="text-align:center;margin-bottom:28px;">
-        <div style="display:inline-flex;width:64px;height:64px;border-radius:50%;background:#10B98115;border:2px solid #10B98140;align-items:center;justify-content:center;">
-          <span style="font-size:28px;">✓</span>
-        </div>
-      </div>
+          <!-- ── CABECERA CORPORATIVA ── -->
+          <tr>
+            <td style="background:linear-gradient(135deg,#0c1a2e 0%,#0f2847 50%,#0c1a2e 100%);border-radius:16px 16px 0 0;padding:32px 40px;text-align:center;">
+              <p style="color:#0EA5E9;font-size:10px;font-weight:800;letter-spacing:0.3em;text-transform:uppercase;margin:0 0 6px;">COMPANY OF SECURITY AND SERVICE GLOBAL</p>
+              <p style="color:#94a3b8;font-size:9px;letter-spacing:0.15em;margin:0;">C.A. · RIF J-29782024-8 · Fundada 2009 · ISO 9001:2015</p>
+              <!-- Línea divisoria de acento -->
+              <div style="width:48px;height:2px;background:linear-gradient(90deg,#0284C7,#38bdf8);margin:18px auto 0;border-radius:1px;"></div>
+            </td>
+          </tr>
 
-      <h1 style="color:#ffffff;font-size:22px;font-weight:800;text-align:center;margin:0 0 8px;line-height:1.3;">
-        Solicitud recibida con éxito
-      </h1>
-      <p style="color:#0EA5E9;font-size:12px;font-weight:700;text-align:center;text-transform:uppercase;letter-spacing:0.15em;margin:0 0 28px;">${fuenteLabel}</p>
+          <!-- ── CUERPO PRINCIPAL ── -->
+          <tr>
+            <td style="background:#ffffff;padding:40px 40px 32px;">
 
-      <p style="color:#94a3b8;font-size:15px;line-height:1.7;margin:0 0 20px;">
-        Hola <strong style="color:#e2e8f0;">${safeNombre.split(' ')[0]}</strong>, hemos recibido su solicitud y nuestro equipo de consultores senior ya fue notificado.
-      </p>
+              <!-- Confirmación -->
+              <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                <tr>
+                  <td style="padding-bottom:28px;border-bottom:1px solid #e2e8f0;">
+                    <p style="color:#64748b;font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;margin:0 0 10px;">${fuenteLabel}</p>
+                    <h1 style="color:#0f172a;font-size:24px;font-weight:800;margin:0 0 16px;line-height:1.3;">
+                      Su solicitud fue recibida y registrada, ${primerNombre}.
+                    </h1>
+                    <p style="color:#475569;font-size:15px;line-height:1.75;margin:0;">
+                      Hemos tomado nota de su requerimiento y un consultor senior de nuestra División de Seguridad Corporativa ya fue notificado. No es necesaria ninguna acción adicional de su parte en este momento.
+                    </p>
+                  </td>
+                </tr>
+              </table>
 
-      <!-- Timeline box -->
-      <div style="background:#0EA5E908;border:1px solid #0EA5E920;border-radius:12px;padding:20px;margin:0 0 28px;">
-        <p style="color:#94a3b8;font-size:13px;margin:0 0 12px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;">¿Qué sigue?</p>
-        <div style="display:flex;gap:12px;margin-bottom:10px;">
-          <span style="color:#0EA5E9;font-size:16px;flex-shrink:0;">→</span>
-          <p style="color:#cbd5e1;font-size:14px;margin:0;">Un consultor CSSG le contactará en <strong style="color:#ffffff;">menos de 12 horas</strong> hábiles.</p>
-        </div>
-        <div style="display:flex;gap:12px;margin-bottom:10px;">
-          <span style="color:#0EA5E9;font-size:16px;flex-shrink:0;">→</span>
-          <p style="color:#cbd5e1;font-size:14px;margin:0;">Realizaremos un <strong style="color:#ffffff;">diagnóstico inicial</strong> de su situación de seguridad.</p>
-        </div>
-        <div style="display:flex;gap:12px;">
-          <span style="color:#0EA5E9;font-size:16px;flex-shrink:0;">→</span>
-          <p style="color:#cbd5e1;font-size:14px;margin:0;">Le presentaremos una <strong style="color:#ffffff;">propuesta personalizada</strong> sin costo ni compromiso.</p>
-        </div>
-      </div>
+              <!-- Quiénes somos -->
+              <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                <tr>
+                  <td style="padding:28px 0;border-bottom:1px solid #e2e8f0;">
+                    <p style="color:#0284C7;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.18em;margin:0 0 12px;">SOBRE CSSG GLOBAL</p>
+                    <p style="color:#334155;font-size:14px;line-height:1.8;margin:0;">
+                      CSSG es una empresa de <strong>seguridad privada</strong> y <strong>seguridad física</strong> de alcance internacional, fundada en Venezuela en <strong>2009</strong>. Proveemos servicios especializados de <strong>vigilancia corporativa</strong> y gestión de riesgos para <strong>corporaciones multinacionales, sedes diplomáticas y organizaciones de alto perfil estratégico</strong>, con presencia activa en los estándares internacionales más exigentes del sector.
+                    </p>
+                    <p style="color:#334155;font-size:14px;line-height:1.8;margin:14px 0 0;">
+                      Operamos bajo la certificación <strong>ISO 9001:2015 (N° 580181)</strong>, que garantiza la calidad, trazabilidad y consistencia operacional en cada compromiso que asumimos con nuestros clientes.
+                    </p>
+                  </td>
+                </tr>
+              </table>
 
-      <!-- CTA -->
-      <div style="text-align:center;">
-        <a href="https://cssg-global.com" style="display:inline-block;background:linear-gradient(135deg,#0284C7,#0EA5E9);color:#fff;font-size:14px;font-weight:700;padding:14px 32px;border-radius:10px;text-decoration:none;letter-spacing:0.05em;">
-          Visitar cssg-global.com
-        </a>
-      </div>
-    </div>
+              <!-- Próximos pasos -->
+              <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                <tr>
+                  <td style="padding:28px 0 24px;">
+                    <p style="color:#0284C7;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:0.18em;margin:0 0 18px;">¿QUÉ OCURRE AHORA?</p>
 
-    <!-- Trust badges -->
-    <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:28px;">
-      <span style="color:#475569;font-size:11px;font-weight:600;">✓ ISO 9001:2015</span>
-      <span style="color:#475569;font-size:11px;font-weight:600;">✓ +12 años sin incidentes</span>
-      <span style="color:#475569;font-size:11px;font-weight:600;">✓ Estándar Diplomático G7</span>
-    </div>
+                    <!-- Paso 1 -->
+                    <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="margin-bottom:14px;">
+                      <tr>
+                        <td width="32" valign="top" style="padding-top:1px;">
+                          <div style="width:24px;height:24px;background:#0EA5E9;border-radius:50%;text-align:center;line-height:24px;font-size:11px;font-weight:800;color:#fff;">1</div>
+                        </td>
+                        <td style="padding-left:12px;">
+                          <p style="color:#0f172a;font-size:14px;font-weight:700;margin:0 0 2px;">Contacto en menos de 12 horas hábiles</p>
+                          <p style="color:#64748b;font-size:13px;line-height:1.6;margin:0;">Un especialista se comunicará con usted para entender en detalle su requerimiento operativo o estratégico.</p>
+                        </td>
+                      </tr>
+                    </table>
 
-    <!-- Footer -->
-    <div style="border-top:1px solid #1e293b;padding-top:24px;text-align:center;">
-      <p style="color:#334155;font-size:12px;margin:0 0 4px;font-weight:600;">CSSG — Company Of Security And Service Global C.A.</p>
-      <p style="color:#334155;font-size:11px;margin:0 0 4px;">Calle la Joya, Edif. Cosmos, Piso 8, Ofic. 8B, Chacao, Caracas · +58 0424 178 2091</p>
-      <p style="color:#1e293b;font-size:10px;margin:12px 0 0;">Si no realizó esta solicitud, puede ignorar este correo.</p>
-    </div>
+                    <!-- Paso 2 -->
+                    <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="margin-bottom:14px;">
+                      <tr>
+                        <td width="32" valign="top" style="padding-top:1px;">
+                          <div style="width:24px;height:24px;background:#0EA5E9;border-radius:50%;text-align:center;line-height:24px;font-size:11px;font-weight:800;color:#fff;">2</div>
+                        </td>
+                        <td style="padding-left:12px;">
+                          <p style="color:#0f172a;font-size:14px;font-weight:700;margin:0 0 2px;">Diagnóstico consultivo inicial</p>
+                          <p style="color:#64748b;font-size:13px;line-height:1.6;margin:0;">Evaluaremos confidencialmente el contexto operativo y los activos que su organización necesita proteger, sin costo ni compromiso.</p>
+                        </td>
+                      </tr>
+                    </table>
 
-  </div>
+                    <!-- Paso 3 -->
+                    <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                      <tr>
+                        <td width="32" valign="top" style="padding-top:1px;">
+                          <div style="width:24px;height:24px;background:#0EA5E9;border-radius:50%;text-align:center;line-height:24px;font-size:11px;font-weight:800;color:#fff;">3</div>
+                        </td>
+                        <td style="padding-left:12px;">
+                          <p style="color:#0f172a;font-size:14px;font-weight:700;margin:0 0 2px;">Propuesta estratégica a medida</p>
+                          <p style="color:#64748b;font-size:13px;line-height:1.6;margin:0;">Le presentaremos un plan de seguridad física y vigilancia adaptado a la naturaleza, escala y riesgos específicos de su organización.</p>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+
+              <!-- CTA -->
+              <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                <tr>
+                  <td style="background:#f8fafc;border-left:3px solid #0EA5E9;border-radius:0 8px 8px 0;padding:16px 20px;margin-bottom:28px;">
+                    <p style="color:#334155;font-size:13px;line-height:1.65;margin:0;">
+                      Nuestro modelo de trabajo es <strong>estrictamente consultivo</strong>: antes de proponer cualquier solución de seguridad privada, comprendemos a profundidad el entorno de riesgo de su organización. La discreción y la confidencialidad son parte de nuestro protocolo desde el primer contacto.
+                    </p>
+                  </td>
+                </tr>
+              </table>
+
+              <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="margin-top:28px;">
+                <tr>
+                  <td align="center">
+                    <a href="https://cssg-global.com/consultoria" style="display:inline-block;background:#0284C7;color:#ffffff;font-size:14px;font-weight:700;padding:14px 36px;border-radius:8px;text-decoration:none;letter-spacing:0.04em;">
+                      Explorar nuestros servicios
+                    </a>
+                  </td>
+                </tr>
+              </table>
+
+            </td>
+          </tr>
+
+          <!-- ── BADGES DE CONFIANZA ── -->
+          <tr>
+            <td style="background:#f8fafc;padding:20px 40px;border-top:1px solid #e2e8f0;">
+              <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                <tr>
+                  <td align="center">
+                    <span style="display:inline-block;color:#64748b;font-size:11px;font-weight:700;margin:0 12px;">✓ Fundada 2009</span>
+                    <span style="display:inline-block;color:#64748b;font-size:11px;font-weight:700;margin:0 12px;">✓ ISO 9001:2015 Cert. 580181</span>
+                    <span style="display:inline-block;color:#64748b;font-size:11px;font-weight:700;margin:0 12px;">✓ Estándar Diplomático G7</span>
+                    <span style="display:inline-block;color:#64748b;font-size:11px;font-weight:700;margin:0 12px;">✓ +15 años sin incidentes</span>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- ── PIE DE PÁGINA ── -->
+          <tr>
+            <td style="background:#0f172a;border-radius:0 0 16px 16px;padding:28px 40px;text-align:center;">
+              <p style="color:#94a3b8;font-size:12px;font-weight:700;margin:0 0 4px;letter-spacing:0.05em;">CSSG — Company Of Security And Service Global C.A.</p>
+              <p style="color:#64748b;font-size:11px;margin:0 0 4px;">Calle la Joya, Edif. Cosmos, Piso 8, Ofic. 8B · Chacao, Caracas, Venezuela</p>
+              <p style="color:#64748b;font-size:11px;margin:0 0 16px;">
+                <a href="tel:+584241782091" style="color:#0EA5E9;text-decoration:none;">+58 0424 178 2091</a>
+                &nbsp;·&nbsp;
+                <a href="mailto:operaciones@cssg-global.com" style="color:#0EA5E9;text-decoration:none;">operaciones@cssg-global.com</a>
+                &nbsp;·&nbsp;
+                <a href="https://cssg-global.com" style="color:#0EA5E9;text-decoration:none;">cssg-global.com</a>
+              </p>
+              <p style="color:#334155;font-size:10px;margin:0;line-height:1.6;">
+                Usted recibe este mensaje porque realizó una solicitud a través de nuestro portal corporativo
+                (${fuenteLabel}). Si no fue usted, puede ignorar este correo con total tranquilidad.
+              </p>
+            </td>
+          </tr>
+
+        </table>
+      </td>
+    </tr>
+  </table>
+
 </body>
 </html>`,
       }, RESEND_API_KEY).catch(e => console.warn('[mailer] Welcome email error (non-blocking):', e));
