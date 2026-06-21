@@ -25,7 +25,6 @@ import { supabase } from '../lib/supabase';
 import { startSequence } from '../lib/sequences';
 import { sendNurtureEmail } from '../lib/email';
 import SecurityRadar3D from '../components/SecurityRadar3D';
-import TacticalWorldMap from '../components/TacticalWorldMap';
 
 import esRisk from '../locales/es/risk.json';
 import enRisk from '../locales/en/risk.json';
@@ -520,13 +519,6 @@ export default function RiskAnalysis() {
           </div>
         </div>
 
-        {/* ════════════ MAPA TÁCTICO ════════════ */}
-        {/* isolation:isolate + will-change:transform crea capa GPU propia,
-            evitando que el feGaussianBlur del SVG contamine el backdrop-blur
-            de los paneles glass-morphism vecinos */}
-        <div className="max-w-5xl mx-auto mb-16 isolate will-change-transform">
-          <TacticalWorldMap />
-        </div>
 
         {/* ════════════ METODOLOGÍA ════════════ */}
         <div className="max-w-4xl mx-auto mb-16" id="metodologia">
