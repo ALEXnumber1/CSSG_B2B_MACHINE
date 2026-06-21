@@ -45,8 +45,8 @@ export default function Navbar() {
         <div className="container mx-auto px-6 h-20 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-4 cursor-pointer" onClick={() => setMobileOpen(false)}>
             <img 
-              src="/logo.png" 
-              alt="CSSG Logo" 
+              src="/logo.webp"
+              alt="CSSG Logo"
               className="h-16 w-16 object-contain drop-shadow-[0_0_20px_rgba(234,179,8,0.2)] transition-transform hover:scale-110"
             />
             <div className="hidden sm:block">
@@ -181,7 +181,7 @@ export default function Navbar() {
               {/* Top Row with Logo and Close Button */}
               <div className="flex items-center justify-between mb-6">
                 <div className="flex items-center gap-3">
-                  <img src="/logo.png" className="h-10 w-10 object-contain" alt="CSSG Logo" />
+                  <img src="/logo.webp" className="h-10 w-10 object-contain" alt="CSSG Logo" />
                   <span className="text-white font-black text-lg">CSSG</span>
                 </div>
                 <button 

@@ -112,7 +112,7 @@ export default function Hero() {
           {/* Right: Floating Logo */}
           <div className="hidden lg:flex lg:col-span-5 items-center justify-center">
             <motion.img 
-              src="/logo.png" 
+              src="/logo.webp"
               alt="CSSG Logo"
               fetchPriority="high"
               initial={{ opacity: 0, scale: 0.7 }}

@@ -106,7 +106,7 @@ export default function PreventionServices() {
 
                   <div className={`mb-6 w-12 h-12 ${isMain ? 'bg-black border border-white/10' : 'bg-black/40 border border-white/10 text-sky-400'} rounded-xl flex items-center justify-center transition-colors duration-500 backdrop-blur-md`}>
                     {isMain ? (
-                      <img src="/logo.png" alt="CSSG Logo" className="w-8 h-8 object-contain brightness-110" />
+                      <img src="/logo.webp" alt="CSSG Logo" className="w-8 h-8 object-contain brightness-110" />
                     ) : (
                       svc.icon
                     )}

@@ -49,7 +49,7 @@ const ReportTemplate = forwardRef<HTMLDivElement, ReportTemplateProps>(({ data }
       {/* Header */}
       <div className="border-b-4 border-slate-900 pb-6 mb-8 flex justify-between items-end">
         <div>
-          <img src="/logo.png" alt="CSSG Logo" className="h-16 mb-4 object-contain" />
+          <img src="/logo.webp" alt="CSSG Logo" className="h-16 mb-4 object-contain" />
           <h1 className="text-3xl font-black text-slate-900 tracking-tight uppercase">Informe Estratégico de Vulnerabilidad</h1>
           <p className="text-sm text-slate-500 mt-2 font-medium">REALIZADO POR CSSG GESTIÓN DE RIESGOS</p>
         </div>

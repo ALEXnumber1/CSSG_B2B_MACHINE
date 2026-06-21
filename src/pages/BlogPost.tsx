@@ -44,7 +44,7 @@ function injectSeoTags(slug: string, post: { title: string; excerpt?: string; im
     image: post.image || 'https://cssg-global.com/images/default-blog.png',
     datePublished: post.created_at || post.date || new Date().toISOString(),
     author: { '@type': 'Organization', name: 'CSSG', url: 'https://cssg-global.com' },
-    publisher: { '@type': 'Organization', name: 'CSSG', logo: { '@type': 'ImageObject', url: 'https://cssg-global.com/logo.png' } },
+    publisher: { '@type': 'Organization', name: 'CSSG', logo: { '@type': 'ImageObject', url: 'https://cssg-global.com/logo.webp' } },
     mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
   });
   document.head.appendChild(articleScript);

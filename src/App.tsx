@@ -164,7 +164,7 @@ function AppContent() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
                   <div className="md:col-span-1">
                     <div className="flex items-center gap-4 mb-8">
-                      <img src="/logo.png" alt="CSSG Logo" className="h-20 w-20 object-contain drop-shadow-[0_0_20px_rgba(234,179,8,0.2)]" />
+                      <img src="/logo.webp" alt="CSSG Logo" className="h-20 w-20 object-contain drop-shadow-[0_0_20px_rgba(234,179,8,0.2)]" />
                       <div>
                         <h4 className="text-white font-black leading-none uppercase tracking-tighter text-2xl">CSSG</h4>
                         <div className="flex flex-col mt-1">

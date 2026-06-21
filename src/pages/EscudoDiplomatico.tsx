@@ -122,7 +122,7 @@ export default function EscudoDiplomatico() {
       <nav className="fixed top-0 w-full z-50 border-b" style={{ background: 'rgba(10,10,10,0.9)', backdropFilter: 'blur(12px)', borderColor: 'rgba(212,175,55,0.15)' }}>
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <img src="/logo.png" alt="CSSG" className="h-10 w-10 object-contain" />
+            <img src="/logo.webp" alt="CSSG" className="h-10 w-10 object-contain" />
             <div className="hidden sm:block">
               <p className="text-white font-bold text-sm tracking-tight">CSSG</p>
               <p className="text-[9px] tracking-wider uppercase" style={{ color: GOLD }}>Consultoría en Seguridad y Servicios Generales</p>
@@ -603,7 +603,7 @@ export default function EscudoDiplomatico() {
       {/* ═══ SECTION 6: FOOTER ═══ */}
       <footer className="py-12 px-6 border-t" style={{ background: '#080808', borderColor: '#1a1a1a' }}>
         <div className="max-w-4xl mx-auto text-center">
-          <img src="/logo.png" alt="CSSG" className="h-16 w-16 object-contain mx-auto mb-4 opacity-60" />
+          <img src="/logo.webp" alt="CSSG" className="h-16 w-16 object-contain mx-auto mb-4 opacity-60" />
           <p className="text-xs mb-3" style={{ color: '#555' }}>
             Servicio exclusivo de protección diplomática para el sector corporativo privado.
           </p>

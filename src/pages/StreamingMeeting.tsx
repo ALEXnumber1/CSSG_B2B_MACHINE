@@ -215,7 +215,7 @@ const StreamingMeeting: React.FC = () => {
               <p className="text-[10px] font-black text-white uppercase tracking-widest leading-none">CSSG Global</p>
               <p className="text-[8px] text-sky-500 font-mono">T-COMMAND PLATFORM</p>
             </div>
-            <img src="/logo.png" className="h-10 w-10 brightness-150 contrast-125" alt="" />
+            <img src="/logo.webp" className="h-10 w-10 brightness-150 contrast-125" alt="" />
           </div>
         </div>
       </div>
