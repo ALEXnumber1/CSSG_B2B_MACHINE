@@ -520,6 +520,90 @@ export default function RiskAnalysis() {
         </div>
 
 
+        {/* ════════════ ZONA TÁCTICA — SVG ESTÁTICO LIVIANO ════════════ */}
+        <div className="max-w-5xl mx-auto mb-16">
+          <div className="relative w-full rounded-2xl overflow-hidden border border-white/[0.06] bg-[#020509]">
+            <svg viewBox="0 0 900 340" className="w-full" style={{ display:'block' }} aria-hidden="true">
+              <defs>
+                <pattern id="tgrid" width="36" height="36" patternUnits="userSpaceOnUse">
+                  <path d="M 36 0 L 0 0 0 36" fill="none" stroke="#0ea5e908" strokeWidth="0.8"/>
+                </pattern>
+                <radialGradient id="zRed"   cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#ef444430"/><stop offset="100%" stopColor="#ef444400"/></radialGradient>
+                <radialGradient id="zAmber" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#f59e0b20"/><stop offset="100%" stopColor="#f59e0b00"/></radialGradient>
+                <radialGradient id="zGreen" cx="50%" cy="50%" r="50%"><stop offset="0%" stopColor="#10b98114"/><stop offset="100%" stopColor="#10b98100"/></radialGradient>
+                <radialGradient id="vignet" cx="50%" cy="50%" r="50%"><stop offset="60%" stopColor="#020509" stopOpacity="0"/><stop offset="100%" stopColor="#020509" stopOpacity="1"/></radialGradient>
+              </defs>
+
+              {/* Grid táctica */}
+              <rect width="900" height="340" fill="url(#tgrid)"/>
+
+              {/* Zona exterior — perímetro de respuesta (verde) */}
+              <ellipse cx="450" cy="170" rx="240" ry="145" fill="url(#zGreen)" stroke="#10b981" strokeWidth="0.8" strokeDasharray="6 5" opacity="0.7"/>
+
+              {/* Zona media — vulnerabilidades (ámbar) */}
+              <ellipse cx="450" cy="170" rx="148" ry="88" fill="url(#zAmber)" stroke="#f59e0b" strokeWidth="0.8" strokeDasharray="5 4" opacity="0.8"/>
+
+              {/* Zona núcleo — amenaza crítica (rojo) */}
+              <ellipse cx="450" cy="170" rx="68" ry="42" fill="url(#zRed)" stroke="#ef4444" strokeWidth="0.9" strokeDasharray="4 3" opacity="0.9"/>
+
+              {/* Retícula central */}
+              <line x1="450" y1="125" x2="450" y2="215" stroke="#0ea5e9" strokeWidth="0.7" opacity="0.4"/>
+              <line x1="378" y1="170" x2="522" y2="170" stroke="#0ea5e9" strokeWidth="0.7" opacity="0.4"/>
+
+              {/* Punto de origen / epicentro */}
+              <circle cx="450" cy="170" r="5" fill="#0ea5e9" opacity="0.9"/>
+              <circle cx="450" cy="170" r="10" fill="none" stroke="#0ea5e9" strokeWidth="0.8" opacity="0.5"/>
+
+              {/* Marcadores de amenaza */}
+              <g opacity="0.85">
+                <polygon points="390,142 396,132 402,142" fill="#ef4444" opacity="0.9"/>
+                <polygon points="488,198 494,188 500,198" fill="#f59e0b" opacity="0.85"/>
+                <polygon points="354,165 360,155 366,165" fill="#f59e0b" opacity="0.75"/>
+                <polygon points="518,148 524,138 530,148" fill="#10b981" opacity="0.7"/>
+              </g>
+
+              {/* Líneas de medición entre zonas */}
+              <line x1="450" y1="170" x2="450" y2="82" stroke="#0ea5e950" strokeWidth="0.6" strokeDasharray="3 3"/>
+              <text x="453" y="118" fill="#0ea5e9" fontSize="8" fontFamily="monospace" opacity="0.6">145 KM</text>
+              <line x1="450" y1="170" x2="210" y2="170" stroke="#0ea5e950" strokeWidth="0.6" strokeDasharray="3 3"/>
+              <text x="285" y="167" fill="#0ea5e9" fontSize="8" fontFamily="monospace" opacity="0.6">240 KM</text>
+
+              {/* Etiquetas de zona */}
+              <text x="452" y="156" fill="#ef4444" fontSize="7.5" fontFamily="monospace" fontWeight="bold" opacity="0.9">ZONA CRÍTICA</text>
+              <text x="510" y="130" fill="#f59e0b" fontSize="7.5" fontFamily="monospace" opacity="0.8">ZONA DE RIESGO</text>
+              <text x="572" y="100" fill="#10b981" fontSize="7.5" fontFamily="monospace" opacity="0.7">PERÍMETRO DE RESPUESTA</text>
+
+              {/* Coordenadas en las esquinas */}
+              <text x="12" y="20"  fill="#0ea5e940" fontSize="8" fontFamily="monospace">10°28'N  66°54'O</text>
+              <text x="12" y="334" fill="#0ea5e940" fontSize="8" fontFamily="monospace">ISO 31000:2018 · ASIS ORM.1:2017 · FMEA</text>
+              <text x="688" y="334" fill="#0ea5e940" fontSize="8" fontFamily="monospace">CSSG RISK ENGINE v3.1</text>
+
+              {/* HUD corners */}
+              <path d="M8,8 L8,28 M8,8 L28,8"   stroke="#0ea5e960" strokeWidth="1.2" fill="none"/>
+              <path d="M892,8 L892,28 M892,8 L872,8" stroke="#0ea5e960" strokeWidth="1.2" fill="none"/>
+              <path d="M8,332 L8,312 M8,332 L28,332" stroke="#0ea5e960" strokeWidth="1.2" fill="none"/>
+              <path d="M892,332 L892,312 M892,332 L872,332" stroke="#0ea5e960" strokeWidth="1.2" fill="none"/>
+
+              {/* Barra superior */}
+              <text x="12" y="14" fill="#0ea5e9" fontSize="9" fontFamily="monospace" fontWeight="bold">SYS · ANÁLISIS DE RIESGO OPERACIONAL</text>
+              <text x="12" y="26" fill="#0ea5e960" fontSize="7.5" fontFamily="monospace">CLASIFICACIÓN: PARA USO CORPORATIVO · METODOLOGÍA FMEA</text>
+              <circle cx="880" cy="12" r="3.5" fill="#10b981" opacity="0.9"/>
+              <text x="860" y="16" fill="#10b981" fontSize="8" fontFamily="monospace" textAnchor="end">ACTIVO</text>
+
+              {/* Viñeta perimetral */}
+              <rect width="900" height="340" fill="url(#vignet)"/>
+            </svg>
+
+            {/* Leyenda debajo */}
+            <div className="flex items-center justify-center gap-6 px-6 py-3 border-t border-white/[0.04]">
+              <div className="flex items-center gap-2"><span className="w-2.5 h-2.5 rounded-full bg-red-500 opacity-80"/><span className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Amenaza crítica</span></div>
+              <div className="flex items-center gap-2"><span className="w-2.5 h-2.5 rounded-full bg-amber-500 opacity-80"/><span className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Vulnerabilidad</span></div>
+              <div className="flex items-center gap-2"><span className="w-2.5 h-2.5 rounded-full bg-emerald-500 opacity-80"/><span className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Perímetro respuesta</span></div>
+              <div className="flex items-center gap-2"><span className="w-2.5 h-2.5 rounded-full bg-sky-500 opacity-80"/><span className="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Punto de análisis</span></div>
+            </div>
+          </div>
+        </div>
+
         {/* ════════════ METODOLOGÍA ════════════ */}
         <div className="max-w-4xl mx-auto mb-16" id="metodologia">
           <div className="glass-morphism rounded-2xl p-8 md:p-10">
