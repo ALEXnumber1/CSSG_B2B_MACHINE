@@ -38,7 +38,7 @@ export default function AuditModal({ isOpen, onClose }: AuditModalProps) {
     try {
       const { error: supabaseError } = await supabase
         .from('leads')
-        .insert([{ 
+        .upsert([{
           nombre: formData.name,
           correo: formData.email,
           empresa: formData.company,
@@ -47,7 +47,7 @@ export default function AuditModal({ isOpen, onClose }: AuditModalProps) {
           score: baremoScore,
           estado: 'nuevo',
           mensaje: `[SERVICIO: ${formData.service}] [FECHA TENTATIVA: ${formData.date}]`
-        }]);
+        }], { onConflict: 'correo' });
 
       if (supabaseError) throw supabaseError;
 

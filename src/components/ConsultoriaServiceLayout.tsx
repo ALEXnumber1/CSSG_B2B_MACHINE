@@ -76,12 +76,12 @@ export default function ConsultoriaServiceLayout({
     e.preventDefault();
     setStatus('loading');
     try {
-      const { error } = await supabase.from('leads').insert([{
+      const { error } = await supabase.from('leads').upsert([{
         nombre, correo, empresa,
         mensaje: `Consulta: ${title}`,
         fuente: 'consultoria_servicio',
         score: 60,
-      }]);
+      }], { onConflict: 'correo' });
       if (error) throw error;
       sendLeadNotification({ nombre, email: correo, empresa, fuente: 'consultoria_servicio' }).catch(console.warn);
       if (correo) startSequence('lead-' + Date.now(), correo, nombre, 'consultoria', empresa).catch(console.warn);

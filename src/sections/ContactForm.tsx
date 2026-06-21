@@ -39,7 +39,7 @@ export default function ContactForm() {
     
     try {
       // 1. Guardar en pipeline de leads (CRM)
-      const { error: supabaseError } = await supabase.from('leads').insert([{
+      const { error: supabaseError } = await supabase.from('leads').upsert([{
         nombre: formData.nombre,
         correo: formData.correo,
         empresa: formData.empresa,
@@ -48,7 +48,7 @@ export default function ContactForm() {
         fuente: 'contacto',
         score: 20,
         estado: 'nuevo'
-      }]);
+      }], { onConflict: 'correo' });
 
       if (supabaseError) throw supabaseError;
 

@@ -28,14 +28,14 @@ export default function Tecnologia() {
     e.preventDefault();
     setStatus('loading');
     try {
-      const { error } = await supabase.from('leads').insert([{
+      const { error } = await supabase.from('leads').upsert([{
         nombre: formData.nombre,
         correo: formData.correo,
         empresa: formData.empresa,
         mensaje: `Tecnología: Interés en ${subject}`,
         fuente: 'tecnologia_v5',
         score: 75
-      }]);
+      }], { onConflict: 'correo' });
 
       if (error) throw error;
       sendLeadNotification({ nombre: formData.nombre, email: formData.correo, empresa: formData.empresa, fuente: 'tecnologia_v5' }).catch(console.warn);

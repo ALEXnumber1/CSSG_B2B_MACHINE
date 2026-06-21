@@ -46,7 +46,7 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
       // Save lead to Supabase (CRM Integration)
       const { error: supabaseError } = await supabase
         .from('leads')
-        .insert([{ 
+        .upsert([{
           nombre: formData.name,
           correo: formData.email,
           empresa: formData.company,
@@ -55,7 +55,7 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
           score: baremoScore,
           estado: 'nuevo',
           mensaje: `[DESCARGA: Portafolio]`
-        }]);
+        }], { onConflict: 'correo' });
       
       if (supabaseError) {
         console.error('CRM Sync Error:', supabaseError);

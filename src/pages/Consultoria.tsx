@@ -117,12 +117,12 @@ export default function Consultoria() {
     e.preventDefault();
     setStatus('loading');
     try {
-      const { error } = await supabase.from('leads').insert([{
+      const { error } = await supabase.from('leads').upsert([{
         nombre, correo, empresa,
         mensaje: 'Solicitud desde hub Risk Advisory Services',
         fuente: 'consultoria_hub',
         score: 55,
-      }]);
+      }], { onConflict: 'correo' });
       if (error) throw error;
       sendLeadNotification({ nombre, email: correo, empresa, fuente: 'consultoria_hub' }).catch(console.warn);
       if (correo) startSequence('lead-' + Date.now(), correo, nombre, 'consultoria', empresa).catch(console.warn);
