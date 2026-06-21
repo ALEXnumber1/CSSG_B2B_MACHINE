@@ -161,7 +161,7 @@ export default function ConsultoriaServiceLayout({
             className="max-w-[60ch] border-l-4 border-[#C9A227] rounded-r-lg px-6 py-6 md:px-7 md:py-7 bg-[#13294A] shadow-[0_10px_30px_rgba(0,0,0,.35)]"
           >
             <p className="text-[10px] font-black uppercase tracking-[0.2em] mb-3 text-[#C9A227]">
-              El Método
+              {t('layout.method_kicker')}
             </p>
             <p className="text-base md:text-[1.0625rem] font-medium leading-snug mb-4 text-[#F4F7FB]">
               {introLead}

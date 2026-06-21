@@ -412,7 +412,6 @@ const styles = StyleSheet.create({
   },
   listItem: {
     flexDirection: 'row',
-    gap: 8,
     marginBottom: 6,
   },
   listBullet: {
@@ -421,6 +420,7 @@ const styles = StyleSheet.create({
     fontWeight: 900,
     lineHeight: 1.6,
     width: 10,
+    marginRight: 8,
   },
   listText: {
     fontSize: 10.5,
@@ -892,8 +892,8 @@ export const WhitePaperRiesgos = () => (
             },
           ].map((v, i) => (
             <View key={i} style={{ marginBottom: 12 }}>
-              <View style={{ flexDirection: 'row', gap: 10, marginBottom: 4 }}>
-                <Text style={{ fontSize: 20, fontWeight: 900, color: C.border, lineHeight: 1 }}>{v.num}</Text>
+              <View style={{ flexDirection: 'row', marginBottom: 4 }}>
+                <Text style={{ fontSize: 20, fontWeight: 900, color: C.border, lineHeight: 1, marginRight: 10 }}>{v.num}</Text>
                 <Text style={{ fontSize: 11, fontWeight: 700, color: C.dark, flex: 1, lineHeight: 1.3 }}>{v.title}</Text>
               </View>
               <Text style={styles.body}>{v.desc}</Text>

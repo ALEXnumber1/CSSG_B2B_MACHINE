@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Star, Send, CheckCircle, Shield, Users, Building2, Quote, ChevronDown } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -76,7 +76,7 @@ function TestimonialCard({ item, index }: { item: Testimonial; index: number }) 
       </div>
       <p className="text-gray-300 text-sm leading-relaxed italic">"{item.comment}"</p>
       <p className="text-white/20 text-xs">
-        {new Date(item.created_at).toLocaleDateString(t('date_locale'), { year: 'numeric', month: 'long' })}
+        {new Date(item.created_at).toLocaleDateString(t('date_locale', { defaultValue: 'es-VE' }), { year: 'numeric', month: 'long' })}
       </p>
     </motion.div>
   );
@@ -88,12 +88,22 @@ export default function Testimonios() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [testimonials] = useState<Testimonial[]>([]);
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
   const [filterRole, setFilterRole] = useState<string>('todos');
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
-  const faqs = t('faqs', { returnObjects: true }) as Array<{ q: string; a: string }>;
-  const ratings = t('form.ratings', { returnObjects: true }) as string[];
+  useEffect(() => {
+    supabase
+      .from('testimonials')
+      .select('*')
+      .order('created_at', { ascending: false })
+      .then(({ data }) => { if (data) setTestimonials(data as Testimonial[]); });
+  }, []);
+
+  const rawFaqs = t('faqs', { returnObjects: true });
+  const faqs = Array.isArray(rawFaqs) ? (rawFaqs as Array<{ q: string; a: string }>) : [];
+  const rawRatings = t('form.ratings', { returnObjects: true });
+  const ratings = Array.isArray(rawRatings) ? (rawRatings as string[]) : [];
 
   const handleSubmit = async (e: { preventDefault(): void }) => {
     e.preventDefault();
@@ -283,7 +293,7 @@ export default function Testimonios() {
                         className="w-full py-3.5 bg-gradient-to-r from-sky-500 to-sky-600 hover:from-sky-400 hover:to-sky-500 disabled:opacity-50 text-white font-bold text-sm rounded-xl transition-all flex items-center justify-center gap-2 shadow-lg shadow-sky-500/20"
                       >
                         {loading ? (
-                          <span className="animate-pulse">{t('form.btn_sending')}</span>
+                          <span className="animate-shimmer">{t('form.btn_sending')}</span>
                         ) : (
                           <><Send size={15} /> {t('form.btn_submit')}</>
                         )}

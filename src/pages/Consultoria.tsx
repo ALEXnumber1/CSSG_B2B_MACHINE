@@ -1,4 +1,4 @@
-import { motion, useInView, AnimatePresence } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useState, useRef } from 'react';
 import {
@@ -104,7 +104,7 @@ export default function Consultoria() {
   const [correo, setCorreo] = useState('');
   const [empresa, setEmpresa] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-  const [selectedFamily, setSelectedFamily] = useState(0);
+  const [selectedFamily, setSelectedFamily] = useState(-1);
   const heroRef = useRef(null);
 
   const stats = t('hub.stats', { returnObjects: true }) as Array<{ value: string; unit: string; label: string }>;
@@ -347,16 +347,14 @@ export default function Consultoria() {
                       </div>
                     </button>
 
-                    {/* ── Expanded panel ── */}
-                    <AnimatePresence initial={false}>
-                      {isOpen && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: 'auto', opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-                          className="overflow-hidden"
-                        >
+                    {/* ── Expanded panel — always in DOM for SEO ── */}
+                    <motion.div
+                      animate={{ height: isOpen ? 'auto' : 0, opacity: isOpen ? 1 : 0 }}
+                      initial={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                      className="overflow-hidden"
+                      aria-hidden={!isOpen}
+                    >
                           <div className="pb-12 grid md:grid-cols-[1fr_38%] gap-8 md:gap-14">
 
                             {/* Content */}
@@ -403,9 +401,7 @@ export default function Consultoria() {
                             </div>
 
                           </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
+                    </motion.div>
 
                   </div>
                 </FadeIn>

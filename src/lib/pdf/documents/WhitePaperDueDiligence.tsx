@@ -917,7 +917,7 @@ export const WhitePaperDueDiligence = () => (
           ].map((flag, i) => (
             <View key={i} wrap={false} style={{ marginBottom: 8, borderLeftWidth: 3, borderLeftColor: '#EF4444' }}>
               <View style={{ backgroundColor: '#FEF2F2', paddingHorizontal: 10, paddingVertical: 5, flexDirection: 'row', alignItems: 'center' }}>
-                <View style={{ width: 7, height: 7, borderRadius: 4, backgroundColor: '#EF4444', marginRight: 7 }} />
+                <View style={{ width: 7, height: 7, borderRadius: 3, backgroundColor: '#EF4444', marginRight: 7 }} />
                 <Text style={{ fontSize: 9, fontWeight: 700, color: '#991B1B' }}>{flag.title}</Text>
               </View>
               <View style={{ backgroundColor: '#FFFAFA', paddingHorizontal: 10, paddingVertical: 7 }}>
