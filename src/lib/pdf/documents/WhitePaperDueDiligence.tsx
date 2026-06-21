@@ -550,7 +550,7 @@ const ContentHeader = () => (
   <View style={styles.pageHeader} fixed>
     <View style={styles.pageHeaderTopStrip} />
     <View style={styles.pageHeaderRow}>
-      <Image src="/logo_full.png" style={styles.pageHeaderLogo} />
+      <Image src="/logo_full.webp" style={styles.pageHeaderLogo} />
       <View style={styles.pageHeaderSpacer} />
       <Text style={styles.pageHeaderDocTitle}>DUE DILIGENCE CORPORATIVA VENEZUELA — 2026</Text>
       <Text style={styles.pageHeaderDivider}>|</Text>
@@ -616,7 +616,7 @@ export const WhitePaperDueDiligence = () => (
         </View>
         <View style={styles.coverLineTop} />
         <View style={styles.coverLogoWrap}>
-          <Image src="/logo_full.png" style={styles.coverLogo} />
+          <Image src="/logo_full.webp" style={styles.coverLogo} />
         </View>
         <View style={styles.coverLineAfterLogo} />
         <View style={styles.coverCompanyBlock}>
@@ -651,7 +651,7 @@ export const WhitePaperDueDiligence = () => (
     <Page size="A4" style={styles.indexPage}>
       <View style={styles.indexTopBar} />
       <View style={styles.indexHeaderBar}>
-        <Image src="/logo_full.png" style={styles.indexHeaderLogo} />
+        <Image src="/logo_full.webp" style={styles.indexHeaderLogo} />
         <Text style={styles.indexHeaderTitle}>DUE DILIGENCE CORPORATIVA VENEZUELA — PROTOCOLO 2026</Text>
       </View>
       <View style={styles.indexInner}>

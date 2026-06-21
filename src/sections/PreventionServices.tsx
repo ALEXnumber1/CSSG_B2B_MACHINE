@@ -5,15 +5,15 @@ import { useTranslation } from 'react-i18next';
 import AuditModal from '../components/AuditModal';
 
 const services = [
-  { id: 1, icon: <Crosshair className="w-6 h-6" />, accent: 'sky', bg: '/svc_perimetral.png', alt: 'Ingeniería de Seguridad Integrada — protección perimetral corporativa Venezuela' },
-  { id: 2, icon: <Shield className="w-6 h-6" />, accent: 'sky', bg: '/diplomatic_security.png', alt: 'Custodia y Vigilancia de Alta Criticidad — servicio principal CSSG Venezuela' },
-  { id: 3, icon: <Activity className="w-6 h-6" />, accent: 'sky', bg: '/svc_auditoria.png', hideOnMobile: true, alt: 'Auditoría Táctica de Vulnerabilidades — metodología ISO 31000 CSSG' },
-  { id: 4, icon: <Users className="w-6 h-6" />, accent: 'sky', bg: '/svc_ejecutivos.png', alt: 'Protección Ejecutiva y Diplomática — seguridad para misiones de alto perfil' },
-  { id: 5, icon: <Zap className="w-6 h-6" />, accent: 'emerald', bg: '/svc_reaccion_motorizada.png', alt: 'Fuerza de Reacción Inmediata — unidad táctica motorizada CSSG Caracas' },
-  { id: 6, icon: <Truck className="w-6 h-6" />, accent: 'emerald', bg: '/svc_custodia.png', hideOnMobile: true, alt: 'Vehículos Blindados y Rastreador GPS — movilidad de alta seguridad Venezuela' },
-  { id: 7, icon: <Activity className="w-6 h-6" />, accent: 'emerald', bg: '/ambulancia.png', hideOnMobile: true, alt: 'Soporte Vital y Respuesta Médica — paramédicos tácticos CSSG' },
-  { id: 8, icon: <MessageSquare className="w-6 h-6" />, accent: 'sky', bg: '/svc_licitaciones.png', alt: 'Licitaciones y Propuestas de Seguridad Corporativa — CSSG Venezuela' },
-  { id: 9, icon: <GraduationCap className="w-6 h-6" />, accent: 'amber', bg: '/academia.png', alt: 'Academia de Capacitación en Seguridad — Zentinel Global alianza CSSG' },
+  { id: 1, icon: <Crosshair className="w-6 h-6" />, accent: 'sky', bg: '/svc_perimetral.webp', alt: 'Ingeniería de Seguridad Integrada — protección perimetral corporativa Venezuela' },
+  { id: 2, icon: <Shield className="w-6 h-6" />, accent: 'sky', bg: '/diplomatic_security.webp', alt: 'Custodia y Vigilancia de Alta Criticidad — servicio principal CSSG Venezuela' },
+  { id: 3, icon: <Activity className="w-6 h-6" />, accent: 'sky', bg: '/svc_auditoria.webp', hideOnMobile: true, alt: 'Auditoría Táctica de Vulnerabilidades — metodología ISO 31000 CSSG' },
+  { id: 4, icon: <Users className="w-6 h-6" />, accent: 'sky', bg: '/svc_ejecutivos.webp', alt: 'Protección Ejecutiva y Diplomática — seguridad para misiones de alto perfil' },
+  { id: 5, icon: <Zap className="w-6 h-6" />, accent: 'emerald', bg: '/svc_reaccion_motorizada.webp', alt: 'Fuerza de Reacción Inmediata — unidad táctica motorizada CSSG Caracas' },
+  { id: 6, icon: <Truck className="w-6 h-6" />, accent: 'emerald', bg: '/svc_custodia.webp', hideOnMobile: true, alt: 'Vehículos Blindados y Rastreador GPS — movilidad de alta seguridad Venezuela' },
+  { id: 7, icon: <Activity className="w-6 h-6" />, accent: 'emerald', bg: '/ambulancia.webp', hideOnMobile: true, alt: 'Soporte Vital y Respuesta Médica — paramédicos tácticos CSSG' },
+  { id: 8, icon: <MessageSquare className="w-6 h-6" />, accent: 'sky', bg: '/svc_licitaciones.webp', alt: 'Licitaciones y Propuestas de Seguridad Corporativa — CSSG Venezuela' },
+  { id: 9, icon: <GraduationCap className="w-6 h-6" />, accent: 'amber', bg: '/academia.webp', alt: 'Academia de Capacitación en Seguridad — Zentinel Global alianza CSSG' },
 ];
 
 const accentConfig = {
@@ -135,7 +135,7 @@ export default function PreventionServices() {
           {/* Background Image with Cinematic Effects */}
           <div className="absolute inset-0">
             <img 
-              src="/risk_analysis_cta.png" 
+              src="/risk_analysis_cta.webp" 
               alt="Security Analysis" 
               className="w-full h-full object-cover opacity-20 group-hover:scale-105 transition-transform duration-1000"
             />

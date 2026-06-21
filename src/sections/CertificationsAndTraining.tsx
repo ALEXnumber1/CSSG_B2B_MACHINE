@@ -98,7 +98,7 @@ export default function CertificationsAndTraining() {
             <div className="relative z-10 flex-1">
               <div className="flex items-start justify-between mb-8">
                 <div className="inline-flex items-center justify-center p-3 rounded-2xl bg-white/[0.03] border border-white/10">
-                  <img src="/Zentinel logo-2.png" alt="Zentinel Global" className="h-20 w-auto object-contain" />
+                  <img src="/Zentinel logo-2.webp" alt="Zentinel Global" className="h-20 w-auto object-contain" />
                 </div>
                 {/* Verification Protocol Badge */}
                 <div className="text-right">
@@ -173,7 +173,7 @@ export default function CertificationsAndTraining() {
                 className="block hover:opacity-90 transition-opacity"
               >
                 <img
-                  src="/cyber-essentials-badge.png"
+                  src="/cyber-essentials-badge.webp"
                   alt="Cyber Essentials Certified — IASME / NCSC"
                   width={171}
                   height={171}

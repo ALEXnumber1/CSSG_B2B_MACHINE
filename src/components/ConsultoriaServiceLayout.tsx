@@ -32,10 +32,10 @@ const accent = {
 
 const heroImages: Record<string, string> = {
   sky:     '/images/consultoria-hero-premium.png',
-  indigo:  '/diplomatic_security.png',
-  violet:  '/strategic_security.png',
-  emerald: '/security_methodology_staircase_climb_1777554286433.png',
-  amber:   '/consulting_b2b.png',
+  indigo:  '/diplomatic_security.webp',
+  violet:  '/strategic_security.webp',
+  emerald: '/security_methodology_staircase_climb_1777554286433.webp',
+  amber:   '/consulting_b2b.webp',
 };
 
 function FadeIn({ children, delay = 0, className = '' }: { children: React.ReactNode; delay?: number; className?: string }) {
@@ -262,7 +262,7 @@ export default function ConsultoriaServiceLayout({
             <div className="relative min-h-[340px] overflow-hidden">
               <div
                 className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: `url('/consulting_b2b.png')` }}
+                style={{ backgroundImage: `url('/consulting_b2b.webp')` }}
               />
               <div className={`absolute inset-0 bg-gradient-to-br ${col.gradient}`} />
               <div className="absolute inset-0 bg-[#030305]/40" />

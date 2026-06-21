@@ -664,7 +664,7 @@ export default function Tecnologia() {
               <div className="lg:col-span-6 relative group">
                 <div className="absolute -inset-4 bg-indigo-500/10 blur-2xl rounded-[3rem] opacity-0 group-hover:opacity-100 transition-opacity" />
                 <img 
-                  src="/cecom_control_center_1777552494604.png" 
+                  src="/cecom_control_center_1777552494604.webp" 
                   alt="Centro de Comando CECOM" 
                   className="w-full rounded-[2.5rem] border border-white/10 shadow-2xl relative z-10 grayscale-[10%] hover:grayscale-0 transition-all duration-700"
                 />
@@ -807,7 +807,7 @@ export default function Tecnologia() {
               <div className="lg:col-span-6 relative group">
                 <div className="absolute -inset-4 bg-emerald-500/10 blur-2xl rounded-[3rem] opacity-0 group-hover:opacity-100 transition-opacity" />
                 <img 
-                  src="/ai_security_camera_overlay_1777552513820.png" 
+                  src="/ai_security_camera_overlay_1777552513820.webp" 
                   alt="Infraestructura de Cámaras IA" 
                   className="w-full rounded-[2.5rem] border border-white/10 shadow-2xl relative z-10 grayscale-[10%] hover:grayscale-0 transition-all duration-700"
                 />
@@ -926,7 +926,7 @@ export default function Tecnologia() {
             <div className="flex-1 relative group">
               <div className="absolute -inset-4 bg-amber-500/10 blur-2xl rounded-[3rem] opacity-0 group-hover:opacity-100 transition-opacity" />
               <img 
-                src="/tech_security_consulting_ui_1777552535684.png" 
+                src="/tech_security_consulting_ui_1777552535684.webp" 
                 alt="Consultoría de Seguridad Técnica" 
                 className="w-full rounded-[2.5rem] border border-white/10 shadow-2xl relative z-10 grayscale-[30%] hover:grayscale-0 transition-all duration-700"
               />
@@ -967,7 +967,7 @@ export default function Tecnologia() {
             <div className="flex-1 relative group">
               <div className="absolute -inset-4 bg-rose-500/10 blur-2xl rounded-[3rem] opacity-0 group-hover:opacity-100 transition-opacity" />
               <img 
-                src="/cybersecurity_audit_ui_1777552982082.png" 
+                src="/cybersecurity_audit_ui_1777552982082.webp" 
                 alt="Auditoría de Ciberseguridad" 
                 className="w-full rounded-[2.5rem] border border-white/10 shadow-2xl relative z-10 grayscale-[30%] hover:grayscale-0 transition-all duration-700"
               />
@@ -1018,7 +1018,7 @@ export default function Tecnologia() {
             <div className="flex-1 relative group">
               <div className="absolute -inset-4 bg-teal-500/10 blur-2xl rounded-[3rem] opacity-0 group-hover:opacity-100 transition-opacity" />
               <img 
-                src="/gps_tracker_high_precision_map_1777553002245.png" 
+                src="/gps_tracker_high_precision_map_1777553002245.webp" 
                 alt="GPS Tracker de Alta Precisión" 
                 className="w-full rounded-[2.5rem] border border-white/10 shadow-2xl relative z-10 grayscale-[30%] hover:grayscale-0 transition-all duration-700"
               />
@@ -1107,7 +1107,7 @@ export default function Tecnologia() {
                 <div className="flex-1 relative group w-full">
                   <div className="absolute -inset-10 bg-sky-500/20 blur-[120px] rounded-full opacity-30 group-hover:opacity-60 transition-all duration-1000 animate-pulse pointer-events-none" />
                   <img 
-                    src="/security_methodology_staircase_climb_1777554286433.png" 
+                    src="/security_methodology_staircase_climb_1777554286433.webp" 
                     alt="Progreso de Seguridad CSSG" 
                     className="relative z-10 w-full rounded-[2.5rem] border border-white/10 shadow-[0_40px_120px_-30px_rgba(14,165,233,0.3)] hover:scale-[1.03] hover:border-sky-500/30 transition-all duration-1000 select-none object-cover"
                   />

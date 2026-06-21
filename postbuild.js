@@ -27,7 +27,7 @@ const routes = [
     path: 'consultoria',
     title: 'Consultoría de Seguridad Corporativa en Venezuela | Diagnóstico Gratuito | CSSG',
     description: 'Diagnóstico de vulnerabilidades, auditorías ISO 31000 y diseño de esquemas de protección para corporaciones y misiones diplomáticas en Venezuela. +17 años. Primera sesión sin costo.',
-    image: 'https://cssg-global.com/consultoria_card.png',
+    image: 'https://cssg-global.com/consultoria_card.webp',
     jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Consultoría Integral de Seguridad Corporativa", "description": "Diagnóstico integral, diseño de esquemas de seguridad y optimización de costos bajo norma ISO 9001:2015. +17 años de experiencia en Venezuela.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "hasOfferCatalog": { "@type": "OfferCatalog", "name": "Servicios de Consultoría", "itemListElement": [ { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Diagnóstico de Vulnerabilidades" } }, { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Optimización de Costos Operativos" } }, { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Implementación ISO 9001:2015" } } ] } }
   },
   {
@@ -55,28 +55,28 @@ const routes = [
     path: 'analisis-riesgo',
     title: 'Diagnóstico de Vulnerabilidades Corporativas Gratuito | FMEA ISO 31000 | CSSG',
     description: 'Evalúe el nivel de vulnerabilidad de su organización en 8 minutos. Metodología FMEA aplicada a 4 pilares: Perímetro, Accesos, Procedimientos e Inteligencia. Sin costo.',
-    image: 'https://cssg-global.com/risk_analysis_cta.png',
+    image: 'https://cssg-global.com/risk_analysis_cta.webp',
     jsonld: { "@context": "https://schema.org", "@type": "SoftwareApplication", "name": "CSSG Risk Analyzer — Análisis de Riesgo ISO 31000", "description": "Herramienta gratuita de autodiagnóstico de seguridad corporativa. Metodología FMEA + ISO 31000:2018. Evalúa 4 pilares: Perímetro, Accesos, Procedimientos e Inteligencia.", "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "127" }, "author": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" } }
   },
   {
     path: 'quienes-somos',
     title: 'Quiénes Somos | CSSG - +17 Años de Trayectoria Impecable',
     description: 'Conozca la historia, misión y el equipo directivo de CSSG. Expertos en seguridad diplomática y corporativa con certificación ISO 9001:2015.',
-    image: 'https://cssg-global.com/formal_guards.png',
+    image: 'https://cssg-global.com/formal_guards.webp',
     jsonld: { "@context": "https://schema.org", "@type": "AboutPage", "name": "Quiénes Somos — CSSG", "description": "Historia, misión y valores de Company Of Security and Service Global. Fundada en 2009, certificación ISO 9001:2015, +17 años sin incidentes.", "url": "https://cssg-global.com/quienes-somos", "mainEntity": { "@type": "Organization", "name": "Company Of Security and Service Global (CSSG)", "foundingDate": "2009", "numberOfEmployees": { "@type": "QuantitativeValue", "minValue": 50 }, "knowsAbout": ["Seguridad corporativa", "Protección diplomática", "ISO 31000", "FMEA", "ShieldTrace PSIM"] } }
   },
   {
     path: 'tecnologia',
     title: 'ShieldTrace PSIM — Seguridad Corporativa Predictiva para Venezuela | CSSG',
     description: 'CCTV analítico con IA, control de acceso biométrico, GPS en tiempo real y drones autónomos en un dashboard único. Potencie el desempeño de su equipo de vigilancia física en Venezuela.',
-    image: 'https://cssg-global.com/shieldtrace_tablet_dashboard_1777552473752.png',
+    image: 'https://cssg-global.com/shieldtrace_tablet_dashboard_1777552473752.webp',
     jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "ShieldTrace PSIM — Plataforma de Seguridad Integrada", "description": "Plataforma de integración de seguridad física (PSIM) con CCTV analítico con IA, GPS en tiempo real, control de acceso biométrico y drones autónomos.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "serviceType": "Plataforma PSIM de Seguridad Física", "areaServed": { "@type": "Country", "name": "Venezuela" }, "url": "https://cssg-global.com/tecnologia" }
   },
   {
     path: 'licitaciones',
     title: 'Licitaciones y Proyectos de Seguridad | CSSG | Caracas · Miami',
     description: 'Participamos en licitaciones de alto nivel para embajadas y corporaciones internacionales. Calidad garantizada.',
-    image: 'https://cssg-global.com/svc_licitaciones.png',
+    image: 'https://cssg-global.com/svc_licitaciones.webp',
     jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Licitaciones de Seguridad Corporativa y Diplomática", "description": "CSSG participa en licitaciones para embajadas, corporaciones internacionales e infraestructura crítica en Venezuela. Tasa de éxito: 80%.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" } }
   },
   {
@@ -464,7 +464,7 @@ const routes = [
     path: 'consultoria/asesoria-legal-rrhh-seguridad',
     title: 'Asesoría Legal en Seguridad: RRHH y Derechos Humanos en Venezuela | CSSG',
     description: 'Consultoría legal especializada en derecho laboral LOTTT para empresas de seguridad privada, protocolos DDHH, uso proporcional de la fuerza y compliance DIGESERVISP en Venezuela.',
-    image: 'https://cssg-global.com/consulting_b2b.png',
+    image: 'https://cssg-global.com/consulting_b2b.webp',
     jsonld: [
       { "@context": "https://schema.org", "@type": "Service", "name": "Asesoría Legal en Seguridad: RRHH y Derechos Humanos", "description": "Consultoría jurídica especializada en derecho laboral de seguridad privada, protocolos DDHH y compliance regulatorio para Venezuela.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" } },
       { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
@@ -480,7 +480,7 @@ const routes = [
     path: 'white-papers/guia-evaluacion-riesgos-seguridad-venezuela',
     title: 'Guía de Evaluación de Riesgos de Seguridad Corporativa en Venezuela 2026 | CSSG',
     description: 'Descargue gratis la guía definitiva de evaluación de riesgos de seguridad empresarial en Venezuela. Metodología ESRM, ISO 31000:2018 y FMEA aplicados al contexto venezolano.',
-    image: 'https://cssg-global.com/consultoria_card.png',
+    image: 'https://cssg-global.com/consultoria_card.webp',
     jsonld: [
       { "@context": "https://schema.org", "@type": "Service", "name": "Evaluación de Riesgos de Seguridad Corporativa en Venezuela", "description": "Guía metodológica ESRM + ISO 31000:2018 + FMEA para la evaluación de riesgos de seguridad en empresas venezolanas. Elaborada por CSSG con +17 años de operaciones en Venezuela.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "serviceType": "Evaluación de Riesgos de Seguridad", "areaServed": { "@type": "Country", "name": "Venezuela" } },
       { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
@@ -495,7 +495,7 @@ const routes = [
     path: 'white-papers/due-diligence-corporativa-venezuela',
     title: 'Due Diligence Corporativa en Venezuela: Protocolo de Investigación 2026 | CSSG',
     description: 'Descargue gratis el protocolo completo de due diligence corporativa en Venezuela. Verificación CICPC, SENIAT, IVSS, OSINT y metodología de escritura por inducción.',
-    image: 'https://cssg-global.com/consultoria_card.png',
+    image: 'https://cssg-global.com/consultoria_card.webp',
     jsonld: [
       { "@context": "https://schema.org", "@type": "Service", "name": "Due Diligence Corporativa Venezuela", "description": "Protocolo completo de investigación y verificación de personas naturales y jurídicas en Venezuela. Fuentes CICPC, SENIAT, IVSS, SAREN y OSINT. Elaborado por CSSG con +1.200 investigaciones completadas.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "serviceType": "Due Diligence Corporativa", "areaServed": { "@type": "Country", "name": "Venezuela" } },
       { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
@@ -510,7 +510,7 @@ const routes = [
     path: 'white-papers/plan-continuidad-negocio-venezuela',
     title: 'Plan de Continuidad de Negocio en Venezuela: Guía ISO 22301:2019 | CSSG',
     description: 'Descargue gratis la guía completa de Plan de Continuidad de Negocio (BCP) para Venezuela. ISO 22301:2019 adaptado a cortes eléctricos, disturbios y escasez operativa.',
-    image: 'https://cssg-global.com/consultoria_card.png',
+    image: 'https://cssg-global.com/consultoria_card.webp',
     jsonld: [
       { "@context": "https://schema.org", "@type": "Service", "name": "Plan de Continuidad de Negocio Venezuela", "description": "Guía metodológica ISO 22301:2019 para diseñar e implementar un BCP calibrado a los escenarios venezolanos: cortes eléctricos, disturbios, escasez y crisis de seguridad. Basada en +80 BCPs implementados por CSSG en Venezuela.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "serviceType": "Plan de Continuidad de Negocio", "areaServed": { "@type": "Country", "name": "Venezuela" } },
       { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
@@ -607,7 +607,7 @@ const routes = [
     path: 'en/technology',
     title: 'Shieldtrace PSIM — Integrated Security Platform | CSSG | Caracas · Miami',
     description: 'Shieldtrace PSIM unifies AI-powered CCTV analytics, real-time GPS tracking, biometric access control and autonomous drones in one dashboard. Enterprise security technology in Venezuela.',
-    image: 'https://cssg-global.com/shieldtrace_tablet_dashboard_1777552473752.png',
+    image: 'https://cssg-global.com/shieldtrace_tablet_dashboard_1777552473752.webp',
     jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Shieldtrace PSIM — Integrated Physical Security Management", "description": "Physical security integration platform (PSIM) combining AI-powered CCTV analytics, real-time GPS, biometric access control and autonomous drones for corporate security in Venezuela.", "provider": { "@type": "Organization", "name": "CSSG — Company Of Security And Service Global", "url": "https://cssg-global.com" }, "serviceType": "Physical Security Integration Platform", "areaServed": [{ "@type": "Country", "name": "Venezuela" }, { "@type": "City", "name": "Miami" }], "url": "https://cssg-global.com/en/technology", "inLanguage": "en" }
   }
 ];

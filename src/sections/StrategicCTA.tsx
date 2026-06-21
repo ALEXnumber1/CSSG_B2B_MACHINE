@@ -21,7 +21,7 @@ export default function StrategicCTA() {
             {/* Left side: Large Image */}
             <div className="lg:w-1/2 relative min-h-[300px] md:min-h-[400px] lg:min-h-[600px]">
               <img
-                src="/diplomatic_security.png"
+                src="/diplomatic_security.webp"
                 alt={t('strategic_cta.img_alt')}
                 className="absolute inset-0 w-full h-full object-cover grayscale-[20%] hover:grayscale-0 transition-all duration-1000"
                 loading="lazy"

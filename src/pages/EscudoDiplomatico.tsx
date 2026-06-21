@@ -200,7 +200,7 @@ export default function EscudoDiplomatico() {
           <div className="relative w-full rounded-2xl overflow-hidden" style={{ border: `1px solid ${GOLD}25`, boxShadow: `0 0 60px ${GOLD}10` }}>
             <video
               src="/videos/escudo-diplomatico.mp4"
-              poster="/diplomatic_security.png"
+              poster="/diplomatic_security.webp"
               controls
               playsInline
               preload="metadata"

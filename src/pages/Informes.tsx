@@ -306,7 +306,7 @@ export default function Informes() {
           >
             <div className="absolute inset-0 bg-white/5 blur-[80px] rounded-full" />
             <img 
-              src="/report_mockup.png" 
+              src="/report_mockup.webp" 
               alt="Informe de Seguridad (PESTEL) Venezuela" 
               className="relative z-10 w-full h-auto drop-shadow-2xl grayscale-[0.2] brightness-105"
             />

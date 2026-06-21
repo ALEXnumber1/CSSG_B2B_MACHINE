@@ -66,12 +66,12 @@ export default function Licitaciones() {
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-1/4 -right-1/4 w-[600px] h-[600px] bg-sky-500/10 rounded-full blur-[120px] opacity-20" />
         <img 
-          src="/licitaciones_left.png" 
+          src="/licitaciones_left.webp" 
           alt="" 
           className="absolute top-0 left-0 w-1/2 h-full object-cover opacity-[0.07] grayscale mix-blend-screen hidden lg:block"
         />
         <img 
-          src="/svc_licitaciones.png" 
+          src="/svc_licitaciones.webp" 
           alt="" 
           className="absolute top-0 right-0 w-1/2 h-full object-cover opacity-10 grayscale mix-blend-screen hidden lg:block"
         />

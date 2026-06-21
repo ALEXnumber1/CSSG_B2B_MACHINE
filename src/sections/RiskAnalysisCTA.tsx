@@ -30,7 +30,7 @@ export default function RiskAnalysisCTA() {
             
             <div className="relative rounded-3xl overflow-hidden border border-white/[0.05] shadow-2xl">
               <img 
-                src="/risk_analysis_cta.png" 
+                src="/risk_analysis_cta.webp" 
                 alt="Centro de Operaciones de Análisis de Riesgo CSSG"
                 className="w-full h-[350px] md:h-[450px] object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-1000"
               />

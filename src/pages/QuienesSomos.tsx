@@ -82,7 +82,7 @@ export default function QuienesSomos() {
           {/* Panoramic Team Background */}
           <div className="absolute inset-0 z-0">
             <img 
-              src="/formal_guards.png" 
+              src="/formal_guards.webp" 
               alt="CSSG Team" 
               className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-all duration-1000"
             />
@@ -320,7 +320,7 @@ export default function QuienesSomos() {
               <div className="relative bg-[#030305]/95 backdrop-blur-xl border-2 border-sky-500/50 rounded-2xl p-4 text-center shadow-[0_0_40px_rgba(14,165,233,0.15)] hover:border-sky-400 transition-all group overflow-hidden">
                 <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-3 rounded-full bg-sky-500/5 border-2 border-sky-500/30 flex items-center justify-center overflow-hidden">
                   <img 
-                    src="/alexander-briceno.png" 
+                    src="/alexander-briceno.webp" 
                     alt="Alexander Briceño CEO" 
                     className="w-full h-full object-cover object-top brightness-[1.1] contrast-[1.05]"
                   />
@@ -425,7 +425,7 @@ export default function QuienesSomos() {
               <div className="relative bg-[#030305]/90 backdrop-blur-md border border-white/10 rounded-2xl p-4 text-center hover:border-sky-500/40 transition-colors group overflow-hidden">
                 <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-3 rounded-full bg-white/5 border border-white/10 flex items-center justify-center overflow-hidden">
                   <img 
-                    src="/franklin-quijada.png" 
+                    src="/franklin-quijada.webp" 
                     alt="Dr. Franklin Quijada" 
                     className="w-full h-full object-cover object-top"
                   />
@@ -451,7 +451,7 @@ export default function QuienesSomos() {
               <div className="relative bg-[#030305]/90 backdrop-blur-md border border-white/10 rounded-2xl p-4 text-center hover:border-sky-500/40 transition-colors group overflow-hidden">
                 <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-3 rounded-full bg-white/5 border border-white/10 flex items-center justify-center overflow-hidden">
                   <img 
-                    src="/nicky-rujano.png" 
+                    src="/nicky-rujano.webp" 
                     alt="Dra. Ninsa Rujano" 
                     className="w-full h-full object-cover"
                   />

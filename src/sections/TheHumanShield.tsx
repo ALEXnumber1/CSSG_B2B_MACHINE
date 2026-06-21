@@ -24,7 +24,7 @@ export default function TheHumanShield() {
           >
             <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl aspect-[4/5] lg:aspect-auto lg:h-[700px]">
               <img 
-                src="/cssg_officers_uniform_formal.png" 
+                src="/cssg_officers_uniform_formal.webp" 
                 alt={t('the_human_shield.officers_alt')} 
                 className="w-full h-full object-cover"
               />

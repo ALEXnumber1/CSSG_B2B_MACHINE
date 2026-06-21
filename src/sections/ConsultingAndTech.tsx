@@ -24,7 +24,7 @@ export default function ConsultingAndTech() {
             {/* Left side: Large Image */}
             <div className="lg:w-1/2 relative min-h-[400px] lg:min-h-[600px] order-2 lg:order-1">
               <img
-                src="/consultoria_card.png"
+                src="/consultoria_card.webp"
                 alt={t('tech.img_alt', { defaultValue: 'Strategic Security Consulting' })}
                 className="absolute inset-0 w-full h-full object-cover grayscale-[20%] hover:grayscale-0 transition-all duration-1000"
                 loading="lazy"

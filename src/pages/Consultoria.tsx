@@ -15,10 +15,10 @@ const familyIcons = [Search, Globe, Brain, RefreshCw, Scale];
 const familyColors = ['sky', 'indigo', 'violet', 'emerald', 'amber'];
 const familyImages = [
   '/images/consultoria-hero-premium.png',
-  '/diplomatic_security.png',
-  '/strategic_security.png',
-  '/security_methodology_staircase_climb_1777554286433.png',
-  '/consulting_b2b.png',
+  '/diplomatic_security.webp',
+  '/strategic_security.webp',
+  '/security_methodology_staircase_climb_1777554286433.webp',
+  '/consulting_b2b.webp',
 ];
 const familyLinks = [
   '/consultoria/evaluacion-de-riesgos-de-seguridad',
@@ -56,7 +56,7 @@ const familyServiceHrefs = [
 const layerIcons = [Server, BookOpen];
 const layerImages = [
   '/images/tec_cecom.png',
-  '/professional_security_team_consulting_1777553900162.png',
+  '/professional_security_team_consulting_1777553900162.webp',
 ];
 const layerServiceHrefs = [
   [
@@ -141,7 +141,7 @@ export default function Consultoria() {
         {/* Background image */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url('/professional_security_team_consulting_1777553900162.png')` }}
+          style={{ backgroundImage: `url('/professional_security_team_consulting_1777553900162.webp')` }}
         />
         {/* Dark overlays */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#030305]/70 via-[#030305]/60 to-[#030305]" />
@@ -417,7 +417,7 @@ export default function Consultoria() {
           <section className="mb-20 rounded-3xl overflow-hidden relative h-72">
             <div
               className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url('/cecom_control_center_1777552494604.png')` }}
+              style={{ backgroundImage: `url('/cecom_control_center_1777552494604.webp')` }}
             />
             <div className="absolute inset-0 bg-gradient-to-r from-[#030305]/95 via-[#030305]/70 to-transparent" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#030305]/80 to-transparent" />
@@ -515,11 +515,11 @@ export default function Consultoria() {
           <section className="mb-20 relative rounded-2xl overflow-hidden">
             <div
               className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url('/shieldtrace_tablet_dashboard_1777552473752.png')` }}
+              style={{ backgroundImage: `url('/shieldtrace_tablet_dashboard_1777552473752.webp')` }}
             />
             <div className="absolute inset-0 bg-gradient-to-r from-[#030305]/90 via-[#030305]/75 to-[#030305]/40" />
             <div className="relative z-10 p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center gap-6">
-              <img src="/shieldtrace1.png" alt="ShieldTrace" className="h-10 object-contain opacity-90" />
+              <img src="/shieldtrace1.webp" alt="ShieldTrace" className="h-10 object-contain opacity-90" />
               <div className="flex-1">
                 <p className="text-white font-black text-lg md:text-xl mb-1">{t('hub.tech_title')}</p>
                 <p className="text-gray-400 text-sm">{t('hub.tech_desc')}</p>
@@ -555,7 +555,7 @@ export default function Consultoria() {
               <div className="relative min-h-[420px] overflow-hidden">
                 <div
                   className="absolute inset-0 bg-cover bg-center"
-                  style={{ backgroundImage: `url('/consultoria_card.png')` }}
+                  style={{ backgroundImage: `url('/consultoria_card.webp')` }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-br from-sky-900/90 to-indigo-900/80" />
                 <div className="absolute inset-0 bg-[#030305]/30" />
