@@ -3,7 +3,7 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { Points, PointMaterial, Float } from '@react-three/drei';
 import * as THREE from 'three';
 
-function ParticleCloud({ count = 2000 }) {
+function ParticleCloud({ count = 900 }) {
   const points = useRef<THREE.Points>(null!);
   
   const positions = useMemo(() => {
@@ -23,8 +23,8 @@ function ParticleCloud({ count = 2000 }) {
   useFrame((state) => {
     if (points.current) {
       const time = state.clock.getElapsedTime();
-      points.current.rotation.y = time * 0.05 + state.mouse.x * 0.2;
-      points.current.rotation.x = time * 0.02 + state.mouse.y * 0.2;
+      points.current.rotation.y = time * 0.05 + state.pointer.x * 0.2;
+      points.current.rotation.x = time * 0.02 + state.pointer.y * 0.2;
     }
   });
 
@@ -47,9 +47,10 @@ function ParticleCloud({ count = 2000 }) {
 export default function Interactive3DBackground() {
   return (
     <div className="absolute inset-0 z-0" style={{ width: '100%', height: '100%' }}>
-      <Canvas 
-        camera={{ position: [0, 0, 5], fov: 60 }} 
-        gl={{ antialias: true, alpha: true }}
+      <Canvas
+        camera={{ position: [0, 0, 5], fov: 60 }}
+        gl={{ antialias: false, alpha: true, powerPreference: 'low-power', failIfMajorPerformanceCaveat: false }}
+        dpr={[1, 1.5]}
         style={{ background: 'transparent' }}
       >
         <Suspense fallback={null}>
