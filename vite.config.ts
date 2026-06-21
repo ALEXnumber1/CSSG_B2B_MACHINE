@@ -1,8 +1,14 @@
 import { defineConfig } from 'vitest/config'
 import react from '@vitejs/plugin-react'
+import compression from 'vite-plugin-compression'
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    // Genera .gz y .br junto a cada asset — Vercel los sirve automáticamente
+    compression({ algorithm: 'gzip', ext: '.gz' }),
+    compression({ algorithm: 'brotliCompress', ext: '.br' }),
+  ],
   define: {
     global: 'globalThis',
   },

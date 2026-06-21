@@ -10,16 +10,13 @@ export default function Hero() {
   const { t, i18n } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAuditModalOpen, setIsAuditModalOpen] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
+  // Inicialización síncrona: evita que el video se inyecte tarde en desktop (CLS)
+  const [isDesktop, setIsDesktop] = useState(() => window.innerWidth >= 768);
 
   useEffect(() => {
-    // Detectar si es escritorio para evitar descargar el video de 6MB en móviles
-    const checkIsDesktop = () => {
-      setIsDesktop(window.innerWidth >= 768);
-    };
-    checkIsDesktop();
-    window.addEventListener('resize', checkIsDesktop);
-    return () => window.removeEventListener('resize', checkIsDesktop);
+    const onResize = () => setIsDesktop(window.innerWidth >= 768);
+    window.addEventListener('resize', onResize, { passive: true });
+    return () => window.removeEventListener('resize', onResize);
   }, []);
 
   return (
@@ -27,11 +24,12 @@ export default function Hero() {
       {/* Cinematic Video Background */}
       <div className="absolute inset-0 z-0">
         {isDesktop && (
-          <video 
-            autoPlay 
-            muted 
-            loop 
-            playsInline 
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="none"
             className="absolute inset-0 w-full h-full object-cover opacity-20 grayscale brightness-50"
           >
             <source src="https://assets.mixkit.co/videos/preview/mixkit-security-camera-monitoring-a-parking-lot-4467-large.mp4" type="video/mp4" />
@@ -55,10 +53,10 @@ export default function Hero() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={i18n.language}
-                initial={{ opacity: 0, filter: 'blur(8px)', y: 10 }}
-                animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
-                exit={{ opacity: 0, filter: 'blur(8px)', y: -10 }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.35, ease: "easeOut" }}
               >
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-sky-500/30 bg-sky-500/10 backdrop-blur-md mb-8">
                   <Shield className="w-4 h-4 text-sky-400" />

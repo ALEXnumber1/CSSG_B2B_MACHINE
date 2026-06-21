@@ -94,14 +94,14 @@ function AppContent() {
         <AnimatePresence mode="wait">
           <motion.div
             key={i18n.language}
-            initial={{ opacity: 0, filter: 'blur(8px)', y: 10 }}
-            animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
-            exit={{ opacity: 0, filter: 'blur(8px)', y: -10 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25, ease: "easeOut" }}
             className="flex-1 flex flex-col"
           >
             <div className="flex-1 flex flex-col">
-              <Suspense fallback={null}>
+              <Suspense fallback={<div className="min-h-screen bg-[#0B0B0F]" />}>
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/quienes-somos" element={<QuienesSomos />} />
