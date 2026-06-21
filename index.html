@@ -210,7 +210,12 @@
     }
     </script>
 
-    <style>.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}</style>
+    <style>
+      .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+      #hero-static{position:fixed;inset:0;background:#030305;z-index:100;display:none;padding:10rem 6% 0;pointer-events:none;transition:opacity 0.4s ease}
+      #hero-static h1{color:#fff;font-size:clamp(2.2rem,6.5vw,5rem);font-weight:900;letter-spacing:-0.05em;line-height:1.05;max-width:680px;font-family:system-ui,-apple-system,sans-serif;margin:0}
+      #hero-static p{color:#94a3b8;font-size:clamp(0.9rem,1.5vw,1.1rem);margin-top:1rem;font-family:system-ui,-apple-system,sans-serif;font-weight:300}
+    </style>
 
     <!-- Analytics: cargados con defer para no bloquear el hilo principal (TBT) -->
     <script src="https://analytics.ahrefs.com/analytics.js" data-key="cf9PRSw3h2ra1yulIXraKg" defer></script>
@@ -223,6 +228,33 @@
     </script>
   </head>
   <body>
+    <!-- Static LCP hero: renders immediately, fades when React mounts -->
+    <div id="hero-static">
+      <h1 id="hero-static-h1"></h1>
+      <p id="hero-static-sub"></p>
+    </div>
+    <script>
+    (function(){
+      if(window.location.pathname!=='/'&&window.location.pathname!=='')return;
+      var lang=(navigator.language||'es').toLowerCase();
+      var isEn=lang.startsWith('en');
+      document.getElementById('hero-static-h1').textContent=isEn
+        ?'Corporate & Diplomatic Security in Venezuela'
+        :'Seguridad Corporativa y Diplomática en Venezuela';
+      document.getElementById('hero-static-sub').textContent=isEn
+        ?'17 years protecting G7 embassies · Zero incidents · ISO 9001:2015'
+        :'+17 años protegiendo embajadas G7 · Cero incidentes · ISO 9001:2015';
+      var el=document.getElementById('hero-static');
+      el.style.display='block';
+      new MutationObserver(function(_,obs){
+        if(document.getElementById('root').children.length>0){
+          el.style.opacity='0';
+          setTimeout(function(){el.style.display='none';},450);
+          obs.disconnect();
+        }
+      }).observe(document.getElementById('root'),{childList:true});
+    })();
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
