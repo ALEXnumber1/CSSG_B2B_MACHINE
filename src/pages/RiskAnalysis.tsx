@@ -25,6 +25,7 @@ import { supabase } from '../lib/supabase';
 import { startSequence } from '../lib/sequences';
 import { sendNurtureEmail } from '../lib/email';
 import SecurityRadar3D from '../components/SecurityRadar3D';
+import TacticalWorldMap from '../components/TacticalWorldMap';
 
 import esRisk from '../locales/es/risk.json';
 import enRisk from '../locales/en/risk.json';
@@ -517,6 +518,11 @@ export default function RiskAnalysis() {
               <span className="text-[10px] text-gray-400 uppercase tracking-widest font-bold">{t('risk.header.version')}</span>
             </div>
           </div>
+        </div>
+
+        {/* ════════════ MAPA TÁCTICO ════════════ */}
+        <div className="max-w-5xl mx-auto mb-16">
+          <TacticalWorldMap />
         </div>
 
         {/* ════════════ METODOLOGÍA ════════════ */}
