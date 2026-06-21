@@ -123,18 +123,18 @@ export default function Tecnologia() {
           <div className="text-center max-w-4xl mx-auto mb-20 space-y-8">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-sky-500/30 bg-sky-500/10 backdrop-blur-md">
               <Zap className="w-3.5 h-3.5 text-sky-400 animate-pulse shrink-0" />
-              <h2 className="text-[10px] font-black text-sky-300 uppercase tracking-[0.3em] m-0">Tecnología Aplicada al Servicio | Calidad Garantizada</h2>
+              <span className="text-[10px] font-black text-sky-300 uppercase tracking-[0.3em]">Tecnología Aplicada al Servicio | Calidad Garantizada</span>
             </div>
             
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tighter text-white leading-tight">
-              La seguridad corporativa <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-orange-400 to-red-400">es reactiva.</span> <br />
+              ShieldTrace PSIM:{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-white to-sky-400 bg-[length:200%_auto] animate-gradient-x">
-                La suya será predictiva.
+                Seguridad Corporativa Predictiva
               </span>
             </h1>
-            
+
             <p className="text-gray-400 text-lg md:text-xl max-w-3xl mx-auto leading-relaxed font-medium">
-              Diseñamos la tecnología de anticipación que el mercado no ofrece.
+              La vigilancia convencional es reactiva: detecta incidentes cuando ya ocurrieron. ShieldTrace PSIM es predictiva: los previene antes de que sucedan. CCTV analítico con IA, control de acceso biométrico, GPS en tiempo real y drones autónomos integrados en un solo dashboard operativo para su equipo de seguridad física.
             </p>
 
             <div className="flex flex-wrap justify-center gap-4 pt-4">
@@ -179,7 +179,7 @@ export default function Tecnologia() {
                   <span className="text-[10px] font-black text-red-400 uppercase tracking-widest">Diagnóstico</span>
                 </div>
                 <h2 className="text-3xl md:text-4xl font-black text-white tracking-tighter leading-tight">
-                  El problema que <span className="text-red-400">usted conoce.</span>
+                  El problema de la vigilancia convencional: <span className="text-red-400">el oficial sin datos.</span>
                 </h2>
                 <div className="text-gray-400 leading-relaxed space-y-4">
                   <p className="text-white font-bold text-lg">Cámaras que graban. Guardias que responden. Alarmas que suenan después.</p>
@@ -216,7 +216,7 @@ export default function Tecnologia() {
                   <span className="text-[10px] font-black text-amber-400 uppercase tracking-widest">Incertidumbres del mercado</span>
                 </div>
                 <h2 className="text-3xl md:text-5xl font-black text-white tracking-tighter">
-                  Las dudas que <span className="text-amber-400">enfrenta.</span>
+                  Las dudas al evaluar <span className="text-amber-400">tecnología de seguridad.</span>
                 </h2>
               </div>
 
@@ -251,7 +251,7 @@ export default function Tecnologia() {
                   <span className="text-[10px] font-black text-sky-400 uppercase tracking-widest">Capacidades</span>
                 </div>
                 <h2 className="text-3xl md:text-5xl font-black text-white tracking-tighter">
-                  Lo que <span className="text-sky-400">diseñamos.</span>
+                  Lo que diseñamos para <span className="text-sky-400">su operación de seguridad física.</span>
                 </h2>
               </div>
 
@@ -389,8 +389,7 @@ export default function Tecnologia() {
                   <span className="text-[10px] font-black text-sky-400 uppercase tracking-widest">Tecnología de Punta: HaaS</span>
                 </div>
                 <h2 className="text-4xl md:text-5xl font-black text-white tracking-tighter leading-tight">
-                  ShieldTrace PSIM: <br />
-                  <span className="text-sky-400">El Control Total en tu mano.</span>
+                  ShieldTrace PSIM: <span className="text-sky-400">Amplifica el Desempeño de su Equipo de Vigilancia</span>
                 </h2>
                 <div className="space-y-4 text-gray-400 leading-relaxed">
                   <p className="font-bold text-white text-lg">La Innovación Predictiva</p>
@@ -621,8 +620,7 @@ export default function Tecnologia() {
                   <span className="text-[10px] font-black text-indigo-400 uppercase tracking-widest">Ingeniería de Élite</span>
                 </div>
                 <h2 className="text-4xl md:text-5xl font-black text-white tracking-tighter leading-tight">
-                  Construcción de CECOM: <br />
-                  <span className="text-indigo-400">El Sistema Nervioso Central.</span>
+                  CECOM: <span className="text-indigo-400">El Sistema Nervioso Central de su Operación</span>
                 </h2>
                 <div className="space-y-4 text-gray-400 leading-relaxed">
                   <p className="font-bold text-white text-lg">No es una oficina con monitores.</p>
@@ -765,8 +763,7 @@ export default function Tecnologia() {
                   <span className="text-[10px] font-black text-emerald-400 uppercase tracking-widest">Inteligencia Proactiva</span>
                 </div>
                 <h2 className="text-4xl md:text-5xl font-black text-white tracking-tighter leading-tight">
-                  Cámaras Inteligentes: <br />
-                  <span className="text-emerald-400">Detecte el Futuro, no el Pasado.</span>
+                  Cámaras Inteligentes: <span className="text-emerald-400">Analítica Predictiva con IA para Vigilancia Activa</span>
                 </h2>
                 <div className="space-y-4 text-gray-400 leading-relaxed">
                   <p className="font-bold text-white text-lg">Deje de ser un espectador de sus propias tragedias.</p>

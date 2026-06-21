@@ -25,8 +25,8 @@ const routes = [
   },
   {
     path: 'consultoria',
-    title: 'Consultoria Integral de Seguridad | Calidad Certificada ISO 9001:2015',
-    description: 'Diagnóstico integral de seguridad y consultoría estratégica bajo la norma ISO 9001:2015. Reduzca costos operativos y optimice la protección de sus activos críticos.',
+    title: 'Consultoría de Seguridad Corporativa en Venezuela | Diagnóstico Gratuito | CSSG',
+    description: 'Diagnóstico de vulnerabilidades, auditorías ISO 31000 y diseño de esquemas de protección para corporaciones y misiones diplomáticas en Venezuela. +17 años. Primera sesión sin costo.',
     image: 'https://cssg-global.com/consultoria_card.png',
     jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Consultoría Integral de Seguridad Corporativa", "description": "Diagnóstico integral, diseño de esquemas de seguridad y optimización de costos bajo norma ISO 9001:2015. +17 años de experiencia en Venezuela.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "hasOfferCatalog": { "@type": "OfferCatalog", "name": "Servicios de Consultoría", "itemListElement": [ { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Diagnóstico de Vulnerabilidades" } }, { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Optimización de Costos Operativos" } }, { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Implementación ISO 9001:2015" } } ] } }
   },
@@ -53,8 +53,8 @@ const routes = [
   },
   {
     path: 'analisis-riesgo',
-    title: 'Análisis de Riesgo Gratuito ISO 31000 | CSSG | Caracas · Miami',
-    description: 'Realice un autodiagnóstico de seguridad corporativa basado en la norma ISO 31000. Obtenga su nivel de riesgo y recomendaciones inmediatas.',
+    title: 'Diagnóstico de Vulnerabilidades Corporativas Gratuito | FMEA ISO 31000 | CSSG',
+    description: 'Evalúe el nivel de vulnerabilidad de su organización en 8 minutos. Metodología FMEA aplicada a 4 pilares: Perímetro, Accesos, Procedimientos e Inteligencia. Sin costo.',
     image: 'https://cssg-global.com/risk_analysis_cta.png',
     jsonld: { "@context": "https://schema.org", "@type": "SoftwareApplication", "name": "CSSG Risk Analyzer — Análisis de Riesgo ISO 31000", "description": "Herramienta gratuita de autodiagnóstico de seguridad corporativa. Metodología FMEA + ISO 31000:2018. Evalúa 4 pilares: Perímetro, Accesos, Procedimientos e Inteligencia.", "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "127" }, "author": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" } }
   },
@@ -67,8 +67,8 @@ const routes = [
   },
   {
     path: 'tecnologia',
-    title: 'ShieldTrace PSIM — Sistema de Seguridad Integrada | CSSG | Caracas · Miami',
-    description: 'ShieldTrace PSIM unifica CCTV analítico con IA, GPS en tiempo real, control de acceso biométrico y drones autónomos en un solo dashboard. Tecnología de seguridad corporativa en Venezuela.',
+    title: 'ShieldTrace PSIM — Seguridad Corporativa Predictiva para Venezuela | CSSG',
+    description: 'CCTV analítico con IA, control de acceso biométrico, GPS en tiempo real y drones autónomos en un dashboard único. Potencie el desempeño de su equipo de vigilancia física en Venezuela.',
     image: 'https://cssg-global.com/shieldtrace_tablet_dashboard_1777552473752.png',
     jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "ShieldTrace PSIM — Plataforma de Seguridad Integrada", "description": "Plataforma de integración de seguridad física (PSIM) con CCTV analítico con IA, GPS en tiempo real, control de acceso biométrico y drones autónomos.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "serviceType": "Plataforma PSIM de Seguridad Física", "areaServed": { "@type": "Country", "name": "Venezuela" }, "url": "https://cssg-global.com/tecnologia" }
   },
@@ -87,8 +87,8 @@ const routes = [
   },
   {
     path: 'consultoria/escudo-diplomatico',
-    title: 'Protección Ejecutiva de Nivel Diplomático | CSSG — Escudo Diplomático',
-    description: '¿Su seguridad actual realmente lo protege? Reserve un briefing confidencial de 10 minutos con nuestros especialistas. Escudo Diplomático — estándares G7. +17 años · ISO 9001 · Estándar G7.',
+    title: 'Protección Ejecutiva Bajo Estándar Diplomático G7 | Escudo Diplomático | CSSG',
+    description: 'El único esquema de seguridad privada en Venezuela diseñado bajo estándares G7. Evaluación personalizada, protocolo 24/7 y confidencialidad absoluta. Briefing confidencial de 10 minutos.',
     image: 'https://cssg-global.com/seo_escudo.jpg',
     jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Escudo Diplomático — Protección VIP Elite", "description": "Servicio exclusivo de protección a personalidades VIP, dignatarios y misiones diplomáticas bajo estándar G7. Esquemas personalizados 24/7.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "serviceType": "Protección Ejecutiva VIP", "audience": { "@type": "Audience", "audienceType": "Diplomáticos, Ejecutivos de Alto Perfil, Embajadas" } }
   },

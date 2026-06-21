@@ -592,6 +592,49 @@ export default function FAQ() {
         </motion.div>
       </section>
 
+      {/* ════════════ SEO: CATEGORÍAS H2 ESTÁTICAS — SIEMPRE INDEXABLES ════════════ */}
+      <section className="container mx-auto px-6 max-w-5xl mb-14">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+
+          <div className="p-6 rounded-2xl bg-white/[0.03] border border-white/[0.05] hover:border-sky-500/20 transition-colors">
+            <h2 className="text-base font-black text-white mb-2 tracking-tight">
+              Normativa, Certificaciones y Cumplimiento Legal
+            </h2>
+            <p className="text-gray-500 text-sm leading-relaxed">
+              Habilitación DIGESERVISP, certificación ISO 9001:2015, Ley de Vigilancia y Seguridad Privada en Venezuela y cumplimiento en contextos diplomáticos e infraestructuras críticas.
+            </p>
+          </div>
+
+          <div className="p-6 rounded-2xl bg-white/[0.03] border border-white/[0.05] hover:border-sky-500/20 transition-colors">
+            <h2 className="text-base font-black text-white mb-2 tracking-tight">
+              Metodología Operativa y Capacidad de Respuesta Táctica
+            </h2>
+            <p className="text-gray-500 text-sm leading-relaxed">
+              Estructura de esquemas de vigilancia corporativa, tiempos de respuesta garantizados, rotación de personal, protocolos de turno y gestión de crisis en tiempo real.
+            </p>
+          </div>
+
+          <div className="p-6 rounded-2xl bg-white/[0.03] border border-white/[0.05] hover:border-sky-500/20 transition-colors">
+            <h2 className="text-base font-black text-white mb-2 tracking-tight">
+              Tecnología de Seguridad: PSIM, CCTV Analítico y Control de Accesos
+            </h2>
+            <p className="text-gray-500 text-sm leading-relaxed">
+              Integración ShieldTrace PSIM, analítica de video con IA, control de acceso biométrico y monitoreo GPS en tiempo real para organizaciones corporativas en Venezuela.
+            </p>
+          </div>
+
+          <div className="p-6 rounded-2xl bg-white/[0.03] border border-white/[0.05] hover:border-sky-500/20 transition-colors">
+            <h2 className="text-base font-black text-white mb-2 tracking-tight">
+              Inversión, ROI y Optimización del Presupuesto de Seguridad
+            </h2>
+            <p className="text-gray-500 text-sm leading-relaxed">
+              Cómo justificar la inversión en seguridad privada ante la junta directiva, modelos de contratación disponibles y prevención de mermas financieras por incidentes no controlados.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
       {/* Search */}
       <section className="container mx-auto px-6 max-w-3xl mb-10">
         <div className="relative">

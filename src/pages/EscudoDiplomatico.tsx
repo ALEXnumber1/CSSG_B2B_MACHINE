@@ -179,9 +179,9 @@ export default function EscudoDiplomatico() {
               DIPLOMÁTICO.
             </span>
           </h1>
-          <h2 className="text-xl sm:text-2xl font-bold mb-10" style={{ color: '#a0a0a0' }}>
-            Descubre el <span className="text-white font-black">{t("escudo:paradigm_title_2")}</span>
-          </h2>
+          <p className="text-base sm:text-lg leading-relaxed mb-10 max-w-3xl mx-auto" style={{ color: '#a0a0a0' }}>
+            Diseñado originalmente para misiones del G7 en Venezuela, el Escudo Diplomático es hoy el esquema de seguridad privada más exigente que operamos. La misma discreción y precisión táctica que una cancillería — al servicio de ejecutivos de alto perfil, familias patrimoniales y personalidades que no aceptan compromisos. Un briefing de 10 minutos es suficiente para comenzar.
+          </p>
           <button onClick={scrollToForm} className="group px-8 py-4 rounded-lg text-sm font-black uppercase tracking-widest transition-all hover:scale-105 shadow-lg" style={{ color: '#0a0a0a', background: `linear-gradient(135deg, ${GOLD}, #f5e6a3)`, boxShadow: `0 0 40px ${GOLD}30` }}>
             Pida una Cita Ya <span className="text-[10px] opacity-70">(Briefing de 10 Min)</span>
             <ChevronRight className="inline w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" />

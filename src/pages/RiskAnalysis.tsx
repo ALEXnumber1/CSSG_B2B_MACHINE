@@ -604,6 +604,38 @@ export default function RiskAnalysis() {
           </div>
         </div>
 
+        {/* ════════════ SEO: H2 ESTÁTICOS — SIEMPRE INDEXABLES POR GOOGLE ════════════ */}
+        <div className="max-w-4xl mx-auto mb-16 space-y-10">
+
+          <div className="pl-6 border-l-4 border-sky-500/50">
+            <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight mb-3">
+              ¿Qué evalúa el Diagnóstico de Vulnerabilidades FMEA?
+            </h2>
+            <p className="text-gray-400 leading-relaxed">
+              Analizamos cuatro vectores de riesgo que determinan la resiliencia operativa de cualquier organización en Venezuela: Perímetro Físico, Control de Accesos, Procedimientos Operativos e Inteligencia de Amenazas. Cada pilar se pondera con la fórmula internacional <strong className="text-gray-200">(Probabilidad × 0.4) + (Impacto × 0.6)</strong>, generando un Índice de Riesgo comparable con el estándar ASIS ORM.1:2017 e ISO 31000:2018.
+            </p>
+          </div>
+
+          <div className="pl-6 border-l-4 border-amber-500/50">
+            <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight mb-3">
+              La Norma ISO 31000:2018 Aplicada al Entorno Venezolano
+            </h2>
+            <p className="text-gray-400 leading-relaxed">
+              ISO 31000:2018 establece el marco internacional para la gestión de riesgos corporativos. Nuestro diagnóstico traduce esa metodología en 20 variables estructuradas, calibradas para la realidad venezolana: infraestructura crítica, volatilidad del entorno político-económico y dinámica de amenazas urbanas en Caracas y zonas industriales. El resultado es un perfil de riesgo accionable, no un informe genérico.
+            </p>
+          </div>
+
+          <div className="pl-6 border-l-4 border-emerald-500/50">
+            <h2 className="text-2xl md:text-3xl font-black text-white tracking-tight mb-3">
+              ¿Qué ocurre después de su Diagnóstico de Seguridad Corporativa?
+            </h2>
+            <p className="text-gray-400 leading-relaxed">
+              Recibirá su puntuación categorizada — Bajo, Moderado, Alto o Crítico — junto con las vulnerabilidades prioritarias detectadas en cada pilar. Los expedientes con índice superior a 50 puntos son clasificados como urgentes: un consultor senior de CSSG lo contactará en un máximo de 12 horas para una sesión de revisión táctica sin costo y sin compromiso de contratación.
+            </p>
+          </div>
+
+        </div>
+
         {/* ════════════ METODOLOGÍA ════════════ */}
         <div className="max-w-4xl mx-auto mb-16" id="metodologia">
           <div className="glass-morphism rounded-2xl p-8 md:p-10">

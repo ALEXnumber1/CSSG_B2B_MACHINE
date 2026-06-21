@@ -52,10 +52,10 @@ const resources = {
       },
       hero: {
         badge: 'Fundada en 2009 · Certificación ISO 9001:2015',
-        title_1: 'Empresa de Seguridad Corporativa y Diplomática en Caracas',
+        title_1: 'Seguridad Corporativa y Diplomática en Venezuela',
         title_2: '17 años protegiendo embajadas del G7',
         title_3: 'INCIDENTES CERO',
-        subtitle: 'Protección de misiones diplomáticas e infraestructuras críticas con estándares G7. 17 años de operaciones impecables en Venezuela para organizaciones que exigen precisión absoluta.',
+        subtitle: 'Durante 17 años consecutivos protegemos embajadas del G7, corporaciones multinacionales y misiones diplomáticas en Venezuela sin registrar un solo incidente. Metodología FMEA, personal de élite y tecnología PSIM integrada. Solicite su diagnóstico de vulnerabilidades sin costo.',
         btn_audit: 'Asegurar Mi Instalación Ahora',
         btn_divisions: 'DESCARGAR PORTAFOLIOS'
       },
@@ -461,10 +461,10 @@ const resources = {
       },
       hero: {
         badge: 'Founded in 2009 · ISO 9001:2015 Certified',
-        title_1: 'Corporate & Diplomatic Security Company in Caracas',
+        title_1: 'Corporate & Diplomatic Security in Venezuela',
         title_2: '17 Years Protecting G7 Embassies',
         title_3: 'ZERO INCIDENTS',
-        subtitle: 'Protecting diplomatic missions and critical infrastructure with G7 standards. 17 years of flawless operations in Venezuela for organizations demanding absolute precision.',
+        subtitle: 'For 17 consecutive years we have protected G7 embassies, multinationals and diplomatic missions in Venezuela without a single incident. FMEA methodology, elite personnel and integrated PSIM technology. Request your free vulnerability assessment.',
         btn_audit: 'Secure My Facility Now',
         btn_divisions: 'DOWNLOAD PORTFOLIOS'
       },

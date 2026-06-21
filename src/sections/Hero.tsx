@@ -63,11 +63,14 @@ export default function Hero() {
                   <span className="text-sm font-medium tracking-wider text-sky-300 uppercase">{t('hero.badge')}</span>
                 </div>
                 
-                <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white mb-6 leading-[1.05]">
-                  {t('hero.title_1')} <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-sky-300 to-white">{t('hero.title_2')}</span> <br />
-                  <span className="text-4xl md:text-6xl lg:text-7xl text-rose-600 drop-shadow-[0_0_15px_rgba(225,29,72,0.3)]">{t('hero.title_3')}</span>
+                <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white mb-3 leading-[1.05]">
+                  {t('hero.title_1')}
                 </h1>
+                <p className="text-base md:text-lg font-black text-white mb-6 flex flex-wrap items-center gap-x-3 gap-y-1">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-sky-300 to-white">{t('hero.title_2')}</span>
+                  <span className="text-white/20">·</span>
+                  <span className="text-rose-500 drop-shadow-[0_0_8px_rgba(225,29,72,0.4)]">{t('hero.title_3')}</span>
+                </p>
                 
                 <p className="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl leading-relaxed font-light">
                   <strong className="text-white font-bold">{t('hero.subtitle').split('.')[0]}.</strong>
