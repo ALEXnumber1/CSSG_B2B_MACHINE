@@ -61,7 +61,7 @@ export default function ContactForm() {
         .single();
 
       if (leadData) {
-        await startSequence(leadData.id, formData.correo, formData.nombre, 'contacto', formData.empresa);
+        startSequence(leadData.id, formData.correo, formData.nombre, 'contacto', formData.empresa).catch(console.warn);
       }
 
       setStatus('success');

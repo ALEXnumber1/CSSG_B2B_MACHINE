@@ -123,7 +123,7 @@ export default function Consultoria() {
         score: 55,
       }]);
       if (error) throw error;
-      if (correo) await startSequence('lead-' + Date.now(), correo, nombre, 'consultoria', empresa);
+      if (correo) startSequence('lead-' + Date.now(), correo, nombre, 'consultoria', empresa).catch(console.warn);
       setStatus('success');
       setNombre(''); setCorreo(''); setEmpresa('');
     } catch {
