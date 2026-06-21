@@ -49,7 +49,7 @@ export default function Interactive3DBackground() {
     <div className="absolute inset-0 z-0" style={{ width: '100%', height: '100%' }}>
       <Canvas
         camera={{ position: [0, 0, 5], fov: 60 }}
-        gl={{ antialias: false, alpha: true, powerPreference: 'low-power', failIfMajorPerformanceCaveat: false }}
+        gl={{ antialias: false, alpha: true }}
         dpr={[1, 1.5]}
         style={{ background: 'transparent' }}
       >
