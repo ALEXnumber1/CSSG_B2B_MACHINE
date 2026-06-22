@@ -1,49 +1,33 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { Shield, ArrowRight } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import LeadModal from '../components/LeadModal';
 import AuditModal from '../components/AuditModal';
 import HeroSpline from '../components/HeroSpline';
+
 
 export default function Hero() {
   const { t, i18n } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAuditModalOpen, setIsAuditModalOpen] = useState(false);
   // Inicialización síncrona: evita que el video se inyecte tarde en desktop (CLS)
-  const [isDesktop, setIsDesktop] = useState(() => window.innerWidth >= 768);
-
-  useEffect(() => {
-    const onResize = () => setIsDesktop(window.innerWidth >= 768);
-    window.addEventListener('resize', onResize, { passive: true });
-    return () => window.removeEventListener('resize', onResize);
-  }, []);
 
   return (
     <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden flex items-center min-h-[100vh]">
-      {/* Cinematic Video Background */}
+      {/* Hero Background */}
       <div className="absolute inset-0 z-0">
-        {isDesktop && (
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="none"
-            className="absolute inset-0 w-full h-full object-cover opacity-20 grayscale brightness-50"
-          >
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-security-camera-monitoring-a-parking-lot-4467-large.mp4" type="video/mp4" />
-          </video>
-        )}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#030305] via-[#030305]/40 to-[#030305]" />
-        <HeroSpline />
-        {/* Laser Scanning Effect */}
-        <motion.div
-          style={{ top: 0 }}
-          animate={{ y: ["0vh", "100vh"] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-          className="absolute left-0 right-0 h-[2px] bg-sky-500/30 z-20 shadow-[0_0_20px_rgba(14,165,233,0.5)]"
+        <img
+          src="/foto-hero.webp"
+          alt=""
+          aria-hidden="true"
+          fetchPriority="high"
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-cover object-center opacity-25 grayscale brightness-50"
         />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#030305] via-[#030305]/40 to-[#030305]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#030305]/80 via-transparent to-[#030305]/40" />
+        <HeroSpline />
       </div>
 
       <div className="container mx-auto px-6 relative z-30">
@@ -109,26 +93,15 @@ export default function Hero() {
             </AnimatePresence>
           </div>
 
-          {/* Right: Floating Logo */}
+          {/* Right: Logo */}
           <div className="hidden lg:flex lg:col-span-5 items-center justify-center">
-            <motion.img 
+            <img
               src="/logo.webp"
-              alt="CSSG Logo"
+              alt="CSSG — Company of Security and Service Global"
               fetchPriority="high"
-              initial={{ opacity: 0, scale: 0.7 }}
-              animate={{ 
-                opacity: 1, 
-                scale: 1,
-                y: [0, -16, 0],
-                rotate: [0, 3, 0, -3, 0]
-              }}
-              transition={{ 
-                opacity: { delay: 0.4, duration: 1 },
-                scale: { delay: 0.4, duration: 1, ease: "easeOut" },
-                y: { delay: 1.2, duration: 5, repeat: Infinity, ease: "easeInOut" },
-                rotate: { delay: 1.2, duration: 7, repeat: Infinity, ease: "easeInOut" }
-              }}
-              className="w-[350px] h-[350px] lg:w-[400px] lg:h-[400px] xl:w-[500px] xl:h-[500px] object-contain brightness-110 contrast-110 saturate-110 drop-shadow-[0_0_100px_rgba(234,179,8,0.5)]"
+              width="500"
+              height="500"
+              className="w-[350px] h-[350px] lg:w-[400px] lg:h-[400px] xl:w-[500px] xl:h-[500px] object-contain brightness-110 contrast-110 saturate-110 drop-shadow-[0_0_100px_rgba(234,179,8,0.5)] animate-logo-float"
             />
           </div>
         </div>

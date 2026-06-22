@@ -22,10 +22,16 @@ export default {
         shimmer: {
           '0%': { transform: 'translateX(-100%)' },
           '100%': { transform: 'translateX(100%)' }
+        },
+        'logo-float': {
+          '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+          '33%': { transform: 'translateY(-14px) rotate(2deg)' },
+          '66%': { transform: 'translateY(-8px) rotate(-2deg)' },
         }
       },
       animation: {
-        shimmer: 'shimmer 2s infinite'
+        shimmer: 'shimmer 2s infinite',
+        'logo-float': 'logo-float 6s ease-in-out infinite',
       },
       fontFamily: {
         sans: ['Inter', 'Space Grotesk', 'sans-serif'],
