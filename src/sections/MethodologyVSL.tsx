@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Zap } from 'lucide-react';
+import { Zap, Play } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import AuditModal from '../components/AuditModal';
+
+const VIDEO_ID = 'BO_nhYkWHLw';
 
 const MethodologyVSL: React.FC = () => {
   const { t } = useTranslation();
   const [isAuditModalOpen, setIsAuditModalOpen] = useState(false);
+  const [videoActive, setVideoActive] = useState(false);
 
   return (
     <section className="py-24 bg-[#030305] relative overflow-hidden">
@@ -60,16 +63,38 @@ const MethodologyVSL: React.FC = () => {
               <div className="absolute -bottom-4 -right-4 w-12 h-12 border-b-2 border-r-2 border-sky-500/40 rounded-br-2xl z-20 pointer-events-none" />
               
               <div className="relative aspect-video rounded-3xl overflow-hidden border border-white/20 shadow-2xl shadow-sky-500/10 group-hover/vsl:shadow-sky-500/20 transition-all duration-700 bg-black">
-                <iframe
-                  className="w-full h-full grayscale-[30%] group-hover/vsl:grayscale-0 transition-all duration-700"
-                  src="https://www.youtube.com/embed/BO_nhYkWHLw?autoplay=0&mute=0&controls=1&modestbranding=1&rel=0"
-                  title="CSSG Tactical Operations"
-                  frameBorder="0"
-                  loading="lazy"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                ></iframe>
-                
+                {videoActive ? (
+                  <iframe
+                    className="w-full h-full"
+                    src={`https://www.youtube.com/embed/${VIDEO_ID}?autoplay=1&mute=0&controls=1&modestbranding=1&rel=0`}
+                    title="CSSG Tactical Operations"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  />
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => setVideoActive(true)}
+                    className="absolute inset-0 w-full h-full group/play"
+                    aria-label="Reproducir video CSSG Tactical Operations"
+                  >
+                    <img
+                      src={`https://img.youtube.com/vi/${VIDEO_ID}/maxresdefault.jpg`}
+                      alt="CSSG Tactical Operations — ver video"
+                      className="w-full h-full object-cover grayscale-[30%] group-hover/play:grayscale-0 transition-all duration-700"
+                      loading="lazy"
+                      onError={(e) => { e.currentTarget.src = `https://img.youtube.com/vi/${VIDEO_ID}/hqdefault.jpg`; }}
+                    />
+                    <div className="absolute inset-0 bg-black/30 group-hover/play:bg-black/10 transition-all duration-300" />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-20 h-20 rounded-full bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center group-hover/play:scale-110 group-hover/play:bg-sky-500/80 transition-all duration-300 shadow-2xl">
+                        <Play className="w-8 h-8 text-white fill-white ml-1" />
+                      </div>
+                    </div>
+                  </button>
+                )}
+
                 <div className="absolute inset-0 pointer-events-none border-[15px] border-black" />
                 <div className="absolute top-4 left-6 flex items-center gap-2 opacity-50">
                   <div className="w-2 h-2 bg-red-600 rounded-full animate-pulse" />
