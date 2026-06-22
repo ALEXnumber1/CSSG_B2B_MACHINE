@@ -23,7 +23,7 @@ export default function Hero() {
           aria-hidden="true"
           fetchPriority="high"
           decoding="async"
-          className="absolute inset-0 w-full h-full object-cover object-center opacity-60 brightness-90"
+          className="absolute inset-0 w-full h-full object-cover object-center opacity-80 brightness-100"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#030305] via-[#030305]/40 to-[#030305]" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#030305]/80 via-transparent to-[#030305]/40" />
