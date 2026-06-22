@@ -23,7 +23,7 @@ export default function Hero() {
           aria-hidden="true"
           fetchPriority="high"
           decoding="async"
-          className="absolute inset-0 w-full h-full object-cover object-center opacity-25 grayscale brightness-50"
+          className="absolute inset-0 w-full h-full object-cover object-center opacity-45 grayscale-[40%] brightness-75"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#030305] via-[#030305]/40 to-[#030305]" />
         <div className="absolute inset-0 bg-gradient-to-r from-[#030305]/80 via-transparent to-[#030305]/40" />
@@ -101,7 +101,7 @@ export default function Hero() {
               fetchPriority="high"
               width="500"
               height="500"
-              className="w-[350px] h-[350px] lg:w-[400px] lg:h-[400px] xl:w-[500px] xl:h-[500px] object-contain brightness-110 contrast-110 saturate-110 drop-shadow-[0_0_100px_rgba(234,179,8,0.5)] animate-logo-float"
+              className="w-[400px] h-[400px] lg:w-[480px] lg:h-[480px] xl:w-[580px] xl:h-[580px] object-contain brightness-110 contrast-110 saturate-110 drop-shadow-[0_0_100px_rgba(234,179,8,0.5)]"
             />
           </div>
         </div>
