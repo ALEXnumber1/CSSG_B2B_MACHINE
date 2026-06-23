@@ -212,6 +212,58 @@ export default function CertificationsAndTraining() {
           </div>
         </motion.div>
 
+        {/* IFPO Corporate Membership Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.45 }}
+          className="mt-12 group relative bg-white/[0.04] backdrop-blur-3xl border-2 border-yellow-500/30 rounded-[2rem] p-8 md:p-12 shadow-[0_0_50px_rgba(234,179,8,0.08)]"
+        >
+          <div className="flex flex-col md:flex-row items-center md:items-start gap-8">
+
+            {/* Left — IFPO badge */}
+            <div className="flex flex-col items-center gap-3 shrink-0">
+              <img
+                src="/ifpo-corporate-member.webp"
+                alt="IFPO Corporate Membership — International Foundation for Protection Officers"
+                width={171}
+                height={90}
+                className="rounded-xl opacity-90 hover:opacity-100 transition-opacity"
+                loading="lazy"
+              />
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded border border-yellow-500/20 bg-yellow-500/5">
+                <div className="w-1.5 h-1.5 rounded-full bg-yellow-400 animate-pulse" />
+                <span className="text-[9px] font-black text-yellow-400 uppercase tracking-[0.2em]">Membresía Activa</span>
+              </div>
+            </div>
+
+            {/* Right — description */}
+            <div className="flex-1 text-center">
+              <div className="flex items-center justify-center gap-3 mb-4">
+                <div className="w-12 h-12 border-2 border-yellow-500/20 rounded-lg flex items-center justify-center bg-yellow-500/5">
+                  <Award className="w-7 h-7 text-yellow-400" />
+                </div>
+                <div>
+                  <p className="text-[10px] text-yellow-500 font-black uppercase tracking-widest">International Standard</p>
+                  <p className="text-[8px] text-gray-500">International Foundation for Protection Officers</p>
+                </div>
+              </div>
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-3">IFPO Corporate Membership</h3>
+              <p className="text-gray-400 text-sm leading-relaxed mx-auto max-w-xl">
+                Membresía corporativa otorgada por la <span className="text-yellow-400 font-bold">International Foundation for Protection Officers</span>, la organización sin fines de lucro más reconocida del mundo en estándares de calidad y ética para la industria de la seguridad privada.
+              </p>
+              <div className="flex flex-wrap gap-3 mt-6 justify-center">
+                {['Estándares internacionales', 'Ética profesional', 'Mejores prácticas', 'Red global de seguridad'].map((item) => (
+                  <span key={item} className="px-3 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/20 text-[10px] font-bold text-yellow-400 uppercase tracking-wider">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
       </div>
     </section>
   );

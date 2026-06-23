@@ -252,6 +252,17 @@ function AppContent() {
                     </a>
                     <span className="text-[9px] text-sky-400 font-bold uppercase tracking-widest">Cyber Essentials</span>
                   </div>
+                  <div className="flex flex-col items-center gap-2">
+                    <img
+                      src="/ifpo-corporate-member.webp"
+                      alt="IFPO Corporate Membership"
+                      className="h-20 w-auto opacity-70 hover:opacity-100 transition-opacity rounded-lg"
+                      loading="lazy"
+                      width="152"
+                      height="80"
+                    />
+                    <span className="text-[9px] text-sky-400 font-bold uppercase tracking-widest">IFPO Member</span>
+                  </div>
                 </div>
 
                 <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
