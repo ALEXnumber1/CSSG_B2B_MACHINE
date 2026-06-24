@@ -4,26 +4,26 @@ import { WhitePaperDueDiligence, WP_FILENAME_DD } from '../../lib/pdf/documents/
 export default function WPDueDiligence() {
   return (
     <WhitePaperLandingTemplate
-      title="Due Diligence Corporativa en Venezuela: Protocolo de Investigación 2026"
-      subtitle="Verificación CICPC · SENIAT · IVSS · OSINT · Escritura por Inducción"
-      description="El protocolo completo para investigar personas naturales y jurídicas en Venezuela antes de contratar, asociar o invertir. Fuentes judiciales (CICPC), tributarias (SENIAT, IVSS), registrales (SAREN) e inteligencia abierta (OSINT). Más de 1,200 investigaciones completadas en Venezuela."
+      title="Due Diligence en Venezuela: Protocolo Unificado — Personas y Corporativa 2026"
+      subtitle="Personas Naturales · Personas Jurídicas · CICPC · SENIAT · IVSS · SAREN · OFAC · PEP Screening · HUMINT Local"
+      description="El protocolo unificado para investigar personas naturales y jurídicas en Venezuela antes de contratar, asociar o invertir. Dos líneas de due diligence (Screening/Vetting/Integrity DD y CDD/EDD), PEP Screening, análisis de UBO, Fact-Based Reporting y Continuous Vetting — ejecutado desde Venezuela con HUMINT local."
       coverColor="from-indigo-900 to-slate-900"
       accentColor="indigo"
       topics={[
-        'Qué es el due diligence corporativa Venezuela y por qué es diferente a otros contextos',
-        'Casos reales de pérdidas por no verificar: el costo de omitir el proceso',
-        'Verificación CICPC: antecedentes penales y causas abiertas en Venezuela',
-        'Fuentes tributarias y laborales: SENIAT solvencia, IVSS e INPSASEL',
-        'OSINT Venezuela: cómo aplicar inteligencia de fuentes abiertas al contexto local',
-        'La metodología "escritura por inducción": cómo presentar hallazgos sensibles',
-        'Los tres niveles de investigación: Básico, Estándar y Reforzado con sus criterios',
-        'Red flags críticos: las señales de alerta más frecuentes en Venezuela',
-        'Cómo leer e interpretar un informe de due diligence correctamente',
+        'Parte I — Due diligence de personas naturales: 9 fuentes en secuencia con consentimiento informado',
+        'PEP Screening como categoría diferenciada: cargo público, cónyuge y familia directa',
+        'Verificación de credenciales universitarias: incidencia de falsificación documentada en Venezuela',
+        'Parte II — Due diligence corporativa: análisis de Beneficiario Final (UBO) y estructura societaria',
+        'Riesgo OFAC en Venezuela: por qué es más frecuente que en otros entornos latinoamericanos',
+        'Los seis niveles (Screening L1 · Vetting L2 · Integrity DD L3 y CDD Básico · Estándar · EDD Reforzado)',
+        'Visita de sitio y verificación operativa: HUMINT local como diferenciador central de CSSG',
+        'Red flags específicos por línea: personas naturales y personas jurídicas',
+        'Continuous Vetting: monitoreo periódico de directivos críticos y proveedores estratégicos',
       ]}
       stats={[
-        { value: '+1.200', label: 'Investigaciones completadas en Venezuela' },
-        { value: '3 niveles', label: 'Básico · Estándar · Reforzado' },
-        { value: '5 fuentes', label: 'CICPC · SENIAT · IVSS · SAREN · OSINT' },
+        { value: '2 líneas', label: 'Personas Naturales · Personas Jurídicas' },
+        { value: '9+9', label: 'Fuentes en secuencia por línea' },
+        { value: '6 niveles', label: 'Screening L1 — EDD Reforzado L3' },
       ]}
       pdfDocument={<WhitePaperDueDiligence />}
       filename={WP_FILENAME_DD}
