@@ -1,64 +1,150 @@
+import { useTranslation } from 'react-i18next';
 import ConsultoriaServiceLayout from '../../components/ConsultoriaServiceLayout';
 import { Award, CheckCircle2 } from 'lucide-react';
 
-const certs = [
-  {
-    name: 'ISO 9001:2015',
-    cert: 'Certificado N° 580181',
-    issuer: 'Bureau Veritas / Sistema Internacional de Certificación',
-    scope: 'Diseño, suministro y operación de servicios de seguridad corporativa y diplomática.',
-    what: 'El ISO 9001 certifica que CSSG opera bajo un Sistema de Gestión de Calidad auditado externamente. Cada proceso — desde la selección de personal hasta la respuesta a incidentes — sigue procedimientos documentados y es mejorado continuamente.',
-    color: 'border-sky-500/30 bg-sky-500/5',
-    badge: 'text-sky-400',
+const CONTENT = {
+  es: {
+    breadcrumb: 'Certificaciones',
+    badge: 'ISO 9001:2015 · Cyber Essentials · ESRM',
+    title: 'Certificaciones y Estándares',
+    subtitle: 'El respaldo auditable detrás de cada servicio',
+    intro: 'CSSG no declara estándares — los certifica. Nuestras certificaciones son emitidas por organismos de tercera parte independientes y están sujetas a auditorías periódicas. Son la evidencia objetiva de que los procesos que responden por la seguridad de su organización están diseñados, documentados y mejorados bajo normas internacionales.',
+    faqs: [
+      {
+        q: '¿Cómo puedo verificar la vigencia del certificado ISO 9001 de CSSG?',
+        a: 'El Certificado N° 580181 puede verificarse directamente con el organismo emisor. En reuniones de licitación o auditoría, CSSG presenta el certificado original y el último informe de auditoría de vigilancia. La validez y el alcance son verificables de forma independiente.',
+      },
+      {
+        q: '¿Por qué Cyber Essentials es relevante para clientes latinoamericanos?',
+        a: 'Porque es emitido por el gobierno del Reino Unido y es reconocido por los países del G7. Para misiones diplomáticas europeas y organizaciones con casa matriz en el Reino Unido, es un requisito o señal de confianza relevante. Para cualquier cliente, es evidencia de que CSSG protege su información bajo estándares de seguridad verificados.',
+      },
+    ],
+    activeCertsTitle: 'Certificaciones activas',
+    certs: [
+      {
+        name: 'ISO 9001:2015',
+        cert: 'Certificado N° 580181',
+        issuer: 'LL-C / Sistema Internacional de Certificación',
+        scopeLabel: 'Alcance',
+        scope: 'Diseño, suministro y operación de servicios de seguridad corporativa y diplomática.',
+        what: 'El ISO 9001 certifica que CSSG opera bajo un Sistema de Gestión de Calidad auditado externamente. Cada proceso — desde la selección de personal hasta la respuesta a incidentes — sigue procedimientos documentados y es mejorado continuamente.',
+        color: 'border-sky-500/30 bg-sky-500/5',
+        badge: 'text-sky-400',
+      },
+      {
+        name: 'Cyber Essentials',
+        cert: 'Recertificación: Mayo 2027',
+        issuer: 'National Cyber Security Centre — Gobierno del Reino Unido',
+        scopeLabel: 'Alcance',
+        scope: 'Controles de ciberseguridad esenciales para la protección de información de clientes.',
+        what: 'Cyber Essentials es la certificación de ciberseguridad del gobierno del Reino Unido. Verifica que CSSG implementa los cinco controles esenciales: firewall, configuración segura, control de acceso, protección contra malware y actualizaciones de seguridad.',
+        color: 'border-emerald-500/30 bg-emerald-500/5',
+        badge: 'text-emerald-400',
+      },
+    ],
+    frameworksTitle: 'Marcos aplicados',
+    frameworks: [
+      { name: 'ESRM', full: 'Enterprise Security Risk Management', issuer: 'ASIS International', use: 'Marco metodológico para evaluaciones de riesgo y diseño de programas de seguridad.' },
+      { name: 'ISO 31000:2018', full: 'Risk Management — Guidelines', issuer: 'ISO', use: 'Estándar internacional para la gestión del riesgo. Base de nuestro scoring y análisis FMEA.' },
+      { name: 'ISO 22301:2019', full: 'Business Continuity Management Systems', issuer: 'ISO', use: 'Marco para planes de continuidad de negocio. Referencia para todos los BCP que diseñamos.' },
+      { name: 'CPTED', full: 'Crime Prevention Through Environmental Design', issuer: 'CPTED Network', use: 'Marco para evaluaciones físicas de instalaciones y diseño de espacios seguros.' },
+      { name: 'ASIS ORM.1:2017', full: 'Organizational Resilience Management', issuer: 'ASIS International', use: 'Estándar para gestión de resiliencia. Complementa el BCP con perspectiva de continuidad integral.' },
+    ],
+    whatMeanTitle: '¿Qué significan estas certificaciones para usted?',
+    whatMean: [
+      'Evidencia auditable de calidad — no solo una declaración',
+      'Requisito para licitaciones con embajadas, organismos internacionales y corporaciones del G7',
+      'Garantía de que sus datos son tratados bajo controles de ciberseguridad verificados',
+      'Base para la confianza en entornos donde la verificación independiente es escasa',
+      'Diferenciador frente a competidores sin certificación en el mercado venezolano',
+    ],
+    related: [
+      { label: 'Evaluación de Riesgos', href: '/consultoria/evaluacion-de-riesgos-de-seguridad' },
+      { label: 'Auditoría de Cumplimiento', href: '/consultoria/auditoria-de-cumplimiento' },
+    ],
   },
-  {
-    name: 'Cyber Essentials',
-    cert: 'Recertificación: Mayo 2027',
-    issuer: 'National Cyber Security Centre — Gobierno del Reino Unido',
-    scope: 'Controles de ciberseguridad esenciales para la protección de información de clientes.',
-    what: 'Cyber Essentials es la certificación de ciberseguridad del gobierno del Reino Unido. Verifica que CSSG implementa los cinco controles esenciales: firewall, configuración segura, control de acceso, protección contra malware y actualizaciones de seguridad.',
-    color: 'border-emerald-500/30 bg-emerald-500/5',
-    badge: 'text-emerald-400',
+  en: {
+    breadcrumb: 'Certifications',
+    badge: 'ISO 9001:2015 · Cyber Essentials · ESRM',
+    title: 'Certifications and Standards',
+    subtitle: 'The auditable backing behind every service',
+    intro: 'CSSG does not declare standards — it certifies them. Our certifications are issued by independent third-party bodies and are subject to periodic audits. They are the objective evidence that the processes safeguarding your organization\'s security are designed, documented and continuously improved under international standards.',
+    faqs: [
+      {
+        q: 'How can I verify the validity of CSSG\'s ISO 9001 certificate?',
+        a: 'Certificate No. 580181 can be verified directly with the issuing body. At tender or audit meetings, CSSG presents the original certificate and the most recent surveillance audit report. Validity and scope are independently verifiable.',
+      },
+      {
+        q: 'Why is Cyber Essentials relevant for Latin American clients?',
+        a: 'Because it is issued by the UK government and is recognized by G7 countries. For European diplomatic missions and organizations headquartered in the United Kingdom, it is a requirement or a relevant trust signal. For any client, it is evidence that CSSG protects their information under verified cybersecurity standards.',
+      },
+    ],
+    activeCertsTitle: 'Active certifications',
+    certs: [
+      {
+        name: 'ISO 9001:2015',
+        cert: 'Certificate No. 580181',
+        issuer: 'LL-C / International Certification System',
+        scopeLabel: 'Scope',
+        scope: 'Design, supply and operation of corporate and diplomatic security services.',
+        what: 'ISO 9001 certifies that CSSG operates under an externally audited Quality Management System. Every process — from personnel selection to incident response — follows documented procedures and is continuously improved.',
+        color: 'border-sky-500/30 bg-sky-500/5',
+        badge: 'text-sky-400',
+      },
+      {
+        name: 'Cyber Essentials',
+        cert: 'Recertification: May 2027',
+        issuer: 'National Cyber Security Centre — UK Government',
+        scopeLabel: 'Scope',
+        scope: 'Essential cybersecurity controls for the protection of client information.',
+        what: 'Cyber Essentials is the UK government\'s cybersecurity certification. It verifies that CSSG implements the five essential controls: firewall, secure configuration, access control, malware protection and security updates.',
+        color: 'border-emerald-500/30 bg-emerald-500/5',
+        badge: 'text-emerald-400',
+      },
+    ],
+    frameworksTitle: 'Applied frameworks',
+    frameworks: [
+      { name: 'ESRM', full: 'Enterprise Security Risk Management', issuer: 'ASIS International', use: 'Methodological framework for risk assessments and security program design.' },
+      { name: 'ISO 31000:2018', full: 'Risk Management — Guidelines', issuer: 'ISO', use: 'International standard for risk management. Basis of our scoring and FMEA analysis.' },
+      { name: 'ISO 22301:2019', full: 'Business Continuity Management Systems', issuer: 'ISO', use: 'Framework for business continuity plans. Reference for all BCPs we design.' },
+      { name: 'CPTED', full: 'Crime Prevention Through Environmental Design', issuer: 'CPTED Network', use: 'Framework for physical facility assessments and secure space design.' },
+      { name: 'ASIS ORM.1:2017', full: 'Organizational Resilience Management', issuer: 'ASIS International', use: 'Standard for resilience management. Complements the BCP with an integral continuity perspective.' },
+    ],
+    whatMeanTitle: 'What do these certifications mean for you?',
+    whatMean: [
+      'Auditable evidence of quality — not just a declaration',
+      'Requirement for tenders with embassies, international organizations and G7 corporations',
+      'Assurance that your data is handled under verified cybersecurity controls',
+      'Basis for trust in environments where independent verification is scarce',
+      'Differentiator against uncertified competitors in the Venezuelan market',
+    ],
+    related: [
+      { label: 'Risk Assessment', href: '/consultoria/evaluacion-de-riesgos-de-seguridad' },
+      { label: 'Compliance Audit', href: '/consultoria/auditoria-de-cumplimiento' },
+    ],
   },
-];
-
-const frameworks = [
-  { name: 'ESRM', full: 'Enterprise Security Risk Management', issuer: 'ASIS International', use: 'Marco metodológico para evaluaciones de riesgo y diseño de programas de seguridad.' },
-  { name: 'ISO 31000:2018', full: 'Risk Management — Guidelines', issuer: 'ISO', use: 'Estándar internacional para la gestión del riesgo. Base de nuestro scoring y análisis FMEA.' },
-  { name: 'ISO 22301:2019', full: 'Business Continuity Management Systems', issuer: 'ISO', use: 'Marco para planes de continuidad de negocio. Referencia para todos los BCP que diseñamos.' },
-  { name: 'CPTED', full: 'Crime Prevention Through Environmental Design', issuer: 'CPTED Network', use: 'Marco para evaluaciones físicas de instalaciones y diseño de espacios seguros.' },
-  { name: 'ASIS ORM.1:2017', full: 'Organizational Resilience Management', issuer: 'ASIS International', use: 'Estándar para gestión de resiliencia. Complementa el BCP con perspectiva de continuidad integral.' },
-];
+};
 
 export default function Certificaciones() {
+  const { i18n } = useTranslation();
+  const c = i18n.language.startsWith('en') ? CONTENT.en : CONTENT.es;
+
   return (
     <ConsultoriaServiceLayout
-      breadcrumb="Certificaciones"
-      badge="ISO 9001:2015 · Cyber Essentials · ESRM"
-      title="Certificaciones y Estándares"
-      subtitle="El respaldo auditable detrás de cada servicio"
-      intro="CSSG no declara estándares — los certifica. Nuestras certificaciones son emitidas por organismos de tercera parte independientes y están sujetas a auditorías periódicas. Son la evidencia objetiva de que los procesos que responden por la seguridad de su organización están diseñados, documentados y mejorados bajo normas internacionales."
-      faqs={[
-        {
-          q: '¿Cómo puedo verificar la vigencia del certificado ISO 9001 de CSSG?',
-          a: 'El Certificado N° 580181 puede verificarse directamente con el organismo emisor. En reuniones de licitación o auditoría, CSSG presenta el certificado original y el último informe de auditoría de vigilancia. La validez y el alcance son verificables de forma independiente.',
-        },
-        {
-          q: '¿Por qué Cyber Essentials es relevante para clientes latinoamericanos?',
-          a: 'Porque es emitido por el gobierno del Reino Unido y es reconocido por los países del G7. Para misiones diplomáticas europeas y organizaciones con casa matriz en el Reino Unido, es un requisito o señal de confianza relevante. Para cualquier cliente, es evidencia de que CSSG protege su información bajo estándares de seguridad verificados.',
-        },
-      ]}
+      breadcrumb={c.breadcrumb}
+      badge={c.badge}
+      title={c.title}
+      subtitle={c.subtitle}
+      intro={c.intro}
+      faqs={c.faqs}
       accentColor="sky"
-      related={[
-        { label: 'Evaluación de Riesgos', href: '/consultoria/evaluacion-de-riesgos-de-seguridad' },
-        { label: 'Auditoría de Cumplimiento', href: '/consultoria/auditoria-de-cumplimiento' },
-      ]}
+      related={c.related}
     >
       {/* CERTIFICATIONS */}
       <div className="mb-12">
-        <h2 className="text-2xl font-black text-white mb-6">Certificaciones activas</h2>
+        <h2 className="text-2xl font-black text-white mb-6">{c.activeCertsTitle}</h2>
         <div className="space-y-5">
-          {certs.map((cert) => (
+          {c.certs.map((cert) => (
             <div key={cert.name} className={`p-7 rounded-3xl border ${cert.color}`}>
               <div className="flex items-start justify-between mb-4">
                 <div>
@@ -67,7 +153,7 @@ export default function Certificaciones() {
                 </div>
                 <Award className={`w-8 h-8 ${cert.badge} opacity-60 shrink-0`} />
               </div>
-              <p className="text-xs text-gray-600 uppercase tracking-widest font-bold mb-3">Alcance: {cert.scope}</p>
+              <p className="text-xs text-gray-600 uppercase tracking-widest font-bold mb-3">{cert.scopeLabel}: {cert.scope}</p>
               <p className="text-sm text-gray-400 leading-relaxed">{cert.what}</p>
             </div>
           ))}
@@ -76,9 +162,9 @@ export default function Certificaciones() {
 
       {/* FRAMEWORKS */}
       <div className="mb-12">
-        <h2 className="text-2xl font-black text-white mb-6">Marcos aplicados</h2>
+        <h2 className="text-2xl font-black text-white mb-6">{c.frameworksTitle}</h2>
         <div className="space-y-3">
-          {frameworks.map((f) => (
+          {c.frameworks.map((f) => (
             <div key={f.name} className="flex items-start gap-4 p-4 rounded-xl bg-white/[0.02] border border-white/[0.04]">
               <div className="shrink-0 w-20">
                 <p className="text-xs font-black text-sky-400 uppercase">{f.name}</p>
@@ -94,15 +180,9 @@ export default function Certificaciones() {
 
       {/* WHAT CERTS MEAN */}
       <div>
-        <h2 className="text-2xl font-black text-white mb-4">¿Qué significan estas certificaciones para usted?</h2>
+        <h2 className="text-2xl font-black text-white mb-4">{c.whatMeanTitle}</h2>
         <div className="flex flex-col gap-2">
-          {[
-            'Evidencia auditable de calidad — no solo una declaración',
-            'Requisito para licitaciones con embajadas, organismos internacionales y corporaciones del G7',
-            'Garantía de que sus datos son tratados bajo controles de ciberseguridad verificados',
-            'Base para la confianza en entornos donde la verificación independiente es escasa',
-            'Diferenciador frente a competidores sin certificación en el mercado venezolano',
-          ].map((item) => (
+          {c.whatMean.map((item) => (
             <div key={item} className="flex items-start gap-3 py-2">
               <CheckCircle2 className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
               <span className="text-sm text-gray-400">{item}</span>
