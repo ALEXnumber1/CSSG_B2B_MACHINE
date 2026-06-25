@@ -111,10 +111,10 @@ const S = StyleSheet.create({
   goldCalloutText:    { fontSize: 9.5, color: C.goldDark, lineHeight: 1.6 },
   warnCallout:        { backgroundColor: C.redBg, borderLeftWidth: 3, borderLeftColor: C.red, paddingHorizontal: 12, paddingVertical: 8, marginBottom: 12, borderRadius: 3 },
   warnText:           { fontSize: 9.5, color: C.redDark, lineHeight: 1.6 },
-  numItem:            { flexDirection: 'row', gap: 8, marginBottom: 6, paddingVertical: 5, borderBottomWidth: 1, borderBottomColor: C.border },
-  numLabel:           { fontSize: 9, fontWeight: 700, color: C.gold, width: 20 },
-  numTitle:           { fontSize: 9, fontWeight: 700, color: C.dark, marginBottom: 2 },
-  numDesc:            { fontSize: 8.5, color: C.body, lineHeight: 1.5, flex: 1 },
+  numItem:            { flexDirection: 'row', marginBottom: 8, paddingBottom: 8, borderBottomWidth: 0.5, borderBottomColor: C.border },
+  numLabel:           { fontSize: 9, fontWeight: 700, color: C.gold, width: 24, paddingTop: 1, flexShrink: 0 },
+  numTitle:           { fontSize: 9, fontWeight: 700, color: C.dark, marginBottom: 3 },
+  numDesc:            { fontSize: 8.5, color: C.body, lineHeight: 1.55 },
   tableHeader:        { flexDirection: 'row', backgroundColor: C.dark, paddingHorizontal: 7, paddingVertical: 5, borderRadius: 3, marginBottom: 2 },
   tableHeaderCell:    { fontSize: 7.5, color: '#FFFFFF', fontWeight: 700, letterSpacing: 0.4, flex: 1 },
   tableRow:           { flexDirection: 'row', paddingHorizontal: 7, paddingVertical: 5, borderBottomWidth: 1, borderBottomColor: C.border },
@@ -157,7 +157,7 @@ const PageHeader = () => (
 const PageFooter = () => (
   <View style={S.pageFooter} fixed>
     <View style={S.pageFooterLine} />
-    <Text style={S.pageFooterText}>cssg-global.com  ·  operaciones@cssg-global.com  ·  J-29782024-8</Text>
+    <Text style={S.pageFooterText}>cssg-global.com  ·  gerencia@globalservices-ven.com  ·  J-29782024-8</Text>
     <Link src="https://cssg-global.com/consultoria/due-diligence-corporativa" style={S.pageFooterLink}>
       cssg-global.com/consultoria/due-diligence-corporativa
     </Link>
@@ -265,7 +265,7 @@ export const WhitePaperDueDiligence = () => (
         <View style={S.coverBottomLine} />
         <Text style={S.coverBottomText}>
           CSSG — Company of Security and Service Global C.A.{'\n'}
-          cssg-global.com  ·  operaciones@cssg-global.com{'\n'}
+          cssg-global.com  ·  gerencia@globalservices-ven.com{'\n'}
           Distribución libre con atribución — © 2026
         </Text>
       </View>
@@ -307,7 +307,7 @@ export const WhitePaperDueDiligence = () => (
       </View>
       <View style={S.indexBottom}>
         <Text style={S.indexBottomText}>
-          {CORPORATE.legalName}  ·  {CORPORATE.rif}  ·  {CORPORATE.website}  ·  operaciones@cssg-global.com
+          {CORPORATE.legalName}  ·  {CORPORATE.rif}  ·  {CORPORATE.website}  ·  gerencia@globalservices-ven.com
         </Text>
       </View>
     </Page>
@@ -677,7 +677,7 @@ export const WhitePaperDueDiligence = () => (
           <View style={S.ctaBox}>
             <Text style={S.ctaLabel}>Contacto</Text>
             <Text style={S.ctaText}>
-              operaciones@cssg-global.com  ·  +58 424-178-2091{'\n'}
+              gerencia@globalservices-ven.com  ·  +58 424-178-2091{'\n'}
               cssg-global.com  ·  Caracas, Venezuela{'\n\n'}
               Disponibles para consultas en español e inglés. Canal seguro y confidencialidad garantizada.
             </Text>
