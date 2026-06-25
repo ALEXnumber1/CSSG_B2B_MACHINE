@@ -65,7 +65,8 @@ function DownloadButton({ pdfDocument, filename, accent }: { pdfDocument: ReactE
       const url = URL.createObjectURL(blob);
       setBlobUrl(url);
       setState('idle');
-    } catch {
+    } catch (err) {
+      console.error('[PDF] Error al generar:', err);
       setState('error');
     }
   };

@@ -15,15 +15,16 @@ const LOGO: string = isNode
 
 // ── Registro de fuentes ────────────────────────────────────────────────────────
 // En browser: carga desde /public. En Node.js: el script de render inyecta data URIs.
+// woff1 funciona con fontkit en browser y Node.js; woff2 causa RangeError en TTFSubset
 if (!isNode) {
   Font.register({
     family: 'Inter',
     fonts: [
-      { src: '/fonts/Inter-Regular.woff2', fontWeight: 400 },
-      { src: '/fonts/Inter-Regular.woff2', fontWeight: 400, fontStyle: 'italic' },
-      { src: '/fonts/Inter-Bold.woff2',    fontWeight: 700 },
-      { src: '/fonts/Inter-Bold.woff2',    fontWeight: 700, fontStyle: 'italic' },
-      { src: '/fonts/Inter-Black.woff2',   fontWeight: 900 },
+      { src: '/fonts/Inter-Regular.woff', fontWeight: 400 },
+      { src: '/fonts/Inter-Regular.woff', fontWeight: 400, fontStyle: 'italic' },
+      { src: '/fonts/Inter-Bold.woff',    fontWeight: 700 },
+      { src: '/fonts/Inter-Bold.woff',    fontWeight: 700, fontStyle: 'italic' },
+      { src: '/fonts/Inter-Black.woff',   fontWeight: 900 },
     ],
   });
 }
