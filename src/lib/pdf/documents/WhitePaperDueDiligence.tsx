@@ -4,15 +4,29 @@ import { CORPORATE } from '../theme';
 
 export const WP_FILENAME_DD = 'CSSG-Due-Diligence-Personas-Corporativa-Venezuela-2026.pdf';
 
-// ── Registro de fuente con soporte Unicode / acentos ──────────────────────────
-Font.register({
-  family: 'Inter',
-  fonts: [
-    { src: '/fonts/Inter-Regular.woff2', fontWeight: 400 },
-    { src: '/fonts/Inter-Bold.woff2',    fontWeight: 700 },
-    { src: '/fonts/Inter-Black.woff2',   fontWeight: 900 },
-  ],
-});
+// En Node.js: imagen con ruta absoluta; en browser: ruta web normal
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const g = globalThis as any;
+const isNode = typeof window === 'undefined';
+// El script de render inyecta g.__PDF_LOGO como data URI antes de importar este módulo
+const LOGO: string = isNode
+  ? ((g.__PDF_LOGO as string | undefined) ?? `${(g.process.cwd() as string).replace(/\\/g, '/')}/public/logo_full.png`)
+  : '/logo_full.webp';
+
+// ── Registro de fuentes ────────────────────────────────────────────────────────
+// En browser: carga desde /public. En Node.js: el script de render inyecta data URIs.
+if (!isNode) {
+  Font.register({
+    family: 'Inter',
+    fonts: [
+      { src: '/fonts/Inter-Regular.woff2', fontWeight: 400 },
+      { src: '/fonts/Inter-Regular.woff2', fontWeight: 400, fontStyle: 'italic' },
+      { src: '/fonts/Inter-Bold.woff2',    fontWeight: 700 },
+      { src: '/fonts/Inter-Bold.woff2',    fontWeight: 700, fontStyle: 'italic' },
+      { src: '/fonts/Inter-Black.woff2',   fontWeight: 900 },
+    ],
+  });
+}
 Font.registerHyphenationCallback((word) => [word]);
 
 const C = {
@@ -127,7 +141,7 @@ const PageHeader = () => (
   <View style={S.pageHeader} fixed>
     <View style={S.pageHeaderStrip} />
     <View style={S.pageHeaderRow}>
-      <Image src="/logo_full.webp" style={S.pageHeaderLogo} />
+      <Image src={LOGO} style={S.pageHeaderLogo} />
       <View style={S.pageHeaderSpacer} />
       <Text style={S.pageHeaderDoc}>DUE DILIGENCE — PERSONAS Y CORPORATIVA — VENEZUELA 2026</Text>
       <Text style={S.pageHeaderDiv}>|</Text>
@@ -231,7 +245,7 @@ export const WhitePaperDueDiligence = () => (
           <Text style={S.coverHeaderRight}>WHITE PAPER 2026</Text>
         </View>
         <View style={S.coverLineGold} />
-        <View style={S.coverLogoWrap}><Image src="/logo_full.webp" style={S.coverLogo} /></View>
+        <View style={S.coverLogoWrap}><Image src={LOGO} style={S.coverLogo} /></View>
         <View style={S.coverLineAfterLogo} />
         <View style={S.coverCompanyBlock}>
           <Text style={S.coverCompanyName}>Company of Security and Service Global C.A.</Text>
@@ -260,7 +274,7 @@ export const WhitePaperDueDiligence = () => (
     <Page size="A4" style={S.indexPage}>
       <View style={S.indexTopBar} />
       <View style={S.indexHeaderBar}>
-        <Image src="/logo_full.webp" style={S.indexHeaderLogo} />
+        <Image src={LOGO} style={S.indexHeaderLogo} />
         <Text style={S.indexHeaderTitle}>DUE DILIGENCE — PERSONAS Y CORPORATIVA — VENEZUELA 2026</Text>
       </View>
       <View style={S.indexInner}>
