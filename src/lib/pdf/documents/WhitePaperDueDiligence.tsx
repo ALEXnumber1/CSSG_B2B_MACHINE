@@ -11,7 +11,7 @@ const isNode = typeof window === 'undefined';
 // El script de render inyecta g.__PDF_LOGO como data URI antes de importar este módulo
 const LOGO: string = isNode
   ? ((g.__PDF_LOGO as string | undefined) ?? `${(g.process.cwd() as string).replace(/\\/g, '/')}/public/logo_full.png`)
-  : '/logo_full.webp';
+  : '/logo_full.png';
 
 // ── Registro de fuentes ────────────────────────────────────────────────────────
 // En browser: carga desde /public. En Node.js: el script de render inyecta data URIs.
