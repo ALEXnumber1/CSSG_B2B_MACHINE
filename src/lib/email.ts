@@ -180,7 +180,7 @@ const templates: Record<string, { subject: string | ((nombre: string, empresa?: 
       </p>
 
       <div style="text-align:center;margin:32px 0 16px;">
-        <a href="tel:+5804241782091" style="display:inline-block;background-color:#D4AF37;color:#FFFFFF;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;box-shadow:0 4px 14px 0 rgba(212, 175, 55, 0.4);">
+        <a href="tel:+584241782091" style="display:inline-block;background-color:#D4AF37;color:#FFFFFF;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;box-shadow:0 4px 14px 0 rgba(212, 175, 55, 0.4);">
           Llamar a Central Operativa B2B
         </a>
       </div>

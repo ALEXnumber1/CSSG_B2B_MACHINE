@@ -12,11 +12,23 @@ const CONTENT = {
     faqs: [
       {
         q: '¿Cómo puedo verificar la vigencia del certificado ISO 9001 de CSSG?',
-        a: 'El Certificado N° 580181 puede verificarse directamente con el organismo emisor. En reuniones de licitación o auditoría, CSSG presenta el certificado original y el último informe de auditoría de vigilancia. La validez y el alcance son verificables de forma independiente.',
+        a: 'El Certificado N° 580181 puede verificarse directamente con el organismo emisor LL-C. En reuniones de licitación o auditoría, CSSG presenta el certificado original y el último informe de auditoría de vigilancia. La validez y el alcance son verificables de forma independiente.',
       },
       {
         q: '¿Por qué Cyber Essentials es relevante para clientes latinoamericanos?',
-        a: 'Porque es emitido por el gobierno del Reino Unido y es reconocido por los países del G7. Para misiones diplomáticas europeas y organizaciones con casa matriz en el Reino Unido, es un requisito o señal de confianza relevante. Para cualquier cliente, es evidencia de que CSSG protege su información bajo estándares de seguridad verificados.',
+        a: 'Porque es emitido por el National Cyber Security Centre (NCSC) del gobierno del Reino Unido y es reconocido por los países del G7. Para misiones diplomáticas europeas y organizaciones con casa matriz en el Reino Unido, es un requisito o señal de confianza relevante. La recertificación vigente cubre hasta mayo de 2027.',
+      },
+      {
+        q: '¿ISO 31000 se puede certificar? ¿CSSG tiene certificación ISO 31000?',
+        a: 'No. ISO 31000:2018 es una norma de directrices, no de requisitos auditables; ninguna organización en el mundo puede certificarse en ella. CSSG aplica ISO 31000 como metodología base de sus análisis FMEA y modelos de scoring de riesgo. El estándar certificable que cubre la calidad de esos procesos es el ISO 9001:2015 N° 580181.',
+      },
+      {
+        q: '¿Qué ventaja concreta tiene contratar una empresa de seguridad con ISO 9001 en Venezuela?',
+        a: 'Una empresa certificada ISO 9001 tiene cada proceso documentado y auditado por un tercero independiente: selección de personal, respuesta a incidentes, supervisión de campo y reporte al cliente. El servicio funciona de forma sistemática, no depende de decisiones individuales. En licitaciones con embajadas, organismos internacionales o corporaciones del G7, el ISO 9001 suele ser un requisito excluyente.',
+      },
+      {
+        q: '¿Cumple CSSG con la regulación DIGESERVISP?',
+        a: 'Sí. CSSG mantiene la credencial vigente de la Dirección General de los Servicios de Seguridad Privada (DIGESERVISP), el organismo gubernamental venezolano que habilita legalmente a las empresas de vigilancia privada. Operar sin esta credencial es ilegal en Venezuela; verificar su vigencia es el primer paso en cualquier proceso de selección de proveedor.',
       },
     ],
     activeCertsTitle: 'Certificaciones activas',
@@ -72,11 +84,23 @@ const CONTENT = {
     faqs: [
       {
         q: 'How can I verify the validity of CSSG\'s ISO 9001 certificate?',
-        a: 'Certificate No. 580181 can be verified directly with the issuing body. At tender or audit meetings, CSSG presents the original certificate and the most recent surveillance audit report. Validity and scope are independently verifiable.',
+        a: 'Certificate No. 580181 can be verified directly with the issuing body, LL-C (International Certification System). At tender or audit meetings, CSSG presents the original certificate and the most recent surveillance audit report. Validity and scope are independently verifiable.',
       },
       {
         q: 'Why is Cyber Essentials relevant for Latin American clients?',
-        a: 'Because it is issued by the UK government and is recognized by G7 countries. For European diplomatic missions and organizations headquartered in the United Kingdom, it is a requirement or a relevant trust signal. For any client, it is evidence that CSSG protects their information under verified cybersecurity standards.',
+        a: 'Because it is issued by the National Cyber Security Centre (NCSC) of the UK Government and is recognized by G7 countries. For European diplomatic missions and organizations headquartered in the United Kingdom, it is a requirement or a relevant trust signal. The current recertification is valid through May 2027.',
+      },
+      {
+        q: 'Can ISO 31000 be certified? Does CSSG hold an ISO 31000 certification?',
+        a: 'No. ISO 31000:2018 is a guidelines standard, not an auditable requirements standard; no organization in the world can be certified against it. CSSG applies ISO 31000 as the methodological foundation of its FMEA risk analyses and scoring models. The certifiable standard covering the quality of those processes is ISO 9001:2015 Certificate No. 580181.',
+      },
+      {
+        q: 'What concrete advantage does hiring an ISO 9001-certified security company in Venezuela offer?',
+        a: 'An ISO 9001-certified company has every process documented and audited by an independent third party: personnel selection, incident response, field supervision, and client reporting. The service operates systematically, not depending on individual decisions. In tenders with embassies, international organizations, or G7 corporations, ISO 9001 is often an excluding requirement.',
+      },
+      {
+        q: 'Does CSSG comply with DIGESERVISP regulations?',
+        a: 'Yes. CSSG maintains a current credential from the Dirección General de los Servicios de Seguridad Privada (DIGESERVISP), the Venezuelan government body that legally authorizes private security companies to operate. Operating without this credential is illegal in Venezuela; verifying its validity is the first step in any provider selection process.',
       },
     ],
     activeCertsTitle: 'Active certifications',

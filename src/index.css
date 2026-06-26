@@ -86,6 +86,18 @@
   .prose-cssg ol li {
     @apply list-decimal;
   }
+  .prose-cssg blockquote {
+    @apply border-l-4 border-sky-500/60 pl-5 my-8 bg-sky-950/30 py-5 pr-5 rounded-r-xl not-italic;
+  }
+  .prose-cssg blockquote p {
+    @apply mb-2 text-sky-100/80;
+  }
+  .prose-cssg blockquote p:last-child {
+    @apply mb-0;
+  }
+  .prose-cssg blockquote strong {
+    @apply text-sky-300;
+  }
 }
 
 /* Tablas del Blog */

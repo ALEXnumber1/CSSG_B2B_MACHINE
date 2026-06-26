@@ -42,7 +42,6 @@ export default function ShieldTraceAudit({ isOpen, onClose }: ShieldTraceAuditPr
         indiceEntorno: 60,
         riesgoGeneral: 43.3,
       };
-      console.log('[ShieldTrace AI Mock]', mock);
       setResult(mock);
       setLoading(false);
     }, 1800);

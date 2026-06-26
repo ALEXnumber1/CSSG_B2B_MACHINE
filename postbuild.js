@@ -124,6 +124,13 @@ const routes = [
     jsonld: { "@context": "https://schema.org", "@type": "Article", "headline": "Seguridad Corporativa en Caracas: Guía Completa 2026", "description": "Todo lo que necesitas saber sobre seguridad corporativa en Caracas.", "datePublished": "2026-03-20", "dateModified": "2026-03-20", "author": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/seguridad-corporativa-caracas-guia-completa" } }
   },
   {
+    path: 'blog/resiliencia-corporativa-venezuela',
+    title: 'Resiliencia Corporativa en Venezuela: ISO 31000 · ISO 22301 · ISO 22361 | CSSG',
+    description: 'Cómo construir una arquitectura de resiliencia corporativa verificable en Venezuela. Marcos ISO 31000, ISO 22301 y ISO 22361 aplicados al entorno de riesgo extremo venezolano.',
+    image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
+    jsonld: { "@context": "https://schema.org", "@type": "Article", "headline": "Resiliencia corporativa en entornos de riesgo extremo: la arquitectura que decide quién sigue operando", "description": "Cómo construir una arquitectura de resiliencia corporativa verificable en Venezuela usando ISO 31000, ISO 22301 e ISO 22361.", "datePublished": "2026-06-26", "dateModified": "2026-06-26", "author": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/resiliencia-corporativa-venezuela" } }
+  },
+  {
     path: 'blog/sueldo-minimo-vigilantes-venezuela',
     title: 'Sueldo Mínimo de Vigilantes en Venezuela 2026 | CSSG | Caracas · Miami',
     description: 'Conoce el sueldo mínimo legal de vigilantes y guardias de seguridad en Venezuela 2026. Análisis salarial del sector de seguridad privada.',
@@ -447,18 +454,41 @@ const routes = [
   },
   {
     path: 'consultoria/certificaciones',
-    title: 'Certificaciones ISO 9001 y Cyber Essentials | CSSG | Caracas · Miami',
-    description: 'CSSG cuenta con ISO 9001:2015 (N° 580181) y Cyber Essentials del NCSC británico. Evidencia auditable de calidad en seguridad corporativa.',
+    title: 'Empresa de Seguridad Certificada ISO 9001 en Venezuela — N° 580181 | CSSG',
+    description: 'Empresa de seguridad con ISO 9001:2015 N° 580181 (LL-C) y Cyber Essentials NCSC. Marcos ESRM, ISO 31000, ISO 22301 y ASIS ORM.1. Certificaciones verificables por terceros · Venezuela.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
     jsonld: [
-      { "@context": "https://schema.org", "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com", "hasCredential": [{ "@type": "EducationalOccupationalCredential", "name": "ISO 9001:2015", "credentialCategory": "Certificate", "recognizedBy": { "@type": "Organization", "name": "LL-C" } }, { "@type": "EducationalOccupationalCredential", "name": "Cyber Essentials", "credentialCategory": "Certificate", "recognizedBy": { "@type": "Organization", "name": "National Cyber Security Centre — UK Government" } }] },
+      { "@context": "https://schema.org", "@type": "Organization", "name": "CSSG — Company Of Security And Service Global C.A.", "url": "https://cssg-global.com", "legalName": "Company Of Security And Service Global C.A.", "taxID": "J-29782024-8", "areaServed": ["Venezuela", "Latin America"], "hasCredential": [
+        { "@type": "EducationalOccupationalCredential", "name": "ISO 9001:2015", "identifier": "N° 580181", "credentialCategory": "Quality Management System Certificate", "recognizedBy": { "@type": "Organization", "name": "LL-C / International Certification System" }, "validIn": { "@type": "Place", "name": "Venezuela" } },
+        { "@type": "EducationalOccupationalCredential", "name": "Cyber Essentials", "credentialCategory": "Cybersecurity Certificate", "validThrough": "2027-05", "recognizedBy": { "@type": "Organization", "name": "National Cyber Security Centre (NCSC) — UK Government" } },
+        { "@type": "EducationalOccupationalCredential", "name": "DIGESERVISP", "credentialCategory": "Government Operating License", "recognizedBy": { "@type": "Organization", "name": "Dirección General de los Servicios de Seguridad Privada — Venezuela" } }
+      ] },
+      { "@context": "https://schema.org", "@type": "WebPage", "name": "Certificaciones ISO 9001 y Cyber Essentials — CSSG Venezuela", "url": "https://cssg-global.com/consultoria/certificaciones", "description": "CSSG es una empresa de seguridad corporativa y diplomática en Venezuela certificada ISO 9001:2015 N° 580181 y Cyber Essentials NCSC. Opera bajo marcos ESRM, ISO 31000:2018, ISO 22301:2019 e ISO 22361:2022.", "inLanguage": "es", "keywords": "empresa seguridad ISO 9001 Venezuela, certificado 580181, Cyber Essentials seguridad privada, ISO 31000 Venezuela, seguridad corporativa certificada Caracas, DIGESERVISP empresa seguridad, ESRM seguridad corporativa Venezuela", "speakable": { "@type": "SpeakableSpecification", "cssSelector": ["h1", "h2", ".intro", ".faq-answer"] } },
       { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
-        { "@type": "Question", "name": "¿Cuál es el número de certificado ISO 9001:2015 de CSSG?", "acceptedAnswer": { "@type": "Answer", "text": "El certificado ISO 9001:2015 de CSSG es el N° 580181, emitido por LL-C. Cubre los procesos de diseño, implementación y supervisión de esquemas de seguridad corporativa y diplomática. El certificado puede solicitarse como documento oficial para procesos de licitación o evaluación de proveedores." } },
-        { "@type": "Question", "name": "¿Qué es Cyber Essentials y por qué lo tiene una empresa de seguridad física?", "acceptedAnswer": { "@type": "Answer", "text": "Cyber Essentials es una certificación del NCSC (National Cyber Security Centre) del Gobierno del Reino Unido que valida controles básicos de ciberseguridad. CSSG la mantiene porque la seguridad corporativa moderna integra componentes físicos y digitales, y ShieldTrace PSIM opera sobre infraestructura de red que debe estar protegida." } },
-        { "@type": "Question", "name": "¿Qué marcos normativos aplica CSSG en sus servicios de consultoría?", "acceptedAnswer": { "@type": "Answer", "text": "CSSG aplica: ISO 9001:2015 (gestión de calidad), ISO 31000:2018 (gestión de riesgos), ISO 22301:2019 (continuidad de negocio), ASIS ORM.1:2017 (gestión de riesgos de seguridad), marco ESRM del ASIS Internacional, metodología CPTED y normativa local DIGESERVISP." } }
+        { "@type": "Question", "name": "¿Cuál es el número de certificado ISO 9001:2015 de CSSG?", "acceptedAnswer": { "@type": "Answer", "text": "El certificado ISO 9001:2015 de CSSG es el N° 580181, emitido por LL-C (International Certification System). Cubre los procesos de diseño, suministro y operación de servicios de seguridad corporativa y diplomática. El certificado puede solicitarse como documento oficial en procesos de licitación o evaluación de proveedores." } },
+        { "@type": "Question", "name": "¿ISO 31000 se puede certificar? ¿CSSG tiene certificación ISO 31000?", "acceptedAnswer": { "@type": "Answer", "text": "No. ISO 31000:2018 es una norma de directrices, no de requisitos auditables. Ninguna organización en el mundo puede certificarse en ISO 31000. CSSG aplica ISO 31000 como metodología base de sus análisis FMEA y modelos de scoring de riesgo, pero el estándar certificable que cubre la calidad de esos procesos es el ISO 9001:2015 N° 580181." } },
+        { "@type": "Question", "name": "¿Qué es Cyber Essentials y por qué lo tiene una empresa de seguridad física en Venezuela?", "acceptedAnswer": { "@type": "Answer", "text": "Cyber Essentials es la certificación de ciberseguridad emitida por el National Cyber Security Centre (NCSC) del Gobierno del Reino Unido. Valida cinco controles: firewall, configuración segura, control de acceso, protección contra malware y actualizaciones. CSSG la mantiene porque sus operaciones integran componentes físicos y digitales, y ShieldTrace PSIM opera sobre infraestructura de red que debe estar protegida. La recertificación vigente es hasta mayo de 2027." } },
+        { "@type": "Question", "name": "¿Qué ventaja tiene contratar una empresa de seguridad con ISO 9001 en Venezuela?", "acceptedAnswer": { "@type": "Answer", "text": "Una empresa certificada ISO 9001 tiene cada proceso documentado y auditado por un tercero independiente: selección de personal, respuesta a incidentes, supervisión de campo y reporte al cliente. El servicio funciona sistemáticamente, sin depender de decisiones individuales. En licitaciones con embajadas del G7, organismos internacionales (ONU, BID, IFC) o corporaciones multinacionales, el ISO 9001 suele ser requisito excluyente." } },
+        { "@type": "Question", "name": "¿Qué marcos normativos aplica CSSG en sus servicios de consultoría?", "acceptedAnswer": { "@type": "Answer", "text": "CSSG aplica: ISO 9001:2015 (gestión de calidad, certificado N° 580181), ISO 31000:2018 (gestión del riesgo), ISO 22301:2019 (continuidad de negocio), ISO 22361:2022 (gestión de crisis), ASIS ORM.1:2017 (resiliencia organizacional), marco ESRM de ASIS International, metodología CPTED y normativa venezolana DIGESERVISP." } },
+        { "@type": "Question", "name": "¿Cumple CSSG con la regulación DIGESERVISP en Venezuela?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. CSSG mantiene la credencial vigente de la Dirección General de los Servicios de Seguridad Privada (DIGESERVISP), el organismo gubernamental venezolano que habilita legalmente a las empresas de seguridad privada para operar. Verificar la credencial DIGESERVISP del proveedor es el primer paso en cualquier proceso de selección." } },
+        { "@type": "Question", "name": "¿Para qué licitaciones es relevante la certificación ISO 9001 N° 580181 de CSSG?", "acceptedAnswer": { "@type": "Answer", "text": "El ISO 9001:2015 N° 580181 de CSSG es exigido o valorado en licitaciones con embajadas del G7, misiones diplomáticas europeas, organizaciones internacionales (ONU, BID, CAF, IFC), bancos de desarrollo, y corporaciones multinacionales con políticas de compliance de proveedor. También aplica en sectores regulados como energía, minería y telecomunicaciones en Venezuela." } }
       ] },
       { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [ { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://cssg-global.com" }, { "@type": "ListItem", "position": 2, "name": "Risk Advisory Services", "item": "https://cssg-global.com/consultoria" }, { "@type": "ListItem", "position": 3, "name": "Certificaciones y Estándares", "item": "https://cssg-global.com/consultoria/certificaciones" } ] }
     ]
+  },
+  {
+    path: 'iso-9001-empresa-seguridad-venezuela',
+    title: 'ISO 9001 Empresa de Seguridad en Venezuela — Certificado N° 580181 | CSSG',
+    description: 'CSSG es la única empresa de seguridad en Venezuela con ISO 9001:2015 N° 580181 verificable por terceros. Auditorías periódicas por LL-C. Requisito para licitaciones G7 y diplomáticas.',
+    image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
+    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Seguridad Corporativa Certificada ISO 9001 — Venezuela", "description": "Servicios de seguridad corporativa y diplomática certificados ISO 9001:2015 N° 580181 en Venezuela.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "areaServed": "Venezuela", "hasCredential": { "@type": "EducationalOccupationalCredential", "name": "ISO 9001:2015", "identifier": "N° 580181" } }
+  },
+  {
+    path: 'certificaciones-seguridad-corporativa-venezuela',
+    title: 'Certificaciones de Seguridad Corporativa en Venezuela | ISO 9001 · Cyber Essentials | CSSG',
+    description: 'Empresa de seguridad corporativa certificada en Venezuela: ISO 9001:2015, Cyber Essentials NCSC, ESRM, ISO 31000, ISO 22301. Verificables por auditoría independiente.',
+    image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
+    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Certificaciones de Seguridad Corporativa Venezuela", "description": "CSSG opera con ISO 9001:2015, Cyber Essentials NCSC y credencial DIGESERVISP. Marcos ESRM, ISO 31000 e ISO 22301.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" } }
   },
   {
     path: 'consultoria/asesoria-legal-rrhh-seguridad',
@@ -660,6 +690,8 @@ routes.forEach(route => {
       'auditoria-seguridad-iso-31000': 'Auditoría ISO 31000',
       'analisis-riesgos-corporativos-venezuela': 'Análisis de Riesgos Venezuela',
       'optimizacion-costos-seguridad': 'Optimización de Costos',
+      'iso-9001-empresa-seguridad-venezuela': 'ISO 9001 Seguridad Venezuela',
+      'certificaciones-seguridad-corporativa-venezuela': 'Certificaciones Seguridad Corporativa',
       'politica-privacidad': 'Política de Privacidad', 'terminos-condiciones': 'Términos y Condiciones',
       'white-papers': 'White Papers',
       'guia-evaluacion-riesgos-seguridad-venezuela': 'Guía Evaluación de Riesgos',

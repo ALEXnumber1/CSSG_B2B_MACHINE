@@ -149,6 +149,8 @@ function AppContent() {
                   <Route path="/consultoria/capacitacion/concienciacion-ejecutiva" element={<ConcienciacionEjecutiva />} />
                   <Route path="/consultoria/casos-de-exito" element={<CasosExito />} />
                   <Route path="/consultoria/certificaciones" element={<CertificacionesConsultoria />} />
+                  <Route path="/iso-9001-empresa-seguridad-venezuela" element={<CertificacionesConsultoria />} />
+                  <Route path="/certificaciones-seguridad-corporativa-venezuela" element={<CertificacionesConsultoria />} />
                   <Route path="/consultoria/asesoria-legal-rrhh-seguridad" element={<AsesoriaLegal />} />
                   {/* White Papers */}
                   <Route path="/white-papers/guia-evaluacion-riesgos-seguridad-venezuela" element={<WPRiesgos />} />
