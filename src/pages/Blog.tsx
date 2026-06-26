@@ -19,6 +19,17 @@ export interface BlogEntry {
 
 export const getBlogPosts = (t: any): BlogEntry[] => [
   {
+    slug: 'resiliencia-corporativa-venezuela',
+    title: t('posts.resiliencia-corporativa-venezuela.title'),
+    excerpt: t('posts.resiliencia-corporativa-venezuela.excerpt'),
+    date: '2026-06-26',
+    readTime: '9 min',
+    category: t('categories.Continuidad'),
+    categoryColor: 'text-emerald-400 bg-emerald-500/10',
+    featured: true,
+    image: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1200&q=80',
+  },
+  {
     slug: 'como-elegir-empresa-seguridad-privada-venezuela',
     title: t('posts.como-elegir-empresa-seguridad-privada-venezuela.title'),
     excerpt: t('posts.como-elegir-empresa-seguridad-privada-venezuela.excerpt'),
@@ -26,7 +37,6 @@ export const getBlogPosts = (t: any): BlogEntry[] => [
     readTime: '8 min',
     category: t('categories.Guía Práctica'),
     categoryColor: 'text-sky-400 bg-sky-500/10',
-    featured: true,
     image: 'https://images.unsplash.com/photo-1521791136064-7986c2923216?auto=format&fit=crop&w=1200&q=80',
   },
   {
@@ -88,17 +98,6 @@ export const getBlogPosts = (t: any): BlogEntry[] => [
     category: t('categories.Análisis'),
     categoryColor: 'text-emerald-400 bg-emerald-500/10',
     image: 'https://images.unsplash.com/photo-1518458028785-8fbcd101ebb9?auto=format&fit=crop&w=1200&q=80',
-  },
-  {
-    slug: 'resiliencia-corporativa-venezuela',
-    title: t('posts.resiliencia-corporativa-venezuela.title'),
-    excerpt: t('posts.resiliencia-corporativa-venezuela.excerpt'),
-    date: '2026-06-26',
-    readTime: '9 min',
-    category: t('categories.Continuidad'),
-    categoryColor: 'text-emerald-400 bg-emerald-500/10',
-    featured: true,
-    image: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1200&q=80',
   },
 ];
 
