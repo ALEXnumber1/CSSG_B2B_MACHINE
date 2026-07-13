@@ -117,15 +117,6 @@ export default function Consultoria() {
     e.preventDefault();
     setStatus('loading');
 
-    // Notificación directa a gerencia (fire-and-forget: no bloquea el flujo)
-    void sendLeadNotification({
-      nombre: formData.nombre,
-      email: formData.correo,
-      empresa: formData.empresa,
-      fuente: 'consultoria_diagnostico',
-      mensaje: `Solicitud de Diagnóstico Gratuito — Necesidad: ${formData.tipo_proyecto}`,
-    });
-
     try {
       const { error } = await supabase.from('leads').upsert([{
         nombre, correo, empresa,

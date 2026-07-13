@@ -62,8 +62,6 @@ export default function ContactForm() {
 
       if (supabaseError) throw supabaseError;
 
-      sendLeadNotification({ nombre: formData.nombre, email: formData.correo, empresa: formData.empresa, telefono: formData.telefono, fuente: 'contacto' }).catch(console.warn);
-
       // Start Sequence
       const { data: leadData } = await supabase
         .from('leads')
