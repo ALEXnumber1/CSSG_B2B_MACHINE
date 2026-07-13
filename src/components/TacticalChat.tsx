@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, X, Send, Shield, Zap, User } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { supabase } from '../lib/supabase';
-import { sendLeadNotification } from '../lib/email';
+import { sendChatAlert, sendLeadNotification } from '../lib/email';
 
 interface Message {
   id: string;
@@ -23,6 +23,7 @@ const TacticalChat: React.FC = () => {
   // Lead qualification state
   const [step, setStep] = useState(0);
   const [leadData, setLeadData] = useState({ name: '', email: '', phone: '', need: '' });
+  const alertSentRef = useRef(false); // una sola alerta por conversación
 
   useEffect(() => {
     if (isOpen && messages.length === 0) {
@@ -63,6 +64,12 @@ const TacticalChat: React.FC = () => {
     const currentInput = inputValue;
     setInputValue('');
 
+    // Alerta a gerencia al primer mensaje del visitante (una vez por conversación)
+    if (!alertSentRef.current) {
+      alertSentRef.current = true;
+      sendChatAlert(currentInput);
+    }
+
     // Lead Qualification Logic
     if (step === 0) {
       setLeadData(prev => ({ ...prev, name: currentInput }));
@@ -81,6 +88,15 @@ const TacticalChat: React.FC = () => {
       setStep(4);
       sendBotMessage(t('chat.final'));
       
+      // Ficha completa del lead a gerencia (fire-and-forget)
+      void sendLeadNotification({
+        nombre: leadData.name,
+        email: leadData.email,
+        telefono: leadData.phone,
+        fuente: 'chat_oficial_rivas',
+        mensaje: `Requerimiento vía chat: ${currentInput}`,
+      });
+
       // Save lead to Supabase
       try {
         const { error: supabaseError } = await supabase.from('leads').insert([{
@@ -94,7 +110,6 @@ const TacticalChat: React.FC = () => {
         }]);
 
         if (supabaseError) throw supabaseError;
-        sendLeadNotification({ nombre: leadData.name, email: leadData.email, telefono: leadData.phone, empresa: 'Interés Chat IA', fuente: 'Chat IA Táctico' }).catch(console.warn);
       } catch (err) {
         console.error("Error saving lead from chat:", err);
       }

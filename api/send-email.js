@@ -46,10 +46,14 @@ export default async function handler(req, res) {
     return res.status(503).json({ error: 'Servicio de email no configurado.' });
   }
 
-  const { type, nombre, email, empresa, telefono, fuente, templateKey, cargo, vulnerabilidad, horario } = req.body || {};
+  const { type, nombre, email, empresa, telefono, fuente, templateKey, cargo, vulnerabilidad, horario, mensaje, pagina } = req.body || {};
 
-  // Validación básica
-  if (!nombre || !email) {
+  // Validación por tipo
+  if (type === 'chat') {
+    if (!mensaje) {
+      return res.status(400).json({ error: 'Falta el campo requerido: mensaje.' });
+    }
+  } else if (!nombre || !email) {
     return res.status(400).json({ error: 'Faltan campos requeridos: nombre, email.' });
   }
 
@@ -63,8 +67,65 @@ export default async function handler(req, res) {
   const safeCargo = safe(cargo);
   const safeVulnerabilidad = safe(vulnerabilidad);
   const safeHorario = safe(horario);
+  const safeMensaje = String(mensaje || '').replace(/<[^>]*>/g, '').slice(0, 1500);
+  const safePagina = safe(pagina);
 
   try {
+    // ══════ ALERTA DE CHAT (Oficial Rivas) ══════
+    if (type === 'chat') {
+      const now = new Date().toLocaleString('es-VE', { timeZone: 'America/Caracas', dateStyle: 'medium', timeStyle: 'short' });
+      const resendRes = await fetch('https://api.resend.com/emails', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${RESEND_API_KEY}`,
+        },
+        body: JSON.stringify({
+          from: FROM_EMAIL,
+          to: NOTIFY_EMAIL,
+          subject: `💬 CHAT INICIADO — Oficial Rivas: "${safeMensaje.slice(0, 60)}${safeMensaje.length > 60 ? '…' : ''}"`,
+          html: `
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#0a0a0a;font-family:'Segoe UI',sans-serif;">
+  <div style="max-width:560px;margin:0 auto;padding:32px 16px;">
+    <div style="background:#111;border:1px solid #0EA5E940;border-radius:16px;padding:28px;margin-bottom:16px;">
+      <p style="color:#0EA5E9;font-size:11px;font-weight:700;margin:0 0 16px;text-transform:uppercase;letter-spacing:0.15em;">
+        💬 Visitante escribiendo en el chat del sitio
+      </p>
+      <div style="background:#0a0a0a;border-left:3px solid #0EA5E9;border-radius:8px;padding:16px;margin-bottom:20px;">
+        <p style="color:#fff;font-size:15px;line-height:1.6;margin:0;">"${safeMensaje}"</p>
+      </div>
+      <table style="width:100%;border-collapse:collapse;">
+        <tr>
+          <td style="padding:6px 0;width:36%;"><p style="color:#555;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin:0;">Hora (Caracas)</p></td>
+          <td style="padding:6px 0;"><p style="color:#fff;font-size:13px;margin:0;">${now}</p></td>
+        </tr>
+        ${safePagina ? `
+        <tr>
+          <td style="padding:6px 0;"><p style="color:#555;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin:0;">Página</p></td>
+          <td style="padding:6px 0;"><p style="color:#0EA5E9;font-size:13px;margin:0;">${safePagina}</p></td>
+        </tr>` : ''}
+      </table>
+      <p style="color:#777;font-size:12px;margin:20px 0 0;line-height:1.5;">
+        El Oficial Rivas continuará la calificación del lead. Si completa sus datos, recibirás un segundo correo con la ficha completa.
+      </p>
+    </div>
+    <p style="color:#333;font-size:11px;text-align:center;margin:0;">Sistema B2B · CSSG · cssg-global.com</p>
+  </div>
+</body>
+</html>`,
+        }),
+      });
+      if (!resendRes.ok) {
+        const err = await resendRes.text();
+        console.error('[send-email] Error Resend (chat):', err);
+        return res.status(502).json({ error: err });
+      }
+      return res.status(200).json({ success: true });
+    }
+
     if (type === 'lead') {
       const isEscudo = safeFuente === 'escudo_diplomatico';
       const isUrgente = safeHorario.toLowerCase().includes('urgente');
@@ -164,6 +225,14 @@ export default async function handler(req, res) {
           </td>
         </tr>` : ''}
       </table>
+
+      ${safeMensaje ? `
+      <div style="margin-top:20px;">
+        <p style="color:#555;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin:0 0 8px;">Requerimiento</p>
+        <div style="background:#0a0a0a;border-left:3px solid ${accentColor};border-radius:8px;padding:14px 16px;">
+          <p style="color:#ddd;font-size:13px;line-height:1.6;margin:0;">${safeMensaje}</p>
+        </div>
+      </div>` : ''}
     </div>
 
     <div style="display:flex;gap:10px;margin-bottom:24px;">

@@ -199,6 +199,7 @@ export async function sendLeadNotification(leadData: {
   cargo?: string;
   vulnerabilidad?: string;
   horario?: string;
+  mensaje?: string;
 }): Promise<{ success: boolean; error?: string }> {
   try {
     const res = await fetch(EMAIL_API, {
@@ -214,6 +215,7 @@ export async function sendLeadNotification(leadData: {
         cargo: leadData.cargo,
         vulnerabilidad: leadData.vulnerabilidad,
         horario: leadData.horario,
+        mensaje: leadData.mensaje,
       }),
     });
     if (!res.ok) {
@@ -225,6 +227,26 @@ export async function sendLeadNotification(leadData: {
   } catch (err) {
     console.error('[Email Notification] Error de red:', err);
     return { success: false, error: 'Error de red' };
+  }
+}
+
+/**
+ * Alerta inmediata al primer mensaje de un visitante en el chat (Oficial Rivas).
+ * Fire-and-forget: nunca bloquea ni rompe la experiencia del chat.
+ */
+export function sendChatAlert(mensaje: string): void {
+  try {
+    void fetch(EMAIL_API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        type: 'chat',
+        mensaje,
+        pagina: typeof window !== 'undefined' ? window.location.pathname : '',
+      }),
+    }).catch((err) => console.error('[Chat Alert] Error de red:', err));
+  } catch (err) {
+    console.error('[Chat Alert] Error:', err);
   }
 }
 

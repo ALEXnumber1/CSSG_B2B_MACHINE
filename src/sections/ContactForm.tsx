@@ -37,6 +37,16 @@ export default function ContactForm() {
     e.preventDefault();
     setStatus('loading');
     
+    // 0. Notificación directa a gerencia (fire-and-forget: no bloquea el flujo)
+    void sendLeadNotification({
+      nombre: formData.nombre,
+      email: formData.correo,
+      empresa: formData.empresa,
+      telefono: formData.telefono,
+      fuente: 'contacto',
+      mensaje: `${formData.requerimiento} [WHATSAPP: ${formData.whatsapp_consent ? 'SÍ' : 'NO'}]`,
+    });
+
     try {
       // 1. Guardar en pipeline de leads (CRM)
       const { error: supabaseError } = await supabase.from('leads').upsert([{
