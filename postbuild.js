@@ -110,6 +110,13 @@ const routes = [
     ]
   },
   {
+    path: 'blog/inteligencia-amenazas-venezuela',
+    title: 'Inteligencia de Amenazas en Venezuela: Guía para Operaciones Corporativas y Diplomáticas | CSSG',
+    description: 'Inteligencia de Amenazas en Venezuela: anticipe riesgos físicos y digitales con OSINT, alertas tempranas y TIaaS para directivos y diplomáticos.',
+    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80',
+    jsonld: { "@context": "https://schema.org", "@type": "Article", "headline": "Inteligencia de Amenazas en Venezuela: Cómo Proteger Operaciones Corporativas y Diplomáticas", "description": "Panorama de amenazas físico-digitales en Venezuela, actores relevantes y cómo la inteligencia de amenazas (TIaaS) protege operaciones corporativas y diplomáticas.", "keywords": "Inteligencia de Amenazas, Ciberseguridad, Seguridad Corporativa, OSINT, TIaaS, Venezuela", "datePublished": "2026-07-14", "dateModified": "2026-07-14", "author": { "@type": "Person", "name": "Alexander Briceño", "affiliation": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" } }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "image": { "@type": "ImageObject", "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80", "description": "Centro de operaciones de inteligencia de amenazas monitoreando datos globales en tiempo real — CSSG Venezuela" }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/inteligencia-amenazas-venezuela" } }
+  },
+  {
     path: 'blog/como-elegir-empresa-seguridad-privada-venezuela',
     title: 'Cómo elegir una empresa de seguridad privada en Venezuela | CSSG | Caracas · Miami',
     description: 'Guía práctica para seleccionar una empresa de seguridad corporativa en Venezuela. Criterios clave: certificaciones, experiencia, tecnología y respaldo legal.',
