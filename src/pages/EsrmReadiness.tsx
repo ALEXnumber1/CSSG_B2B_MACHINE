@@ -483,7 +483,7 @@ export default function EsrmReadiness() {
         <motion.div className="relative max-w-3xl mx-auto text-center" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
           <blockquote style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(1.2rem, 2.6vw, 1.6rem)', lineHeight: 1.5 }}>
             <span style={{ color: GOLD, fontSize: '3rem', lineHeight: 0, verticalAlign: '-0.4rem' }}>&ldquo;</span>
-            Llevaba dos ciclos presentando reportes traducidos a la carrera y defendiéndolos con más oficio que evidencia. El primer paquete de compliance de CSSG entró a la revisión de casa matriz sin una sola observación. Por primera vez, la conversación con HQ no fue sobre mis guardias — fue sobre mi estrategia de riesgo.
+El primer paquete de compliance de CSSG pasó la revisión de casa matriz sin una sola observación. Por primera vez, la conversación con HQ no fue sobre mis guardias — fue sobre mi estrategia de riesgo.
           </blockquote>
           <cite className="block mt-6 not-italic text-sm" style={{ color: ICE }}>
             — Overseas Security Manager, multinacional del sector energético
