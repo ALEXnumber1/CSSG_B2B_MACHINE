@@ -44,7 +44,7 @@
       { "value": "20", "unit": "+", "label": "specialized services" }
     ],
     "families_label": "Service Lines",
-    "families_title": "Five consulting families",
+    "families_title": "Six consulting families",
     "families": [
       {
         "badge": "ISO 31000 · ESRM",
@@ -99,6 +99,18 @@
           "Labor Law for Private Security",
           "Human Rights Protocols & Use of Force",
           "Legal Compliance & Due Diligence"
+        ]
+      },
+      {
+        "badge": "New Program · G7",
+        "title": "CSSG Secure Landing™",
+        "desc": "Arrival, residence and protection for foreign executives and investors in Venezuela — from pre-travel intelligence to a fully protected residence. One program, one standard, one accountable partner.",
+        "explore": "Explore the program",
+        "services": [
+          "L1 · INSIGHT — Pre-travel briefing",
+          "L2 · ASSESS — Arrival & mobility",
+          "L3 · FORTIFY — Protected residence",
+          "L4 · SHIELD — 24/7 continuous protection"
         ]
       }
     ],

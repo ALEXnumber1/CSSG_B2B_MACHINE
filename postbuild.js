@@ -658,6 +658,21 @@ const routes = [
     description: 'Shieldtrace PSIM unifies AI-powered CCTV analytics, real-time GPS tracking, biometric access control and autonomous drones in one dashboard. Enterprise security technology in Venezuela.',
     image: 'https://cssg-global.com/shieldtrace_tablet_dashboard_1777552473752.webp',
     jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Shieldtrace PSIM — Integrated Physical Security Management", "description": "Physical security integration platform (PSIM) combining AI-powered CCTV analytics, real-time GPS, biometric access control and autonomous drones for corporate security in Venezuela.", "provider": { "@type": "Organization", "name": "CSSG — Company Of Security And Service Global", "url": "https://cssg-global.com" }, "serviceType": "Physical Security Integration Platform", "areaServed": [{ "@type": "Country", "name": "Venezuela" }, { "@type": "City", "name": "Miami" }], "url": "https://cssg-global.com/en/technology", "inLanguage": "en" }
+  },
+  {
+    path: 'consultoria/secure-landing',
+    title: 'Llegada y Seguridad Ejecutiva en Venezuela | CSSG Secure Landing™',
+    description: 'Programa estructurado de seguridad para ejecutivos e inversores extranjeros que llegan a Venezuela: briefing pre-viaje, llegada protegida, residencia fortificada y protección continua 24/7.',
+    image: 'https://cssg-global.com/consulting_b2b.webp',
+    jsonld: [
+      { "@context": "https://schema.org", "@type": "Service", "name": "CSSG Secure Landing™", "description": "Programa de seguridad de cuatro niveles para ejecutivos e inversores extranjeros que llegan, se establecen y operan en Venezuela.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" } },
+      { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+        { "@type": "Question", "name": "¿Es seguro viajar a Venezuela por negocios?", "acceptedAnswer": { "@type": "Answer", "text": "El riesgo es real, pero gestionable con criterio local, planificación y ejecución disciplinada. Eso es lo que el programa estructura, nivel por nivel." } },
+        { "@type": "Question", "name": "¿Necesito el programa completo?", "acceptedAnswer": { "@type": "Answer", "text": "No. La mayoría inicia en el Nivel 1 o 2 para un primer viaje exploratorio. El programa crece solo cuando crece su presencia en el país." } },
+        { "@type": "Question", "name": "¿Con quién trataré?", "acceptedAnswer": { "@type": "Answer", "text": "Con un líder de programa CSSG de principio a fin, respaldado por nuestro centro de comando. Nunca será transferido a un subcontratista anónimo." } }
+      ] },
+      { "@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [ { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://cssg-global.com" }, { "@type": "ListItem", "position": 2, "name": "Risk Advisory Services", "item": "https://cssg-global.com/consultoria" }, { "@type": "ListItem", "position": 3, "name": "Secure Landing", "item": "https://cssg-global.com/consultoria/secure-landing" } ] }
+    ]
   }
 ];
 

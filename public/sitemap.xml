@@ -219,6 +219,14 @@
     <priority>0.9</priority>
   </url>
 
+  <!-- ─── FAMILIA 6: CSSG SECURE LANDING ─── -->
+  <url>
+    <loc>https://cssg-global.com/consultoria/secure-landing</loc>
+    <lastmod>2026-07-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <!-- ─── CAPA TECNOLOGÍA ─── -->
   <url>
     <loc>https://cssg-global.com/consultoria/tecnologia/monitoreo-tiempo-real</loc>

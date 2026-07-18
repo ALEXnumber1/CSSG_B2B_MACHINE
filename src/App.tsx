@@ -55,6 +55,7 @@ const ConcienciacionEjecutiva = lazy(() => import('./pages/consultoria/Concienci
 const CasosExito = lazy(() => import('./pages/consultoria/CasosExito'))
 const CertificacionesConsultoria = lazy(() => import('./pages/consultoria/Certificaciones'))
 const AsesoriaLegal = lazy(() => import('./pages/consultoria/AsesoriaLegal'))
+const SecureLanding = lazy(() => import('./pages/consultoria/SecureLanding'))
 
 // White Papers
 const WPRiesgos = lazy(() => import('./pages/white-papers/WPRiesgos'))
@@ -152,6 +153,7 @@ function AppContent() {
                   <Route path="/iso-9001-empresa-seguridad-venezuela" element={<CertificacionesConsultoria />} />
                   <Route path="/certificaciones-seguridad-corporativa-venezuela" element={<CertificacionesConsultoria />} />
                   <Route path="/consultoria/asesoria-legal-rrhh-seguridad" element={<AsesoriaLegal />} />
+                  <Route path="/consultoria/secure-landing" element={<SecureLanding />} />
                   {/* White Papers */}
                   <Route path="/white-papers/guia-evaluacion-riesgos-seguridad-venezuela" element={<WPRiesgos />} />
                   <Route path="/white-papers/due-diligence-corporativa-venezuela" element={<WPDueDiligence />} />

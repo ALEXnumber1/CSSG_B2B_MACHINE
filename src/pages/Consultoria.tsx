@@ -2,7 +2,7 @@ import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useState, useRef } from 'react';
 import {
-  Search, Globe, Brain, RefreshCw, Scale,
+  Search, Globe, Brain, RefreshCw, Scale, Plane,
   Server, BookOpen, Award, ArrowRight, ChevronRight, Plus,
   ShieldCheck, Target, Users, CheckCircle2, Zap
 } from 'lucide-react';
@@ -11,14 +11,15 @@ import { startSequence } from '../lib/sequences';
 import { sendLeadNotification } from '../lib/email';
 import { useTranslation } from 'react-i18next';
 
-const familyIcons = [Search, Globe, Brain, RefreshCw, Scale];
-const familyColors = ['sky', 'indigo', 'violet', 'emerald', 'amber'];
+const familyIcons = [Search, Globe, Brain, RefreshCw, Scale, Plane];
+const familyColors = ['sky', 'indigo', 'violet', 'emerald', 'amber', 'gold'];
 const familyImages = [
   '/images/consultoria-hero-premium.png',
   '/diplomatic_security.webp',
   '/strategic_security.webp',
   '/security_methodology_staircase_climb_1777554286433.webp',
   '/consulting_b2b.webp',
+  '/security_project_methodology_steps_1777553022786.webp',
 ];
 const familyLinks = [
   '/consultoria/evaluacion-de-riesgos-de-seguridad',
@@ -26,6 +27,7 @@ const familyLinks = [
   '/consultoria/due-diligence-corporativa',
   '/consultoria/continuidad-de-negocio',
   '/consultoria/asesoria-legal-rrhh-seguridad',
+  '/consultoria/secure-landing',
 ];
 const familyServiceHrefs = [
   [
@@ -50,6 +52,12 @@ const familyServiceHrefs = [
   ],
   [
     '/consultoria/asesoria-legal-rrhh-seguridad',
+  ],
+  [
+    '/consultoria/secure-landing#l1',
+    '/consultoria/secure-landing#l2',
+    '/consultoria/secure-landing#l3',
+    '/consultoria/secure-landing#l4',
   ],
 ];
 
@@ -77,10 +85,11 @@ const colorAccent: Record<string, { border: string; glow: string; text: string; 
   violet:  { border: 'border-violet-500/40',  glow: 'shadow-violet-500/20', text: 'text-violet-400',  bg: 'bg-violet-500/10',  gradient: 'from-violet-900/60 to-transparent' },
   emerald: { border: 'border-emerald-500/40', glow: 'shadow-emerald-500/20', text: 'text-emerald-400', bg: 'bg-emerald-500/10', gradient: 'from-emerald-900/60 to-transparent' },
   amber:   { border: 'border-amber-500/40',   glow: 'shadow-amber-500/20',  text: 'text-amber-400',   bg: 'bg-amber-500/10',   gradient: 'from-amber-900/60 to-transparent' },
+  gold:    { border: 'border-yellow-500/40',  glow: 'shadow-yellow-500/20', text: 'text-yellow-400',  bg: 'bg-yellow-500/10',  gradient: 'from-yellow-900/60 to-transparent' },
 };
 
 const accentHex: Record<string, string> = {
-  sky: '#0EA5E9', indigo: '#6366F1', violet: '#8B5CF6', emerald: '#10B981', amber: '#F59E0B',
+  sky: '#0EA5E9', indigo: '#6366F1', violet: '#8B5CF6', emerald: '#10B981', amber: '#F59E0B', gold: '#EAB308',
 };
 
 function FadeIn({ children, delay = 0, className = '' }: { children: React.ReactNode; delay?: number; className?: string }) {
