@@ -55,8 +55,6 @@ const CONTENT = {
       'Transparencia total: por escrito, qué entregan nuestros equipos y qué ejecutan especialistas evaluados bajo nuestra supervisión. Un contrato, un responsable: CSSG.',
       'No armados por doctrina, perfil bajo por diseño — con opciones armadas licenciadas mediante partners evaluados cuando su perfil lo requiera.',
     ],
-    notTitle: 'Lo que no hacemos',
-    notBody: 'La claridad es una función de seguridad. Secure Landing no actúa como intermediario inmobiliario: realizamos el veto de seguridad de los inmuebles que usted o su agente de relocation seleccionen. No prometemos eliminar el riesgo: lo reducimos, lo gestionamos y respondemos ante él con procedimientos documentados. Y declinamos contrataciones que no superen nuestro proceso de aceptación de clientes.',
     faqs: [
       { q: '¿Es seguro viajar a Venezuela por negocios?', a: 'El riesgo es real, pero gestionable con criterio local, planificación y ejecución disciplinada. Eso es lo que el programa estructura, nivel por nivel.' },
       { q: '¿Necesito el programa completo?', a: 'No. La mayoría inicia en el Nivel 1 o 2 para un primer viaje exploratorio. El programa crece solo cuando crece su presencia en el país.' },
@@ -102,8 +100,6 @@ const CONTENT = {
       'Full transparency: in writing, what our own teams deliver and what vetted specialists execute under our supervision. One contract, one responsible party: CSSG.',
       'Unarmed by doctrine, low-profile by design — with licensed armed options through vetted partners when your risk profile requires it.',
     ],
-    notTitle: 'What we do not do',
-    notBody: 'We believe clarity is a security feature. Secure Landing does not act as a real-estate broker — we provide security vetting of properties you or your relocation agent select. We do not promise the elimination of risk — we reduce it, manage it and respond to it, with documented procedures. And we decline engagements that do not pass our client acceptance process.',
     faqs: [
       { q: 'Is Venezuela safe for business travel?', a: 'Risk is real but manageable with local judgment, planning and disciplined execution. That is precisely what the program structures — level by level.' },
       { q: 'Do I need the full program?', a: 'No. Most clients start at Level 1 or 2 for a first exploratory trip. The program grows only when your presence in the country grows.' },
@@ -204,11 +200,6 @@ export default function SecureLanding() {
             </div>
           ))}
         </div>
-      </div>
-
-      <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6">
-        <h2 className="text-lg font-black text-white mb-3">{c.notTitle}</h2>
-        <p className="text-sm text-gray-500 leading-relaxed">{c.notBody}</p>
       </div>
     </ConsultoriaServiceLayout>
   );
