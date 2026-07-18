@@ -680,6 +680,12 @@ const routes = [
     description: 'Empresa de seguridad certificada ISO 9001 y Cyber Essentials, alineada a ISO 18788, ISO 31000, ISO 28000 y ANSI/ASIS PSC.1. Auditoría de seguridad física, gestión de riesgos y evidencia operativa lista para su registro de proveedores.',
     image: 'https://cssg-global.com/consulting_b2b.webp',
     jsonld: { "@context": "https://schema.org", "@type": "ProfessionalService", "name": "CSSG Global — Registro de Proveedores y Compliance de Seguridad", "description": "Empresa de seguridad certificada ISO 9001 y Cyber Essentials, con gestión de riesgos ISO 31000, operaciones alineadas a ISO 18788 y auditoría de seguridad física lista para procesos de registro de proveedores y licitación.", "provider": { "@type": "Organization", "name": "CSSG — Company Of Security And Service Global", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" }, "audience": { "@type": "Audience", "audienceType": "Overseas Security Managers, Regional Security Managers, Procurement" } }
+  },
+  {
+    path: 'esrm-readiness/gracias',
+    title: 'Solicitud recibida | CSSG Global',
+    description: 'Confirmación de solicitud de expediente de cumplimiento — CSSG Global.',
+    image: 'https://cssg-global.com/consulting_b2b.webp'
   }
 ];
 
