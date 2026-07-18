@@ -156,6 +156,21 @@ export default function EsrmReadiness() {
       if (insertError) {
         if (insertError.code === '23505') {
           console.warn('Duplicate lead email, treating as already registered:', insertError);
+          try {
+            const emailRes = await sendLeadNotification({
+              nombre: formData.nombre,
+              email: formData.correo,
+              empresa: formData.organizacion,
+              fuente: 'esrm_readiness',
+              cargo: formData.cargo,
+              mensaje: `[SOLICITUD REPETIDA] ${formData.linkedin ? `LinkedIn: ${formData.linkedin}` : ''}`,
+            });
+            if (!emailRes.success) {
+              console.warn('Email Notification Warning (duplicate):', emailRes.error);
+            }
+          } catch (emailErr) {
+            console.warn('Email Send Exception on duplicate (Non-blocking):', emailErr);
+          }
           navigate('/esrm-readiness/gracias', { state: { nombre: formData.nombre, correo: formData.correo, duplicate: true } });
           return;
         }
