@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import { SearchCheck, ClipboardList, ShieldCheck, ArrowRight, Lock, Check, Loader2 } from 'lucide-react';
@@ -109,6 +110,7 @@ function SectionNumeral({ n }: { n: string }) {
 }
 
 export default function EsrmReadiness() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<FormData>({ nombre: '', cargo: '', organizacion: '', correo: '', linkedin: '' });
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'duplicate' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
@@ -154,7 +156,7 @@ export default function EsrmReadiness() {
       if (insertError) {
         if (insertError.code === '23505') {
           console.warn('Duplicate lead email, treating as already registered:', insertError);
-          setStatus('duplicate');
+          navigate('/esrm-readiness/gracias', { state: { nombre: formData.nombre, correo: formData.correo, duplicate: true } });
           return;
         }
         console.error('Supabase Insert Error:', insertError);
@@ -185,7 +187,7 @@ export default function EsrmReadiness() {
         console.warn('Sequence Start Exception (Non-blocking):', seqErr);
       }
 
-      setStatus('success');
+      navigate('/esrm-readiness/gracias', { state: { nombre: formData.nombre, correo: formData.correo, duplicate: false } });
     } catch (err: any) {
       console.error('Error submitting ESRM Readiness form:', err);
       setErrorMsg(err.message || 'Error de conexión o de base de datos.');
@@ -400,27 +402,10 @@ export default function EsrmReadiness() {
           <motion.div className="relative" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
             <CornerFrame className="p-9 sm:p-11">
               <div className="absolute inset-0 -z-10" style={{ background: SLATE, border: `1px solid ${BORDER}`, borderRadius: '2px' }} />
-              {status !== 'success' && status !== 'duplicate' && (
-                <span className="absolute top-4 right-4 text-[9px] font-bold uppercase px-2 py-1" style={{ color: GOLD, border: `1px solid ${GOLD}66`, letterSpacing: '.12em', borderRadius: '2px', transform: 'rotate(2deg)' }}>
-                  Confidencial
-                </span>
-              )}
-              {status === 'success' || status === 'duplicate' ? (
-                <div className="text-center py-6">
-                  <div className="w-16 h-16 flex items-center justify-center mx-auto mb-5" style={{ background: `${GOLD}15`, border: `1px solid ${GOLD}30`, borderRadius: '50%' }}>
-                    <Check className="w-8 h-8" style={{ color: GOLD }} />
-                  </div>
-                  <h2 className="mb-3" style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.4rem' }}>
-                    {status === 'duplicate' ? 'Ya tenemos sus datos' : 'Solicitud recibida'}
-                  </h2>
-                  <p style={{ color: MUTED }}>
-                    {status === 'duplicate'
-                      ? 'Ya contamos con su información en nuestro sistema. Nuestro equipo de compliance le enviará el expediente completo en menos de 24 horas hábiles.'
-                      : 'Nuestro equipo de compliance le enviará el expediente completo — certificaciones, matrices ISO 31000 y evidencia operativa — en menos de 24 horas hábiles.'}
-                  </p>
-                </div>
-              ) : (
-                <>
+              <span className="absolute top-4 right-4 text-[9px] font-bold uppercase px-2 py-1" style={{ color: GOLD, border: `1px solid ${GOLD}66`, letterSpacing: '.12em', borderRadius: '2px', transform: 'rotate(2deg)' }}>
+                Confidencial
+              </span>
+              <>
                   <h2 className="text-center mb-7 mt-3" style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.4rem' }}>
                     Solicitar expediente de cumplimiento
                   </h2>
@@ -480,7 +465,6 @@ export default function EsrmReadiness() {
                     Se lo enviaremos a su correo, con copia a gerencia@globalservices-ven.com para coordinar los siguientes pasos.
                   </p>
                 </>
-              )}
             </CornerFrame>
           </motion.div>
         </div>

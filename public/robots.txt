@@ -10,6 +10,7 @@ Disallow: /portal-rrhh
 Disallow: /portal-rrhh/
 Disallow: /streaming
 Disallow: /streaming/
+Disallow: /esrm-readiness/gracias
 
 # Endpoints internos
 Disallow: /api/

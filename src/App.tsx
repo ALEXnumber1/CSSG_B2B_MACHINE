@@ -18,6 +18,7 @@ const QuienesSomos = lazy(() => import('./pages/QuienesSomos'))
 const Consultoria = lazy(() => import('./pages/Consultoria'))
 const EscudoDiplomatico = lazy(() => import('./pages/EscudoDiplomatico'))
 const EsrmReadiness = lazy(() => import('./pages/EsrmReadiness'))
+const EsrmReadinessGracias = lazy(() => import('./pages/EsrmReadinessGracias'))
 const Tecnologia = lazy(() => import('./pages/Tecnologia'))
 const TecnologiaEn = lazy(() => import('./pages/TecnologiaEn'))
 const StreamingMeeting = lazy(() => import('./pages/StreamingMeeting'))
@@ -67,7 +68,7 @@ function AppContent() {
   const { t, i18n } = useTranslation();
   const year = new Date().getFullYear();
   const location = useLocation();
-  const isStandaloneLanding = location.pathname === '/consultoria/escudo-diplomatico' || location.pathname === '/esrm-readiness';
+  const isStandaloneLanding = location.pathname === '/consultoria/escudo-diplomatico' || location.pathname.startsWith('/esrm-readiness');
 
   if (isStandaloneLanding) {
     return (
@@ -77,6 +78,7 @@ function AppContent() {
           <Routes>
             <Route path="/consultoria/escudo-diplomatico" element={<EscudoDiplomatico />} />
             <Route path="/esrm-readiness" element={<EsrmReadiness />} />
+            <Route path="/esrm-readiness/gracias" element={<EsrmReadinessGracias />} />
           </Routes>
         </Suspense>
       </>
