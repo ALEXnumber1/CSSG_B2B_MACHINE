@@ -186,6 +186,38 @@ const templates: Record<string, { subject: string | ((nombre: string, empresa?: 
       </div>
     `),
   },
+
+  esrm_readiness: {
+    subject: (nombre) => `Su invitación a CSSG fue recibida — ${nombre}`,
+    html: (nombre, empresa) => baseTemplate(`
+      <h2 style="color:#0F172A;font-size:24px;margin:0 0 16px;font-weight:700;">Estimado/a ${nombre},</h2>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Gracias por invitar a CSSG a su proceso de registro de proveedores${empresa ? ` en representación de <strong style="color:#C9A24B;">${empresa}</strong>` : ''}. Su solicitud fue registrada y enviada a nuestro equipo de compliance.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        CSSG opera bajo ISO 18788, ISO 31000 e ISO 28000, con certificación ISO 9001 y Cyber Essentials, y alineación a ANSI/ASIS PSC.1, ESRM y estándares OSAC y DSS.
+      </p>
+
+      <div style="background-color:#F1F5F9;border:1px solid #E2E8F0;border-radius:12px;padding:24px;margin:24px 0;">
+        <p style="color:#1E293B;font-size:16px;margin:0 0 12px;font-weight:700;">Próximos pasos:</p>
+        <ul style="color:#334155;font-size:14px;line-height:1.8;margin:0;padding-left:20px;">
+          <li style="margin-bottom:8px;">✔️ Preparamos su <strong style="color:#0F172A;">expediente de cumplimiento completo</strong>: certificaciones, políticas, matrices de riesgo ISO 31000, KPIs y evidencia operativa.</li>
+          <li style="margin-bottom:8px;">✔️ Le contactamos en menos de <strong style="color:#0F172A;">24 horas hábiles</strong> para coordinar los siguientes pasos de su proceso de registro o licitación.</li>
+          <li style="margin-bottom:8px;">✔️ Si su programa lo requiere, disponemos de NDA, RFI, RFP y due diligence de vendor bajo estándar.</li>
+        </ul>
+      </div>
+
+      <p style="color:#1E293B;font-size:15px;line-height:1.7;margin:0 0 24px;font-weight:600;">
+        Le entregamos planes y evidencia, no solo personal en sitio.
+      </p>
+
+      <div style="text-align:center;margin:32px 0 16px;">
+        <a href="https://cssg-global.com/consultoria" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;box-shadow:0 4px 14px 0 rgba(2, 132, 199, 0.4);">
+          Conocer Risk Advisory Services de CSSG
+        </a>
+      </div>
+    `),
+  },
 };
 
 // ═══════════ FUNCIÓN DE ENVÍO ORIGINAL ═══════════
@@ -497,6 +529,9 @@ const sequenceTemplates: Record<string, { subject: string | ((nombre: string, em
 
   // ── ESCUDO DIPLOMATICO: 1 email ──
   escudo_diplomatico_1: templates.escudo_diplomatico,
+
+  // ── ESRM READINESS (landing "El Estratega"): 1 email ──
+  esrm_readiness_1: templates.esrm_readiness,
 
   // ════════════════════════════════════════════════════════════════════════
   // SECUENCIAS OUTBOUND — Leads scrapeados (frío)

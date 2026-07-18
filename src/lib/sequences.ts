@@ -76,6 +76,13 @@ export const SEQUENCES: Record<string, Sequence> = {
       { day: 0, templateKey: 'escudo_diplomatico_1', scoreBonus: 0 },
     ],
   },
+  esrm_readiness: {
+    id: 'esrm_readiness',
+    name: 'Secuencia ESRM Readiness (landing "El Estratega")',
+    emails: [
+      { day: 0, templateKey: 'esrm_readiness_1', scoreBonus: 0 },
+    ],
+  },
 
   // ─── Secuencias OUTBOUND (leads scrapeados, no inbound) ───────────────
   // Arco: miedo → dolor → prueba social → CTA bajo fricción → urgencia pérdida → ask directo (BP1)
