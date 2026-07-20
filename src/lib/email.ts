@@ -282,6 +282,35 @@ const templates: Record<string, { subject: string | ((nombre: string, empresa?: 
       </div>
     `),
   },
+
+  risk_advisory_services: {
+    subject: (nombre) => `${nombre}, su evaluación inicial de Risk Advisory Services fue registrada`,
+    html: (nombre, empresa) => baseTemplate(`
+      <h2 style="color:#0F172A;font-size:24px;margin:0 0 16px;font-weight:700;">Estimado/a ${nombre},</h2>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Hemos registrado su solicitud de evaluación inicial${empresa ? ` para <strong style="color:#0284C7;">${empresa}</strong>` : ''}. Nuestro equipo de Risk Advisory Services ya fue notificado.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Un consultor senior revisará su caso en una sesión informativa — sin costo ni compromiso — y le presentará el alcance de la consultoría bajo metodología <strong>ESRM / ISO 31000</strong> que necesita su organización.
+      </p>
+
+      <div style="background-color:#F1F5F9;border:1px solid #E2E8F0;border-radius:12px;padding:24px;margin:24px 0;">
+        <p style="color:#1E293B;font-size:16px;margin:0 0 12px;font-weight:700;">¿Qué sigue ahora?</p>
+        <ul style="color:#334155;font-size:14px;line-height:1.8;margin:0;padding-left:20px;">
+          <li style="margin-bottom:8px;">✔️ <strong style="color:#0F172A;">Sesión informativa inicial</strong> — sin costo, ya en proceso con esta solicitud.</li>
+          <li style="margin-bottom:8px;">✔️ <strong style="color:#0F172A;">Alcance y propuesta de consultoría</strong> — a la medida de su organización.</li>
+          <li style="margin-bottom:8px;">✔️ <strong style="color:#0284C7;">Respuesta en menos de 12 horas</strong> — sin compromiso de contratación.</li>
+        </ul>
+      </div>
+
+      <div style="text-align:center;margin:32px 0 16px;">
+        <a href="https://calendar.app.google/BEkG334qQpKKdGGN9" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;box-shadow:0 4px 14px 0 rgba(2, 132, 199, 0.4);">
+          Agendar mi sesión informativa
+        </a>
+      </div>
+      <p style="text-align:center;color:#94A3B8;font-size:12px;margin:0 0 4px;">Elija el horario que más le convenga, sin esperar a que lo contactemos.</p>
+    `),
+  },
 };
 
 // ═══════════ FUNCIÓN DE ENVÍO ORIGINAL ═══════════
@@ -602,6 +631,9 @@ const sequenceTemplates: Record<string, { subject: string | ((nombre: string, em
 
   // ── REDUCCIÓN DE COSTOS DE SEGURIDAD (landing "Ana"): 1 email ──
   reduccion_costos_seguridad_1: templates.reduccion_costos_seguridad,
+
+  // ── RISK ADVISORY SERVICES (landing bilingüe "Guardián + Estratega"): 1 email ──
+  risk_advisory_services_1: templates.risk_advisory_services,
 
   // ════════════════════════════════════════════════════════════════════════
   // SECUENCIAS OUTBOUND — Leads scrapeados (frío)

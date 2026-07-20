@@ -97,6 +97,13 @@ export const SEQUENCES: Record<string, Sequence> = {
       { day: 0, templateKey: 'reduccion_costos_seguridad_1', scoreBonus: 0 },
     ],
   },
+  risk_advisory_services: {
+    id: 'risk_advisory_services',
+    name: 'Secuencia Risk Advisory Services (landing bilingüe ES/EN)',
+    emails: [
+      { day: 0, templateKey: 'risk_advisory_services_1', scoreBonus: 0 },
+    ],
+  },
 
   // ─── Secuencias OUTBOUND (leads scrapeados, no inbound) ───────────────
   // Arco: miedo → dolor → prueba social → CTA bajo fricción → urgencia pérdida → ask directo (BP1)

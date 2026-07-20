@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Risk Advisory Services | Consultoría de Seguridad Corporativa | CSSG Global</title>
+<meta name="description" content="Consultoría de vulnerabilidades, compliance ISO 31000/22301, inteligencia y CECOM 24/7. Seis líneas de consultoría de seguridad para embajadas, multinacionales e infraestructura crítica en Venezuela. Primera sesión sin costo.">
+<meta name="keywords" content="risk advisory services, consultoría de seguridad corporativa, ISO 31000, ESRM, CECOM, compliance de seguridad, DIGESERVISP, seguridad diplomática G7, Venezuela">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Risk Advisory Services | CSSG Global">
+<meta property="og:description" content="No inicie un esquema de seguridad sin una consultoría previa. No asuma costos a ciegas. Evaluación inicial gratuita, respuesta en menos de 12 horas.">
+<meta property="og:url" content="https://cssg-global.com/risk-advisory-services">
+<meta property="og:image" content="https://cssg-global.com/og-image-2025.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://cssg-global.com/risk-advisory-services">
+<link rel="alternate" hreflang="es" href="https://cssg-global.com/risk-advisory-services">
+<link rel="alternate" hreflang="en" href="https://cssg-global.com/risk-advisory-services/en">
+<link rel="icon" type="image/png" href="/favicon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Risk Advisory Services — CSSG Global",
+  "provider": { "@type": "Organization", "name": "Company of Security and Service Global C.A (CSSG Global)", "url": "https://cssg-global.com" },
+  "description": "Consultoría de seguridad corporativa: evaluación de riesgos ISO 31000/ESRM, consultoría diplomática G7, inteligencia e investigación, continuidad operativa ISO 22301, marco legal y compliance, y CSSG Secure Landing para expatriados.",
+  "areaServed": ["Venezuela"],
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "description": "Evaluación inicial sin costo" }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-950:#050608;
+    --bg-900:#0B0B0F;
+    --bg-850:#111218;
+    --bg-800:#171821;
+    --sky:#2E5D8A;
+    --sky-bright:#5A8FC0;
+    --gold:#EAB308;
+    --gold-bright:#FACC15;
+    --text:#F1F5F9;
+    --text-dim:#8892A0;
+    --line:rgba(14,165,233,.2);
+    --line-soft:rgba(255,255,255,.08);
+    --glass:rgba(255,255,255,.04);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  ::selection{background:var(--sky);color:var(--bg-950)}
+  body{background:var(--bg-950);color:var(--text);font-family:'Inter',sans-serif;line-height:1.65;font-weight:300;overflow-x:hidden}
+  h1,h2,h3{font-family:'Inter',sans-serif;font-weight:800;line-height:1.15;letter-spacing:-.015em}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 28px}
+  .eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:.68rem;letter-spacing:.26em;text-transform:uppercase;color:var(--sky-bright);font-weight:700}
+  .eyebrow::before{content:"";width:30px;height:1px;background:linear-gradient(90deg,transparent,var(--sky-bright))}
+  .eyebrow::after{content:"";width:30px;height:1px;background:linear-gradient(90deg,var(--sky-bright),transparent)}
+  .gold-text{color:var(--gold-bright)}
+  .grad-text{background:linear-gradient(120deg,var(--sky) 10%,var(--sky-bright) 50%,var(--gold) 90%);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .btn{display:inline-flex;align-items:center;gap:12px;background:linear-gradient(135deg,var(--sky),#1E4468);color:#F1F5F9;font-weight:700;font-size:.86rem;letter-spacing:.02em;padding:18px 38px;border:none;border-radius:8px;cursor:pointer;text-decoration:none;transition:all .3s cubic-bezier(.2,.7,.3,1);box-shadow:0 10px 30px rgba(46,93,138,.35)}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(46,93,138,.5);background:linear-gradient(135deg,var(--sky-bright),var(--sky))}
+  .btn .arrow{transition:transform .3s}
+  .btn:hover .arrow{transform:translateX(4px)}
+
+  .rv{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.7,.3,1),transform .8s cubic-bezier(.2,.7,.3,1)}
+  .rv.on{opacity:1;transform:none}
+  .rv-d1{transition-delay:.1s}.rv-d2{transition-delay:.2s}.rv-d3{transition-delay:.3s}
+
+  .grid-bg{background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:52px 52px}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:all .35s;padding:20px 0;background:transparent}
+  nav.scrolled{background:rgba(5,6,8,.92);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);padding:13px 0;border-bottom:1px solid var(--line-soft)}
+  .nav-inner{display:flex;justify-content:space-between;align-items:center}
+  .logo{display:flex;align-items:center;gap:12px;font-size:1.2rem;font-weight:800;letter-spacing:.01em;color:var(--text);text-decoration:none}
+  .logo img.mark{height:38px;width:auto;flex-shrink:0}
+  .logo span{color:var(--sky-bright)}
+  .logo small{display:block;font-size:.54rem;letter-spacing:.3em;color:var(--text-dim);font-weight:500;margin-top:2px;text-transform:uppercase}
+  .nav-right{display:flex;align-items:center;gap:18px}
+  .lang-switch{display:flex;border:1px solid var(--line-soft);border-radius:8px;overflow:hidden;font-size:.72rem;font-weight:700;letter-spacing:.04em}
+  .lang-switch a{padding:8px 13px;color:var(--text-dim);text-decoration:none;transition:all .2s}
+  .lang-switch a.active{background:var(--sky);color:var(--text)}
+  .lang-switch a:not(.active):hover{background:var(--glass);color:var(--text)}
+  .nav-cta{font-size:.74rem;letter-spacing:.02em;color:var(--text);text-decoration:none;background:var(--sky);padding:11px 22px;border-radius:8px;transition:all .3s;font-weight:700}
+  .nav-cta:hover{background:var(--sky-bright)}
+
+  /* HERO */
+  .hero{position:relative;min-height:94vh;display:flex;align-items:center;padding:150px 0 100px;background:var(--bg-950)}
+  .hero-bg{position:absolute;inset:0;background-image:url("/cecom_control_center_1777552494604.webp");background-size:cover;background-position:center 35%;filter:saturate(.75) brightness(.5)}
+  .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(5,6,8,.97) 0%,rgba(5,6,8,.86) 42%,rgba(5,6,8,.5) 100%),linear-gradient(180deg,rgba(5,6,8,.3) 55%,var(--bg-950) 100%)}
+  .hero::before{content:"";position:absolute;inset:0;z-index:1;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 20%,transparent 75%);mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 20%,transparent 75%);pointer-events:none}
+  .hero .wrap{position:relative;z-index:2}
+  .hero-badge{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--line);background:rgba(46,93,138,.12);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border-radius:100px;padding:9px 20px;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--sky-bright);font-weight:600;margin-bottom:30px}
+  .hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--sky-bright);box-shadow:0 0 12px var(--sky-bright);animation:pulse 2.4s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  .hero h1{font-size:clamp(2.1rem,4.4vw,3.4rem);max-width:880px;margin-bottom:22px;text-shadow:0 2px 20px rgba(0,0,0,.4)}
+  .hero-tagline{display:inline-block;font-size:1rem;font-weight:700;color:var(--gold-bright);border-left:3px solid var(--gold);padding:6px 0 6px 16px;margin-bottom:26px;letter-spacing:.01em}
+  .hero .hero-h2{font-size:clamp(1.02rem,1.8vw,1.24rem);font-weight:400;color:var(--text-dim);max-width:680px;margin-bottom:40px;line-height:1.6}
+  .hero .hero-h2 strong{color:var(--sky-bright);font-weight:700}
+  .hero-ctas{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-bottom:52px}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:14px 44px;border-top:1px solid var(--line-soft);padding-top:26px;max-width:680px}
+  .hero-meta div{font-size:.72rem;letter-spacing:.09em;color:var(--text-dim);text-transform:uppercase}
+  .hero-meta b{display:block;font-size:1.5rem;color:var(--sky-bright);font-weight:800;letter-spacing:0;text-transform:none;margin-bottom:2px}
+
+  /* RIBBON — cinta de certificaciones */
+  .ribbon{position:relative;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);background:var(--bg-900);overflow:hidden;padding:22px 0}
+  .ribbon-track{display:flex;white-space:nowrap;width:max-content;animation:rscroll 26s linear infinite}
+  .ribbon-track span{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-dim);padding:0 34px;position:relative;font-weight:600}
+  .ribbon-track span b{color:var(--sky-bright);font-weight:700}
+  .ribbon-track span::after{content:"◆";position:absolute;right:-6px;top:1px;color:var(--gold-bright);font-size:.55rem;opacity:.6}
+  @keyframes rscroll{to{transform:translateX(-50%)}}
+
+  section{padding:110px 0;position:relative}
+  .sec-head{text-align:center;max-width:760px;margin:0 auto 60px}
+  .sec-head .eyebrow{margin-bottom:20px;justify-content:center}
+  .sec-head h2{font-size:clamp(1.9rem,4vw,2.7rem)}
+  .sec-head p{color:var(--text-dim);margin-top:16px;font-size:1.02rem;font-weight:300}
+
+  /* FAMILIES */
+  .families{background:var(--bg-900);border-top:1px solid var(--line-soft)}
+  .fam-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .fam{position:relative;background:var(--glass);border:1px solid var(--line-soft);border-radius:14px;padding:32px 28px;transition:all .35s;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+  .fam::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;border-radius:14px 14px 0 0;background:linear-gradient(90deg,transparent,var(--sky),transparent);opacity:0;transition:opacity .35s}
+  .fam:hover{transform:translateY(-5px);border-color:var(--line);box-shadow:0 22px 46px rgba(0,0,0,.45)}
+  .fam:hover::before{opacity:1}
+  .fam .fam-badge{display:inline-block;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sky-bright);background:rgba(14,165,233,.08);border:1px solid var(--line);border-radius:100px;padding:5px 12px;margin-bottom:16px;font-weight:700}
+  .fam h3{font-size:1.18rem;margin-bottom:12px;color:var(--text)}
+  .fam p{font-size:.88rem;color:var(--text-dim);font-weight:300;margin-bottom:16px}
+  .fam ul{list-style:none;margin-bottom:18px}
+  .fam li{font-size:.82rem;color:var(--text-dim);padding:5px 0 5px 18px;position:relative}
+  .fam li::before{content:"—";position:absolute;left:0;color:var(--sky-bright)}
+  .fam .fam-cta{font-size:.76rem;font-weight:700;color:var(--sky-bright);text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+  .fam.gold .fam-badge{color:var(--gold-bright);background:rgba(234,179,8,.08);border-color:rgba(234,179,8,.28)}
+  .fam.gold::before{background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+  .fam.gold .fam-cta{color:var(--gold-bright)}
+  @media(max-width:900px){.fam-grid{grid-template-columns:1fr}}
+
+  /* SOCIAL PROOF */
+  .proof{background:var(--bg-950);border-top:1px solid var(--line-soft);text-align:center;overflow:hidden}
+  .proof::before{content:"";position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:900px;height:700px;background:radial-gradient(circle,rgba(14,165,233,.08),transparent 65%);pointer-events:none}
+  .proof .wrap{position:relative}
+  .proof .quote-mark{font-size:4.5rem;line-height:1;color:var(--sky);opacity:.5;font-weight:800;margin-bottom:6px}
+  .proof blockquote{font-size:clamp(1.4rem,3.2vw,2.2rem);font-weight:700;max-width:920px;margin:0 auto 26px;color:var(--text);line-height:1.4;letter-spacing:-.01em}
+  .proof blockquote strong{color:var(--sky-bright)}
+  .proof .attrib{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-dim)}
+
+  /* CECOM / TECH */
+  .cecom{background:linear-gradient(180deg,var(--bg-850),var(--bg-900));border-top:1px solid var(--line-soft)}
+  .cecom-panel{position:relative;background:linear-gradient(155deg,rgba(14,165,233,.08),rgba(234,179,8,.04));border:1px solid var(--line);border-radius:18px;padding:56px 50px;text-align:center;overflow:hidden;margin-bottom:70px}
+  .cecom-panel::before{content:"";position:absolute;top:0;left:15%;right:15%;height:2px;background:linear-gradient(90deg,transparent,var(--sky),var(--gold),transparent)}
+  .cecom-panel h2{font-size:clamp(1.7rem,3.6vw,2.4rem);max-width:760px;margin:18px auto 20px}
+  .cecom-panel p{color:var(--text-dim);max-width:640px;margin:0 auto 30px;font-size:1.02rem}
+  .layers-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .layer{background:var(--glass);border:1px solid var(--line-soft);border-radius:14px;padding:34px 30px}
+  .layer .fam-badge{display:inline-block;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sky-bright);background:rgba(14,165,233,.08);border:1px solid var(--line);border-radius:100px;padding:5px 12px;margin-bottom:16px;font-weight:700}
+  .layer h3{font-size:1.2rem;margin-bottom:12px;color:var(--text)}
+  .layer p{font-size:.9rem;color:var(--text-dim);margin-bottom:16px}
+  .layer ul{list-style:none}
+  .layer li{font-size:.84rem;color:var(--text-dim);padding:5px 0 5px 18px;position:relative}
+  .layer li::before{content:"—";position:absolute;left:0;color:var(--sky-bright)}
+  @media(max-width:800px){.layers-grid{grid-template-columns:1fr}}
+
+  /* FINAL / FORM */
+  .final{background:var(--bg-900);border-top:1px solid var(--line-soft)}
+  .final-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+  .final h2{font-size:clamp(1.9rem,4vw,2.6rem);margin-bottom:18px}
+  .final p.lead{color:var(--text-dim);font-size:1.05rem;margin-bottom:28px}
+  .final .points{list-style:none}
+  .final .points li{font-size:.94rem;color:var(--text-dim);padding:9px 0 9px 30px;position:relative;border-bottom:1px solid var(--line-soft)}
+  .final .points li:first-child{border-top:1px solid var(--line-soft)}
+  .final .points li::before{content:"✔";position:absolute;left:0;color:var(--sky-bright);font-weight:700}
+  .form-card{position:relative;background:linear-gradient(165deg,var(--bg-850),var(--bg-800));border:1px solid var(--line);border-radius:16px;padding:44px 38px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+  .form-card h3{font-size:1.4rem;margin-bottom:8px;color:var(--text)}
+  .fc-sub{font-size:.85rem;color:var(--text-dim);margin-bottom:28px;font-weight:300}
+  .field{margin-bottom:18px}
+  .field label{display:block;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px;font-weight:600}
+  .field input{width:100%;background:rgba(5,6,8,.6);border:1px solid var(--line-soft);border-radius:8px;padding:14px 16px;color:var(--text);font-family:'Inter',sans-serif;font-size:.93rem;outline:none;transition:all .25s}
+  .field input::placeholder{color:rgba(136,146,160,.5)}
+  .field input:focus{border-color:var(--sky);box-shadow:0 0 0 3px rgba(14,165,233,.12)}
+  .form-card .btn{width:100%;justify-content:center;margin-top:6px}
+  .f-err{display:none;color:#F87171;font-size:.82rem;margin-bottom:14px;background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.25);border-radius:8px;padding:12px 14px}
+
+  footer{border-top:1px solid var(--line-soft);padding:44px 28px;background:var(--bg-950)}
+  .foot-inner{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px;max-width:1160px;margin:0 auto}
+  footer .logo{font-size:1.05rem}
+  footer p{font-size:.7rem;color:var(--text-dim);letter-spacing:.03em}
+  footer a{color:var(--sky-bright);text-decoration:none}
+
+  @media(max-width:900px){
+    .final-grid{grid-template-columns:1fr;gap:44px}
+    section{padding:76px 0}
+    .hero{padding:130px 0 80px;min-height:auto}
+    .cecom-panel{padding:40px 26px}
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wrap nav-inner">
+    <a class="logo" href="#" aria-label="CSSG Global — Company of Security and Service Global C.A">
+      <img class="mark" src="/favicon.png" alt="CSSG Global">
+      <span style="display:block">CSSG <span>GLOBAL</span><small>Risk Advisory Services</small></span>
+    </a>
+    <div class="nav-right">
+      <div class="lang-switch">
+        <a href="/risk-advisory-services" class="active">ES</a>
+        <a href="/risk-advisory-services/en">EN</a>
+      </div>
+      <a class="nav-cta" href="#diagnostico">Agendar evaluación inicial</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="wrap">
+    <span class="hero-badge"><span class="dot"></span> Risk Advisory Services · by CSSG Global</span>
+    <h1 class="rv on">No inicie —ni asuma— un esquema de seguridad sin una consultoría previa. No asuma costos a ciegas.</h1>
+    <span class="hero-tagline rv on rv-d1">Una consultoría es el paso previo a una excelente gestión de seguridad.</span>
+    <p class="hero-h2 rv on rv-d1">Analizamos los puntos críticos que pueden derivar en un servicio estable y con una disminución factible de costos — bajo estándares probados en la industria. La primera sesión informativa no tiene costo.</p>
+    <div class="hero-ctas rv on rv-d2">
+      <a class="btn" href="#diagnostico">Solicitar Evaluación Inicial <span class="arrow">→</span></a>
+    </div>
+    <div class="hero-meta rv on rv-d3">
+      <div><b>+17 años</b>Sin un solo incidente</div>
+      <div><b>ISO 9001:2015</b>Cert. 580181</div>
+      <div><b>Estándar G7</b>Diplomático y multinacional</div>
+    </div>
+  </div>
+</header>
+
+<!-- CINTA DE CERTIFICACIONES -->
+<div class="ribbon">
+  <div class="ribbon-track">
+    <span><b>+17 años</b> sin un solo incidente</span>
+    <span><b>ISO 9001:2015</b> — Cert. 580181</span>
+    <span><b>Cyber Essentials</b> certificado</span>
+    <span><b>ESRM · ASIS</b></span>
+    <span><b>ISO 31000 · ISO 22301</b></span>
+    <span><b>Estándar G7</b> diplomático</span>
+    <span><b>+17 años</b> sin un solo incidente</span>
+    <span><b>ISO 9001:2015</b> — Cert. 580181</span>
+    <span><b>Cyber Essentials</b> certificado</span>
+    <span><b>ESRM · ASIS</b></span>
+    <span><b>ISO 31000 · ISO 22301</b></span>
+    <span><b>Estándar G7</b> diplomático</span>
+  </div>
+</div>
+
+<!-- PRUEBA SOCIAL -->
+<section class="proof" id="certificaciones">
+  <div class="wrap">
+    <span class="quote-mark">"</span>
+    <blockquote class="rv on">Asumí un esquema de seguridad y así duré tres años — hasta que <strong>una consultoría</strong> me mostró que podía reducir el costo sin perder efectividad, usando tecnología. Cuando implementé los cambios, todos me felicitaron.</blockquote>
+    <span class="attrib rv on rv-d1">— Director de Seguridad Corporativa, multinacional (identidad reservada)</span>
+  </div>
+</section>
+
+<!-- SEIS FAMILIAS -->
+<section class="families" id="servicios">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Líneas de Servicio</span>
+      <h2>Seis familias. Un solo estándar: el suyo, documentado.</h2>
+    </div>
+    <div class="fam-grid rv rv-d1">
+      <div class="fam">
+        <span class="fam-badge">ISO 31000 · ESRM · CPTED</span>
+        <h3>Evaluación y Diagnóstico de Riesgos</h3>
+        <p>Lo que no se mide, no se puede defender ante una auditoría. Cuantificamos su exposición real bajo metodología ESRM e ISO 31000 — antes de que un incidente la cuantifique por usted.</p>
+        <ul>
+          <li>Evaluación de Riesgos (ESRM)</li>
+          <li>Diagnóstico de Madurez</li>
+          <li>Site Survey Físico (CPTED)</li>
+          <li>Auditoría de Cumplimiento</li>
+        </ul>
+        <a class="fam-cta" href="/consultoria">Explorar servicios →</a>
+      </div>
+      <div class="fam">
+        <span class="fam-badge">Convención de Viena · G7</span>
+        <h3>Consultoría Diplomática y de Misiones</h3>
+        <p>El estándar que exigen los gobiernos del G7 no se improvisa ni se subcontrata. Protegemos embajadas, cancillerías y residencias oficiales bajo protocolo diplomático.</p>
+        <ul>
+          <li>Seguridad para Misiones Diplomáticas</li>
+          <li>Evaluación de Residencias y Cancillerías</li>
+        </ul>
+        <a class="fam-cta" href="/consultoria">Explorar servicios →</a>
+      </div>
+      <div class="fam">
+        <span class="fam-badge">OSINT · CICPC · SENIAT</span>
+        <h3>Inteligencia e Investigación</h3>
+        <p>Antes de firmar, verifique. Cruzamos fuentes judiciales, tributarias y de inteligencia abierta para exponer lo que una due diligence superficial no ve.</p>
+        <ul>
+          <li>Due Diligence Corporativa</li>
+          <li>Inteligencia y Análisis de Riesgo</li>
+          <li>Gestión de Amenaza Interna</li>
+        </ul>
+        <a class="fam-cta" href="/consultoria">Explorar servicios →</a>
+      </div>
+      <div class="fam">
+        <span class="fam-badge">ISO 22301 · BCP</span>
+        <h3>Resiliencia y Continuidad Operativa</h3>
+        <p>Un plan de continuidad genérico, importado de un país sin cortes eléctricos ni disturbios, no es un plan — es una fantasía documentada. Su operación no se detiene porque el país sí.</p>
+        <ul>
+          <li>Continuidad de Negocio (BCP)</li>
+          <li>Gestión de Crisis y Respuesta</li>
+          <li>Protección Ejecutiva — Análisis de Amenazas</li>
+        </ul>
+        <a class="fam-cta" href="/consultoria">Explorar servicios →</a>
+      </div>
+      <div class="fam">
+        <span class="fam-badge">LOTTT · DDHH · DIGESERVISP</span>
+        <h3>Marco Legal y Compliance</h3>
+        <p>El único componente legal integrado a un esquema de seguridad en Venezuela — para que su esquema de protección no se convierta en su próximo pasivo legal.</p>
+        <ul>
+          <li>Derecho Laboral para Seguridad Privada</li>
+          <li>Protocolos DDHH y Uso de la Fuerza</li>
+          <li>Compliance y Due Diligence Legal</li>
+        </ul>
+        <a class="fam-cta" href="/consultoria">Explorar servicios →</a>
+      </div>
+      <div class="fam gold">
+        <span class="fam-badge">Programa G7 · L1–L4</span>
+        <h3>CSSG Secure Landing™</h3>
+        <p>Un programa, un estándar, un solo responsable — desde el briefing pre-viaje hasta una residencia completamente protegida para el ejecutivo o inversionista extranjero.</p>
+        <ul>
+          <li>L1 · INSIGHT — Briefing pre-viaje</li>
+          <li>L2 · ASSESS — Llegada y movilidad</li>
+          <li>L3 · FORTIFY — Residencia protegida</li>
+          <li>L4 · SHIELD — Protección continua 24/7</li>
+        </ul>
+        <a class="fam-cta" href="/consultoria">Explorar el programa →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CECOM / TECNOLOGIA -->
+<section class="cecom" id="cecom">
+  <div class="wrap">
+    <div class="cecom-panel rv">
+      <span class="eyebrow" style="justify-content:center">CECOM 24/7</span>
+      <h2>La única consultora en Venezuela con Centro de Mando operativo 24/7</h2>
+      <p>Cualquier firma puede entregarle un informe PDF. Muy pocas pueden decirle, en tiempo real, qué está pasando en su instalación ahora mismo. Nuestro CECOM consolida monitoreo, alertas tempranas y scoring accionable en un solo panel.</p>
+    </div>
+
+    <div class="sec-head rv" style="margin-bottom:40px">
+      <span class="eyebrow">Capas de soporte y entrega</span>
+      <h2 style="font-size:clamp(1.7rem,3.4vw,2.3rem)">Lo que distingue una consultoría de una transformación real</h2>
+    </div>
+    <div class="layers-grid rv rv-d1">
+      <div class="layer">
+        <span class="fam-badge">CECOM 24/7</span>
+        <h3>Tecnología y Centro de Mando</h3>
+        <p>Visibilidad consolidada del estado de seguridad en tiempo real.</p>
+        <ul>
+          <li>Monitoreo en Tiempo Real</li>
+          <li>Centro de Mando CECOM 24h</li>
+          <li>Scoring de Seguridad</li>
+        </ul>
+      </div>
+      <div class="layer">
+        <span class="fam-badge">DIGESERVISP · 120h</span>
+        <h3>Capacitación y Formación</h3>
+        <p>Un protocolo documentado sin personal capacitado para ejecutarlo es papel.</p>
+        <ul>
+          <li>Formación de Personal de Seguridad</li>
+          <li>Respuesta a Crisis para Equipos</li>
+          <li>Concienciación Ejecutiva</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM / CTA FINAL -->
+<section class="final" id="diagnostico">
+  <div class="wrap final-grid">
+    <div class="rv">
+      <span class="eyebrow">Evaluación Inicial Gratuita</span>
+      <h2 style="margin-top:18px">Un consultor senior revisa su caso en una sesión informativa inicial — sin costo ni compromiso — y le presenta el alcance de la consultoría que necesita.</h2>
+      <ul class="points">
+        <li>Sesión informativa inicial sin costo</li>
+        <li>Alcance y propuesta de consultoría a la medida</li>
+        <li>Sin compromiso de contratación</li>
+        <li>Respuesta en menos de 12 horas</li>
+      </ul>
+    </div>
+    <div class="form-card rv rv-d1">
+      <form id="leadForm" autocomplete="on">
+        <h3>Solicitar evaluación inicial</h3>
+        <div class="fc-sub">Complete el formulario y le contactamos.</div>
+        <div class="field">
+          <label for="nombre">Nombre completo</label>
+          <input type="text" id="nombre" name="nombre" required placeholder="Su nombre">
+        </div>
+        <div class="field">
+          <label for="cargo">Cargo</label>
+          <input type="text" id="cargo" name="cargo" required placeholder="CSO / Regional Security Manager">
+        </div>
+        <div class="field">
+          <label for="empresa">Empresa u organización</label>
+          <input type="text" id="empresa" name="empresa" required placeholder="Empresa u organización">
+        </div>
+        <div class="field">
+          <label for="email">Correo electrónico corporativo</label>
+          <input type="email" id="email" name="email" required placeholder="correo@empresa.com">
+        </div>
+        <div class="f-err" id="fErr">
+          Error al enviar. Escríbanos a <a href="mailto:gerencia@globalservices-ven.com" style="color:inherit;">gerencia@globalservices-ven.com</a>
+        </div>
+        <button class="btn" type="submit" id="submitBtn">
+          <span id="btnTxt">Solicitar Evaluación Inicial <span class="arrow">→</span></span>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <a class="logo" href="#" aria-label="CSSG Global">
+      <img class="mark" src="/favicon.png" alt="CSSG Global" style="height:30px">
+      <span style="display:block">CSSG <span>GLOBAL</span></span>
+    </a>
+    <p>© 2026 Company Of Security And Service Global C.A · RIF J-29782024-8 · <a href="mailto:gerencia@globalservices-ven.com">gerencia@globalservices-ven.com</a></p>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40), {passive:true});
+
+  const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target);} }), {threshold:.12});
+  document.querySelectorAll('.rv:not(.on)').forEach(el => io.observe(el));
+
+  const SUPABASE_URL = 'https://vqisebdthsowhpfpugrb.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZxaXNlYmR0aHNvd2hwZnB1Z3JiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcxNjE2MTAsImV4cCI6MjA5MjczNzYxMH0.9TZZ_6mx7vcaYoaeT5PmH02OrOzad6KMHiBwospgxOw';
+
+  function riskAdvisorySequenceEmail(nombre, empresa) {
+    const empresaLine = empresa ? ` para <strong style="color:#0284C7;">${empresa}</strong>` : '';
+    return {
+      subject: `${nombre}, su evaluación inicial de Risk Advisory Services fue registrada`,
+      html: `<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
+<body style="margin:0;padding:0;background-color:#F8FAFC;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;-webkit-font-smoothing:antialiased;">
+  <div style="max-width:600px;margin:0 auto;padding:40px 24px;">
+    <div style="text-align:center;margin-bottom:32px;">
+      <img src="https://cssg-global.com/favicon.png" alt="CSSG" style="width:64px;height:auto;margin-bottom:8px;" />
+      <p style="color:#64748B;font-size:9px;letter-spacing:1px;text-transform:uppercase;margin-top:4px;margin-bottom:0;">RIF: J-29782024-8</p>
+    </div>
+    <div style="background-color:#FFFFFF;border:1px solid #E2E8F0;border-radius:16px;padding:32px;margin-bottom:24px;box-shadow:0 1px 3px 0 rgba(0,0,0,0.05);">
+      <h2 style="color:#0F172A;font-size:24px;margin:0 0 16px;font-weight:700;">Estimado/a ${nombre},</h2>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Hemos registrado su solicitud de evaluación inicial${empresaLine}. Nuestro equipo de Risk Advisory Services ya fue notificado.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Un consultor senior revisará su caso en una sesión informativa — sin costo ni compromiso — y le presentará el alcance de la consultoría bajo metodología <strong>ESRM / ISO 31000</strong> que necesita su organización.
+      </p>
+      <div style="background-color:#F1F5F9;border:1px solid #E2E8F0;border-radius:12px;padding:24px;margin:24px 0;">
+        <p style="color:#1E293B;font-size:16px;margin:0 0 12px;font-weight:700;">¿Qué sigue ahora?</p>
+        <ul style="color:#334155;font-size:14px;line-height:1.8;margin:0;padding-left:20px;">
+          <li style="margin-bottom:8px;">✔️ <strong style="color:#0F172A;">Sesión informativa inicial</strong> — sin costo, ya en proceso con esta solicitud.</li>
+          <li style="margin-bottom:8px;">✔️ <strong style="color:#0F172A;">Alcance y propuesta de consultoría</strong> — a la medida de su organización.</li>
+          <li style="margin-bottom:8px;">✔️ <strong style="color:#0284C7;">Respuesta en menos de 12 horas</strong> — sin compromiso de contratación.</li>
+        </ul>
+      </div>
+      <div style="text-align:center;margin:32px 0 16px;">
+        <a href="https://calendar.app.google/BEkG334qQpKKdGGN9" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;box-shadow:0 4px 14px 0 rgba(2,132,199,0.4);">
+          Agendar mi sesión informativa
+        </a>
+      </div>
+      <p style="text-align:center;color:#94A3B8;font-size:12px;margin:0 0 4px;">Elija el horario que más le convenga, sin esperar a que lo contactemos.</p>
+    </div>
+    <div style="text-align:center;padding-top:24px;border-top:1px solid #E2E8F0;">
+      <p style="color:#475569;font-size:12px;margin:0;font-weight:600;">Company Of Security and Service Global</p>
+      <p style="color:#64748B;font-size:11px;margin:4px 0 0;">Caracas, Venezuela · ISO 9001 · +17 años de experiencia</p>
+    </div>
+  </div>
+</body></html>`,
+    };
+  }
+
+  document.getElementById('leadForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    const txt = document.getElementById('btnTxt');
+    const err = document.getElementById('fErr');
+    const data = Object.fromEntries(new FormData(this));
+    btn.disabled = true;
+    txt.textContent = 'Enviando...';
+    err.style.display = 'none';
+
+    try {
+      let leadId = null;
+      try {
+        const leadRes = await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            apikey: SUPABASE_ANON_KEY,
+            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+            Prefer: 'return=representation',
+          },
+          body: JSON.stringify([{
+            nombre: data.nombre,
+            correo: data.email,
+            empresa: data.empresa,
+            mensaje: `[RISK ADVISORY SERVICES - ES] Cargo: ${data.cargo}`,
+            fuente: 'risk_advisory_services',
+            score: 55,
+            estado: 'nuevo',
+          }]),
+        });
+        if (leadRes.ok) {
+          const rows = await leadRes.json();
+          leadId = rows && rows[0] && rows[0].id;
+        } else {
+          console.warn('[RiskAdvisory] Supabase insert warning (non-blocking):', await leadRes.text());
+        }
+      } catch (supaErr) {
+        console.warn('[RiskAdvisory] Supabase insert exception (non-blocking):', supaErr);
+      }
+
+      const r = await fetch('/api/mailer', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'lead',
+          nombre: data.nombre,
+          email: data.email,
+          empresa: data.empresa,
+          cargo: data.cargo,
+          fuente: 'risk_advisory_services',
+        }),
+      });
+      if (!r.ok) throw new Error();
+
+      try {
+        const seq = riskAdvisorySequenceEmail(data.nombre, data.empresa);
+        await fetch('/api/mailer', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'sequence',
+            email: data.email,
+            nombre: data.nombre,
+            empresa: data.empresa,
+            fuente: 'risk_advisory_services',
+            subject: seq.subject,
+            html: seq.html,
+          }),
+        });
+        if (leadId) {
+          fetch(`${SUPABASE_URL}/rest/v1/email_sequences`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              apikey: SUPABASE_ANON_KEY,
+              Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+            },
+            body: JSON.stringify([{ lead_id: leadId, secuencia: 'risk_advisory_services', email_num: 0, next_send_at: null, completed: true }]),
+          }).catch(() => {});
+        }
+      } catch (seqErr) {
+        console.warn('[RiskAdvisory] Sequence email exception (non-blocking):', seqErr);
+      }
+
+      window.location.href = '/risk-advisory-services/gracias';
+    } catch {
+      err.style.display = 'block';
+      btn.disabled = false;
+      txt.textContent = 'Solicitar Evaluación Inicial →';
+    }
+  });
+</script>
+
+</body>
+</html>

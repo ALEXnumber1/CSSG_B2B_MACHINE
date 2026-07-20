@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Risk Advisory Services | Corporate Security Consulting | CSSG Global</title>
+<meta name="description" content="Vulnerability consulting, ISO 31000/22301 compliance, intelligence, and 24/7 CECOM. Six security advisory lines for embassies, multinationals, and critical infrastructure in Venezuela. Free initial session.">
+<meta name="keywords" content="risk advisory services, corporate security consulting, ISO 31000, ESRM, CECOM, security compliance, DIGESERVISP, G7 diplomatic security, Venezuela">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Risk Advisory Services | CSSG Global">
+<meta property="og:description" content="Don't start a security scheme without prior advisory. Don't assume costs blindly. Free initial assessment, response in under 12 hours.">
+<meta property="og:url" content="https://cssg-global.com/risk-advisory-services/en">
+<meta property="og:image" content="https://cssg-global.com/og-image-2025.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://cssg-global.com/risk-advisory-services/en">
+<link rel="alternate" hreflang="es" href="https://cssg-global.com/risk-advisory-services">
+<link rel="alternate" hreflang="en" href="https://cssg-global.com/risk-advisory-services/en">
+<link rel="icon" type="image/png" href="/favicon.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Risk Advisory Services — CSSG Global",
+  "provider": { "@type": "Organization", "name": "Company of Security and Service Global C.A (CSSG Global)", "url": "https://cssg-global.com" },
+  "description": "Corporate security consulting: ISO 31000/ESRM risk assessment, G7 diplomatic advisory, intelligence and investigation, ISO 22301 operational continuity, legal framework and compliance, and CSSG Secure Landing for expatriates.",
+  "areaServed": ["Venezuela"],
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD", "description": "Free initial assessment" }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-950:#050608;
+    --bg-900:#0B0B0F;
+    --bg-850:#111218;
+    --bg-800:#171821;
+    --sky:#2E5D8A;
+    --sky-bright:#5A8FC0;
+    --gold:#EAB308;
+    --gold-bright:#FACC15;
+    --text:#F1F5F9;
+    --text-dim:#8892A0;
+    --line:rgba(14,165,233,.2);
+    --line-soft:rgba(255,255,255,.08);
+    --glass:rgba(255,255,255,.04);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  ::selection{background:var(--sky);color:var(--bg-950)}
+  body{background:var(--bg-950);color:var(--text);font-family:'Inter',sans-serif;line-height:1.65;font-weight:300;overflow-x:hidden}
+  h1,h2,h3{font-family:'Inter',sans-serif;font-weight:800;line-height:1.15;letter-spacing:-.015em}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 28px}
+  .eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:.68rem;letter-spacing:.26em;text-transform:uppercase;color:var(--sky-bright);font-weight:700}
+  .eyebrow::before{content:"";width:30px;height:1px;background:linear-gradient(90deg,transparent,var(--sky-bright))}
+  .eyebrow::after{content:"";width:30px;height:1px;background:linear-gradient(90deg,var(--sky-bright),transparent)}
+  .gold-text{color:var(--gold-bright)}
+  .grad-text{background:linear-gradient(120deg,var(--sky) 10%,var(--sky-bright) 50%,var(--gold) 90%);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+  .btn{display:inline-flex;align-items:center;gap:12px;background:linear-gradient(135deg,var(--sky),#1E4468);color:#F1F5F9;font-weight:700;font-size:.86rem;letter-spacing:.02em;padding:18px 38px;border:none;border-radius:8px;cursor:pointer;text-decoration:none;transition:all .3s cubic-bezier(.2,.7,.3,1);box-shadow:0 10px 30px rgba(46,93,138,.35)}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(46,93,138,.5);background:linear-gradient(135deg,var(--sky-bright),var(--sky))}
+  .btn .arrow{transition:transform .3s}
+  .btn:hover .arrow{transform:translateX(4px)}
+
+  .rv{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.7,.3,1),transform .8s cubic-bezier(.2,.7,.3,1)}
+  .rv.on{opacity:1;transform:none}
+  .rv-d1{transition-delay:.1s}.rv-d2{transition-delay:.2s}.rv-d3{transition-delay:.3s}
+
+  .grid-bg{background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:52px 52px}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:all .35s;padding:20px 0;background:transparent}
+  nav.scrolled{background:rgba(5,6,8,.92);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);padding:13px 0;border-bottom:1px solid var(--line-soft)}
+  .nav-inner{display:flex;justify-content:space-between;align-items:center}
+  .logo{display:flex;align-items:center;gap:12px;font-size:1.2rem;font-weight:800;letter-spacing:.01em;color:var(--text);text-decoration:none}
+  .logo img.mark{height:38px;width:auto;flex-shrink:0}
+  .logo span{color:var(--sky-bright)}
+  .logo small{display:block;font-size:.54rem;letter-spacing:.3em;color:var(--text-dim);font-weight:500;margin-top:2px;text-transform:uppercase}
+  .nav-right{display:flex;align-items:center;gap:18px}
+  .lang-switch{display:flex;border:1px solid var(--line-soft);border-radius:8px;overflow:hidden;font-size:.72rem;font-weight:700;letter-spacing:.04em}
+  .lang-switch a{padding:8px 13px;color:var(--text-dim);text-decoration:none;transition:all .2s}
+  .lang-switch a.active{background:var(--sky);color:var(--text)}
+  .lang-switch a:not(.active):hover{background:var(--glass);color:var(--text)}
+  .nav-cta{font-size:.74rem;letter-spacing:.02em;color:var(--text);text-decoration:none;background:var(--sky);padding:11px 22px;border-radius:8px;transition:all .3s;font-weight:700}
+  .nav-cta:hover{background:var(--sky-bright)}
+
+  /* HERO */
+  .hero{position:relative;min-height:94vh;display:flex;align-items:center;padding:150px 0 100px;background:var(--bg-950)}
+  .hero-bg{position:absolute;inset:0;background-image:url("/cecom_control_center_1777552494604.webp");background-size:cover;background-position:center 35%;filter:saturate(.75) brightness(.5)}
+  .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(100deg,rgba(5,6,8,.97) 0%,rgba(5,6,8,.86) 42%,rgba(5,6,8,.5) 100%),linear-gradient(180deg,rgba(5,6,8,.3) 55%,var(--bg-950) 100%)}
+  .hero::before{content:"";position:absolute;inset:0;z-index:1;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 20%,transparent 75%);mask-image:radial-gradient(ellipse 70% 60% at 50% 30%,#000 20%,transparent 75%);pointer-events:none}
+  .hero .wrap{position:relative;z-index:2}
+  .hero-badge{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--line);background:rgba(46,93,138,.12);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border-radius:100px;padding:9px 20px;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--sky-bright);font-weight:600;margin-bottom:30px}
+  .hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--sky-bright);box-shadow:0 0 12px var(--sky-bright);animation:pulse 2.4s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  .hero h1{font-size:clamp(2.1rem,4.4vw,3.4rem);max-width:880px;margin-bottom:22px;text-shadow:0 2px 20px rgba(0,0,0,.4)}
+  .hero-tagline{display:inline-block;font-size:1rem;font-weight:700;color:var(--gold-bright);border-left:3px solid var(--gold);padding:6px 0 6px 16px;margin-bottom:26px;letter-spacing:.01em}
+  .hero .hero-h2{font-size:clamp(1.02rem,1.8vw,1.24rem);font-weight:400;color:var(--text-dim);max-width:680px;margin-bottom:40px;line-height:1.6}
+  .hero .hero-h2 strong{color:var(--sky-bright);font-weight:700}
+  .hero-ctas{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-bottom:52px}
+  .hero-meta{display:flex;flex-wrap:wrap;gap:14px 44px;border-top:1px solid var(--line-soft);padding-top:26px;max-width:680px}
+  .hero-meta div{font-size:.72rem;letter-spacing:.09em;color:var(--text-dim);text-transform:uppercase}
+  .hero-meta b{display:block;font-size:1.5rem;color:var(--sky-bright);font-weight:800;letter-spacing:0;text-transform:none;margin-bottom:2px}
+
+  /* RIBBON */
+  .ribbon{position:relative;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);background:var(--bg-900);overflow:hidden;padding:22px 0}
+  .ribbon-track{display:flex;white-space:nowrap;width:max-content;animation:rscroll 26s linear infinite}
+  .ribbon-track span{font-size:.74rem;letter-spacing:.18em;text-transform:uppercase;color:var(--text-dim);padding:0 34px;position:relative;font-weight:600}
+  .ribbon-track span b{color:var(--sky-bright);font-weight:700}
+  .ribbon-track span::after{content:"◆";position:absolute;right:-6px;top:1px;color:var(--gold-bright);font-size:.55rem;opacity:.6}
+  @keyframes rscroll{to{transform:translateX(-50%)}}
+
+  section{padding:110px 0;position:relative}
+  .sec-head{text-align:center;max-width:760px;margin:0 auto 60px}
+  .sec-head .eyebrow{margin-bottom:20px;justify-content:center}
+  .sec-head h2{font-size:clamp(1.9rem,4vw,2.7rem)}
+  .sec-head p{color:var(--text-dim);margin-top:16px;font-size:1.02rem;font-weight:300}
+
+  /* FAMILIES */
+  .families{background:var(--bg-900);border-top:1px solid var(--line-soft)}
+  .fam-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .fam{position:relative;background:var(--glass);border:1px solid var(--line-soft);border-radius:14px;padding:32px 28px;transition:all .35s;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+  .fam::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;border-radius:14px 14px 0 0;background:linear-gradient(90deg,transparent,var(--sky),transparent);opacity:0;transition:opacity .35s}
+  .fam:hover{transform:translateY(-5px);border-color:var(--line);box-shadow:0 22px 46px rgba(0,0,0,.45)}
+  .fam:hover::before{opacity:1}
+  .fam .fam-badge{display:inline-block;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sky-bright);background:rgba(14,165,233,.08);border:1px solid var(--line);border-radius:100px;padding:5px 12px;margin-bottom:16px;font-weight:700}
+  .fam h3{font-size:1.18rem;margin-bottom:12px;color:var(--text)}
+  .fam p{font-size:.88rem;color:var(--text-dim);font-weight:300;margin-bottom:16px}
+  .fam ul{list-style:none;margin-bottom:18px}
+  .fam li{font-size:.82rem;color:var(--text-dim);padding:5px 0 5px 18px;position:relative}
+  .fam li::before{content:"—";position:absolute;left:0;color:var(--sky-bright)}
+  .fam .fam-cta{font-size:.76rem;font-weight:700;color:var(--sky-bright);text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+  .fam.gold .fam-badge{color:var(--gold-bright);background:rgba(234,179,8,.08);border-color:rgba(234,179,8,.28)}
+  .fam.gold::before{background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+  .fam.gold .fam-cta{color:var(--gold-bright)}
+  @media(max-width:900px){.fam-grid{grid-template-columns:1fr}}
+
+  /* SOCIAL PROOF */
+  .proof{background:var(--bg-950);border-top:1px solid var(--line-soft);text-align:center;overflow:hidden}
+  .proof::before{content:"";position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:900px;height:700px;background:radial-gradient(circle,rgba(14,165,233,.08),transparent 65%);pointer-events:none}
+  .proof .wrap{position:relative}
+  .proof .quote-mark{font-size:4.5rem;line-height:1;color:var(--sky);opacity:.5;font-weight:800;margin-bottom:6px}
+  .proof blockquote{font-size:clamp(1.4rem,3.2vw,2.2rem);font-weight:700;max-width:920px;margin:0 auto 26px;color:var(--text);line-height:1.4;letter-spacing:-.01em}
+  .proof blockquote strong{color:var(--sky-bright)}
+  .proof .attrib{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-dim)}
+
+  /* CECOM / TECH */
+  .cecom{background:linear-gradient(180deg,var(--bg-850),var(--bg-900));border-top:1px solid var(--line-soft)}
+  .cecom-panel{position:relative;background:linear-gradient(155deg,rgba(14,165,233,.08),rgba(234,179,8,.04));border:1px solid var(--line);border-radius:18px;padding:56px 50px;text-align:center;overflow:hidden;margin-bottom:70px}
+  .cecom-panel::before{content:"";position:absolute;top:0;left:15%;right:15%;height:2px;background:linear-gradient(90deg,transparent,var(--sky),var(--gold),transparent)}
+  .cecom-panel h2{font-size:clamp(1.7rem,3.6vw,2.4rem);max-width:760px;margin:18px auto 20px}
+  .cecom-panel p{color:var(--text-dim);max-width:640px;margin:0 auto 30px;font-size:1.02rem}
+  .layers-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+  .layer{background:var(--glass);border:1px solid var(--line-soft);border-radius:14px;padding:34px 30px}
+  .layer .fam-badge{display:inline-block;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--sky-bright);background:rgba(14,165,233,.08);border:1px solid var(--line);border-radius:100px;padding:5px 12px;margin-bottom:16px;font-weight:700}
+  .layer h3{font-size:1.2rem;margin-bottom:12px;color:var(--text)}
+  .layer p{font-size:.9rem;color:var(--text-dim);margin-bottom:16px}
+  .layer ul{list-style:none}
+  .layer li{font-size:.84rem;color:var(--text-dim);padding:5px 0 5px 18px;position:relative}
+  .layer li::before{content:"—";position:absolute;left:0;color:var(--sky-bright)}
+  @media(max-width:800px){.layers-grid{grid-template-columns:1fr}}
+
+  /* FINAL / FORM */
+  .final{background:var(--bg-900);border-top:1px solid var(--line-soft)}
+  .final-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+  .final h2{font-size:clamp(1.9rem,4vw,2.6rem);margin-bottom:18px}
+  .final p.lead{color:var(--text-dim);font-size:1.05rem;margin-bottom:28px}
+  .final .points{list-style:none}
+  .final .points li{font-size:.94rem;color:var(--text-dim);padding:9px 0 9px 30px;position:relative;border-bottom:1px solid var(--line-soft)}
+  .final .points li:first-child{border-top:1px solid var(--line-soft)}
+  .final .points li::before{content:"✔";position:absolute;left:0;color:var(--sky-bright);font-weight:700}
+  .form-card{position:relative;background:linear-gradient(165deg,var(--bg-850),var(--bg-800));border:1px solid var(--line);border-radius:16px;padding:44px 38px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+  .form-card h3{font-size:1.4rem;margin-bottom:8px;color:var(--text)}
+  .fc-sub{font-size:.85rem;color:var(--text-dim);margin-bottom:28px;font-weight:300}
+  .field{margin-bottom:18px}
+  .field label{display:block;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);margin-bottom:8px;font-weight:600}
+  .field input{width:100%;background:rgba(5,6,8,.6);border:1px solid var(--line-soft);border-radius:8px;padding:14px 16px;color:var(--text);font-family:'Inter',sans-serif;font-size:.93rem;outline:none;transition:all .25s}
+  .field input::placeholder{color:rgba(136,146,160,.5)}
+  .field input:focus{border-color:var(--sky);box-shadow:0 0 0 3px rgba(14,165,233,.12)}
+  .form-card .btn{width:100%;justify-content:center;margin-top:6px}
+  .f-err{display:none;color:#F87171;font-size:.82rem;margin-bottom:14px;background:rgba(248,113,113,.08);border:1px solid rgba(248,113,113,.25);border-radius:8px;padding:12px 14px}
+
+  footer{border-top:1px solid var(--line-soft);padding:44px 28px;background:var(--bg-950)}
+  .foot-inner{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px;max-width:1160px;margin:0 auto}
+  footer .logo{font-size:1.05rem}
+  footer p{font-size:.7rem;color:var(--text-dim);letter-spacing:.03em}
+  footer a{color:var(--sky-bright);text-decoration:none}
+
+  @media(max-width:900px){
+    .final-grid{grid-template-columns:1fr;gap:44px}
+    section{padding:76px 0}
+    .hero{padding:130px 0 80px;min-height:auto}
+    .cecom-panel{padding:40px 26px}
+  }
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <div class="wrap nav-inner">
+    <a class="logo" href="#" aria-label="CSSG Global — Company of Security and Service Global C.A">
+      <img class="mark" src="/favicon.png" alt="CSSG Global">
+      <span style="display:block">CSSG <span>GLOBAL</span><small>Risk Advisory Services</small></span>
+    </a>
+    <div class="nav-right">
+      <div class="lang-switch">
+        <a href="/risk-advisory-services">ES</a>
+        <a href="/risk-advisory-services/en" class="active">EN</a>
+      </div>
+      <a class="nav-cta" href="#diagnostic">Book Initial Assessment</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="wrap">
+    <span class="hero-badge"><span class="dot"></span> Risk Advisory Services · by CSSG Global</span>
+    <h1 class="rv on">Don't start —or assume— a security scheme without prior advisory. Don't assume costs blindly.</h1>
+    <span class="hero-tagline rv on rv-d1">An advisory engagement is the step before excellent security management.</span>
+    <p class="hero-h2 rv on rv-d1">We analyze the critical points that can lead to a stable service with a feasible cost reduction — under industry-proven standards. The first informational session is free.</p>
+    <div class="hero-ctas rv on rv-d2">
+      <a class="btn" href="#diagnostic">Request Initial Assessment <span class="arrow">→</span></a>
+    </div>
+    <div class="hero-meta rv on rv-d3">
+      <div><b>17+ Years</b>Zero incidents</div>
+      <div><b>ISO 9001:2015</b>Cert. 580181</div>
+      <div><b>G7 Standard</b>Diplomatic & multinational grade</div>
+    </div>
+  </div>
+</header>
+
+<!-- CREDENTIALS RIBBON -->
+<div class="ribbon">
+  <div class="ribbon-track">
+    <span><b>17+ Years</b> zero incidents</span>
+    <span><b>ISO 9001:2015</b> — Cert. 580181</span>
+    <span><b>Cyber Essentials</b> certified</span>
+    <span><b>ESRM · ASIS</b></span>
+    <span><b>ISO 31000 · ISO 22301</b></span>
+    <span><b>G7 Standard</b> diplomatic grade</span>
+    <span><b>17+ Years</b> zero incidents</span>
+    <span><b>ISO 9001:2015</b> — Cert. 580181</span>
+    <span><b>Cyber Essentials</b> certified</span>
+    <span><b>ESRM · ASIS</b></span>
+    <span><b>ISO 31000 · ISO 22301</b></span>
+    <span><b>G7 Standard</b> diplomatic grade</span>
+  </div>
+</div>
+
+<!-- SOCIAL PROOF -->
+<section class="proof" id="certifications">
+  <div class="wrap">
+    <span class="quote-mark">"</span>
+    <blockquote class="rv on">I inherited a security scheme and stayed on it for three years — until <strong>an advisory engagement</strong> showed me I could cut costs without losing effectiveness, through technology. Once I made the changes, everyone congratulated me.</blockquote>
+    <span class="attrib rv on rv-d1">— Corporate Security Director, multinational (identity withheld)</span>
+  </div>
+</section>
+
+<!-- SIX FAMILIES -->
+<section class="families" id="services">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <span class="eyebrow">Service Lines</span>
+      <h2>Six families. One standard: yours, documented.</h2>
+    </div>
+    <div class="fam-grid rv rv-d1">
+      <div class="fam">
+        <span class="fam-badge">ISO 31000 · ESRM · CPTED</span>
+        <h3>Risk Assessment & Diagnostics</h3>
+        <p>What isn't measured can't be defended in an audit. We quantify your real exposure under ESRM and ISO 31000 methodology — before an incident quantifies it for you.</p>
+        <ul>
+          <li>Risk Assessment (ESRM)</li>
+          <li>Maturity Diagnostic</li>
+          <li>Physical Site Survey (CPTED)</li>
+          <li>Compliance Audit</li>
+        </ul>
+        <a class="fam-cta" href="/consultoria">Explore services →</a>
+      </div>
+      <div class="fam">
+        <span class="fam-badge">Vienna Convention · G7</span>
+        <h3>Diplomatic & Mission Advisory</h3>
+        <p>The standard G7 governments require can't be improvised or outsourced. We protect embassies, chanceries, and official residences under diplomatic protocol.</p>
+        <ul>
+          <li>Diplomatic Mission Security</li>
+          <li>Residence & Chancery Assessment</li>
+        </ul>
+        <a class="fam-cta" href="/consultoria">Explore services →</a>
+      </div>
+      <div class="fam">
+        <span class="fam-badge">OSINT · CICPC · SENIAT</span>
+        <h3>Intelligence & Investigation</h3>
+        <p>Verify before you sign. We cross-reference judicial, fiscal, and open-source intelligence to expose what a superficial due diligence misses.</p>
+        <ul>
+          <li>Corporate Due Diligence</li>
+          <li>Risk Intelligence & Analysis</li>
+          <li>Insider Threat Management</li>
+        </ul>
+        <a class="fam-cta" href="/consultoria">Explore services →</a>
+      </div>
+      <div class="fam">
+        <span class="fam-badge">ISO 22301 · BCP</span>
+        <h3>Resilience & Operational Continuity</h3>
+        <p>A generic continuity plan, imported from a country without blackouts or unrest, isn't a plan — it's a documented fantasy. Your operation doesn't stop just because the country does.</p>
+        <ul>
+          <li>Business Continuity Planning (BCP)</li>
+          <li>Crisis Management & Response</li>
+          <li>Executive Protection — Threat Analysis</li>
+        </ul>
+        <a class="fam-cta" href="/consultoria">Explore services →</a>
+      </div>
+      <div class="fam">
+        <span class="fam-badge">Labor Law · Human Rights · DIGESERVISP</span>
+        <h3>Legal Framework & Compliance</h3>
+        <p>The only legal component integrated into a security scheme in Venezuela — so your protection scheme doesn't become your next legal liability.</p>
+        <ul>
+          <li>Private Security Labor Law</li>
+          <li>Human Rights & Use-of-Force Protocols</li>
+          <li>Legal Compliance & Due Diligence</li>
+        </ul>
+        <a class="fam-cta" href="/consultoria">Explore services →</a>
+      </div>
+      <div class="fam gold">
+        <span class="fam-badge">G7 Program · L1–L4</span>
+        <h3>CSSG Secure Landing™</h3>
+        <p>One program, one standard, one point of accountability — from pre-travel briefing to a fully secured residence for the foreign executive or investor.</p>
+        <ul>
+          <li>L1 · INSIGHT — Pre-travel briefing</li>
+          <li>L2 · ASSESS — Arrival & mobility</li>
+          <li>L3 · FORTIFY — Secured residence</li>
+          <li>L4 · SHIELD — Continuous 24/7 protection</li>
+        </ul>
+        <a class="fam-cta" href="/consultoria">Explore the program →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CECOM / TECH -->
+<section class="cecom" id="cecom">
+  <div class="wrap">
+    <div class="cecom-panel rv">
+      <span class="eyebrow" style="justify-content:center">CECOM 24/7</span>
+      <h2>The only advisory firm in Venezuela with a 24/7 operational Command Center</h2>
+      <p>Any firm can hand you a PDF report. Very few can tell you, in real time, what's happening at your facility right now. Our CECOM consolidates monitoring, early alerts, and actionable scoring on a single dashboard.</p>
+    </div>
+
+    <div class="sec-head rv" style="margin-bottom:40px">
+      <span class="eyebrow">Layers of Support & Delivery</span>
+      <h2 style="font-size:clamp(1.7rem,3.4vw,2.3rem)">What separates an advisory engagement from a real transformation</h2>
+    </div>
+    <div class="layers-grid rv rv-d1">
+      <div class="layer">
+        <span class="fam-badge">CECOM 24/7</span>
+        <h3>Technology & Command Center</h3>
+        <p>Consolidated, real-time visibility of your security posture.</p>
+        <ul>
+          <li>Real-Time Monitoring</li>
+          <li>24-Hour CECOM Command Center</li>
+          <li>Security Scoring</li>
+        </ul>
+      </div>
+      <div class="layer">
+        <span class="fam-badge">DIGESERVISP · 120h</span>
+        <h3>Training & Capacity Building</h3>
+        <p>A documented protocol without trained personnel to execute it is just paper.</p>
+        <ul>
+          <li>Security Personnel Training</li>
+          <li>Crisis Response for Teams</li>
+          <li>Executive Awareness</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORM / FINAL CTA -->
+<section class="final" id="diagnostic">
+  <div class="wrap final-grid">
+    <div class="rv">
+      <span class="eyebrow">Free Initial Assessment</span>
+      <h2 style="margin-top:18px">A senior consultant reviews your case in an initial informational session — at no cost, no commitment — and presents the scope of the advisory engagement you need.</h2>
+      <ul class="points">
+        <li>Free initial informational session</li>
+        <li>Tailored advisory scope and proposal</li>
+        <li>No contracting commitment</li>
+        <li>Response in under 12 hours</li>
+      </ul>
+    </div>
+    <div class="form-card rv rv-d1">
+      <form id="leadForm" autocomplete="on">
+        <h3>Request Initial Assessment</h3>
+        <div class="fc-sub">Complete the form and we'll be in touch.</div>
+        <div class="field">
+          <label for="nombre">Full name</label>
+          <input type="text" id="nombre" name="nombre" required placeholder="Your name">
+        </div>
+        <div class="field">
+          <label for="cargo">Title</label>
+          <input type="text" id="cargo" name="cargo" required placeholder="CSO / Regional Security Manager">
+        </div>
+        <div class="field">
+          <label for="empresa">Company / Organization</label>
+          <input type="text" id="empresa" name="empresa" required placeholder="Company or organization">
+        </div>
+        <div class="field">
+          <label for="email">Corporate email</label>
+          <input type="email" id="email" name="email" required placeholder="email@company.com">
+        </div>
+        <div class="f-err" id="fErr">
+          Something went wrong. Email us at <a href="mailto:gerencia@globalservices-ven.com" style="color:inherit;">gerencia@globalservices-ven.com</a>
+        </div>
+        <button class="btn" type="submit" id="submitBtn">
+          <span id="btnTxt">Request Initial Assessment <span class="arrow">→</span></span>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <a class="logo" href="#" aria-label="CSSG Global">
+      <img class="mark" src="/favicon.png" alt="CSSG Global" style="height:30px">
+      <span style="display:block">CSSG <span>GLOBAL</span></span>
+    </a>
+    <p>© 2026 Company Of Security And Service Global C.A · RIF J-29782024-8 · <a href="mailto:gerencia@globalservices-ven.com">gerencia@globalservices-ven.com</a></p>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40), {passive:true});
+
+  const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target);} }), {threshold:.12});
+  document.querySelectorAll('.rv:not(.on)').forEach(el => io.observe(el));
+
+  const SUPABASE_URL = 'https://vqisebdthsowhpfpugrb.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZxaXNlYmR0aHNvd2hwZnB1Z3JiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcxNjE2MTAsImV4cCI6MjA5MjczNzYxMH0.9TZZ_6mx7vcaYoaeT5PmH02OrOzad6KMHiBwospgxOw';
+
+  function riskAdvisorySequenceEmail(nombre, empresa) {
+    const empresaLine = empresa ? ` at <strong style="color:#0284C7;">${empresa}</strong>` : '';
+    return {
+      subject: `${nombre}, your Risk Advisory Services initial assessment has been registered`,
+      html: `<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
+<body style="margin:0;padding:0;background-color:#F8FAFC;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;-webkit-font-smoothing:antialiased;">
+  <div style="max-width:600px;margin:0 auto;padding:40px 24px;">
+    <div style="text-align:center;margin-bottom:32px;">
+      <img src="https://cssg-global.com/favicon.png" alt="CSSG" style="width:64px;height:auto;margin-bottom:8px;" />
+      <p style="color:#64748B;font-size:9px;letter-spacing:1px;text-transform:uppercase;margin-top:4px;margin-bottom:0;">RIF: J-29782024-8</p>
+    </div>
+    <div style="background-color:#FFFFFF;border:1px solid #E2E8F0;border-radius:16px;padding:32px;margin-bottom:24px;box-shadow:0 1px 3px 0 rgba(0,0,0,0.05);">
+      <h2 style="color:#0F172A;font-size:24px;margin:0 0 16px;font-weight:700;">Dear ${nombre},</h2>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        We've registered your initial assessment request${empresaLine}. Our Risk Advisory Services team has been notified.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        A senior consultant will review your case in an informational session — at no cost, no commitment — and present the scope of the <strong>ESRM / ISO 31000</strong> advisory engagement your organization needs.
+      </p>
+      <div style="background-color:#F1F5F9;border:1px solid #E2E8F0;border-radius:12px;padding:24px;margin:24px 0;">
+        <p style="color:#1E293B;font-size:16px;margin:0 0 12px;font-weight:700;">What happens next?</p>
+        <ul style="color:#334155;font-size:14px;line-height:1.8;margin:0;padding-left:20px;">
+          <li style="margin-bottom:8px;">✔️ <strong style="color:#0F172A;">Free initial informational session</strong> — already underway with this request.</li>
+          <li style="margin-bottom:8px;">✔️ <strong style="color:#0F172A;">Tailored advisory scope and proposal</strong> — built for your organization.</li>
+          <li style="margin-bottom:8px;">✔️ <strong style="color:#0284C7;">Response in under 12 hours</strong> — no contracting commitment.</li>
+        </ul>
+      </div>
+      <div style="text-align:center;margin:32px 0 16px;">
+        <a href="https://calendar.app.google/BEkG334qQpKKdGGN9" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;box-shadow:0 4px 14px 0 rgba(2,132,199,0.4);">
+          Book My Informational Session
+        </a>
+      </div>
+      <p style="text-align:center;color:#94A3B8;font-size:12px;margin:0 0 4px;">Pick the time that works best for you — no need to wait for us to reach out.</p>
+    </div>
+    <div style="text-align:center;padding-top:24px;border-top:1px solid #E2E8F0;">
+      <p style="color:#475569;font-size:12px;margin:0;font-weight:600;">Company Of Security and Service Global</p>
+      <p style="color:#64748B;font-size:11px;margin:4px 0 0;">Caracas, Venezuela · ISO 9001 · 17+ years of experience</p>
+    </div>
+  </div>
+</body></html>`,
+    };
+  }
+
+  document.getElementById('leadForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    const txt = document.getElementById('btnTxt');
+    const err = document.getElementById('fErr');
+    const data = Object.fromEntries(new FormData(this));
+    btn.disabled = true;
+    txt.textContent = 'Sending...';
+    err.style.display = 'none';
+
+    try {
+      let leadId = null;
+      try {
+        const leadRes = await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            apikey: SUPABASE_ANON_KEY,
+            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+            Prefer: 'return=representation',
+          },
+          body: JSON.stringify([{
+            nombre: data.nombre,
+            correo: data.email,
+            empresa: data.empresa,
+            mensaje: `[RISK ADVISORY SERVICES - EN] Title: ${data.cargo}`,
+            fuente: 'risk_advisory_services',
+            score: 55,
+            estado: 'nuevo',
+          }]),
+        });
+        if (leadRes.ok) {
+          const rows = await leadRes.json();
+          leadId = rows && rows[0] && rows[0].id;
+        } else {
+          console.warn('[RiskAdvisory] Supabase insert warning (non-blocking):', await leadRes.text());
+        }
+      } catch (supaErr) {
+        console.warn('[RiskAdvisory] Supabase insert exception (non-blocking):', supaErr);
+      }
+
+      const r = await fetch('/api/mailer', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'lead',
+          nombre: data.nombre,
+          email: data.email,
+          empresa: data.empresa,
+          cargo: data.cargo,
+          fuente: 'risk_advisory_services',
+        }),
+      });
+      if (!r.ok) throw new Error();
+
+      try {
+        const seq = riskAdvisorySequenceEmail(data.nombre, data.empresa);
+        await fetch('/api/mailer', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'sequence',
+            email: data.email,
+            nombre: data.nombre,
+            empresa: data.empresa,
+            fuente: 'risk_advisory_services',
+            subject: seq.subject,
+            html: seq.html,
+          }),
+        });
+        if (leadId) {
+          fetch(`${SUPABASE_URL}/rest/v1/email_sequences`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              apikey: SUPABASE_ANON_KEY,
+              Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+            },
+            body: JSON.stringify([{ lead_id: leadId, secuencia: 'risk_advisory_services', email_num: 0, next_send_at: null, completed: true }]),
+          }).catch(() => {});
+        }
+      } catch (seqErr) {
+        console.warn('[RiskAdvisory] Sequence email exception (non-blocking):', seqErr);
+      }
+
+      window.location.href = '/risk-advisory-services/gracias?lang=en';
+    } catch {
+      err.style.display = 'block';
+      btn.disabled = false;
+      txt.textContent = 'Request Initial Assessment →';
+    }
+  });
+</script>
+
+</body>
+</html>

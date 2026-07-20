@@ -13,6 +13,7 @@ Disallow: /streaming/
 Disallow: /esrm-readiness/gracias
 Disallow: /levantamiento/gracias
 Disallow: /reduccion-costos-seguridad/gracias
+Disallow: /risk-advisory-services/gracias
 
 # Endpoints internos
 Disallow: /api/
