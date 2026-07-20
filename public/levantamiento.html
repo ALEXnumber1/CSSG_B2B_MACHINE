@@ -588,7 +588,58 @@
   const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target);} }), {threshold:.15});
   document.querySelectorAll('.rv:not(.on)').forEach(el => io.observe(el));
 
-  // Envío del formulario vía API propia (Resend) — igual que /optimizacion
+  // Envío del formulario — mismo proceso que /esrm-readiness:
+  // 1) registrar el lead en Supabase, 2) notificar al equipo + enviar bienvenida,
+  // 3) enviar el correo de secuencia día-0 específico al lead.
+  const SUPABASE_URL = 'https://vqisebdthsowhpfpugrb.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZxaXNlYmR0aHNvd2hwZnB1Z3JiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcxNjE2MTAsImV4cCI6MjA5MjczNzYxMH0.9TZZ_6mx7vcaYoaeT5PmH02OrOzad6KMHiBwospgxOw';
+
+  function levantamientoSequenceEmail(nombre, empresa) {
+    const primerNombre = (nombre || '').split(' ')[0];
+    const empresaLine = empresa ? ` para <strong style="color:#0284C7;">${empresa}</strong>` : '';
+    return {
+      subject: `${primerNombre}, su levantamiento técnico con CSSG fue registrado`,
+      html: `<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
+<body style="margin:0;padding:0;background-color:#F8FAFC;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;-webkit-font-smoothing:antialiased;">
+  <div style="max-width:600px;margin:0 auto;padding:40px 24px;">
+    <div style="text-align:center;margin-bottom:32px;">
+      <img src="https://cssg-global.com/favicon.png" alt="CSSG" style="width:64px;height:auto;margin-bottom:8px;" />
+      <p style="color:#64748B;font-size:9px;letter-spacing:1px;text-transform:uppercase;margin-top:4px;margin-bottom:0;">RIF: J-29782024-8</p>
+    </div>
+    <div style="background-color:#FFFFFF;border:1px solid #E2E8F0;border-radius:16px;padding:32px;margin-bottom:24px;box-shadow:0 1px 3px 0 rgba(0,0,0,0.05);">
+      <h2 style="color:#0F172A;font-size:24px;margin:0 0 16px;font-weight:700;">Estimado/a ${nombre},</h2>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Hemos registrado su solicitud de levantamiento de información técnica${empresaLine}. Nuestro equipo técnico ya fue notificado.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Este relevamiento no es un formulario genérico: es un diagnóstico profesional de su esquema actual de seguridad, con hallazgos priorizados y un plan de operación propuesto.
+      </p>
+      <div style="background-color:#F1F5F9;border:1px solid #E2E8F0;border-radius:12px;padding:24px;margin:24px 0;">
+        <p style="color:#1E293B;font-size:16px;margin:0 0 12px;font-weight:700;">¿Qué sigue ahora?</p>
+        <ul style="color:#334155;font-size:14px;line-height:1.8;margin:0;padding-left:20px;">
+          <li style="margin-bottom:8px;">✔️ <strong style="color:#0F172A;">Registro y diagnóstico preliminar</strong> — ya completado con esta solicitud.</li>
+          <li style="margin-bottom:8px;">✔️ <strong style="color:#0F172A;">Visita técnica en sitio</strong> — coordinada por nuestro equipo, en sitio y confidencial.</li>
+          <li style="margin-bottom:8px;">✔️ <strong style="color:#0284C7;">Análisis y presentación ejecutiva</strong> — informe con membrete, presentable a su directiva.</li>
+        </ul>
+      </div>
+      <p style="color:#1E293B;font-size:15px;line-height:1.7;margin:0 0 24px;font-weight:600;">
+        Sus respuestas se procesan bajo protocolo de confidencialidad y los resultados se envían exclusivamente a su correo corporativo.
+      </p>
+      <div style="text-align:center;margin:32px 0 16px;">
+        <a href="https://cssg-global.com/levantamiento" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;box-shadow:0 4px 14px 0 rgba(2,132,199,0.4);">
+          Ver detalle del levantamiento técnico
+        </a>
+      </div>
+    </div>
+    <div style="text-align:center;padding-top:24px;border-top:1px solid #E2E8F0;">
+      <p style="color:#475569;font-size:12px;margin:0;font-weight:600;">Company Of Security and Service Global</p>
+      <p style="color:#64748B;font-size:11px;margin:4px 0 0;">Caracas, Venezuela · ISO 9001 · +17 años de experiencia</p>
+    </div>
+  </div>
+</body></html>`,
+    };
+  }
+
   document.getElementById('leadForm').addEventListener('submit', async function(e) {
     e.preventDefault();
     const btn = document.getElementById('submitBtn');
@@ -598,7 +649,40 @@
     btn.disabled = true;
     txt.textContent = 'Enviando...';
     err.style.display = 'none';
+
     try {
+      // 1) Registrar el lead en Supabase (igual que /esrm-readiness)
+      let leadId = null;
+      try {
+        const leadRes = await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            apikey: SUPABASE_ANON_KEY,
+            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+            Prefer: 'return=representation',
+          },
+          body: JSON.stringify([{
+            nombre: data.nombre,
+            correo: data.email,
+            empresa: data.empresa,
+            mensaje: `[LEVANTAMIENTO TÉCNICO] Cargo: ${data.cargo}`,
+            fuente: 'levantamiento_tecnico',
+            score: 50,
+            estado: 'nuevo',
+          }]),
+        });
+        if (leadRes.ok) {
+          const rows = await leadRes.json();
+          leadId = rows && rows[0] && rows[0].id;
+        } else {
+          console.warn('[Levantamiento] Supabase insert warning (non-blocking):', await leadRes.text());
+        }
+      } catch (supaErr) {
+        console.warn('[Levantamiento] Supabase insert exception (non-blocking):', supaErr);
+      }
+
+      // 2) Notificación interna + bienvenida al lead
       const r = await fetch('/api/mailer', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -612,6 +696,38 @@
         }),
       });
       if (!r.ok) throw new Error();
+
+      // 3) Correo de secuencia día-0 específico, directo al lead (canal redundante)
+      try {
+        const seq = levantamientoSequenceEmail(data.nombre, data.empresa);
+        await fetch('/api/mailer', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'sequence',
+            email: data.email,
+            nombre: data.nombre,
+            empresa: data.empresa,
+            fuente: 'levantamiento_tecnico',
+            subject: seq.subject,
+            html: seq.html,
+          }),
+        });
+        if (leadId) {
+          fetch(`${SUPABASE_URL}/rest/v1/email_sequences`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              apikey: SUPABASE_ANON_KEY,
+              Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+            },
+            body: JSON.stringify([{ lead_id: leadId, secuencia: 'levantamiento_tecnico', email_num: 0, next_send_at: null, completed: true }]),
+          }).catch(() => {});
+        }
+      } catch (seqErr) {
+        console.warn('[Levantamiento] Sequence email exception (non-blocking):', seqErr);
+      }
+
       window.location.href = '/levantamiento/gracias';
     } catch {
       err.style.display = 'block';

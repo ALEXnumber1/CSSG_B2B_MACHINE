@@ -83,6 +83,13 @@ export const SEQUENCES: Record<string, Sequence> = {
       { day: 0, templateKey: 'esrm_readiness_1', scoreBonus: 0 },
     ],
   },
+  levantamiento_tecnico: {
+    id: 'levantamiento_tecnico',
+    name: 'Secuencia Levantamiento Técnico (landing "Ricardo")',
+    emails: [
+      { day: 0, templateKey: 'levantamiento_tecnico_1', scoreBonus: 0 },
+    ],
+  },
 
   // ─── Secuencias OUTBOUND (leads scrapeados, no inbound) ───────────────
   // Arco: miedo → dolor → prueba social → CTA bajo fricción → urgencia pérdida → ask directo (BP1)

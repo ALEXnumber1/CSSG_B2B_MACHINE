@@ -345,14 +345,12 @@ export default async function handler(req, res) {
         if (!welcomeRes.ok) {
           const err = await welcomeRes.text();
           console.warn('[mailer] Welcome email error (non-blocking):', err);
-          return res.status(200).json({ success: true, _debugWelcome: { ok: false, status: welcomeRes.status, error: err } });
         }
-        const welcomeJson = await welcomeRes.json();
-        return res.status(200).json({ success: true, _debugWelcome: { ok: true, id: welcomeJson.id, to: safeEmail, subject: welcomeSubject } });
       } catch (e) {
         console.warn('[mailer] Welcome email exception (non-blocking):', e);
-        return res.status(200).json({ success: true, _debugWelcome: { ok: false, exception: String(e) } });
       }
+
+      return res.status(200).json({ success: true });
     }
 
     /* ─────────────── NURTURE / SEQUENCE ─────────────── */
