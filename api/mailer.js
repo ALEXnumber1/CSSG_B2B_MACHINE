@@ -158,7 +158,8 @@ export default async function handler(req, res) {
       };
       const welcomeSubject = welcomeSubjects[safeFuente] || welcomeSubjects.default;
 
-      callResend({
+      try {
+        const welcomeRes = await callResend({
         from: FROM_EMAIL,
         to: safeEmail,
         subject: welcomeSubject,
@@ -340,7 +341,14 @@ export default async function handler(req, res) {
 
 </body>
 </html>`,
-      }, RESEND_API_KEY).catch(e => console.warn('[mailer] Welcome email error (non-blocking):', e));
+        }, RESEND_API_KEY);
+        if (!welcomeRes.ok) {
+          const err = await welcomeRes.text();
+          console.warn('[mailer] Welcome email error (non-blocking):', err);
+        }
+      } catch (e) {
+        console.warn('[mailer] Welcome email exception (non-blocking):', e);
+      }
 
       return res.status(200).json({ success: true });
     }
