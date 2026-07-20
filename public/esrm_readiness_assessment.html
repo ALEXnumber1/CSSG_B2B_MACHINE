@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Meta tags optimizados con Keywords BP3 -->
+    <title>ESRM Readiness Assessment | CSSG Global | DSS Compliance LATAM</title>
+    <meta name="description" content="ESRM Assessment for Regional Security Managers. Evaluate your LATAM security outsourcing against OSAC and DSS standards.">
+    <meta name="keywords" content="ESRM Venezuela, DSS compliance LATAM, outsourcing seguridad multinacional, Regional Security Manager, OSAC, CPP">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#0B1120',
+                            primary: '#1E3A8A',
+                            accent: '#FACC15',
+                            gray: '#94A3B8'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0B1120;
+            color: #F8FAFC;
+        }
+        .glass-panel {
+            background: rgba(30, 58, 138, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0B1120; }
+        ::-webkit-scrollbar-thumb { background: #1E3A8A; border-radius: 4px; }
+        
+        /* Language transition fade */
+        .lang-fade {
+            transition: opacity 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body class="antialiased font-sans flex flex-col min-h-screen">
+
+    <nav class="fixed w-full z-50 glass-panel border-b border-white/5 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-brand-primary rounded-lg flex items-center justify-center border border-brand-accent/30 shadow-[0_0_15px_rgba(250,204,21,0.1)]">
+                        <i data-lucide="shield-check" class="text-brand-accent h-6 w-6"></i>
+                    </div>
+                    <span class="font-serif font-semibold text-xl tracking-wide text-white">CSSG <span class="text-brand-gray font-sans text-sm font-normal tracking-widest uppercase">Global</span></span>
+                </div>
+                
+                <div class="hidden md:flex space-x-8 items-center text-sm font-medium text-brand-gray">
+                    <a href="#framework" class="hover:text-white transition-colors" data-i18n="nav_framework">ESRM Framework</a>
+                    <a href="#compliance" class="hover:text-white transition-colors" data-i18n="nav_compliance">OSAC / DSS</a>
+                    <a href="#assessment" class="bg-brand-primary/20 text-blue-300 px-5 py-2 rounded-full border border-brand-primary hover:bg-brand-primary transition-all shadow-[0_0_20px_rgba(30,58,138,0.3)]" data-i18n="nav_cta">
+                        Start Assessment
+                    </a>
+                    
+                    <!-- Language Toggle -->
+                    <div class="flex items-center gap-2 pl-4 border-l border-white/10">
+                        <button onclick="setLanguage('en')" id="btn-en" class="text-white font-bold transition-colors hover:text-brand-accent">EN</button>
+                        <span class="text-white/20">|</span>
+                        <button onclick="setLanguage('es')" id="btn-es" class="text-brand-gray hover:text-brand-accent transition-colors">ES</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow pt-28 pb-20 lang-fade" id="content-container">
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+            <!-- Background effects -->
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-4xl opacity-20 pointer-events-none">
+                <div class="absolute top-20 left-0 w-72 h-72 bg-brand-primary rounded-full mix-blend-screen filter blur-[100px]"></div>
+                <div class="absolute bottom-0 right-0 w-96 h-96 bg-blue-900 rounded-full mix-blend-screen filter blur-[120px]"></div>
+            </div>
+
+            <div class="relative z-10 grid lg:grid-cols-2 gap-16 items-center min-h-[75vh]">
+                
+                <!-- Left Column: Copywriting -->
+                <div class="space-y-8">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-900/30 border border-blue-500/30 text-blue-300 text-xs font-semibold tracking-wider uppercase mb-2">
+                        <span class="w-2 h-2 rounded-full bg-brand-accent animate-pulse"></span>
+                        <span data-i18n="hero_badge">For Regional Security Managers</span>
+                    </div>
+                    
+                    <h1 class="text-5xl lg:text-6xl font-serif font-semibold leading-tight text-white">
+                        <span data-i18n="hero_title_1">Is your LATAM operation</span> <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-brand-accent" data-i18n="hero_title_2">ESRM compliant?</span>
+                    </h1>
+                    
+                    <p class="text-lg text-brand-gray leading-relaxed max-w-xl" data-i18n="hero_subtitle">
+                        Stop translating local operational metrics for your HQ. We evaluate your current security vendor schema against ASIS standards and generate a <strong class="text-white font-medium">ready-to-present DSS/OSAC compliance report in English.</strong>
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row gap-4 pt-4">
+                        <button onclick="document.getElementById('assessment-panel').scrollIntoView({behavior: 'smooth'})" class="flex items-center justify-center gap-2 bg-brand-primary hover:bg-blue-800 text-white px-8 py-4 rounded-lg font-semibold transition-all group shadow-lg shadow-blue-900/50">
+                            <span data-i18n="hero_btn">Start Free Assessment</span>
+                            <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                        </button>
+                        <div class="flex items-center gap-3 text-sm text-brand-gray px-4">
+                            <i data-lucide="clock" class="w-5 h-5 text-brand-accent"></i>
+                            <span data-i18n="hero_disclaimer">Takes 3 minutes.<br>Immediate PDF generated.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Assessment Form -->
+                <div id="assessment-panel" class="relative group">
+                    <div class="absolute -inset-1 bg-gradient-to-r from-brand-primary to-blue-600 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
+                    <div class="relative glass-panel rounded-2xl p-8 border border-white/10 shadow-2xl">
+                        
+                        <div class="mb-8">
+                            <h3 class="text-2xl font-semibold text-white mb-2" data-i18n="form_title">ESRM Readiness Score</h3>
+                            <p class="text-sm text-brand-gray" data-i18n="form_subtitle">Module 1 of 3: Vendor Compliance Matrix</p>
+                            <div class="w-full bg-brand-dark rounded-full h-1.5 mt-4">
+                                <div class="bg-brand-accent h-1.5 rounded-full w-1/3"></div>
+                            </div>
+                        </div>
+
+                        <form onsubmit="handleFormSubmit(event)" class="space-y-6">
+                            <!-- Question 1 -->
+                            <div class="space-y-3">
+                                <label class="block text-sm font-medium text-white" data-i18n="q1_text">1. Are your current vendor SLAs tied to Enterprise Risk indicators rather than headcount?</label>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    <label class="relative flex cursor-pointer rounded-lg border border-white/10 bg-brand-dark/50 p-4 hover:bg-white/5 transition-colors">
+                                        <input type="radio" name="q1" value="yes" class="peer sr-only" required>
+                                        <span class="text-sm text-brand-gray peer-checked:text-brand-accent" data-i18n="q1_opt1">Yes, fully mapped to risk.</span>
+                                        <span class="absolute right-4 top-1/2 -translate-y-1/2 opacity-0 peer-checked:opacity-100 text-brand-accent">
+                                            <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+                                        </span>
+                                    </label>
+                                    <label class="relative flex cursor-pointer rounded-lg border border-white/10 bg-brand-dark/50 p-4 hover:bg-white/5 transition-colors">
+                                        <input type="radio" name="q1" value="no" class="peer sr-only">
+                                        <span class="text-sm text-brand-gray peer-checked:text-blue-400" data-i18n="q1_opt2">No, based on man-hours.</span>
+                                        <span class="absolute right-4 top-1/2 -translate-y-1/2 opacity-0 peer-checked:opacity-100 text-blue-400">
+                                            <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+                                        </span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Question 2 -->
+                            <div class="space-y-3">
+                                <label class="block text-sm font-medium text-white" data-i18n="q2_text">2. In case of an OSAC/DSS audit tomorrow, is your documentation readily available in English?</label>
+                                <div class="grid grid-cols-1 gap-3">
+                                    <select class="w-full bg-brand-dark/50 border border-white/10 rounded-lg p-3 text-sm text-white focus:ring-brand-primary focus:border-brand-primary appearance-none" required>
+                                        <option value="" disabled selected data-i18n="q2_placeholder">Select current status...</option>
+                                        <option value="ready" data-i18n="q2_opt1">Fully translated and updated monthly</option>
+                                        <option value="partial" data-i18n="q2_opt2">Only core manuals, needs ad-hoc translation</option>
+                                        <option value="none" data-i18n="q2_opt3">Mostly local language, not auditor-ready</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Email Capture -->
+                            <div class="pt-4 border-t border-white/10">
+                                <label class="block text-sm font-medium text-white mb-2" data-i18n="form_email_label">Where should we send your Executive GAP Analysis?</label>
+                                <div class="relative">
+                                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                        <i data-lucide="mail" class="h-5 w-5 text-brand-gray"></i>
+                                    </div>
+                                    <input type="email" id="email" required class="block w-full pl-10 pr-3 py-3 border border-white/10 rounded-lg bg-brand-dark text-white placeholder-brand-gray focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent" placeholder="corporate@company.com">
+                                </div>
+                            </div>
+
+                            <button type="submit" class="w-full bg-white text-brand-dark hover:bg-brand-accent hover:text-brand-dark px-4 py-3 rounded-lg font-bold transition-colors flex justify-center items-center gap-2">
+                                <span data-i18n="form_submit">Generate HQ-Ready Report</span>
+                                <i data-lucide="file-text" class="w-4 h-4"></i>
+                            </button>
+                            <p class="text-xs text-center text-brand-gray/60 mt-4" data-i18n="form_confidential">
+                                Strictly confidential. We never share structural data.
+                            </p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 border-t border-white/5 mt-12">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl font-serif font-semibold text-white mb-4" data-i18n="feat_title">We speak the language of the Boardroom</h2>
+                <p class="text-brand-gray" data-i18n="feat_subtitle">CSSG Global bridges the gap between local physical operations in LATAM and the risk management expectations of international headquarters.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="glass-panel p-8 rounded-xl border border-white/5 hover:border-brand-primary/50 transition-colors group">
+                    <div class="w-12 h-12 bg-blue-900/30 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="globe-2" class="w-6 h-6 text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3" data-i18n="f1_title">Bilingual Compliance</h3>
+                    <p class="text-sm text-brand-gray leading-relaxed" data-i18n="f1_desc">
+                        Monthly executive summaries and incident reports delivered in professional English, formatted specifically for Regional Directors and OSMs.
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="glass-panel p-8 rounded-xl border border-white/5 hover:border-brand-accent/50 transition-colors group">
+                    <div class="w-12 h-12 bg-yellow-900/30 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="award" class="w-6 h-6 text-brand-accent"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3" data-i18n="f2_title">ASIS CPE Integration</h3>
+                    <p class="text-sm text-brand-gray leading-relaxed" data-i18n="f2_desc">
+                        Our joint planning sessions and threat briefings are structured to qualify as Continuing Professional Education (CPE) credits for your CPP renewals.
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="glass-panel p-8 rounded-xl border border-white/5 hover:border-blue-400/50 transition-colors group">
+                    <div class="w-12 h-12 bg-blue-900/30 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i data-lucide="line-chart" class="w-6 h-6 text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold text-white mb-3" data-i18n="f3_title">ESRM Dashboards</h3>
+                    <p class="text-sm text-brand-gray leading-relaxed" data-i18n="f3_desc">
+                        Shift the conversation from "guard headcount" to "asset protection" with visual data mapping vulnerabilities against operational impact.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-white/10 bg-brand-dark/50 pt-12 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-2">
+                <i data-lucide="shield-check" class="text-brand-gray h-5 w-5"></i>
+                <span class="text-brand-gray text-sm" data-i18n="footer_copy">CSSG Global Intelligence Unit. Caracas | Miami.</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="fixed inset-0 bg-brand-dark/90 backdrop-blur-sm z-[100] hidden flex-col items-center justify-center">
+        <i data-lucide="loader-2" class="w-12 h-12 text-brand-accent animate-spin mb-4"></i>
+        <h3 class="text-xl font-semibold text-white mb-2" data-i18n="modal_loading_title">Analyzing Framework Alignment...</h3>
+        <p class="text-brand-gray text-sm" data-i18n="modal_loading_sub">Generating executive report structure.</p>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="fixed inset-0 bg-brand-dark/95 z-[110] hidden flex-col items-center justify-center p-4">
+        <div class="glass-panel p-8 rounded-2xl max-w-md w-full text-center border border-brand-accent/30 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-1 bg-brand-accent"></div>
+            <div class="w-16 h-16 bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i data-lucide="check" class="w-8 h-8 text-green-400"></i>
+            </div>
+            <h3 class="text-2xl font-serif text-white mb-4" data-i18n="modal_success_title">Initial Capture Complete</h3>
+            <p class="text-brand-gray mb-6" data-i18n="modal_success_desc">
+                Based on your inputs, we have prepared a customized ESRM blueprint for your operation.
+            </p>
+            <div class="bg-brand-dark/50 rounded-lg p-4 mb-6 border border-white/5 text-left">
+                <p class="text-sm text-brand-gray mb-2 font-semibold uppercase tracking-wider" data-i18n="modal_success_next">Next Step:</p>
+                <p class="text-white text-sm" data-i18n="modal_success_action">Check your corporate email for the secured PDF link and a calendar invite for a 15-minute technical review.</p>
+            </div>
+            <button onclick="closeModal()" class="bg-white text-brand-dark font-semibold px-6 py-2 rounded-lg hover:bg-brand-accent transition-colors" data-i18n="modal_success_btn">
+                Return to Home
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Inicializar iconos
+        lucide.createIcons();
+
+        // --- SISTEMA BILINGÜE (i18n) ---
+        const translations = {
+            en: {
+                nav_framework: "ESRM Framework",
+                nav_compliance: "OSAC / DSS",
+                nav_cta: "Start Assessment",
+                hero_badge: "For Regional Security Managers",
+                hero_title_1: "Is your LATAM operation",
+                hero_title_2: "ESRM compliant?",
+                hero_subtitle: "Stop translating local operational metrics for your HQ. We evaluate your current security vendor schema against ASIS standards and generate a <strong class='text-white font-medium'>ready-to-present DSS/OSAC compliance report in English.</strong>",
+                hero_btn: "Start Free Assessment",
+                hero_disclaimer: "Takes 3 minutes.<br>Immediate PDF generated.",
+                form_title: "ESRM Readiness Score",
+                form_subtitle: "Module 1 of 3: Vendor Compliance Matrix",
+                q1_text: "1. Are your current vendor SLAs tied to Enterprise Risk indicators rather than headcount?",
+                q1_opt1: "Yes, fully mapped to risk.",
+                q1_opt2: "No, based on man-hours.",
+                q2_text: "2. In case of an OSAC/DSS audit tomorrow, is your documentation readily available in English?",
+                q2_placeholder: "Select current status...",
+                q2_opt1: "Fully translated and updated monthly",
+                q2_opt2: "Only core manuals, needs ad-hoc translation",
+                q2_opt3: "Mostly local language, not auditor-ready",
+                form_email_label: "Where should we send your Executive GAP Analysis?",
+                form_submit: "Generate HQ-Ready Report",
+                form_confidential: "Strictly confidential. We never share structural data.",
+                feat_title: "We speak the language of the Boardroom",
+                feat_subtitle: "CSSG Global bridges the gap between local physical operations in LATAM and the risk management expectations of international headquarters.",
+                f1_title: "Bilingual Compliance",
+                f1_desc: "Monthly executive summaries and incident reports delivered in professional English, formatted specifically for Regional Directors and OSMs.",
+                f2_title: "ASIS CPE Integration",
+                f2_desc: "Our joint planning sessions and threat briefings are structured to qualify as Continuing Professional Education (CPE) credits for your CPP renewals.",
+                f3_title: "ESRM Dashboards",
+                f3_desc: "Shift the conversation from 'guard headcount' to 'asset protection' with visual data mapping vulnerabilities against operational impact.",
+                footer_copy: "CSSG Global Intelligence Unit. Caracas | Miami.",
+                modal_loading_title: "Analyzing Framework Alignment...",
+                modal_loading_sub: "Generating executive report structure.",
+                modal_success_title: "Initial Capture Complete",
+                modal_success_desc: "Based on your inputs, we have prepared a customized ESRM blueprint for your operation.",
+                modal_success_next: "Next Step:",
+                modal_success_action: "Check your corporate email for the secured PDF link and a calendar invite for a 15-minute technical review.",
+                modal_success_btn: "Return to Home"
+            },
+            es: {
+                nav_framework: "Marco ESRM",
+                nav_compliance: "OSAC / Cumplimiento",
+                nav_cta: "Iniciar Diagnóstico",
+                hero_badge: "Para Gerentes Regionales de Seguridad",
+                hero_title_1: "¿Su operación local está",
+                hero_title_2: "alineada al ESRM?",
+                hero_subtitle: "Deje de traducir métricas operativas para su Casa Matriz. Evaluamos su esquema de proveedores actual frente a los estándares de ASIS y generamos un <strong class='text-white font-medium'>reporte de cumplimiento DSS/OSAC listo para presentar a su HQ en inglés.</strong>",
+                hero_btn: "Iniciar Assessment Gratuito",
+                hero_disclaimer: "Toma 3 minutos.<br>Generación inmediata en PDF.",
+                form_title: "Puntuación de Madurez ESRM",
+                form_subtitle: "Módulo 1 de 3: Matriz de Cumplimiento de Proveedores",
+                q1_text: "1. ¿Los SLA de su proveedor actual están ligados a indicadores de Riesgo Empresarial (Riesgo/Impacto) en lugar de cantidad de guardias (H/H)?",
+                q1_opt1: "Sí, mapeados totalmente al riesgo.",
+                q1_opt2: "No, basados en horas-hombre.",
+                q2_text: "2. En caso de una auditoría OSAC/DSS mañana, ¿su documentación está lista y disponible en inglés?",
+                q2_placeholder: "Seleccione su estatus actual...",
+                q2_opt1: "Totalmente traducida y actualizada mensualmente",
+                q2_opt2: "Solo manuales básicos, requiere traducción reactiva",
+                q2_opt3: "Principalmente en español, no apta para auditores",
+                form_email_label: "¿A dónde enviamos su Análisis Ejecutivo de Brechas (GAP)?",
+                form_submit: "Generar Reporte para HQ",
+                form_confidential: "Estrictamente confidencial. Nunca compartimos datos estructurales.",
+                feat_title: "Hablamos el idioma de la Junta Directiva",
+                feat_subtitle: "CSSG Global cierra la brecha entre las operaciones físicas locales en LATAM y las expectativas de gestión de riesgos de las sedes internacionales (HQ).",
+                f1_title: "Cumplimiento Bilingüe",
+                f1_desc: "Resúmenes ejecutivos mensuales y reportes de incidentes entregados en inglés técnico profesional, formateados para Directores Regionales y OSMs.",
+                f2_title: "Integración ASIS CPE",
+                f2_desc: "Nuestras sesiones de planificación y briefings de amenazas están estructuradas para calificar como créditos de Educación Continua (CPE) para sus renovaciones CPP.",
+                f3_title: "Dashboards ESRM",
+                f3_desc: "Cambiamos la conversación de 'cantidad de guardias' a 'protección de activos' con datos visuales que mapean las vulnerabilidades contra el impacto operativo.",
+                footer_copy: "CSSG Global Intelligence Unit. Caracas | Miami.",
+                modal_loading_title: "Analizando Alineación de Framework...",
+                modal_loading_sub: "Generando estructura del reporte ejecutivo.",
+                modal_success_title: "Captura Inicial Completada",
+                modal_success_desc: "Basado en sus respuestas, hemos preparado un modelo ESRM personalizado para su operación.",
+                modal_success_next: "Siguiente Paso:",
+                modal_success_action: "Revise su correo corporativo para acceder al enlace seguro del PDF y una invitación para una revisión técnica de 15 minutos.",
+                modal_success_btn: "Volver al Inicio"
+            }
+        };
+
+        function setLanguage(lang) {
+            // Efecto visual de transición
+            const container = document.getElementById('content-container');
+            container.style.opacity = '0.5';
+
+            setTimeout(() => {
+                // Actualizar textos
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    if (translations[lang][key]) {
+                        el.innerHTML = translations[lang][key];
+                    }
+                });
+
+                // Actualizar UI del Toggle
+                if(lang === 'en') {
+                    document.getElementById('btn-en').classList.replace('text-brand-gray', 'text-white');
+                    document.getElementById('btn-en').classList.add('font-bold');
+                    document.getElementById('btn-es').classList.replace('text-white', 'text-brand-gray');
+                    document.getElementById('btn-es').classList.remove('font-bold');
+                    document.documentElement.lang = 'en';
+                } else {
+                    document.getElementById('btn-es').classList.replace('text-brand-gray', 'text-white');
+                    document.getElementById('btn-es').classList.add('font-bold');
+                    document.getElementById('btn-en').classList.replace('text-white', 'text-brand-gray');
+                    document.getElementById('btn-en').classList.remove('font-bold');
+                    document.documentElement.lang = 'es';
+                }
+
+                container.style.opacity = '1';
+            }, 150);
+        }
+
+        // Auto-detectar idioma del navegador al cargar
+        window.addEventListener('DOMContentLoaded', () => {
+            const userLang = navigator.language || navigator.userLanguage;
+            if (userLang.startsWith('es')) {
+                setLanguage('es');
+            } else {
+                setLanguage('en'); // Default para BP3 es Inglés por el sesgo de autoridad corporativa
+            }
+        });
+
+        // --- EFECTOS UI Y FORMULARIO ---
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 20) {
+                nav.classList.add('bg-brand-dark/95', 'shadow-lg');
+            } else {
+                nav.classList.remove('bg-brand-dark/95', 'shadow-lg');
+            }
+        });
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const loader = document.getElementById('loading-overlay');
+            loader.classList.remove('hidden');
+            loader.classList.add('flex');
+
+            setTimeout(() => {
+                loader.classList.add('hidden');
+                loader.classList.remove('flex');
+                
+                const modal = document.getElementById('success-modal');
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                
+                event.target.reset();
+            }, 2500); 
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('success-modal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+    </script>
+</body>
+</html>
