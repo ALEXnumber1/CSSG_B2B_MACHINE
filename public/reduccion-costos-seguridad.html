@@ -90,11 +90,16 @@
   .hero-meta b{display:block;font-size:1.5rem;color:var(--emerald-bright);font-weight:800;letter-spacing:0;text-transform:none;margin-bottom:2px}
 
   /* CREDS */
-  .creds{border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);background:linear-gradient(180deg,var(--bg-900),var(--bg-850))}
-  .creds-inner{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:16px 0;padding:24px 28px}
-  .creds span{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--text-dim);padding:0 30px;position:relative}
-  .creds span+span::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:1px;height:16px;background:var(--line-soft)}
-  .creds b{color:var(--emerald-bright);font-weight:700}
+  .creds{border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);background:linear-gradient(180deg,var(--bg-900),var(--bg-850));padding:54px 0}
+  .creds-inner{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .cred{position:relative;background:linear-gradient(160deg,var(--bg-850),var(--bg-800));border:1px solid var(--line-soft);border-radius:10px;padding:26px 22px;text-align:center;transition:all .3s}
+  .cred::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;border-radius:10px 10px 0 0;background:linear-gradient(90deg,transparent,var(--emerald),transparent);opacity:0;transition:opacity .3s}
+  .cred:hover{transform:translateY(-4px);border-color:var(--line)}
+  .cred:hover::before{opacity:1}
+  .cred .ic{width:38px;height:38px;margin:0 auto 14px;border-radius:9px;background:rgba(16,185,129,.1);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;color:var(--emerald-bright);font-size:1.05rem;font-weight:800}
+  .cred b{display:block;font-size:1.05rem;color:var(--text);font-weight:700;margin-bottom:4px}
+  .cred span{display:block;font-size:.72rem;letter-spacing:.06em;color:var(--text-dim);text-transform:uppercase}
+  @media(max-width:800px){.creds-inner{grid-template-columns:repeat(2,1fr)}}
 
   section{padding:110px 0;position:relative}
   .sec-head{text-align:center;max-width:760px;margin:0 auto 60px}
@@ -216,11 +221,11 @@
 
 <!-- CREDENCIALES -->
 <section class="creds">
-  <div class="wrap creds-inner">
-    <span><b>ISO 9001:2015</b> certificada</span>
-    <span>Contrato de <b>1 página</b></span>
-    <span>Plataforma <b>ShieldTrace</b></span>
-    <span>Reportes listos para <b>su junta directiva</b></span>
+  <div class="wrap creds-inner rv">
+    <div class="cred"><div class="ic">✓</div><b>ISO 9001:2015</b><span>Certificada</span></div>
+    <div class="cred"><div class="ic">1</div><b>Contrato de 1 página</b><span>Sin letra pequeña</span></div>
+    <div class="cred"><div class="ic">◆</div><b>ShieldTrace</b><span>Supervisión en tiempo real</span></div>
+    <div class="cred"><div class="ic">▤</div><b>Reportes ejecutivos</b><span>Listos para su junta</span></div>
   </div>
 </section>
 
@@ -320,7 +325,7 @@
 <section class="stat-band">
   <div class="inner rv">
     <div class="n">40%</div>
-    <p>es lo máximo que hemos ayudado a ahorrar a un cliente al sustituir horas hombre excesivas por supervisión tecnológica ShieldTrace, <b>sin perder cobertura ni control.</b></p>
+    <p>es cuánto puede estar pagando de más <b>ahora mismo, sin saberlo.</b> No es un descuento: es dinero que ya es suyo, atrapado en horas hombre que ShieldTrace reemplaza por supervisión ininterrumpida — <b>sin bajar la guardia ni un segundo.</b></p>
   </div>
 </section>
 
