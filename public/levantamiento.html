@@ -599,7 +599,7 @@
     txt.textContent = 'Enviando...';
     err.style.display = 'none';
     try {
-      const r = await fetch('/api/send-email', {
+      const r = await fetch('/api/mailer', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

@@ -50,6 +50,7 @@ function fuente_label(fuente) {
     partners: 'Alianzas Estratégicas',
     'Agendamiento Auditoria': 'Agendamiento de Auditoría',
     'Chat IA Táctico': 'Chat Táctico IA',
+    levantamiento_tecnico: 'Levantamiento Técnico',
   };
   return map[fuente] || fuente.replace(/_/g, ' ');
 }
@@ -152,6 +153,7 @@ export default async function handler(req, res) {
         escudo_diplomatico: `Su expediente Escudo Diplomático fue asignado — CSSG Global`,
         riesgo:             `Análisis de riesgo en proceso — Consultor Senior asignado | CSSG`,
         pestel:             `Su Informe PESTEL está siendo procesado — CSSG Global`,
+        levantamiento_tecnico: `Su levantamiento técnico fue registrado — CSSG Global`,
         default:            `Su expediente fue asignado a Consultoría Senior | CSSG Global`,
       };
       const welcomeSubject = welcomeSubjects[safeFuente] || welcomeSubjects.default;
