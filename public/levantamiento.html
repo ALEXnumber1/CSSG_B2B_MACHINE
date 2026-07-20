@@ -531,12 +531,7 @@
       </ul>
     </div>
     <div class="form-card rv rv-d1">
-      <form id="leadForm" autocomplete="on" action="https://formsubmit.co/globalservices.ven@gmail.com" method="POST">
-        <input type="hidden" name="_subject" value="NUEVO LEAD — Levantamiento Técnico CSSG">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_next" value="https://cssg-global.com/levantamiento/gracias">
-        <input type="hidden" name="origen" value="landing-outsourcing-cssg">
+      <form id="leadForm" autocomplete="on">
         <h3>Solicitar mi levantamiento</h3>
         <div class="fc-sub">Cupos limitados por capacidad de nuestro equipo técnico. <b>Prioridad: renovaciones de contrato a menos de 90 días.</b></div>
         <div class="field">
@@ -555,7 +550,12 @@
           <label for="email">Email corporativo</label>
           <input type="email" id="email" name="email" required placeholder="nombre@empresa.com">
         </div>
-        <button class="btn" type="submit">Solicitar levantamiento <span class="arrow">→</span></button>
+        <div class="f-err" id="fErr" style="display:none;color:#ef4444;font-size:13px;margin-bottom:12px;">
+          Error al enviar. Escríbenos a <a href="mailto:gerencia@globalservices-ven.com" style="color:inherit;">gerencia@globalservices-ven.com</a>
+        </div>
+        <button class="btn" type="submit" id="submitBtn">
+          <span id="btnTxt">Solicitar levantamiento <span class="arrow">→</span></span>
+        </button>
         <div class="tech-note"><b>Nota técnica:</b> sus respuestas se procesan bajo protocolo de confidencialidad. Los resultados se envían exclusivamente a su correo corporativo y no se comparten con su organización ni con terceros. Gestión de solicitudes: gerencia@globalservices-ven.com</div>
       </form>
       </div>
@@ -587,6 +587,38 @@
   // Reveal on scroll
   const io = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target);} }), {threshold:.15});
   document.querySelectorAll('.rv:not(.on)').forEach(el => io.observe(el));
+
+  // Envío del formulario vía API propia (Resend) — igual que /optimizacion
+  document.getElementById('leadForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    const txt = document.getElementById('btnTxt');
+    const err = document.getElementById('fErr');
+    const data = Object.fromEntries(new FormData(this));
+    btn.disabled = true;
+    txt.textContent = 'Enviando...';
+    err.style.display = 'none';
+    try {
+      const r = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'lead',
+          nombre: data.nombre,
+          email: data.email,
+          empresa: data.empresa,
+          cargo: data.cargo,
+          fuente: 'levantamiento_tecnico',
+        }),
+      });
+      if (!r.ok) throw new Error();
+      window.location.href = '/levantamiento/gracias';
+    } catch {
+      err.style.display = 'block';
+      btn.disabled = false;
+      txt.textContent = 'Solicitar levantamiento →';
+    }
+  });
 </script>
 
 </body>
