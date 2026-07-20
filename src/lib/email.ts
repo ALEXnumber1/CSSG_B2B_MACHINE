@@ -250,6 +250,38 @@ const templates: Record<string, { subject: string | ((nombre: string, empresa?: 
       </div>
     `),
   },
+
+  reduccion_costos_seguridad: {
+    subject: (nombre) => `${nombre}, su diagnóstico de ahorro con CSSG fue registrado`,
+    html: (nombre, empresa) => baseTemplate(`
+      <h2 style="color:#0F172A;font-size:24px;margin:0 0 16px;font-weight:700;">Estimado/a ${nombre},</h2>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Hemos registrado su solicitud de diagnóstico de ahorro${empresa ? ` para <strong style="color:#0284C7;">${empresa}</strong>` : ''}. Nuestro equipo ya fue notificado.
+      </p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Nuestros clientes reducen su factura de seguridad entre un <strong>25% y 40%</strong> al sustituir el exceso de horas hombre por supervisión tecnológica ininterrumpida con nuestra plataforma <strong>ShieldTrace</strong>, sin perder cobertura ni control.
+      </p>
+
+      <div style="background-color:#F1F5F9;border:1px solid #E2E8F0;border-radius:12px;padding:24px;margin:24px 0;">
+        <p style="color:#1E293B;font-size:16px;margin:0 0 12px;font-weight:700;">¿Qué sigue ahora?</p>
+        <ul style="color:#334155;font-size:14px;line-height:1.8;margin:0;padding-left:20px;">
+          <li style="margin-bottom:8px;">✔️ <strong style="color:#0F172A;">Diagnóstico online</strong> — ya completado con esta solicitud.</li>
+          <li style="margin-bottom:8px;">✔️ <strong style="color:#0F172A;">Visita de optimización sin costo</strong> — 90 minutos, revisamos su esquema y su factura actual.</li>
+          <li style="margin-bottom:8px;">✔️ <strong style="color:#0284C7;">Presentación del ahorro</strong> — "Esquema Actual vs. Esquema CSSG", listo para su junta directiva.</li>
+        </ul>
+      </div>
+
+      <p style="color:#1E293B;font-size:15px;line-height:1.7;margin:0 0 24px;font-weight:600;">
+        100% confidencial y sin compromiso. Un especialista revisará su caso y le contactará directamente.
+      </p>
+
+      <div style="text-align:center;margin:32px 0 16px;">
+        <a href="https://cssg-global.com/reduccion-costos-seguridad" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;box-shadow:0 4px 14px 0 rgba(2, 132, 199, 0.4);">
+          Ver detalle de la optimización de costos
+        </a>
+      </div>
+    `),
+  },
 };
 
 // ═══════════ FUNCIÓN DE ENVÍO ORIGINAL ═══════════
@@ -567,6 +599,9 @@ const sequenceTemplates: Record<string, { subject: string | ((nombre: string, em
 
   // ── LEVANTAMIENTO TÉCNICO (landing "Ricardo"): 1 email ──
   levantamiento_tecnico_1: templates.levantamiento_tecnico,
+
+  // ── REDUCCIÓN DE COSTOS DE SEGURIDAD (landing "Ana"): 1 email ──
+  reduccion_costos_seguridad_1: templates.reduccion_costos_seguridad,
 
   // ════════════════════════════════════════════════════════════════════════
   // SECUENCIAS OUTBOUND — Leads scrapeados (frío)

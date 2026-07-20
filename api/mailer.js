@@ -51,6 +51,7 @@ function fuente_label(fuente) {
     'Agendamiento Auditoria': 'Agendamiento de Auditoría',
     'Chat IA Táctico': 'Chat Táctico IA',
     levantamiento_tecnico: 'Levantamiento Técnico',
+    reduccion_costos_seguridad: 'Reducción de Costos de Seguridad',
   };
   return map[fuente] || fuente.replace(/_/g, ' ');
 }
@@ -154,6 +155,7 @@ export default async function handler(req, res) {
         riesgo:             `Análisis de riesgo en proceso — Consultor Senior asignado | CSSG`,
         pestel:             `Su Informe PESTEL está siendo procesado — CSSG Global`,
         levantamiento_tecnico: `Su levantamiento técnico fue registrado — CSSG Global`,
+        reduccion_costos_seguridad: `Su diagnóstico de ahorro fue registrado — CSSG Global`,
         default:            `Su expediente fue asignado a Consultoría Senior | CSSG Global`,
       };
       const welcomeSubject = welcomeSubjects[safeFuente] || welcomeSubjects.default;
