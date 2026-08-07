@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, useInView, animate } from 'framer-motion';
 import type { Variants } from 'framer-motion';
-import { ShieldCheck, SearchCheck, ClipboardList, Award, ArrowRight, Check, Loader2, ChevronDown } from 'lucide-react';
+import {
+  ShieldCheck, BadgeCheck, Award, ArrowRight, Check, X as XIcon, Loader2, ChevronDown, Radar,
+} from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { sendLeadNotification } from '../../lib/email';
 import { startSequence } from '../../lib/sequences';
@@ -10,101 +12,88 @@ import CookieConsent from '../../components/CookieConsent';
 
 // ─────────────────────────────────────────────────────────────
 // LP3 — CORPORATE SECURITY & SECURITY CONSULTING (EN)
-// Service-presentation landing (no downloadable lead magnet) — captures
-// the lead directly into a consultative email sequence. Editorial
-// "Estratega" treatment — same visual language as EsrmReadiness.tsx /
-// ConsultoriaRiesgos.tsx. Primary persona: Julio ("El Estratega" —
-// overseas/regional security manager, ISO/ASIS-driven); secondary
-// resonance with Ricardo ("El Guardián" — fears an audit he can't
-// defend in front of his own leadership).
+// v2 — "The Distinction": credential-led, scarcity-driven design on
+// CSSG's actual brand tokens (#0B0B0F, sky-500 electric blue, gold
+// reserved for exclusivity accents) — deliberately distinct from the
+// navy/gold editorial dossier used on the other landings.
+// Service-presentation page, no downloadable lead magnet — captures
+// the lead directly into a consultative email sequence.
+// Primary persona: Julio ("El Estratega"); secondary resonance with
+// Ricardo ("El Guardián" — fears an unauditable scheme).
 // Keywords: corporate security services, corporate security, security
 // consulting, private security contractor companies, private protection,
 // private security companies.
 // ─────────────────────────────────────────────────────────────
 
-const NAVY = '#0A1628';
-const SLATE = '#16233A';
-const BORDER = '#233754';
-const WHITE = '#F5F7FA';
-const MUTED = '#93A4BE';
-const GOLD = '#C9A24B';
-const GOLD_H = '#DDB65F';
-const ICE = '#7FB3D5';
-
-const GRID_BG = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cpath d='M64 0H0V64' fill='none' stroke='%237FB3D5' stroke-opacity='0.07' stroke-width='1'/%3E%3C/svg%3E")`;
-
-const FREE_EMAIL_DOMAINS = ['gmail.com', 'hotmail.com', 'outlook.com', 'yahoo.com', 'live.com', 'icloud.com'];
+const BG = '#0B0B0F';
+const CARD = 'rgba(255,255,255,0.04)';
+const BORDER = 'rgba(255,255,255,0.08)';
+const BLUE = '#0EA5E9';
+const GOLD = '#EAB308';
 
 const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 28 },
+  hidden: { opacity: 0, y: 26 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } },
 };
 
-function CornerFrame({ children, className = '' }: { children: React.ReactNode; className?: string }) {
-  const mark = 'absolute w-3 h-3';
-  return (
-    <div className={`relative ${className}`}>
-      <span className={`${mark} -top-px -left-px border-t border-l`} style={{ borderColor: GOLD }} />
-      <span className={`${mark} -top-px -right-px border-t border-r`} style={{ borderColor: GOLD }} />
-      <span className={`${mark} -bottom-px -left-px border-b border-l`} style={{ borderColor: GOLD }} />
-      <span className={`${mark} -bottom-px -right-px border-b border-r`} style={{ borderColor: GOLD }} />
-      {children}
-    </div>
-  );
+const FREE_EMAIL_DOMAINS = ['gmail.com', 'hotmail.com', 'outlook.com', 'yahoo.com', 'live.com', 'icloud.com'];
+
+function Counter({ to, suffix = '', decimals = 0 }: { to: number; suffix?: string; decimals?: number }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const inView = useInView(ref, { once: true, margin: '-40px' });
+
+  useEffect(() => {
+    if (!inView || !ref.current) return;
+    const node = ref.current;
+    const controls = animate(0, to, {
+      duration: 1.6,
+      ease: 'easeOut',
+      onUpdate(value) {
+        node.textContent = value.toFixed(decimals) + suffix;
+      },
+    });
+    return () => controls.stop();
+  }, [inView, to, suffix, decimals]);
+
+  return <span ref={ref}>0{suffix}</span>;
 }
 
-function SectionNumeral({ n }: { n: string }) {
-  return (
-    <span aria-hidden="true" className="hidden md:block select-none" style={{
-      fontFamily: "'Playfair Display', serif", fontSize: '7.5rem', lineHeight: 1, fontWeight: 600,
-      color: 'transparent', WebkitTextStroke: `1px ${BORDER}`, position: 'absolute', top: '-1.2rem', right: '1.5rem', zIndex: 0,
-    }}>{n}</span>
-  );
-}
+const stats = [
+  { to: 17, suffix: '+', label: 'Years without a registered incident' },
+  { to: 1, suffix: ' of few', label: 'ISO 9001-certified security firms in Venezuela' },
+  { to: 100, suffix: '%', label: 'Confidential engagement, NDA available' },
+  { to: 12, suffix: 'h', label: 'Response time to a qualified inquiry' },
+];
 
-const painCards = [
-  {
-    Icon: SearchCheck,
-    title: 'Present is not the same as accountable',
-    body: 'A guard can show up. A supervisor can answer the phone. An operation can run. But without documented procedure, verifiable records and traceable evidence, everything depends on a verbal explanation the moment head office asks — and a verbal explanation does not survive an audit.',
-  },
-  {
-    Icon: ClipboardList,
-    title: 'Risk shows up exactly when you ask for proof',
-    body: 'When a private security contractor does not operate under a recognized framework — ISO 31000, ASIS ORM.1 — every answer gets assembled by hand under pressure: incident logs, KPIs, escalation protocols, chain of custody. That is precisely where an operation stops being defensible in front of your board or regional office.',
-  },
+const comparison = [
+  { them: 'Sells personnel and hours on-site', us: 'Sells a documented, auditable security scheme' },
+  { them: 'No verifiable certification behind the pitch', us: 'ISO 9001:2015 certified — one of the few in the country' },
+  { them: 'Reports are informal, verbal, after the fact', us: 'KPI-based reporting, referenced to ISO 31000 / ASIS ORM.1' },
+  { them: 'Any client, any budget, no selection criteria', us: 'A limited number of corporate accounts, by design' },
 ];
 
 const services = [
   {
-    badge: '01',
+    icon: BadgeCheck,
     title: 'Legal & financial standing audits',
-    tag: 'Licensing · insurance · labor compliance',
     body: 'We verify your current or prospective contractor\'s operating permit, liability insurance, and standing with Venezuelan labor and social-security obligations — and flag exactly where the exposure sits before it becomes your liability.',
   },
   {
-    badge: '02',
+    icon: ShieldCheck,
     title: 'Contract & service-level redesign',
-    tag: 'KPIs · billing transparency · exit terms',
     body: 'We rebuild your security contract around measurable KPIs, immediate-replacement clauses, itemized billing and clear exit terms — replacing vague "24-hour coverage" language with terms you can actually enforce.',
   },
   {
-    badge: '03',
+    icon: Radar,
     title: 'On-site operational audits',
-    tag: 'CPTED · supervision · documented protocols',
     body: 'Our consultants verify perimeter, access control, staff rotation history and documented emergency protocols in person — the same criteria we apply before putting our own name behind a security scheme.',
   },
 ];
 
-const diferenciadores = [
-  '17+ years of continuous operation without a registered security incident.',
-  'ISO 9001:2015 certified (Cert. 580181) quality management system.',
-  'Risk methodology referenced to ISO 31000:2018 and ASIS ORM.1:2017.',
-  'G7 diplomatic-standard experience — embassies and high-value multinationals.',
-  'English-speaking liaison for overseas security and regional managers.',
-  'Proprietary online risk-analysis tool with an automated preliminary index.',
-  '24/7 command center (CECOM) for consolidated, real-time oversight.',
-  'Confidential engagement — NDA available from first contact.',
+const credentials = [
+  { src: '/iso-9001-badge.webp', title: 'ISO 9001:2015', sub: 'Cert. 580181', note: 'Quality management certified — independently audited, not self-declared.' },
+  { src: '/cyber-essentials-badge.webp', title: 'Cyber Essentials', sub: 'Certified', note: 'Baseline cyber-hygiene verified for our operational technology.' },
+  { src: '/ifpo-corporate-member.webp', title: 'IFPO', sub: 'Corporate Member', note: 'International Foundation for Protection Officers membership.' },
 ];
 
 const FAQS = [
@@ -129,8 +118,8 @@ const FAQS = [
     a: 'Yes. We regularly support overseas security managers and regional directors at multinational corporations and diplomatic missions operating in Venezuela, with English-speaking points of contact.',
   },
   {
-    q: 'What do we receive after the assessment?',
-    a: 'A written summary of findings against the three areas we review — legal/financial standing, contract terms, and on-site operational criteria — with a prioritized recommendation. No pressure to sign anything.',
+    q: 'Why do you limit the number of corporate accounts you take on?',
+    a: 'Zero incidents in 17+ years is a function of capacity, not luck. We would rather decline an account than dilute the oversight our standard requires.',
   },
   {
     q: 'What happens to my data?',
@@ -246,303 +235,257 @@ export default function CorporateSecurity() {
   };
 
   return (
-    <div style={{ background: NAVY, color: WHITE, fontFamily: "'Inter', sans-serif", lineHeight: 1.6, minHeight: '100vh' }}>
+    <div className="min-h-screen text-white overflow-x-hidden" style={{ background: BG, fontFamily: "'Inter', sans-serif" }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
       `}</style>
 
+      {/* ambient glow */}
+      <div className="fixed inset-0 pointer-events-none -z-0">
+        <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-sky-900/20 rounded-full blur-[130px] opacity-60" />
+        <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-yellow-900/10 rounded-full blur-[140px] opacity-30" />
+      </div>
+
       {/* ═══ MINI NAV ═══ */}
-      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4" style={{ background: `${NAVY}E6`, backdropFilter: 'blur(10px)', borderBottom: `1px solid ${BORDER}` }}>
+      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-5 sm:px-8 py-3.5" style={{ background: 'rgba(11,11,15,0.85)', backdropFilter: 'blur(12px)', borderBottom: `1px solid ${BORDER}` }}>
         <div className="flex items-center gap-2.5">
-          <img src="/logo.webp" alt="CSSG" className="h-9 w-9 object-contain" />
-          <span className="font-semibold tracking-widest text-sm" style={{ color: WHITE }}>
+          <img src="/logo.webp" alt="CSSG" className="h-8 w-8 object-contain" />
+          <span className="font-black tracking-widest text-sm text-white">
             CSSG <span style={{ color: GOLD }}>GLOBAL</span>
           </span>
         </div>
-        <button onClick={scrollToForm} className="hidden sm:inline-block text-xs font-semibold uppercase tracking-widest px-5 py-2.5 transition-all hover:-translate-y-0.5"
-          style={{ background: GOLD, color: NAVY, borderRadius: '2px' }}>
-          Request assessment
+        <button onClick={scrollToForm} className="hidden sm:inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-widest px-4 py-2.5 rounded-lg transition-colors" style={{ background: BLUE, color: BG }}>
+          Request assessment <ArrowRight className="w-3.5 h-3.5" />
         </button>
       </header>
 
-      {/* ═══ 1. HERO ═══ */}
-      <header className="relative min-h-[92vh] flex flex-col justify-center px-6 pt-24 overflow-hidden">
-        <div className="absolute inset-0" style={{
-          backgroundImage: "url('/consulting_b2b.webp')",
-          backgroundSize: 'cover', backgroundPosition: 'center 30%', filter: 'blur(1px) saturate(0.75)', transform: 'scale(1.03)',
-        }} />
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(100deg, rgba(10,22,40,.97) 0%, rgba(10,22,40,.94) 42%, rgba(10,22,40,.72) 100%)' }} />
-        <div className="absolute inset-0" style={{ background: `linear-gradient(180deg, rgba(10,22,40,.4) 0%, transparent 30%, rgba(10,22,40,.85) 100%)` }} />
-        <div className="absolute inset-0" style={{ backgroundImage: GRID_BG, opacity: 0.5 }} />
-
-        <motion.div className="relative max-w-4xl mx-auto w-full" initial="hidden" animate="visible" variants={fadeUp}>
-          <div className="flex items-center gap-3 mb-5">
-            <span style={{ width: '28px', height: '1px', background: GOLD }} />
-            <p className="uppercase font-semibold text-xs" style={{ color: ICE, letterSpacing: '.22em' }}>
-              Corporate security services for overseas security managers and executives in Venezuela
+      {/* ═══ 1. HERO — split, credential-led ═══ */}
+      <section className="relative pt-32 pb-20 px-4 sm:px-6 overflow-hidden">
+        <div className="relative max-w-6xl mx-auto grid lg:grid-cols-[1.1fr_0.9fr] gap-14 items-center">
+          <motion.div initial="hidden" animate="visible" variants={fadeUp}>
+            <span className="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-black uppercase tracking-widest mb-6" style={{ borderColor: `${GOLD}55`, background: `${GOLD}12`, color: GOLD }}>
+              <Award className="w-3.5 h-3.5" /> One of the few ISO 9001-certified security firms in Venezuela
+            </span>
+            <h1 className="font-black tracking-tight leading-[1.05] mb-6" style={{ fontSize: 'clamp(2.1rem, 4.4vw, 3.4rem)' }}>
+              Most private security companies sell guards.
+              <span className="block mt-1" style={{ color: BLUE }}>CSSG sells a scheme you can defend.</span>
+            </h1>
+            <p className="text-gray-400 text-lg max-w-xl mb-8">
+              Corporate security services and security consulting for multinational organizations operating
+              in Venezuela — built on certification, documented procedure and a methodology your board can
+              actually audit.
             </p>
-          </div>
-          <h1 className="mb-6" style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(2rem, 4.6vw, 3.3rem)', lineHeight: 1.15, maxWidth: '820px', textShadow: '0 2px 24px rgba(0,0,0,.35)' }}>
-            Is your private security contractor in Venezuela actually accountable — or just present?
-          </h1>
-          <p className="mb-6" style={{ color: MUTED, fontSize: '1.12rem', maxWidth: '640px' }}>
-            CSSG provides corporate security services, security consulting and private protection for
-            multinational organizations in Venezuela — built on documented procedure, not improvisation,
-            so what happens on-site is exactly what you can show your board.
-          </p>
-          <p className="text-sm font-semibold mb-8 pl-4" style={{ borderLeft: `2px solid ${GOLD}`, color: GOLD }}>
-            We hand you plans and evidence. Not just personnel on-site.
-          </p>
-          <button onClick={scrollToForm}
-            className="inline-flex items-center font-semibold px-9 py-4 text-base transition-all hover:-translate-y-0.5"
-            style={{ background: GOLD, color: NAVY, borderRadius: '2px', boxShadow: `inset 0 0 0 1px rgba(10,22,40,.35)` }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = GOLD_H)}
-            onMouseLeave={(e) => (e.currentTarget.style.background = GOLD)}
-          >
-            Request a confidential assessment <ArrowRight className="w-4 h-4 ml-2" />
-          </button>
-          <p className="text-xs mt-3 uppercase" style={{ color: MUTED, letterSpacing: '.08em' }}>
-            17+ years without incident · Confidential · No obligation
-          </p>
-        </motion.div>
-      </header>
-
-      {/* ═══ 2. AUTHORITY / CERTIFICATIONS ═══ */}
-      <div className="relative py-12 px-6 overflow-hidden" style={{ background: SLATE, borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}` }}>
-        <div className="absolute inset-0" style={{ backgroundImage: GRID_BG }} />
-        <div className="relative max-w-5xl mx-auto">
-          <p className="text-center text-xs uppercase font-semibold mb-8" style={{ color: MUTED, letterSpacing: '.18em' }}>Third-party verifiable certifications</p>
-          <div className="flex flex-wrap justify-center items-center gap-x-14 gap-y-8 mb-10">
-            {[
-              { src: '/iso-9001-badge.webp', alt: 'ISO 9001:2015 Certified Company' },
-              { src: '/cyber-essentials-badge.webp', alt: 'Cyber Essentials Certified' },
-              { src: '/ifpo-corporate-member.webp', alt: 'IFPO Corporate Membership' },
-            ].map((badge) => (
-              <img key={badge.src} src={badge.src} alt={badge.alt}
-                className="h-16 w-auto transition-all duration-300 hover:-translate-y-0.5"
-                style={{ filter: 'grayscale(1) brightness(1.5) contrast(0.9)', opacity: 0.7 }}
-                onMouseEnter={(e) => { e.currentTarget.style.filter = 'none'; e.currentTarget.style.opacity = '1'; }}
-                onMouseLeave={(e) => { e.currentTarget.style.filter = 'grayscale(1) brightness(1.5) contrast(0.9)'; e.currentTarget.style.opacity = '0.7'; }}
-                loading="lazy" />
-            ))}
-          </div>
-          <div className="flex flex-wrap justify-center gap-x-14 gap-y-4 text-center">
-            <p className="text-sm" style={{ color: MUTED }}>
-              <span className="font-semibold" style={{ color: WHITE }}>Methodology referenced to:</span>{' '}
-              <span style={{ color: ICE }}>ISO 31000:2018 · ASIS ORM.1:2017 · CPTED</span>
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* ═══ 3. THE PROBLEM ═══ */}
-      <section className="relative px-6" style={{ paddingTop: '96px', paddingBottom: '96px' }}>
-        <div className="max-w-5xl mx-auto relative">
-          <SectionNumeral n="01" />
-          <motion.div className="relative" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-            <p className="uppercase font-semibold text-xs mb-3" style={{ color: ICE, letterSpacing: '.22em' }}>The real problem</p>
-            <h2 className="mb-12" style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(1.6rem, 3.2vw, 2.3rem)', maxWidth: '780px' }}>
-              What is not certified, documented and measured cannot be defended in front of HQ.
-            </h2>
+            <div className="flex flex-wrap items-center gap-4">
+              <button onClick={scrollToForm} className="inline-flex items-center gap-2 rounded-xl px-7 py-4 font-black text-base transition-all hover:-translate-y-0.5" style={{ background: BLUE, color: BG }}>
+                Request a confidential assessment <ArrowRight className="w-4 h-4" />
+              </button>
+              <p className="text-xs uppercase tracking-widest text-gray-500 font-bold">No obligation · Confidential</p>
+            </div>
           </motion.div>
-          <div className="relative grid gap-6" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
-            {painCards.map(({ Icon, title, body }, i) => (
-              <motion.div key={title} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ delay: i * 0.08 }}>
-                <CornerFrame className="p-8 h-full">
-                  <div style={{ background: SLATE, borderTop: `2px solid ${GOLD}`, borderRadius: '2px' }} className="absolute inset-0 -z-10" />
-                  <Icon className="w-6 h-6 mb-4" style={{ color: ICE }} />
-                  <h3 className="text-base font-semibold mb-3" style={{ color: WHITE }}>{title}</h3>
-                  <p className="text-sm" style={{ color: MUTED }}>{body}</p>
-                </CornerFrame>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* ═══ 4. OUR SERVICE — timeline ═══ */}
-      <section className="relative px-6 overflow-hidden" style={{ background: SLATE, borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}`, paddingTop: '96px', paddingBottom: '96px' }}>
-        <div className="absolute inset-0" style={{ backgroundImage: GRID_BG, opacity: 0.6 }} />
-        <div className="max-w-5xl mx-auto relative">
-          <SectionNumeral n="02" />
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-            <p className="uppercase font-semibold text-xs mb-3" style={{ color: ICE, letterSpacing: '.22em' }}>Our service</p>
-            <h2 className="mb-14" style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(1.7rem, 3.4vw, 2.4rem)', maxWidth: '760px' }}>
-              A structured, auditable corporate security consulting engagement.
-            </h2>
-          </motion.div>
-          <div className="relative flex flex-col gap-12 pl-1" style={{ borderLeft: `1px solid ${BORDER}` }}>
-            {services.map(({ badge, title, tag, body }, i) => (
-              <motion.div key={badge} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ delay: i * 0.08 }}
-                className="relative flex flex-col sm:flex-row gap-4 sm:gap-10 items-start pl-8">
-                <span className="absolute left-0 top-1.5 w-2.5 h-2.5 -translate-x-1/2" style={{ background: GOLD, transform: 'translateX(-50%) rotate(45deg)' }} />
-                <span className="shrink-0 mt-1 font-semibold text-sm px-4 py-2" style={{ border: `1px solid ${GOLD}`, color: GOLD, letterSpacing: '.1em', borderRadius: '2px' }}>
-                  {badge}
-                </span>
-                <div>
-                  <h3 className="text-lg font-semibold mb-1" style={{ color: WHITE }}>{title}</h3>
-                  <p className="text-xs font-semibold uppercase mb-2" style={{ color: ICE, letterSpacing: '.08em' }}>{tag}</p>
-                  <p style={{ color: MUTED, maxWidth: '640px' }}>{body}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ 5. DIFFERENTIATORS ═══ */}
-      <section className="relative px-6" style={{ paddingTop: '96px', paddingBottom: '96px' }}>
-        <div className="max-w-5xl mx-auto relative">
-          <SectionNumeral n="03" />
-          <motion.div className="relative" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-            <p className="uppercase font-semibold text-xs mb-3" style={{ color: ICE, letterSpacing: '.22em' }}>Differentiators</p>
-            <p className="italic mb-10 pl-4" style={{ borderLeft: `3px solid ${GOLD}`, color: WHITE, fontSize: '1.1rem', maxWidth: '640px' }}>
-              What we say we do gets recorded.
-            </p>
-          </motion.div>
-          <div className="relative grid sm:grid-cols-2 gap-x-10 gap-y-1">
-            {diferenciadores.map((item, i) => (
-              <motion.div key={item} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ delay: i * 0.03 }}
-                className="flex items-start gap-3 py-2.5" style={{ borderBottom: `1px solid ${BORDER}` }}>
-                <Check className="w-4 h-4 shrink-0 mt-0.5" style={{ color: GOLD }} />
-                <span className="text-sm" style={{ color: MUTED }}>{item}</span>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ 6. CTA + FORM ═══ */}
-      <section className="relative px-6 overflow-hidden" style={{ background: `linear-gradient(160deg, #101f36 0%, ${NAVY} 70%)`, paddingTop: '96px', paddingBottom: '96px' }} id="assessment">
-        <div className="absolute inset-0" style={{ backgroundImage: GRID_BG, opacity: 0.4 }} />
-        <SectionNumeral n="04" />
-        <div className="relative max-w-lg mx-auto">
-          <motion.div className="relative" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-            <CornerFrame className="p-9 sm:p-11">
-              <div className="absolute inset-0 -z-10" style={{ background: SLATE, border: `1px solid ${BORDER}`, borderRadius: '2px' }} />
-              <span className="absolute top-4 right-4 text-[9px] font-bold uppercase px-2 py-1" style={{ color: GOLD, border: `1px solid ${GOLD}66`, letterSpacing: '.12em', borderRadius: '2px', transform: 'rotate(2deg)' }}>
-                Confidential
-              </span>
-              <h2 className="text-center mb-2 mt-3" style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.4rem' }}>
-                Request a confidential assessment
-              </h2>
-              <p className="text-center text-sm mb-7" style={{ color: MUTED }}>
-                A senior consultant reviews your current security scheme or contractor and responds within 12 business hours.
-              </p>
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label className="block text-xs mb-1.5" style={{ color: MUTED, letterSpacing: '.03em' }}>Full name *</label>
-                  <input type="text" name="nombre" required value={formData.nombre} onChange={handleChange}
-                    className="w-full px-3.5 py-3 text-sm focus:outline-none"
-                    style={{ background: NAVY, border: `1px solid ${BORDER}`, color: WHITE, borderRadius: '2px' }} />
-                </div>
-                <div>
-                  <label className="block text-xs mb-1.5" style={{ color: MUTED, letterSpacing: '.03em' }}>Position (optional)</label>
-                  <input type="text" name="cargo" placeholder="Regional Security Manager" value={formData.cargo} onChange={handleChange}
-                    className="w-full px-3.5 py-3 text-sm focus:outline-none"
-                    style={{ background: NAVY, border: `1px solid ${BORDER}`, color: WHITE, borderRadius: '2px' }} />
-                </div>
-                <div>
-                  <label className="block text-xs mb-1.5" style={{ color: MUTED, letterSpacing: '.03em' }}>Company / organization *</label>
-                  <input type="text" name="empresa" required value={formData.empresa} onChange={handleChange}
-                    className="w-full px-3.5 py-3 text-sm focus:outline-none"
-                    style={{ background: NAVY, border: `1px solid ${BORDER}`, color: WHITE, borderRadius: '2px' }} />
-                </div>
-                <div>
-                  <label className="block text-xs mb-1.5" style={{ color: MUTED, letterSpacing: '.03em' }}>Corporate email *</label>
-                  <input type="email" name="correo" required value={formData.correo} onChange={handleChange}
-                    className="w-full px-3.5 py-3 text-sm focus:outline-none"
-                    style={{ background: NAVY, border: `1px solid ${BORDER}`, color: WHITE, borderRadius: '2px' }} />
-                  {isFreeEmail && (
-                    <p className="text-xs mt-1.5" style={{ color: ICE }}>Given the confidential nature of this engagement, we recommend using your corporate email.</p>
-                  )}
-                </div>
-
-                {status === 'error' && (
-                  <p className="text-xs text-center p-3" style={{ color: '#ef4444', background: '#ef444410', borderRadius: '2px' }}>
-                    Error: {errorMsg || 'Please try again or contact us directly.'}
-                  </p>
-                )}
-
-                <button type="submit" disabled={status === 'loading'}
-                  className="w-full py-4 text-sm font-semibold flex items-center justify-center gap-2 transition-all hover:-translate-y-0.5 disabled:opacity-60"
-                  style={{ background: GOLD, color: NAVY, borderRadius: '2px' }}
-                >
-                  {status === 'loading' ? (
-                    <><Loader2 className="w-4 h-4 animate-spin" /> Sending…</>
-                  ) : (
-                    <>Request assessment <ArrowRight className="w-4 h-4" /></>
-                  )}
-                </button>
-              </form>
-              <p className="text-xs text-center mt-4" style={{ color: MUTED }}>
-                No cost, no contracting obligation. A senior consultant will contact you within 12 business hours.
-              </p>
-            </CornerFrame>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ═══ 7. TESTIMONIAL ═══ */}
-      <section className="relative px-6 py-20 overflow-hidden" style={{ background: SLATE, borderTop: `1px solid ${BORDER}` }}>
-        <div className="absolute inset-0" style={{ backgroundImage: GRID_BG }} />
-        <motion.div className="relative max-w-3xl mx-auto text-center" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-          <blockquote style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(1.2rem, 2.6vw, 1.6rem)', lineHeight: 1.5 }}>
-            <span style={{ color: GOLD, fontSize: '3rem', lineHeight: 0, verticalAlign: '-0.4rem' }}>&ldquo;</span>
-            CSSG's assessment uncovered duplicated supervision charges we had been paying for two years. The conversation with our contractor changed entirely once we had it in writing.
-          </blockquote>
-          <cite className="block mt-6 not-italic text-sm" style={{ color: ICE }}>
-            — Regional Security Manager, multinational industrial group
-            <span className="block text-xs mt-1" style={{ color: MUTED }}>(identity withheld under confidentiality protocol)</span>
-          </cite>
-        </motion.div>
-      </section>
-
-      {/* ═══ 8. FAQ ═══ */}
-      <section className="relative px-6" style={{ paddingTop: '96px', paddingBottom: '96px' }}>
-        <div className="max-w-3xl mx-auto relative">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-            <p className="uppercase font-semibold text-xs mb-3 text-center" style={{ color: ICE, letterSpacing: '.22em' }}>Frequently asked questions</p>
-            <h2 className="mb-12 text-center" style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(1.5rem, 3vw, 2rem)' }}>
-              Before you request your assessment
-            </h2>
-            <div>
-              {FAQS.map((f, i) => (
-                <div key={i} style={{ borderBottom: `1px solid ${BORDER}` }}>
-                  <button
-                    onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                    className="w-full flex items-center justify-between gap-4 py-5 text-left"
-                  >
-                    <span className="font-semibold text-sm sm:text-base" style={{ color: WHITE }}>{f.q}</span>
-                    <ChevronDown className="w-4 h-4 shrink-0 transition-transform" style={{ color: GOLD, transform: openFaq === i ? 'rotate(180deg)' : 'none' }} />
-                  </button>
-                  {openFaq === i && (
-                    <p className="text-sm pb-5" style={{ color: MUTED, maxWidth: '640px' }}>{f.a}</p>
-                  )}
-                </div>
-              ))}
+          <motion.div initial="hidden" animate="visible" variants={fadeUp} transition={{ delay: 0.15 }} className="relative">
+            <div className="backdrop-blur-xl rounded-2xl p-7 sm:p-8" style={{ background: CARD, border: `1px solid ${BORDER}` }}>
+              <p className="text-xs font-black uppercase tracking-widest mb-6" style={{ color: GOLD }}>Verified credentials</p>
+              <div className="space-y-5">
+                {credentials.map((c) => (
+                  <div key={c.title} className="flex items-center gap-4">
+                    <img src={c.src} alt={c.title} className="h-12 w-12 object-contain shrink-0" loading="lazy" />
+                    <div>
+                      <p className="font-black text-sm text-white">{c.title} <span className="text-gray-500 font-medium">· {c.sub}</span></p>
+                      <p className="text-xs text-gray-500">{c.note}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 pt-6 flex items-center justify-between" style={{ borderTop: `1px solid ${BORDER}` }}>
+                <span className="text-xs text-gray-500 font-bold uppercase tracking-widest">G7 diplomatic standard</span>
+                <ShieldCheck className="w-5 h-5" style={{ color: BLUE }} />
+              </div>
             </div>
           </motion.div>
         </div>
       </section>
 
+      {/* ═══ 2. STAT BAR ═══ */}
+      <section className="relative border-y py-14 px-4 sm:px-6" style={{ borderColor: BORDER, background: 'rgba(255,255,255,0.02)' }}>
+        <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
+          {stats.map((s) => (
+            <motion.div key={s.label} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="text-center">
+              <p className="font-black tabular-nums" style={{ fontSize: 'clamp(1.8rem, 3.2vw, 2.6rem)', color: BLUE }}>
+                <Counter to={s.to} suffix={s.suffix} />
+              </p>
+              <p className="text-xs text-gray-500 mt-2 max-w-[16ch] mx-auto leading-snug">{s.label}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* ═══ 3. THE DIFFERENCE — comparison ═══ */}
+      <section className="relative py-24 px-4 sm:px-6">
+        <div className="max-w-4xl mx-auto">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="text-center mb-14">
+            <p className="text-xs font-black uppercase tracking-widest mb-3" style={{ color: BLUE }}>The difference</p>
+            <h2 className="font-black tracking-tight" style={{ fontSize: 'clamp(1.7rem, 3.2vw, 2.4rem)' }}>
+              What separates a certified security partner from the rest of the market.
+            </h2>
+          </motion.div>
+          <div className="rounded-2xl overflow-hidden" style={{ border: `1px solid ${BORDER}` }}>
+            <div className="grid grid-cols-2">
+              <div className="p-5 text-center font-black text-xs uppercase tracking-widest text-gray-500" style={{ borderBottom: `1px solid ${BORDER}`, borderRight: `1px solid ${BORDER}` }}>Typical providers</div>
+              <div className="p-5 text-center font-black text-xs uppercase tracking-widest" style={{ borderBottom: `1px solid ${BORDER}`, color: BLUE, background: `${BLUE}0d` }}>CSSG</div>
+            </div>
+            {comparison.map((row, i) => (
+              <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ delay: i * 0.05 }} className="grid grid-cols-2">
+                <div className="p-5 flex items-start gap-3" style={{ borderBottom: i < comparison.length - 1 ? `1px solid ${BORDER}` : 'none', borderRight: `1px solid ${BORDER}` }}>
+                  <XIcon className="w-4 h-4 text-red-400/70 shrink-0 mt-0.5" />
+                  <span className="text-sm text-gray-400">{row.them}</span>
+                </div>
+                <div className="p-5 flex items-start gap-3" style={{ borderBottom: i < comparison.length - 1 ? `1px solid ${BORDER}` : 'none', background: `${BLUE}08` }}>
+                  <Check className="w-4 h-4 shrink-0 mt-0.5" style={{ color: BLUE }} />
+                  <span className="text-sm text-white font-medium">{row.us}</span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ 4. OUR SERVICE ═══ */}
+      <section className="relative py-24 px-4 sm:px-6" style={{ background: 'rgba(255,255,255,0.02)', borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}` }}>
+        <div className="max-w-5xl mx-auto">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="text-center mb-14">
+            <p className="text-xs font-black uppercase tracking-widest mb-3" style={{ color: BLUE }}>Our service</p>
+            <h2 className="font-black tracking-tight" style={{ fontSize: 'clamp(1.7rem, 3.2vw, 2.4rem)' }}>
+              A structured, auditable corporate security consulting engagement.
+            </h2>
+          </motion.div>
+          <div className="grid md:grid-cols-3 gap-5">
+            {services.map((s, i) => (
+              <motion.div key={s.title} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ delay: i * 0.08 }}
+                className="rounded-2xl p-6" style={{ background: CARD, border: `1px solid ${BORDER}` }}>
+                <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style={{ background: `${BLUE}15` }}>
+                  <s.icon className="w-5 h-5" style={{ color: BLUE }} />
+                </div>
+                <h3 className="font-black text-base mb-2 text-white">{s.title}</h3>
+                <p className="text-sm text-gray-400">{s.body}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ 5. CTA + FORM ═══ */}
+      <section className="relative py-24 px-4 sm:px-6 overflow-hidden" id="assessment">
+        <div className="max-w-lg mx-auto relative">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
+            <div className="rounded-2xl p-8 sm:p-10" style={{ background: CARD, border: `1px solid ${BLUE}44`, boxShadow: `0 0 60px ${BLUE}15` }}>
+              <span className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-widest mb-5" style={{ background: `${GOLD}15`, color: GOLD }}>
+                <Award className="w-3 h-3" /> Limited corporate accounts
+              </span>
+              <h2 className="font-black text-xl mb-2 text-white">Request a confidential assessment</h2>
+              <p className="text-sm text-gray-400 mb-7">
+                A senior consultant reviews your current security scheme or contractor and responds within 12 business hours.
+              </p>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <input
+                  type="text" name="nombre" required placeholder="Full name *" value={formData.nombre} onChange={handleChange}
+                  className="w-full bg-[#0B0B0F] border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-gray-500 focus:outline-none focus:border-sky-500 transition-colors"
+                />
+                <input
+                  type="text" name="cargo" placeholder="Position (optional)" value={formData.cargo} onChange={handleChange}
+                  className="w-full bg-[#0B0B0F] border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-gray-500 focus:outline-none focus:border-sky-500 transition-colors"
+                />
+                <input
+                  type="text" name="empresa" required placeholder="Company / organization *" value={formData.empresa} onChange={handleChange}
+                  className="w-full bg-[#0B0B0F] border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-gray-500 focus:outline-none focus:border-sky-500 transition-colors"
+                />
+                <div>
+                  <input
+                    type="email" name="correo" required placeholder="Corporate email *" value={formData.correo} onChange={handleChange}
+                    className="w-full bg-[#0B0B0F] border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-gray-500 focus:outline-none focus:border-sky-500 transition-colors"
+                  />
+                  {isFreeEmail && (
+                    <p className="text-xs mt-1.5" style={{ color: BLUE }}>Given the confidential nature of this engagement, we recommend using your corporate email.</p>
+                  )}
+                </div>
+
+                {status === 'error' && (
+                  <p className="text-sm text-red-400 bg-red-500/10 rounded-lg p-3 text-center">
+                    Error: {errorMsg || 'Please try again or contact us directly.'}
+                  </p>
+                )}
+
+                <motion.button
+                  whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
+                  type="submit" disabled={status === 'loading'}
+                  className="w-full py-4 rounded-xl font-black text-base transition-all disabled:opacity-60 flex items-center justify-center gap-2"
+                  style={{ background: BLUE, color: BG }}
+                >
+                  {status === 'loading' ? (
+                    <><Loader2 className="w-5 h-5 animate-spin" /> Sending…</>
+                  ) : (
+                    <>Request assessment <ArrowRight className="w-5 h-5" /></>
+                  )}
+                </motion.button>
+              </form>
+              <p className="mt-4 text-xs text-gray-500 text-center">
+                No cost, no contracting obligation. A senior consultant will contact you within 12 business hours.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ═══ 6. TESTIMONIAL ═══ */}
+      <section className="relative py-20 px-4 sm:px-6" style={{ background: 'rgba(255,255,255,0.02)', borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}` }}>
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="max-w-3xl mx-auto text-center">
+          <p className="text-2xl leading-relaxed font-medium text-white">
+            <span style={{ color: GOLD }}>&ldquo;</span>CSSG's assessment uncovered duplicated supervision charges we had been paying for two years. The conversation with our contractor changed entirely once we had it in writing.<span style={{ color: GOLD }}>&rdquo;</span>
+          </p>
+          <p className="mt-6 text-sm text-gray-400 font-bold">— Regional Security Manager, multinational industrial group</p>
+          <p className="text-xs text-gray-600">(identity withheld under confidentiality protocol)</p>
+        </motion.div>
+      </section>
+
+      {/* ═══ 7. FAQ ═══ */}
+      <section className="relative py-24 px-4 sm:px-6">
+        <div className="max-w-3xl mx-auto">
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="text-center mb-12">
+            <p className="text-xs font-black uppercase tracking-widest mb-3" style={{ color: BLUE }}>Frequently asked questions</p>
+            <h2 className="font-black tracking-tight" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.1rem)' }}>Before you request your assessment</h2>
+          </motion.div>
+          <div className="space-y-3">
+            {FAQS.map((f, i) => (
+              <div key={i} className="rounded-xl overflow-hidden" style={{ background: CARD, border: `1px solid ${BORDER}` }}>
+                <button onClick={() => setOpenFaq(openFaq === i ? null : i)} className="w-full flex items-center justify-between gap-4 p-5 text-left">
+                  <span className="font-bold text-sm sm:text-base text-white">{f.q}</span>
+                  <ChevronDown className={`w-5 h-5 shrink-0 transition-transform ${openFaq === i ? 'rotate-180' : ''}`} style={{ color: BLUE }} />
+                </button>
+                {openFaq === i && (
+                  <div className="px-5 pb-5">
+                    <p className="text-sm text-gray-400">{f.a}</p>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ═══ FOOTER ═══ */}
-      <footer className="py-9 px-6 text-center text-sm" style={{ background: SLATE, borderTop: `1px solid ${BORDER}`, color: MUTED }}>
-        <img src="/logo.webp" alt="CSSG" className="h-12 w-12 object-contain mx-auto mb-3" />
-        <div className="font-semibold mb-2" style={{ color: GOLD }}>CSSG GLOBAL</div>
-        <p>Corporate & Diplomatic Security · 17+ years serving without incident</p>
-        <p className="mt-2 flex items-center justify-center gap-1.5">
-          <ShieldCheck className="w-3 h-3" /> Corporate security consulting · Contractor due diligence · ISO 31000 methodology
+      <footer className="relative py-10 px-4 text-center border-t" style={{ borderColor: BORDER }}>
+        <img src="/logo.webp" alt="CSSG" className="h-10 w-10 object-contain mx-auto mb-3" />
+        <p className="text-xs text-gray-500 font-black uppercase tracking-widest mb-2">CSSG Global</p>
+        <p className="text-xs text-gray-600">Corporate & Diplomatic Security · 17+ years serving without incident</p>
+        <p className="text-xs text-gray-600 mt-3">
+          CSSG — Company Of Security And Service Global C.A. · RIF: J-29782024-8
         </p>
-        <p className="mt-4 text-xs" style={{ color: `${MUTED}99` }}>
-          <Award className="inline w-3 h-3 mr-1 -mt-0.5" /> CSSG — Company Of Security And Service Global C.A. · RIF: J-29782024-8
-        </p>
-        <p className="mt-4 text-xs" style={{ color: `${MUTED}99` }}>
-          <a href="/politica-privacidad" className="hover:underline" style={{ color: ICE }}>Privacy policy</a>
+        <p className="text-xs text-gray-600 mt-2">
+          <a href="/politica-privacidad" className="hover:text-gray-400 transition-colors">Privacy policy</a>
           <span className="mx-2">·</span>
-          <a href="/terminos-condiciones" className="hover:underline" style={{ color: ICE }}>Terms & conditions</a>
+          <a href="/terminos-condiciones" className="hover:text-gray-400 transition-colors">Terms & conditions</a>
           <span className="mx-2">·</span>
-          <a href="mailto:gerencia@globalservices-ven.com" className="hover:underline" style={{ color: ICE }}>gerencia@globalservices-ven.com</a>
+          <a href="mailto:gerencia@globalservices-ven.com" className="hover:text-gray-400 transition-colors">gerencia@globalservices-ven.com</a>
         </p>
       </footer>
 
