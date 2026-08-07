@@ -7,7 +7,7 @@ import CookieConsent from '../../components/CookieConsent';
 
 const GOLD = '#EAB308';
 const BORDER = 'rgba(255,255,255,0.08)';
-const PDF_URL = '/CSSG_Guia_Evaluacion_Riesgos_Seguridad.pdf';
+const PDF_URL = '/CSSG_Guia_Diagnostico_Vulnerabilidades.pdf';
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 20 },

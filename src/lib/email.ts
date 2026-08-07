@@ -372,7 +372,7 @@ const templates: Record<string, { subject: string | ((nombre: string, empresa?: 
       </p>
 
       <div style="text-align:center;margin:24px 0;">
-        <a href="https://cssg-global.com/CSSG_Guia_Evaluacion_Riesgos_Seguridad.pdf" style="display:inline-block;background-color:#10B981;color:#0B0B0F;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;box-shadow:0 4px 14px 0 rgba(16, 185, 129, 0.4);">
+        <a href="https://cssg-global.com/CSSG_Guia_Diagnostico_Vulnerabilidades.pdf" style="display:inline-block;background-color:#10B981;color:#0B0B0F;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;box-shadow:0 4px 14px 0 rgba(16, 185, 129, 0.4);">
           Descargar guía en PDF
         </a>
       </div>
