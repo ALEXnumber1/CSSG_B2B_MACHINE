@@ -2,178 +2,121 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
-import {
-  ShieldCheck, Check, X as XIcon, Star, ChevronDown, FileText, Lock,
-  Award, ArrowRight, BadgeCheck, ClipboardList, Download, Radar, ScanSearch,
-} from 'lucide-react';
+import { ShieldCheck, ScanSearch, ClipboardList, Award, ArrowRight, Check, Loader2, ChevronDown } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { sendLeadNotification } from '../../lib/email';
 import { startSequence } from '../../lib/sequences';
 import CookieConsent from '../../components/CookieConsent';
 
-const GOLD = '#EAB308';
-const BORDER = 'rgba(255,255,255,0.08)';
-
-const GRID_BG = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cpath d='M64 0H0V64' fill='none' stroke='%230EA5E9' stroke-opacity='0.06' stroke-width='1'/%3E%3C/svg%3E")`;
-
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } },
-};
-
 // ─────────────────────────────────────────────────────────────
 // LP2 — CONSULTORÍA Y ANÁLISIS DE RIESGOS (ES)
+// Tratamiento editorial "Estratega" — mismo lenguaje visual que
+// EsrmReadiness.tsx: navy profundo, dorado, serif, marcos tipo dossier.
 // Keywords: consultoría de seguridad, evaluación de riesgos de seguridad,
 // análisis de riesgos de seguridad, auditoría de seguridad física,
 // diagnóstico de seguridad, gestión de riesgos.
-// Lead magnet: "Cómo hacer una Evaluación de Riesgos de Seguridad —
-// Checklist ISO 31000 + Matriz de Riesgos FMEA lista para usar"
+// Lead magnet: "Diagnóstico de Vulnerabilidades de Seguridad" —
+// autoevaluación FMEA / ISO 31000 en 4 pilares.
 // ─────────────────────────────────────────────────────────────
 
-interface LeadFormProps {
-  formId: string;
-  status: 'idle' | 'loading' | 'error';
-  errorMsg: string;
-  formData: { nombre: string; correo: string; empresa: string; cargo: string };
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onSubmit: (e: React.FormEvent) => void;
-}
+const NAVY = '#0A1628';
+const SLATE = '#16233A';
+const BORDER = '#233754';
+const WHITE = '#F5F7FA';
+const MUTED = '#93A4BE';
+const GOLD = '#C9A24B';
+const GOLD_H = '#DDB65F';
+const ICE = '#7FB3D5';
 
-function LeadForm({ formId, status, errorMsg, formData, onChange, onSubmit }: LeadFormProps) {
-  return (
-    <form id={formId} onSubmit={onSubmit} className="backdrop-blur-xl bg-white/[0.04] border border-sky-500/30 rounded-2xl p-6 sm:p-8 shadow-[0_0_60px_rgba(14,165,233,0.15)]">
-      <p className="text-sm font-bold text-sky-400 uppercase tracking-widest mb-4 flex items-center gap-2">
-        <Download className="w-4 h-4" /> Acceso inmediato por email
-      </p>
-      <div className="space-y-4">
-        <input
-          type="text" name="nombre" required value={formData.nombre} onChange={onChange}
-          placeholder="Tu nombre"
-          className="w-full bg-[#0B0B0F] border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-gray-500 focus:border-sky-500 focus:outline-none transition-colors"
-        />
-        <input
-          type="email" name="correo" required value={formData.correo} onChange={onChange}
-          placeholder="Tu email de trabajo"
-          className="w-full bg-[#0B0B0F] border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-gray-500 focus:border-sky-500 focus:outline-none transition-colors"
-        />
-        <input
-          type="text" name="empresa" required value={formData.empresa} onChange={onChange}
-          placeholder="Empresa u organización"
-          className="w-full bg-[#0B0B0F] border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-gray-500 focus:border-sky-500 focus:outline-none transition-colors"
-        />
-        <input
-          type="text" name="cargo" value={formData.cargo} onChange={onChange}
-          placeholder="Cargo (opcional)"
-          className="w-full bg-[#0B0B0F] border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-gray-500 focus:border-sky-500 focus:outline-none transition-colors"
-        />
-        <motion.button
-          whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
-          type="submit" disabled={status === 'loading'}
-          className="w-full py-4 rounded-xl font-black text-base bg-gradient-to-r from-emerald-500 to-emerald-400 text-[#0B0B0F] hover:from-emerald-400 hover:to-emerald-300 transition-all disabled:opacity-60 flex items-center justify-center gap-2"
-        >
-          {status === 'loading' ? 'Enviando…' : <>Sí, quiero la guía gratis <ArrowRight className="w-5 h-5" /></>}
-        </motion.button>
-      </div>
-      {status === 'error' && (
-        <p className="mt-3 text-sm text-red-400">Ocurrió un error: {errorMsg}. Intenta de nuevo.</p>
-      )}
-      <p className="mt-4 text-xs text-gray-500 flex items-center justify-center gap-1.5">
-        <Lock className="w-3.5 h-3.5" /> 100% libre de spam. Tus datos están seguros. Cancela cuando quieras.
-      </p>
-    </form>
-  );
-}
+const GRID_BG = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cpath d='M64 0H0V64' fill='none' stroke='%237FB3D5' stroke-opacity='0.07' stroke-width='1'/%3E%3C/svg%3E")`;
 
-function GuideMockup() {
+const FREE_EMAIL_DOMAINS = ['gmail.com', 'hotmail.com', 'outlook.com', 'yahoo.com', 'live.com', 'icloud.com'];
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 28 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: 'easeOut' } },
+};
+
+/** Marco de esquinas tipo dossier técnico */
+function CornerFrame({ children, className = '' }: { children: React.ReactNode; className?: string }) {
+  const mark = 'absolute w-3 h-3';
   return (
-    <div className="relative mx-auto w-64 sm:w-72" aria-hidden="true">
-      <div className="absolute inset-0 translate-x-3 translate-y-3 rounded-xl bg-sky-900/40 blur-sm" />
-      <div className="relative rounded-xl border border-white/10 bg-gradient-to-br from-[#101018] to-[#0B0B0F] p-6 shadow-2xl">
-        <Radar className="w-9 h-9 mb-4" style={{ color: GOLD }} />
-        <p className="text-[10px] uppercase tracking-[0.25em] text-sky-400 font-bold mb-2">Guía CSSG · Edición 2026</p>
-        <h3 className="text-white font-black text-lg leading-snug mb-3">
-          Evaluación de Riesgos de Seguridad
-        </h3>
-        <p className="text-gray-500 text-xs mb-4">Checklist ISO 31000 + matriz de riesgos FMEA lista para usar en su empresa.</p>
-        <div className="space-y-2">
-          {[...Array(4)].map((_, i) => (
-            <div key={i} className="flex items-center gap-2">
-              <div className="w-3.5 h-3.5 rounded border border-emerald-500/50 flex items-center justify-center">
-                <Check className="w-2.5 h-2.5 text-emerald-400" />
-              </div>
-              <div className="h-1.5 rounded bg-white/10" style={{ width: `${85 - i * 12}%` }} />
-            </div>
-          ))}
-        </div>
-        <div className="mt-5 pt-4 border-t border-white/5 flex items-center justify-between">
-          <span className="text-[9px] text-gray-600">ISO 31000:2018 · ASIS ORM.1:2017</span>
-          <FileText className="w-4 h-4 text-gray-600" />
-        </div>
-      </div>
-      <div className="absolute -top-3 -right-3 rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-wide bg-emerald-500 text-[#0B0B0F]">
-        PDF Gratis
-      </div>
+    <div className={`relative ${className}`}>
+      <span className={`${mark} -top-px -left-px border-t border-l`} style={{ borderColor: GOLD }} />
+      <span className={`${mark} -top-px -right-px border-t border-r`} style={{ borderColor: GOLD }} />
+      <span className={`${mark} -bottom-px -left-px border-b border-l`} style={{ borderColor: GOLD }} />
+      <span className={`${mark} -bottom-px -right-px border-b border-r`} style={{ borderColor: GOLD }} />
+      {children}
     </div>
   );
 }
 
 function SectionNumeral({ n }: { n: string }) {
   return (
-    <span aria-hidden="true" className="hidden md:block select-none absolute -top-6 right-0 z-0" style={{
-      fontFamily: "'Playfair Display', serif", fontSize: '6rem', lineHeight: 1, fontWeight: 600,
-      color: 'transparent', WebkitTextStroke: '1px rgba(255,255,255,0.08)',
+    <span aria-hidden="true" className="hidden md:block select-none" style={{
+      fontFamily: "'Playfair Display', serif", fontSize: '7.5rem', lineHeight: 1, fontWeight: 600,
+      color: 'transparent', WebkitTextStroke: `1px ${BORDER}`, position: 'absolute', top: '-1.2rem', right: '1.5rem', zIndex: 0,
     }}>{n}</span>
   );
 }
 
-const PAINS = [
-  'Toma decisiones de seguridad "a ojo", sin un índice de riesgo que pueda defender ante su junta directiva.',
-  'No sabe si sus recursos de seguridad están donde realmente importa, o repartidos por igual sin criterio.',
-  'Un evaluador externo le entrega un informe genérico, sin metodología citable ni cifras comparables.',
-  'Su directiva o casa matriz le exige evidencia bajo ISO 31000 o ASIS ORM.1, y no tiene cómo mostrarla.',
-  'Sabe que necesita una auditoría de seguridad física, pero no sabe qué debe cubrir realmente un site survey serio.',
+const painCards = [
+  {
+    Icon: ScanSearch,
+    title: 'Una opinión no es un diagnóstico',
+    body: 'Puede sentir que su esquema de seguridad es sólido. Pero "se siente sólido" no es una métrica que su junta directiva o su casa matriz pueda auditar. Sin un índice numérico, ponderado y referenciado a un estándar, cualquier decisión de presupuesto se defiende con intuición — y la intuición no resiste una revisión de compliance.',
+  },
+  {
+    Icon: ClipboardList,
+    title: 'El riesgo aparece cuando piden evidencia',
+    body: 'Cuando un evaluador externo no trabaja bajo un marco normado — ISO 31000, ASIS ORM.1 — cada hallazgo se redacta a mano, sin ponderación real entre probabilidad e impacto. El resultado es un informe que se lee una vez y no vuelve a abrirse, porque nadie puede comparar una sede con otra ni justificar por qué una vulnerabilidad es más urgente que otra.',
+  },
 ];
 
-const DELIVERABLES = [
-  { icon: ScanSearch, range: 'Bloque 1', text: 'Cómo mapear sus activos críticos y vectores de amenaza en los 4 pilares: Perímetro Físico, Control de Accesos, Procedimientos Operativos e Inteligencia.' },
-  { icon: ClipboardList, range: 'Bloque 2', text: 'La fórmula FMEA exacta — (Probabilidad × 0.4) + (Impacto × 0.6) — para convertir observaciones en un Índice de Riesgo numérico y comparable.' },
-  { icon: Radar, range: 'Bloque 3', text: 'Checklist de auditoría de seguridad física (CPTED): perímetro, iluminación, control de accesos y flujo de personas, listo para aplicar en sitio.' },
-  { icon: Award, range: 'BONUS', text: 'Plantilla de matriz de riesgos en formato editable, con las columnas y ponderaciones ya configuradas — solo debe llenarla con sus datos.' },
+const services = [
+  {
+    badge: '01',
+    title: 'Mapeo de activos y los 4 pilares de riesgo',
+    tag: 'Perímetro · Accesos · Procedimientos · Inteligencia',
+    body: 'Antes de asignar cualquier recurso, identifique qué está protegiendo realmente. La autoevaluación recorre los cuatro pilares que determinan la resiliencia operativa de cualquier organización — con 20 preguntas concretas, puntuadas de 0 a 3.',
+  },
+  {
+    badge: '02',
+    title: 'La fórmula FMEA para su Índice de Riesgo',
+    tag: 'ISO 31000:2018 · ASIS ORM.1:2017',
+    body: 'Cada vulnerabilidad se pondera con Riesgo = (Probabilidad × 0,4) + (Impacto × 0,6) — el mismo cálculo que usamos en auditorías privadas. El resultado es un índice de madurez comparable entre sedes, no una impresión subjetiva.',
+  },
+  {
+    badge: '03',
+    title: 'Matriz de riesgo y hoja de resultados',
+    tag: 'Semáforo de madurez en 4 niveles',
+    body: 'Sus respuestas se consolidan en una matriz de probabilidad × impacto y un semáforo de madurez (Crítico, Alto, Moderado, Óptimo) que le dice, en una sola página, qué atender primero — y qué puede esperar.',
+  },
 ];
 
-const TESTIMONIALS = [
-  {
-    headline: 'Por fin pude mostrarle a mi junta directiva un número, no una opinión',
-    body: 'Usamos la matriz para cuantificar el riesgo de nuestras 3 sedes. La presentación con el Índice de Riesgo bajo metodología ASIS cambió por completo la conversación con la directiva regional.',
-    author: 'Gerente de Seguridad Corporativa',
-    org: 'Multinacional industrial, Valencia',
-  },
-  {
-    headline: 'El checklist de auditoría física detectó lo que 2 consultores anteriores no vieron',
-    body: 'Aplicamos el bloque 3 en nuestra sede principal y encontramos puntos ciegos en control de accesos que llevaban años sin corregirse. La inversión en corregirlos fue mínima frente al riesgo real.',
-    author: 'Director de Operaciones',
-    org: 'Torre corporativa, Caracas',
-  },
-  {
-    headline: 'La plantilla de matriz nos ahorró semanas de trabajo con nuestro equipo de compliance',
-    body: 'Ya teníamos la intención de auditar, pero no el formato. La matriz FMEA lista para usar nos permitió estandarizar la evaluación de riesgos en las 4 sedes que administramos, con el mismo criterio en todas.',
-    author: 'Directora de Riesgo y Compliance',
-    org: 'Grupo financiero, Caracas',
-  },
+const diferenciadores = [
+  'Metodología FMEA aplicada a los mismos 4 pilares que usamos en auditorías privadas.',
+  'Referenciada contra ISO 31000:2018 — gestión de riesgos.',
+  'Alineada a ASIS ORM.1:2017 — gestión de riesgos operacionales de seguridad.',
+  '+17 años de operación continua sin incidentes registrados.',
+  'Certificación ISO 9001:2015 (Cert. 580181) en gestión de calidad.',
+  'Proveedor de misiones diplomáticas y corporaciones bajo estándar G7.',
+  'Herramienta propia de análisis de riesgo en línea, con índice automatizado.',
+  'Aplicable a más de una sede, con criterio comparable entre instalaciones.',
 ];
 
 const FAQS = [
   {
-    q: '¿Es realmente gratis o tiene algún costo oculto?',
-    a: 'Es 100% gratis. No hay tarjeta de crédito ni periodo de prueba. Solo pedimos su email para enviarle la guía y, si lo desea, contenido de inteligencia de seguridad corporativa.',
+    q: '¿Es realmente gratuito o tiene algún costo oculto?',
+    a: 'Es gratuito, sin tarjeta de crédito ni compromiso. Solo pedimos su correo para enviarle el documento y, si lo desea, contenido de inteligencia de seguridad corporativa.',
   },
   {
-    q: '¿Qué diferencia esta guía de un análisis de riesgos de seguridad genérico?',
-    a: 'Está construida sobre la misma metodología FMEA que usamos en nuestras auditorías privadas — referenciada contra ISO 31000:2018 y ASIS ORM.1:2017 — no es una checklist de sentido común, es el sistema de gestión de riesgos exacto que aplicamos con clientes corporativos.',
+    q: '¿Qué diferencia esta autoevaluación de un análisis de riesgos de seguridad genérico?',
+    a: 'Está construida sobre la misma metodología FMEA que usamos en nuestras auditorías privadas — no es una checklist de sentido común, es el sistema de gestión de riesgos exacto que aplicamos con clientes corporativos, referenciado a ISO 31000:2018 y ASIS ORM.1:2017.',
   },
   {
     q: '¿Esto reemplaza una consultoría de seguridad completa?',
-    a: 'No, la complementa. La guía le permite hacer un primer diagnóstico de seguridad serio con su propio equipo. Cuando necesite implementación, verificación en sitio o un informe con validez ante su directiva, ahí es donde entra una consultoría de seguridad con un especialista de CSSG.',
+    a: 'No, la complementa. Le permite hacer un primer diagnóstico de seguridad serio con su propio equipo. Cuando necesite verificación en sitio o un informe con validez ante su directiva, ahí es donde entra una consultoría con un especialista de CSSG.',
   },
   {
     q: '¿Necesito ser experto en seguridad para aplicarla?',
@@ -181,22 +124,24 @@ const FAQS = [
   },
   {
     q: '¿Sirve para más de una sede o instalación?',
-    a: 'Sí. La matriz de riesgos está diseñada para replicarse por sede, lo que le permite comparar el Índice de Riesgo entre instalaciones con el mismo criterio y priorizar inversión donde realmente se necesita.',
-  },
-  {
-    q: '¿Puedo usarla junto con la herramienta de análisis de riesgo online de CSSG?',
-    a: 'Sí, se complementan. La guía le enseña la metodología a fondo para aplicarla usted mismo o con su equipo; la herramienta online en cssg-global.com/analisis-riesgo genera un índice preliminar automatizado en minutos.',
+    a: 'Sí. El índice está diseñado para replicarse por sede, lo que le permite comparar el resultado entre instalaciones con el mismo criterio y priorizar inversión donde realmente se necesita.',
   },
   {
     q: '¿Qué pasa con mis datos?',
-    a: 'No compartimos su información con terceros. Sus datos se almacenan de forma segura y puede solicitar su eliminación cuando quiera escribiendo a gerencia@globalservices-ven.com.',
+    a: 'No compartimos su información con terceros. Se almacena de forma segura y puede solicitar su eliminación cuando quiera escribiendo a gerencia@globalservices-ven.com.',
   },
 ];
 
+interface FormData {
+  nombre: string;
+  cargo: string;
+  empresa: string;
+  correo: string;
+}
+
 export default function ConsultoriaRiesgos() {
   const navigate = useNavigate();
-  const year = new Date().getFullYear();
-  const [formData, setFormData] = useState({ nombre: '', correo: '', empresa: '', cargo: '' });
+  const [formData, setFormData] = useState<FormData>({ nombre: '', cargo: '', empresa: '', correo: '' });
   const [status, setStatus] = useState<'idle' | 'loading' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
   const [openFaq, setOpenFaq] = useState<number | null>(0);
@@ -219,6 +164,11 @@ export default function ConsultoriaRiesgos() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const isFreeEmail = (() => {
+    const domain = formData.correo.split('@')[1]?.toLowerCase();
+    return !!domain && FREE_EMAIL_DOMAINS.includes(domain);
+  })();
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus('loading');
@@ -228,7 +178,7 @@ export default function ConsultoriaRiesgos() {
         nombre: formData.nombre,
         correo: formData.correo,
         empresa: formData.empresa,
-        mensaje: `[LP CONSULTORÍA Y ANÁLISIS DE RIESGOS] Solicitó: Guía Evaluación de Riesgos de Seguridad ISO 31000 + matriz FMEA${formData.cargo ? ` | Cargo: ${formData.cargo}` : ''}`,
+        mensaje: `[LP CONSULTORÍA Y ANÁLISIS DE RIESGOS] Solicitó: Diagnóstico de Vulnerabilidades de Seguridad (ISO 31000 + FMEA)${formData.cargo ? ` | Cargo: ${formData.cargo}` : ''}`,
         fuente: 'lp_consultoria_riesgos',
         score: 45,
         estado: 'nuevo',
@@ -244,7 +194,7 @@ export default function ConsultoriaRiesgos() {
               empresa: formData.empresa,
               fuente: 'lp_consultoria_riesgos',
               cargo: formData.cargo,
-              mensaje: '[SOLICITUD REPETIDA] Guía Evaluación de Riesgos ISO 31000',
+              mensaje: '[SOLICITUD REPETIDA] Diagnóstico de Vulnerabilidades ISO 31000',
             });
           } catch (emailErr) {
             console.warn('Email Send Exception on duplicate (Non-blocking):', emailErr);
@@ -286,292 +236,281 @@ export default function ConsultoriaRiesgos() {
   };
 
   const scrollToForm = () => {
-    document.getElementById('form-hero')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('diagnostico')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <div className="min-h-screen bg-[#0B0B0F] text-white overflow-x-hidden" style={{ fontFamily: "'Inter', sans-serif" }}>
+    <div style={{ background: NAVY, color: WHITE, fontFamily: "'Inter', sans-serif", lineHeight: 1.6, minHeight: '100vh' }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap');
       `}</style>
 
-      {/* ── MINI NAV ── */}
-      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-5 sm:px-8 py-3.5" style={{ background: 'rgba(11,11,15,0.85)', backdropFilter: 'blur(12px)', borderBottom: `1px solid ${BORDER}` }}>
+      {/* ═══ MINI NAV ═══ */}
+      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 py-4" style={{ background: `${NAVY}E6`, backdropFilter: 'blur(10px)', borderBottom: `1px solid ${BORDER}` }}>
         <div className="flex items-center gap-2.5">
-          <img src="/logo.webp" alt="CSSG" className="h-8 w-8 object-contain" />
-          <span className="font-black tracking-widest text-sm text-white">
+          <img src="/logo.webp" alt="CSSG" className="h-9 w-9 object-contain" />
+          <span className="font-semibold tracking-widest text-sm" style={{ color: WHITE }}>
             CSSG <span style={{ color: GOLD }}>GLOBAL</span>
           </span>
         </div>
-        <button onClick={scrollToForm} className="hidden sm:inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-widest px-4 py-2.5 rounded-lg bg-sky-500 hover:bg-sky-400 text-[#0B0B0F] transition-colors">
-          Descargar guía <ArrowRight className="w-3.5 h-3.5" />
+        <button onClick={scrollToForm} className="hidden sm:inline-block text-xs font-semibold uppercase tracking-widest px-5 py-2.5 transition-all hover:-translate-y-0.5"
+          style={{ background: GOLD, color: NAVY, borderRadius: '2px' }}>
+          Solicitar diagnóstico
         </button>
       </header>
 
-      {/* ── SECCIÓN 1: HERO FOTOGRÁFICO + FORMULARIO ── */}
-      <section className="relative pt-28 pb-16 px-4 sm:px-6 overflow-hidden">
+      {/* ═══ 1. HERO — fotografía de auditoría en sitio, tratada en oscuro ═══ */}
+      <header className="relative min-h-[92vh] flex flex-col justify-center px-6 pt-24 overflow-hidden">
         <div className="absolute inset-0" style={{
           backgroundImage: "url('/svc_auditoria.webp')",
-          backgroundSize: 'cover', backgroundPosition: 'center 25%', filter: 'saturate(0.85)',
+          backgroundSize: 'cover', backgroundPosition: 'center 25%', filter: 'blur(1px) saturate(0.75)', transform: 'scale(1.03)',
         }} />
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(11,11,15,0.88) 0%, rgba(11,11,15,0.94) 45%, #0B0B0F 92%)' }} />
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(100deg, rgba(10,22,40,.97) 0%, rgba(10,22,40,.94) 42%, rgba(10,22,40,.72) 100%)' }} />
+        <div className="absolute inset-0" style={{ background: `linear-gradient(180deg, rgba(10,22,40,.4) 0%, transparent 30%, rgba(10,22,40,.85) 100%)` }} />
         <div className="absolute inset-0" style={{ backgroundImage: GRID_BG, opacity: 0.5 }} />
-        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-sky-900/20 rounded-full blur-[120px] opacity-50" />
 
-        <div className="relative max-w-6xl mx-auto">
-          <motion.div initial="hidden" animate="visible" variants={fadeUp} className="text-center mb-10">
-            <span className="inline-block rounded-full border border-emerald-500/40 bg-emerald-500/10 px-4 py-1.5 text-xs font-black uppercase tracking-widest text-emerald-400 mb-6">
-              100% Gratis · Descarga inmediata
-            </span>
-            <h1 className="tracking-tight leading-[1.1] max-w-4xl mx-auto" style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(2rem, 4.6vw, 3.4rem)', fontWeight: 700, textShadow: '0 2px 30px rgba(0,0,0,0.5)' }}>
-              La guía para hacer una <span className="text-sky-400">evaluación de riesgos de seguridad</span> que
-              su junta directiva pueda <span className="text-sky-400">tomar en serio</span>
-            </h1>
-            <p className="mt-6 text-gray-300 text-base sm:text-lg max-w-2xl mx-auto">
-              Checklist ISO 31000 + matriz de riesgos FMEA lista para usar. Para directores de operaciones,
-              gerentes de seguridad y responsables de compliance que necesitan un diagnóstico de seguridad
-              defendible — no una opinión, ni una consultoría de seguridad genérica.
+        <motion.div className="relative max-w-4xl mx-auto w-full" initial="hidden" animate="visible" variants={fadeUp}>
+          <div className="flex items-center gap-3 mb-5">
+            <span style={{ width: '28px', height: '1px', background: GOLD }} />
+            <p className="uppercase font-semibold text-xs" style={{ color: ICE, letterSpacing: '.22em' }}>
+              Para directores de operaciones y responsables de compliance en Venezuela
             </p>
-          </motion.div>
+          </div>
+          <h1 className="mb-6" style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(2rem, 4.6vw, 3.3rem)', lineHeight: 1.15, maxWidth: '820px', textShadow: '0 2px 24px rgba(0,0,0,.35)' }}>
+            ¿Su nivel de riesgo de seguridad es un número, o una impresión?
+          </h1>
+          <p className="mb-6" style={{ color: MUTED, fontSize: '1.12rem', maxWidth: '640px' }}>
+            La mayoría de las organizaciones no lo sabe hasta que ocurre un incidente. Esta autoevaluación
+            convierte una sensación vaga de inseguridad en un índice medible, bajo metodología FMEA e ISO 31000.
+          </p>
+          <p className="text-sm font-semibold mb-8 pl-4" style={{ borderLeft: `2px solid ${GOLD}`, color: GOLD }}>
+            Cuatro pilares. Veinte preguntas. Un índice que su junta directiva puede tomar en serio.
+          </p>
+          <button onClick={scrollToForm}
+            className="inline-flex items-center font-semibold px-9 py-4 text-base transition-all hover:-translate-y-0.5"
+            style={{ background: GOLD, color: NAVY, borderRadius: '2px', boxShadow: `inset 0 0 0 1px rgba(10,22,40,.35)` }}
+            onMouseEnter={(e) => (e.currentTarget.style.background = GOLD_H)}
+            onMouseLeave={(e) => (e.currentTarget.style.background = GOLD)}
+          >
+            Solicitar el diagnóstico gratuito <ArrowRight className="w-4 h-4 ml-2" />
+          </button>
+          <p className="text-xs mt-3 uppercase" style={{ color: MUTED, letterSpacing: '.08em' }}>
+            17 años sin incidentes · Confidencial · Sin compromiso
+          </p>
+        </motion.div>
+      </header>
 
-          <div className="grid lg:grid-cols-2 gap-10 items-center max-w-5xl mx-auto">
-            <motion.div initial="hidden" animate="visible" variants={fadeUp}>
-              <GuideMockup />
-              <div className="mt-8 space-y-3 max-w-md mx-auto">
-                <p className="text-sm font-bold text-gray-300">Dentro de esta guía vas a descubrir:</p>
-                {[
-                  'Los 4 pilares de riesgo que evaluamos en cada auditoría: Perímetro, Accesos, Procedimientos e Inteligencia.',
-                  'La fórmula FMEA exacta para convertir observaciones en un Índice de Riesgo numérico y comparable.',
-                  'El checklist de auditoría física (CPTED) que aplicamos en sitio antes de cualquier recomendación.',
-                  'BONUS: matriz de riesgos editable, lista para llenar con los datos de su organización.',
-                ].map((b, i) => (
-                  <div key={i} className="flex items-start gap-2.5">
-                    <Check className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
-                    <p className="text-sm text-gray-400">{b}</p>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
-            <motion.div initial="hidden" animate="visible" variants={fadeUp}>
-              <LeadForm
-                formId="form-hero" status={status} errorMsg={errorMsg}
-                formData={formData} onChange={handleChange} onSubmit={handleSubmit}
-              />
-            </motion.div>
+      {/* ═══ 2. AUTORIDAD / CERTIFICACIONES ═══ */}
+      <div className="relative py-12 px-6 overflow-hidden" style={{ background: SLATE, borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}` }}>
+        <div className="absolute inset-0" style={{ backgroundImage: GRID_BG }} />
+        <div className="relative max-w-5xl mx-auto">
+          <p className="text-center text-xs uppercase font-semibold mb-8" style={{ color: MUTED, letterSpacing: '.18em' }}>Certificaciones verificables por terceros</p>
+          <div className="flex flex-wrap justify-center items-center gap-x-14 gap-y-8 mb-10">
+            {[
+              { src: '/iso-9001-badge.webp', alt: 'ISO 9001:2015 Certified Company' },
+              { src: '/cyber-essentials-badge.webp', alt: 'Cyber Essentials Certified' },
+              { src: '/ifpo-corporate-member.webp', alt: 'IFPO Corporate Membership' },
+            ].map((badge) => (
+              <img key={badge.src} src={badge.src} alt={badge.alt}
+                className="h-16 w-auto transition-all duration-300 hover:-translate-y-0.5"
+                style={{ filter: 'grayscale(1) brightness(1.5) contrast(0.9)', opacity: 0.7 }}
+                onMouseEnter={(e) => { e.currentTarget.style.filter = 'none'; e.currentTarget.style.opacity = '1'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.filter = 'grayscale(1) brightness(1.5) contrast(0.9)'; e.currentTarget.style.opacity = '0.7'; }}
+                loading="lazy" />
+            ))}
+          </div>
+          <div className="flex flex-wrap justify-center gap-x-14 gap-y-4 text-center">
+            <p className="text-sm" style={{ color: MUTED }}>
+              <span className="font-semibold" style={{ color: WHITE }}>Metodología referenciada a:</span>{' '}
+              <span style={{ color: ICE }}>ISO 31000:2018 · ASIS ORM.1:2017 · FMEA</span>
+            </p>
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* ── SECCIÓN 2: BARRA DE PRUEBA SOCIAL ── */}
-      <section className="relative z-10 border-y border-white/5 bg-white/[0.02] py-6 px-4">
-        <div className="max-w-5xl mx-auto flex flex-wrap items-center justify-center gap-x-10 gap-y-4 text-center">
-          <div className="flex items-center gap-2">
-            <BadgeCheck className="w-5 h-5 text-sky-400" />
-            <span className="text-sm text-gray-300 font-bold">ISO 9001:2015 certificados</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <ShieldCheck className="w-5 h-5" style={{ color: GOLD }} />
-            <span className="text-sm text-gray-300 font-bold">+17 años sin un solo incidente</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <Award className="w-5 h-5 text-emerald-400" />
-            <span className="text-sm text-gray-300 font-bold">Metodología ISO 31000 · ASIS ORM.1</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />)}
-            <span className="text-sm text-gray-400 ml-1">4.9/5 entre lectores corporativos</span>
-          </div>
-        </div>
-      </section>
-
-      {/* ── SECCIÓN 3: PAIN AGITATION ── */}
-      <section className="relative z-10 py-20 px-4 sm:px-6">
-        <div className="max-w-3xl mx-auto">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="relative">
-            <SectionNumeral n="01" />
-            <h2 className="relative text-2xl sm:text-4xl font-black tracking-tight text-center mb-10">
-              ¿Te suena familiar alguna de estas situaciones?
+      {/* ═══ 3. EL PROBLEMA ═══ */}
+      <section className="relative px-6" style={{ paddingTop: '96px', paddingBottom: '96px' }}>
+        <div className="max-w-5xl mx-auto relative">
+          <SectionNumeral n="01" />
+          <motion.div className="relative" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
+            <p className="uppercase font-semibold text-xs mb-3" style={{ color: ICE, letterSpacing: '.22em' }}>El problema real</p>
+            <h2 className="mb-12" style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(1.6rem, 3.2vw, 2.3rem)', maxWidth: '780px' }}>
+              Lo que no está medido, ponderado y documentado no se puede defender ante su directiva.
             </h2>
-            <div className="space-y-4">
-              {PAINS.map((p, i) => (
-                <div key={i} className="flex items-start gap-3 backdrop-blur-xl bg-white/5 border border-white/5 rounded-xl p-4">
-                  <XIcon className="w-5 h-5 text-red-400 mt-0.5 shrink-0" />
-                  <p className="text-gray-300 text-sm sm:text-base">{p}</p>
-                </div>
-              ))}
-            </div>
-            <p className="mt-8 text-center text-gray-400">
-              Si te identificaste con al menos una, esta guía fue creada exactamente para ti.
-              Y lo mejor: <span className="text-white font-bold">es 100% gratis.</span>
-            </p>
-            <div className="mt-6 text-center">
-              <button onClick={scrollToForm} className="inline-flex items-center gap-2 rounded-xl bg-sky-500 hover:bg-sky-400 px-6 py-3.5 font-black text-[#0B0B0F] transition-colors">
-                Quiero descargar la guía ahora <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
           </motion.div>
+          <div className="relative grid gap-6" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
+            {painCards.map(({ Icon, title, body }, i) => (
+              <motion.div key={title} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ delay: i * 0.08 }}>
+                <CornerFrame className="p-8 h-full">
+                  <div style={{ background: SLATE, borderTop: `2px solid ${GOLD}`, borderRadius: '2px' }} className="absolute inset-0 -z-10" />
+                  <Icon className="w-6 h-6 mb-4" style={{ color: ICE }} />
+                  <h3 className="text-base font-semibold mb-3" style={{ color: WHITE }}>{title}</h3>
+                  <p className="text-sm" style={{ color: MUTED }}>{body}</p>
+                </CornerFrame>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ── SECCIÓN 4: QUÉ VAS A RECIBIR ── */}
-      <section className="relative z-10 py-20 px-4 sm:px-6 border-t border-white/5 overflow-hidden">
+      {/* ═══ 4. LA SOLUCIÓN — línea de tiempo técnica ═══ */}
+      <section className="relative px-6 overflow-hidden" style={{ background: SLATE, borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}`, paddingTop: '96px', paddingBottom: '96px' }}>
+        <div className="absolute inset-0" style={{ backgroundImage: GRID_BG, opacity: 0.6 }} />
+        <div className="max-w-5xl mx-auto relative">
+          <SectionNumeral n="02" />
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
+            <p className="uppercase font-semibold text-xs mb-3" style={{ color: ICE, letterSpacing: '.22em' }}>Lo que recibe</p>
+            <h2 className="mb-14" style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(1.7rem, 3.4vw, 2.4rem)', maxWidth: '760px' }}>
+              Un diagnóstico con estructura auditable, no una checklist genérica.
+            </h2>
+          </motion.div>
+          <div className="relative flex flex-col gap-12 pl-1" style={{ borderLeft: `1px solid ${BORDER}` }}>
+            {services.map(({ badge, title, tag, body }, i) => (
+              <motion.div key={badge} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ delay: i * 0.08 }}
+                className="relative flex flex-col sm:flex-row gap-4 sm:gap-10 items-start pl-8">
+                <span className="absolute left-0 top-1.5 w-2.5 h-2.5 -translate-x-1/2" style={{ background: GOLD, transform: 'translateX(-50%) rotate(45deg)' }} />
+                <span className="shrink-0 mt-1 font-semibold text-sm px-4 py-2" style={{ border: `1px solid ${GOLD}`, color: GOLD, letterSpacing: '.1em', borderRadius: '2px' }}>
+                  {badge}
+                </span>
+                <div>
+                  <h3 className="text-lg font-semibold mb-1" style={{ color: WHITE }}>{title}</h3>
+                  <p className="text-xs font-semibold uppercase mb-2" style={{ color: ICE, letterSpacing: '.08em' }}>{tag}</p>
+                  <p style={{ color: MUTED, maxWidth: '640px' }}>{body}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ 5. DIFERENCIADORES ═══ */}
+      <section className="relative px-6" style={{ paddingTop: '96px', paddingBottom: '96px' }}>
+        <div className="max-w-5xl mx-auto relative">
+          <SectionNumeral n="03" />
+          <motion.div className="relative" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
+            <p className="uppercase font-semibold text-xs mb-3" style={{ color: ICE, letterSpacing: '.22em' }}>Diferenciadores</p>
+            <p className="italic mb-10 pl-4" style={{ borderLeft: `3px solid ${GOLD}`, color: WHITE, fontSize: '1.1rem', maxWidth: '640px' }}>
+              La misma metodología que exigimos en esta guía es la que aplicamos en nuestra propia operación.
+            </p>
+          </motion.div>
+          <div className="relative grid sm:grid-cols-2 gap-x-10 gap-y-1">
+            {diferenciadores.map((item, i) => (
+              <motion.div key={item} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ delay: i * 0.03 }}
+                className="flex items-start gap-3 py-2.5" style={{ borderBottom: `1px solid ${BORDER}` }}>
+                <Check className="w-4 h-4 shrink-0 mt-0.5" style={{ color: GOLD }} />
+                <span className="text-sm" style={{ color: MUTED }}>{item}</span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ 6. CTA + FORMULARIO ═══ */}
+      <section className="relative px-6 overflow-hidden" style={{ background: `linear-gradient(160deg, #101f36 0%, ${NAVY} 70%)`, paddingTop: '96px', paddingBottom: '96px' }} id="diagnostico">
         <div className="absolute inset-0" style={{ backgroundImage: GRID_BG, opacity: 0.4 }} />
-        <div className="relative max-w-4xl mx-auto">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="relative">
-            <SectionNumeral n="02" />
-            <h2 className="relative text-2xl sm:text-4xl font-black tracking-tight text-center mb-3">
-              Esto es exactamente lo que vas a recibir
-            </h2>
-            <p className="text-center text-gray-400 mb-12">
-              La guía «Evaluación de Riesgos de Seguridad», en PDF, directo a tu email.
-            </p>
-            <div className="grid sm:grid-cols-2 gap-5">
-              {DELIVERABLES.map((d, i) => (
-                <div key={i} className="relative backdrop-blur-xl bg-white/5 border border-white/5 rounded-2xl p-6 hover:border-sky-500/30 transition-colors overflow-hidden">
-                  <div className="absolute top-0 left-0 right-0 h-[2px]" style={{ background: i === 3 ? GOLD : '#0EA5E9' }} />
-                  <d.icon className="w-7 h-7 text-sky-400 mb-3" />
-                  <p className="text-xs font-black uppercase tracking-widest mb-2" style={{ color: i === 3 ? GOLD : undefined }}>
-                    {d.range}
-                  </p>
-                  <p className="text-sm text-gray-300">{d.text}</p>
-                </div>
-              ))}
-            </div>
-            <div className="mt-10 text-center backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-6 max-w-md mx-auto">
-              <p className="text-gray-500 text-sm line-through">Valor real de este recurso: $247</p>
-              <p className="text-2xl font-black text-emerald-400 mt-1">Tu precio hoy: $0</p>
-              <p className="text-xs text-gray-500 mt-1">Es la misma metodología que usamos en auditorías privadas con clientes corporativos.</p>
-              <button onClick={scrollToForm} className="mt-5 inline-flex items-center gap-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 px-6 py-3 font-black text-[#0B0B0F] transition-colors">
-                Descargar gratis ahora <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ── SECCIÓN 5: AUTORIDAD ── */}
-      <section className="relative z-10 py-20 px-4 sm:px-6 border-t border-white/5">
-        <div className="max-w-4xl mx-auto">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="relative">
-            <SectionNumeral n="03" />
-            <h2 className="relative text-2xl sm:text-4xl font-black tracking-tight text-center mb-10">
-              ¿Quién está detrás de esta metodología?
-            </h2>
-            <div className="backdrop-blur-xl bg-white/5 border border-white/5 rounded-2xl p-8">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-14 h-14 rounded-full bg-sky-500/10 border border-sky-500/30 flex items-center justify-center shrink-0">
-                  <ShieldCheck className="w-7 h-7 text-sky-400" />
+        <SectionNumeral n="04" />
+        <div className="relative max-w-lg mx-auto">
+          <motion.div className="relative" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
+            <CornerFrame className="p-9 sm:p-11">
+              <div className="absolute inset-0 -z-10" style={{ background: SLATE, border: `1px solid ${BORDER}`, borderRadius: '2px' }} />
+              <span className="absolute top-4 right-4 text-[9px] font-bold uppercase px-2 py-1" style={{ color: GOLD, border: `1px solid ${GOLD}66`, letterSpacing: '.12em', borderRadius: '2px', transform: 'rotate(2deg)' }}>
+                Gratuito
+              </span>
+              <h2 className="text-center mb-2 mt-3" style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.4rem' }}>
+                Solicitar el diagnóstico de vulnerabilidades
+              </h2>
+              <p className="text-center text-sm mb-7" style={{ color: MUTED }}>
+                Autoevaluación FMEA / ISO 31000 en 4 pilares, con matriz de riesgo. Directo a su correo.
+              </p>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <label className="block text-xs mb-1.5" style={{ color: MUTED, letterSpacing: '.03em' }}>Nombre completo *</label>
+                  <input type="text" name="nombre" required value={formData.nombre} onChange={handleChange}
+                    className="w-full px-3.5 py-3 text-sm focus:outline-none"
+                    style={{ background: NAVY, border: `1px solid ${BORDER}`, color: WHITE, borderRadius: '2px' }} />
                 </div>
                 <div>
-                  <p className="font-black text-lg">CSSG — Company Of Security And Service Global C.A.</p>
-                  <p className="text-sm text-gray-500">Empresa de seguridad corporativa y diplomática · Caracas · RIF J-29782024-8</p>
+                  <label className="block text-xs mb-1.5" style={{ color: MUTED, letterSpacing: '.03em' }}>Cargo (opcional)</label>
+                  <input type="text" name="cargo" placeholder="Director de Operaciones" value={formData.cargo} onChange={handleChange}
+                    className="w-full px-3.5 py-3 text-sm focus:outline-none"
+                    style={{ background: NAVY, border: `1px solid ${BORDER}`, color: WHITE, borderRadius: '2px' }} />
                 </div>
-              </div>
-              <p className="text-gray-300 text-sm sm:text-base mb-6">
-                Durante más de 17 años hemos evaluado y diseñado esquemas de seguridad para corporaciones,
-                torres empresariales y misiones diplomáticas bajo estándar G7 — sin registrar un solo
-                incidente de seguridad. Esta guía condensa la metodología FMEA que aplicamos en nuestras
-                propias auditorías, referenciada contra ISO 31000:2018 y ASIS ORM.1:2017.
+                <div>
+                  <label className="block text-xs mb-1.5" style={{ color: MUTED, letterSpacing: '.03em' }}>Empresa u organización *</label>
+                  <input type="text" name="empresa" required value={formData.empresa} onChange={handleChange}
+                    className="w-full px-3.5 py-3 text-sm focus:outline-none"
+                    style={{ background: NAVY, border: `1px solid ${BORDER}`, color: WHITE, borderRadius: '2px' }} />
+                </div>
+                <div>
+                  <label className="block text-xs mb-1.5" style={{ color: MUTED, letterSpacing: '.03em' }}>Email corporativo *</label>
+                  <input type="email" name="correo" required value={formData.correo} onChange={handleChange}
+                    className="w-full px-3.5 py-3 text-sm focus:outline-none"
+                    style={{ background: NAVY, border: `1px solid ${BORDER}`, color: WHITE, borderRadius: '2px' }} />
+                  {isFreeEmail && (
+                    <p className="text-xs mt-1.5" style={{ color: ICE }}>Por la naturaleza confidencial del diagnóstico, le recomendamos usar su correo corporativo.</p>
+                  )}
+                </div>
+
+                {status === 'error' && (
+                  <p className="text-xs text-center p-3" style={{ color: '#ef4444', background: '#ef444410', borderRadius: '2px' }}>
+                    Error: {errorMsg || 'Intente de nuevo o contacte directamente.'}
+                  </p>
+                )}
+
+                <button type="submit" disabled={status === 'loading'}
+                  className="w-full py-4 text-sm font-semibold flex items-center justify-center gap-2 transition-all hover:-translate-y-0.5 disabled:opacity-60"
+                  style={{ background: GOLD, color: NAVY, borderRadius: '2px' }}
+                >
+                  {status === 'loading' ? (
+                    <><Loader2 className="w-4 h-4 animate-spin" /> Enviando…</>
+                  ) : (
+                    <>Solicitar diagnóstico <ArrowRight className="w-4 h-4" /></>
+                  )}
+                </button>
+              </form>
+              <p className="text-xs text-center mt-4" style={{ color: MUTED }}>
+                Sin costo, sin compromiso de contratación. Se lo enviamos a su correo en menos de 60 segundos.
               </p>
-              <div className="grid sm:grid-cols-2 gap-3">
-                {[
-                  '+17 años de operación continua sin incidentes registrados.',
-                  'Certificación ISO 9001:2015 en gestión de calidad de seguridad.',
-                  'Proveedor de misiones diplomáticas y corporaciones de alto valor.',
-                  'Herramienta propia de análisis de riesgo con metodología FMEA en línea.',
-                ].map((c, i) => (
-                  <div key={i} className="flex items-start gap-2.5">
-                    <BadgeCheck className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
-                    <p className="text-sm text-gray-400">{c}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
+            </CornerFrame>
           </motion.div>
         </div>
       </section>
 
-      {/* ── SECCIÓN 6: TESTIMONIOS ── */}
-      <section className="relative z-10 py-20 px-4 sm:px-6 border-t border-white/5">
-        <div className="max-w-5xl mx-auto">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-            <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-center mb-3">
-              Lo que dicen quienes ya la aplicaron
-            </h2>
-            <p className="text-center text-gray-500 text-sm mb-12 max-w-xl mx-auto">
-              Por política de confidencialidad de seguridad, nuestros clientes y lectores se citan
-              por cargo y tipo de instalación, nunca por nombre. Esa discreción también le protegerá a usted.
-            </p>
-            <div className="grid md:grid-cols-3 gap-5">
-              {TESTIMONIALS.map((tst, i) => (
-                <div key={i} className="backdrop-blur-xl bg-white/5 border border-white/5 rounded-2xl p-6 flex flex-col">
-                  <div className="flex gap-0.5 mb-3">
-                    {[...Array(5)].map((_, j) => <Star key={j} className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />)}
-                  </div>
-                  <p className="font-black text-sm mb-3">"{tst.headline}"</p>
-                  <p className="text-xs text-gray-400 flex-1">{tst.body}</p>
-                  <div className="mt-4 pt-4 border-t border-white/5">
-                    <p className="text-xs font-bold text-gray-300">{tst.author}</p>
-                    <p className="text-[11px] text-gray-500">{tst.org}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div className="mt-8 text-center">
-              <button onClick={scrollToForm} className="inline-flex items-center gap-2 rounded-xl bg-sky-500 hover:bg-sky-400 px-6 py-3.5 font-black text-[#0B0B0F] transition-colors">
-                Quiero los mismos resultados <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-          </motion.div>
-        </div>
+      {/* ═══ 7. TESTIMONIO ═══ */}
+      <section className="relative px-6 py-20 overflow-hidden" style={{ background: SLATE, borderTop: `1px solid ${BORDER}` }}>
+        <div className="absolute inset-0" style={{ backgroundImage: GRID_BG }} />
+        <motion.div className="relative max-w-3xl mx-auto text-center" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
+          <blockquote style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(1.2rem, 2.6vw, 1.6rem)', lineHeight: 1.5 }}>
+            <span style={{ color: GOLD, fontSize: '3rem', lineHeight: 0, verticalAlign: '-0.4rem' }}>&ldquo;</span>
+            Por fin pude mostrarle a mi junta directiva un número, no una opinión. La matriz de riesgo bajo metodología ASIS cambió por completo la conversación con la directiva regional.
+          </blockquote>
+          <cite className="block mt-6 not-italic text-sm" style={{ color: ICE }}>
+            — Directora de Riesgo y Compliance, grupo financiero en Caracas
+            <span className="block text-xs mt-1" style={{ color: MUTED }}>(identidad reservada por protocolo de confidencialidad)</span>
+          </cite>
+        </motion.div>
       </section>
 
-      {/* ── SECCIÓN 7: CÓMO FUNCIONA ── */}
-      <section className="relative z-10 py-20 px-4 sm:px-6 border-t border-white/5">
-        <div className="max-w-4xl mx-auto">
+      {/* ═══ 8. FAQ ═══ */}
+      <section className="relative px-6" style={{ paddingTop: '96px', paddingBottom: '96px' }}>
+        <div className="max-w-3xl mx-auto relative">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-            <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-center mb-12">
-              Recíbela en tu email en menos de 60 segundos
+            <p className="uppercase font-semibold text-xs mb-3 text-center" style={{ color: ICE, letterSpacing: '.22em' }}>Preguntas frecuentes</p>
+            <h2 className="mb-12 text-center" style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(1.5rem, 3vw, 2rem)' }}>
+              Antes de solicitar su diagnóstico
             </h2>
-            <div className="grid sm:grid-cols-3 gap-6">
-              {[
-                { n: '01', t: 'Déjanos tus datos', d: 'Completa el formulario con el email donde realmente lees tus mensajes de trabajo.' },
-                { n: '02', t: 'Revisa tu bandeja', d: 'Recibirás un correo de CSSG con el acceso a la guía. Si no aparece, revisa spam o promociones.' },
-                { n: '03', t: 'Aplica la metodología', d: 'Usa el checklist y la matriz para evaluar su primera sede o auditar la existente.' },
-              ].map((s, i) => (
-                <div key={i} className="text-center">
-                  <div className="text-5xl font-black text-sky-500/20 mb-3" style={{ fontFamily: "'Playfair Display', serif" }}>{s.n}</div>
-                  <p className="font-black mb-2">{s.t}</p>
-                  <p className="text-sm text-gray-400">{s.d}</p>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ── SECCIÓN 8: FAQ ── */}
-      <section className="relative z-10 py-20 px-4 sm:px-6 border-t border-white/5">
-        <div className="max-w-3xl mx-auto">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-            <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-center mb-10">
-              Preguntas frecuentes
-            </h2>
-            <div className="space-y-3">
+            <div>
               {FAQS.map((f, i) => (
-                <div key={i} className="backdrop-blur-xl bg-white/5 border border-white/5 rounded-xl overflow-hidden">
+                <div key={i} style={{ borderBottom: `1px solid ${BORDER}` }}>
                   <button
                     onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                    className="w-full flex items-center justify-between gap-4 p-5 text-left"
+                    className="w-full flex items-center justify-between gap-4 py-5 text-left"
                   >
-                    <span className="font-bold text-sm sm:text-base">{f.q}</span>
-                    <ChevronDown className={`w-5 h-5 text-sky-400 shrink-0 transition-transform ${openFaq === i ? 'rotate-180' : ''}`} />
+                    <span className="font-semibold text-sm sm:text-base" style={{ color: WHITE }}>{f.q}</span>
+                    <ChevronDown className="w-4 h-4 shrink-0 transition-transform" style={{ color: GOLD, transform: openFaq === i ? 'rotate(180deg)' : 'none' }} />
                   </button>
                   {openFaq === i && (
-                    <div className="px-5 pb-5">
-                      <p className="text-sm text-gray-400">{f.a}</p>
-                    </div>
+                    <p className="text-sm pb-5" style={{ color: MUTED, maxWidth: '640px' }}>{f.a}</p>
                   )}
                 </div>
               ))}
@@ -580,51 +519,23 @@ export default function ConsultoriaRiesgos() {
         </div>
       </section>
 
-      {/* ── SECCIÓN 9: CTA FINAL ── */}
-      <section className="relative z-10 py-20 px-4 sm:px-6 border-t border-white/5 overflow-hidden">
-        <div className="absolute inset-0" style={{ backgroundImage: GRID_BG, opacity: 0.4 }} />
-        <div className="relative max-w-2xl mx-auto text-center">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-            <ShieldCheck className="w-8 h-8 mx-auto mb-4" style={{ color: GOLD }} />
-            <h2 className="tracking-tight mb-4" style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(1.6rem, 3.4vw, 2.4rem)' }}>
-              Su próximo informe de riesgo empieza con este email
-            </h2>
-            <p className="text-gray-400 mb-8">
-              Cada mes que gestiona seguridad sin un índice de riesgo cuantificado es una decisión
-              que no puede defender ante su directiva. Aplicar esta guía le toma menos de una tarde.
-            </p>
-            <div className="space-y-2.5 text-left max-w-sm mx-auto mb-8">
-              {[
-                'Checklist ISO 31000 para evaluación de riesgos de seguridad',
-                'Matriz de riesgos FMEA editable (bonus)',
-                'Metodología usada en auditorías corporativas reales',
-                '100% gratis, sin tarjeta de crédito',
-              ].map((b, i) => (
-                <div key={i} className="flex items-start gap-2.5">
-                  <Check className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
-                  <p className="text-sm text-gray-300">{b}</p>
-                </div>
-              ))}
-            </div>
-            <LeadForm
-              formId="form-final" status={status} errorMsg={errorMsg}
-              formData={formData} onChange={handleChange} onSubmit={handleSubmit}
-            />
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ── SECCIÓN 10: FOOTER MINIMALISTA ── */}
-      <footer className="relative z-10 border-t border-white/5 py-8 px-4 text-center">
-        <p className="text-xs text-gray-600">
-          © {year} Company Of Security And Service Global C.A. · RIF J-29782024-8 · ISO 9001:2015
+      {/* ═══ FOOTER ═══ */}
+      <footer className="py-9 px-6 text-center text-sm" style={{ background: SLATE, borderTop: `1px solid ${BORDER}`, color: MUTED }}>
+        <img src="/logo.webp" alt="CSSG" className="h-12 w-12 object-contain mx-auto mb-3" />
+        <div className="font-semibold mb-2" style={{ color: GOLD }}>CSSG GLOBAL</div>
+        <p>Seguridad Corporativa y Diplomática · Más de 17 años sirviendo sin incidentes</p>
+        <p className="mt-2 flex items-center justify-center gap-1.5">
+          <ShieldCheck className="w-3 h-3" /> Consultoría de riesgos · Auditoría de seguridad física · Metodología ISO 31000
         </p>
-        <p className="text-xs text-gray-600 mt-2">
-          <a href="/politica-privacidad" className="hover:text-gray-400 transition-colors">Política de privacidad</a>
+        <p className="mt-4 text-xs" style={{ color: `${MUTED}99` }}>
+          <Award className="inline w-3 h-3 mr-1 -mt-0.5" /> CSSG — Company Of Security And Service Global C.A. · RIF: J-29782024-8
+        </p>
+        <p className="mt-4 text-xs" style={{ color: `${MUTED}99` }}>
+          <a href="/politica-privacidad" className="hover:underline" style={{ color: ICE }}>Política de privacidad</a>
           <span className="mx-2">·</span>
-          <a href="/terminos-condiciones" className="hover:text-gray-400 transition-colors">Términos y condiciones</a>
+          <a href="/terminos-condiciones" className="hover:underline" style={{ color: ICE }}>Términos y condiciones</a>
           <span className="mx-2">·</span>
-          <a href="mailto:gerencia@globalservices-ven.com" className="hover:text-gray-400 transition-colors">gerencia@globalservices-ven.com</a>
+          <a href="mailto:gerencia@globalservices-ven.com" className="hover:underline" style={{ color: ICE }}>gerencia@globalservices-ven.com</a>
         </p>
       </footer>
 
