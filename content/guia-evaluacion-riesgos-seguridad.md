@@ -178,6 +178,6 @@ Ofrecemos una evaluación inicial sin costo ni compromiso, donde aplicamos esta 
 **Pie legal:**
 © 2026 Company Of Security And Service Global C.A. · RIF: J-29782024-8 · ISO 9001:2015
 Calle la Joya, Edif. Cosmos, Piso 8, Ofic. 8B, Chacao, Caracas, Venezuela
-operaciones@cssg-global.com · +58 424-178-2091 · cssg-global.com
+gerencia@globalservices-ven.com · +58 424-178-2091 · cssg-global.com
 
 *Este material es informativo y no constituye asesoría legal ni un dictamen de auditoría certificada. Verifique siempre la normativa vigente aplicable a su caso específico.*

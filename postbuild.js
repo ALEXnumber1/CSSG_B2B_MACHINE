@@ -712,6 +712,19 @@ const routes = [
     title: 'Guía en camino | CSSG Global',
     description: 'Confirmación de solicitud de la guía de evaluación de riesgos de seguridad — CSSG Global.',
     image: 'https://cssg-global.com/svc_auditoria.webp'
+  },
+  {
+    path: 'en/corporate-security-consulting',
+    title: 'Corporate Security Services & Security Consulting in Venezuela | CSSG',
+    description: 'Corporate security services, security consulting and private protection for multinational companies in Venezuela. Vet private security contractor companies with our ISO 31000 methodology. Request a confidential assessment — CSSG, 17+ years without incident.',
+    image: 'https://cssg-global.com/consulting_b2b.webp',
+    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Corporate Security Services & Security Consulting", "description": "Corporate security consulting and private security contractor due diligence for multinational companies operating in Venezuela, referenced to ISO 31000:2018 and ASIS ORM.1:2017.", "provider": { "@type": "Organization", "name": "CSSG — Company Of Security And Service Global", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" }, "inLanguage": "en" }
+  },
+  {
+    path: 'en/corporate-security-consulting/thank-you',
+    title: 'Request received | CSSG Global',
+    description: 'Confirmation of your Corporate Security Assessment request — CSSG Global.',
+    image: 'https://cssg-global.com/consulting_b2b.webp'
   }
 ];
 

@@ -118,6 +118,13 @@ export const SEQUENCES: Record<string, Sequence> = {
       { day: 0, templateKey: 'consultoria_riesgos_guia_1', scoreBonus: 0 },
     ],
   },
+  corporate_security_en: {
+    id: 'corporate_security_en',
+    name: 'Corporate Security EN sequence (confidential assessment request)',
+    emails: [
+      { day: 0, templateKey: 'corporate_security_en_1', scoreBonus: 0 },
+    ],
+  },
 
   // ─── Secuencias OUTBOUND (leads scrapeados, no inbound) ───────────────
   // Arco: miedo → dolor → prueba social → CTA bajo fricción → urgencia pérdida → ask directo (BP1)

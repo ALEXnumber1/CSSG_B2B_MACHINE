@@ -69,12 +69,14 @@ const EmpresaSeguridad = lazy(() => import('./pages/landing/EmpresaSeguridad'))
 const EmpresaSeguridadGracias = lazy(() => import('./pages/landing/EmpresaSeguridadGracias'))
 const ConsultoriaRiesgos = lazy(() => import('./pages/landing/ConsultoriaRiesgos'))
 const ConsultoriaRiesgosGracias = lazy(() => import('./pages/landing/ConsultoriaRiesgosGracias'))
+const CorporateSecurity = lazy(() => import('./pages/landing/CorporateSecurity'))
+const CorporateSecurityThankYou = lazy(() => import('./pages/landing/CorporateSecurityThankYou'))
 
 function AppContent() {
   const { t, i18n } = useTranslation();
   const year = new Date().getFullYear();
   const location = useLocation();
-  const isStandaloneLanding = location.pathname === '/consultoria/escudo-diplomatico' || location.pathname.startsWith('/esrm-readiness') || location.pathname.startsWith('/empresa-de-seguridad') || location.pathname.startsWith('/consultoria-y-analisis-de-riesgos');
+  const isStandaloneLanding = location.pathname === '/consultoria/escudo-diplomatico' || location.pathname.startsWith('/esrm-readiness') || location.pathname.startsWith('/empresa-de-seguridad') || location.pathname.startsWith('/consultoria-y-analisis-de-riesgos') || location.pathname.startsWith('/en/corporate-security-consulting');
 
   if (isStandaloneLanding) {
     return (
@@ -89,6 +91,8 @@ function AppContent() {
             <Route path="/empresa-de-seguridad/gracias" element={<EmpresaSeguridadGracias />} />
             <Route path="/consultoria-y-analisis-de-riesgos" element={<ConsultoriaRiesgos />} />
             <Route path="/consultoria-y-analisis-de-riesgos/gracias" element={<ConsultoriaRiesgosGracias />} />
+            <Route path="/en/corporate-security-consulting" element={<CorporateSecurity />} />
+            <Route path="/en/corporate-security-consulting/thank-you" element={<CorporateSecurityThankYou />} />
           </Routes>
         </Suspense>
       </>

@@ -410,6 +410,35 @@ const templates: Record<string, { subject: string | ((nombre: string, empresa?: 
       </div>
     `),
   },
+
+  corporate_security_en: {
+    subject: (nombre) => `${nombre}, your Corporate Security Assessment request was received`,
+    html: (nombre, empresa) => baseTemplate(`
+      <h2 style="color:#0F172A;font-size:24px;margin:0 0 16px;font-weight:700;">Dear ${nombre},</h2>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Thank you for requesting a confidential corporate security assessment${empresa ? ` for <strong style="color:#0284C7;">${empresa}</strong>` : ''}. A senior consultant from our Corporate Security Division has been notified and will contact you within 12 business hours.
+      </p>
+
+      <div style="background-color:#F1F5F9;border:1px solid #E2E8F0;border-radius:12px;padding:24px;margin:24px 0;">
+        <p style="color:#1E293B;font-size:16px;margin:0 0 12px;font-weight:700;">What we will review with you</p>
+        <ul style="color:#334155;font-size:14px;line-height:1.8;margin:0;padding-left:20px;">
+          <li><strong>Legal & financial standing</strong> — your current or prospective contractor's licensing, insurance and labor compliance.</li>
+          <li><strong>Contract & service-level terms</strong> — KPIs, billing transparency and exit clauses that can actually be enforced.</li>
+          <li><strong>On-site operational criteria</strong> — perimeter, access control, staff rotation and documented protocols.</li>
+        </ul>
+      </div>
+
+      <p style="color:#1E293B;font-size:15px;line-height:1.7;margin:0 0 24px;font-weight:600;">
+        This is a no-cost, no-obligation conversation. If you already have a contractor in place, we typically start by auditing that relationship before discussing anything else.
+      </p>
+
+      <div style="text-align:center;margin:32px 0 16px;">
+        <a href="https://cssg-global.com/en/technology" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;box-shadow:0 4px 14px 0 rgba(2, 132, 199, 0.4);">
+          Explore our services
+        </a>
+      </div>
+    `),
+  },
 };
 
 // ═══════════ FUNCIÓN DE ENVÍO ORIGINAL ═══════════
@@ -739,6 +768,9 @@ const sequenceTemplates: Record<string, { subject: string | ((nombre: string, em
 
   // ── CONSULTORÍA Y ANÁLISIS DE RIESGOS (lead magnet guía ISO 31000 + matriz FMEA): 1 email ──
   consultoria_riesgos_guia_1: templates.consultoria_riesgos_guia,
+
+  // ── CORPORATE SECURITY EN (lead magnet due diligence checklist): 1 email ──
+  corporate_security_en_1: templates.corporate_security_en,
 
   // ════════════════════════════════════════════════════════════════════════
   // SECUENCIAS OUTBOUND — Leads scrapeados (frío)
