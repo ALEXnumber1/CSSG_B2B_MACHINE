@@ -699,6 +699,19 @@ const routes = [
     title: 'Guía en camino | CSSG Global',
     description: 'Confirmación de solicitud de la guía de contratación de seguridad privada — CSSG Global.',
     image: 'https://cssg-global.com/ana-hero-premium.webp'
+  },
+  {
+    path: 'consultoria-y-analisis-de-riesgos',
+    title: 'Evaluación de Riesgos de Seguridad y Consultoría de Seguridad | Guía ISO 31000 Gratis | CSSG',
+    description: 'Descarga gratis la guía de evaluación y análisis de riesgos de seguridad: checklist ISO 31000, diagnóstico de seguridad, auditoría de seguridad física y matriz de gestión de riesgos FMEA. Por CSSG, +17 años sin incidentes.',
+    image: 'https://cssg-global.com/svc_auditoria.webp',
+    jsonld: { "@context": "https://schema.org", "@type": "Product", "name": "Guía: Evaluación de Riesgos de Seguridad", "description": "Checklist ISO 31000 y matriz de riesgos FMEA para evaluar y auditar el riesgo de seguridad de una organización.", "brand": { "@type": "Organization", "name": "CSSG — Company Of Security And Service Global", "url": "https://cssg-global.com" }, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" } }
+  },
+  {
+    path: 'consultoria-y-analisis-de-riesgos/gracias',
+    title: 'Guía en camino | CSSG Global',
+    description: 'Confirmación de solicitud de la guía de evaluación de riesgos de seguridad — CSSG Global.',
+    image: 'https://cssg-global.com/svc_auditoria.webp'
   }
 ];
 

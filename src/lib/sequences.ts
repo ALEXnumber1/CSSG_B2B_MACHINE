@@ -111,6 +111,13 @@ export const SEQUENCES: Record<string, Sequence> = {
       { day: 0, templateKey: 'empresa_seguridad_1', scoreBonus: 0 },
     ],
   },
+  consultoria_riesgos_guia: {
+    id: 'consultoria_riesgos_guia',
+    name: 'Secuencia Consultoría y Análisis de Riesgos (lead magnet guía ISO 31000)',
+    emails: [
+      { day: 0, templateKey: 'consultoria_riesgos_guia_1', scoreBonus: 0 },
+    ],
+  },
 
   // ─── Secuencias OUTBOUND (leads scrapeados, no inbound) ───────────────
   // Arco: miedo → dolor → prueba social → CTA bajo fricción → urgencia pérdida → ask directo (BP1)

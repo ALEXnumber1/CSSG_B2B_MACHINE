@@ -362,6 +362,54 @@ const templates: Record<string, { subject: string | ((nombre: string, empresa?: 
       </div>
     `),
   },
+
+  consultoria_riesgos_guia: {
+    subject: (nombre) => `${nombre}, aquí tiene su guía: Evaluación de Riesgos de Seguridad (ISO 31000)`,
+    html: (nombre, empresa) => baseTemplate(`
+      <h2 style="color:#0F172A;font-size:24px;margin:0 0 16px;font-weight:700;">Estimado/a ${nombre},</h2>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Gracias por descargar la guía <strong>«Evaluación de Riesgos de Seguridad»</strong>${empresa ? ` para <strong style="color:#0284C7;">${empresa}</strong>` : ''}. Su checklist ISO 31000 y la matriz de riesgos FMEA están listos en el siguiente enlace.
+      </p>
+
+      <div style="text-align:center;margin:24px 0;">
+        <a href="https://cssg-global.com/CSSG_Guia_Evaluacion_Riesgos_Seguridad.pdf" style="display:inline-block;background-color:#10B981;color:#0B0B0F;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;box-shadow:0 4px 14px 0 rgba(16, 185, 129, 0.4);">
+          Descargar guía en PDF
+        </a>
+      </div>
+
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        A continuación tiene también el resumen de la metodología en este correo, por si prefiere revisarla aquí mismo.
+      </p>
+
+      <div style="background-color:#F1F5F9;border:1px solid #E2E8F0;border-radius:12px;padding:24px;margin:24px 0;">
+        <p style="color:#1E293B;font-size:16px;margin:0 0 12px;font-weight:700;">Bloque 1 · Mapeo de activos y vectores de amenaza</p>
+        <ul style="color:#334155;font-size:14px;line-height:1.8;margin:0 0 20px;padding-left:20px;">
+          <li>Evalúe los 4 pilares: Perímetro Físico, Control de Accesos, Procedimientos Operativos e Inteligencia de Amenazas.</li>
+          <li>Identifique sus activos críticos antes de asignar recursos de seguridad — no reparta presupuesto por igual sin criterio.</li>
+        </ul>
+        <p style="color:#1E293B;font-size:16px;margin:0 0 12px;font-weight:700;">Bloque 2 · Fórmula FMEA para el Índice de Riesgo</p>
+        <ul style="color:#334155;font-size:14px;line-height:1.8;margin:0 0 20px;padding-left:20px;">
+          <li>Aplique <strong>(Probabilidad × 0.4) + (Impacto × 0.6)</strong> por cada vulnerabilidad identificada.</li>
+          <li>Consolide los resultados en un Índice de Riesgo comparable entre sedes, referenciado a ISO 31000:2018 y ASIS ORM.1:2017.</li>
+        </ul>
+        <p style="color:#1E293B;font-size:16px;margin:0 0 12px;font-weight:700;">Bloque 3 · Auditoría de seguridad física (CPTED)</p>
+        <ul style="color:#334155;font-size:14px;line-height:1.8;margin:0;padding-left:20px;">
+          <li>Revise perímetro, iluminación, control de accesos y flujo de personas en sitio.</li>
+          <li>Documente cada hallazgo con evidencia fotográfica para su informe ejecutivo.</li>
+        </ul>
+      </div>
+
+      <p style="color:#1E293B;font-size:15px;line-height:1.7;margin:0 0 24px;font-weight:600;">
+        BONUS: si necesita la plantilla de matriz de riesgos en formato editable, responda a este correo y se la enviamos de inmediato.
+      </p>
+
+      <div style="text-align:center;margin:32px 0 16px;">
+        <a href="https://cssg-global.com/analisis-riesgo" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;box-shadow:0 4px 14px 0 rgba(2, 132, 199, 0.4);">
+          Obtener mi Índice de Riesgo preliminar gratis
+        </a>
+      </div>
+    `),
+  },
 };
 
 // ═══════════ FUNCIÓN DE ENVÍO ORIGINAL ═══════════
@@ -688,6 +736,9 @@ const sequenceTemplates: Record<string, { subject: string | ((nombre: string, em
 
   // ── EMPRESA DE SEGURIDAD (lead magnet checklist 21 puntos): 1 email ──
   empresa_seguridad_1: templates.empresa_seguridad,
+
+  // ── CONSULTORÍA Y ANÁLISIS DE RIESGOS (lead magnet guía ISO 31000 + matriz FMEA): 1 email ──
+  consultoria_riesgos_guia_1: templates.consultoria_riesgos_guia,
 
   // ════════════════════════════════════════════════════════════════════════
   // SECUENCIAS OUTBOUND — Leads scrapeados (frío)

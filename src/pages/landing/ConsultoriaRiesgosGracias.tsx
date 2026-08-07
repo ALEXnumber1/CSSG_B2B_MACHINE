@@ -5,10 +5,9 @@ import type { Variants } from 'framer-motion';
 import { Check, ArrowRight, Lock, Mail, ShieldCheck, Download } from 'lucide-react';
 import CookieConsent from '../../components/CookieConsent';
 
-const PDF_URL = '/CSSG_Guia_Contratar_Seguridad_Privada.pdf';
-
 const GOLD = '#EAB308';
 const BORDER = 'rgba(255,255,255,0.08)';
+const PDF_URL = '/CSSG_Guia_Evaluacion_Riesgos_Seguridad.pdf';
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 20 },
@@ -21,14 +20,14 @@ interface LocationState {
   duplicate?: boolean;
 }
 
-export default function EmpresaSeguridadGracias() {
+export default function ConsultoriaRiesgosGracias() {
   const location = useLocation();
   const navigate = useNavigate();
   const state = (location.state || {}) as LocationState;
 
   useEffect(() => {
     if (!state.correo) {
-      navigate('/empresa-de-seguridad', { replace: true });
+      navigate('/consultoria-y-analisis-de-riesgos', { replace: true });
       return;
     }
     document.title = state.duplicate ? 'Ya tenemos tus datos | CSSG Global' : 'Guía en camino | CSSG Global';
@@ -76,8 +75,8 @@ export default function EmpresaSeguridadGracias() {
 
           <p className="text-gray-400">
             {state.duplicate
-              ? <>Ya contamos con tu información en nuestro sistema. Te reenviamos la guía «Cómo contratar seguridad privada sin sobrecostos» a <b className="text-white">{state.correo}</b> en los próximos minutos.</>
-              : <>Te enviamos el checklist de 21 puntos y la plantilla comparativa a <b className="text-white">{state.correo}</b>. Si no aparece en unos minutos, verifica spam o promociones.</>}
+              ? <>Ya contamos con tu información en nuestro sistema. Te reenviamos la guía «Evaluación de Riesgos de Seguridad» a <b className="text-white">{state.correo}</b> en los próximos minutos.</>
+              : <>Te enviamos el checklist ISO 31000 y la matriz de riesgos FMEA a <b className="text-white">{state.correo}</b>. Si no aparece en unos minutos, verifica spam o promociones.</>}
           </p>
 
           <a
@@ -93,11 +92,11 @@ export default function EmpresaSeguridadGracias() {
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
                 <Mail className="w-4 h-4 shrink-0 mt-0.5 text-sky-400" />
-                <span className="text-sm text-gray-400">Guarda el remitente <b className="text-gray-300">gerencia@globalservices-ven.com</b> para no perderte el resto de la serie con criterios de contratación.</span>
+                <span className="text-sm text-gray-400">Guarda el remitente <b className="text-gray-300">gerencia@globalservices-ven.com</b> para no perderte el resto de la serie con criterios de auditoría.</span>
               </li>
               <li className="flex items-start gap-3">
                 <ShieldCheck className="w-4 h-4 shrink-0 mt-0.5" style={{ color: GOLD }} />
-                <span className="text-sm text-gray-400">Si ya tienes un proveedor contratado, aplica primero los puntos 15 al 21: es una auditoría exprés de tu operación actual.</span>
+                <span className="text-sm text-gray-400">¿Quieres un índice preliminar automatizado en minutos? Prueba también nuestra <a href="/analisis-riesgo" className="text-sky-400 hover:underline">herramienta de análisis de riesgo online</a>.</span>
               </li>
               <li className="flex items-start gap-3">
                 <Lock className="w-4 h-4 shrink-0 mt-0.5 text-sky-400" />
