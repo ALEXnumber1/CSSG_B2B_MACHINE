@@ -12,10 +12,11 @@ import CookieConsent from '../../components/CookieConsent';
 
 // ─────────────────────────────────────────────────────────────
 // LP3 — CORPORATE SECURITY & SECURITY CONSULTING (EN)
-// v2 — "The Distinction": credential-led, scarcity-driven design on
-// CSSG's actual brand tokens (#0B0B0F, sky-500 electric blue, gold
-// reserved for exclusivity accents) — deliberately distinct from the
-// navy/gold editorial dossier used on the other landings.
+// v3 — "The Distinction", editorial: full-bleed photography with a
+// dark wash, Playfair Display serif headlines, palette reduced to
+// black / white / a single muted gold accent (no blue). Distinct
+// from the other landings through content (credentials, comparison,
+// scarcity) rather than a competing accent color.
 // Service-presentation page, no downloadable lead magnet — captures
 // the lead directly into a consultative email sequence.
 // Primary persona: Julio ("El Estratega"); secondary resonance with
@@ -27,12 +28,14 @@ import CookieConsent from '../../components/CookieConsent';
 
 const BG = '#0B0B0F';
 const CARD = 'rgba(255,255,255,0.04)';
-const BORDER = 'rgba(255,255,255,0.08)';
-const BLUE = '#0EA5E9';
-const ACCENT = '#8FAFC7'; // sober, desaturated reading of the brand blue — reserved for headline text
-const GOLD = '#EAB308';
-const HEAD_FONT = "'Space Grotesk', 'Inter', sans-serif";
-const BG_IMAGE = "url('/consulting_b2b.webp')";
+const BORDER = 'rgba(255,255,255,0.09)';
+const GOLD = '#C9A24B';
+const GOLD_H = '#DDB65F';
+const MUTED = '#9CA3AF';
+
+const SERIF = "'Playfair Display', serif";
+
+const GRID_BG = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cpath d='M64 0H0V64' fill='none' stroke='%23C9A24B' stroke-opacity='0.05' stroke-width='1'/%3E%3C/svg%3E")`;
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 26 },
@@ -240,88 +243,85 @@ export default function CorporateSecurity() {
   return (
     <div className="min-h-screen text-white overflow-x-hidden" style={{ background: BG, fontFamily: "'Inter', sans-serif" }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
       `}</style>
-
-      {/* watermark background — faint, desaturated, corporate photo texture */}
-      <div className="fixed inset-0 pointer-events-none -z-0" style={{
-        backgroundImage: BG_IMAGE, backgroundSize: 'cover', backgroundPosition: 'center 30%',
-        filter: 'grayscale(1) brightness(0.5)', opacity: 0.1,
-      }} />
-      <div className="fixed inset-0 pointer-events-none -z-0" style={{ background: `linear-gradient(180deg, ${BG}CC 0%, ${BG}F2 40%, ${BG} 75%)` }} />
-
-      {/* ambient glow */}
-      <div className="fixed inset-0 pointer-events-none -z-0">
-        <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-sky-900/15 rounded-full blur-[130px] opacity-50" />
-        <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-yellow-900/10 rounded-full blur-[140px] opacity-25" />
-      </div>
 
       {/* ═══ MINI NAV ═══ */}
       <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-5 sm:px-8 py-3.5" style={{ background: 'rgba(11,11,15,0.85)', backdropFilter: 'blur(12px)', borderBottom: `1px solid ${BORDER}` }}>
         <div className="flex items-center gap-2.5">
           <img src="/logo.webp" alt="CSSG" className="h-8 w-8 object-contain" />
-          <span className="font-black tracking-widest text-sm text-white">
+          <span className="font-semibold tracking-widest text-sm text-white">
             CSSG <span style={{ color: GOLD }}>GLOBAL</span>
           </span>
         </div>
-        <button onClick={scrollToForm} className="hidden sm:inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-widest px-4 py-2.5 rounded-lg transition-colors" style={{ background: BLUE, color: BG }}>
-          Request assessment <ArrowRight className="w-3.5 h-3.5" />
+        <button onClick={scrollToForm} className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest px-5 py-2.5 transition-all hover:-translate-y-0.5" style={{ background: GOLD, color: BG, borderRadius: '2px' }}>
+          Request assessment
         </button>
       </header>
 
-      {/* ═══ 1. HERO — split, credential-led ═══ */}
-      <section className="relative pt-32 pb-20 px-4 sm:px-6 overflow-hidden">
-        <div className="relative max-w-6xl mx-auto grid lg:grid-cols-[1.1fr_0.9fr] gap-14 items-center">
-          <motion.div initial="hidden" animate="visible" variants={fadeUp}>
-            <span className="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-black uppercase tracking-widest mb-6" style={{ borderColor: `${GOLD}55`, background: `${GOLD}12`, color: GOLD }}>
-              <Award className="w-3.5 h-3.5" /> One of the few ISO 9001-certified security firms in Venezuela
-            </span>
-            <h1 className="font-semibold tracking-tight leading-[1.1] mb-6" style={{ fontSize: 'clamp(2.1rem, 4.4vw, 3.4rem)', fontFamily: HEAD_FONT }}>
-              Most private security companies sell guards.
-              <span className="block mt-1 text-white">CSSG sells a scheme you can <span style={{ color: ACCENT }}>defend</span>.</span>
-            </h1>
-            <p className="text-gray-400 text-lg max-w-xl mb-8">
-              Corporate security services and security consulting for multinational organizations operating
-              in Venezuela — built on certification, documented procedure and a methodology your board can
-              actually audit.
-            </p>
-            <div className="flex flex-wrap items-center gap-4">
-              <button onClick={scrollToForm} className="inline-flex items-center gap-2 rounded-xl px-7 py-4 font-black text-base transition-all hover:-translate-y-0.5" style={{ background: BLUE, color: BG }}>
-                Request a confidential assessment <ArrowRight className="w-4 h-4" />
-              </button>
-              <p className="text-xs uppercase tracking-widest text-gray-500 font-bold">No obligation · Confidential</p>
-            </div>
-          </motion.div>
+      {/* ═══ 1. HERO — full-bleed photography, dark wash ═══ */}
+      <header className="relative min-h-[94vh] flex flex-col justify-center px-6 pt-24 overflow-hidden">
+        <div className="absolute inset-0" style={{
+          backgroundImage: "url('/consulting_b2b.webp')",
+          backgroundSize: 'cover', backgroundPosition: 'center 30%', filter: 'saturate(0.7)', transform: 'scale(1.03)',
+        }} />
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(100deg, rgba(11,11,15,.97) 0%, rgba(11,11,15,.93) 45%, rgba(11,11,15,.55) 100%)' }} />
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(11,11,15,.5) 0%, transparent 35%, rgba(11,11,15,.9) 100%)' }} />
+        <div className="absolute inset-0" style={{ backgroundImage: GRID_BG, opacity: 0.6 }} />
 
-          <motion.div initial="hidden" animate="visible" variants={fadeUp} transition={{ delay: 0.15 }} className="relative">
-            <div className="backdrop-blur-xl rounded-2xl p-7 sm:p-8" style={{ background: CARD, border: `1px solid ${BORDER}` }}>
-              <p className="text-xs font-black uppercase tracking-widest mb-6" style={{ color: GOLD }}>Verified credentials</p>
-              <div className="space-y-5">
-                {credentials.map((c) => (
-                  <div key={c.title} className="flex items-center gap-4">
-                    <img src={c.src} alt={c.title} className="h-12 w-12 object-contain shrink-0" loading="lazy" />
-                    <div>
-                      <p className="font-black text-sm text-white">{c.title} <span className="text-gray-500 font-medium">· {c.sub}</span></p>
-                      <p className="text-xs text-gray-500">{c.note}</p>
-                    </div>
-                  </div>
-                ))}
+        <motion.div className="relative max-w-3xl mx-auto w-full" initial="hidden" animate="visible" variants={fadeUp}>
+          <div className="flex items-center gap-3 mb-6">
+            <Award className="w-4 h-4" style={{ color: GOLD }} />
+            <p className="uppercase font-semibold text-xs" style={{ color: GOLD, letterSpacing: '.2em' }}>
+              One of the few ISO 9001-certified security firms in Venezuela
+            </p>
+          </div>
+          <h1 className="mb-6" style={{ fontFamily: SERIF, fontWeight: 600, fontSize: 'clamp(2.1rem, 4.6vw, 3.5rem)', lineHeight: 1.18, textShadow: '0 2px 30px rgba(0,0,0,.5)' }}>
+            Most private security companies sell guards.
+            <br />CSSG sells a scheme you can defend.
+          </h1>
+          <p className="mb-8 text-gray-300" style={{ fontSize: '1.1rem', maxWidth: '620px' }}>
+            Corporate security services and security consulting for multinational organizations operating
+            in Venezuela — built on certification, documented procedure and a methodology your board can
+            actually audit.
+          </p>
+          <div className="flex flex-wrap items-center gap-5">
+            <button onClick={scrollToForm}
+              className="inline-flex items-center font-semibold px-8 py-4 text-base transition-all hover:-translate-y-0.5"
+              style={{ background: GOLD, color: BG, borderRadius: '2px' }}
+              onMouseEnter={(e) => (e.currentTarget.style.background = GOLD_H)}
+              onMouseLeave={(e) => (e.currentTarget.style.background = GOLD)}
+            >
+              Request a confidential assessment <ArrowRight className="w-4 h-4 ml-2" />
+            </button>
+            <p className="text-xs uppercase tracking-widest text-gray-400 font-semibold">No obligation · Confidential</p>
+          </div>
+        </motion.div>
+      </header>
+
+      {/* ═══ 2. CREDENTIALS ═══ */}
+      <section className="relative py-16 px-6 overflow-hidden" style={{ borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}` }}>
+        <div className="absolute inset-0" style={{ backgroundImage: GRID_BG }} />
+        <div className="relative max-w-5xl mx-auto">
+          <p className="text-center text-xs uppercase font-semibold mb-10" style={{ color: MUTED, letterSpacing: '.18em' }}>Verified credentials — not self-declared</p>
+          <div className="grid sm:grid-cols-3 gap-8">
+            {credentials.map((c) => (
+              <div key={c.title} className="text-center">
+                <img src={c.src} alt={c.title} className="h-16 w-16 object-contain mx-auto mb-4" loading="lazy" />
+                <p className="font-semibold text-sm text-white">{c.title} <span className="text-gray-500 font-normal">· {c.sub}</span></p>
+                <p className="text-xs text-gray-500 mt-1 max-w-[26ch] mx-auto">{c.note}</p>
               </div>
-              <div className="mt-6 pt-6 flex items-center justify-between" style={{ borderTop: `1px solid ${BORDER}` }}>
-                <span className="text-xs text-gray-500 font-bold uppercase tracking-widest">G7 diplomatic standard</span>
-                <ShieldCheck className="w-5 h-5" style={{ color: BLUE }} />
-              </div>
-            </div>
-          </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* ═══ 2. STAT BAR ═══ */}
-      <section className="relative border-y py-14 px-4 sm:px-6" style={{ borderColor: BORDER, background: 'rgba(255,255,255,0.02)' }}>
+      {/* ═══ 3. STAT BAR ═══ */}
+      <section className="relative py-14 px-4 sm:px-6" style={{ background: 'rgba(255,255,255,0.02)', borderBottom: `1px solid ${BORDER}` }}>
         <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((s) => (
             <motion.div key={s.label} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="text-center">
-              <p className="font-semibold tabular-nums" style={{ fontSize: 'clamp(1.8rem, 3.2vw, 2.6rem)', color: ACCENT, fontFamily: HEAD_FONT }}>
+              <p className="tabular-nums" style={{ fontFamily: SERIF, fontWeight: 600, fontSize: 'clamp(1.8rem, 3.2vw, 2.5rem)', color: GOLD }}>
                 <Counter to={s.to} suffix={s.suffix} />
               </p>
               <p className="text-xs text-gray-500 mt-2 max-w-[16ch] mx-auto leading-snug">{s.label}</p>
@@ -330,29 +330,29 @@ export default function CorporateSecurity() {
         </div>
       </section>
 
-      {/* ═══ 3. THE DIFFERENCE — comparison ═══ */}
+      {/* ═══ 4. THE DIFFERENCE — comparison ═══ */}
       <section className="relative py-24 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="text-center mb-14">
-            <p className="text-xs font-black uppercase tracking-widest mb-3" style={{ color: ACCENT }}>The difference</p>
-            <h2 className="font-semibold tracking-tight" style={{ fontSize: 'clamp(1.7rem, 3.2vw, 2.4rem)', fontFamily: HEAD_FONT }}>
+            <p className="text-xs uppercase font-semibold mb-3" style={{ color: GOLD, letterSpacing: '.18em' }}>The difference</p>
+            <h2 style={{ fontFamily: SERIF, fontWeight: 600, fontSize: 'clamp(1.7rem, 3.2vw, 2.3rem)' }}>
               What separates a certified security partner from the rest of the market.
             </h2>
           </motion.div>
-          <div className="rounded-2xl overflow-hidden" style={{ border: `1px solid ${BORDER}` }}>
+          <div className="overflow-hidden" style={{ border: `1px solid ${BORDER}` }}>
             <div className="grid grid-cols-2">
-              <div className="p-5 text-center font-black text-xs uppercase tracking-widest text-gray-500" style={{ borderBottom: `1px solid ${BORDER}`, borderRight: `1px solid ${BORDER}` }}>Typical providers</div>
-              <div className="p-5 text-center font-black text-xs uppercase tracking-widest" style={{ borderBottom: `1px solid ${BORDER}`, color: BLUE, background: `${BLUE}0d` }}>CSSG</div>
+              <div className="p-5 text-center font-semibold text-xs uppercase tracking-widest text-gray-500" style={{ borderBottom: `1px solid ${BORDER}`, borderRight: `1px solid ${BORDER}` }}>Typical providers</div>
+              <div className="p-5 text-center font-semibold text-xs uppercase tracking-widest" style={{ borderBottom: `1px solid ${BORDER}`, color: GOLD, background: `${GOLD}0d` }}>CSSG</div>
             </div>
             {comparison.map((row, i) => (
               <motion.div key={i} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ delay: i * 0.05 }} className="grid grid-cols-2">
                 <div className="p-5 flex items-start gap-3" style={{ borderBottom: i < comparison.length - 1 ? `1px solid ${BORDER}` : 'none', borderRight: `1px solid ${BORDER}` }}>
-                  <XIcon className="w-4 h-4 text-red-400/70 shrink-0 mt-0.5" />
+                  <XIcon className="w-4 h-4 text-gray-600 shrink-0 mt-0.5" />
                   <span className="text-sm text-gray-400">{row.them}</span>
                 </div>
-                <div className="p-5 flex items-start gap-3" style={{ borderBottom: i < comparison.length - 1 ? `1px solid ${BORDER}` : 'none', background: `${BLUE}08` }}>
-                  <Check className="w-4 h-4 shrink-0 mt-0.5" style={{ color: BLUE }} />
-                  <span className="text-sm text-white font-medium">{row.us}</span>
+                <div className="p-5 flex items-start gap-3" style={{ borderBottom: i < comparison.length - 1 ? `1px solid ${BORDER}` : 'none', background: `${GOLD}08` }}>
+                  <Check className="w-4 h-4 shrink-0 mt-0.5" style={{ color: GOLD }} />
+                  <span className="text-sm text-white">{row.us}</span>
                 </div>
               </motion.div>
             ))}
@@ -360,23 +360,21 @@ export default function CorporateSecurity() {
         </div>
       </section>
 
-      {/* ═══ 4. OUR SERVICE ═══ */}
+      {/* ═══ 5. OUR SERVICE ═══ */}
       <section className="relative py-24 px-4 sm:px-6" style={{ background: 'rgba(255,255,255,0.02)', borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}` }}>
         <div className="max-w-5xl mx-auto">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="text-center mb-14">
-            <p className="text-xs font-black uppercase tracking-widest mb-3" style={{ color: ACCENT }}>Our service</p>
-            <h2 className="font-semibold tracking-tight" style={{ fontSize: 'clamp(1.7rem, 3.2vw, 2.4rem)', fontFamily: HEAD_FONT }}>
+            <p className="text-xs uppercase font-semibold mb-3" style={{ color: GOLD, letterSpacing: '.18em' }}>Our service</p>
+            <h2 style={{ fontFamily: SERIF, fontWeight: 600, fontSize: 'clamp(1.7rem, 3.2vw, 2.3rem)' }}>
               A structured, auditable corporate security consulting engagement.
             </h2>
           </motion.div>
           <div className="grid md:grid-cols-3 gap-5">
             {services.map((s, i) => (
               <motion.div key={s.title} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} transition={{ delay: i * 0.08 }}
-                className="rounded-2xl p-6" style={{ background: CARD, border: `1px solid ${BORDER}` }}>
-                <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style={{ background: `${BLUE}15` }}>
-                  <s.icon className="w-5 h-5" style={{ color: BLUE }} />
-                </div>
-                <h3 className="font-black text-base mb-2 text-white">{s.title}</h3>
+                className="p-6" style={{ background: CARD, border: `1px solid ${BORDER}` }}>
+                <s.icon className="w-6 h-6 mb-4" style={{ color: GOLD }} />
+                <h3 className="font-semibold text-base mb-2 text-white">{s.title}</h3>
                 <p className="text-sm text-gray-400">{s.body}</p>
               </motion.div>
             ))}
@@ -384,59 +382,63 @@ export default function CorporateSecurity() {
         </div>
       </section>
 
-      {/* ═══ 5. CTA + FORM ═══ */}
+      {/* ═══ 6. CTA + FORM ═══ */}
       <section className="relative py-24 px-4 sm:px-6 overflow-hidden" id="assessment">
-        <div className="max-w-lg mx-auto relative">
+        <div className="absolute inset-0" style={{ backgroundImage: GRID_BG, opacity: 0.5 }} />
+        <div className="relative max-w-lg mx-auto">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-            <div className="rounded-2xl p-8 sm:p-10" style={{ background: CARD, border: `1px solid ${BLUE}44`, boxShadow: `0 0 60px ${BLUE}15` }}>
-              <span className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-widest mb-5" style={{ background: `${GOLD}15`, color: GOLD }}>
+            <div className="p-8 sm:p-10" style={{ background: CARD, border: `1px solid ${GOLD}55` }}>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 text-[10px] font-semibold uppercase tracking-widest mb-5" style={{ border: `1px solid ${GOLD}66`, color: GOLD }}>
                 <Award className="w-3 h-3" /> Limited corporate accounts
               </span>
-              <h2 className="font-semibold text-xl mb-2 text-white" style={{ fontFamily: HEAD_FONT }}>Request a confidential assessment</h2>
+              <h2 className="mb-2 text-white" style={{ fontFamily: SERIF, fontWeight: 600, fontSize: '1.5rem' }}>Request a confidential assessment</h2>
               <p className="text-sm text-gray-400 mb-7">
                 A senior consultant reviews your current security scheme or contractor and responds within 12 business hours.
               </p>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <input
                   type="text" name="nombre" required placeholder="Full name *" value={formData.nombre} onChange={handleChange}
-                  className="w-full bg-[#0B0B0F] border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-gray-500 focus:outline-none focus:border-sky-500 transition-colors"
+                  className="w-full px-4 py-3.5 text-sm text-white placeholder-gray-500 focus:outline-none transition-colors"
+                  style={{ background: BG, border: `1px solid ${BORDER}` }}
                 />
                 <input
                   type="text" name="cargo" placeholder="Position (optional)" value={formData.cargo} onChange={handleChange}
-                  className="w-full bg-[#0B0B0F] border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-gray-500 focus:outline-none focus:border-sky-500 transition-colors"
+                  className="w-full px-4 py-3.5 text-sm text-white placeholder-gray-500 focus:outline-none transition-colors"
+                  style={{ background: BG, border: `1px solid ${BORDER}` }}
                 />
                 <input
                   type="text" name="empresa" required placeholder="Company / organization *" value={formData.empresa} onChange={handleChange}
-                  className="w-full bg-[#0B0B0F] border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-gray-500 focus:outline-none focus:border-sky-500 transition-colors"
+                  className="w-full px-4 py-3.5 text-sm text-white placeholder-gray-500 focus:outline-none transition-colors"
+                  style={{ background: BG, border: `1px solid ${BORDER}` }}
                 />
                 <div>
                   <input
                     type="email" name="correo" required placeholder="Corporate email *" value={formData.correo} onChange={handleChange}
-                    className="w-full bg-[#0B0B0F] border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-gray-500 focus:outline-none focus:border-sky-500 transition-colors"
+                    className="w-full px-4 py-3.5 text-sm text-white placeholder-gray-500 focus:outline-none transition-colors"
+                    style={{ background: BG, border: `1px solid ${BORDER}` }}
                   />
                   {isFreeEmail && (
-                    <p className="text-xs mt-1.5" style={{ color: BLUE }}>Given the confidential nature of this engagement, we recommend using your corporate email.</p>
+                    <p className="text-xs mt-1.5" style={{ color: GOLD }}>Given the confidential nature of this engagement, we recommend using your corporate email.</p>
                   )}
                 </div>
 
                 {status === 'error' && (
-                  <p className="text-sm text-red-400 bg-red-500/10 rounded-lg p-3 text-center">
+                  <p className="text-sm text-red-400 bg-red-500/10 p-3 text-center">
                     Error: {errorMsg || 'Please try again or contact us directly.'}
                   </p>
                 )}
 
-                <motion.button
-                  whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
+                <button
                   type="submit" disabled={status === 'loading'}
-                  className="w-full py-4 rounded-xl font-black text-base transition-all disabled:opacity-60 flex items-center justify-center gap-2"
-                  style={{ background: BLUE, color: BG }}
+                  className="w-full py-4 font-semibold text-base transition-all disabled:opacity-60 flex items-center justify-center gap-2 hover:-translate-y-0.5"
+                  style={{ background: GOLD, color: BG }}
                 >
                   {status === 'loading' ? (
                     <><Loader2 className="w-5 h-5 animate-spin" /> Sending…</>
                   ) : (
                     <>Request assessment <ArrowRight className="w-5 h-5" /></>
                   )}
-                </motion.button>
+                </button>
               </form>
               <p className="mt-4 text-xs text-gray-500 text-center">
                 No cost, no contracting obligation. A senior consultant will contact you within 12 business hours.
@@ -446,35 +448,36 @@ export default function CorporateSecurity() {
         </div>
       </section>
 
-      {/* ═══ 6. TESTIMONIAL ═══ */}
+      {/* ═══ 7. TESTIMONIAL ═══ */}
       <section className="relative py-20 px-4 sm:px-6" style={{ background: 'rgba(255,255,255,0.02)', borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}` }}>
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="max-w-3xl mx-auto text-center">
-          <p className="text-2xl leading-relaxed font-medium text-white">
-            <span style={{ color: GOLD }}>&ldquo;</span>CSSG's assessment uncovered duplicated supervision charges we had been paying for two years. The conversation with our contractor changed entirely once we had it in writing.<span style={{ color: GOLD }}>&rdquo;</span>
-          </p>
-          <p className="mt-6 text-sm text-gray-400 font-bold">— Regional Security Manager, multinational industrial group</p>
-          <p className="text-xs text-gray-600">(identity withheld under confidentiality protocol)</p>
+          <blockquote style={{ fontFamily: SERIF, fontSize: 'clamp(1.2rem, 2.6vw, 1.6rem)', lineHeight: 1.5 }}>
+            <span style={{ color: GOLD, fontSize: '3rem', lineHeight: 0, verticalAlign: '-0.4rem' }}>&ldquo;</span>
+            CSSG's assessment uncovered duplicated supervision charges we had been paying for two years. The conversation with our contractor changed entirely once we had it in writing.
+          </blockquote>
+          <cite className="block mt-6 not-italic text-sm text-gray-400">
+            — Regional Security Manager, multinational industrial group
+            <span className="block text-xs mt-1 text-gray-600">(identity withheld under confidentiality protocol)</span>
+          </cite>
         </motion.div>
       </section>
 
-      {/* ═══ 7. FAQ ═══ */}
+      {/* ═══ 8. FAQ ═══ */}
       <section className="relative py-24 px-4 sm:px-6">
         <div className="max-w-3xl mx-auto">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="text-center mb-12">
-            <p className="text-xs font-black uppercase tracking-widest mb-3" style={{ color: ACCENT }}>Frequently asked questions</p>
-            <h2 className="font-semibold tracking-tight" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.1rem)', fontFamily: HEAD_FONT }}>Before you request your assessment</h2>
+            <p className="text-xs uppercase font-semibold mb-3" style={{ color: GOLD, letterSpacing: '.18em' }}>Frequently asked questions</p>
+            <h2 style={{ fontFamily: SERIF, fontWeight: 600, fontSize: 'clamp(1.6rem, 3vw, 2.1rem)' }}>Before you request your assessment</h2>
           </motion.div>
-          <div className="space-y-3">
+          <div>
             {FAQS.map((f, i) => (
-              <div key={i} className="rounded-xl overflow-hidden" style={{ background: CARD, border: `1px solid ${BORDER}` }}>
-                <button onClick={() => setOpenFaq(openFaq === i ? null : i)} className="w-full flex items-center justify-between gap-4 p-5 text-left">
-                  <span className="font-bold text-sm sm:text-base text-white">{f.q}</span>
-                  <ChevronDown className={`w-5 h-5 shrink-0 transition-transform ${openFaq === i ? 'rotate-180' : ''}`} style={{ color: BLUE }} />
+              <div key={i} style={{ borderBottom: `1px solid ${BORDER}` }}>
+                <button onClick={() => setOpenFaq(openFaq === i ? null : i)} className="w-full flex items-center justify-between gap-4 py-5 text-left">
+                  <span className="font-semibold text-sm sm:text-base text-white">{f.q}</span>
+                  <ChevronDown className={`w-4 h-4 shrink-0 transition-transform ${openFaq === i ? 'rotate-180' : ''}`} style={{ color: GOLD }} />
                 </button>
                 {openFaq === i && (
-                  <div className="px-5 pb-5">
-                    <p className="text-sm text-gray-400">{f.a}</p>
-                  </div>
+                  <p className="text-sm pb-5 text-gray-400" style={{ maxWidth: '640px' }}>{f.a}</p>
                 )}
               </div>
             ))}
@@ -485,8 +488,8 @@ export default function CorporateSecurity() {
       {/* ═══ FOOTER ═══ */}
       <footer className="relative py-10 px-4 text-center border-t" style={{ borderColor: BORDER }}>
         <img src="/logo.webp" alt="CSSG" className="h-10 w-10 object-contain mx-auto mb-3" />
-        <p className="text-xs text-gray-500 font-black uppercase tracking-widest mb-2">CSSG Global</p>
-        <p className="text-xs text-gray-600">Corporate & Diplomatic Security · 17+ years serving without incident</p>
+        <p className="font-semibold mb-2" style={{ color: GOLD }}>CSSG GLOBAL</p>
+        <p className="text-xs text-gray-500">Corporate & Diplomatic Security · 17+ years serving without incident</p>
         <p className="text-xs text-gray-600 mt-3">
           CSSG — Company Of Security And Service Global C.A. · RIF: J-29782024-8
         </p>

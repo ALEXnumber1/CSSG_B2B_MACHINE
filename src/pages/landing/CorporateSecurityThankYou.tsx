@@ -7,9 +7,9 @@ import CookieConsent from '../../components/CookieConsent';
 
 const BG = '#0B0B0F';
 const CARD = 'rgba(255,255,255,0.04)';
-const BORDER = 'rgba(255,255,255,0.08)';
-const BLUE = '#0EA5E9';
-const GOLD = '#EAB308';
+const BORDER = 'rgba(255,255,255,0.09)';
+const GOLD = '#C9A24B';
+const SERIF = "'Playfair Display', serif";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 20 },
@@ -50,18 +50,14 @@ export default function CorporateSecurityThankYou() {
   return (
     <div className="min-h-screen text-white" style={{ background: BG, fontFamily: "'Inter', sans-serif" }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
       `}</style>
 
-      <div className="fixed inset-0 pointer-events-none -z-0">
-        <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-sky-900/20 rounded-full blur-[130px] opacity-50" />
-      </div>
-
       {/* ═══ MINI NAV ═══ */}
-      <header className="relative flex items-center justify-between px-6 py-4 border-b" style={{ borderColor: BORDER }}>
+      <header className="flex items-center justify-between px-6 py-4 border-b" style={{ borderColor: BORDER }}>
         <div className="flex items-center gap-2.5">
           <img src="/logo.webp" alt="CSSG" className="h-9 w-9 object-contain" />
-          <span className="font-black tracking-widest text-sm text-white">
+          <span className="font-semibold tracking-widest text-sm text-white">
             CSSG <span style={{ color: GOLD }}>GLOBAL</span>
           </span>
         </div>
@@ -70,11 +66,11 @@ export default function CorporateSecurityThankYou() {
       {/* ═══ CONFIRMATION ═══ */}
       <main className="relative flex flex-col items-center justify-center px-6" style={{ minHeight: '78vh' }}>
         <motion.div className="relative max-w-lg w-full text-center py-16" initial="hidden" animate="visible" variants={fadeUp}>
-          <div className="w-16 h-16 flex items-center justify-center mx-auto mb-6 rounded-full" style={{ background: `${BLUE}15`, border: `1px solid ${BLUE}40` }}>
-            <Check className="w-8 h-8" style={{ color: BLUE }} />
+          <div className="w-16 h-16 flex items-center justify-center mx-auto mb-6 rounded-full" style={{ background: `${GOLD}15`, border: `1px solid ${GOLD}40` }}>
+            <Check className="w-8 h-8" style={{ color: GOLD }} />
           </div>
 
-          <h1 className="mb-4 font-semibold tracking-tight" style={{ fontSize: 'clamp(1.6rem, 3.4vw, 2.1rem)', fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}>
+          <h1 className="mb-4" style={{ fontFamily: SERIF, fontWeight: 600, fontSize: 'clamp(1.6rem, 3.4vw, 2.1rem)' }}>
             {state.duplicate ? 'We already have your details' : `Thank you${firstName ? `, ${firstName}` : ''}. Your request was received.`}
           </h1>
 
@@ -84,11 +80,11 @@ export default function CorporateSecurityThankYou() {
               : <>A senior consultant will review your request and contact you at <b className="text-white">{state.correo}</b> within 12 business hours to schedule your confidential assessment.</>}
           </p>
 
-          <div className="mt-8 pt-8 text-left rounded-2xl p-6" style={{ background: CARD, border: `1px solid ${BORDER}` }}>
-            <p className="text-xs font-black uppercase tracking-widest mb-4" style={{ color: BLUE }}>In the meantime</p>
+          <div className="mt-8 pt-8 text-left p-6" style={{ background: CARD, border: `1px solid ${BORDER}` }}>
+            <p className="text-xs font-semibold uppercase tracking-widest mb-4" style={{ color: GOLD }}>In the meantime</p>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
-                <Mail className="w-4 h-4 shrink-0 mt-0.5" style={{ color: BLUE }} />
+                <Mail className="w-4 h-4 shrink-0 mt-0.5" style={{ color: GOLD }} />
                 <span className="text-sm text-gray-400">Save <b className="text-white">gerencia@globalservices-ven.com</b> as a trusted sender so our consultant's email doesn't land in spam.</span>
               </li>
               <li className="flex items-start gap-3">
@@ -96,13 +92,13 @@ export default function CorporateSecurityThankYou() {
                 <span className="text-sm text-gray-400">Already have a contractor in place? Mention it in your first call — we can start with an audit of your current provider instead of proposing a new one.</span>
               </li>
               <li className="flex items-start gap-3">
-                <Lock className="w-4 h-4 shrink-0 mt-0.5" style={{ color: BLUE }} />
+                <Lock className="w-4 h-4 shrink-0 mt-0.5" style={{ color: GOLD }} />
                 <span className="text-sm text-gray-400">Your information is handled under confidentiality protocol. You may withdraw your request at any time.</span>
               </li>
             </ul>
           </div>
 
-          <Link to="/" className="inline-flex items-center gap-1.5 mt-8 text-sm font-bold hover:gap-2.5 transition-all" style={{ color: BLUE }}>
+          <Link to="/" className="inline-flex items-center gap-1.5 mt-8 text-sm font-semibold hover:gap-2.5 transition-all" style={{ color: GOLD }}>
             Back to cssg-global.com <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </motion.div>
@@ -110,7 +106,7 @@ export default function CorporateSecurityThankYou() {
 
       {/* ═══ FOOTER ═══ */}
       <footer className="relative py-8 px-4 text-center border-t" style={{ borderColor: BORDER }}>
-        <p className="text-xs text-gray-500 font-black uppercase tracking-widest mb-2">CSSG Global</p>
+        <p className="font-semibold mb-2" style={{ color: GOLD }}>CSSG GLOBAL</p>
         <p className="text-xs text-gray-600">
           CSSG — Company Of Security And Service Global C.A. · RIF: J-29782024-8
         </p>
