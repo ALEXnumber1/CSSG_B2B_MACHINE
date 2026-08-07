@@ -29,7 +29,10 @@ const BG = '#0B0B0F';
 const CARD = 'rgba(255,255,255,0.04)';
 const BORDER = 'rgba(255,255,255,0.08)';
 const BLUE = '#0EA5E9';
+const ACCENT = '#8FAFC7'; // sober, desaturated reading of the brand blue — reserved for headline text
 const GOLD = '#EAB308';
+const HEAD_FONT = "'Space Grotesk', 'Inter', sans-serif";
+const BG_IMAGE = "url('/consulting_b2b.webp')";
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 26 },
@@ -237,13 +240,20 @@ export default function CorporateSecurity() {
   return (
     <div className="min-h-screen text-white overflow-x-hidden" style={{ background: BG, fontFamily: "'Inter', sans-serif" }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
       `}</style>
+
+      {/* watermark background — faint, desaturated, corporate photo texture */}
+      <div className="fixed inset-0 pointer-events-none -z-0" style={{
+        backgroundImage: BG_IMAGE, backgroundSize: 'cover', backgroundPosition: 'center 30%',
+        filter: 'grayscale(1) brightness(0.5)', opacity: 0.1,
+      }} />
+      <div className="fixed inset-0 pointer-events-none -z-0" style={{ background: `linear-gradient(180deg, ${BG}CC 0%, ${BG}F2 40%, ${BG} 75%)` }} />
 
       {/* ambient glow */}
       <div className="fixed inset-0 pointer-events-none -z-0">
-        <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-sky-900/20 rounded-full blur-[130px] opacity-60" />
-        <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-yellow-900/10 rounded-full blur-[140px] opacity-30" />
+        <div className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-sky-900/15 rounded-full blur-[130px] opacity-50" />
+        <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-yellow-900/10 rounded-full blur-[140px] opacity-25" />
       </div>
 
       {/* ═══ MINI NAV ═══ */}
@@ -266,9 +276,9 @@ export default function CorporateSecurity() {
             <span className="inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-black uppercase tracking-widest mb-6" style={{ borderColor: `${GOLD}55`, background: `${GOLD}12`, color: GOLD }}>
               <Award className="w-3.5 h-3.5" /> One of the few ISO 9001-certified security firms in Venezuela
             </span>
-            <h1 className="font-black tracking-tight leading-[1.05] mb-6" style={{ fontSize: 'clamp(2.1rem, 4.4vw, 3.4rem)' }}>
+            <h1 className="font-semibold tracking-tight leading-[1.1] mb-6" style={{ fontSize: 'clamp(2.1rem, 4.4vw, 3.4rem)', fontFamily: HEAD_FONT }}>
               Most private security companies sell guards.
-              <span className="block mt-1" style={{ color: BLUE }}>CSSG sells a scheme you can defend.</span>
+              <span className="block mt-1 text-white">CSSG sells a scheme you can <span style={{ color: ACCENT }}>defend</span>.</span>
             </h1>
             <p className="text-gray-400 text-lg max-w-xl mb-8">
               Corporate security services and security consulting for multinational organizations operating
@@ -311,7 +321,7 @@ export default function CorporateSecurity() {
         <div className="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((s) => (
             <motion.div key={s.label} initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="text-center">
-              <p className="font-black tabular-nums" style={{ fontSize: 'clamp(1.8rem, 3.2vw, 2.6rem)', color: BLUE }}>
+              <p className="font-semibold tabular-nums" style={{ fontSize: 'clamp(1.8rem, 3.2vw, 2.6rem)', color: ACCENT, fontFamily: HEAD_FONT }}>
                 <Counter to={s.to} suffix={s.suffix} />
               </p>
               <p className="text-xs text-gray-500 mt-2 max-w-[16ch] mx-auto leading-snug">{s.label}</p>
@@ -324,8 +334,8 @@ export default function CorporateSecurity() {
       <section className="relative py-24 px-4 sm:px-6">
         <div className="max-w-4xl mx-auto">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="text-center mb-14">
-            <p className="text-xs font-black uppercase tracking-widest mb-3" style={{ color: BLUE }}>The difference</p>
-            <h2 className="font-black tracking-tight" style={{ fontSize: 'clamp(1.7rem, 3.2vw, 2.4rem)' }}>
+            <p className="text-xs font-black uppercase tracking-widest mb-3" style={{ color: ACCENT }}>The difference</p>
+            <h2 className="font-semibold tracking-tight" style={{ fontSize: 'clamp(1.7rem, 3.2vw, 2.4rem)', fontFamily: HEAD_FONT }}>
               What separates a certified security partner from the rest of the market.
             </h2>
           </motion.div>
@@ -354,8 +364,8 @@ export default function CorporateSecurity() {
       <section className="relative py-24 px-4 sm:px-6" style={{ background: 'rgba(255,255,255,0.02)', borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}` }}>
         <div className="max-w-5xl mx-auto">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="text-center mb-14">
-            <p className="text-xs font-black uppercase tracking-widest mb-3" style={{ color: BLUE }}>Our service</p>
-            <h2 className="font-black tracking-tight" style={{ fontSize: 'clamp(1.7rem, 3.2vw, 2.4rem)' }}>
+            <p className="text-xs font-black uppercase tracking-widest mb-3" style={{ color: ACCENT }}>Our service</p>
+            <h2 className="font-semibold tracking-tight" style={{ fontSize: 'clamp(1.7rem, 3.2vw, 2.4rem)', fontFamily: HEAD_FONT }}>
               A structured, auditable corporate security consulting engagement.
             </h2>
           </motion.div>
@@ -382,7 +392,7 @@ export default function CorporateSecurity() {
               <span className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-widest mb-5" style={{ background: `${GOLD}15`, color: GOLD }}>
                 <Award className="w-3 h-3" /> Limited corporate accounts
               </span>
-              <h2 className="font-black text-xl mb-2 text-white">Request a confidential assessment</h2>
+              <h2 className="font-semibold text-xl mb-2 text-white" style={{ fontFamily: HEAD_FONT }}>Request a confidential assessment</h2>
               <p className="text-sm text-gray-400 mb-7">
                 A senior consultant reviews your current security scheme or contractor and responds within 12 business hours.
               </p>
@@ -451,8 +461,8 @@ export default function CorporateSecurity() {
       <section className="relative py-24 px-4 sm:px-6">
         <div className="max-w-3xl mx-auto">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="text-center mb-12">
-            <p className="text-xs font-black uppercase tracking-widest mb-3" style={{ color: BLUE }}>Frequently asked questions</p>
-            <h2 className="font-black tracking-tight" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.1rem)' }}>Before you request your assessment</h2>
+            <p className="text-xs font-black uppercase tracking-widest mb-3" style={{ color: ACCENT }}>Frequently asked questions</p>
+            <h2 className="font-semibold tracking-tight" style={{ fontSize: 'clamp(1.6rem, 3vw, 2.1rem)', fontFamily: HEAD_FONT }}>Before you request your assessment</h2>
           </motion.div>
           <div className="space-y-3">
             {FAQS.map((f, i) => (

@@ -50,7 +50,7 @@ export default function CorporateSecurityThankYou() {
   return (
     <div className="min-h-screen text-white" style={{ background: BG, fontFamily: "'Inter', sans-serif" }}>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap');
       `}</style>
 
       <div className="fixed inset-0 pointer-events-none -z-0">
@@ -74,7 +74,7 @@ export default function CorporateSecurityThankYou() {
             <Check className="w-8 h-8" style={{ color: BLUE }} />
           </div>
 
-          <h1 className="mb-4 font-black tracking-tight" style={{ fontSize: 'clamp(1.6rem, 3.4vw, 2.1rem)' }}>
+          <h1 className="mb-4 font-semibold tracking-tight" style={{ fontSize: 'clamp(1.6rem, 3.4vw, 2.1rem)', fontFamily: "'Space Grotesk', 'Inter', sans-serif" }}>
             {state.duplicate ? 'We already have your details' : `Thank you${firstName ? `, ${firstName}` : ''}. Your request was received.`}
           </h1>
 
