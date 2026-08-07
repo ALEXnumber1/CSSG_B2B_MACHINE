@@ -53,6 +53,7 @@ function fuente_label(fuente) {
     levantamiento_tecnico: 'Levantamiento Técnico',
     reduccion_costos_seguridad: 'Reducción de Costos de Seguridad',
     risk_advisory_services: 'Risk Advisory Services',
+    lp_empresa_seguridad: 'Guía Empresa de Seguridad',
   };
   return map[fuente] || fuente.replace(/_/g, ' ');
 }
@@ -158,6 +159,7 @@ export default async function handler(req, res) {
         levantamiento_tecnico: `Su levantamiento técnico fue registrado — CSSG Global`,
         reduccion_costos_seguridad: `Su diagnóstico de ahorro fue registrado — CSSG Global`,
         risk_advisory_services: `Su evaluación inicial de Risk Advisory Services fue registrada — CSSG Global`,
+        lp_empresa_seguridad: `Su solicitud fue registrada — la guía llega en un correo aparte | CSSG Global`,
         default:            `Su expediente fue asignado a Consultoría Senior | CSSG Global`,
       };
       const welcomeSubject = welcomeSubjects[safeFuente] || welcomeSubjects.default;

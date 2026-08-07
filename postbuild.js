@@ -686,6 +686,19 @@ const routes = [
     title: 'Solicitud recibida | CSSG Global',
     description: 'Confirmación de solicitud de expediente de cumplimiento — CSSG Global.',
     image: 'https://cssg-global.com/consulting_b2b.webp'
+  },
+  {
+    path: 'empresa-de-seguridad',
+    title: 'Cómo Contratar Seguridad Privada sin Sobrecostos | Guía Gratuita | CSSG',
+    description: 'Descarga gratis el checklist de 21 puntos para contratar guardias de seguridad y servicios de vigilancia para empresas sin sobrecostos. Por CSSG, ISO 9001:2015.',
+    image: 'https://cssg-global.com/ana-hero-premium.webp',
+    jsonld: { "@context": "https://schema.org", "@type": "Product", "name": "Guía: Cómo contratar seguridad privada sin sobrecostos", "description": "Checklist de 21 puntos para evaluar cualquier empresa de seguridad antes de firmar un contrato de vigilancia.", "brand": { "@type": "Organization", "name": "CSSG — Company Of Security And Service Global", "url": "https://cssg-global.com" }, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" } }
+  },
+  {
+    path: 'empresa-de-seguridad/gracias',
+    title: 'Guía en camino | CSSG Global',
+    description: 'Confirmación de solicitud de la guía de contratación de seguridad privada — CSSG Global.',
+    image: 'https://cssg-global.com/ana-hero-premium.webp'
   }
 ];
 

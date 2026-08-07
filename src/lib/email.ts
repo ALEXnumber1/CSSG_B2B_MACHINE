@@ -311,6 +311,57 @@ const templates: Record<string, { subject: string | ((nombre: string, empresa?: 
       <p style="text-align:center;color:#94A3B8;font-size:12px;margin:0 0 4px;">Elija el horario que más le convenga, sin esperar a que lo contactemos.</p>
     `),
   },
+
+  empresa_seguridad: {
+    subject: (nombre) => `${nombre}, aquí tiene su guía: Cómo contratar seguridad privada sin sobrecostos`,
+    html: (nombre, empresa) => baseTemplate(`
+      <h2 style="color:#0F172A;font-size:24px;margin:0 0 16px;font-weight:700;">Estimado/a ${nombre},</h2>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Gracias por descargar la guía <strong>«Cómo contratar seguridad privada sin sobrecostos»</strong>${empresa ? ` para <strong style="color:#0284C7;">${empresa}</strong>` : ''}. Su checklist completo de 21 puntos está listo en el siguiente enlace.
+      </p>
+
+      <div style="text-align:center;margin:24px 0;">
+        <a href="https://cssg-global.com/CSSG_Guia_Contratar_Seguridad_Privada.pdf" style="display:inline-block;background-color:#10B981;color:#0B0B0F;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;box-shadow:0 4px 14px 0 rgba(16, 185, 129, 0.4);">
+          Descargar guía en PDF
+        </a>
+      </div>
+
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        A continuación tiene también el resumen del checklist en este correo, por si prefiere revisarlo aquí mismo.
+      </p>
+
+      <div style="background-color:#F1F5F9;border:1px solid #E2E8F0;border-radius:12px;padding:24px;margin:24px 0;">
+        <p style="color:#1E293B;font-size:16px;margin:0 0 12px;font-weight:700;">Puntos 1–7 · Legalidad y solvencia del proveedor</p>
+        <ul style="color:#334155;font-size:14px;line-height:1.8;margin:0 0 20px;padding-left:20px;">
+          <li>Verifique el RIF, permisos vigentes y pólizas de responsabilidad civil de la empresa de seguridad.</li>
+          <li>Exija evidencia de solvencia laboral: liquidaciones, IVSS y paro forzoso al día.</li>
+          <li>Pida referencias verificables de al menos 2 clientes activos con instalación similar a la suya.</li>
+        </ul>
+        <p style="color:#1E293B;font-size:16px;margin:0 0 12px;font-weight:700;">Puntos 8–14 · Cláusulas del contrato de vigilancia</p>
+        <ul style="color:#334155;font-size:14px;line-height:1.8;margin:0 0 20px;padding-left:20px;">
+          <li>El contrato debe fijar KPIs mensuales exigibles, no solo horas de cobertura.</li>
+          <li>Exija cláusula de reposición inmediata de personal ausente, sin cargo adicional.</li>
+          <li>Revise la facturación línea por línea: las 3 trampas más comunes son cargos de "supervisión" duplicados, redondeo de horas y recargos nocturnos no pactados por escrito.</li>
+        </ul>
+        <p style="color:#1E293B;font-size:16px;margin:0 0 12px;font-weight:700;">Puntos 15–21 · Auditoría de la operación</p>
+        <ul style="color:#334155;font-size:14px;line-height:1.8;margin:0;padding-left:20px;">
+          <li>Solicite el historial de rotación de los guardias asignados a su instalación en los últimos 6 meses.</li>
+          <li>Pida protocolos documentados de emergencia y evidencia de simulacros realizados.</li>
+          <li>Exija reportes de supervisión con evidencia verificable (GPS de rondas, bitácora firmada o plataforma de monitoreo).</li>
+        </ul>
+      </div>
+
+      <p style="color:#1E293B;font-size:15px;line-height:1.7;margin:0 0 24px;font-weight:600;">
+        BONUS: si necesita la plantilla comparativa para evaluar hasta 4 cotizaciones lado a lado, responda a este correo y se la enviamos de inmediato.
+      </p>
+
+      <div style="text-align:center;margin:32px 0 16px;">
+        <a href="https://cssg-global.com/consultoria" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;box-shadow:0 4px 14px 0 rgba(2, 132, 199, 0.4);">
+          Auditar mi esquema actual con un especialista
+        </a>
+      </div>
+    `),
+  },
 };
 
 // ═══════════ FUNCIÓN DE ENVÍO ORIGINAL ═══════════
@@ -634,6 +685,9 @@ const sequenceTemplates: Record<string, { subject: string | ((nombre: string, em
 
   // ── RISK ADVISORY SERVICES (landing bilingüe "Guardián + Estratega"): 1 email ──
   risk_advisory_services_1: templates.risk_advisory_services,
+
+  // ── EMPRESA DE SEGURIDAD (lead magnet checklist 21 puntos): 1 email ──
+  empresa_seguridad_1: templates.empresa_seguridad,
 
   // ════════════════════════════════════════════════════════════════════════
   // SECUENCIAS OUTBOUND — Leads scrapeados (frío)

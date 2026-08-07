@@ -64,11 +64,15 @@ const WPRiesgos = lazy(() => import('./pages/white-papers/WPRiesgos'))
 const WPDueDiligence = lazy(() => import('./pages/white-papers/WPDueDiligence'))
 const WPBCPPage = lazy(() => import('./pages/white-papers/WPBCPPage'))
 
+// Landing Pages de captación (standalone, sin navbar)
+const EmpresaSeguridad = lazy(() => import('./pages/landing/EmpresaSeguridad'))
+const EmpresaSeguridadGracias = lazy(() => import('./pages/landing/EmpresaSeguridadGracias'))
+
 function AppContent() {
   const { t, i18n } = useTranslation();
   const year = new Date().getFullYear();
   const location = useLocation();
-  const isStandaloneLanding = location.pathname === '/consultoria/escudo-diplomatico' || location.pathname.startsWith('/esrm-readiness');
+  const isStandaloneLanding = location.pathname === '/consultoria/escudo-diplomatico' || location.pathname.startsWith('/esrm-readiness') || location.pathname.startsWith('/empresa-de-seguridad');
 
   if (isStandaloneLanding) {
     return (
@@ -79,6 +83,8 @@ function AppContent() {
             <Route path="/consultoria/escudo-diplomatico" element={<EscudoDiplomatico />} />
             <Route path="/esrm-readiness" element={<EsrmReadiness />} />
             <Route path="/esrm-readiness/gracias" element={<EsrmReadinessGracias />} />
+            <Route path="/empresa-de-seguridad" element={<EmpresaSeguridad />} />
+            <Route path="/empresa-de-seguridad/gracias" element={<EmpresaSeguridadGracias />} />
           </Routes>
         </Suspense>
       </>
