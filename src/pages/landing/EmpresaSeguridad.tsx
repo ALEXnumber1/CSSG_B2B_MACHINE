@@ -178,7 +178,7 @@ const FAQS = [
   },
   {
     q: '¿Sirve aunque ya tenga un proveedor de seguridad contratado?',
-    a: 'Especialmente en ese caso. La mayoría de nuestros lectores la usa primero para auditar a su proveedor actual y renegociar condiciones. Los puntos 15 al 21 son una auditoría exprés de la operación existente.',
+    a: 'Especialmente en ese caso. La mayoría de nuestros lectores la usa primero para auditar a su proveedor actual antes de renovar su contratación de seguridad privada. Los puntos 15 al 21 son una auditoría exprés de la operación existente.',
   },
   {
     q: '¿Qué pasa con mis datos?',
