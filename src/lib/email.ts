@@ -454,6 +454,51 @@ const templates: Record<string, { subject: string | ((nombre: string, empresa?: 
       </div>
     `),
   },
+
+  diplomatic_security_en: {
+    subject: (nombre) => `${nombre}, schedule your Escudo Diplomático technical assessment`,
+    html: (nombre, empresa) => baseTemplate(`
+      <h2 style="color:#0F172A;font-size:24px;margin:0 0 16px;font-weight:700;">Dear ${nombre},</h2>
+      <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
+        Thank you for your request regarding <strong style="color:#0284C7;">Escudo Diplomático</strong>, CSSG's diplomatic security service${empresa ? ` for <strong style="color:#0284C7;">${empresa}</strong>` : ''}. A senior consultant from our Diplomatic Security Division has already been notified — but you don't have to wait on email back-and-forth to move forward.
+      </p>
+
+      <p style="color:#1E293B;font-size:15px;line-height:1.7;margin:0 0 20px;font-weight:600;">
+        Choose a time that works for you, and speak directly with a senior consultant:
+      </p>
+
+      <div style="text-align:center;margin:24px 0 32px;">
+        <a href="https://calendar.app.google/ZCLbjCCsbmYwMnEc6" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:18px 40px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;box-shadow:0 4px 14px 0 rgba(2, 132, 199, 0.4);">
+          Schedule My Technical Site Assessment →
+        </a>
+        <p style="color:#94A3B8;font-size:12px;margin:12px 0 0;">30 minutes · No cost · No obligation</p>
+      </div>
+
+      <div style="background-color:#F1F5F9;border:1px solid #E2E8F0;border-radius:12px;padding:24px;margin:0 0 24px;">
+        <p style="color:#1E293B;font-size:16px;margin:0 0 12px;font-weight:700;">What the Escudo Diplomático protocol covers</p>
+        <ul style="color:#334155;font-size:14px;line-height:1.8;margin:0;padding-left:20px;">
+          <li><strong>QMS-coordinated procedures</strong> — every action documented and audited under our ISO 9001:2015 Quality Management System.</li>
+          <li><strong>CECOM 24/7 command center</strong> — real-time consolidated visibility and coordinated field response.</li>
+          <li><strong>Preventive Intelligence Unit</strong> — continuous monitoring of the threat environment around your principal, mission or venue.</li>
+          <li><strong>Perimeter patrols</strong> of the streets and zones adjacent to your focal point.</li>
+        </ul>
+      </div>
+
+      <p style="color:#1E293B;font-size:15px;line-height:1.7;margin:0 0 24px;font-weight:600;">
+        Preparing a tender or RFP? Reply to this email with your submission deadline and we will return our technical proposal and certifications — including ISO 9001:2015 and DIGESERVISP authorization — ahead of your cutoff.
+      </p>
+
+      <p style="color:#334155;font-size:14px;line-height:1.7;margin:0 0 24px;">
+        Prefer we reach out directly instead? No action needed — a senior consultant will contact you within 12 business hours regardless.
+      </p>
+
+      <div style="text-align:center;margin:32px 0 16px;">
+        <a href="https://cssg-global.com/en/technology" style="display:inline-block;background-color:#ffffff;color:#0284C7;padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:700;font-size:14px;border:1.5px solid #0284C7;">
+          Explore our services
+        </a>
+      </div>
+    `),
+  },
 };
 
 // ═══════════ FUNCIÓN DE ENVÍO ORIGINAL ═══════════
@@ -786,6 +831,9 @@ const sequenceTemplates: Record<string, { subject: string | ((nombre: string, em
 
   // ── CORPORATE SECURITY EN (lead magnet due diligence checklist): 1 email ──
   corporate_security_en_1: templates.corporate_security_en,
+
+  // ── DIPLOMATIC SECURITY EN (Escudo Diplomático technical assessment / tender): 1 email ──
+  diplomatic_security_en_1: templates.diplomatic_security_en,
 
   // ════════════════════════════════════════════════════════════════════════
   // SECUENCIAS OUTBOUND — Leads scrapeados (frío)

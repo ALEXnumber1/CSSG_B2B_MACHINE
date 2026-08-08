@@ -71,12 +71,14 @@ const ConsultoriaRiesgos = lazy(() => import('./pages/landing/ConsultoriaRiesgos
 const ConsultoriaRiesgosGracias = lazy(() => import('./pages/landing/ConsultoriaRiesgosGracias'))
 const CorporateSecurity = lazy(() => import('./pages/landing/CorporateSecurity'))
 const CorporateSecurityThankYou = lazy(() => import('./pages/landing/CorporateSecurityThankYou'))
+const DiplomaticSecurity = lazy(() => import('./pages/landing/DiplomaticSecurity'))
+const DiplomaticSecurityThankYou = lazy(() => import('./pages/landing/DiplomaticSecurityThankYou'))
 
 function AppContent() {
   const { t, i18n } = useTranslation();
   const year = new Date().getFullYear();
   const location = useLocation();
-  const isStandaloneLanding = location.pathname === '/consultoria/escudo-diplomatico' || location.pathname.startsWith('/esrm-readiness') || location.pathname.startsWith('/empresa-de-seguridad') || location.pathname.startsWith('/consultoria-y-analisis-de-riesgos') || location.pathname.startsWith('/en/corporate-security-consulting');
+  const isStandaloneLanding = location.pathname === '/consultoria/escudo-diplomatico' || location.pathname.startsWith('/esrm-readiness') || location.pathname.startsWith('/empresa-de-seguridad') || location.pathname.startsWith('/consultoria-y-analisis-de-riesgos') || location.pathname.startsWith('/en/corporate-security-consulting') || location.pathname.startsWith('/en/diplomatic-security');
 
   if (isStandaloneLanding) {
     return (
@@ -93,6 +95,8 @@ function AppContent() {
             <Route path="/consultoria-y-analisis-de-riesgos/gracias" element={<ConsultoriaRiesgosGracias />} />
             <Route path="/en/corporate-security-consulting" element={<CorporateSecurity />} />
             <Route path="/en/corporate-security-consulting/thank-you" element={<CorporateSecurityThankYou />} />
+            <Route path="/en/diplomatic-security" element={<DiplomaticSecurity />} />
+            <Route path="/en/diplomatic-security/thank-you" element={<DiplomaticSecurityThankYou />} />
           </Routes>
         </Suspense>
       </>

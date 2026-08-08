@@ -725,6 +725,19 @@ const routes = [
     title: 'Request received | CSSG Global',
     description: 'Confirmation of your Corporate Security Assessment request — CSSG Global.',
     image: 'https://cssg-global.com/consulting_b2b.webp'
+  },
+  {
+    path: 'en/diplomatic-security',
+    title: 'Diplomatic Security Services in Venezuela | G7 Standard | CSSG',
+    description: 'Diplomatic security service for embassies, missions and executive families in Venezuela. 17+ years without incident, G7 standard, Vienna Convention protocol. Request a confidential briefing — CSSG.',
+    image: 'https://cssg-global.com/ESCOLTA.jpg',
+    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Diplomatic Security Services", "description": "Diplomatic security service (Escudo Diplomático) for embassies, diplomatic missions and executive families in Venezuela, operating under G7 standard and protocols aligned with the Vienna Convention.", "provider": { "@type": "Organization", "name": "CSSG — Company Of Security And Service Global", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" }, "inLanguage": "en" }
+  },
+  {
+    path: 'en/diplomatic-security/thank-you',
+    title: 'Request received | CSSG Global',
+    description: 'Confirmation of your Diplomatic Security request — CSSG Global.',
+    image: 'https://cssg-global.com/ESCOLTA.jpg'
   }
 ];
 

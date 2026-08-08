@@ -125,6 +125,13 @@ export const SEQUENCES: Record<string, Sequence> = {
       { day: 0, templateKey: 'corporate_security_en_1', scoreBonus: 0 },
     ],
   },
+  diplomatic_security_en: {
+    id: 'diplomatic_security_en',
+    name: 'Diplomatic Security EN sequence (Escudo Diplomático assessment/tender request)',
+    emails: [
+      { day: 0, templateKey: 'diplomatic_security_en_1', scoreBonus: 0 },
+    ],
+  },
 
   // ─── Secuencias OUTBOUND (leads scrapeados, no inbound) ───────────────
   // Arco: miedo → dolor → prueba social → CTA bajo fricción → urgencia pérdida → ask directo (BP1)
