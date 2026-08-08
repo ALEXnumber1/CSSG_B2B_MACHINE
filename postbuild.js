@@ -779,8 +779,13 @@ routes.forEach(route => {
   // Also drop the shared home-page hero preload — these landings never use it, and it would
   // otherwise compete for the same high-priority fetch slot as the image actually shown.
   if (route.preloadHero) {
+    // Use a same-origin relative path (matching the component's own CSS background-image url),
+    // not the absolute https://cssg-global.com/... og:image URL — the site canonically serves
+    // www.cssg-global.com, so an apex-domain absolute URL is cross-origin under CSP's img-src 'self'
+    // and gets silently blocked, wasting the preload hint entirely.
+    const heroPath = route.image.replace(/^https?:\/\/[^/]+/, '');
     newHtml = newHtml.replace(/<link rel="preload" as="image" href="\/foto-hero\.webp" fetchpriority="high">\n?/i, '');
-    newHtml = newHtml.replace(/<\/head>/, `<link rel="preload" as="image" href="${route.image}" fetchpriority="high" />\n  </head>`);
+    newHtml = newHtml.replace(/<\/head>/, `<link rel="preload" as="image" href="${heroPath}" fetchpriority="high" />\n  </head>`);
   }
 
   // Preload the landing pages' own Google Fonts stylesheet (Playfair Display + Inter) so the
