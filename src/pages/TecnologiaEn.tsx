@@ -1171,7 +1171,7 @@ export default function TecnologiaEn() {
                           </p>
                         </div>
                         <a 
-                          href="https://calendly.com/cssg-seguridad/reunion-tecnica" 
+                          href="https://calendar.app.google/ZCLbjCCsbmYwMnEc6"
                           target="_blank" 
                           rel="noopener noreferrer"
                           className="inline-flex items-center justify-center gap-3 w-full py-5 bg-sky-600 hover:bg-sky-500 text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] transition-all shadow-xl"

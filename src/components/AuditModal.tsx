@@ -73,7 +73,7 @@ export default function AuditModal({ isOpen, onClose }: AuditModalProps) {
     setIsSubmitting(false);
 
     // Open Calendar
-    window.open('https://calendar.app.google/jGP8yq3BCM5Rp525A', '_blank');
+    window.open('https://calendar.app.google/ZCLbjCCsbmYwMnEc6', '_blank');
 
     setTimeout(() => {
       onClose();

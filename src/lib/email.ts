@@ -304,7 +304,7 @@ const templates: Record<string, { subject: string | ((nombre: string, empresa?: 
       </div>
 
       <div style="text-align:center;margin:32px 0 16px;">
-        <a href="https://calendar.app.google/BEkG334qQpKKdGGN9" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;box-shadow:0 4px 14px 0 rgba(2, 132, 199, 0.4);">
+        <a href="https://calendar.app.google/ZCLbjCCsbmYwMnEc6" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;box-shadow:0 4px 14px 0 rgba(2, 132, 199, 0.4);">
           Agendar mi sesión informativa
         </a>
       </div>
@@ -412,15 +412,26 @@ const templates: Record<string, { subject: string | ((nombre: string, empresa?: 
   },
 
   corporate_security_en: {
-    subject: (nombre) => `${nombre}, your Corporate Security Assessment request was received`,
+    subject: (nombre) => `${nombre}, schedule your confidential Corporate Security briefing`,
     html: (nombre, empresa) => baseTemplate(`
       <h2 style="color:#0F172A;font-size:24px;margin:0 0 16px;font-weight:700;">Dear ${nombre},</h2>
       <p style="color:#334155;font-size:15px;line-height:1.7;margin:0 0 16px;">
-        Thank you for requesting a confidential corporate security assessment${empresa ? ` for <strong style="color:#0284C7;">${empresa}</strong>` : ''}. A senior consultant from our Corporate Security Division has been notified and will contact you within 12 business hours.
+        Thank you for requesting a confidential corporate security assessment${empresa ? ` for <strong style="color:#0284C7;">${empresa}</strong>` : ''}. A senior consultant from our Corporate Security Division has already been notified — but you don't have to wait on email back-and-forth to move forward.
       </p>
 
-      <div style="background-color:#F1F5F9;border:1px solid #E2E8F0;border-radius:12px;padding:24px;margin:24px 0;">
-        <p style="color:#1E293B;font-size:16px;margin:0 0 12px;font-weight:700;">What we will review with you</p>
+      <p style="color:#1E293B;font-size:15px;line-height:1.7;margin:0 0 20px;font-weight:600;">
+        Choose a time that works for you, and speak directly with a senior consultant:
+      </p>
+
+      <div style="text-align:center;margin:24px 0 32px;">
+        <a href="https://calendar.app.google/ZCLbjCCsbmYwMnEc6" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:18px 40px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;box-shadow:0 4px 14px 0 rgba(2, 132, 199, 0.4);">
+          Schedule My Confidential Briefing →
+        </a>
+        <p style="color:#94A3B8;font-size:12px;margin:12px 0 0;">30 minutes · No cost · No obligation</p>
+      </div>
+
+      <div style="background-color:#F1F5F9;border:1px solid #E2E8F0;border-radius:12px;padding:24px;margin:0 0 24px;">
+        <p style="color:#1E293B;font-size:16px;margin:0 0 12px;font-weight:700;">What we will cover in your briefing</p>
         <ul style="color:#334155;font-size:14px;line-height:1.8;margin:0;padding-left:20px;">
           <li><strong>Legal & financial standing</strong> — your current or prospective contractor's licensing, insurance and labor compliance.</li>
           <li><strong>Contract & service-level terms</strong> — KPIs, billing transparency and exit clauses that can actually be enforced.</li>
@@ -429,11 +440,15 @@ const templates: Record<string, { subject: string | ((nombre: string, empresa?: 
       </div>
 
       <p style="color:#1E293B;font-size:15px;line-height:1.7;margin:0 0 24px;font-weight:600;">
-        This is a no-cost, no-obligation conversation. If you already have a contractor in place, we typically start by auditing that relationship before discussing anything else.
+        If you already have a contractor in place, we typically start by auditing that relationship — replacing them is never the assumed outcome.
+      </p>
+
+      <p style="color:#334155;font-size:14px;line-height:1.7;margin:0 0 24px;">
+        Prefer we reach out directly instead? No action needed — a senior consultant will contact you within 12 business hours regardless.
       </p>
 
       <div style="text-align:center;margin:32px 0 16px;">
-        <a href="https://cssg-global.com/en/technology" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;box-shadow:0 4px 14px 0 rgba(2, 132, 199, 0.4);">
+        <a href="https://cssg-global.com/en/technology" style="display:inline-block;background-color:#ffffff;color:#0284C7;padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:700;font-size:14px;border:1.5px solid #0284C7;">
           Explore our services
         </a>
       </div>

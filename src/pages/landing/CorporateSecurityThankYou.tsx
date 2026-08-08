@@ -80,6 +80,20 @@ export default function CorporateSecurityThankYou() {
               : <>A senior consultant will review your request and contact you at <b className="text-white">{state.correo}</b> within 12 business hours to schedule your confidential assessment.</>}
           </p>
 
+          <div className="mt-6">
+            <p className="text-sm text-gray-400 mb-3">Prefer not to wait? Choose a time that works for you:</p>
+            <a
+              href="https://calendar.app.google/ZCLbjCCsbmYwMnEc6"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 font-semibold px-7 py-3.5 text-sm transition-all hover:-translate-y-0.5"
+              style={{ background: GOLD, color: BG, borderRadius: '2px' }}
+            >
+              Schedule My Confidential Briefing <ArrowRight className="w-3.5 h-3.5" />
+            </a>
+            <p className="text-xs text-gray-500 mt-2">30 minutes · No cost · No obligation</p>
+          </div>
+
           <div className="mt-8 pt-8 text-left p-6" style={{ background: CARD, border: `1px solid ${BORDER}` }}>
             <p className="text-xs font-semibold uppercase tracking-widest mb-4" style={{ color: GOLD }}>In the meantime</p>
             <ul className="space-y-3">
