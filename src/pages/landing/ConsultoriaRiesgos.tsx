@@ -265,8 +265,8 @@ export default function ConsultoriaRiesgos() {
           backgroundImage: "url('/svc_auditoria.webp')",
           backgroundSize: 'cover', backgroundPosition: 'center 25%', filter: 'blur(1px) saturate(0.75)', transform: 'scale(1.03)',
         }} />
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(100deg, rgba(10,22,40,.97) 0%, rgba(10,22,40,.94) 42%, rgba(10,22,40,.72) 100%)' }} />
-        <div className="absolute inset-0" style={{ background: `linear-gradient(180deg, rgba(10,22,40,.4) 0%, transparent 30%, rgba(10,22,40,.85) 100%)` }} />
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(100deg, rgba(10,22,40,.92) 0%, rgba(10,22,40,.8) 45%, rgba(10,22,40,.35) 100%)' }} />
+        <div className="absolute inset-0" style={{ background: `linear-gradient(180deg, rgba(10,22,40,.25) 0%, transparent 30%, rgba(10,22,40,.75) 100%)` }} />
         <div className="absolute inset-0" style={{ backgroundImage: GRID_BG, opacity: 0.5 }} />
 
         <motion.div className="relative max-w-4xl mx-auto w-full" initial="hidden" animate="visible" variants={fadeUp}>

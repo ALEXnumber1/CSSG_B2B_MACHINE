@@ -262,7 +262,7 @@ export default function CorporateSecurity() {
       {/* ═══ 1. HERO — full-bleed photography, dark wash ═══ */}
       <header className="relative min-h-[94vh] flex flex-col justify-center px-6 pt-24 overflow-hidden">
         <div className="absolute inset-0" style={{
-          backgroundImage: "url('/risk_analysis_cta.webp')",
+          backgroundImage: "url('/svc_ejecutivos.webp')",
           backgroundSize: 'cover', backgroundPosition: 'center 30%', filter: 'saturate(0.7)', transform: 'scale(1.03)',
         }} />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(100deg, rgba(11,11,15,.97) 0%, rgba(11,11,15,.93) 45%, rgba(11,11,15,.55) 100%)' }} />
