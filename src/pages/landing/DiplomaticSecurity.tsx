@@ -537,10 +537,11 @@ export default function DiplomaticSecurity() {
       {/* ═══ 7. TESTIMONIAL ═══ */}
       <section className="relative py-20 px-4 sm:px-6 overflow-hidden" style={{ borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}` }}>
         <div className="absolute inset-0" style={{
-          backgroundImage: "url('/CSSG-Seguridad Corporativa y Diplomática.jpg')",
-          backgroundSize: 'cover', backgroundPosition: 'center',
+          backgroundImage: "url('/cssg-emblem.webp')",
+          backgroundSize: '520px auto', backgroundPosition: 'center', backgroundRepeat: 'no-repeat',
+          opacity: 0.14,
         }} />
-        <div className="absolute inset-0" style={{ background: 'rgba(11,11,15,0.88)' }} />
+        <div className="absolute inset-0" style={{ background: 'rgba(11,11,15,0.35)' }} />
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="relative max-w-3xl mx-auto text-center">
           <blockquote style={{ fontFamily: SERIF, fontSize: 'clamp(1.2rem, 2.6vw, 1.6rem)', lineHeight: 1.5 }}>
             <span style={{ color: GOLD, fontSize: '3rem', lineHeight: 0, verticalAlign: '-0.4rem' }}>&ldquo;</span>
