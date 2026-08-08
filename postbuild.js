@@ -692,6 +692,7 @@ const routes = [
     title: 'Cómo Contratar Seguridad Privada sin Sobrecostos | Guía Gratuita | CSSG',
     description: 'Descarga gratis el checklist de 21 puntos para contratar guardias de seguridad y servicios de vigilancia para empresas sin sobrecostos. Por CSSG, ISO 9001:2015.',
     image: 'https://cssg-global.com/ana-hero-premium.webp',
+    preloadHero: true,
     jsonld: { "@context": "https://schema.org", "@type": "Product", "name": "Guía: Cómo contratar seguridad privada sin sobrecostos", "description": "Checklist de 21 puntos para evaluar cualquier empresa de seguridad antes de firmar un contrato de vigilancia.", "brand": { "@type": "Organization", "name": "CSSG — Company Of Security And Service Global", "url": "https://cssg-global.com" }, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" } }
   },
   {
@@ -705,6 +706,7 @@ const routes = [
     title: 'Evaluación de Riesgos de Seguridad y Consultoría de Seguridad | Guía ISO 31000 Gratis | CSSG',
     description: 'Descarga gratis la guía de evaluación y análisis de riesgos de seguridad: checklist ISO 31000, diagnóstico de seguridad, auditoría de seguridad física y matriz de gestión de riesgos FMEA. Por CSSG, +17 años sin incidentes.',
     image: 'https://cssg-global.com/svc_auditoria.webp',
+    preloadHero: true,
     jsonld: { "@context": "https://schema.org", "@type": "Product", "name": "Guía: Evaluación de Riesgos de Seguridad", "description": "Checklist ISO 31000 y matriz de riesgos FMEA para evaluar y auditar el riesgo de seguridad de una organización.", "brand": { "@type": "Organization", "name": "CSSG — Company Of Security And Service Global", "url": "https://cssg-global.com" }, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" } }
   },
   {
@@ -718,6 +720,7 @@ const routes = [
     title: 'Corporate Security Services & Security Consulting in Venezuela | CSSG',
     description: 'Corporate security services, security consulting and private protection for multinational companies in Venezuela. Vet private security contractor companies with our ISO 31000 methodology. Request a confidential assessment — CSSG, 17+ years without incident.',
     image: 'https://cssg-global.com/svc_ejecutivos.webp',
+    preloadHero: true,
     jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Corporate Security Services & Security Consulting", "description": "Corporate security consulting and private security contractor due diligence for multinational companies operating in Venezuela, referenced to ISO 31000:2018 and ASIS ORM.1:2017.", "provider": { "@type": "Organization", "name": "CSSG — Company Of Security And Service Global", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" }, "inLanguage": "en" }
   },
   {
@@ -731,6 +734,7 @@ const routes = [
     title: 'Diplomatic Security Services in Venezuela | G7 Standard | CSSG',
     description: 'Diplomatic security service for embassies, missions and executive families in Venezuela. 17+ years without incident, G7 standard, Vienna Convention protocol. Request a confidential briefing — CSSG.',
     image: 'https://cssg-global.com/ESCOLTA.jpg',
+    preloadHero: true,
     jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Diplomatic Security Services", "description": "Diplomatic security service (Escudo Diplomático) for embassies, diplomatic missions and executive families in Venezuela, operating under G7 standard and protocols aligned with the Vienna Convention.", "provider": { "@type": "Organization", "name": "CSSG — Company Of Security And Service Global", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" }, "inLanguage": "en" }
   },
   {
@@ -761,6 +765,15 @@ routes.forEach(route => {
   // Update Canonical URL
   newHtml = newHtml.replace(/<link rel="canonical" href=".*?"\s*\/?>/gi, `<link rel="canonical" href="https://cssg-global.com/${route.path}" />`);
   newHtml = newHtml.replace(/<meta property="og:url" content=".*?"\s*\/?>/gi, `<meta property="og:url" content="https://cssg-global.com/${route.path}" />`);
+
+  // Preload the hero image for standalone landing pages so the browser fetches it
+  // from the raw HTML immediately, instead of waiting on JS to render the CSS background-image.
+  // Also drop the shared home-page hero preload — these landings never use it, and it would
+  // otherwise compete for the same high-priority fetch slot as the image actually shown.
+  if (route.preloadHero) {
+    newHtml = newHtml.replace(/<link rel="preload" as="image" href="\/foto-hero\.webp" fetchpriority="high">\n?/i, '');
+    newHtml = newHtml.replace(/<\/head>/, `<link rel="preload" as="image" href="${route.image}" fetchpriority="high" />\n  </head>`);
+  }
 
   // Inject per-route JSON-LD schema (supports single object or array)
   if (route.jsonld) {
