@@ -97,9 +97,9 @@ const services = [
 ];
 
 const credentials = [
-  { src: '/iso-9001-badge.webp', title: 'ISO 9001:2015', sub: 'Cert. 580181', note: 'Quality management certified — independently audited, not self-declared.' },
-  { src: '/cyber-essentials-badge.webp', title: 'Cyber Essentials', sub: 'Certified', note: 'Baseline cyber-hygiene verified for our operational technology.' },
-  { src: '/ifpo-corporate-member.webp', title: 'IFPO', sub: 'Corporate Member', note: 'International Foundation for Protection Officers membership.' },
+  { src: '/iso-9001-badge-cropped.webp', title: 'ISO 9001:2015', sub: 'Cert. 580181', note: 'Quality management certified — independently audited, not self-declared.' },
+  { src: '/cyber-essentials-badge-transparent.webp', title: 'Cyber Essentials', sub: 'Certified', note: 'Baseline cyber-hygiene verified for our operational technology.' },
+  { src: '/ifpo-corporate-member-transparent.webp', title: 'IFPO', sub: 'Corporate Member', note: 'International Foundation for Protection Officers membership.' },
 ];
 
 const FAQS = [
@@ -307,8 +307,8 @@ export default function CorporateSecurity() {
           <div className="grid sm:grid-cols-3 gap-8">
             {credentials.map((c) => (
               <div key={c.title} className="text-center">
-                <div className="w-28 h-28 mx-auto mb-4 rounded-xl bg-white flex items-center justify-center p-3 shadow-[0_8px_24px_rgba(0,0,0,0.35)]">
-                  <img src={c.src} alt={c.title} className="max-h-full max-w-full object-contain" loading="lazy" />
+                <div className="h-24 mx-auto mb-4 flex items-center justify-center">
+                  <img src={c.src} alt={c.title} className="max-h-full max-w-[140px] object-contain drop-shadow-[0_4px_16px_rgba(0,0,0,0.4)]" loading="lazy" />
                 </div>
                 <p className="font-semibold text-sm text-white">{c.title} <span className="text-gray-500 font-normal">· {c.sub}</span></p>
                 <p className="text-xs text-gray-500 mt-1 max-w-[26ch] mx-auto">{c.note}</p>
