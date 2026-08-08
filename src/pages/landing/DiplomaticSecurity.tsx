@@ -271,11 +271,25 @@ export default function DiplomaticSecurity() {
     document.getElementById('briefing')?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const glowRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const handleMove = (e: MouseEvent) => {
+      if (glowRef.current) {
+        glowRef.current.style.background = `radial-gradient(750px circle at ${e.clientX}px ${e.clientY}px, rgba(201,162,75,0.22), transparent 60%)`;
+      }
+    };
+    window.addEventListener('mousemove', handleMove);
+    return () => window.removeEventListener('mousemove', handleMove);
+  }, []);
+
   return (
     <div className="min-h-screen text-white overflow-x-hidden" style={{ background: BG, fontFamily: "'Inter', sans-serif" }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
       `}</style>
+
+      {/* Cursor-following spotlight — subtly lifts background intensity near the pointer */}
+      <div ref={glowRef} className="fixed inset-0 hidden sm:block" style={{ zIndex: 30, pointerEvents: 'none', mixBlendMode: 'screen' }} aria-hidden="true" />
 
       {/* ═══ MINI NAV ═══ */}
       <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-5 sm:px-8 py-3.5" style={{ background: 'rgba(11,11,15,0.85)', backdropFilter: 'blur(12px)', borderBottom: `1px solid ${BORDER}` }}>
@@ -538,8 +552,8 @@ export default function DiplomaticSecurity() {
       <section className="relative py-20 px-4 sm:px-6 overflow-hidden" style={{ borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}` }}>
         <div className="absolute inset-0" style={{
           backgroundImage: "url('/cssg-emblem.webp')",
-          backgroundSize: '520px auto', backgroundPosition: 'center', backgroundRepeat: 'no-repeat',
-          opacity: 0.14,
+          backgroundSize: '200px auto', backgroundPosition: 'center', backgroundRepeat: 'no-repeat',
+          opacity: 0.16,
         }} />
         <div className="absolute inset-0" style={{ background: 'rgba(11,11,15,0.35)' }} />
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="relative max-w-3xl mx-auto text-center">
