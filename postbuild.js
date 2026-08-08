@@ -693,13 +693,15 @@ const routes = [
     description: 'Descarga gratis el checklist de 21 puntos para contratar guardias de seguridad y servicios de vigilancia para empresas sin sobrecostos. Por CSSG, ISO 9001:2015.',
     image: 'https://cssg-global.com/ana-hero-premium.webp',
     preloadHero: true,
+    preloadFont: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700;900&display=swap',
     jsonld: { "@context": "https://schema.org", "@type": "Product", "name": "Guía: Cómo contratar seguridad privada sin sobrecostos", "description": "Checklist de 21 puntos para evaluar cualquier empresa de seguridad antes de firmar un contrato de vigilancia.", "brand": { "@type": "Organization", "name": "CSSG — Company Of Security And Service Global", "url": "https://cssg-global.com" }, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" } }
   },
   {
     path: 'empresa-de-seguridad/gracias',
     title: 'Guía en camino | CSSG Global',
     description: 'Confirmación de solicitud de la guía de contratación de seguridad privada — CSSG Global.',
-    image: 'https://cssg-global.com/ana-hero-premium.webp'
+    image: 'https://cssg-global.com/ana-hero-premium.webp',
+    preloadFont: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap'
   },
   {
     path: 'consultoria-y-analisis-de-riesgos',
@@ -707,13 +709,15 @@ const routes = [
     description: 'Descarga gratis la guía de evaluación y análisis de riesgos de seguridad: checklist ISO 31000, diagnóstico de seguridad, auditoría de seguridad física y matriz de gestión de riesgos FMEA. Por CSSG, +17 años sin incidentes.',
     image: 'https://cssg-global.com/svc_auditoria.webp',
     preloadHero: true,
+    preloadFont: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap',
     jsonld: { "@context": "https://schema.org", "@type": "Product", "name": "Guía: Evaluación de Riesgos de Seguridad", "description": "Checklist ISO 31000 y matriz de riesgos FMEA para evaluar y auditar el riesgo de seguridad de una organización.", "brand": { "@type": "Organization", "name": "CSSG — Company Of Security And Service Global", "url": "https://cssg-global.com" }, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" } }
   },
   {
     path: 'consultoria-y-analisis-de-riesgos/gracias',
     title: 'Guía en camino | CSSG Global',
     description: 'Confirmación de solicitud de la guía de evaluación de riesgos de seguridad — CSSG Global.',
-    image: 'https://cssg-global.com/svc_auditoria.webp'
+    image: 'https://cssg-global.com/svc_auditoria.webp',
+    preloadFont: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap'
   },
   {
     path: 'en/corporate-security-consulting',
@@ -721,13 +725,15 @@ const routes = [
     description: 'Corporate security services, security consulting and private protection for multinational companies in Venezuela. Vet private security contractor companies with our ISO 31000 methodology. Request a confidential assessment — CSSG, 17+ years without incident.',
     image: 'https://cssg-global.com/svc_ejecutivos.webp',
     preloadHero: true,
+    preloadFont: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap',
     jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Corporate Security Services & Security Consulting", "description": "Corporate security consulting and private security contractor due diligence for multinational companies operating in Venezuela, referenced to ISO 31000:2018 and ASIS ORM.1:2017.", "provider": { "@type": "Organization", "name": "CSSG — Company Of Security And Service Global", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" }, "inLanguage": "en" }
   },
   {
     path: 'en/corporate-security-consulting/thank-you',
     title: 'Request received | CSSG Global',
     description: 'Confirmation of your Corporate Security Assessment request — CSSG Global.',
-    image: 'https://cssg-global.com/svc_ejecutivos.webp'
+    image: 'https://cssg-global.com/svc_ejecutivos.webp',
+    preloadFont: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap'
   },
   {
     path: 'en/diplomatic-security',
@@ -735,13 +741,15 @@ const routes = [
     description: 'Diplomatic security service for embassies, missions and executive families in Venezuela. 17+ years without incident, G7 standard, Vienna Convention protocol. Request a confidential briefing — CSSG.',
     image: 'https://cssg-global.com/ESCOLTA.jpg',
     preloadHero: true,
+    preloadFont: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap',
     jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Diplomatic Security Services", "description": "Diplomatic security service (Escudo Diplomático) for embassies, diplomatic missions and executive families in Venezuela, operating under G7 standard and protocols aligned with the Vienna Convention.", "provider": { "@type": "Organization", "name": "CSSG — Company Of Security And Service Global", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" }, "inLanguage": "en" }
   },
   {
     path: 'en/diplomatic-security/thank-you',
     title: 'Request received | CSSG Global',
     description: 'Confirmation of your Diplomatic Security request — CSSG Global.',
-    image: 'https://cssg-global.com/ESCOLTA.jpg'
+    image: 'https://cssg-global.com/ESCOLTA.jpg',
+    preloadFont: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap'
   }
 ];
 
@@ -773,6 +781,14 @@ routes.forEach(route => {
   if (route.preloadHero) {
     newHtml = newHtml.replace(/<link rel="preload" as="image" href="\/foto-hero\.webp" fetchpriority="high">\n?/i, '');
     newHtml = newHtml.replace(/<\/head>/, `<link rel="preload" as="image" href="${route.image}" fetchpriority="high" />\n  </head>`);
+  }
+
+  // Preload the landing pages' own Google Fonts stylesheet (Playfair Display + Inter) so the
+  // browser fetches it straight from the raw HTML — before any JS downloads or runs — instead
+  // of waiting for React to mount the <link> tags that load these fonts client-side.
+  if (route.preloadFont) {
+    const fontTags = `<link rel="preload" as="style" href="${route.preloadFont}" />\n  <link rel="stylesheet" href="${route.preloadFont}" media="print" onload="this.media='all'" />`;
+    newHtml = newHtml.replace(/<\/head>/, `${fontTags}\n  </head>`);
   }
 
   // Inject per-route JSON-LD schema (supports single object or array)
