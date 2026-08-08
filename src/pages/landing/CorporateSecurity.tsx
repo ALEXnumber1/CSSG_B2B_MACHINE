@@ -262,7 +262,7 @@ export default function CorporateSecurity() {
       {/* ═══ 1. HERO — full-bleed photography, dark wash ═══ */}
       <header className="relative min-h-[94vh] flex flex-col justify-center px-6 pt-24 overflow-hidden">
         <div className="absolute inset-0" style={{
-          backgroundImage: "url('/consulting_b2b.webp')",
+          backgroundImage: "url('/risk_analysis_cta.webp')",
           backgroundSize: 'cover', backgroundPosition: 'center 30%', filter: 'saturate(0.7)', transform: 'scale(1.03)',
         }} />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(100deg, rgba(11,11,15,.97) 0%, rgba(11,11,15,.93) 45%, rgba(11,11,15,.55) 100%)' }} />
@@ -307,7 +307,9 @@ export default function CorporateSecurity() {
           <div className="grid sm:grid-cols-3 gap-8">
             {credentials.map((c) => (
               <div key={c.title} className="text-center">
-                <img src={c.src} alt={c.title} className="h-16 w-16 object-contain mx-auto mb-4" loading="lazy" />
+                <div className="w-28 h-28 mx-auto mb-4 rounded-xl bg-white flex items-center justify-center p-3 shadow-[0_8px_24px_rgba(0,0,0,0.35)]">
+                  <img src={c.src} alt={c.title} className="max-h-full max-w-full object-contain" loading="lazy" />
+                </div>
                 <p className="font-semibold text-sm text-white">{c.title} <span className="text-gray-500 font-normal">· {c.sub}</span></p>
                 <p className="text-xs text-gray-500 mt-1 max-w-[26ch] mx-auto">{c.note}</p>
               </div>
