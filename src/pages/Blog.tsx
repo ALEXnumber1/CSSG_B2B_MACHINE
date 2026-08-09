@@ -15,6 +15,7 @@ export interface BlogEntry {
   categoryColor: string;
   featured?: boolean;
   image?: string;
+  author?: string;
 }
 
 export const getBlogPosts = (t: any): BlogEntry[] => [
@@ -28,6 +29,7 @@ export const getBlogPosts = (t: any): BlogEntry[] => [
     categoryColor: 'text-amber-400 bg-amber-500/10',
     featured: true,
     image: '/business_security_1.png',
+    author: 'MBA Alexander Briceño, CEO CSSG Global',
   },
   {
     slug: 'resiliencia-corporativa-venezuela',

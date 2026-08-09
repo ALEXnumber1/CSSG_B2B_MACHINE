@@ -1,7 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { ArrowLeft, Calendar, Clock, Tag, ArrowRight } from 'lucide-react';
+import { ArrowLeft, Calendar, Clock, Tag, ArrowRight, User } from 'lucide-react';
 import { getBlogPosts, type BlogEntry } from './Blog';
 import { useState, useEffect, useMemo } from 'react';
 import { supabase } from '../lib/supabase';
@@ -17,7 +17,7 @@ const LOCALES = {
 
 type FaqItem = { question: string; answer: string };
 
-function injectSeoTags(slug: string, post: { title: string; excerpt?: string; image?: string; created_at?: string; date?: string }, faq: FaqItem[]) {
+function injectSeoTags(slug: string, post: { title: string; excerpt?: string; image?: string; created_at?: string; date?: string; author?: string }, faq: FaqItem[]) {
   const canonicalUrl = `https://cssg-global.com/blog/${slug}`;
   const ids = ['blog-canonical', 'blog-article-ld', 'blog-faq-ld'];
 
@@ -47,7 +47,9 @@ function injectSeoTags(slug: string, post: { title: string; excerpt?: string; im
     description: post.excerpt || '',
     image: post.image || 'https://cssg-global.com/images/default-blog.png',
     datePublished: post.created_at || post.date || new Date().toISOString(),
-    author: { '@type': 'Organization', name: 'CSSG', url: 'https://cssg-global.com' },
+    author: post.author
+      ? { '@type': 'Person', name: post.author, worksFor: { '@type': 'Organization', name: 'CSSG Global', url: 'https://cssg-global.com' } }
+      : { '@type': 'Organization', name: 'CSSG', url: 'https://cssg-global.com' },
     publisher: { '@type': 'Organization', name: 'CSSG', logo: { '@type': 'ImageObject', url: 'https://cssg-global.com/logo.webp' } },
     mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
   });
@@ -188,7 +190,10 @@ export default function BlogPost() {
             </span>
           </div>
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight tracking-tight">{post.title}</h1>
-          <div className="flex items-center gap-6 text-sm text-gray-500">
+          <div className="flex items-center flex-wrap gap-6 text-sm text-gray-500">
+            {(post as BlogEntry).author && (
+              <span className="flex items-center gap-1.5 text-sky-400"><User className="w-4 h-4" />{(post as BlogEntry).author}</span>
+            )}
             <span className="flex items-center gap-1.5"><Calendar className="w-4 h-4" />{new Date(post.date).toLocaleDateString()}</span>
             <span className="flex items-center gap-1.5"><Clock className="w-4 h-4" />{t('blog.read_time', { time: post.readTime })}</span>
           </div>
