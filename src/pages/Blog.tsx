@@ -19,6 +19,17 @@ export interface BlogEntry {
 
 export const getBlogPosts = (t: any): BlogEntry[] => [
   {
+    slug: 'executive-security-venezuela',
+    title: t('posts.executive-security-venezuela.title'),
+    excerpt: t('posts.executive-security-venezuela.excerpt'),
+    date: '2026-08-09',
+    readTime: '7 min',
+    category: t('categories.Seguridad Ejecutiva'),
+    categoryColor: 'text-amber-400 bg-amber-500/10',
+    featured: true,
+    image: '/business_security_1.png',
+  },
+  {
     slug: 'resiliencia-corporativa-venezuela',
     title: t('posts.resiliencia-corporativa-venezuela.title'),
     excerpt: t('posts.resiliencia-corporativa-venezuela.excerpt'),
@@ -26,7 +37,7 @@ export const getBlogPosts = (t: any): BlogEntry[] => [
     readTime: '9 min',
     category: t('categories.Continuidad'),
     categoryColor: 'text-emerald-400 bg-emerald-500/10',
-    featured: true,
+    featured: false,
     image: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1200&q=80',
   },
   {
