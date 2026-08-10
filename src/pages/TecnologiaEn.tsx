@@ -1184,40 +1184,43 @@ export default function TecnologiaEn() {
                     ) : (
                       <form className="space-y-5" onSubmit={handleSubmit}>
                         <div className="space-y-1.5">
-                          <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1">Specialty</label>
-                          <input type="text" value={subject || "Comprehensive Security"} readOnly className="w-full bg-[#030305]/50 border border-white/10 rounded-2xl px-5 py-4 text-white font-bold text-sm focus:border-sky-500/50 transition-all outline-none" />
+                          <label htmlFor="tecen-specialty" className="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1">Specialty</label>
+                          <input id="tecen-specialty" type="text" value={subject || "Comprehensive Security"} readOnly className="w-full bg-[#030305]/50 border border-white/10 rounded-2xl px-5 py-4 text-white font-bold text-sm focus:border-sky-500/50 transition-all outline-none" />
                         </div>
                         <div className="space-y-1.5">
-                          <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1">Full Name</label>
-                          <input 
-                            type="text" 
-                            required 
-                            placeholder="John Doe" 
+                          <label htmlFor="tecen-nombre" className="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1">Full Name</label>
+                          <input
+                            id="tecen-nombre"
+                            type="text"
+                            required
+                            placeholder="John Doe"
                             value={formData.nombre}
                             onChange={(e) => setFormData({ ...formData, nombre: e.target.value })}
-                            className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white text-sm focus:border-sky-500/50 transition-all outline-none" 
+                            className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white text-sm focus:border-sky-500/50 transition-all outline-none"
                           />
                         </div>
                         <div className="space-y-1.5">
-                          <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1">Corporate Email</label>
-                          <input 
-                            type="email" 
-                            required 
-                            placeholder="email@company.com" 
+                          <label htmlFor="tecen-correo" className="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1">Corporate Email</label>
+                          <input
+                            id="tecen-correo"
+                            type="email"
+                            required
+                            placeholder="email@company.com"
                             value={formData.correo}
                             onChange={(e) => setFormData({ ...formData, correo: e.target.value })}
-                            className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white text-sm focus:border-sky-500/50 transition-all outline-none" 
+                            className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white text-sm focus:border-sky-500/50 transition-all outline-none"
                           />
                         </div>
                         <div className="space-y-1.5">
-                          <label className="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1">Company / Institution</label>
-                          <input 
-                            type="text" 
-                            required 
-                            placeholder="Enterprise Inc." 
+                          <label htmlFor="tecen-empresa" className="text-[10px] font-black text-gray-500 uppercase tracking-widest ml-1">Company / Institution</label>
+                          <input
+                            id="tecen-empresa"
+                            type="text"
+                            required
+                            placeholder="Enterprise Inc."
                             value={formData.empresa}
                             onChange={(e) => setFormData({ ...formData, empresa: e.target.value })}
-                            className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white text-sm focus:border-sky-500/50 transition-all outline-none" 
+                            className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-4 text-white text-sm focus:border-sky-500/50 transition-all outline-none"
                           />
                         </div>
                         
