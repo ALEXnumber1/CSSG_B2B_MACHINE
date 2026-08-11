@@ -704,33 +704,33 @@ const routes = [
   },
   {
     path: 'empresa-de-seguridad',
-    title: 'Cómo Contratar Seguridad Privada sin Sobrecostos | Guía Gratuita | CSSG',
-    description: 'Descarga gratis el checklist de 21 puntos para contratar guardias de seguridad y servicios de vigilancia para empresas sin sobrecostos. Por CSSG, ISO 9001:2015.',
+    title: 'Auditoría de Contratación de Seguridad Privada para Empresas | CSSG',
+    description: 'Solicite una auditoría de su esquema de seguridad privada o de su proveedor actual de guardias de seguridad. 21 criterios de contratación aplicados por un consultor senior de CSSG, ISO 9001:2015.',
     image: 'https://cssg-global.com/ana-hero-premium.webp',
     preloadHero: true,
     preloadFont: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700;900&display=swap',
-    jsonld: { "@context": "https://schema.org", "@type": "Product", "name": "Guía: Cómo contratar seguridad privada sin sobrecostos", "description": "Checklist de 21 puntos para evaluar cualquier empresa de seguridad antes de firmar un contrato de vigilancia.", "brand": { "@type": "Organization", "name": "CSSG — Company Of Security And Service Global", "url": "https://cssg-global.com" }, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" } }
+    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Auditoría de Contratación de Seguridad Privada", "description": "Auditoría de esquemas de vigilancia y contratos de seguridad privada para empresas, referenciada a 21 criterios de legalidad, contratación y operación.", "provider": { "@type": "Organization", "name": "CSSG — Company Of Security And Service Global", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" } }
   },
   {
     path: 'empresa-de-seguridad/gracias',
-    title: 'Guía en camino | CSSG Global',
-    description: 'Confirmación de solicitud de la guía de contratación de seguridad privada — CSSG Global.',
+    title: 'Solicitud recibida | CSSG Global',
+    description: 'Confirmación de solicitud de auditoría de seguridad privada — CSSG Global.',
     image: 'https://cssg-global.com/ana-hero-premium.webp',
     preloadFont: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap'
   },
   {
     path: 'consultoria-y-analisis-de-riesgos',
-    title: 'Evaluación de Riesgos de Seguridad y Consultoría de Seguridad | Guía ISO 31000 Gratis | CSSG',
-    description: 'Descarga gratis la guía de evaluación y análisis de riesgos de seguridad: checklist ISO 31000, diagnóstico de seguridad, auditoría de seguridad física y matriz de gestión de riesgos FMEA. Por CSSG, +17 años sin incidentes.',
+    title: 'Evaluación de Riesgos de Seguridad y Consultoría de Seguridad | Metodología ISO 31000 | CSSG',
+    description: 'Solicite una evaluación de riesgos de seguridad bajo metodología FMEA e ISO 31000: diagnóstico de seguridad, auditoría de seguridad física y matriz de gestión de riesgos. Por CSSG, +17 años sin incidentes.',
     image: 'https://cssg-global.com/svc_auditoria.webp',
     preloadHero: true,
     preloadFont: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap',
-    jsonld: { "@context": "https://schema.org", "@type": "Product", "name": "Guía: Evaluación de Riesgos de Seguridad", "description": "Checklist ISO 31000 y matriz de riesgos FMEA para evaluar y auditar el riesgo de seguridad de una organización.", "brand": { "@type": "Organization", "name": "CSSG — Company Of Security And Service Global", "url": "https://cssg-global.com" }, "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" } }
+    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Evaluación de Riesgos de Seguridad", "description": "Evaluación de riesgos de seguridad bajo metodología FMEA e ISO 31000:2018, con matriz de riesgo y auditoría de seguridad física (CPTED).", "provider": { "@type": "Organization", "name": "CSSG — Company Of Security And Service Global", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" } }
   },
   {
     path: 'consultoria-y-analisis-de-riesgos/gracias',
-    title: 'Guía en camino | CSSG Global',
-    description: 'Confirmación de solicitud de la guía de evaluación de riesgos de seguridad — CSSG Global.',
+    title: 'Solicitud recibida | CSSG Global',
+    description: 'Confirmación de solicitud de evaluación de riesgos de seguridad — CSSG Global.',
     image: 'https://cssg-global.com/svc_auditoria.webp',
     preloadFont: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap'
   },

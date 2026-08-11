@@ -15,10 +15,12 @@ import CookieConsent from '../../components/CookieConsent';
 // Keywords: consultoría de seguridad, evaluación de riesgos de seguridad,
 // análisis de riesgos de seguridad, auditoría de seguridad física,
 // diagnóstico de seguridad, gestión de riesgos.
-// Lead magnet: "Diagnóstico de Vulnerabilidades de Seguridad" —
-// autoevaluación FMEA / ISO 31000 en 4 pilares.
+// Service-presentation page, no downloadable lead magnet — captures
+// the lead into a consultative flow with a direct calendar-booking
+// option, same pattern as CorporateSecurity.tsx / DiplomaticSecurity.tsx.
 // ─────────────────────────────────────────────────────────────
 
+const CALENDAR_URL = 'https://calendar.app.google/ZCLbjCCsbmYwMnEc6';
 const NAVY = '#0A1628';
 const SLATE = '#16233A';
 const BORDER = '#233754';
@@ -78,7 +80,7 @@ const services = [
     badge: '01',
     title: 'Mapeo de activos y los 4 pilares de riesgo',
     tag: 'Perímetro · Accesos · Procedimientos · Inteligencia',
-    body: 'Antes de asignar cualquier recurso, identifique qué está protegiendo realmente. La autoevaluación recorre los cuatro pilares que determinan la resiliencia operativa de cualquier organización — con 20 preguntas concretas, puntuadas de 0 a 3.',
+    body: 'Antes de asignar cualquier recurso, identificamos qué está protegiendo realmente. Recorremos con usted los cuatro pilares que determinan la resiliencia operativa de su organización — con 20 criterios concretos, puntuados de 0 a 3.',
   },
   {
     badge: '02',
@@ -90,7 +92,7 @@ const services = [
     badge: '03',
     title: 'Matriz de riesgo y hoja de resultados',
     tag: 'Semáforo de madurez en 4 niveles',
-    body: 'Sus respuestas se consolidan en una matriz de probabilidad × impacto y un semáforo de madurez (Crítico, Alto, Moderado, Óptimo) que le dice, en una sola página, qué atender primero — y qué puede esperar.',
+    body: 'Sus resultados se consolidan en una matriz de probabilidad × impacto y un semáforo de madurez (Crítico, Alto, Moderado, Óptimo) que le dice, en una sola página, qué atender primero — y qué puede esperar.',
   },
 ];
 
@@ -107,24 +109,24 @@ const diferenciadores = [
 
 const FAQS = [
   {
-    q: '¿Es realmente gratuito o tiene algún costo oculto?',
-    a: 'Es gratuito, sin tarjeta de crédito ni compromiso. Solo pedimos su correo para enviarle el documento y, si lo desea, contenido de inteligencia de seguridad corporativa.',
+    q: '¿La evaluación inicial implica algún compromiso de contratación?',
+    a: 'No. Un consultor senior revisa su caso bajo protocolo de confidencialidad, sin obligación de contratar servicios adicionales.',
   },
   {
-    q: '¿Qué diferencia esta autoevaluación de un análisis de riesgos de seguridad genérico?',
+    q: '¿Qué diferencia esta evaluación de un análisis de riesgos de seguridad genérico?',
     a: 'Está construida sobre la misma metodología FMEA que usamos en nuestras auditorías privadas — no es una checklist de sentido común, es el sistema de gestión de riesgos exacto que aplicamos con clientes corporativos, referenciado a ISO 31000:2018 y ASIS ORM.1:2017.',
   },
   {
-    q: '¿Esto reemplaza una consultoría de seguridad completa?',
-    a: 'No, la complementa. Le permite hacer un primer diagnóstico de seguridad serio con su propio equipo. Cuando necesite verificación en sitio o un informe con validez ante su directiva, ahí es donde entra una consultoría con un especialista de CSSG.',
-  },
-  {
-    q: '¿Necesito ser experto en seguridad para aplicarla?',
-    a: 'No. Está escrita para directores de operaciones, gerentes administrativos y responsables de compliance que necesitan evaluar riesgo sin ser especialistas en seguridad física.',
-  },
-  {
-    q: '¿Sirve para más de una sede o instalación?',
+    q: '¿Pueden evaluar más de una sede o instalación?',
     a: 'Sí. El índice está diseñado para replicarse por sede, lo que le permite comparar el resultado entre instalaciones con el mismo criterio y priorizar inversión donde realmente se necesita.',
+  },
+  {
+    q: '¿Necesito ser experto en seguridad para participar en la evaluación?',
+    a: 'No. Trabajamos directamente con directores de operaciones, gerentes administrativos y responsables de compliance que necesitan evaluar riesgo sin ser especialistas en seguridad física.',
+  },
+  {
+    q: '¿CSSG puede participar en nuestro proceso de licitación?',
+    a: 'Sí. Participamos regularmente en licitaciones corporativas. Seleccione "Invitar a CSSG a una licitación" en el formulario y compártanos su fecha límite — le enviamos la documentación requerida, incluyendo certificación ISO 9001:2015 y autorización DIGESERVISP.',
   },
   {
     q: '¿Qué pasa con mis datos?',
@@ -137,18 +139,19 @@ interface FormData {
   cargo: string;
   empresa: string;
   correo: string;
+  motivo: string;
 }
 
 export default function ConsultoriaRiesgos() {
   const navigate = useNavigate();
-  const [formData, setFormData] = useState<FormData>({ nombre: '', cargo: '', empresa: '', correo: '' });
+  const [formData, setFormData] = useState<FormData>({ nombre: '', cargo: '', empresa: '', correo: '', motivo: 'evaluacion' });
   const [status, setStatus] = useState<'idle' | 'loading' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   useEffect(() => {
-    document.title = 'Evaluación de Riesgos de Seguridad y Consultoría de Seguridad | Guía ISO 31000 Gratis | CSSG';
-    const desc = 'Descarga gratis la guía de evaluación y análisis de riesgos de seguridad: checklist ISO 31000, diagnóstico de seguridad, auditoría de seguridad física y matriz de gestión de riesgos FMEA. Por CSSG, +17 años sin incidentes.';
+    document.title = 'Evaluación de Riesgos de Seguridad y Consultoría de Seguridad | Metodología ISO 31000 | CSSG';
+    const desc = 'Solicite una evaluación de riesgos de seguridad bajo metodología FMEA e ISO 31000: diagnóstico de seguridad, auditoría de seguridad física y matriz de gestión de riesgos. Por CSSG, +17 años sin incidentes.';
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute('content', desc);
@@ -160,7 +163,7 @@ export default function ConsultoriaRiesgos() {
     }
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -168,6 +171,10 @@ export default function ConsultoriaRiesgos() {
     const domain = formData.correo.split('@')[1]?.toLowerCase();
     return !!domain && FREE_EMAIL_DOMAINS.includes(domain);
   })();
+
+  const purposeLabel = formData.motivo === 'licitacion'
+    ? 'Invitación a proceso de licitación'
+    : 'Evaluación de Riesgos de Seguridad (ISO 31000 + FMEA)';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -178,9 +185,9 @@ export default function ConsultoriaRiesgos() {
         nombre: formData.nombre,
         correo: formData.correo,
         empresa: formData.empresa,
-        mensaje: `[LP CONSULTORÍA Y ANÁLISIS DE RIESGOS] Solicitó: Diagnóstico de Vulnerabilidades de Seguridad (ISO 31000 + FMEA)${formData.cargo ? ` | Cargo: ${formData.cargo}` : ''}`,
+        mensaje: `[LP CONSULTORÍA Y ANÁLISIS DE RIESGOS] Solicitó: ${purposeLabel}${formData.cargo ? ` | Cargo: ${formData.cargo}` : ''}`,
         fuente: 'lp_consultoria_riesgos',
-        score: 45,
+        score: formData.motivo === 'licitacion' ? 55 : 45,
         estado: 'nuevo',
       }]).select('id').single();
 
@@ -194,12 +201,12 @@ export default function ConsultoriaRiesgos() {
               empresa: formData.empresa,
               fuente: 'lp_consultoria_riesgos',
               cargo: formData.cargo,
-              mensaje: '[SOLICITUD REPETIDA] Diagnóstico de Vulnerabilidades ISO 31000',
+              mensaje: `[SOLICITUD REPETIDA] ${purposeLabel}`,
             });
           } catch (emailErr) {
             console.warn('Email Send Exception on duplicate (Non-blocking):', emailErr);
           }
-          navigate('/consultoria-y-analisis-de-riesgos/gracias', { state: { nombre: formData.nombre, correo: formData.correo, duplicate: true } });
+          navigate('/consultoria-y-analisis-de-riesgos/gracias', { state: { nombre: formData.nombre, correo: formData.correo, duplicate: true, motivo: formData.motivo } });
           return;
         }
         throw new Error(insertError.message || JSON.stringify(insertError));
@@ -226,7 +233,7 @@ export default function ConsultoriaRiesgos() {
         console.warn('Sequence Start Exception (Non-blocking):', seqErr);
       }
 
-      navigate('/consultoria-y-analisis-de-riesgos/gracias', { state: { nombre: formData.nombre, correo: formData.correo, duplicate: false } });
+      navigate('/consultoria-y-analisis-de-riesgos/gracias', { state: { nombre: formData.nombre, correo: formData.correo, duplicate: false, motivo: formData.motivo } });
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : 'Error de conexión o de base de datos.';
       console.error('Error submitting LP Consultoria Riesgos form:', err);
@@ -256,7 +263,7 @@ export default function ConsultoriaRiesgos() {
         </div>
         <button onClick={scrollToForm} className="hidden sm:inline-block text-xs font-semibold uppercase tracking-widest px-5 py-2.5 transition-all hover:-translate-y-0.5"
           style={{ background: GOLD, color: NAVY, borderRadius: '2px' }}>
-          Solicitar diagnóstico
+          Solicitar evaluación
         </button>
       </header>
 
@@ -285,16 +292,21 @@ export default function ConsultoriaRiesgos() {
             convierte una sensación vaga de inseguridad en un índice medible, bajo metodología FMEA e ISO 31000.
           </p>
           <p className="text-sm font-semibold mb-8 pl-4" style={{ borderLeft: `2px solid ${GOLD}`, color: GOLD }}>
-            Cuatro pilares. Veinte preguntas. Un índice que su junta directiva puede tomar en serio.
+            Cuatro pilares. Veinte criterios. Un índice que su junta directiva puede tomar en serio.
           </p>
-          <button onClick={scrollToForm}
-            className="inline-flex items-center font-semibold px-9 py-4 text-base transition-all hover:-translate-y-0.5"
-            style={{ background: GOLD, color: NAVY, borderRadius: '2px', boxShadow: `inset 0 0 0 1px rgba(10,22,40,.35)` }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = GOLD_H)}
-            onMouseLeave={(e) => (e.currentTarget.style.background = GOLD)}
-          >
-            Solicitar el diagnóstico gratuito <ArrowRight className="w-4 h-4 ml-2" />
-          </button>
+          <div className="flex flex-wrap items-center gap-5">
+            <button onClick={scrollToForm}
+              className="inline-flex items-center font-semibold px-9 py-4 text-base transition-all hover:-translate-y-0.5"
+              style={{ background: GOLD, color: NAVY, borderRadius: '2px', boxShadow: `inset 0 0 0 1px rgba(10,22,40,.35)` }}
+              onMouseEnter={(e) => (e.currentTarget.style.background = GOLD_H)}
+              onMouseLeave={(e) => (e.currentTarget.style.background = GOLD)}
+            >
+              Solicitar mi evaluación de riesgos <ArrowRight className="w-4 h-4 ml-2" />
+            </button>
+            <button onClick={scrollToForm} className="text-xs uppercase tracking-widest font-semibold hover:underline" style={{ color: ICE, letterSpacing: '.08em' }}>
+              ¿Prepara una licitación? Invítenos →
+            </button>
+          </div>
           <p className="text-xs mt-3 uppercase" style={{ color: MUTED, letterSpacing: '.08em' }}>
             17 años sin incidentes · Confidencial · Sin compromiso
           </p>
@@ -360,9 +372,9 @@ export default function ConsultoriaRiesgos() {
         <div className="max-w-5xl mx-auto relative">
           <SectionNumeral n="02" />
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-            <p className="uppercase font-semibold text-xs mb-3" style={{ color: ICE, letterSpacing: '.22em' }}>Lo que recibe</p>
+            <p className="uppercase font-semibold text-xs mb-3" style={{ color: ICE, letterSpacing: '.22em' }}>Lo que evaluamos</p>
             <h2 className="mb-14" style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(1.7rem, 3.4vw, 2.4rem)', maxWidth: '760px' }}>
-              Un diagnóstico con estructura auditable, no una checklist genérica.
+              Una evaluación con estructura auditable, no una checklist genérica.
             </h2>
           </motion.div>
           <div className="relative flex flex-col gap-12 pl-1" style={{ borderLeft: `1px solid ${BORDER}` }}>
@@ -391,7 +403,7 @@ export default function ConsultoriaRiesgos() {
           <motion.div className="relative" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
             <p className="uppercase font-semibold text-xs mb-3" style={{ color: ICE, letterSpacing: '.22em' }}>Diferenciadores</p>
             <p className="italic mb-10 pl-4" style={{ borderLeft: `3px solid ${GOLD}`, color: WHITE, fontSize: '1.1rem', maxWidth: '640px' }}>
-              La misma metodología que exigimos en esta guía es la que aplicamos en nuestra propia operación.
+              La misma metodología que aplicamos en cada evaluación es la que usamos en nuestra propia operación.
             </p>
           </motion.div>
           <div className="relative grid sm:grid-cols-2 gap-x-10 gap-y-1">
@@ -415,15 +427,29 @@ export default function ConsultoriaRiesgos() {
             <CornerFrame className="p-9 sm:p-11">
               <div className="absolute inset-0 -z-10" style={{ background: SLATE, border: `1px solid ${BORDER}`, borderRadius: '2px' }} />
               <span className="absolute top-4 right-4 text-[9px] font-bold uppercase px-2 py-1" style={{ color: GOLD, border: `1px solid ${GOLD}66`, letterSpacing: '.12em', borderRadius: '2px', transform: 'rotate(2deg)' }}>
-                Gratuito
+                Confidencial
               </span>
               <h2 className="text-center mb-2 mt-3" style={{ fontFamily: "'Playfair Display', serif", fontSize: '1.4rem' }}>
-                Solicitar el diagnóstico de vulnerabilidades
+                Solicitar mi evaluación de riesgos
               </h2>
-              <p className="text-center text-sm mb-7" style={{ color: MUTED }}>
-                Autoevaluación FMEA / ISO 31000 en 4 pilares, con matriz de riesgo. Directo a su correo.
+              <p className="text-center text-sm mb-2" style={{ color: MUTED }}>
+                Evaluación FMEA / ISO 31000 en 4 pilares, aplicada por un consultor senior. Respuesta en menos de 12 horas.
               </p>
+              <div className="text-center mb-7">
+                <a href={CALENDAR_URL} target="_blank" rel="noopener noreferrer" className="text-xs font-semibold hover:underline" style={{ color: GOLD }}>
+                  ¿Prefiere adelantarse? Agende directamente →
+                </a>
+              </div>
               <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <label className="block text-xs mb-1.5" style={{ color: MUTED, letterSpacing: '.03em' }}>Motivo *</label>
+                  <select name="motivo" required value={formData.motivo} onChange={handleChange}
+                    className="w-full px-3.5 py-3 text-sm focus:outline-none"
+                    style={{ background: NAVY, border: `1px solid ${BORDER}`, color: WHITE, borderRadius: '2px' }}>
+                    <option value="evaluacion">Solicitar evaluación de riesgos</option>
+                    <option value="licitacion">Invitar a CSSG a una licitación</option>
+                  </select>
+                </div>
                 <div>
                   <label className="block text-xs mb-1.5" style={{ color: MUTED, letterSpacing: '.03em' }}>Nombre completo *</label>
                   <input type="text" name="nombre" required value={formData.nombre} onChange={handleChange}
@@ -465,12 +491,12 @@ export default function ConsultoriaRiesgos() {
                   {status === 'loading' ? (
                     <><Loader2 className="w-4 h-4 animate-spin" /> Enviando…</>
                   ) : (
-                    <>Solicitar diagnóstico <ArrowRight className="w-4 h-4" /></>
+                    <>{formData.motivo === 'licitacion' ? 'Enviar invitación a licitación' : 'Solicitar evaluación'} <ArrowRight className="w-4 h-4" /></>
                   )}
                 </button>
               </form>
               <p className="text-xs text-center mt-4" style={{ color: MUTED }}>
-                Sin costo, sin compromiso de contratación. Se lo enviamos a su correo en menos de 60 segundos.
+                Sin compromiso de contratación. Un consultor senior le contacta en menos de 12 horas hábiles.
               </p>
             </CornerFrame>
           </motion.div>

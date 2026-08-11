@@ -2,13 +2,12 @@ import { useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
-import { Check, ArrowRight, Lock, Mail, ShieldCheck, Download } from 'lucide-react';
+import { Check, ArrowRight, Lock, Mail, ShieldCheck, FileCheck } from 'lucide-react';
 import CookieConsent from '../../components/CookieConsent';
-
-const PDF_URL = '/CSSG_Guia_Contratar_Seguridad_Privada.pdf';
 
 const GOLD = '#EAB308';
 const BORDER = 'rgba(255,255,255,0.08)';
+const CALENDAR_URL = 'https://calendar.app.google/ZCLbjCCsbmYwMnEc6';
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 20 },
@@ -19,19 +18,21 @@ interface LocationState {
   nombre?: string;
   correo?: string;
   duplicate?: boolean;
+  motivo?: string;
 }
 
 export default function EmpresaSeguridadGracias() {
   const location = useLocation();
   const navigate = useNavigate();
   const state = (location.state || {}) as LocationState;
+  const isTender = state.motivo === 'licitacion';
 
   useEffect(() => {
     if (!state.correo) {
       navigate('/empresa-de-seguridad', { replace: true });
       return;
     }
-    document.title = state.duplicate ? 'Ya tenemos tus datos | CSSG Global' : 'Guía en camino | CSSG Global';
+    document.title = state.duplicate ? 'Ya tenemos tus datos | CSSG Global' : 'Solicitud recibida | CSSG Global';
     let meta = document.querySelector('meta[name="robots"]');
     if (!meta) {
       meta = document.createElement('meta');
@@ -72,37 +73,53 @@ export default function EmpresaSeguridadGracias() {
           </div>
 
           <h1 className="mb-4 tracking-tight" style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(1.6rem, 3.4vw, 2.1rem)' }}>
-            {state.duplicate ? 'Ya tenemos tus datos' : `Gracias${firstName ? `, ${firstName}` : ''}. Tu guía va en camino.`}
+            {state.duplicate ? 'Ya tenemos tus datos' : `Gracias${firstName ? `, ${firstName}` : ''}. Su solicitud fue recibida.`}
           </h1>
 
           <p className="text-gray-400">
-            {state.duplicate
-              ? <>Ya contamos con tu información en nuestro sistema. Te reenviamos la guía «Cómo contratar seguridad privada sin sobrecostos» a <b className="text-white">{state.correo}</b> en los próximos minutos.</>
-              : <>Te enviamos el checklist de 21 puntos y la plantilla comparativa a <b className="text-white">{state.correo}</b>. Si no aparece en unos minutos, verifica spam o promociones.</>}
+            {state.duplicate ? (
+              <>Ya contamos con su información en nuestro sistema. Un consultor senior le contactará en <b className="text-white">{state.correo}</b> en breve.</>
+            ) : isTender ? (
+              <>Un consultor senior está preparando nuestra documentación de licitación — incluyendo certificación ISO 9001:2015 y autorización DIGESERVISP — y le contactará en <b className="text-white">{state.correo}</b> en menos de 12 horas hábiles.</>
+            ) : (
+              <>Un consultor senior revisará su caso y le contactará en <b className="text-white">{state.correo}</b> en menos de 12 horas hábiles para coordinar la auditoría de su esquema de seguridad.</>
+            )}
           </p>
 
-          <a
-            href={PDF_URL}
-            download
-            className="mt-6 inline-flex items-center gap-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 px-6 py-3.5 font-black text-[#0B0B0F] transition-colors"
-          >
-            <Download className="w-4 h-4" /> Descargar el PDF ahora
-          </a>
+          <div className="mt-6">
+            <p className="text-sm text-gray-400 mb-3">¿Prefiere no esperar? Elija un horario que le convenga:</p>
+            <a
+              href={CALENDAR_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-xl bg-sky-500 hover:bg-sky-400 px-6 py-3.5 font-black text-[#0B0B0F] transition-colors"
+            >
+              Agendar mi auditoría ahora <ArrowRight className="w-4 h-4" />
+            </a>
+            <p className="text-xs text-gray-500 mt-2">30 minutos · Confidencial · Sin compromiso</p>
+          </div>
 
           <div className="mt-8 pt-8 text-left" style={{ borderTop: `1px solid ${BORDER}` }}>
             <p className="text-xs font-black uppercase tracking-widest mb-4 text-sky-400">Mientras tanto</p>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
                 <Mail className="w-4 h-4 shrink-0 mt-0.5 text-sky-400" />
-                <span className="text-sm text-gray-400">Guarda el remitente <b className="text-gray-300">gerencia@globalservices-ven.com</b> para no perderte el resto de la serie con criterios de contratación.</span>
+                <span className="text-sm text-gray-400">Guarde el remitente <b className="text-gray-300">gerencia@globalservices-ven.com</b> como confiable para que el correo de nuestro consultor no caiga en spam.</span>
               </li>
-              <li className="flex items-start gap-3">
-                <ShieldCheck className="w-4 h-4 shrink-0 mt-0.5" style={{ color: GOLD }} />
-                <span className="text-sm text-gray-400">Si ya tienes un proveedor contratado, aplica primero los puntos 15 al 21: es una auditoría exprés de tu operación actual.</span>
-              </li>
+              {isTender ? (
+                <li className="flex items-start gap-3">
+                  <FileCheck className="w-4 h-4 shrink-0 mt-0.5" style={{ color: GOLD }} />
+                  <span className="text-sm text-gray-400">Comparta su fecha límite de entrega respondiendo este correo — le enviamos la documentación y propuesta técnica antes de su cierre de licitación.</span>
+                </li>
+              ) : (
+                <li className="flex items-start gap-3">
+                  <ShieldCheck className="w-4 h-4 shrink-0 mt-0.5" style={{ color: GOLD }} />
+                  <span className="text-sm text-gray-400">Si ya tiene un proveedor contratado, menciónelo en la primera llamada: podemos empezar auditando su esquema actual en vez de proponer uno nuevo.</span>
+                </li>
+              )}
               <li className="flex items-start gap-3">
                 <Lock className="w-4 h-4 shrink-0 mt-0.5 text-sky-400" />
-                <span className="text-sm text-gray-400">Tus datos se manejan bajo protocolo de confidencialidad. Puedes darte de baja cuando quieras.</span>
+                <span className="text-sm text-gray-400">Sus datos se manejan bajo protocolo de confidencialidad. Puede retirar su solicitud cuando quiera.</span>
               </li>
             </ul>
           </div>

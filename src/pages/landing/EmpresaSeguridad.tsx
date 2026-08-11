@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import {
-  Shield, Check, X as XIcon, Star, ChevronDown, FileText, Lock,
-  Award, ArrowRight, BadgeCheck, ClipboardCheck, Download,
+  Shield, X as XIcon, ChevronDown, FileText, Lock,
+  Award, ArrowRight, BadgeCheck, ClipboardCheck, Loader2, Clock,
 } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { sendLeadNotification } from '../../lib/email';
@@ -13,8 +13,11 @@ import CookieConsent from '../../components/CookieConsent';
 
 const GOLD = '#EAB308';
 const BORDER = 'rgba(255,255,255,0.08)';
+const CALENDAR_URL = 'https://calendar.app.google/ZCLbjCCsbmYwMnEc6';
 
 const GRID_BG = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3Cpath d='M64 0H0V64' fill='none' stroke='%230EA5E9' stroke-opacity='0.06' stroke-width='1'/%3E%3C/svg%3E")`;
+
+const FREE_EMAIL_DOMAINS = ['gmail.com', 'hotmail.com', 'outlook.com', 'yahoo.com', 'live.com', 'icloud.com'];
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -27,91 +30,13 @@ const fadeUp: Variants = {
 // seguridad, seguridad privada para empresas, contratar guardias de
 // seguridad, contratación de seguridad privada, servicio de vigilancia
 // para empresas.
-// Lead magnet: "Guía: Cómo contratar seguridad privada sin sobrecostos
-// — Checklist de 21 puntos"
+// Service-presentation page, no downloadable lead magnet — captures
+// the lead directly into a consultative flow with a direct
+// calendar-booking option, same pattern as CorporateSecurity.tsx /
+// DiplomaticSecurity.tsx.
+// Primary persona: Ricardo ("El Guardián" — administrador/gerente de
+// operaciones que necesita contratar o auditar seguridad privada).
 // ─────────────────────────────────────────────────────────────
-
-interface LeadFormProps {
-  formId: string;
-  status: 'idle' | 'loading' | 'error';
-  errorMsg: string;
-  formData: { nombre: string; correo: string; empresa: string };
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onSubmit: (e: React.FormEvent) => void;
-}
-
-function LeadForm({ formId, status, errorMsg, formData, onChange, onSubmit }: LeadFormProps) {
-  return (
-    <form id={formId} onSubmit={onSubmit} className="backdrop-blur-xl bg-white/[0.04] border border-sky-500/30 rounded-2xl p-6 sm:p-8 shadow-[0_0_60px_rgba(14,165,233,0.15)]">
-      <p className="text-sm font-bold text-sky-400 uppercase tracking-widest mb-4 flex items-center gap-2">
-        <Download className="w-4 h-4" /> Acceso inmediato por email
-      </p>
-      <div className="space-y-4">
-        <input
-          type="text" name="nombre" required value={formData.nombre} onChange={onChange}
-          placeholder="Tu nombre"
-          className="w-full bg-[#0B0B0F] border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-gray-500 focus:border-sky-500 focus:outline-none transition-colors"
-        />
-        <input
-          type="email" name="correo" required value={formData.correo} onChange={onChange}
-          placeholder="Tu email de trabajo"
-          className="w-full bg-[#0B0B0F] border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-gray-500 focus:border-sky-500 focus:outline-none transition-colors"
-        />
-        <input
-          type="text" name="empresa" required value={formData.empresa} onChange={onChange}
-          placeholder="Empresa u organización"
-          className="w-full bg-[#0B0B0F] border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-gray-500 focus:border-sky-500 focus:outline-none transition-colors"
-        />
-        <motion.button
-          whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
-          type="submit" disabled={status === 'loading'}
-          className="w-full py-4 rounded-xl font-black text-base bg-gradient-to-r from-emerald-500 to-emerald-400 text-[#0B0B0F] hover:from-emerald-400 hover:to-emerald-300 transition-all disabled:opacity-60 flex items-center justify-center gap-2"
-        >
-          {status === 'loading' ? 'Enviando…' : <>Sí, quiero la guía gratis <ArrowRight className="w-5 h-5" /></>}
-        </motion.button>
-      </div>
-      {status === 'error' && (
-        <p className="mt-3 text-sm text-red-400">Ocurrió un error: {errorMsg}. Intenta de nuevo.</p>
-      )}
-      <p className="mt-4 text-xs text-gray-500 flex items-center justify-center gap-1.5">
-        <Lock className="w-3.5 h-3.5" /> 100% libre de spam. Tus datos están seguros. Cancela cuando quieras.
-      </p>
-    </form>
-  );
-}
-
-function GuideMockup() {
-  return (
-    <div className="relative mx-auto w-64 sm:w-72" aria-hidden="true">
-      <div className="absolute inset-0 translate-x-3 translate-y-3 rounded-xl bg-sky-900/40 blur-sm" />
-      <div className="relative rounded-xl border border-white/10 bg-gradient-to-br from-[#101018] to-[#0B0B0F] p-6 shadow-2xl">
-        <Shield className="w-9 h-9 mb-4" style={{ color: GOLD }} />
-        <p className="text-[10px] uppercase tracking-[0.25em] text-sky-400 font-bold mb-2">Guía CSSG · Edición 2026</p>
-        <h3 className="text-white font-black text-lg leading-snug mb-3">
-          Cómo contratar seguridad privada sin sobrecostos
-        </h3>
-        <p className="text-gray-500 text-xs mb-4">Checklist de 21 puntos para evaluar cualquier empresa de seguridad antes de firmar.</p>
-        <div className="space-y-2">
-          {[...Array(4)].map((_, i) => (
-            <div key={i} className="flex items-center gap-2">
-              <div className="w-3.5 h-3.5 rounded border border-emerald-500/50 flex items-center justify-center">
-                <Check className="w-2.5 h-2.5 text-emerald-400" />
-              </div>
-              <div className="h-1.5 rounded bg-white/10" style={{ width: `${85 - i * 12}%` }} />
-            </div>
-          ))}
-        </div>
-        <div className="mt-5 pt-4 border-t border-white/5 flex items-center justify-between">
-          <span className="text-[9px] text-gray-600">ISO 9001:2015 · RIF J-29782024-8</span>
-          <FileText className="w-4 h-4 text-gray-600" />
-        </div>
-      </div>
-      <div className="absolute -top-3 -right-3 rounded-full px-3 py-1 text-[10px] font-black uppercase tracking-wide bg-emerald-500 text-[#0B0B0F]">
-        PDF Gratis
-      </div>
-    </div>
-  );
-}
 
 /** Numeral fantasma de sección — acento editorial premium */
 function SectionNumeral({ n }: { n: string }) {
@@ -132,28 +57,28 @@ const PAINS = [
 ];
 
 const DELIVERABLES = [
-  { icon: ClipboardCheck, range: 'Puntos 1–7', text: 'Cómo verificar la legalidad y solvencia real de una empresa de seguridad (permisos, RIF, pólizas y pasivos laborales ocultos que terminas pagando tú).' },
-  { icon: FileText, range: 'Puntos 8–14', text: 'Las 7 cláusulas que un contrato de vigilancia serio debe incluir — y las 3 trampas de facturación más comunes en Venezuela.' },
-  { icon: Shield, range: 'Puntos 15–21', text: 'Cómo auditar la operación: perfiles y rotación de los guardias, protocolos documentados, supervisión verificable y KPIs mensuales exigibles.' },
-  { icon: Award, range: 'BONUS', text: 'Plantilla comparativa de cotizaciones lista para usar: evalúa hasta 4 proveedores lado a lado con criterios objetivos.' },
+  { icon: ClipboardCheck, range: 'Puntos 1–7', text: 'Verificamos la legalidad y solvencia real de su empresa de seguridad actual o candidata (permisos, RIF, pólizas y pasivos laborales ocultos que termina pagando usted).' },
+  { icon: FileText, range: 'Puntos 8–14', text: 'Revisamos las 7 cláusulas que un contrato de vigilancia serio debe incluir — y detectamos las 3 trampas de facturación más comunes en Venezuela.' },
+  { icon: Shield, range: 'Puntos 15–21', text: 'Auditamos la operación en sitio: perfiles y rotación de los guardias, protocolos documentados, supervisión verificable y KPIs mensuales exigibles.' },
+  { icon: Award, range: 'BONUS', text: 'Plantilla comparativa de cotizaciones: la aplicamos junto a usted en la primera sesión para evaluar hasta 4 proveedores lado a lado, con criterios objetivos.' },
 ];
 
 const TESTIMONIALS = [
   {
-    headline: 'Redujimos la factura 32% y por primera vez sé qué estoy pagando',
-    body: 'Usé el checklist para renegociar con nuestro proveedor. Descubrimos cargos duplicados de supervisión que veníamos pagando hacía dos años. Al final migramos el servicio completo a un esquema optimizado.',
+    headline: 'Redujimos la factura 32% después de la auditoría de CSSG',
+    body: 'El consultor identificó cargos duplicados de supervisión que veníamos pagando hacía dos años, directamente en la revisión de nuestro contrato. Migramos el servicio completo a un esquema optimizado.',
     author: 'Gerente de Administración',
     org: 'Centro comercial, Caracas',
   },
   {
-    headline: 'Detecté en la primera reunión qué proveedor me estaba mintiendo',
-    body: 'Con los puntos 1 al 7 pedí documentos que ningún proveedor esperaba que pidiera. Dos no pudieron mostrarlos. El que sí pudo es el que contratamos, y llevamos 14 meses sin un solo incidente.',
+    headline: 'En la primera reunión supimos qué proveedor nos estaba mintiendo',
+    body: 'El equipo de CSSG pidió documentos que ningún otro proveedor esperaba que pidiéramos. Dos no pudieron mostrarlos. Contratamos al que sí pudo, y llevamos 14 meses sin un solo incidente.',
     author: 'Director de Operaciones',
     org: 'Empresa industrial, Valencia',
   },
   {
-    headline: 'El bono de la plantilla comparativa me ahorró semanas de análisis',
-    body: 'Tenía 4 cotizaciones de empresas de seguridad imposibles de comparar entre sí. La plantilla las puso en una sola tabla con criterios objetivos. La decisión que antes tomaba por precio, ahora la tomo por riesgo.',
+    headline: 'La comparación de propuestas que hicieron con nosotros nos ahorró semanas',
+    body: 'Teníamos 4 cotizaciones de empresas de seguridad imposibles de comparar entre sí. En la sesión con CSSG las pusimos en una sola tabla con criterios objetivos. La decisión que antes tomábamos por precio, ahora la tomamos por riesgo.',
     author: 'Administradora',
     org: 'Torre corporativa, Caracas',
   },
@@ -161,42 +86,50 @@ const TESTIMONIALS = [
 
 const FAQS = [
   {
-    q: '¿Es realmente gratis o tiene algún costo oculto?',
-    a: 'Es 100% gratis. No hay tarjeta de crédito ni periodo de prueba. Solo pedimos tu email para enviarte la guía y, si lo deseas, contenido de inteligencia de seguridad corporativa.',
+    q: '¿La evaluación inicial implica algún compromiso de contratación?',
+    a: 'No. Un consultor senior revisa su esquema actual o su necesidad bajo protocolo de confidencialidad, sin obligación de contratar servicios adicionales.',
   },
   {
-    q: '¿Por qué una empresa de seguridad regala esta información?',
-    a: 'Porque un cliente informado es nuestro mejor cliente. Queremos que conozcas nuestro estándar de operación antes de plantearte trabajar con nosotros. Si la guía te ayuda a exigir más, cualquier comparación nos favorece.',
+    q: '¿Qué diferencia esta auditoría de una cotización genérica?',
+    a: 'Aplicamos los mismos 21 criterios que usamos en nuestras auditorías privadas — legalidad y solvencia del proveedor, cláusulas contractuales defendibles y verificación operativa en sitio — no una revisión superficial ni una checklist de sentido común.',
   },
   {
-    q: '¿Me van a llenar el correo de spam?',
-    a: 'No. Recibirás la guía y una breve serie de correos con criterios técnicos de contratación. Puedes darte de baja en cualquier momento con un clic.',
+    q: '¿Pueden auditar a mi proveedor actual en vez de proponer uno nuevo?',
+    a: 'Sí, es el caso más común. La mayoría de nuestros clientes empieza justo ahí: auditamos su operación actual antes de plantear cualquier cambio de proveedor.',
   },
   {
     q: '¿Aplica si administro un condominio, comercio o una industria?',
-    a: 'Sí. El checklist está diseñado para cualquier organización que contrate guardias de seguridad o servicios de vigilancia: torres corporativas, centros comerciales, industrias, clínicas y condominios.',
+    a: 'Sí. Trabajamos con cualquier organización que contrate guardias de seguridad o servicios de vigilancia: torres corporativas, centros comerciales, industrias, clínicas y condominios.',
   },
   {
-    q: '¿Sirve aunque ya tenga un proveedor de seguridad contratado?',
-    a: 'Especialmente en ese caso. La mayoría de nuestros lectores la usa primero para auditar a su proveedor actual antes de renovar su contratación de seguridad privada. Los puntos 15 al 21 son una auditoría exprés de la operación existente.',
+    q: '¿CSSG puede participar en nuestro proceso de licitación?',
+    a: 'Sí. Participamos regularmente en licitaciones corporativas. Seleccione "¿Nos invita a una licitación?" en el formulario y compártanos su fecha límite — le enviamos la documentación requerida, incluyendo certificación ISO 9001:2015 y autorización DIGESERVISP.',
   },
   {
     q: '¿Qué pasa con mis datos?',
-    a: 'No compartimos tu información con terceros. Tus datos se almacenan de forma segura y puedes solicitar su eliminación cuando quieras escribiendo a gerencia@globalservices-ven.com.',
+    a: 'No compartimos su información con terceros. Sus datos se almacenan de forma segura y puede solicitar su eliminación cuando quiera escribiendo a gerencia@globalservices-ven.com.',
   },
 ];
+
+interface FormData {
+  nombre: string;
+  cargo: string;
+  empresa: string;
+  correo: string;
+  motivo: string;
+}
 
 export default function EmpresaSeguridad() {
   const navigate = useNavigate();
   const year = new Date().getFullYear();
-  const [formData, setFormData] = useState({ nombre: '', correo: '', empresa: '' });
+  const [formData, setFormData] = useState<FormData>({ nombre: '', cargo: '', empresa: '', correo: '', motivo: 'auditoria' });
   const [status, setStatus] = useState<'idle' | 'loading' | 'error'>('idle');
   const [errorMsg, setErrorMsg] = useState('');
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   useEffect(() => {
-    document.title = 'Empresa de Seguridad Privada para Empresas | Guía Gratuita de Contratación | CSSG';
-    const desc = 'Descarga gratis el checklist de 21 puntos para contratar guardias de seguridad y servicios de vigilancia para empresas sin sobrecostos. Por CSSG, ISO 9001:2015.';
+    document.title = 'Empresa de Seguridad Privada para Empresas | Auditoría de Contratación | CSSG';
+    const desc = 'Solicite una auditoría de su esquema de seguridad privada o de su proveedor actual de guardias de seguridad. 21 criterios de contratación aplicados por un consultor senior de CSSG, ISO 9001:2015.';
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute('content', desc);
@@ -208,9 +141,18 @@ export default function EmpresaSeguridad() {
     }
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
+  const isFreeEmail = (() => {
+    const domain = formData.correo.split('@')[1]?.toLowerCase();
+    return !!domain && FREE_EMAIL_DOMAINS.includes(domain);
+  })();
+
+  const purposeLabel = formData.motivo === 'licitacion'
+    ? 'Invitación a proceso de licitación'
+    : 'Auditoría de esquema de seguridad actual';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -221,9 +163,9 @@ export default function EmpresaSeguridad() {
         nombre: formData.nombre,
         correo: formData.correo,
         empresa: formData.empresa,
-        mensaje: '[LP EMPRESA DE SEGURIDAD] Solicitó: Guía Cómo contratar seguridad privada sin sobrecostos (checklist 21 puntos)',
+        mensaje: `[LP EMPRESA DE SEGURIDAD] Solicitó: ${purposeLabel}${formData.cargo ? ` | Cargo: ${formData.cargo}` : ''}`,
         fuente: 'lp_empresa_seguridad',
-        score: 40,
+        score: formData.motivo === 'licitacion' ? 55 : 45,
         estado: 'nuevo',
       }]).select('id').single();
 
@@ -236,12 +178,13 @@ export default function EmpresaSeguridad() {
               email: formData.correo,
               empresa: formData.empresa,
               fuente: 'lp_empresa_seguridad',
-              mensaje: '[SOLICITUD REPETIDA] Guía checklist 21 puntos',
+              cargo: formData.cargo,
+              mensaje: `[SOLICITUD REPETIDA] ${purposeLabel}`,
             });
           } catch (emailErr) {
             console.warn('Email Send Exception on duplicate (Non-blocking):', emailErr);
           }
-          navigate('/empresa-de-seguridad/gracias', { state: { nombre: formData.nombre, correo: formData.correo, duplicate: true } });
+          navigate('/empresa-de-seguridad/gracias', { state: { nombre: formData.nombre, correo: formData.correo, duplicate: true, motivo: formData.motivo } });
           return;
         }
         throw new Error(insertError.message || JSON.stringify(insertError));
@@ -253,6 +196,7 @@ export default function EmpresaSeguridad() {
           email: formData.correo,
           empresa: formData.empresa,
           fuente: 'lp_empresa_seguridad',
+          cargo: formData.cargo,
         });
         if (!emailRes.success) console.warn('Email Notification Warning:', emailRes.error);
       } catch (emailErr) {
@@ -267,7 +211,7 @@ export default function EmpresaSeguridad() {
         console.warn('Sequence Start Exception (Non-blocking):', seqErr);
       }
 
-      navigate('/empresa-de-seguridad/gracias', { state: { nombre: formData.nombre, correo: formData.correo, duplicate: false } });
+      navigate('/empresa-de-seguridad/gracias', { state: { nombre: formData.nombre, correo: formData.correo, duplicate: false, motivo: formData.motivo } });
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : 'Error de conexión o de base de datos.';
       console.error('Error submitting LP Empresa Seguridad form:', err);
@@ -277,7 +221,7 @@ export default function EmpresaSeguridad() {
   };
 
   const scrollToForm = () => {
-    document.getElementById('form-hero')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('assessment')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -296,62 +240,48 @@ export default function EmpresaSeguridad() {
           </span>
         </div>
         <button onClick={scrollToForm} className="hidden sm:inline-flex items-center gap-1.5 text-xs font-black uppercase tracking-widest px-4 py-2.5 rounded-lg bg-sky-500 hover:bg-sky-400 text-[#0B0B0F] transition-colors">
-          Descargar guía <ArrowRight className="w-3.5 h-3.5" />
+          Solicitar auditoría <ArrowRight className="w-3.5 h-3.5" />
         </button>
       </header>
 
-      {/* ── SECCIÓN 1: HERO FOTOGRÁFICO + FORMULARIO ── */}
-      <section className="relative pt-28 pb-16 px-4 sm:px-6 overflow-hidden">
+      {/* ── SECCIÓN 1: HERO FOTOGRÁFICO ── */}
+      <section className="relative min-h-[92vh] flex flex-col justify-center pt-28 pb-16 px-4 sm:px-6 overflow-hidden">
         <div className="absolute inset-0" style={{
           backgroundImage: "url('/ana-hero-premium.webp')",
           backgroundSize: 'cover', backgroundPosition: 'center 20%', filter: 'saturate(0.85)',
         }} />
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(11,11,15,0.88) 0%, rgba(11,11,15,0.94) 45%, #0B0B0F 92%)' }} />
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(100deg, rgba(11,11,15,.95) 0%, rgba(11,11,15,.9) 45%, rgba(11,11,15,.5) 100%)' }} />
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(11,11,15,.5) 0%, transparent 35%, rgba(11,11,15,.94) 100%)' }} />
         <div className="absolute inset-0" style={{ backgroundImage: GRID_BG, opacity: 0.5 }} />
-        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-sky-900/20 rounded-full blur-[120px] opacity-50" />
 
-        <div className="relative max-w-6xl mx-auto">
-          <motion.div initial="hidden" animate="visible" variants={fadeUp} className="text-center mb-10">
-            <span className="inline-block rounded-full border border-emerald-500/40 bg-emerald-500/10 px-4 py-1.5 text-xs font-black uppercase tracking-widest text-emerald-400 mb-6">
-              100% Gratis · Descarga inmediata
-            </span>
-            <h1 className="tracking-tight leading-[1.1] max-w-4xl mx-auto" style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(2rem, 4.6vw, 3.4rem)', fontWeight: 700, textShadow: '0 2px 30px rgba(0,0,0,0.5)' }}>
-              Descarga gratis el checklist de <span className="text-sky-400">21 puntos</span> para contratar
-              guardias de seguridad <span className="text-sky-400">sin sobrecostos</span> ni sorpresas en la factura
-            </h1>
-            <p className="mt-6 text-gray-300 text-base sm:text-lg max-w-2xl mx-auto">
-              Ideal para administradores, gerentes de operaciones y directores que necesitan contratar
-              seguridad privada para su empresa — o auditar a su proveedor actual — sin ser expertos en el sector.
+        <motion.div initial="hidden" animate="visible" variants={fadeUp} className="relative max-w-3xl mx-auto w-full">
+          <div className="flex items-center gap-3 mb-6">
+            <Award className="w-4 h-4" style={{ color: GOLD }} />
+            <p className="uppercase font-black text-xs" style={{ color: GOLD, letterSpacing: '.2em' }}>
+              ISO 9001:2015 · Uno de los pocos operadores certificados en Venezuela
             </p>
-          </motion.div>
-
-          <div className="grid lg:grid-cols-2 gap-10 items-center max-w-5xl mx-auto">
-            <motion.div initial="hidden" animate="visible" variants={fadeUp}>
-              <GuideMockup />
-              <div className="mt-8 space-y-3 max-w-md mx-auto">
-                <p className="text-sm font-bold text-gray-300">Dentro de esta guía vas a descubrir:</p>
-                {[
-                  'Los 21 criterios exactos para evaluar cualquier empresa de seguridad antes de firmar.',
-                  'Las 3 trampas de facturación más comunes en contratos de vigilancia (y cómo bloquearlas).',
-                  'Cómo detectar pasivos laborales ocultos del proveedor que terminas pagando tú.',
-                  'BONUS: plantilla comparativa para evaluar hasta 4 cotizaciones lado a lado.',
-                ].map((b, i) => (
-                  <div key={i} className="flex items-start gap-2.5">
-                    <Check className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
-                    <p className="text-sm text-gray-400">{b}</p>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
-            <motion.div initial="hidden" animate="visible" variants={fadeUp} id="form-hero-wrap">
-              <LeadForm
-                formId="form-hero" status={status} errorMsg={errorMsg}
-                formData={formData} onChange={handleChange} onSubmit={handleSubmit}
-              />
-            </motion.div>
           </div>
-        </div>
+          <h1 className="tracking-tight leading-[1.15] max-w-2xl" style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(2rem, 4.6vw, 3.4rem)', fontWeight: 700, textShadow: '0 2px 30px rgba(0,0,0,0.5)' }}>
+            La mayoría de las empresas de seguridad le venden un guardia.
+            <br /><span className="text-sky-400">CSSG le entrega un esquema que puede auditar.</span>
+          </h1>
+          <p className="mt-6 text-gray-300 text-base sm:text-lg max-w-xl">
+            Evaluamos su esquema actual de seguridad privada — o diseñamos uno nuevo — con criterios que
+            puede defender ante su junta o su casa matriz. Sin sobrecostos ocultos, sin rotación de
+            personal cada mes.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center gap-5">
+            <button onClick={scrollToForm} className="inline-flex items-center gap-2 rounded-xl bg-sky-500 hover:bg-sky-400 px-8 py-4 font-black text-base text-[#0B0B0F] transition-all hover:-translate-y-0.5">
+              Solicitar auditoría de mi esquema <ArrowRight className="w-5 h-5" />
+            </button>
+            <button onClick={scrollToForm} className="text-xs uppercase tracking-widest text-gray-300 font-black hover:text-white transition-colors underline underline-offset-4 decoration-gray-600">
+              ¿Prepara una licitación? Invítenos →
+            </button>
+          </div>
+          <p className="text-xs mt-4 uppercase tracking-widest text-gray-500 font-bold">
+            +17 años sin incidentes · Confidencial · Sin compromiso
+          </p>
+        </motion.div>
       </section>
 
       {/* ── SECCIÓN 2: BARRA DE PRUEBA SOCIAL ── */}
@@ -369,9 +299,9 @@ export default function EmpresaSeguridad() {
             <Award className="w-5 h-5 text-emerald-400" />
             <span className="text-sm text-gray-300 font-bold">Estándar diplomático G7</span>
           </div>
-          <div className="flex items-center gap-1.5">
-            {[...Array(5)].map((_, i) => <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />)}
-            <span className="text-sm text-gray-400 ml-1">4.9/5 entre lectores corporativos</span>
+          <div className="flex items-center gap-2">
+            <Clock className="w-5 h-5 text-sky-400" />
+            <span className="text-sm text-gray-300 font-bold">Respuesta en menos de 12 horas</span>
           </div>
         </div>
       </section>
@@ -393,29 +323,29 @@ export default function EmpresaSeguridad() {
               ))}
             </div>
             <p className="mt-8 text-center text-gray-400">
-              Si te identificaste con al menos una, este checklist fue creado exactamente para ti.
-              Y lo mejor: <span className="text-white font-bold">es 100% gratis.</span>
+              Si te identificaste con al menos una, es momento de auditar su esquema actual —
+              <span className="text-white font-bold"> no de esperar al próximo incidente de facturación.</span>
             </p>
             <div className="mt-6 text-center">
               <button onClick={scrollToForm} className="inline-flex items-center gap-2 rounded-xl bg-sky-500 hover:bg-sky-400 px-6 py-3.5 font-black text-[#0B0B0F] transition-colors">
-                Quiero descargar la guía ahora <ArrowRight className="w-4 h-4" />
+                Solicitar mi auditoría ahora <ArrowRight className="w-4 h-4" />
               </button>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* ── SECCIÓN 4: QUÉ VAS A RECIBIR ── */}
+      {/* ── SECCIÓN 4: QUÉ EVALUAMOS ── */}
       <section className="relative z-10 py-20 px-4 sm:px-6 border-t border-white/5 overflow-hidden">
         <div className="absolute inset-0" style={{ backgroundImage: GRID_BG, opacity: 0.4 }} />
         <div className="relative max-w-4xl mx-auto">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="relative">
             <SectionNumeral n="02" />
             <h2 className="relative text-2xl sm:text-4xl font-black tracking-tight text-center mb-3">
-              Esto es exactamente lo que vas a recibir
+              Esto es exactamente lo que evaluamos en su auditoría
             </h2>
             <p className="text-center text-gray-400 mb-12">
-              La guía «Cómo contratar seguridad privada sin sobrecostos», directo a tu email.
+              El mismo protocolo de 21 puntos que aplicamos en auditorías privadas con clientes corporativos.
             </p>
             <div className="grid sm:grid-cols-2 gap-5">
               {DELIVERABLES.map((d, i) => (
@@ -429,12 +359,9 @@ export default function EmpresaSeguridad() {
                 </div>
               ))}
             </div>
-            <div className="mt-10 text-center backdrop-blur-xl bg-white/5 border border-white/10 rounded-2xl p-6 max-w-md mx-auto">
-              <p className="text-gray-500 text-sm line-through">Valor real de este recurso: $197</p>
-              <p className="text-2xl font-black text-emerald-400 mt-1">Tu precio hoy: $0</p>
-              <p className="text-xs text-gray-500 mt-1">Es el mismo material que usamos en auditorías privadas con clientes corporativos.</p>
-              <button onClick={scrollToForm} className="mt-5 inline-flex items-center gap-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 px-6 py-3 font-black text-[#0B0B0F] transition-colors">
-                Descargar gratis ahora <ArrowRight className="w-4 h-4" />
+            <div className="mt-10 text-center">
+              <button onClick={scrollToForm} className="inline-flex items-center gap-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 px-6 py-3.5 font-black text-[#0B0B0F] transition-colors">
+                Solicitar mi auditoría <ArrowRight className="w-4 h-4" />
               </button>
             </div>
           </motion.div>
@@ -447,7 +374,7 @@ export default function EmpresaSeguridad() {
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="relative">
             <SectionNumeral n="03" />
             <h2 className="relative text-2xl sm:text-4xl font-black tracking-tight text-center mb-10">
-              ¿Quién está detrás de esta guía?
+              ¿Quién audita su esquema de seguridad?
             </h2>
             <div className="backdrop-blur-xl bg-white/5 border border-white/5 rounded-2xl p-8">
               <div className="flex items-center gap-4 mb-6">
@@ -462,8 +389,8 @@ export default function EmpresaSeguridad() {
               <p className="text-gray-300 text-sm sm:text-base mb-6">
                 Durante más de 17 años hemos operado esquemas de vigilancia y seguridad privada para
                 corporaciones, torres empresariales y misiones diplomáticas bajo estándar G7 —
-                sin registrar un solo incidente de seguridad. Este checklist condensa los criterios
-                que aplicamos en nuestras propias auditorías de contratación.
+                sin registrar un solo incidente de seguridad. Estos son los criterios exactos que
+                aplicamos en cada auditoría de contratación.
               </p>
               <div className="grid sm:grid-cols-2 gap-3">
                 {[
@@ -488,18 +415,15 @@ export default function EmpresaSeguridad() {
         <div className="max-w-5xl mx-auto">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
             <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-center mb-3">
-              Lo que dicen quienes ya la aplicaron
+              Lo que dicen quienes ya fueron auditados
             </h2>
             <p className="text-center text-gray-500 text-sm mb-12 max-w-xl mx-auto">
-              Por política de confidencialidad de seguridad, nuestros clientes y lectores se citan
-              por cargo y tipo de instalación, nunca por nombre. Esa discreción también te protegerá a ti.
+              Por política de confidencialidad de seguridad, nuestros clientes se citan
+              por cargo y tipo de instalación, nunca por nombre. Esa discreción también le protegerá a usted.
             </p>
             <div className="grid md:grid-cols-3 gap-5">
               {TESTIMONIALS.map((tst, i) => (
                 <div key={i} className="backdrop-blur-xl bg-white/5 border border-white/5 rounded-2xl p-6 flex flex-col">
-                  <div className="flex gap-0.5 mb-3">
-                    {[...Array(5)].map((_, j) => <Star key={j} className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />)}
-                  </div>
                   <p className="font-black text-sm mb-3">"{tst.headline}"</p>
                   <p className="text-xs text-gray-400 flex-1">{tst.body}</p>
                   <div className="mt-4 pt-4 border-t border-white/5">
@@ -523,13 +447,13 @@ export default function EmpresaSeguridad() {
         <div className="max-w-4xl mx-auto">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
             <h2 className="text-2xl sm:text-4xl font-black tracking-tight text-center mb-12">
-              Recíbela en tu email en menos de 60 segundos
+              Así de simple es agendar su auditoría
             </h2>
             <div className="grid sm:grid-cols-3 gap-6">
               {[
-                { n: '01', t: 'Déjanos tus datos', d: 'Completa el formulario con el email donde realmente lees tus mensajes de trabajo.' },
-                { n: '02', t: 'Revisa tu bandeja', d: 'Recibirás un correo de CSSG con el acceso a la guía. Si no aparece, revisa spam o promociones.' },
-                { n: '03', t: 'Aplica el checklist', d: 'Usa la guía hoy mismo para auditar a tu proveedor o evaluar nuevas cotizaciones.' },
+                { n: '01', t: 'Complete el formulario', d: 'Cuéntenos sobre su esquema actual — o su necesidad — en menos de 2 minutos.' },
+                { n: '02', t: 'Un consultor confirma en <12h', d: 'Revisamos su caso y coordinamos fecha y alcance, en su sede o por videollamada.' },
+                { n: '03', t: 'Realizamos la auditoría', d: 'Aplicamos el protocolo de 21 puntos que usamos en auditorías corporativas reales y le entregamos hallazgos accionables.' },
               ].map((s, i) => (
                 <div key={i} className="text-center">
                   <div className="text-5xl font-black text-sky-500/20 mb-3" style={{ fontFamily: "'Playfair Display', serif" }}>{s.n}</div>
@@ -571,36 +495,78 @@ export default function EmpresaSeguridad() {
         </div>
       </section>
 
-      {/* ── SECCIÓN 9: CTA FINAL ── */}
-      <section className="relative z-10 py-20 px-4 sm:px-6 border-t border-white/5 overflow-hidden">
+      {/* ── SECCIÓN 9: CTA + FORMULARIO ── */}
+      <section className="relative z-10 py-20 px-4 sm:px-6 border-t border-white/5 overflow-hidden" id="assessment">
         <div className="absolute inset-0" style={{ backgroundImage: GRID_BG, opacity: 0.4 }} />
-        <div className="relative max-w-2xl mx-auto text-center">
+        <div className="relative max-w-lg mx-auto">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-            <Shield className="w-8 h-8 mx-auto mb-4" style={{ color: GOLD }} />
-            <h2 className="tracking-tight mb-4" style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(1.6rem, 3.4vw, 2.4rem)' }}>
-              Tu próximo contrato de seguridad empieza con este email
-            </h2>
-            <p className="text-gray-400 mb-8">
-              Cada mes que pagas un servicio de vigilancia sin auditarlo es dinero que no recuperas.
-              El checklist te toma 20 minutos aplicarlo.
-            </p>
-            <div className="space-y-2.5 text-left max-w-sm mx-auto mb-8">
-              {[
-                'Checklist de 21 puntos para contratar sin sobrecostos',
-                'Plantilla comparativa de cotizaciones (bonus)',
-                'Criterios usados en auditorías corporativas reales',
-                '100% gratis, sin tarjeta de crédito',
-              ].map((b, i) => (
-                <div key={i} className="flex items-start gap-2.5">
-                  <Check className="w-4 h-4 text-emerald-400 mt-0.5 shrink-0" />
-                  <p className="text-sm text-gray-300">{b}</p>
+            <div className="backdrop-blur-xl bg-white/[0.04] border border-sky-500/30 rounded-2xl p-6 sm:p-8 shadow-[0_0_60px_rgba(14,165,233,0.15)]">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest mb-5 border border-sky-500/30 text-sky-400">
+                <Award className="w-3 h-3" /> Auditoría corporativa confidencial
+              </span>
+              <h2 className="tracking-tight mb-2" style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(1.4rem, 3vw, 1.7rem)' }}>
+                Solicitar auditoría de mi esquema de seguridad
+              </h2>
+              <p className="text-sm text-gray-400 mb-2">
+                Un consultor senior revisa su caso y responde en menos de 12 horas hábiles.
+              </p>
+              <div className="mb-6">
+                <a href={CALENDAR_URL} target="_blank" rel="noopener noreferrer" className="text-xs font-bold text-sky-400 hover:underline">
+                  ¿Prefiere adelantarse? Agende directamente →
+                </a>
+              </div>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <select
+                  name="motivo" required value={formData.motivo} onChange={handleChange}
+                  className="w-full bg-[#0B0B0F] border border-white/10 rounded-xl px-4 py-3.5 text-white focus:border-sky-500 focus:outline-none transition-colors"
+                >
+                  <option value="auditoria">Solicitar auditoría de mi esquema actual</option>
+                  <option value="licitacion">Invitar a CSSG a una licitación</option>
+                </select>
+                <input
+                  type="text" name="nombre" required value={formData.nombre} onChange={handleChange}
+                  placeholder="Tu nombre"
+                  className="w-full bg-[#0B0B0F] border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-gray-500 focus:border-sky-500 focus:outline-none transition-colors"
+                />
+                <input
+                  type="text" name="cargo" value={formData.cargo} onChange={handleChange}
+                  placeholder="Cargo (opcional)"
+                  className="w-full bg-[#0B0B0F] border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-gray-500 focus:border-sky-500 focus:outline-none transition-colors"
+                />
+                <input
+                  type="text" name="empresa" required value={formData.empresa} onChange={handleChange}
+                  placeholder="Empresa u organización"
+                  className="w-full bg-[#0B0B0F] border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-gray-500 focus:border-sky-500 focus:outline-none transition-colors"
+                />
+                <div>
+                  <input
+                    type="email" name="correo" required value={formData.correo} onChange={handleChange}
+                    placeholder="Tu email de trabajo"
+                    className="w-full bg-[#0B0B0F] border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-gray-500 focus:border-sky-500 focus:outline-none transition-colors"
+                  />
+                  {isFreeEmail && (
+                    <p className="mt-1.5 text-xs text-sky-400">Por la naturaleza confidencial de la auditoría, le recomendamos usar su correo corporativo.</p>
+                  )}
                 </div>
-              ))}
+                <motion.button
+                  whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
+                  type="submit" disabled={status === 'loading'}
+                  className="w-full py-4 rounded-xl font-black text-base bg-gradient-to-r from-sky-500 to-sky-400 text-[#0B0B0F] hover:from-sky-400 hover:to-sky-300 transition-all disabled:opacity-60 flex items-center justify-center gap-2"
+                >
+                  {status === 'loading' ? (
+                    <><Loader2 className="w-5 h-5 animate-spin" /> Enviando…</>
+                  ) : (
+                    <>{formData.motivo === 'licitacion' ? 'Enviar invitación a licitación' : 'Solicitar auditoría'} <ArrowRight className="w-5 h-5" /></>
+                  )}
+                </motion.button>
+              </form>
+              {status === 'error' && (
+                <p className="mt-3 text-sm text-red-400">Ocurrió un error: {errorMsg}. Intenta de nuevo.</p>
+              )}
+              <p className="mt-4 text-xs text-gray-500 flex items-center justify-center gap-1.5">
+                <Lock className="w-3.5 h-3.5" /> Sin compromiso de contratación. Manejado bajo estricto protocolo de confidencialidad.
+              </p>
             </div>
-            <LeadForm
-              formId="form-final" status={status} errorMsg={errorMsg}
-              formData={formData} onChange={handleChange} onSubmit={handleSubmit}
-            />
           </motion.div>
         </div>
       </section>
