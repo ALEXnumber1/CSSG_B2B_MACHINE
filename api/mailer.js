@@ -488,7 +488,7 @@ export default async function handler(req, res) {
               <p style="color:#64748b;font-size:11px;margin:0 0 16px;">
                 <a href="tel:+584241782091" style="color:#0EA5E9;text-decoration:none;">+58 0424 178 2091</a>
                 &nbsp;·&nbsp;
-                <a href="mailto:operaciones@cssg-global.com" style="color:#0EA5E9;text-decoration:none;">operaciones@cssg-global.com</a>
+                <a href="mailto:gerencia@globalservices-ven.com" style="color:#0EA5E9;text-decoration:none;">gerencia@globalservices-ven.com</a>
                 &nbsp;·&nbsp;
                 <a href="https://cssg-global.com" style="color:#0EA5E9;text-decoration:none;">cssg-global.com</a>
               </p>
