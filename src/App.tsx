@@ -73,12 +73,14 @@ const CorporateSecurity = lazy(() => import('./pages/landing/CorporateSecurity')
 const CorporateSecurityThankYou = lazy(() => import('./pages/landing/CorporateSecurityThankYou'))
 const DiplomaticSecurity = lazy(() => import('./pages/landing/DiplomaticSecurity'))
 const DiplomaticSecurityThankYou = lazy(() => import('./pages/landing/DiplomaticSecurityThankYou'))
+const InvestorSecurity = lazy(() => import('./pages/landing/InvestorSecurity'))
+const InvestorSecurityThankYou = lazy(() => import('./pages/landing/InvestorSecurityThankYou'))
 
 function AppContent() {
   const { t, i18n } = useTranslation();
   const year = new Date().getFullYear();
   const location = useLocation();
-  const isStandaloneLanding = location.pathname === '/consultoria/escudo-diplomatico' || location.pathname.startsWith('/esrm-readiness') || location.pathname.startsWith('/empresa-de-seguridad') || location.pathname.startsWith('/consultoria-y-analisis-de-riesgos') || location.pathname.startsWith('/en/corporate-security-consulting') || location.pathname.startsWith('/en/diplomatic-security');
+  const isStandaloneLanding = location.pathname === '/consultoria/escudo-diplomatico' || location.pathname.startsWith('/esrm-readiness') || location.pathname.startsWith('/empresa-de-seguridad') || location.pathname.startsWith('/consultoria-y-analisis-de-riesgos') || location.pathname.startsWith('/en/corporate-security-consulting') || location.pathname.startsWith('/en/diplomatic-security') || location.pathname.startsWith('/en/executive-protection-venezuela-investors');
 
   if (isStandaloneLanding) {
     return (
@@ -97,6 +99,8 @@ function AppContent() {
             <Route path="/en/corporate-security-consulting/thank-you" element={<CorporateSecurityThankYou />} />
             <Route path="/en/diplomatic-security" element={<DiplomaticSecurity />} />
             <Route path="/en/diplomatic-security/thank-you" element={<DiplomaticSecurityThankYou />} />
+            <Route path="/en/executive-protection-venezuela-investors" element={<InvestorSecurity />} />
+            <Route path="/en/executive-protection-venezuela-investors/thank-you" element={<InvestorSecurityThankYou />} />
           </Routes>
         </Suspense>
       </>

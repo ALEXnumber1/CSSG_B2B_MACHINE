@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ShieldCheck } from 'lucide-react';
 
 export default function CookieConsent() {
   const { t } = useTranslation();
@@ -44,7 +45,7 @@ export default function CookieConsent() {
             <div className="absolute -top-10 -right-10 w-24 h-24 bg-sky-500/10 rounded-full blur-xl pointer-events-none" />
             
             <div className="flex items-start gap-3">
-              <span className="text-2xl mt-0.5" role="img" aria-label="cookie">🍪</span>
+              <ShieldCheck className="w-5 h-5 mt-0.5 text-sky-400 shrink-0" aria-hidden="true" />
               <div className="flex flex-col gap-1">
                 <h5 className="text-white font-bold text-xs uppercase tracking-wider font-mono">Cookie Consent</h5>
                 <p className="text-[11px] text-gray-300 leading-relaxed font-sans">

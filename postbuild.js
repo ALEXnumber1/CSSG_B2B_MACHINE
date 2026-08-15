@@ -765,6 +765,22 @@ const routes = [
     description: 'Confirmation of your Diplomatic Security request — CSSG Global.',
     image: 'https://cssg-global.com/ESCOLTA.jpg',
     preloadFont: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap'
+  },
+  {
+    path: 'en/executive-protection-venezuela-investors',
+    title: 'Executive Protection & Security Services for Investors in Venezuela | CSSG',
+    description: '24/7 executive protection, preventive intelligence, due diligence and secured ground transport for U.S. investors traveling to Venezuela. ISO 9001:2015 certified, 17+ years serving G7 embassies. Free risk assessment.',
+    image: 'https://cssg-global.com/svc_custodia.webp',
+    preloadHero: true,
+    preloadFont: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap',
+    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Executive Protection & Security Services for Investors", "description": "Executive protection, preventive intelligence, due diligence and vetting, and secured ground logistics for U.S. investors and executives traveling to Venezuela for energy, mining, infrastructure and trade opportunities.", "provider": { "@type": "Organization", "name": "CSSG — Company Of Security And Service Global", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" }, "inLanguage": "en" }
+  },
+  {
+    path: 'en/executive-protection-venezuela-investors/thank-you',
+    title: 'Request received | CSSG Global',
+    description: 'Confirmation of your executive protection / risk assessment request — CSSG Global.',
+    image: 'https://cssg-global.com/svc_custodia.webp',
+    preloadFont: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap'
   }
 ];
 

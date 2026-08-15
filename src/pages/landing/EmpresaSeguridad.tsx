@@ -99,7 +99,7 @@ const FAQS = [
   },
   {
     q: '¿Aplica si administro un condominio, comercio o una industria?',
-    a: 'Sí. Trabajamos con cualquier organización que contrate guardias de seguridad o servicios de vigilancia: torres corporativas, centros comerciales, industrias, clínicas y condominios.',
+    a: 'Sí. Trabajamos con cualquier organización que necesite contratar guardias de seguridad o servicios de vigilancia: torres corporativas, centros comerciales, industrias, clínicas y condominios.',
   },
   {
     q: '¿CSSG puede participar en nuestro proceso de licitación?',
