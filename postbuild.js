@@ -15,6 +15,28 @@ if (!fs.existsSync(indexHtmlPath)) {
 
 const originalHtml = fs.readFileSync(indexHtmlPath, 'utf8');
 
+// Vite's default modulePreload injects a <link rel="modulepreload"> for every chunk reachable
+// from the entry's dynamic-import graph — since App.tsx lazy-loads ~80 routes from one module,
+// that means EVERY generated page (including lead-gen landings that only need a form + Supabase)
+// was eagerly high-priority-fetching chunks like vendor-pdf (@react-pdf/renderer, ~473KB gzip)
+// that they never execute. Only a handful of routes actually render a PDF client-side; everyone
+// else gets it stripped out below so first-load weight matches what the page actually needs.
+const PDF_ROUTES = new Set([
+  'informes',
+  'analisis-riesgo',
+  'white-papers/guia-evaluacion-riesgos-seguridad-venezuela',
+  'white-papers/due-diligence-corporativa-venezuela',
+  'white-papers/plan-continuidad-negocio-venezuela',
+]);
+
+function stripUnneededPreloads(html, routePath) {
+  let out = html;
+  if (!PDF_ROUTES.has(routePath)) {
+    out = out.replace(/<link rel="modulepreload"[^>]*href="\/assets\/vendor-pdf-[^"]*\.js"[^>]*>\n?/gi, '');
+  }
+  return out;
+}
+
 const routes = [
   {
     path: 'consultoria-seguridad-caracas',
@@ -900,11 +922,19 @@ routes.forEach(route => {
     newHtml = newHtml.replace(/<\/head>/, `${breadcrumbTag}\n  </head>`);
   }
 
+  newHtml = stripUnneededPreloads(newHtml, route.path);
+
   const routeDir = path.join(distDir, route.path);
   if (!fs.existsSync(routeDir)) {
     fs.mkdirSync(routeDir, { recursive: true });
   }
-  
+
   fs.writeFileSync(path.join(routeDir, 'index.html'), newHtml);
   console.log(`[SEO Generation] Created static route for /${route.path}`);
 });
+
+// The root index.html (home page, '/') is served as-is by Vercel — it isn't part of the
+// routes loop above, so it needs the same modulepreload cleanup applied directly. Home.tsx
+// doesn't render or generate PDFs, so it gets the same treatment as every other non-PDF route.
+fs.writeFileSync(indexHtmlPath, stripUnneededPreloads(originalHtml, ''));
+console.log('[SEO Generation] Stripped unneeded modulepreload from root /');
