@@ -773,6 +773,10 @@ const routes = [
     image: 'https://cssg-global.com/svc_custodia.webp',
     preloadHero: true,
     preloadFont: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap',
+    ogImage: 'https://cssg-global.com/svc_custodia_og.webp',
+    ogImageAlt: 'Armored SUV convoy and motorcycle escort — CSSG executive protection for U.S. investors traveling to Venezuela',
+    ogImageWidth: 1200,
+    ogImageHeight: 630,
     jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Executive Protection & Security Services for Investors", "description": "Executive protection, preventive intelligence, due diligence and vetting, and secured ground logistics for U.S. investors and executives traveling to Venezuela for energy, mining, infrastructure and trade opportunities.", "provider": { "@type": "Organization", "name": "CSSG — Company Of Security And Service Global", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" }, "inLanguage": "en" }
   },
   {
@@ -780,7 +784,11 @@ const routes = [
     title: 'Request received | CSSG Global',
     description: 'Confirmation of your executive protection / risk assessment request — CSSG Global.',
     image: 'https://cssg-global.com/svc_custodia.webp',
-    preloadFont: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap'
+    preloadFont: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap',
+    ogImage: 'https://cssg-global.com/svc_custodia_og.webp',
+    ogImageAlt: 'Armored SUV convoy and motorcycle escort — CSSG executive protection for U.S. investors traveling to Venezuela',
+    ogImageWidth: 1200,
+    ogImageHeight: 630
   }
 ];
 
@@ -798,9 +806,22 @@ routes.forEach(route => {
   newHtml = newHtml.replace(/<meta property="twitter:description" content=".*?"\s*\/?>/gi, `<meta property="twitter:description" content="${route.description}" />`);
   
   // Update Image — regex covers both <meta property="og:image"> and <meta name="image" property="og:image">
-  newHtml = newHtml.replace(/<meta [^>]*property="og:image"[^>]*>/gi, `<meta name="image" property="og:image" content="${route.image}" />`);
-  newHtml = newHtml.replace(/<meta property="twitter:image" content=".*?"\s*\/?>/gi, `<meta property="twitter:image" content="${route.image}" />`);
-  
+  // ogImage/ogImageAlt/ogImageWidth/ogImageHeight are optional per-route overrides for the social
+  // share card — when absent, every route falls back to route.image and the default alt/dimensions
+  // already in index.html, so this stays backward-compatible with routes that don't set them.
+  const ogImageUrl = route.ogImage || route.image;
+  newHtml = newHtml.replace(/<meta [^>]*property="og:image"[^>]*>/gi, `<meta name="image" property="og:image" content="${ogImageUrl}" />`);
+  newHtml = newHtml.replace(/<meta property="twitter:image" content=".*?"\s*\/?>/gi, `<meta property="twitter:image" content="${ogImageUrl}" />`);
+  if (route.ogImageAlt) {
+    newHtml = newHtml.replace(/<meta property="og:image:alt" content=".*?"\s*\/?>/gi, `<meta property="og:image:alt" content="${route.ogImageAlt}" />`);
+  }
+  if (route.ogImageWidth) {
+    newHtml = newHtml.replace(/<meta property="og:image:width" content=".*?"\s*\/?>/gi, `<meta property="og:image:width" content="${route.ogImageWidth}" />`);
+  }
+  if (route.ogImageHeight) {
+    newHtml = newHtml.replace(/<meta property="og:image:height" content=".*?"\s*\/?>/gi, `<meta property="og:image:height" content="${route.ogImageHeight}" />`);
+  }
+
   // Update Canonical URL
   newHtml = newHtml.replace(/<link rel="canonical" href=".*?"\s*\/?>/gi, `<link rel="canonical" href="https://cssg-global.com/${route.path}" />`);
   newHtml = newHtml.replace(/<meta property="og:url" content=".*?"\s*\/?>/gi, `<meta property="og:url" content="https://cssg-global.com/${route.path}" />`);
