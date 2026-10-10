@@ -10,10 +10,13 @@ Disallow: /portal-rrhh
 Disallow: /portal-rrhh/
 Disallow: /streaming
 Disallow: /streaming/
+Disallow: /spa-shell
 Disallow: /esrm-readiness/gracias
-Disallow: /levantamiento/gracias
-Disallow: /reduccion-costos-seguridad/gracias
-Disallow: /risk-advisory-services/gracias
+Disallow: /empresa-de-seguridad/gracias
+Disallow: /consultoria-y-analisis-de-riesgos/gracias
+Disallow: /en/corporate-security-consulting/thank-you
+Disallow: /en/diplomatic-security/thank-you
+Disallow: /en/executive-protection-venezuela-investors/thank-you
 
 # Endpoints internos
 Disallow: /api/

@@ -1,7 +1,7 @@
-import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Link, useLocation, createRoutesFromChildren, matchRoutes } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { motion, AnimatePresence } from 'framer-motion'
-import { lazy, Suspense } from 'react'
+import { Suspense } from 'react'
 import Navbar from './components/Navbar'
 import FloatingCTA from './components/FloatingCTA'
 import TacticalChat from './components/TacticalChat'
@@ -9,72 +9,170 @@ import ScrollToTop from './components/ScrollToTop'
 import CookieConsent from './components/CookieConsent'
 import FeedbackButton from './components/FeedbackButton'
 import { EXTERNAL_LINKS } from './lib/externalLinks'
+import { lazyWithPreload, type PreloadableComponent } from './lib/lazyWithPreload'
 
-const Home = lazy(() => import('./pages/Home'))
-const Intranet = lazy(() => import('./pages/Intranet'))
-const Quejas = lazy(() => import('./pages/Quejas'))
-const RiskAnalysis = lazy(() => import('./pages/RiskAnalysis'))
-const QuienesSomos = lazy(() => import('./pages/QuienesSomos'))
-const Consultoria = lazy(() => import('./pages/Consultoria'))
-const EscudoDiplomatico = lazy(() => import('./pages/EscudoDiplomatico'))
-const EsrmReadiness = lazy(() => import('./pages/EsrmReadiness'))
-const EsrmReadinessGracias = lazy(() => import('./pages/EsrmReadinessGracias'))
-const Tecnologia = lazy(() => import('./pages/Tecnologia'))
-const TecnologiaEn = lazy(() => import('./pages/TecnologiaEn'))
-const StreamingMeeting = lazy(() => import('./pages/StreamingMeeting'))
-const NotFound = lazy(() => import('./pages/notfound'))
-const Informes = lazy(() => import('./pages/Informes'))
-const Admin = lazy(() => import('./pages/Admin'))
-const Blog = lazy(() => import('./pages/Blog'))
-const BlogPost = lazy(() => import('./pages/BlogPost'))
-const Licitaciones = lazy(() => import('./pages/Licitaciones'))
-const Partners = lazy(() => import('./pages/Partners'))
-const PortalRRHH = lazy(() => import('./pages/PortalRRHH'))
-const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
-const TermsAndConditions = lazy(() => import('./pages/TermsAndConditions'))
-const FAQ = lazy(() => import('./pages/FAQ'))
-const Testimonios = lazy(() => import('./pages/Testimonios'))
+const Home = lazyWithPreload(() => import('./pages/Home'))
+const Intranet = lazyWithPreload(() => import('./pages/Intranet'))
+const Quejas = lazyWithPreload(() => import('./pages/Quejas'))
+const RiskAnalysis = lazyWithPreload(() => import('./pages/RiskAnalysis'))
+const QuienesSomos = lazyWithPreload(() => import('./pages/QuienesSomos'))
+const Consultoria = lazyWithPreload(() => import('./pages/Consultoria'))
+const EscudoDiplomatico = lazyWithPreload(() => import('./pages/EscudoDiplomatico'))
+const EsrmReadiness = lazyWithPreload(() => import('./pages/EsrmReadiness'))
+const EsrmReadinessGracias = lazyWithPreload(() => import('./pages/EsrmReadinessGracias'))
+const Tecnologia = lazyWithPreload(() => import('./pages/Tecnologia'))
+const TecnologiaEn = lazyWithPreload(() => import('./pages/TecnologiaEn'))
+const StreamingMeeting = lazyWithPreload(() => import('./pages/StreamingMeeting'))
+const NotFound = lazyWithPreload(() => import('./pages/notfound'))
+const Informes = lazyWithPreload(() => import('./pages/Informes'))
+const Admin = lazyWithPreload(() => import('./pages/Admin'))
+const Blog = lazyWithPreload(() => import('./pages/Blog'))
+const BlogPost = lazyWithPreload(() => import('./pages/BlogPost'))
+const Licitaciones = lazyWithPreload(() => import('./pages/Licitaciones'))
+const Partners = lazyWithPreload(() => import('./pages/Partners'))
+const PortalRRHH = lazyWithPreload(() => import('./pages/PortalRRHH'))
+const PrivacyPolicy = lazyWithPreload(() => import('./pages/PrivacyPolicy'))
+const TermsAndConditions = lazyWithPreload(() => import('./pages/TermsAndConditions'))
+const FAQ = lazyWithPreload(() => import('./pages/FAQ'))
+const Testimonios = lazyWithPreload(() => import('./pages/Testimonios'))
 
 // Risk Advisory Services — sub-pages
-const EvaluacionRiesgos = lazy(() => import('./pages/consultoria/EvaluacionRiesgos'))
-const DiagnosticoMadurez = lazy(() => import('./pages/consultoria/DiagnosticoMadurez'))
-const SiteSurvey = lazy(() => import('./pages/consultoria/SiteSurvey'))
-const AuditoriaCumplimiento = lazy(() => import('./pages/consultoria/AuditoriaCumplimiento'))
-const SeguridadDiplomatica = lazy(() => import('./pages/consultoria/SeguridadDiplomatica'))
-const EvaluacionResidencias = lazy(() => import('./pages/consultoria/EvaluacionResidencias'))
-const DueDiligence = lazy(() => import('./pages/consultoria/DueDiligence'))
-const InteligenciaRiesgo = lazy(() => import('./pages/consultoria/InteligenciaRiesgo'))
-const InsiderThreat = lazy(() => import('./pages/consultoria/InsiderThreat'))
-const ContinuidadNegocio = lazy(() => import('./pages/consultoria/ContinuidadNegocio'))
-const GestionCrisis = lazy(() => import('./pages/consultoria/GestionCrisis'))
-const ProteccionEjecutiva = lazy(() => import('./pages/consultoria/ProteccionEjecutiva'))
-const MonitoreoTiempoReal = lazy(() => import('./pages/consultoria/MonitoreoTiempoReal'))
-const CentroMandoCECOM = lazy(() => import('./pages/consultoria/CentroMandoCECOM'))
-const ScoringSeguridad = lazy(() => import('./pages/consultoria/ScoringSeguridad'))
-const FormacionPersonal = lazy(() => import('./pages/consultoria/FormacionPersonal'))
-const RespuestaCrisisEquipos = lazy(() => import('./pages/consultoria/RespuestaCrisisEquipos'))
-const ConcienciacionEjecutiva = lazy(() => import('./pages/consultoria/ConcienciacionEjecutiva'))
-const CasosExito = lazy(() => import('./pages/consultoria/CasosExito'))
-const CertificacionesConsultoria = lazy(() => import('./pages/consultoria/Certificaciones'))
-const AsesoriaLegal = lazy(() => import('./pages/consultoria/AsesoriaLegal'))
-const SecureLanding = lazy(() => import('./pages/consultoria/SecureLanding'))
+const EvaluacionRiesgos = lazyWithPreload(() => import('./pages/consultoria/EvaluacionRiesgos'))
+const DiagnosticoMadurez = lazyWithPreload(() => import('./pages/consultoria/DiagnosticoMadurez'))
+const SiteSurvey = lazyWithPreload(() => import('./pages/consultoria/SiteSurvey'))
+const AuditoriaCumplimiento = lazyWithPreload(() => import('./pages/consultoria/AuditoriaCumplimiento'))
+const SeguridadDiplomatica = lazyWithPreload(() => import('./pages/consultoria/SeguridadDiplomatica'))
+const EvaluacionResidencias = lazyWithPreload(() => import('./pages/consultoria/EvaluacionResidencias'))
+const DueDiligence = lazyWithPreload(() => import('./pages/consultoria/DueDiligence'))
+const InteligenciaRiesgo = lazyWithPreload(() => import('./pages/consultoria/InteligenciaRiesgo'))
+const InsiderThreat = lazyWithPreload(() => import('./pages/consultoria/InsiderThreat'))
+const ContinuidadNegocio = lazyWithPreload(() => import('./pages/consultoria/ContinuidadNegocio'))
+const GestionCrisis = lazyWithPreload(() => import('./pages/consultoria/GestionCrisis'))
+const ProteccionEjecutiva = lazyWithPreload(() => import('./pages/consultoria/ProteccionEjecutiva'))
+const MonitoreoTiempoReal = lazyWithPreload(() => import('./pages/consultoria/MonitoreoTiempoReal'))
+const CentroMandoCECOM = lazyWithPreload(() => import('./pages/consultoria/CentroMandoCECOM'))
+const ScoringSeguridad = lazyWithPreload(() => import('./pages/consultoria/ScoringSeguridad'))
+const FormacionPersonal = lazyWithPreload(() => import('./pages/consultoria/FormacionPersonal'))
+const RespuestaCrisisEquipos = lazyWithPreload(() => import('./pages/consultoria/RespuestaCrisisEquipos'))
+const ConcienciacionEjecutiva = lazyWithPreload(() => import('./pages/consultoria/ConcienciacionEjecutiva'))
+const CasosExito = lazyWithPreload(() => import('./pages/consultoria/CasosExito'))
+const CertificacionesConsultoria = lazyWithPreload(() => import('./pages/consultoria/Certificaciones'))
+const AsesoriaLegal = lazyWithPreload(() => import('./pages/consultoria/AsesoriaLegal'))
+const SecureLanding = lazyWithPreload(() => import('./pages/consultoria/SecureLanding'))
 
 // White Papers
-const WPRiesgos = lazy(() => import('./pages/white-papers/WPRiesgos'))
-const WPDueDiligence = lazy(() => import('./pages/white-papers/WPDueDiligence'))
-const WPBCPPage = lazy(() => import('./pages/white-papers/WPBCPPage'))
+const WPRiesgos = lazyWithPreload(() => import('./pages/white-papers/WPRiesgos'))
+const WPDueDiligence = lazyWithPreload(() => import('./pages/white-papers/WPDueDiligence'))
+const WPBCPPage = lazyWithPreload(() => import('./pages/white-papers/WPBCPPage'))
 
 // Landing Pages de captación (standalone, sin navbar)
-const EmpresaSeguridad = lazy(() => import('./pages/landing/EmpresaSeguridad'))
-const EmpresaSeguridadGracias = lazy(() => import('./pages/landing/EmpresaSeguridadGracias'))
-const ConsultoriaRiesgos = lazy(() => import('./pages/landing/ConsultoriaRiesgos'))
-const ConsultoriaRiesgosGracias = lazy(() => import('./pages/landing/ConsultoriaRiesgosGracias'))
-const CorporateSecurity = lazy(() => import('./pages/landing/CorporateSecurity'))
-const CorporateSecurityThankYou = lazy(() => import('./pages/landing/CorporateSecurityThankYou'))
-const DiplomaticSecurity = lazy(() => import('./pages/landing/DiplomaticSecurity'))
-const DiplomaticSecurityThankYou = lazy(() => import('./pages/landing/DiplomaticSecurityThankYou'))
-const InvestorSecurity = lazy(() => import('./pages/landing/InvestorSecurity'))
-const InvestorSecurityThankYou = lazy(() => import('./pages/landing/InvestorSecurityThankYou'))
+const EmpresaSeguridad = lazyWithPreload(() => import('./pages/landing/EmpresaSeguridad'))
+const EmpresaSeguridadGracias = lazyWithPreload(() => import('./pages/landing/EmpresaSeguridadGracias'))
+const ConsultoriaRiesgos = lazyWithPreload(() => import('./pages/landing/ConsultoriaRiesgos'))
+const ConsultoriaRiesgosGracias = lazyWithPreload(() => import('./pages/landing/ConsultoriaRiesgosGracias'))
+const CorporateSecurity = lazyWithPreload(() => import('./pages/landing/CorporateSecurity'))
+const CorporateSecurityThankYou = lazyWithPreload(() => import('./pages/landing/CorporateSecurityThankYou'))
+const DiplomaticSecurity = lazyWithPreload(() => import('./pages/landing/DiplomaticSecurity'))
+const DiplomaticSecurityThankYou = lazyWithPreload(() => import('./pages/landing/DiplomaticSecurityThankYou'))
+const InvestorSecurity = lazyWithPreload(() => import('./pages/landing/InvestorSecurity'))
+const InvestorSecurityThankYou = lazyWithPreload(() => import('./pages/landing/InvestorSecurityThankYou'))
+
+// Standalone landings: no Navbar/footer (see isStandaloneLanding).
+const standaloneRoutes = (
+  <>
+    <Route path="/consultoria/escudo-diplomatico" element={<EscudoDiplomatico />} />
+    <Route path="/esrm-readiness" element={<EsrmReadiness />} />
+    <Route path="/esrm-readiness/gracias" element={<EsrmReadinessGracias />} />
+    <Route path="/empresa-de-seguridad" element={<EmpresaSeguridad />} />
+    <Route path="/empresa-de-seguridad/gracias" element={<EmpresaSeguridadGracias />} />
+    <Route path="/consultoria-y-analisis-de-riesgos" element={<ConsultoriaRiesgos />} />
+    <Route path="/consultoria-y-analisis-de-riesgos/gracias" element={<ConsultoriaRiesgosGracias />} />
+    <Route path="/en/corporate-security-consulting" element={<CorporateSecurity />} />
+    <Route path="/en/corporate-security-consulting/thank-you" element={<CorporateSecurityThankYou />} />
+    <Route path="/en/diplomatic-security" element={<DiplomaticSecurity />} />
+    <Route path="/en/diplomatic-security/thank-you" element={<DiplomaticSecurityThankYou />} />
+    <Route path="/en/executive-protection-venezuela-investors" element={<InvestorSecurity />} />
+    <Route path="/en/executive-protection-venezuela-investors/thank-you" element={<InvestorSecurityThankYou />} />
+  </>
+)
+
+const mainRoutes = (
+  <>
+    <Route path="/" element={<Home />} />
+    <Route path="/quienes-somos" element={<QuienesSomos />} />
+    <Route path="/consultoria" element={<Consultoria />} />
+    <Route path="/consultoria-seguridad-caracas" element={<Consultoria />} />
+    <Route path="/auditoria-seguridad-iso-31000" element={<Consultoria />} />
+    <Route path="/analisis-riesgos-corporativos-venezuela" element={<Consultoria />} />
+    <Route path="/optimizacion-costos-seguridad" element={<Consultoria />} />
+    <Route path="/consultoria/escudo-diplomatico" element={<EscudoDiplomatico />} />
+    <Route path="/tecnologia" element={<Tecnologia />} />
+    <Route path="/en/technology" element={<TecnologiaEn />} />
+    <Route path="/streaming" element={<StreamingMeeting />} />
+    <Route path="/informes" element={<Informes />} />
+    <Route path="/intranet" element={<Intranet />} />
+    <Route path="/quejas" element={<Quejas />} />
+    <Route path="/analisis-riesgo" element={<RiskAnalysis />} />
+    <Route path="/admin" element={<Admin />} />
+    <Route path="/blog" element={<Blog />} />
+    <Route path="/blog/:slug" element={<BlogPost />} />
+    <Route path="/licitaciones" element={<Licitaciones />} />
+    <Route path="/partners" element={<Partners />} />
+    <Route path="/portal-rrhh" element={<PortalRRHH />} />
+    <Route path="/politica-privacidad" element={<PrivacyPolicy />} />
+    <Route path="/terminos-condiciones" element={<TermsAndConditions />} />
+    <Route path="/preguntas-frecuentes" element={<FAQ />} />
+    <Route path="/testimonios" element={<Testimonios />} />
+    {/* Risk Advisory Services — sub-pages */}
+    <Route path="/consultoria/evaluacion-de-riesgos-de-seguridad" element={<EvaluacionRiesgos />} />
+    <Route path="/consultoria/diagnostico-madurez-seguridad" element={<DiagnosticoMadurez />} />
+    <Route path="/consultoria/site-survey-evaluacion-fisica" element={<SiteSurvey />} />
+    <Route path="/consultoria/auditoria-de-cumplimiento" element={<AuditoriaCumplimiento />} />
+    <Route path="/consultoria/seguridad-misiones-diplomaticas" element={<SeguridadDiplomatica />} />
+    <Route path="/consultoria/evaluacion-residencias-cancillerias" element={<EvaluacionResidencias />} />
+    <Route path="/consultoria/due-diligence-corporativa" element={<DueDiligence />} />
+    <Route path="/consultoria/inteligencia-y-analisis-de-riesgo" element={<InteligenciaRiesgo />} />
+    <Route path="/consultoria/amenaza-interna-insider-threat" element={<InsiderThreat />} />
+    <Route path="/consultoria/continuidad-de-negocio" element={<ContinuidadNegocio />} />
+    <Route path="/consultoria/gestion-de-crisis-y-respuesta" element={<GestionCrisis />} />
+    <Route path="/consultoria/proteccion-ejecutiva-analisis-amenazas" element={<ProteccionEjecutiva />} />
+    <Route path="/consultoria/tecnologia/monitoreo-tiempo-real" element={<MonitoreoTiempoReal />} />
+    <Route path="/consultoria/tecnologia/centro-de-mando-cecom" element={<CentroMandoCECOM />} />
+    <Route path="/consultoria/tecnologia/scoring-de-seguridad" element={<ScoringSeguridad />} />
+    <Route path="/consultoria/capacitacion/formacion-personal-seguridad" element={<FormacionPersonal />} />
+    <Route path="/consultoria/capacitacion/respuesta-crisis-equipos" element={<RespuestaCrisisEquipos />} />
+    <Route path="/consultoria/capacitacion/concienciacion-ejecutiva" element={<ConcienciacionEjecutiva />} />
+    <Route path="/consultoria/casos-de-exito" element={<CasosExito />} />
+    <Route path="/consultoria/certificaciones" element={<CertificacionesConsultoria />} />
+    <Route path="/iso-9001-empresa-seguridad-venezuela" element={<CertificacionesConsultoria />} />
+    <Route path="/certificaciones-seguridad-corporativa-venezuela" element={<CertificacionesConsultoria />} />
+    <Route path="/consultoria/asesoria-legal-rrhh-seguridad" element={<AsesoriaLegal />} />
+    <Route path="/consultoria/secure-landing" element={<SecureLanding />} />
+    {/* White Papers */}
+    <Route path="/white-papers/guia-evaluacion-riesgos-seguridad-venezuela" element={<WPRiesgos />} />
+    <Route path="/white-papers/due-diligence-corporativa-venezuela" element={<WPDueDiligence />} />
+    <Route path="/white-papers/plan-continuidad-negocio-venezuela" element={<WPBCPPage />} />
+    <Route path="*" element={<NotFound />} />
+  </>
+)
+
+const routeObjects = createRoutesFromChildren(
+  <>
+    {standaloneRoutes}
+    {mainRoutes}
+  </>
+)
+
+/**
+ * Loads the page chunk for `pathname` so the first render doesn't suspend. main.tsx awaits this
+ * before mounting over prerendered HTML, which avoids flashing the Suspense fallback.
+ */
+// eslint-disable-next-line react-refresh/only-export-components -- needs the route table defined here
+export function preloadRoute(pathname: string): Promise<unknown> {
+  const element = matchRoutes(routeObjects, pathname)?.at(-1)?.route.element
+  const component = (element as { type?: Partial<PreloadableComponent<never>> } | undefined)?.type
+  return component?.preload?.() ?? Promise.resolve()
+}
 
 function AppContent() {
   const { t, i18n } = useTranslation();
@@ -87,21 +185,7 @@ function AppContent() {
       <>
         <ScrollToTop />
         <Suspense fallback={null}>
-          <Routes>
-            <Route path="/consultoria/escudo-diplomatico" element={<EscudoDiplomatico />} />
-            <Route path="/esrm-readiness" element={<EsrmReadiness />} />
-            <Route path="/esrm-readiness/gracias" element={<EsrmReadinessGracias />} />
-            <Route path="/empresa-de-seguridad" element={<EmpresaSeguridad />} />
-            <Route path="/empresa-de-seguridad/gracias" element={<EmpresaSeguridadGracias />} />
-            <Route path="/consultoria-y-analisis-de-riesgos" element={<ConsultoriaRiesgos />} />
-            <Route path="/consultoria-y-analisis-de-riesgos/gracias" element={<ConsultoriaRiesgosGracias />} />
-            <Route path="/en/corporate-security-consulting" element={<CorporateSecurity />} />
-            <Route path="/en/corporate-security-consulting/thank-you" element={<CorporateSecurityThankYou />} />
-            <Route path="/en/diplomatic-security" element={<DiplomaticSecurity />} />
-            <Route path="/en/diplomatic-security/thank-you" element={<DiplomaticSecurityThankYou />} />
-            <Route path="/en/executive-protection-venezuela-investors" element={<InvestorSecurity />} />
-            <Route path="/en/executive-protection-venezuela-investors/thank-you" element={<InvestorSecurityThankYou />} />
-          </Routes>
+          <Routes>{standaloneRoutes}</Routes>
         </Suspense>
       </>
     );
@@ -129,63 +213,7 @@ function AppContent() {
           >
             <div className="flex-1 flex flex-col">
               <Suspense fallback={<div className="min-h-screen bg-[#0B0B0F]" />}>
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/quienes-somos" element={<QuienesSomos />} />
-                  <Route path="/consultoria" element={<Consultoria />} />
-                  <Route path="/consultoria-seguridad-caracas" element={<Consultoria />} />
-                  <Route path="/auditoria-seguridad-iso-31000" element={<Consultoria />} />
-                  <Route path="/analisis-riesgos-corporativos-venezuela" element={<Consultoria />} />
-                  <Route path="/optimizacion-costos-seguridad" element={<Consultoria />} />
-                  <Route path="/consultoria/escudo-diplomatico" element={<EscudoDiplomatico />} />
-                  <Route path="/tecnologia" element={<Tecnologia />} />
-                  <Route path="/en/technology" element={<TecnologiaEn />} />
-                  <Route path="/streaming" element={<StreamingMeeting />} />
-                  <Route path="/informes" element={<Informes />} />
-                  <Route path="/intranet" element={<Intranet />} />
-                  <Route path="/quejas" element={<Quejas />} />
-                  <Route path="/analisis-riesgo" element={<RiskAnalysis />} />
-                  <Route path="/admin" element={<Admin />} />
-                  <Route path="/blog" element={<Blog />} />
-                  <Route path="/blog/:slug" element={<BlogPost />} />
-                  <Route path="/licitaciones" element={<Licitaciones />} />
-                  <Route path="/partners" element={<Partners />} />
-                  <Route path="/portal-rrhh" element={<PortalRRHH />} />
-                  <Route path="/politica-privacidad" element={<PrivacyPolicy />} />
-                  <Route path="/terminos-condiciones" element={<TermsAndConditions />} />
-                  <Route path="/preguntas-frecuentes" element={<FAQ />} />
-                  <Route path="/testimonios" element={<Testimonios />} />
-                  {/* Risk Advisory Services — sub-pages */}
-                  <Route path="/consultoria/evaluacion-de-riesgos-de-seguridad" element={<EvaluacionRiesgos />} />
-                  <Route path="/consultoria/diagnostico-madurez-seguridad" element={<DiagnosticoMadurez />} />
-                  <Route path="/consultoria/site-survey-evaluacion-fisica" element={<SiteSurvey />} />
-                  <Route path="/consultoria/auditoria-de-cumplimiento" element={<AuditoriaCumplimiento />} />
-                  <Route path="/consultoria/seguridad-misiones-diplomaticas" element={<SeguridadDiplomatica />} />
-                  <Route path="/consultoria/evaluacion-residencias-cancillerias" element={<EvaluacionResidencias />} />
-                  <Route path="/consultoria/due-diligence-corporativa" element={<DueDiligence />} />
-                  <Route path="/consultoria/inteligencia-y-analisis-de-riesgo" element={<InteligenciaRiesgo />} />
-                  <Route path="/consultoria/amenaza-interna-insider-threat" element={<InsiderThreat />} />
-                  <Route path="/consultoria/continuidad-de-negocio" element={<ContinuidadNegocio />} />
-                  <Route path="/consultoria/gestion-de-crisis-y-respuesta" element={<GestionCrisis />} />
-                  <Route path="/consultoria/proteccion-ejecutiva-analisis-amenazas" element={<ProteccionEjecutiva />} />
-                  <Route path="/consultoria/tecnologia/monitoreo-tiempo-real" element={<MonitoreoTiempoReal />} />
-                  <Route path="/consultoria/tecnologia/centro-de-mando-cecom" element={<CentroMandoCECOM />} />
-                  <Route path="/consultoria/tecnologia/scoring-de-seguridad" element={<ScoringSeguridad />} />
-                  <Route path="/consultoria/capacitacion/formacion-personal-seguridad" element={<FormacionPersonal />} />
-                  <Route path="/consultoria/capacitacion/respuesta-crisis-equipos" element={<RespuestaCrisisEquipos />} />
-                  <Route path="/consultoria/capacitacion/concienciacion-ejecutiva" element={<ConcienciacionEjecutiva />} />
-                  <Route path="/consultoria/casos-de-exito" element={<CasosExito />} />
-                  <Route path="/consultoria/certificaciones" element={<CertificacionesConsultoria />} />
-                  <Route path="/iso-9001-empresa-seguridad-venezuela" element={<CertificacionesConsultoria />} />
-                  <Route path="/certificaciones-seguridad-corporativa-venezuela" element={<CertificacionesConsultoria />} />
-                  <Route path="/consultoria/asesoria-legal-rrhh-seguridad" element={<AsesoriaLegal />} />
-                  <Route path="/consultoria/secure-landing" element={<SecureLanding />} />
-                  {/* White Papers */}
-                  <Route path="/white-papers/guia-evaluacion-riesgos-seguridad-venezuela" element={<WPRiesgos />} />
-                  <Route path="/white-papers/due-diligence-corporativa-venezuela" element={<WPDueDiligence />} />
-                  <Route path="/white-papers/plan-continuidad-negocio-venezuela" element={<WPBCPPage />} />
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
+                <Routes>{mainRoutes}</Routes>
               </Suspense>
             </div>
 

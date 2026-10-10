@@ -90,11 +90,12 @@ export default async function handler(req, res) {
   const baseUrl = `${protocol}://${host}`;
 
   try {
-    // Fetch the actual SPA index.html from Vercel (using root to avoid cleanUrls .html redirect issues)
+    // Fetch the empty SPA shell (not '/', which is now prerendered with the home page's content).
+    // Extensionless to avoid the cleanUrls .html redirect.
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 3500);
     
-    const htmlResponse = await fetch(`${baseUrl}/`, { signal: controller.signal });
+    const htmlResponse = await fetch(`${baseUrl}/spa-shell`, { signal: controller.signal });
     clearTimeout(timeoutId);
     
     let html = await htmlResponse.text();
@@ -130,7 +131,9 @@ export default async function handler(req, res) {
       "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } },
       "mainEntityOfPage": { "@type": "WebPage", "@id": `${baseUrl}/blog/${slug}` }
     };
-    const canonicalTag = `<link rel="canonical" href="${baseUrl}/blog/${slug}" />`;
+    // Canonical is always the apex domain, regardless of which host served the request.
+    const canonicalTag = `<link rel="canonical" href="https://cssg-global.com/blog/${slug}" />`;
+    html = html.replace(/<link rel="canonical" href=".*?"\s*\/?>\n?/gi, '');
     const articleSchemaTag = `<script type="application/ld+json">\n${JSON.stringify(articleSchema, null, 2)}\n</script>`;
     html = html.replace('</head>', `${canonicalTag}\n${articleSchemaTag}\n</head>`);
 

@@ -17,6 +17,40 @@ const LOCALES = {
 
 type FaqItem = { question: string; answer: string };
 
+const FALLBACK_IMAGE = 'https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=1200&q=80';
+
+type ResolvedPost = { post: BlogEntry; content: string; faq: FaqItem[] };
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function resolvePost(row: any | null, hcPost: BlogEntry | undefined, hcContent: () => string): ResolvedPost | null {
+  if (row) {
+    return {
+      post: {
+        ...row,
+        date: row.created_at,
+        readTime: row.read_time,
+        categoryColor: 'text-sky-400 bg-sky-500/10',
+        image: row.image_url || row.image || hcPost?.image || FALLBACK_IMAGE,
+      },
+      content: row.content,
+      faq: Array.isArray(row.faq) ? row.faq : [],
+    };
+  }
+  if (hcPost) return { post: hcPost, content: hcContent(), faq: [] };
+  return null;
+}
+
+// The build embeds the Supabase row of each prerendered post (postbuild.js), so the first render
+// shows the article immediately instead of a blank loading state over the prerendered HTML.
+function readEmbeddedRow(slug: string | undefined) {
+  try {
+    const row = JSON.parse(document.getElementById('blog-post-data')?.textContent || 'null');
+    return row && row.slug === slug ? row : null;
+  } catch {
+    return null;
+  }
+}
+
 function injectSeoTags(slug: string, post: { title: string; excerpt?: string; image?: string; created_at?: string; date?: string; author?: string }, faq: FaqItem[]) {
   const canonicalUrl = `https://cssg-global.com/blog/${slug}`;
   const ids = ['blog-canonical', 'blog-article-ld', 'blog-faq-ld'];
@@ -81,11 +115,6 @@ function injectSeoTags(slug: string, post: { title: string; excerpt?: string; im
 export default function BlogPost() {
   const { i18n } = useTranslation();
   const { slug } = useParams();
-  const [post, setPost] = useState<BlogEntry | null>(null);
-  const [content, setContent] = useState<string>('');
-  const [faq, setFaq] = useState<FaqItem[]>([]);
-  const [loading, setLoading] = useState(true);
-
   const currentLang = (i18n.language || 'es').startsWith('en') ? 'en' : 'es';
 
   const t = (key: string, options?: any): any => {
@@ -111,6 +140,14 @@ export default function BlogPost() {
     return key;
   };
 
+  const [initial] = useState(() =>
+    resolvePost(readEmbeddedRow(slug), getBlogPosts(t).find(p => p.slug === slug), () => t(`blog.articles.${slug}`))
+  );
+  const [post, setPost] = useState<BlogEntry | null>(initial?.post ?? null);
+  const [content, setContent] = useState<string>(initial?.content ?? '');
+  const [faq, setFaq] = useState<FaqItem[]>(initial?.faq ?? []);
+  const [loading, setLoading] = useState(!initial);
+
   useEffect(() => {
     const fetchPost = async () => {
       // Intentar buscar en DB primero
@@ -123,20 +160,11 @@ export default function BlogPost() {
       const blogPosts = getBlogPosts(t);
       const hcPost = blogPosts.find(p => p.slug === slug);
 
-      if (!error && data) {
-        setPost({
-          ...data,
-          date: data.created_at,
-          readTime: data.read_time,
-          categoryColor: 'text-sky-400 bg-sky-500/10',
-          image: data.image_url || data.image || hcPost?.image || 'https://images.unsplash.com/photo-1557597774-9d273605dfa9?auto=format&fit=crop&w=1200&q=80'
-        });
-        setContent(data.content);
-        setFaq(Array.isArray(data.faq) ? data.faq : []);
-      } else if (hcPost) {
-        setPost(hcPost);
-        setContent(t(`blog.articles.${slug}`));
-        setFaq([]);
+      const resolved = resolvePost(!error && data ? data : null, hcPost, () => t(`blog.articles.${slug}`));
+      if (resolved) {
+        setPost(resolved.post);
+        setContent(resolved.content);
+        setFaq(resolved.faq);
       }
       setLoading(false);
     };

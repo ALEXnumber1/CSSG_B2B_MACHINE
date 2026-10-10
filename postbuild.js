@@ -1,6 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { prerender } from './scripts/prerender.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -36,6 +37,10 @@ function stripUnneededPreloads(html, routePath) {
   }
   return out;
 }
+
+// The hreflang tags in index.html point every page at the home page (and at a ?lang=en URL the
+// app doesn't support), which is wrong for any route — strip them from all generated pages.
+const stripHreflang = html => html.replace(/\s*<!-- Hreflang:[^>]*-->/, '').replace(/\s*<link rel="alternate" hreflang="[^"]*" href="[^"]*" \/>/g, '');
 
 const routes = [
   {
@@ -814,18 +819,108 @@ const routes = [
   }
 ];
 
+const SITE_URL = 'https://cssg-global.com';
+
+// SEO alias routes render the exact same page as their hub — point their canonical at the hub
+// so Google consolidates signals instead of treating them as duplicate content.
+const CANONICAL_ALIASES = {
+  'consultoria-seguridad-caracas': 'consultoria',
+  'auditoria-seguridad-iso-31000': 'consultoria',
+  'analisis-riesgos-corporativos-venezuela': 'consultoria',
+  'optimizacion-costos-seguridad': 'consultoria',
+  'iso-9001-empresa-seguridad-venezuela': 'consultoria/certificaciones',
+  'certificaciones-seguridad-corporativa-venezuela': 'consultoria/certificaciones',
+};
+
+// Private portals and post-conversion pages: reachable, but never indexed nor listed in the sitemap.
+const isNoindex = p => p === 'admin' || p === 'intranet' || /\/(gracias|thank-you)$/.test(p);
+
+// Disallowed in robots.txt, so keep them out of the sitemap too (conflicting signals otherwise).
+const SITEMAP_EXCLUDE = new Set(['portal-rrhh']);
+
+const escapeAttr = s => String(s).replace(/&(?!amp;|lt;|gt;|quot;|#\d+;)/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+// Thank-you pages shared one generic title — make each unique by naming the landing it belongs to.
+const routesByPath = new Map(routes.map(r => [r.path, r]));
+for (const route of routes) {
+  const m = route.path.match(/^(.*)\/(gracias|thank-you)$/);
+  const parent = m && routesByPath.get(m[1]);
+  if (parent) {
+    const prefix = route.title.split('|')[0].trim();
+    const parentName = parent.title.split('|')[0].split('—')[0].trim();
+    route.title = `${prefix}: ${parentName} | CSSG Global`;
+  }
+}
+
+// Blog posts stored in Supabase (published from /admin) get the same treatment as hardcoded
+// ones: their own static HTML, prerendered content and a sitemap entry. Posts published after
+// this build are still served by /api/blog until the next deploy.
+async function fetchDbBlogPosts() {
+  const url = process.env.VITE_SUPABASE_URL || 'https://vqisebdthsowhpfpugrb.supabase.co';
+  const key = process.env.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZxaXNlYmR0aHNvd2hwZnB1Z3JiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcxNjE2MTAsImV4cCI6MjA5MjczNzYxMH0.9TZZ_6mx7vcaYoaeT5PmH02OrOzad6KMHiBwospgxOw';
+  try {
+    const resp = await fetch(`${url}/rest/v1/blog_posts?published=eq.true&select=*`, {
+      headers: { apikey: key, Authorization: `Bearer ${key}` },
+      signal: AbortSignal.timeout(10000),
+    });
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    return await resp.json();
+  } catch (e) {
+    console.warn(`[SEO Generation] ⚠️  Could not fetch blog posts from Supabase (${e.message}) — only hardcoded posts will be prerendered.`);
+    return [];
+  }
+}
+
+const dbPosts = await fetchDbBlogPosts();
+for (const post of dbPosts) {
+  const p = `blog/${post.slug}`;
+  if (routesByPath.has(p)) {
+    Object.assign(routesByPath.get(p), { lastmod: post.created_at?.slice(0, 10), dbRow: post });
+    continue;
+  }
+  const image = post.image_url || post.image || 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg';
+  const route = {
+    path: p,
+    title: `${post.title} | CSSG`,
+    description: post.excerpt || post.title,
+    image: image.startsWith('http') ? image : `${SITE_URL}${image.startsWith('/') ? '' : '/'}${image}`,
+    lastmod: post.created_at?.slice(0, 10),
+    dbRow: post,
+    jsonld: { "@context": "https://schema.org", "@type": "Article", "headline": post.title, "description": post.excerpt || post.title, "datePublished": post.created_at?.slice(0, 10), "author": { "@type": "Organization", "name": "CSSG", "url": SITE_URL }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": `${SITE_URL}/logo.png` } }, "mainEntityOfPage": { "@type": "WebPage", "@id": `${SITE_URL}/${p}` } },
+  };
+  routes.push(route);
+  routesByPath.set(p, route);
+  console.log(`[SEO Generation] Added Supabase blog post /${p}`);
+}
+
+for (const route of routes) {
+  route.canonicalPath = CANONICAL_ALIASES[route.path] ?? route.path;
+  route.noindex = isNoindex(route.path);
+}
+
 routes.forEach(route => {
   let newHtml = originalHtml;
-  
+  const title = escapeAttr(route.title);
+  const description = escapeAttr(route.description);
+
+  if (route.path.startsWith('en/')) {
+    newHtml = newHtml.replace(/<html lang="es">/, '<html lang="en">');
+    newHtml = newHtml.replace(/<meta property="og:locale" content="es_VE" \/>/, '<meta property="og:locale" content="en_US" />');
+  }
+
+  if (route.noindex) {
+    newHtml = newHtml.replace(/<meta name="robots" content=".*?"\s*\/?>/i, '<meta name="robots" content="noindex, follow" />');
+  }
+
   // Update Title
-  newHtml = newHtml.replace(/<title>.*?<\/title>/gi, `<title>${route.title}</title>`);
-  newHtml = newHtml.replace(/<meta property="og:title" content=".*?"\s*\/?>/gi, `<meta property="og:title" content="${route.title}" />`);
-  newHtml = newHtml.replace(/<meta property="twitter:title" content=".*?"\s*\/?>/gi, `<meta property="twitter:title" content="${route.title}" />`);
-  
+  newHtml = newHtml.replace(/<title>.*?<\/title>/gi, () => `<title>${title}</title>`);
+  newHtml = newHtml.replace(/<meta property="og:title" content=".*?"\s*\/?>/gi, () => `<meta property="og:title" content="${title}" />`);
+  newHtml = newHtml.replace(/<meta property="twitter:title" content=".*?"\s*\/?>/gi, () => `<meta property="twitter:title" content="${title}" />`);
+
   // Update Description
-  newHtml = newHtml.replace(/<meta name="description" content=".*?"\s*\/?>/gi, `<meta name="description" content="${route.description}" />`);
-  newHtml = newHtml.replace(/<meta property="og:description" content=".*?"\s*\/?>/gi, `<meta property="og:description" content="${route.description}" />`);
-  newHtml = newHtml.replace(/<meta property="twitter:description" content=".*?"\s*\/?>/gi, `<meta property="twitter:description" content="${route.description}" />`);
+  newHtml = newHtml.replace(/<meta name="description" content=".*?"\s*\/?>/gi, () => `<meta name="description" content="${description}" />`);
+  newHtml = newHtml.replace(/<meta property="og:description" content=".*?"\s*\/?>/gi, () => `<meta property="og:description" content="${description}" />`);
+  newHtml = newHtml.replace(/<meta property="twitter:description" content=".*?"\s*\/?>/gi, () => `<meta property="twitter:description" content="${description}" />`);
   
   // Update Image — regex covers both <meta property="og:image"> and <meta name="image" property="og:image">
   // ogImage/ogImageAlt/ogImageWidth/ogImageHeight are optional per-route overrides for the social
@@ -845,8 +940,9 @@ routes.forEach(route => {
   }
 
   // Update Canonical URL
-  newHtml = newHtml.replace(/<link rel="canonical" href=".*?"\s*\/?>/gi, `<link rel="canonical" href="https://cssg-global.com/${route.path}" />`);
-  newHtml = newHtml.replace(/<meta property="og:url" content=".*?"\s*\/?>/gi, `<meta property="og:url" content="https://cssg-global.com/${route.path}" />`);
+  newHtml = newHtml.replace(/<link rel="canonical" href=".*?"\s*\/?>/gi, `<link rel="canonical" href="${SITE_URL}/${route.canonicalPath}" />`);
+  newHtml = newHtml.replace(/<meta property="og:url" content=".*?"\s*\/?>/gi, `<meta property="og:url" content="${SITE_URL}/${route.canonicalPath}" />`);
+  newHtml = newHtml.replace(/<meta property="twitter:url" content=".*?"\s*\/?>/gi, `<meta property="twitter:url" content="${SITE_URL}/${route.canonicalPath}" />`);
 
   // Preload the hero image for standalone landing pages so the browser fetches it
   // from the raw HTML immediately, instead of waiting on JS to render the CSS background-image.
@@ -922,7 +1018,15 @@ routes.forEach(route => {
     newHtml = newHtml.replace(/<\/head>/, `${breadcrumbTag}\n  </head>`);
   }
 
-  newHtml = stripUnneededPreloads(newHtml, route.path);
+  // BlogPost.tsx reads this to render the article on first paint instead of a loading state.
+  if (route.dbRow) {
+    // Escape "<" so post content can never close the <script> tag early.
+    const json = JSON.stringify(route.dbRow).replace(/</g, '\\u003c');
+    newHtml = newHtml.replace('</body>', () => `<script type="application/json" id="blog-post-data">${json}</script>
+</body>`);
+  }
+
+  newHtml = stripHreflang(stripUnneededPreloads(newHtml, route.path));
 
   const routeDir = path.join(distDir, route.path);
   if (!fs.existsSync(routeDir)) {
@@ -936,5 +1040,53 @@ routes.forEach(route => {
 // The root index.html (home page, '/') is served as-is by Vercel — it isn't part of the
 // routes loop above, so it needs the same modulepreload cleanup applied directly. Home.tsx
 // doesn't render or generate PDFs, so it gets the same treatment as every other non-PDF route.
-fs.writeFileSync(indexHtmlPath, stripUnneededPreloads(originalHtml, ''));
+const homeHtml = stripHreflang(stripUnneededPreloads(originalHtml, ''));
+fs.writeFileSync(indexHtmlPath, homeHtml);
 console.log('[SEO Generation] Stripped unneeded modulepreload from root /');
+
+// Empty SPA shell (never prerendered): Vercel's catch-all rewrite and /api/blog use it for URLs
+// without their own HTML file, so unknown paths don't receive the home page's content.
+fs.writeFileSync(path.join(distDir, 'spa-shell.html'), homeHtml);
+console.log('[SEO Generation] Created spa-shell.html');
+
+// ─── sitemap.xml — single source of truth: the same route list used above ───
+const today = new Date().toISOString().slice(0, 10);
+const sitemapEntries = [
+  { loc: `${SITE_URL}/`, lastmod: today, changefreq: 'weekly', priority: '1.0' },
+  ...routes
+    .filter(r => !r.noindex && r.canonicalPath === r.path && !SITEMAP_EXCLUDE.has(r.path))
+    .map(r => {
+      const depth = r.path.split('/').length;
+      const isBlogPost = r.path.startsWith('blog/');
+      return {
+        loc: `${SITE_URL}/${r.path}`,
+        lastmod: r.lastmod || (r.jsonld && !Array.isArray(r.jsonld) && r.jsonld.datePublished) || today,
+        changefreq: isBlogPost ? 'monthly' : depth === 1 ? 'weekly' : 'monthly',
+        priority: isBlogPost ? '0.7' : depth === 1 ? '0.9' : '0.8',
+      };
+    }),
+];
+const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+${sitemapEntries.map(e => `  <url>
+    <loc>${e.loc}</loc>
+    <lastmod>${e.lastmod}</lastmod>
+    <changefreq>${e.changefreq}</changefreq>
+    <priority>${e.priority}</priority>
+  </url>`).join('\n')}
+</urlset>
+`;
+fs.writeFileSync(path.join(distDir, 'sitemap.xml'), sitemapXml);
+console.log(`[SEO Generation] sitemap.xml written with ${sitemapEntries.length} URLs`);
+
+// ─── Prerender: fill each page's empty #root with the real rendered content ───
+// noindex routes are skipped: private portals, and thank-you pages that redirect to their landing
+// unless reached through a form submission.
+const prerenderRoutes = [{ path: '' }, ...routes.filter(r => !r.noindex)];
+await prerender({ distDir, routes: prerenderRoutes });
+
+// vite-plugin-compression emitted .gz/.br for index.html BEFORE this script rewrote it; drop stale
+// copies of any HTML so no server can serve outdated precompressed markup.
+for (const f of fs.readdirSync(distDir, { recursive: true })) {
+  if (/\.html\.(gz|br)$/.test(f)) fs.unlinkSync(path.join(distDir, f));
+}
