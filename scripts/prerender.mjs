@@ -16,6 +16,20 @@ import http from 'http';
 import path from 'path';
 import puppeteer from 'puppeteer';
 
+// Vercel's build image lacks the system libraries Puppeteer's bundled Chrome needs (libnspr4, libnss3…),
+// so there we use @sparticuz/chromium, a Chromium build that ships its own. Locally, the regular Chrome.
+export async function launchBrowser() {
+  if (process.env.VERCEL) {
+    const { default: chromium } = await import('@sparticuz/chromium');
+    // Its defaults target single-page Lambda runs: drop --single-process (we render 4 pages in parallel)
+    // and the flags that relax web security, so snapshots match what a real visitor's browser renders.
+    const dropped = new Set(['--single-process', '--disable-web-security', '--allow-running-insecure-content']);
+    const args = chromium.args.filter(a => !dropped.has(a));
+    return puppeteer.launch({ executablePath: await chromium.executablePath(), args, headless: true });
+  }
+  return puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+}
+
 const MIME = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript', '.mjs': 'text/javascript',
   '.css': 'text/css', '.json': 'application/json', '.svg': 'image/svg+xml', '.png': 'image/png',
@@ -120,7 +134,7 @@ export async function prerender({ distDir, routes }) {
   let browser;
   const results = [];
   try {
-    browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+    browser = await launchBrowser();
   } catch (e) {
     server.close();
     console.warn(`\n[Prerender] ⚠️  Could not launch headless Chrome — pages ship WITHOUT prerendered content.\n  ${e.message}\n`);
