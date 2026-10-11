@@ -36,6 +36,10 @@ jobs:
 
       - name: Build (Vite + SEO + prerender)
         run: npm run build
+        # Public values (same as "vars" in wrangler.jsonc); Vite inlines them into the bundle.
+        env:
+          VITE_SUPABASE_URL: https://vqisebdthsowhpfpugrb.supabase.co
+          VITE_SUPABASE_ANON_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZxaXNlYmR0aHNvd2hwZnB1Z3JiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcxNjE2MTAsImV4cCI6MjA5MjczNzYxMH0.9TZZ_6mx7vcaYoaeT5PmH02OrOzad6KMHiBwospgxOw
 
       # postbuild.js ships un-prerendered pages if Chrome fails (so a Vercel build never breaks).
       # Here that would silently undo the SEO work, so refuse to deploy instead.
