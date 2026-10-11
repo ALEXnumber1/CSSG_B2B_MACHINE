@@ -14,14 +14,15 @@ CSSG B2B Machine — corporate website and lead-generation platform for **Compan
 
 ```bash
 npm run dev        # Start dev server (Vite HMR)
-npm run build      # TypeScript check + Vite build + postbuild.js SEO generation
+npm run build      # TypeScript check + Vite build + postbuild.js (SEO + prerender)
 npm run lint       # ESLint
 npm run preview    # Preview production build locally
+npx wrangler dev   # Run the Cloudflare Worker locally against dist/ (build first)
 ```
 
 **There are no tests.** The build pipeline is: `tsc -b → vite build → node postbuild.js`.
 
-`postbuild.js` runs after every build — it generates per-route `index.html` files inside `dist/` with route-specific SEO meta tags (title, description, OG image, canonical URL). This is required for Vercel SPA deployments to have proper SEO on each route.
+`postbuild.js` runs after every build — it generates per-route `index.html` files inside `dist/` with route-specific SEO meta tags (title, description, OG image, canonical URL), then prerenders each route with headless Chrome (`scripts/prerender.mjs`) so crawlers get the real content. If Chrome fails it ships un-prerendered pages; the Cloudflare deploy workflow refuses to deploy in that case.
 
 ---
 
@@ -33,7 +34,8 @@ npm run preview    # Preview production build locally
 - **Framer Motion** for all animations — every page transition uses `AnimatePresence`
 - **react-i18next** for ES/EN bilingual content — all page copy lives in `src/locales/{es,en}/*.json`
 - **Supabase** as the backend database (CRM, risk assessments, complaints, RRHH applications)
-- **Resend** for transactional email (nurturing sequences via `src/lib/email.ts`)
+- **Resend** for transactional email — sent server-side by `api/mailer.js`; `src/lib/email.ts` calls the API, never Resend directly
+- **Gemini** for lead scoring and buyer-persona classification (`api/_lead-ai.js`) and the Admin agent (`api/agent.js`). Groq was dropped: it blocks Venezuela
 - **@react-pdf/renderer** for PDF generation (Sprint 2 — in progress, base components in `src/lib/pdf/`)
 - **@splinetool/react-spline** + **Three.js** for 3D visuals (hero section, security radar)
 - **Jitsi Meet** embedded in `/streaming` for secure video consultations
@@ -48,7 +50,7 @@ SEO alias routes (`/consultoria-seguridad-caracas`, `/auditoria-seguridad-iso-31
 
 ### Data Layer (`src/lib/`)
 - `supabase.ts` — single Supabase client; env vars `VITE_SUPABASE_URL` / `VITE_SUPABASE_ANON_KEY` with hardcoded fallbacks so the site loads without `.env`
-- `email.ts` — Resend API wrapper; `FROM_EMAIL` is `operaciones@cssg-global.com`; requires `VITE_RESEND_API_KEY`
+- `email.ts` — email templates + calls to `/api/mailer`; `FROM_EMAIL` is `operaciones@cssg-global.com`. The Resend key lives only on the server
 - `sequences.ts` — multi-step email nurturing sequences (riesgo, consultoria, escudo flows)
 - `agent-intelligence.ts` — stub for an agentic LLM layer (lead scoring, auto-responder); not yet wired to a live LLM API
 
@@ -76,11 +78,20 @@ RLS is enabled on all tables: public INSERT, authenticated SELECT only.
 ### i18n
 All translatable content is in `src/locales/{es,en}/{namespace}.json`. The namespace list: `quienes`, `consultoria`, `tecnologia`, `risk`, `informes`, `quejas`, `intranet`, `admin`, `blog`, `streaming`, `rrhh`, `escudo`. Nav, hero, and footer strings live directly in `src/i18n.ts`. Language is auto-detected by browser; `es` is the default fallback.
 
-### Deployment (Vercel)
-- `vercel.json` rewrites all routes to `/index.html` for SPA routing
-- Security headers are set globally: HSTS, CSP, X-Frame-Options DENY, CORP
-- `/assets/*` gets 1-year immutable cache headers
-- The CSP allowlist includes: Supabase, YouTube, Jitsi, Google Meet, Resend, Vercel Analytics — update it if adding new third-party domains
+### Serverless API (`api/`)
+Each `api/*.js` file is a Vercel-style `(req, res)` handler. Files starting with `_` (`_gemini.js`, `_lead-ai.js`) are shared helpers, not endpoints. The Worker runs these same files through an adapter, so they must stay `(req, res)` handlers. A new endpoint must also be registered in `API_HANDLERS` in `worker/index.js`, or it returns 404.
+
+### Deployment (Cloudflare Workers) — since 2026-10-11
+`cssg-global.com` and `www` are Custom Domains of the Worker **`cssg-global`** (config in `wrangler.jsonc`, code in `worker/index.js`). Vercel no longer serves production.
+- **Deploy:** GitHub Actions (`.github/workflows/deploy-cloudflare.yml`) on every push to `main`: `npm run build` with prerender, then `wrangler deploy`. Never deploy by hand from a stale `dist/`.
+- **Static site:** `dist/` served as Worker assets. Unknown URLs get `dist/404.html` with a real 404. `/streaming` is served from the SPA shell, and `/blog/:slug` falls back to `api/blog.js` for posts published after the last build.
+- **Worker routing:** headers, redirects (`www` → apex, `escudo-diplomático`) and `noindex` on non-production hosts all live in `worker/index.js`.
+- **Security headers:** HSTS, CSP, X-Frame-Options DENY and the rest are set in `SECURITY_HEADERS` in `worker/index.js`. **Update the CSP there** when adding a third-party domain; `vercel.json` no longer applies to production.
+- **Asset caching:** `/assets/*` gets 1-year immutable caching.
+- **Daily cron:** `process-sequences` runs at 09:00 UTC via `triggers.crons` in `wrangler.jsonc` and the `scheduled` handler. Never schedule it in `vercel.json` as well, or leads get every email twice.
+- **Secrets:** set with `npx wrangler secret put <NAME>` and never committed: `RESEND_API_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `GEMINI_API_KEY`, `CRON_SECRET`. The public Supabase URL and anon key are `vars` in `wrangler.jsonc`.
+- **PDF exception:** `/api/generate-pdf` (`@react-pdf` on the server) is too CPU-heavy for a Worker. It is forwarded to `globalservices-ven.com`, the Vercel project `cssg-b2b-machine`, which must stay alive until PDF generation moves to the browser.
+- **DNS:** the zone is on Cloudflare. MX records (Google Workspace) and Resend records (`send.`, `resend._domainkey`) must never be touched.
 
 ---
 
@@ -116,18 +127,20 @@ The 5 authority pillars that must appear in all commercial copy:
 
 ## Environment Variables
 
+Frontend (build time, public — they end up in the bundle):
 ```bash
 VITE_SUPABASE_URL=         # Supabase project URL
 VITE_SUPABASE_ANON_KEY=    # Supabase anon key
-VITE_RESEND_API_KEY=        # Resend API key for email sequences
 ```
+The site loads without them (hardcoded fallbacks in `supabase.ts`). Never put a real secret in a `VITE_*` variable: Vite ships it to every visitor.
 
-The site loads without these variables (hardcoded fallbacks in `supabase.ts`), but email sequences will silently fail without `VITE_RESEND_API_KEY`.
+Server (`api/` handlers, read via `process.env`): `RESEND_API_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `GEMINI_API_KEY`, `CRON_SECRET`, optional `WEBHOOK_SECRET` and `GEMINI_MODEL`. In production they are Worker secrets (see Deployment). Without `RESEND_API_KEY`, emails fail silently; without `GEMINI_API_KEY`, lead scoring returns `null`.
 
 ---
 
 ## Known Issues / Active Work
 
 - **Legacy PDF generation** in `RiskAnalysis.tsx` and `Informes.tsx` uses `html2canvas` which Cloudflare can intercept — being replaced with `@react-pdf/renderer` in Sprint 2
-- **`notfound.tsx`** filename is lowercase — always import as `'./pages/notfound'` (Linux/Vercel is case-sensitive)
-- **`agent-intelligence.ts`** contains stub LLM skills (lead scoring, auto-responder) not yet connected to a live API
+- **`notfound.tsx`** filename is lowercase — always import as `'./pages/notfound'` (the Linux CI build is case-sensitive)
+- **`api/agent.js`** still uses `gemini-2.0-flash`, which Google may have retired; the rest uses `gemini-2.5-flash` via `api/_gemini.js`
+- **Several Vercel projects** (`cssg-b2b`, `cssg-b2-b-machine`, `cssg-b2-b-machine-9vda`, `cssg-providers`) still build every push to `main`. They don't serve production; only `cssg-b2b-machine` is needed (PDFs)
