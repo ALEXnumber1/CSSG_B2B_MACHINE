@@ -24,8 +24,8 @@
       "destination": "/api/blog"
     },
     {
-      "source": "/(.*)",
-      "destination": "/spa-shell.html"
+      "source": "/streaming",
+      "destination": "/spa-shell"
     }
   ],
   "headers": [

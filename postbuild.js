@@ -1049,6 +1049,15 @@ console.log('[SEO Generation] Stripped unneeded modulepreload from root /');
 fs.writeFileSync(path.join(distDir, 'spa-shell.html'), homeHtml);
 console.log('[SEO Generation] Created spa-shell.html');
 
+// Vercel serves 404.html (with a real 404 status) for any path without a file or rewrite. The SPA
+// boots on it and React Router renders the NotFound page — branded page, correct status for crawlers.
+const notFoundHtml = homeHtml
+  .replace(/<title>.*?<\/title>/, '<title>Página no encontrada | CSSG</title>')
+  .replace(/<meta name="robots" content=".*?"\s*\/?>/i, '<meta name="robots" content="noindex, follow" />')
+  .replace(/\s*<link rel="canonical" href=".*?"\s*\/?>/i, '');
+fs.writeFileSync(path.join(distDir, '404.html'), notFoundHtml);
+console.log('[SEO Generation] Created 404.html');
+
 // ─── sitemap.xml — single source of truth: the same route list used above ───
 const today = new Date().toISOString().slice(0, 10);
 const sitemapEntries = [
