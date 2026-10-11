@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
-import { supabase } from '../lib/supabase';
+import { supabase, adminAuthHeader } from '../lib/supabase';
 import { jsPDF } from 'jspdf';
 import {
   Lock, X, Search, Filter, RefreshCw, User,
@@ -103,7 +103,6 @@ export default function Admin() {
     setTacticError('');
     setTacticResult(null);
     try {
-      const CRON_SECRET = (import.meta as any).env?.VITE_CRON_SECRET || '';
       const sevenDaysAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString();
       const stats = {
         total_leads: leads.length,
@@ -131,7 +130,7 @@ export default function Admin() {
 
       const res = await fetch('/api/agent', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${CRON_SECRET}` },
+        headers: { 'Content-Type': 'application/json', ...(await adminAuthHeader()) },
         body: JSON.stringify({ action: 'suggest_tactics', stats }),
       });
       if (!res.ok) throw new Error(`Error ${res.status}`);
@@ -186,10 +185,9 @@ export default function Admin() {
   const runSequences = async () => {
     setIsProcessingSequences(true);
     try {
-      const secret = (import.meta as any).env?.VITE_CRON_SECRET || '';
       const res = await fetch('/api/process-sequences', {
         method: 'POST',
-        headers: { Authorization: `Bearer ${secret}` },
+        headers: await adminAuthHeader(),
       });
       const data = await res.json();
       alert(`Secuencias procesadas: ${data.sent} enviadas, ${data.errors} errores`);
@@ -204,10 +202,9 @@ export default function Admin() {
     setLaunchingIds(prev => new Set(prev).add(leadId));
     setLaunchResult(null);
     try {
-      const secret = (import.meta as any).env?.VITE_CRON_SECRET || '';
       const res = await fetch('/api/launch-sequence', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${secret}` },
+        headers: { 'Content-Type': 'application/json', ...(await adminAuthHeader()) },
         body: JSON.stringify({ lead_ids: [leadId] }),
       });
       const data = await res.json();
@@ -224,10 +221,9 @@ export default function Admin() {
     setLaunchingBpGroup(bp);
     setLaunchResult(null);
     try {
-      const secret = (import.meta as any).env?.VITE_CRON_SECRET || '';
       const res = await fetch('/api/launch-sequence', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${secret}` },
+        headers: { 'Content-Type': 'application/json', ...(await adminAuthHeader()) },
         body: JSON.stringify({ bp, launch_all: true }),
       });
       const data = await res.json();
@@ -988,7 +984,7 @@ const savePost = async () => {
 
             {tacticError && (
               <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-4 text-red-400 text-sm">
-                Error al conectar con el agente: {tacticError}. Verifica que VITE_CRON_SECRET esté configurado.
+                Error al conectar con el agente: {tacticError}. Verifique que su sesión siga activa.
               </div>
             )}
 

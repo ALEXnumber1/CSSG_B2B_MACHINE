@@ -5,7 +5,7 @@
  * Fallback heurístico si el endpoint no está disponible.
  */
 
-import { supabase } from './supabase';
+import { supabase, adminAuthHeader } from './supabase';
 
 interface LeadEvaluation {
   score: number;
@@ -36,9 +36,8 @@ async function callAgent<T>(action: string, lead: Record<string, unknown>): Prom
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        // CRON_SECRET no está disponible en el browser; el endpoint es interno
-        // En producción se llama desde api/trigger-sequence.js con la clave correcta
-        Authorization: `Bearer ${import.meta.env.VITE_CRON_SECRET || ''}`,
+        // Solo responde con una sesión de admin (api/_auth.js); para visitantes devuelve null.
+        ...(await adminAuthHeader()),
       },
       body: JSON.stringify({ action, lead }),
     });

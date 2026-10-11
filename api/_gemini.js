@@ -9,7 +9,7 @@ const GEMINI_MODEL = process.env.GEMINI_MODEL || 'gemini-2.5-flash';
 
 export const hasGeminiKey = () => Boolean(process.env.GEMINI_API_KEY);
 
-export async function geminiJSON(prompt, { temperature = 0.2, maxOutputTokens = 1024 } = {}) {
+export async function geminiJSON(prompt, { system, temperature = 0.2, maxOutputTokens = 1024 } = {}) {
   const apiKey = process.env.GEMINI_API_KEY;
   if (!apiKey) throw new Error('GEMINI_API_KEY not configured');
 
@@ -19,12 +19,13 @@ export async function geminiJSON(prompt, { temperature = 0.2, maxOutputTokens = 
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey },
       body: JSON.stringify({
+        ...(system && { system_instruction: { parts: [{ text: system }] } }),
         contents: [{ role: 'user', parts: [{ text: prompt }] }],
         generationConfig: {
           temperature,
           maxOutputTokens,
           responseMimeType: 'application/json',
-          // Clasificación corta: sin "thinking", más rápido y barato.
+          // Respuestas JSON cortas: sin "thinking", que además consumiría el límite de tokens.
           thinkingConfig: { thinkingBudget: 0 },
         },
       }),

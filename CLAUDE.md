@@ -134,7 +134,9 @@ VITE_SUPABASE_ANON_KEY=    # Supabase anon key
 ```
 The site loads without them (hardcoded fallbacks in `supabase.ts`). Never put a real secret in a `VITE_*` variable: Vite ships it to every visitor.
 
-Server (`api/` handlers, read via `process.env`): `RESEND_API_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `GEMINI_API_KEY`, `CRON_SECRET`, optional `WEBHOOK_SECRET` and `GEMINI_MODEL`. In production they are Worker secrets (see Deployment). Without `RESEND_API_KEY`, emails fail silently; without `GEMINI_API_KEY`, lead scoring returns `null`.
+Server (`api/` handlers, read via `process.env`): `RESEND_API_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `GEMINI_API_KEY`, `CRON_SECRET`, optional `WEBHOOK_SECRET` and `GEMINI_MODEL`.
+
+**Internal endpoints** (`/api/agent`, `/api/launch-sequence`, `/api/process-sequences`) authorize through `api/_auth.js`. They accept either `CRON_SECRET` (machine calls) or the Admin's Supabase session token, and only for emails listed in `ADMIN_EMAILS` (a var in `wrangler.jsonc`). The frontend sends that session token through `adminAuthHeader()` in `src/lib/supabase.ts`. Supabase public sign-up is open, so never authorize on "is signed in" alone. In production they are Worker secrets (see Deployment). Without `RESEND_API_KEY`, emails fail silently; without `GEMINI_API_KEY`, lead scoring returns `null`.
 
 ---
 
@@ -142,5 +144,4 @@ Server (`api/` handlers, read via `process.env`): `RESEND_API_KEY`, `SUPABASE_SE
 
 - **Legacy PDF generation** in `RiskAnalysis.tsx` and `Informes.tsx` uses `html2canvas` which Cloudflare can intercept — being replaced with `@react-pdf/renderer` in Sprint 2
 - **`notfound.tsx`** filename is lowercase — always import as `'./pages/notfound'` (the Linux CI build is case-sensitive)
-- **`api/agent.js`** still uses `gemini-2.0-flash`, which Google may have retired; the rest uses `gemini-2.5-flash` via `api/_gemini.js`
 - **Several Vercel projects** (`cssg-b2b`, `cssg-b2-b-machine`, `cssg-b2-b-machine-9vda`, `cssg-providers`) still build every push to `main`. They don't serve production; only `cssg-b2b-machine` is needed (PDFs)

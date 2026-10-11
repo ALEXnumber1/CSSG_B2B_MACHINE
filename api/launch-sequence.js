@@ -11,6 +11,7 @@
  */
 
 import { createClient } from '@supabase/supabase-js';
+import { isAuthorized } from './_auth.js';
 
 const supabaseUrl = process.env.VITE_SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.VITE_SUPABASE_ANON_KEY;
@@ -163,9 +164,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const CRON_SECRET = process.env.CRON_SECRET || process.env.VITE_CRON_SECRET;
-  const token = (req.headers.authorization || '').replace('Bearer ', '');
-  if (CRON_SECRET && token !== CRON_SECRET) {
+  if (!(await isAuthorized(req))) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
 

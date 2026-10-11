@@ -1,7 +1,8 @@
 // api/agent.js — CSSG Strategic Intelligence Agent v2.0
 // Acciones: score | classify_persona | draft_outbound | draft_email | suggest_tactics
 
-const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent';
+import { geminiJSON } from './_gemini.js';
+import { isAuthorized } from './_auth.js';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // SYSTEM PROMPT — El cerebro estratégico del agente CSSG
@@ -136,32 +137,8 @@ COMPETIDORES Y CÓMO SUPERARLOS (usar en suggest_tactics si es relevante)
 // callGemini — control de tokens por acción
 // ═══════════════════════════════════════════════════════════════════════════
 
-async function callGemini(prompt, maxOutputTokens = 512) {
-  const apiKey = process.env.GEMINI_API_KEY;
-  if (!apiKey) throw new Error('GEMINI_API_KEY not configured');
-
-  const response = await fetch(`${GEMINI_API_URL}?key=${apiKey}`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
-      contents: [{ role: 'user', parts: [{ text: prompt }] }],
-      generationConfig: {
-        temperature: 0.35,
-        maxOutputTokens,
-        responseMimeType: 'application/json',
-      },
-    }),
-  });
-
-  if (!response.ok) {
-    const err = await response.text();
-    throw new Error(`Gemini error ${response.status}: ${err}`);
-  }
-
-  const data = await response.json();
-  const raw = data.candidates?.[0]?.content?.parts?.[0]?.text || '{}';
-  return JSON.parse(raw);
+function callGemini(prompt, maxOutputTokens = 512) {
+  return geminiJSON(prompt, { system: SYSTEM_PROMPT, temperature: 0.35, maxOutputTokens });
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -173,8 +150,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const authHeader = req.headers.authorization;
-  if (!authHeader || authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
+  if (!(await isAuthorized(req))) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
 
