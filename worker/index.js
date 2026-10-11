@@ -9,6 +9,37 @@ const PRODUCTION_HOST = 'cssg-global.com';
 // SPA routes without their own prerendered HTML file: served from the app shell.
 const SHELL_ROUTES = new Set(['/streaming']);
 
+// Permanent redirects carried over from vercel.json (keys are decoded pathnames).
+const REDIRECTS = new Map([
+  ['/consultoria/escudo-diplomático', '/consultoria/escudo-diplomatico'],
+]);
+
+// Security headers for every response, as vercel.json set them. Update the CSP allowlist when adding
+// a third-party domain.
+const SECURITY_HEADERS = {
+  'Strict-Transport-Security': 'max-age=63072000; includeSubDomains; preload',
+  'X-Content-Type-Options': 'nosniff',
+  'X-Frame-Options': 'DENY',
+  'X-XSS-Protection': '1; mode=block',
+  'Referrer-Policy': 'strict-origin-when-cross-origin',
+  'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), interest-cohort=()',
+  'Cross-Origin-Opener-Policy': 'same-origin',
+  'Content-Security-Policy': [
+    "default-src 'self'",
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' blob: https://*.supabase.co https://*.google.com https://meet.jit.si https://www.youtube.com https://s.ytimg.com https://va.vercel-scripts.com https://cdn.tailwindcss.com https://unpkg.com https://www.googletagmanager.com https://www.google-analytics.com https://analytics.ahrefs.com",
+    "worker-src blob: 'self'",
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com",
+    "img-src 'self' data: blob: https://images.unsplash.com https://flagcdn.com https://*.flagcdn.com https://*.supabase.co https://i.ytimg.com https://img.youtube.com https://placehold.co",
+    "font-src 'self' data: https://fonts.gstatic.com https://unpkg.com",
+    "media-src 'self' blob: https://assets.mixkit.co",
+    "connect-src 'self' data: blob: https://*.supabase.co wss://*.supabase.co https://api.resend.com https://vitals.vercel-insights.com https://cdn.tailwindcss.com https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://analytics.ahrefs.com https://fonts.gstatic.com https://unpkg.com",
+    "frame-src 'self' https://*.google.com https://meet.jit.si https://www.youtube.com https://registry.blockmarktech.com https://www.googletagmanager.com",
+    "object-src 'none'",
+    "base-uri 'self'",
+    "form-action 'self' https://formsubmit.co",
+  ].join('; ') + ';',
+};
+
 // Loaded on first use: each module reads its secrets at import time, so a missing secret only breaks
 // its own endpoint (as with Vercel's isolated functions) instead of the whole Worker.
 const API_HANDLERS = {
@@ -84,6 +115,11 @@ async function runVercelHandler(handler, request, env, query = {}) {
 async function route(request, env) {
   const url = new URL(request.url);
 
+  let pathname = url.pathname;
+  try { pathname = decodeURIComponent(pathname); } catch { /* malformed escape: no redirect applies */ }
+  const redirect = REDIRECTS.get(pathname);
+  if (redirect) return Response.redirect(new URL(redirect + url.search, url).toString(), 308);
+
   if (url.pathname === '/api/generate-pdf') {
     return fetch(new Request(PDF_ORIGIN + url.pathname + url.search, request));
   }
@@ -118,14 +154,28 @@ async function route(request, env) {
 
 export default {
   async fetch(request, env) {
-    const response = await route(request, env);
+    const url = new URL(request.url);
+    const routed = await route(request, env);
+    const response = new Response(routed.body, routed); // assets/redirect responses have immutable headers
 
-    // Only the production domain may be indexed; workers.dev / preview URLs duplicate it.
-    if (new URL(request.url).hostname !== PRODUCTION_HOST) {
-      const marked = new Response(response.body, response);
-      marked.headers.set('X-Robots-Tag', 'noindex');
-      return marked;
+    for (const [name, value] of Object.entries(SECURITY_HEADERS)) response.headers.set(name, value);
+    // Vite fingerprints everything under /assets/, so it can be cached forever.
+    if (url.pathname.startsWith('/assets/') && response.ok) {
+      response.headers.set('Cache-Control', 'public, max-age=31536000, immutable');
     }
+    // Only the production domain may be indexed; workers.dev / preview URLs duplicate it.
+    if (url.hostname !== PRODUCTION_HOST) response.headers.set('X-Robots-Tag', 'noindex');
     return response;
+  },
+
+  // Daily email-sequence run (the Vercel cron in vercel.json). The trigger itself lives in
+  // wrangler.jsonc and must only be enabled at the cutover, or both hosts send the same emails.
+  async scheduled(_controller, env) {
+    const { default: handler } = await import('../api/process-sequences.js');
+    const request = new Request(`https://${PRODUCTION_HOST}/api/process-sequences`, {
+      headers: env.CRON_SECRET ? { authorization: `Bearer ${env.CRON_SECRET}` } : {},
+    });
+    const response = await runVercelHandler(handler, request, env);
+    console.log(`[cron] process-sequences -> ${response.status}: ${await response.text()}`);
   },
 };
