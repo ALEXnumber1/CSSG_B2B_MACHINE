@@ -22,6 +22,8 @@ export default defineConfig({
     globals: true,
     setupFiles: ['./src/test/setup.ts'],
   },
+  // The PDF worker (src/lib/pdf/vulnerabilityReport.worker.tsx) is started with { type: 'module' }.
+  worker: { format: 'es' },
   build: {
     rollupOptions: {
       output: {

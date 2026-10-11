@@ -53,10 +53,6 @@ const API_HANDLERS = {
   'process-sequences': () => import('../api/process-sequences.js'),
 };
 
-// PDF rendering (@react-pdf on the server) is too CPU-heavy for a Worker; until it moves to the
-// browser, forward it server-to-server to the Vercel deployment that already runs it.
-const PDF_ORIGIN = 'https://globalservices-ven.com';
-
 async function runVercelHandler(handler, request, env, query = {}) {
   const url = new URL(request.url);
   const clientIp = request.headers.get('cf-connecting-ip') || '';
@@ -125,10 +121,6 @@ async function route(request, env) {
   try { pathname = decodeURIComponent(pathname); } catch { /* malformed escape: no redirect applies */ }
   const redirect = REDIRECTS.get(pathname);
   if (redirect) return Response.redirect(new URL(redirect + url.search, url).toString(), 308);
-
-  if (url.pathname === '/api/generate-pdf') {
-    return fetch(new Request(PDF_ORIGIN + url.pathname + url.search, request));
-  }
 
   if (url.pathname.startsWith('/api/')) {
     const load = API_HANDLERS[url.pathname.slice('/api/'.length)];

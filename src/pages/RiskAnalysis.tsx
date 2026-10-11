@@ -425,30 +425,23 @@ export default function RiskAnalysis() {
       sendNurtureEmail(leadData.email, leadData.name, 'riesgo', leadData.company).catch(err => console.warn('[Email] nurture error:', err));
     }
 
-    // 2. Generar PDF en el servidor (Node.js — no bloquea el browser)
+    // 2. Generar el PDF en el navegador, dentro de un Web Worker (no congela la página)
     try {
-      const res = await fetch('/api/generate-pdf', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          leadName: leadData.name,
-          jobTitle: leadData.jobTitle,
-          company: leadData.company,
-          email: leadData.email,
-          phone: leadData.phone,
-          location: contextData.location,
-          sector: contextData.sector,
-          exposure: contextData.exposure,
-          targetOrganization: contextData.targetOrganization,
-          score: protectionScore,
-          pillars: pillarStats.map(p => ({ title: p.pillar.title, checked: p.checked, total: p.total })),
-          vulnerabilities: vulnerabilities,
-        }),
+      const { generateVulnerabilityReport } = await import('../lib/pdf/vulnerabilityReport');
+      const blob = await generateVulnerabilityReport({
+        leadName: leadData.name,
+        jobTitle: leadData.jobTitle,
+        company: leadData.company,
+        email: leadData.email,
+        phone: leadData.phone,
+        location: contextData.location,
+        sector: contextData.sector,
+        exposure: contextData.exposure,
+        targetOrganization: contextData.targetOrganization,
+        score: protectionScore,
+        pillars: pillarStats.map(p => ({ title: p.pillar.title, checked: p.checked, total: p.total })),
+        vulnerabilities: vulnerabilities,
       });
-
-      if (!res.ok) throw new Error(`Server error ${res.status}`);
-
-      const blob = await res.blob();
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
@@ -959,9 +952,8 @@ export default function RiskAnalysis() {
               <button
                 onClick={() => {
                   setShowLeadModal(true);
-                  // Pre-cargar el chunk PDF mientras el usuario llena el formulario
-                  import('@react-pdf/renderer');
-                  import('../lib/pdf/documents/RiskReport');
+                  // Pre-cargar el generador de PDF mientras el usuario llena el formulario
+                  import('../lib/pdf/vulnerabilityReport');
                 }}
                 className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-semibold text-sm transition-colors cursor-pointer"
               >

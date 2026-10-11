@@ -36,7 +36,7 @@ npx wrangler dev   # Run the Cloudflare Worker locally against dist/ (build firs
 - **Supabase** as the backend database (CRM, risk assessments, complaints, RRHH applications)
 - **Resend** for transactional email — sent server-side by `api/mailer.js`; `src/lib/email.ts` calls the API, never Resend directly
 - **Gemini** for lead scoring and buyer-persona classification (`api/_lead-ai.js`) and the Admin agent (`api/agent.js`). Groq was dropped: it blocks Venezuela
-- **@react-pdf/renderer** for PDF generation (Sprint 2 — in progress, base components in `src/lib/pdf/`)
+- **@react-pdf/renderer** for PDF generation, always in the browser (`src/lib/pdf/`)
 - **@splinetool/react-spline** + **Three.js** for 3D visuals (hero section, security radar)
 - **Jitsi Meet** embedded in `/streaming` for secure video consultations
 
@@ -54,16 +54,21 @@ SEO alias routes (`/consultoria-seguridad-caracas`, `/auditoria-seguridad-iso-31
 - `sequences.ts` — multi-step email nurturing sequences (riesgo, consultoria, escudo flows)
 - `agent-intelligence.ts` — stub for an agentic LLM layer (lead scoring, auto-responder); not yet wired to a live LLM API
 
-### PDF System (`src/lib/pdf/`) — Sprint 2 in progress
-Reusable component library built on `@react-pdf/renderer`:
-- `theme.ts` — brand colors, typography scale, spacing, `CORPORATE` constants
-- `components/Header.tsx` — fixed page header with CSSG logo + document type
-- `components/Footer.tsx` — fixed page footer with legal info + page numbers
-- `components/Section.tsx` — section wrapper with sky-500 left bar
-- `components/ScoreCard.tsx` — dark score display card (for risk index)
-- `components/InfoGrid.tsx` — two-column client + context data grid
+### PDF System (`src/lib/pdf/`)
+All PDFs are generated in the browser with `@react-pdf/renderer`; there is no server-side PDF endpoint.
+- `documents/VulnerabilityReport.tsx` — the Risk Analysis report (`/analisis-riesgo`). It is rendered inside a Web Worker (`vulnerabilityReport.worker.tsx`, called through `generateVulnerabilityReport()` in `vulnerabilityReport.tsx`), because on the main thread the layout pass froze the page for 5-10 s.
+- `documents/PestelReport.tsx` (`/informes`) and `documents/WhitePaper*.tsx` (white-paper landings).
 
-Current PDF generation in `RiskAnalysis.tsx` and `Informes.tsx` still uses the legacy `html2canvas` + `jsPDF` approach and has known Cloudflare interception issues. Migration to `@react-pdf/renderer` is the Sprint 2 goal.
+@react-pdf 4.5 pitfalls, verified with PDFium (Chrome's engine):
+- A background on a `fixed` header/footer is painted over its own text and hides it.
+- `<Text render={…}>` (page numbers) is not drawn, and the whole row it sits in disappears.
+- Built-in Helvetica has no `≥` glyph; it renders as `e`.
+
+Shared building blocks:
+- `theme.ts` — brand colors, typography scale, spacing, `CORPORATE` constants
+- `components/Header.tsx` / `components/Footer.tsx` — fixed page header (CSSG logo + document type) and footer (legal info + page numbers), used by the PESTEL report. Both have the background and page-number pitfalls listed above
+- `components/Section.tsx` — section wrapper with sky-500 left bar
+
 
 ### Supabase Schema (4 tables)
 | Table | Purpose |
@@ -90,7 +95,6 @@ Each `api/*.js` file is a Vercel-style `(req, res)` handler. Files starting with
 - **Asset caching:** `/assets/*` gets 1-year immutable caching.
 - **Daily cron:** `process-sequences` runs at 09:00 UTC via `triggers.crons` in `wrangler.jsonc` and the `scheduled` handler. Never schedule it in `vercel.json` as well, or leads get every email twice.
 - **Secrets:** set with `npx wrangler secret put <NAME>` and never committed: `RESEND_API_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `GEMINI_API_KEY`, `CRON_SECRET`. The public Supabase URL and anon key are `vars` in `wrangler.jsonc`.
-- **PDF exception:** `/api/generate-pdf` (`@react-pdf` on the server) is too CPU-heavy for a Worker. It is forwarded to `globalservices-ven.com`, the Vercel project `cssg-b2b-machine`, which must stay alive until PDF generation moves to the browser.
 - **DNS:** the zone is on Cloudflare. MX records (Google Workspace) and Resend records (`send.`, `resend._domainkey`) must never be touched.
 
 ---
@@ -142,6 +146,6 @@ Server (`api/` handlers, read via `process.env`): `RESEND_API_KEY`, `SUPABASE_SE
 
 ## Known Issues / Active Work
 
-- **Legacy PDF generation** in `RiskAnalysis.tsx` and `Informes.tsx` uses `html2canvas` which Cloudflare can intercept — being replaced with `@react-pdf/renderer` in Sprint 2
+- **PESTEL and white-paper PDFs** (`PestelReport.tsx` via `components/Header`/`Footer`, `WhitePaper*.tsx`) use fixed headers with a background and/or a `render` page number, so they probably hit the pitfalls above. Not yet checked with PDFium
 - **`notfound.tsx`** filename is lowercase — always import as `'./pages/notfound'` (the Linux CI build is case-sensitive)
-- **Several Vercel projects** (`cssg-b2b`, `cssg-b2-b-machine`, `cssg-b2-b-machine-9vda`, `cssg-providers`) still build every push to `main`. They don't serve production; only `cssg-b2b-machine` is needed (PDFs)
+- **Leftover Vercel projects** (`cssg-b2b`, `cssg-b2b-machine`, `cssg-b2-b-machine`, `cssg-b2-b-machine-9vda`, `cssg-providers`) still build every push to `main`. None of them serves production any more
