@@ -95,7 +95,11 @@ export default async function handler(req, res) {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), 3500);
     
-    const htmlResponse = await fetch(`${baseUrl}/spa-shell`, { signal: controller.signal });
+    // On Cloudflare the Worker passes its static assets binding (req.assets): read the shell from
+    // there instead of fetching our own hostname. On Vercel, fetch it over HTTP.
+    const htmlResponse = req.assets
+      ? await req.assets.fetch(new Request(`${baseUrl}/spa-shell`))
+      : await fetch(`${baseUrl}/spa-shell`, { signal: controller.signal });
     clearTimeout(timeoutId);
     
     let html = await htmlResponse.text();
