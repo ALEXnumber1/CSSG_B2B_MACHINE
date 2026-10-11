@@ -5,9 +5,6 @@ on:
   push:
     branches:
       - main
-      # Temporary: lets the migration branch deploy to the Worker's test URL before the cutover.
-      # Remove once cssg-global.com points to Cloudflare, so only main reaches production.
-      - cloudflare-migration
   workflow_dispatch:
 
 # Never run two deploys at once; a newer push waits for the current one instead of racing it.

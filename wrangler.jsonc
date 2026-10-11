@@ -26,8 +26,8 @@
     "VITE_SUPABASE_URL": "https://vqisebdthsowhpfpugrb.supabase.co",
     "VITE_SUPABASE_ANON_KEY": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZxaXNlYmR0aHNvd2hwZnB1Z3JiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcxNjE2MTAsImV4cCI6MjA5MjczNzYxMH0.9TZZ_6mx7vcaYoaeT5PmH02OrOzad6KMHiBwospgxOw"
   },
-  // Daily run of the email sequences (worker/index.js `scheduled`). Vercel's cron still owns it:
-  // uncomment at the cutover and remove "crons" from vercel.json, or every lead gets each email twice.
-  // "triggers": { "crons": ["0 9 * * *"] },
+  // Daily run of the email sequences (worker/index.js `scheduled`), 09:00 UTC. The Vercel cron was
+  // removed at the cutover; never schedule process-sequences in two places or leads get emails twice.
+  "triggers": { "crons": ["0 9 * * *"] },
   "observability": { "enabled": true }
 }

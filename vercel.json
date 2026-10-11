@@ -12,12 +12,6 @@
       "permanent": true
     }
   ],
-  "crons": [
-    {
-      "path": "/api/process-sequences",
-      "schedule": "0 9 * * *"
-    }
-  ],
   "rewrites": [
     {
       "source": "/blog/:slug",

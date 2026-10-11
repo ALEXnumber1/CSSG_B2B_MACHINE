@@ -115,6 +115,12 @@ async function runVercelHandler(handler, request, env, query = {}) {
 async function route(request, env) {
   const url = new URL(request.url);
 
+  // www → apex (the canonical host), as Vercel did.
+  if (url.hostname === `www.${PRODUCTION_HOST}`) {
+    url.hostname = PRODUCTION_HOST;
+    return Response.redirect(url.toString(), 301);
+  }
+
   let pathname = url.pathname;
   try { pathname = decodeURIComponent(pathname); } catch { /* malformed escape: no redirect applies */ }
   const redirect = REDIRECTS.get(pathname);
