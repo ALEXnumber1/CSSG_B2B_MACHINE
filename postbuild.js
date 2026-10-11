@@ -1058,6 +1058,20 @@ const notFoundHtml = homeHtml
 fs.writeFileSync(path.join(distDir, '404.html'), notFoundHtml);
 console.log('[SEO Generation] Created 404.html');
 
+// ─── Cloudflare (Workers static assets): _headers + _redirects derived from vercel.json, so both hosts
+// behave the same while the site migrates. Vercel ignores these files; Cloudflare ignores vercel.json.
+// Rewrites (/streaming, /blog/:slug) and noindex on non-production hosts live in worker/index.js.
+const vercelConfig = JSON.parse(fs.readFileSync(path.join(__dirname, 'vercel.json'), 'utf8'));
+const headerBlocks = vercelConfig.headers.map(({ source, headers }) =>
+  [source.replace(/\(\.\*\)/g, '*'), ...headers.map(h => `  ${h.key}: ${h.value}`)].join('\n'));
+fs.writeFileSync(path.join(distDir, '_headers'), headerBlocks.join('\n\n') + '\n');
+const redirectLines = vercelConfig.redirects.map(r => `${encodeURI(decodeURI(r.source))} ${r.destination} ${r.permanent ? 301 : 302}`);
+fs.writeFileSync(path.join(distDir, '_redirects'), [...new Set(redirectLines)].join('\n') + '\n');
+// Cloudflare compresses on the fly; the precompressed copies vite-plugin-compression emits for Vercel
+// would only be uploaded as useless public files.
+fs.writeFileSync(path.join(distDir, '.assetsignore'), '*.gz\n*.br\n');
+console.log('[SEO Generation] Created _headers, _redirects and .assetsignore for Cloudflare');
+
 // ─── sitemap.xml — single source of truth: the same route list used above ───
 const today = new Date().toISOString().slice(0, 10);
 const sitemapEntries = [

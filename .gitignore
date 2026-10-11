@@ -28,3 +28,10 @@ dist-ssr
 # Archivos internos de trabajo — no van al repo público
 CLAUDE_MASTER.md
 scratch/
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example

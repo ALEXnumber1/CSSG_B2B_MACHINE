@@ -168,7 +168,7 @@ export interface BPClassification {
 }
 
 /**
- * Inteligencia Artificial para calificación de leads usando Groq (Llama 3)
+ * Inteligencia Artificial para calificación de leads (Gemini)
  * La API key vive solo en el servidor — este módulo llama al proxy /api/qualify-lead
  */
 export async function qualifyLeadWithAI(lead: { nombre: string, empresa: string, correo: string }): Promise<{ categoria: string, razon: string, score_ajustado: number } | null> {
@@ -194,8 +194,8 @@ export async function qualifyLeadWithAI(lead: { nombre: string, empresa: string,
 
 
 /**
- * Clasifica un lead en uno de los 4 buyer personas de CSSG usando Groq.
- * Usa el árbol de clasificación completo con miedos, servicios y secuencia outbound.
+ * Clasifica un lead en uno de los 4 buyer personas de CSSG (árbol de clasificación en
+ * api/_lead-ai.js). La API key vive solo en el servidor — llama al proxy /api/qualify-lead.
  */
 export async function classifyBuyerPersona(lead: {
   nombre: string;
@@ -205,72 +205,19 @@ export async function classifyBuyerPersona(lead: {
   ubicacion?: string;
   cargo?: string;
 }): Promise<BPClassification | null> {
-  const GROQ_API_KEY = import.meta.env.VITE_GROQ_API_KEY;
-  if (!GROQ_API_KEY) return null;
-
   try {
-    const prompt = `Eres el clasificador de buyer personas de CSSG, empresa venezolana de seguridad corporativa con presencia en Caracas y Miami.
-
-ÁRBOL DE CLASIFICACIÓN (aplicar en orden):
-1. Cargo contiene "Security"/"Seguridad"/"Protección" Y tiene CPP/PSP/PCI o menciona ASIS/OSAC/DSS → BP3 (Julio — El Estratega)
-2. Cargo contiene "Security"/"Seguridad"/"Protección" SIN triple certificación → BP1 (Ricardo — El Guardián)
-3. Cargo contiene "Administr"/"Operaciones"/"Condominio"/"Facilities"/"Gerencia General" → BP2 (Ana — La Administradora)
-4. Ubicación en exterior (Miami/EEUU/España/Madrid/Bogotá) + Venezuela en empresa o intereses → BP4 (Carlos — El Venezolano Global)
-5. Sin clasificación clara → BP1
-
-SEÑALES DE INTENCIÓN (marcar intent_window:true si alguna aplica):
-- Cargo/perfil sugiere que asumió el puesto recientemente
-- Email de dominio diplomático o internacional (.gov, .un.org, embajada, etc.)
-- Ubicación en exterior con empresa o contexto venezolano
-- Sector diplomático, ONG internacional, multinacional
-
-Clasifica este lead y devuelve ÚNICAMENTE un JSON con esta estructura exacta:
-{
-  "bp": número entre 1 y 4,
-  "bp_nombre": "Ricardo Campos (El Guardián)" | "Ana Castillo (La Administradora)" | "Julio Marval (El Estratega)" | "Carlos Mendoza (El Venezolano Global)",
-  "temperatura": "frio" | "tibio" | "caliente",
-  "intent_window": true | false,
-  "secuencia_outbound": "bp1" | "bp2" | "bp3" | "bp4",
-  "nota_estrategica": "máximo 40 palabras sobre cómo abordar a este lead específico"
-}
-
-Lead a clasificar:
-- Nombre: ${lead.nombre || 'N/D'}
-- Empresa: ${lead.empresa || 'N/D'}
-- Cargo: ${lead.cargo || 'N/D'}
-- Sector: ${lead.sector || 'N/D'}
-- Ubicación: ${lead.ubicacion || 'N/D'}
-- Correo: ${lead.correo || 'N/D'}`;
-
-    const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+    const response = await fetch('/api/qualify-lead', {
       method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${GROQ_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        model: 'llama3-8b-8192',
-        messages: [{ role: 'user', content: prompt }],
-        response_format: { type: 'json_object' },
-        temperature: 0.1, // Muy bajo — clasificación determinista
-      }),
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...lead, tipo: 'persona' }),
     });
 
-    const data = await response.json();
-    const result = JSON.parse(data.choices[0].message.content);
+    if (!response.ok) return null;
+    const { result } = await response.json();
+    if (!result) return null;
 
-    // Validar y normalizar el resultado
-    const bp = Number(result.bp);
-    if (bp < 1 || bp > 4) return null;
-
-    return {
-      bp: bp as 1 | 2 | 3 | 4,
-      bp_nombre: result.bp_nombre || '',
-      temperatura: result.temperatura || 'frio',
-      intent_window: Boolean(result.intent_window),
-      secuencia_outbound: (`bp${bp}` as 'bp1' | 'bp2' | 'bp3' | 'bp4'),
-      nota_estrategica: result.nota_estrategica || '',
-    };
+    const bp = result.bp as 1 | 2 | 3 | 4;
+    return { ...result, bp, secuencia_outbound: `bp${bp}` as BPClassification['secuencia_outbound'] };
   } catch (err) {
     console.error('[BP Classification Error]', err);
     return null;
@@ -279,7 +226,7 @@ Lead a clasificar:
 
 /**
  * Guarda una lista de leads scrapeados en Supabase.
- * Flujo automático: insert → clasificar BP con IA → score Groq → activar secuencia outbound.
+ * Flujo automático: insert → clasificar BP con IA → score IA → activar secuencia outbound.
  */
 export async function saveScrapedLeads(
   leads: ScrapedLead[]
@@ -327,9 +274,9 @@ export async function saveScrapedLeads(
 
     // Pipeline de IA asíncrono (no bloquea el guardado)
     Promise.all([
-      // 1. Calificación de score con Groq
+      // 1. Calificación de score con IA
       qualifyLeadWithAI(lead),
-      // 2. Clasificación de buyer persona con Groq
+      // 2. Clasificación de buyer persona con IA
       classifyBuyerPersona({
         nombre: lead.nombre,
         empresa: lead.empresa,
