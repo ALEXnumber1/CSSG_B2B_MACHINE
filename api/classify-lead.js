@@ -2,7 +2,7 @@
  * classify-lead.js — Receptor de webhook de Supabase
  *
  * Se invoca automáticamente cuando se inserta un lead en Supabase.
- * Clasifica el lead en un Buyer Persona (BP1-BP4) usando Groq/Llama3
+ * Clasifica el lead en un Buyer Persona (BP1-BP4) usando Gemini
  * y actualiza los campos bp, bp_nombre, temperatura, nota_estrategica, score.
  *
  * NO inicia secuencias — eso lo hace /api/launch-sequence.js
@@ -16,89 +16,35 @@
  */
 
 import { createClient } from '@supabase/supabase-js';
+import { hasGeminiKey } from './_gemini.js';
+import { classifyPersona, scoreLead } from './_lead-ai.js';
 
 const supabaseUrl = process.env.VITE_SUPABASE_URL;
 const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.VITE_SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-const GROQ_API_KEY = process.env.GROQ_API_KEY || process.env.VITE_GROQ_API_KEY;
-
-async function callGroq(prompt) {
-  const response = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${GROQ_API_KEY}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      model: 'llama-3.1-8b-instant',
-      messages: [{ role: 'user', content: prompt }],
-      response_format: { type: 'json_object' },
-      temperature: 0.1,
-    }),
-  });
-  const data = await response.json();
-  return JSON.parse(data.choices[0].message.content);
-}
+// El scraper guarda sector y ubicación dentro de `mensaje`: "[TEL: …] | Sector: … | Ubicación: … | Fuente: …"
+const MENSAJE_FIELDS = { sector: /Sector:\s*(.*?)\s*\|/, ubicacion: /Ubicación:\s*(.*?)\s*\|/ };
+const fromMensaje = (lead, field) => (lead.mensaje || '').match(MENSAJE_FIELDS[field])?.[1];
 
 async function classifyBP(lead) {
-  if (!GROQ_API_KEY) return null;
+  if (!hasGeminiKey()) return null;
   try {
-    const result = await callGroq(`Eres el clasificador de buyer personas de CSSG, empresa venezolana de seguridad corporativa con presencia en Caracas y Miami.
-
-ÁRBOL DE CLASIFICACIÓN (aplicar en orden):
-1. Cargo contiene "Security"/"Seguridad"/"Protección" Y tiene CPP/PSP/PCI o menciona ASIS/OSAC/DSS → BP3 (Julio — El Estratega)
-2. Cargo contiene "Security"/"Seguridad"/"Protección" SIN triple certificación → BP1 (Ricardo — El Guardián)
-3. Cargo contiene "Administr"/"Operaciones"/"Condominio"/"Facilities"/"Gerencia General" → BP2 (Ana — La Administradora)
-4. Ubicación en exterior (Miami/EEUU/España/Madrid/Bogotá) + Venezuela en empresa o intereses → BP4 (Carlos — El Venezolano Global)
-5. Sin clasificación clara → BP1
-
-SEÑALES DE INTENCIÓN (marcar intent_window:true si alguna aplica):
-- Cargo/perfil sugiere que asumió el puesto recientemente
-- Email de dominio diplomático o internacional (.gov, .un.org, embajada)
-- Ubicación en exterior con empresa o contexto venezolano
-- Sector diplomático, ONG internacional, multinacional
-
-Devuelve ÚNICAMENTE un JSON con esta estructura exacta:
-{
-  "bp": número entre 1 y 4,
-  "bp_nombre": "Ricardo Campos (El Guardián)" | "Ana Castillo (La Administradora)" | "Julio Marval (El Estratega)" | "Carlos Mendoza (El Venezolano Global)",
-  "temperatura": "frio" | "tibio" | "caliente",
-  "intent_window": true | false,
-  "nota_estrategica": "máximo 40 palabras sobre cómo abordar a este lead específico"
-}
-
-Lead:
-- Nombre: ${lead.nombre || 'N/D'}
-- Empresa: ${lead.empresa || 'N/D'}
-- Cargo: ${lead.cargo || (lead.mensaje || '').match(/\[TEL:.*?\]\s*\|/)?.[0] ? '' : 'N/D'}
-- Sector: ${(lead.mensaje || '').match(/Sector:\s*(.*?)\s*\|/)?.[1] || 'N/D'}
-- Ubicación: ${(lead.mensaje || '').match(/Ubicación:\s*(.*?)\s*\|/)?.[1] || 'N/D'}
-- Correo: ${lead.correo || 'N/D'}`);
-
-    const bp = Number(result.bp);
-    if (bp < 1 || bp > 4) return null;
-    return {
-      bp,
-      bp_nombre: result.bp_nombre || '',
-      temperatura: result.temperatura || 'frio',
-      intent_window: Boolean(result.intent_window),
-      nota_estrategica: result.nota_estrategica || '',
-    };
+    return await classifyPersona({
+      ...lead,
+      sector: fromMensaje(lead, 'sector'),
+      ubicacion: fromMensaje(lead, 'ubicacion'),
+    });
   } catch (err) {
     console.error('[classify-lead] BP error:', err);
     return null;
   }
 }
 
-async function scoreWithGroq(lead) {
-  if (!GROQ_API_KEY) return null;
+async function scoreWithAI(lead) {
+  if (!hasGeminiKey()) return null;
   try {
-    const result = await callGroq(`Actúa como experto en ventas B2B para una empresa de seguridad corporativa en Venezuela.
-Analiza este lead y califica su potencial de cierre.
-Nombre: ${lead.nombre || 'N/D'}, Empresa: ${lead.empresa || 'N/D'}, Email: ${lead.correo || 'N/D'}.
-Devuelve ÚNICAMENTE un JSON válido: { "categoria": "alto|medio|bajo", "razon": "máximo 15 palabras", "score_ajustado": número entre 1 y 100 }`);
-    return result;
+    return await scoreLead(lead);
   } catch (err) {
     console.error('[classify-lead] Score error:', err);
     return null;
@@ -147,7 +93,7 @@ export default async function handler(req, res) {
   try {
     const [bpResult, scoreResult] = await Promise.all([
       classifyBP(lead),
-      scoreWithGroq(lead),
+      scoreWithAI(lead),
     ]);
 
     const updates = {};
