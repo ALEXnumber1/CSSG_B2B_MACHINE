@@ -59,14 +59,16 @@ All PDFs are generated in the browser with `@react-pdf/renderer`; there is no se
 - `documents/VulnerabilityReport.tsx` — the Risk Analysis report (`/analisis-riesgo`). It is rendered inside a Web Worker (`vulnerabilityReport.worker.tsx`, called through `generateVulnerabilityReport()` in `vulnerabilityReport.tsx`), because on the main thread the layout pass froze the page for 5-10 s.
 - `documents/PestelReport.tsx` (`/informes`) and `documents/WhitePaper*.tsx` (white-paper landings).
 
-@react-pdf 4.5 pitfalls, verified with PDFium (Chrome's engine):
-- A background on a `fixed` header/footer is painted over its own text and hides it.
-- `<Text render={…}>` (page numbers) is not drawn, and the whole row it sits in disappears.
+@react-pdf 4.5 pitfalls, verified with PDFium (Chrome's engine). Still present in 4.9.0:
+- **Never put `lineHeight` on a `<Page>` style.** It moves every `fixed` element holding a `<Text render>` (page numbers) thousands of points off the sheet, so the whole header/footer row vanishes and multi-line titles overlap. Put it on a content `View` instead (`baseStyles.pageBody`, as `PestelReport.tsx` does), with the fixed header/footer outside that View.
+- A `<Text render>` nested inside another `<Text>` is never drawn.
+- WebP images are not supported; use PNG/JPG (`/logo_full.png`).
 - Built-in Helvetica has no `≥` glyph; it renders as `e`.
+- Verify any PDF change by rendering it with PDFium and looking at it. The text being present in the file proves nothing.
 
 Shared building blocks:
 - `theme.ts` — brand colors, typography scale, spacing, `CORPORATE` constants
-- `components/Header.tsx` / `components/Footer.tsx` — fixed page header (CSSG logo + document type) and footer (legal info + page numbers), used by the PESTEL report. Both have the background and page-number pitfalls listed above
+- `components/Header.tsx` / `components/Footer.tsx` — fixed page header (CSSG logo + document type) and footer (legal info + page numbers), used by the PESTEL report
 - `components/Section.tsx` — section wrapper with sky-500 left bar
 
 
@@ -146,6 +148,6 @@ Server (`api/` handlers, read via `process.env`): `RESEND_API_KEY`, `SUPABASE_SE
 
 ## Known Issues / Active Work
 
-- **PESTEL and white-paper PDFs** (`PestelReport.tsx` via `components/Header`/`Footer`, `WhitePaper*.tsx`) use fixed headers with a background and/or a `render` page number, so they probably hit the pitfalls above. Not yet checked with PDFium
+- **White papers have no page numbers.** Their `contentPage` style carries the `lineHeight`. Moving it to a wrapper View, as the PESTEL does, restores the numbers but changes pagination: BCP goes from 11 to 12 pages and leaves orphaned table headers. Re-flow those pages by hand before adding page numbers back
 - **`notfound.tsx`** filename is lowercase — always import as `'./pages/notfound'` (the Linux CI build is case-sensitive)
 - **Leftover Vercel projects** (`cssg-b2b`, `cssg-b2b-machine`, `cssg-b2-b-machine`, `cssg-b2-b-machine-9vda`, `cssg-providers`) still build every push to `main`. None of them serves production any more

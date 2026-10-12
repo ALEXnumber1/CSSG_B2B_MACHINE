@@ -543,13 +543,9 @@ const ContentHeader = () => (
   <View style={styles.pageHeader} fixed>
     <View style={styles.pageHeaderTopStrip} />
     <View style={styles.pageHeaderRow}>
-      <Image src="/logo_full.webp" style={styles.pageHeaderLogo} />
+      <Image src="/logo_full.png" style={styles.pageHeaderLogo} />
       <View style={styles.pageHeaderSpacer} />
       <Text style={styles.pageHeaderDocTitle}>GUÍA DE EVALUACIÓN DE RIESGOS — 2026</Text>
-      <Text style={styles.pageHeaderDivider}>|</Text>
-      <Text style={styles.pageHeaderPageNum}>
-        <Text render={({ pageNumber, totalPages }) => `${pageNumber} / ${totalPages}`} />
-      </Text>
     </View>
     <View style={styles.pageHeaderUnderline} />
   </View>
@@ -614,7 +610,7 @@ export const WhitePaperRiesgos = () => (
 
         {/* Centered eagle logo */}
         <View style={styles.coverLogoWrap}>
-          <Image src="/logo_full.webp" style={styles.coverLogo} />
+          <Image src="/logo_full.png" style={styles.coverLogo} />
         </View>
 
         {/* Thin gold line */}
@@ -664,7 +660,7 @@ export const WhitePaperRiesgos = () => (
     <Page size="A4" style={styles.indexPage}>
       <View style={styles.indexTopBar} />
       <View style={styles.indexHeaderBar}>
-        <Image src="/logo_full.webp" style={styles.indexHeaderLogo} />
+        <Image src="/logo_full.png" style={styles.indexHeaderLogo} />
         <Text style={styles.indexHeaderTitle}>GUÍA DE EVALUACIÓN DE RIESGOS DE SEGURIDAD — VENEZUELA 2026</Text>
       </View>
 

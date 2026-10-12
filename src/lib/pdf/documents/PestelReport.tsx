@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import { Document, Page, View, Text, StyleSheet } from '@react-pdf/renderer';
 import { PDFHeader } from '../components/Header';
 import { PDFFooter } from '../components/Footer';
@@ -64,6 +65,14 @@ const styles = StyleSheet.create({
   clientSub: { fontSize: sizes.sm, color: colors.slate600, marginTop: 2 },
 });
 
+const ReportPage = ({ documentType, children }: { documentType: string; children: ReactNode }) => (
+  <Page size="A4" style={styles.page}>
+    <PDFHeader documentType={documentType} />
+    <PDFFooter />
+    <View style={baseStyles.pageBody}>{children}</View>
+  </Page>
+);
+
 interface PestelFactor {
   letter: string;
   title: string;
@@ -90,9 +99,7 @@ export const PestelReportPDF = ({ nombre, correo, organizacion, pestelFactors }:
       creator="CSSG Intelligence Engine"
     >
       {/* PAGE 1 — COVER + EXECUTIVE SUMMARY */}
-      <Page size="A4" style={styles.page}>
-        <PDFHeader documentType="INFORME DE SEGURIDAD PESTEL" />
-        <PDFFooter />
+      <ReportPage documentType="INFORME DE SEGURIDAD PESTEL">
 
         <View style={styles.coverSection}>
           <Text style={styles.coverTitle}>Informe de{'\n'}Seguridad 2026</Text>
@@ -138,12 +145,10 @@ export const PestelReportPDF = ({ nombre, correo, organizacion, pestelFactors }:
             Este análisis PESTEL proporciona una matriz analítica imparcial para la protección de infraestructuras críticas y misiones diplomáticas, asegurando que la continuidad del negocio se base en realidades de entorno verificables.
           </Text>
         </Section>
-      </Page>
+      </ReportPage>
 
       {/* PAGE 2 — PESTEL MATRIX */}
-      <Page size="A4" style={styles.page}>
-        <PDFHeader documentType="MATRIZ ANALÍTICA PESTEL" />
-        <PDFFooter />
+      <ReportPage documentType="MATRIZ ANALÍTICA PESTEL">
 
         <Section title="MATRIZ ANALÍTICA DE ENTORNO (PESTEL)" subtitle="6 dimensiones de análisis aplicado">
           {pestelFactors.map((factor) => (
@@ -160,12 +165,10 @@ export const PestelReportPDF = ({ nombre, correo, organizacion, pestelFactors }:
             </View>
           ))}
         </Section>
-      </Page>
+      </ReportPage>
 
       {/* PAGE 3 — REFERENCES + SIGNATURE */}
-      <Page size="A4" style={styles.page}>
-        <PDFHeader documentType="REFERENCIAS Y FIRMA" />
-        <PDFFooter />
+      <ReportPage documentType="REFERENCIAS Y FIRMA">
 
         <Section title="REFERENCIAS Y FUENTES">
           {[
@@ -190,7 +193,7 @@ export const PestelReportPDF = ({ nombre, correo, organizacion, pestelFactors }:
           AVISO LEGAL: Este documento ha sido generado mediante un motor de Inteligencia Artificial especializada y posteriormente revisado y validado por especialistas humanos de CSSG. Debido a la naturaleza dinámica de los datos, la información presentada sirve como guía estratégica y debe ser verificada en campo. CSSG garantiza la solvencia técnica de este análisis bajo los estándares de seguridad corporativa vigentes.{'\n'}
           Distribución pública autorizada · {CORPORATE.email} · {CORPORATE.website}
         </Text>
-      </Page>
+      </ReportPage>
     </Document>
   );
 };

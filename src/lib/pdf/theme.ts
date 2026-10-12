@@ -59,8 +59,10 @@ export const baseStyles = StyleSheet.create({
     padding: spacing.page,
     paddingTop: 90,
     paddingBottom: 80,
-    lineHeight: 1.5,
   },
+  // lineHeight lives here, not on the Page: on a Page it pushes every fixed element that holds a
+  // <Text render> (page numbers) off the sheet in @react-pdf 4.5. Wrap page content in this View.
+  pageBody: { lineHeight: 1.5 },
   h1: { fontSize: sizes.display, fontWeight: 900, color: colors.slate900, letterSpacing: -0.8 },
   h2: { fontSize: sizes.xl, fontWeight: 700, color: colors.slate900, letterSpacing: -0.3 },
   h3: { fontSize: sizes.lg, fontWeight: 700, color: colors.slate900 },

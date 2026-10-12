@@ -145,10 +145,6 @@ const PageHeader = () => (
       <Image src={LOGO} style={S.pageHeaderLogo} />
       <View style={S.pageHeaderSpacer} />
       <Text style={S.pageHeaderDoc}>DUE DILIGENCE — PERSONAS Y CORPORATIVA — VENEZUELA 2026</Text>
-      <Text style={S.pageHeaderDiv}>|</Text>
-      <Text style={S.pageHeaderNum}>
-        <Text render={({ pageNumber, totalPages }) => `${pageNumber} / ${totalPages}`} />
-      </Text>
     </View>
     <View style={S.pageHeaderLine} />
   </View>
