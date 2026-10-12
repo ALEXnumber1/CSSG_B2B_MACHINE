@@ -57,3 +57,25 @@ jobs:
         run: npx wrangler deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+
+      # A broken deploy (e.g. a bad _redirects rule) can take the whole site down. Check key pages
+      # through the real domain and roll back to the previous version if any of them fails.
+      - name: Smoke test production and roll back on failure
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+        run: |
+          sleep 15
+          failed=0
+          for path in "/" "/consultoria" "/consultoria?utm_source=ci" "/analisis-riesgo" "/blog" "/streaming"; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 "https://cssg-global.com${path}")
+            echo "$code ${path}"
+            [ "$code" = "200" ] || failed=1
+          done
+          code=$(curl -s -o /dev/null -w '%{http_code}' --max-time 20 "https://cssg-global.com/pagina-que-no-existe-ci")
+          echo "$code /pagina-que-no-existe-ci (expect 404)"
+          [ "$code" = "404" ] || failed=1
+          if [ "$failed" = "1" ]; then
+            echo "::error::Production smoke test failed — rolling back to the previous version"
+            npx wrangler rollback -y --message "Auto-rollback: smoke test failed for ${GITHUB_SHA}"
+            exit 1
+          fi

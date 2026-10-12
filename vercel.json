@@ -2,6 +2,28 @@
   "cleanUrls": true,
   "redirects": [
     {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "globalservices-ven.com"
+        }
+      ],
+      "destination": "https://cssg-global.com/",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.globalservices-ven.com"
+        }
+      ],
+      "destination": "https://cssg-global.com/",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [
         {
