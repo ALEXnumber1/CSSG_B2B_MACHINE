@@ -1065,7 +1065,11 @@ const vercelConfig = JSON.parse(fs.readFileSync(path.join(__dirname, 'vercel.jso
 const headerBlocks = vercelConfig.headers.map(({ source, headers }) =>
   [source.replace(/\(\.\*\)/g, '*'), ...headers.map(h => `  ${h.key}: ${h.value}`)].join('\n'));
 fs.writeFileSync(path.join(distDir, '_headers'), headerBlocks.join('\n\n') + '\n');
-const redirectLines = vercelConfig.redirects.map(r => `${encodeURI(decodeURI(r.source))} ${r.destination} ${r.permanent ? 301 : 302}`);
+// Redirects with a `has` condition (e.g. host = globalservices-ven.com) only apply on Vercel:
+// _redirects can't express them, and copying them unconditionally redirected every path here.
+const redirectLines = vercelConfig.redirects
+  .filter(r => !r.has && !r.missing)
+  .map(r => `${encodeURI(decodeURI(r.source))} ${r.destination} ${r.permanent ? 301 : 302}`);
 fs.writeFileSync(path.join(distDir, '_redirects'), [...new Set(redirectLines)].join('\n') + '\n');
 // Cloudflare compresses on the fly; the precompressed copies vite-plugin-compression emits for Vercel
 // would only be uploaded as useless public files.
