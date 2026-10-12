@@ -112,10 +112,20 @@ async function runVercelHandler(handler, request, env, query = {}) {
 async function route(request, env) {
   const url = new URL(request.url);
 
-  // www → apex (the canonical host), as Vercel did.
-  if (url.hostname === `www.${PRODUCTION_HOST}`) {
-    url.hostname = PRODUCTION_HOST;
-    return Response.redirect(url.toString(), 301);
+  // One canonical URL per page, with permanent redirects (search engines consolidate on 301s):
+  // https, apex host (as Vercel did) and no trailing slash. The assets layer would answer the
+  // slash case itself, but with a temporary 307.
+  const canonical = new URL(url);
+  const isLocal = url.hostname === 'localhost' || url.hostname === '127.0.0.1'; // wrangler dev is http
+  if (canonical.protocol === 'http:' && !isLocal) canonical.protocol = 'https:';
+  if (canonical.hostname === `www.${PRODUCTION_HOST}`) canonical.hostname = PRODUCTION_HOST;
+  if (canonical.pathname.length > 1 && canonical.pathname.endsWith('/')) {
+    canonical.pathname = canonical.pathname.replace(/\/+$/, '') || '/';
+  }
+  if (canonical.href !== url.href) {
+    // 308 keeps the method and body (a form POST must not turn into a GET).
+    const safe = request.method === 'GET' || request.method === 'HEAD';
+    return Response.redirect(canonical.toString(), safe ? 301 : 308);
   }
 
   let pathname = url.pathname;
