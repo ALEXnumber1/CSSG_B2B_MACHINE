@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Shield, AlertTriangle, Lock, Eye, EyeOff, Radio, ChevronRight, X as XIcon, Check, Sparkles, ConciergeBell, Plane } from 'lucide-react';
-import { supabase } from '../lib/supabase';
+import { insertLead } from '../lib/leads';
 import { sendLeadNotification } from '../lib/email';
 import { startSequence } from '../lib/sequences';
 
@@ -53,7 +53,7 @@ export default function EscudoDiplomatico() {
     setStatus('loading');
     setErrorMsg('');
     try {
-      const { data: newLead, error: insertError } = await supabase.from('leads').insert([{
+      const { data: newLead, error: insertError } = await insertLead({
         nombre: formData.nombre,
         correo: formData.correo,
         empresa: formData.empresa,
@@ -62,7 +62,7 @@ export default function EscudoDiplomatico() {
         fuente: 'escudo_diplomatico',
         score: 50,
         estado: 'nuevo',
-      }]).select('id').single();
+      });
 
       if (insertError) {
         console.error("Supabase Insert Error:", insertError);

@@ -406,8 +406,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   // Envío del formulario — mismo proceso que /levantamiento y /esrm-readiness:
   // 1) registrar el lead en Supabase, 2) notificar al equipo + enviar bienvenida,
   // 3) enviar el correo de secuencia día-0 específico al lead.
-  const SUPABASE_URL = 'https://vqisebdthsowhpfpugrb.supabase.co';
-  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZxaXNlYmR0aHNvd2hwZnB1Z3JiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcxNjE2MTAsImV4cCI6MjA5MjczNzYxMH0.9TZZ_6mx7vcaYoaeT5PmH02OrOzad6KMHiBwospgxOw';
 
   function reduccionCostosSequenceEmail(nombre, empresa) {
     const primerNombre = (nombre || '').split(' ')[0];
@@ -469,15 +467,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       // 1) Registrar el lead en Supabase (no bloqueante)
       let leadId = null;
       try {
-        const leadRes = await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
+        // Vía /api/lead: el navegador no escribe en Supabase directamente (RLS solo-admin).
+        const leadRes = await fetch('/api/lead', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            apikey: SUPABASE_ANON_KEY,
-            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-            Prefer: 'return=representation',
-          },
-          body: JSON.stringify([{
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'save', lead: {
             nombre: data.nombre,
             correo: data.email,
             empresa: data.empresa,
@@ -486,11 +480,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             fuente: 'reduccion_costos_seguridad',
             score: 50,
             estado: 'nuevo',
-          }]),
+          } }),
         });
         if (leadRes.ok) {
-          const rows = await leadRes.json();
-          leadId = rows && rows[0] && rows[0].id;
+          const saved = await leadRes.json();
+          leadId = saved && saved.id;
         } else {
           console.warn('[ReduccionCostos] Supabase insert warning (non-blocking):', await leadRes.text());
         }
@@ -531,14 +525,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           }),
         });
         if (leadId) {
-          fetch(`${SUPABASE_URL}/rest/v1/email_sequences`, {
+          fetch('/api/lead', {
             method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              apikey: SUPABASE_ANON_KEY,
-              Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
-            },
-            body: JSON.stringify([{ lead_id: leadId, secuencia: 'reduccion_costos_seguridad', email_num: 0, next_send_at: null, completed: true }]),
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ action: 'sequence', lead_id: leadId, secuencia: 'reduccion_costos_seguridad', next_send_at: null, completed: true }),
           }).catch(() => {});
         }
       } catch (seqErr) {

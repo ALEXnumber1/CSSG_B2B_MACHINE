@@ -15,7 +15,7 @@ import {
   LogOut,
   CheckCircle2
 } from 'lucide-react';
-import { supabase } from '../lib/supabase';
+import { saveLead } from '../lib/leads';
 import { sendNurtureEmail } from '../lib/email';
 
 export default function PortalRRHH() {
@@ -52,9 +52,7 @@ export default function PortalRRHH() {
     try {
       setIsSubmitting(true);
       
-      const { error: supabaseError } = await supabase
-        .from('leads')
-        .insert([{
+      await saveLead({
           nombre: formData.name,
           correo: formData.email,
           telefono: formData.phone,
@@ -62,9 +60,7 @@ export default function PortalRRHH() {
           mensaje: `CV Adjunto: ${cvFile.name}`,
           fuente: 'Portal RRHH',
           score: 10
-        }]);
-
-      if (supabaseError) throw supabaseError;
+        });
 
       if (formData.email) {
         try {
@@ -100,7 +96,7 @@ export default function PortalRRHH() {
     setRequestStatus('loading');
 
     try {
-      const { error: supabaseError } = await supabase.from('leads').insert([{
+      await saveLead({
         nombre: `Oficial ID: ${officerId}`,
         correo: 'oficial@cssg-global.com',
         empresa: `SOLICITUD INTERNA: ${requestType}`,
@@ -109,9 +105,7 @@ export default function PortalRRHH() {
         fuente: 'Portal Oficiales',
         score: 5,
         estado: 'nuevo'
-      }]);
-
-      if (supabaseError) throw supabaseError;
+      });
 
       setRequestStatus('success');
       setRequestDetails('');

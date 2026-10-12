@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { supabase } from '../lib/supabase';
+import { saveLead } from '../lib/leads';
 import { useTranslation } from 'react-i18next';
 import { Send } from 'lucide-react';
 import { startSequence } from '../lib/sequences';
@@ -49,7 +49,7 @@ export default function ContactForm() {
 
     try {
       // 1. Guardar en pipeline de leads (CRM)
-      const { error: supabaseError } = await supabase.from('leads').upsert([{
+      const leadId = await saveLead({
         nombre: formData.nombre,
         correo: formData.correo,
         empresa: formData.empresa,
@@ -57,23 +57,9 @@ export default function ContactForm() {
         mensaje: `${formData.requerimiento} [WHATSAPP: ${formData.whatsapp_consent ? 'SI' : 'NO'}]`,
         fuente: 'contacto',
         score: 20,
-        estado: 'nuevo'
-      }], { onConflict: 'correo' });
+      });
 
-      if (supabaseError) throw supabaseError;
-
-      // Start Sequence
-      const { data: leadData } = await supabase
-        .from('leads')
-        .select('id')
-        .eq('correo', formData.correo)
-        .order('created_at', { ascending: false })
-        .limit(1)
-        .single();
-
-      if (leadData) {
-        startSequence(leadData.id, formData.correo, formData.nombre, 'contacto', formData.empresa).catch(console.warn);
-      }
+      startSequence(leadId, formData.correo, formData.nombre, 'contacto', formData.empresa).catch(console.warn);
 
       setStatus('success');
       setFormData({ nombre: '', empresa: '', correo: '', telefono: '', whatsapp_consent: false, requerimiento: '' });

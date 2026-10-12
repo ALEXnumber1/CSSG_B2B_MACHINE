@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import { ShieldCheck, ScanSearch, ClipboardList, Award, ArrowRight, Check, Loader2, ChevronDown } from 'lucide-react';
-import { supabase } from '../../lib/supabase';
+import { insertLead } from '../../lib/leads';
 import { sendLeadNotification } from '../../lib/email';
 import { startSequence } from '../../lib/sequences';
 import CookieConsent from '../../components/CookieConsent';
@@ -181,7 +181,7 @@ export default function ConsultoriaRiesgos() {
     setStatus('loading');
     setErrorMsg('');
     try {
-      const { data: newLead, error: insertError } = await supabase.from('leads').insert([{
+      const { data: newLead, error: insertError } = await insertLead({
         nombre: formData.nombre,
         correo: formData.correo,
         empresa: formData.empresa,
@@ -189,7 +189,7 @@ export default function ConsultoriaRiesgos() {
         fuente: 'lp_consultoria_riesgos',
         score: formData.motivo === 'licitacion' ? 55 : 45,
         estado: 'nuevo',
-      }]).select('id').single();
+      });
 
       if (insertError) {
         if (insertError.code === '23505') {

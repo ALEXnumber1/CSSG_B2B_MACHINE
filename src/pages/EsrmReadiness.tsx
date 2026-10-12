@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import { SearchCheck, ClipboardList, ShieldCheck, ArrowRight, Lock, Check, Loader2 } from 'lucide-react';
-import { supabase } from '../lib/supabase';
+import { insertLead } from '../lib/leads';
 import { sendLeadNotification } from '../lib/email';
 import { startSequence } from '../lib/sequences';
 
@@ -143,7 +143,7 @@ export default function EsrmReadiness() {
     setStatus('loading');
     setErrorMsg('');
     try {
-      const { data: newLead, error: insertError } = await supabase.from('leads').insert([{
+      const { data: newLead, error: insertError } = await insertLead({
         nombre: formData.nombre,
         correo: formData.correo,
         empresa: formData.organizacion,
@@ -151,7 +151,7 @@ export default function EsrmReadiness() {
         fuente: 'esrm_readiness',
         score: 65,
         estado: 'nuevo',
-      }]).select('id').single();
+      });
 
       if (insertError) {
         if (insertError.code === '23505') {

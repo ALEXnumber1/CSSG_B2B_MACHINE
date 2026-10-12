@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Download, FileText, Globe, TrendingUp, Users, Cpu, Leaf, Scale, ShieldCheck, CheckCircle2 } from 'lucide-react';
-import { supabase } from '../lib/supabase';
+import { saveLead } from '../lib/leads';
 import { sendNurtureEmail } from '../lib/email';
 import { pdf } from '@react-pdf/renderer';
 import { PestelReportPDF } from '../lib/pdf/documents/PestelReport';
@@ -242,14 +242,15 @@ export default function Informes() {
     }
 
     try {
-      await supabase.from('leads').insert([{
+      // Como antes, un fallo del CRM no impide enviar el correo.
+      await saveLead({
         nombre: formData.nombre,
         correo: formData.correo,
         empresa: formData.organizacion,
         mensaje: 'Descarga de Informe PESTEL Técnico',
         fuente: 'pestel',
         score: 15,
-      }]);
+      }).catch(err => console.warn('CRM Registration failed:', err));
 
       if (formData.correo) {
         await sendNurtureEmail(formData.correo, formData.nombre, 'pestel', formData.organizacion);

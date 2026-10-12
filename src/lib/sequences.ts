@@ -14,6 +14,7 @@
 
 import { supabase } from './supabase';
 import { sendSequenceEmail } from './email';
+import { registerSequence } from './leads';
 
 // ═══════════════════════════════════════════════
 // DEFINICIÓN DE SECUENCIAS
@@ -220,17 +221,13 @@ export async function startSequence(
     ? new Date(Date.now() + nextEmail.day * 24 * 60 * 60 * 1000).toISOString()
     : null;
 
-  // Registrar la secuencia en Supabase
-  try {
-    await supabase.from('email_sequences').insert([{
-      lead_id: leadId,
-      secuencia: fuente,
-      email_num: 0,
-      next_send_at: nextSendAt,
-      completed: sequence.emails.length <= 1,
-    }]);
-  } catch (err) {
-    console.warn('[Sequences] No se pudo registrar secuencia (Supabase no configurado):', err);
+  // Registrar la secuencia (vía /api/lead: el navegador no escribe email_sequences directamente)
+  if (leadId) {
+    try {
+      await registerSequence(leadId, fuente, nextSendAt, sequence.emails.length <= 1);
+    } catch (err) {
+      console.warn('[Sequences] No se pudo registrar la secuencia:', err);
+    }
   }
 
   // Enviar email #0 inmediatamente

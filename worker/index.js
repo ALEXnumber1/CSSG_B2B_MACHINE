@@ -43,6 +43,7 @@ const SECURITY_HEADERS = {
 // Loaded on first use: each module reads its secrets at import time, so a missing secret only breaks
 // its own endpoint (as with Vercel's isolated functions) instead of the whole Worker.
 const API_HANDLERS = {
+  'lead': () => import('../api/lead.js'),
   'mailer': () => import('../api/mailer.js'),
   'send-email': () => import('../api/send-email.js'),
   'agent': () => import('../api/agent.js'),

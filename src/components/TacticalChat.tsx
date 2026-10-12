@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, X, Send, Shield, Zap, User } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { supabase } from '../lib/supabase';
+import { saveLead } from '../lib/leads';
 import { sendChatAlert, sendLeadNotification } from '../lib/email';
 
 interface Message {
@@ -99,7 +99,7 @@ const TacticalChat: React.FC = () => {
 
       // Save lead to Supabase
       try {
-        const { error: supabaseError } = await supabase.from('leads').insert([{
+        await saveLead({
           nombre: leadData.name,
           correo: leadData.email,
           empresa: 'Interés Chat IA',
@@ -107,9 +107,7 @@ const TacticalChat: React.FC = () => {
           mensaje: `REQUERIMIENTO IA: ${currentInput}`,
           fuente: 'Chat IA Táctico',
           estado: 'nuevo'
-        }]);
-
-        if (supabaseError) throw supabaseError;
+        });
       } catch (err) {
         console.error("Error saving lead from chat:", err);
       }

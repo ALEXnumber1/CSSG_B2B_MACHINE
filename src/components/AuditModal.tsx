@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Mail, User, Phone, Calendar, Building, CheckCircle2 } from 'lucide-react';
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
-import { supabase } from '../lib/supabase';
+import { saveLead } from '../lib/leads';
 import { useTranslation } from 'react-i18next';
 import { startSequence } from '../lib/sequences';
 import { sendLeadNotification } from '../lib/email';
@@ -36,35 +36,19 @@ export default function AuditModal({ isOpen, onClose }: AuditModalProps) {
     if (formData.phone.length > 8) baremoScore += 20;
 
     try {
-      const { error: supabaseError } = await supabase
-        .from('leads')
-        .upsert([{
-          nombre: formData.name,
-          correo: formData.email,
-          empresa: formData.company,
-          telefono: formData.phone,
-          fuente: 'Agendamiento Auditoria',
-          score: baremoScore,
-          estado: 'nuevo',
-          mensaje: `[SERVICIO: ${formData.service}] [FECHA TENTATIVA: ${formData.date}]`
-        }], { onConflict: 'correo' });
-
-      if (supabaseError) throw supabaseError;
+      const leadId = await saveLead({
+        nombre: formData.name,
+        correo: formData.email,
+        empresa: formData.company,
+        telefono: formData.phone,
+        fuente: 'Agendamiento Auditoria',
+        score: baremoScore,
+        mensaje: `[SERVICIO: ${formData.service}] [FECHA TENTATIVA: ${formData.date}]`
+      });
 
       sendLeadNotification({ nombre: formData.name, email: formData.email, empresa: formData.company, telefono: formData.phone, fuente: 'Agendamiento Auditoria' }).catch(console.warn);
 
-      // Start Sequence
-      const { data: leadData } = await supabase
-        .from('leads')
-        .select('id')
-        .eq('correo', formData.email)
-        .order('created_at', { ascending: false })
-        .limit(1)
-        .single();
-
-      if (leadData) {
-        await startSequence(leadData.id, formData.email, formData.name, 'consultoria', formData.company);
-      }
+      await startSequence(leadId, formData.email, formData.name, 'consultoria', formData.company);
     } catch (error) {
       console.warn('CRM Sync Error (Lead saved locally in console):', formData, error);
     }

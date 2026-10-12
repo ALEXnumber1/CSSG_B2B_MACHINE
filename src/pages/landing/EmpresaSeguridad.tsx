@@ -6,7 +6,7 @@ import {
   Shield, X as XIcon, ChevronDown, FileText, Lock,
   Award, ArrowRight, BadgeCheck, ClipboardCheck, Loader2, Clock,
 } from 'lucide-react';
-import { supabase } from '../../lib/supabase';
+import { insertLead } from '../../lib/leads';
 import { sendLeadNotification } from '../../lib/email';
 import { startSequence } from '../../lib/sequences';
 import CookieConsent from '../../components/CookieConsent';
@@ -159,7 +159,7 @@ export default function EmpresaSeguridad() {
     setStatus('loading');
     setErrorMsg('');
     try {
-      const { data: newLead, error: insertError } = await supabase.from('leads').insert([{
+      const { data: newLead, error: insertError } = await insertLead({
         nombre: formData.nombre,
         correo: formData.correo,
         empresa: formData.empresa,
@@ -167,7 +167,7 @@ export default function EmpresaSeguridad() {
         fuente: 'lp_empresa_seguridad',
         score: formData.motivo === 'licitacion' ? 55 : 45,
         estado: 'nuevo',
-      }]).select('id').single();
+      });
 
       if (insertError) {
         if (insertError.code === '23505') {

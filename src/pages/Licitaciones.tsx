@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FileText, Send, Building2, ShieldCheck, Clock, CheckCircle2 } from 'lucide-react';
-import { supabase } from '../lib/supabase';
+import { saveLead } from '../lib/leads';
 import { sendNurtureEmail } from '../lib/email';
 
 export default function Licitaciones() {
@@ -24,7 +24,7 @@ export default function Licitaciones() {
     setStatus('loading');
 
     try {
-      const { error: supabaseError } = await supabase.from('leads').insert([{
+      await saveLead({
         nombre: formData.nombre,
         correo: formData.correo,
         empresa: formData.institucion,
@@ -33,9 +33,7 @@ export default function Licitaciones() {
         fuente: 'licitaciones',
         score: 40,
         estado: 'nuevo'
-      }]);
-
-      if (supabaseError) throw supabaseError;
+      });
 
       if (formData.correo) {
         try {

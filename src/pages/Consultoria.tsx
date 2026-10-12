@@ -6,7 +6,7 @@ import {
   Server, BookOpen, Award, ArrowRight, ChevronRight, Plus,
   ShieldCheck, Target, Users, CheckCircle2, Zap
 } from 'lucide-react';
-import { supabase } from '../lib/supabase';
+import { saveLead } from '../lib/leads';
 import { startSequence } from '../lib/sequences';
 import { sendLeadNotification } from '../lib/email';
 import { useTranslation } from 'react-i18next';
@@ -127,15 +127,14 @@ export default function Consultoria() {
     setStatus('loading');
 
     try {
-      const { error } = await supabase.from('leads').upsert([{
+      const leadId = await saveLead({
         nombre, correo, empresa,
         mensaje: 'Solicitud desde hub Risk Advisory Services',
         fuente: 'consultoria_hub',
         score: 55,
-      }], { onConflict: 'correo' });
-      if (error) throw error;
+      });
       sendLeadNotification({ nombre, email: correo, empresa, fuente: 'consultoria_hub' }).catch(console.warn);
-      if (correo) startSequence('lead-' + Date.now(), correo, nombre, 'consultoria', empresa).catch(console.warn);
+      if (correo) startSequence(leadId, correo, nombre, 'consultoria', empresa).catch(console.warn);
       setStatus('success');
       setNombre(''); setCorreo(''); setEmpresa('');
     } catch {

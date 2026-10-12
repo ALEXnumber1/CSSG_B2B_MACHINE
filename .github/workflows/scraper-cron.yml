@@ -1,9 +1,11 @@
 name: B2B Lead Scraper Cron
 
 on:
-  schedule:
-    # Corre todos los lunes a las 08:00 UTC
-    - cron: '0 8 * * 1'
+  # Desactivado el 2026-10-12: no hace scraping, solo borra y reinserta un lead de prueba con datos
+  # de una persona real en el CRM de producción, y desde la RLS fase B la clave anon ya no puede
+  # escribir en `leads`. Queda disponible a mano.
+  # schedule:
+  #   - cron: '0 8 * * 1'
   workflow_dispatch: # Permite ejecutarlo manualmente desde GitHub
 
 jobs:

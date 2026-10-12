@@ -6,7 +6,7 @@ import {
   ShieldCheck, Radar, Users, Award, ArrowRight, Check, X as XIcon, Loader2, ChevronDown,
   FileCheck, Radio, Eye, MapPin, BadgeCheck, Globe2,
 } from 'lucide-react';
-import { supabase } from '../../lib/supabase';
+import { insertLead } from '../../lib/leads';
 import { sendLeadNotification } from '../../lib/email';
 import { startSequence } from '../../lib/sequences';
 import CookieConsent from '../../components/CookieConsent';
@@ -222,7 +222,7 @@ export default function InvestorSecurity() {
     setStatus('loading');
     setErrorMsg('');
     try {
-      const { data: newLead, error: insertError } = await supabase.from('leads').insert([{
+      const { data: newLead, error: insertError } = await insertLead({
         nombre: formData.nombre,
         correo: formData.correo,
         empresa: formData.empresa,
@@ -230,7 +230,7 @@ export default function InvestorSecurity() {
         fuente: 'lp_investor_security_en',
         score: formData.motivo === 'due_diligence' ? 55 : 50,
         estado: 'nuevo',
-      }]).select('id').single();
+      });
 
       if (insertError) {
         if (insertError.code === '23505') {

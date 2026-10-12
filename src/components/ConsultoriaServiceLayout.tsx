@@ -2,7 +2,7 @@ import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useState, useRef } from 'react';
 import { ChevronRight, ArrowLeft, ShieldCheck, CheckCircle2, ArrowRight, ChevronDown } from 'lucide-react';
-import { supabase } from '../lib/supabase';
+import { saveLead } from '../lib/leads';
 import { startSequence } from '../lib/sequences';
 import { sendLeadNotification } from '../lib/email';
 import { useTranslation } from 'react-i18next';
@@ -76,15 +76,14 @@ export default function ConsultoriaServiceLayout({
     e.preventDefault();
     setStatus('loading');
     try {
-      const { error } = await supabase.from('leads').upsert([{
+      const leadId = await saveLead({
         nombre, correo, empresa,
         mensaje: `Consulta: ${title}`,
         fuente: 'consultoria_servicio',
         score: 60,
-      }], { onConflict: 'correo' });
-      if (error) throw error;
+      });
       sendLeadNotification({ nombre, email: correo, empresa, fuente: 'consultoria_servicio' }).catch(console.warn);
-      if (correo) startSequence('lead-' + Date.now(), correo, nombre, 'consultoria', empresa).catch(console.warn);
+      if (correo) startSequence(leadId, correo, nombre, 'consultoria', empresa).catch(console.warn);
       setStatus('success');
       setNombre(''); setCorreo(''); setEmpresa('');
     } catch {

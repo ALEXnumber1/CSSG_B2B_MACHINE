@@ -22,6 +22,7 @@ import {
   X,
 } from 'lucide-react';
 import { supabase } from '../lib/supabase';
+import { saveLead } from '../lib/leads';
 import { startSequence } from '../lib/sequences';
 import { sendNurtureEmail } from '../lib/email';
 import SecurityRadar3D from '../components/SecurityRadar3D';
@@ -400,13 +401,13 @@ export default function RiskAnalysis() {
 
     // 1. Guardar en CRM y enviar emails (en background, sin bloquear el PDF)
     const saveToDb = async () => {
-      const [leadRes, riskRes] = await Promise.all([
-        supabase.from('leads').insert([{
+      const [leadId, riskRes] = await Promise.all([
+        saveLead({
           nombre: leadData.name, correo: leadData.email,
           empresa: leadData.company || contextData.targetOrganization, telefono: leadData.phone,
           mensaje: `Score: ${protectionScore}/100 | Sector: ${contextData.sector} | Ubicación: ${contextData.location}`,
-          fuente: 'riesgo', score: 30, estado: 'nuevo',
-        }]),
+          fuente: 'riesgo', score: 30,
+        }).catch(err => { console.error('[CRM] lead save error:', err); return null; }),
         supabase.from('risk_assessments').insert([{
           lead_name: leadData.name, job_title: leadData.jobTitle, company: leadData.company,
           email: leadData.email, phone: leadData.phone,
@@ -416,12 +417,14 @@ export default function RiskAnalysis() {
           vulnerabilities: vulnerabilities,
         }]),
       ]);
-      if (leadRes.error) console.error('[CRM] leads insert error:', leadRes.error.message, leadRes.error.details);
       if (riskRes.error) console.error('[CRM] risk_assessments insert error:', riskRes.error.message, riskRes.error.details);
+      // Sin id (fallo del CRM) el email #0 igual se envía; solo no queda registrada la secuencia.
+      if (leadData.email) {
+        startSequence(leadId ?? '', leadData.email, leadData.name, 'riesgo', leadData.company).catch(err => console.warn('[Email] secuencia error:', err));
+      }
     };
     saveToDb().catch(err => console.error('[CRM] save failed:', err));
     if (leadData.email) {
-      startSequence('lead-' + Date.now(), leadData.email, leadData.name, 'riesgo', leadData.company).catch(err => console.warn('[Email] secuencia error:', err));
       sendNurtureEmail(leadData.email, leadData.name, 'riesgo', leadData.company).catch(err => console.warn('[Email] nurture error:', err));
     }
 

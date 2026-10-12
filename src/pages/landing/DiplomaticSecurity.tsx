@@ -6,7 +6,7 @@ import {
   ShieldCheck, Radar, Users, Award, ArrowRight, Check, X as XIcon, Loader2, ChevronDown, Globe2,
   FileCheck, Radio, Eye, MapPin, FileText,
 } from 'lucide-react';
-import { supabase } from '../../lib/supabase';
+import { insertLead } from '../../lib/leads';
 import { sendLeadNotification } from '../../lib/email';
 import { startSequence } from '../../lib/sequences';
 import CookieConsent from '../../components/CookieConsent';
@@ -206,7 +206,7 @@ export default function DiplomaticSecurity() {
     setStatus('loading');
     setErrorMsg('');
     try {
-      const { data: newLead, error: insertError } = await supabase.from('leads').insert([{
+      const { data: newLead, error: insertError } = await insertLead({
         nombre: formData.nombre,
         correo: formData.correo,
         empresa: formData.empresa,
@@ -214,7 +214,7 @@ export default function DiplomaticSecurity() {
         fuente: 'lp_diplomatic_security_en',
         score: formData.motivo === 'licitacion' ? 55 : 50,
         estado: 'nuevo',
-      }]).select('id').single();
+      });
 
       if (insertError) {
         if (insertError.code === '23505') {

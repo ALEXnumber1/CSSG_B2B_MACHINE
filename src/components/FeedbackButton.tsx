@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, Star, X, CheckCircle } from 'lucide-react';
-import { supabase } from '../lib/supabase';
+import { saveLead } from '../lib/leads';
 
 type Status = 'idle' | 'submitting' | 'success' | 'error';
 
@@ -27,14 +27,17 @@ export default function FeedbackButton() {
   const submit = async () => {
     if (!rating) return;
     setStatus('submitting');
-    const { error } = await supabase.from('leads').insert([{
-      nombre: 'Feedback anónimo',
-      mensaje: `⭐ ${rating}/5 — ${message || '(sin comentario)'}`,
-      fuente: 'feedback',
-      score: rating * 20,
-      estado: 'nuevo',
-    }]);
-    setStatus(error ? 'error' : 'success');
+    try {
+      await saveLead({
+        nombre: 'Feedback anónimo',
+        mensaje: `⭐ ${rating}/5 — ${message || '(sin comentario)'}`,
+        fuente: 'feedback',
+        score: rating * 20,
+      });
+      setStatus('success');
+    } catch {
+      setStatus('error');
+    }
   };
 
   return (

@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { Wrench, Camera, Cpu, ArrowRight, Mail, Phone, ShieldCheck, Zap, Lock, CheckCircle2, ChevronDown } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
-import { supabase } from '../lib/supabase';
+import { saveLead } from '../lib/leads';
 import { sendLeadNotification } from '../lib/email';
 import TecnologiaEn from './TecnologiaEn';
 
@@ -28,16 +28,14 @@ export default function Tecnologia() {
     e.preventDefault();
     setStatus('loading');
     try {
-      const { error } = await supabase.from('leads').upsert([{
+      await saveLead({
         nombre: formData.nombre,
         correo: formData.correo,
         empresa: formData.empresa,
         mensaje: `Tecnología: Interés en ${subject}`,
         fuente: 'tecnologia_v5',
         score: 75
-      }], { onConflict: 'correo' });
-
-      if (error) throw error;
+      });
       sendLeadNotification({ nombre: formData.nombre, email: formData.correo, empresa: formData.empresa, fuente: 'tecnologia_v5' }).catch(console.warn);
       setStatus('success');
     } catch (err) {

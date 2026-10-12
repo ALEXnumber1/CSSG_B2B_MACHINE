@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Mail, User, Phone, Download, CheckCircle2, Building } from 'lucide-react';
 import { useState } from 'react';
-import { supabase } from '../lib/supabase';
+import { saveLead } from '../lib/leads';
 import { useTranslation } from 'react-i18next';
 import { startSequence } from '../lib/sequences';
 import { sendLeadNotification } from '../lib/email';
@@ -44,39 +44,27 @@ export default function LeadModal({ isOpen, onClose }: LeadModalProps) {
 
     try {
       // Save lead to Supabase (CRM Integration)
-      const { error: supabaseError } = await supabase
-        .from('leads')
-        .upsert([{
+      let leadId: string;
+      try {
+        leadId = await saveLead({
           nombre: formData.name,
           correo: formData.email,
           empresa: formData.company,
           telefono: formData.phone,
           fuente: 'portfolio_download',
           score: baremoScore,
-          estado: 'nuevo',
           mensaje: `[DESCARGA: Portafolio]`
-        }], { onConflict: 'correo' });
-      
-      if (supabaseError) {
-        console.error('CRM Sync Error:', supabaseError);
-        alert(`Error al sincronizar con el CRM: ${supabaseError.message}`);
-        throw supabaseError;
+        });
+      } catch (crmError) {
+        console.error('CRM Sync Error:', crmError);
+        alert(`Error al sincronizar con el CRM: ${(crmError as Error).message}`);
+        throw crmError;
       }
 
       sendLeadNotification({ nombre: formData.name, email: formData.email, empresa: formData.company, telefono: formData.phone, fuente: 'portfolio_download' }).catch(console.warn);
 
       // 2. Start Automated Nurturing Sequence
-      const { data: leadData } = await supabase
-        .from('leads')
-        .select('id')
-        .eq('correo', formData.email)
-        .order('created_at', { ascending: false })
-        .limit(1)
-        .single();
-
-      if (leadData) {
-        await startSequence(leadData.id, formData.email, formData.name, 'contacto', formData.company);
-      }
+      await startSequence(leadId, formData.email, formData.name, 'contacto', formData.company);
     } catch (error) {
       console.error('CRM Sync Exception:', error);
     }
