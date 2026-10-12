@@ -72,15 +72,23 @@ Shared building blocks:
 - `components/Section.tsx` — section wrapper with sky-500 left bar
 
 
-### Supabase Schema (4 tables)
-| Table | Purpose |
-|---|---|
-| `leads` | CRM — all contact form submissions across the site |
-| `risk_assessments` | Full FMEA risk analysis results with JSONB pillars/vulnerabilities |
-| `complaints` | Anonymous complaints channel |
-| `rrhh_applications` | Job applications from `/portal-rrhh` |
+### Supabase Schema
+| Table | Purpose | Public (anon key) may |
+|---|---|---|
+| `leads` | CRM — every form submission across the site (unique `correo`) | nothing |
+| `email_sequences` | Nurturing state per lead (`process-sequences` cron) | nothing |
+| `risk_assessments` | FMEA risk analysis results, JSONB pillars/vulnerabilities | INSERT |
+| `complaints` | Anonymous complaints channel | INSERT |
+| `testimonials` | Client testimonials | INSERT; SELECT approved |
+| `blog_posts` | Blog (also prerendered and read by `api/blog.js`) | SELECT published |
 
-RLS is enabled on all tables: public INSERT, authenticated SELECT only.
+Everything else (reads, edits, deletes) is admin-only: `public.is_admin()` checks the signed-in email (keep it in sync with `ADMIN_EMAILS` in `wrangler.jsonc`). Public sign-up is disabled. Migrations: `supabase/migrations/006_rls_phase_a.sql`, `007_rls_phase_b.sql`.
+
+**Leads are only written through `/api/lead`** (`api/lead.js`, service role) via `saveLead()` / `insertLead()` / `registerSequence()` in `src/lib/leads.ts`, including from the static HTML landings in `public/`. Never write `leads` or `email_sequences` from the browser with the anon key: it is blocked by RLS and fails. Re-submitting a known email merges into the existing lead (keeps estado/notas, appends the message, keeps the higher score).
+
+The `notify_classify_lead` trigger posts every new lead to `https://cssg-global.com/api/classify-lead` (Worker, `WEBHOOK_SECRET`), which classifies it with Gemini.
+
+The Supabase MCP `apply_migration` is blocked by this user's permissions: write the SQL to `supabase/migrations/` and ask the user to paste it into the SQL Editor.
 
 ### i18n
 All translatable content is in `src/locales/{es,en}/{namespace}.json`. The namespace list: `quienes`, `consultoria`, `tecnologia`, `risk`, `informes`, `quejas`, `intranet`, `admin`, `blog`, `streaming`, `rrhh`, `escudo`. Nav, hero, and footer strings live directly in `src/i18n.ts`. Language is auto-detected by browser; `es` is the default fallback.
