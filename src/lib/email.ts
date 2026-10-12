@@ -29,7 +29,7 @@ function baseTemplate(content: string): string {
   <div style="max-width:600px;margin:0 auto;padding:40px 24px;">
     <!-- Header -->
     <div style="text-align:center;margin-bottom:32px;">
-      <img src="https://globalservices-ven.com/logo.png" alt="CSSG - Company Of Security And Service Global" style="width:120px;height:auto;margin-bottom:8px;" />
+      <img src="https://cssg-global.com/logo.png" alt="CSSG - Company Of Security And Service Global" style="width:120px;height:auto;margin-bottom:8px;" />
       <p style="color:#64748B;font-size:9px;letter-spacing:1px;text-transform:uppercase;margin-top:4px;margin-bottom:0;">RIF: J-29782024-8</p>
     </div>
     
@@ -43,7 +43,7 @@ function baseTemplate(content: string): string {
       <p style="color:#475569;font-size:12px;margin:0;font-weight:600;">Company Of Security and Service Global</p>
       <p style="color:#64748B;font-size:11px;margin:4px 0 0;">Caracas, Venezuela · ISO 9001 · +17 años de experiencia</p>
       <p style="color:#64748B;font-size:10px;margin:16px 0 0;">
-        <a href="https://globalservices-ven.com" style="color:#0284C7;text-decoration:none;font-weight:600;">globalservices-ven.com</a> · 
+        <a href="https://cssg-global.com" style="color:#0284C7;text-decoration:none;font-weight:600;">globalservices-ven.com</a> · 
         Si no desea recibir más correos, responda a este email con "CANCELAR"
       </p>
     </div>
@@ -80,7 +80,7 @@ const templates: Record<string, { subject: string | ((nombre: string, empresa?: 
       </p>
 
       <div style="text-align:center;margin:32px 0 16px;">
-        <a href="https://globalservices-ven.com/analisis-riesgo" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;box-shadow:0 4px 14px 0 rgba(2, 132, 199, 0.4);">
+        <a href="https://cssg-global.com/analisis-riesgo" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;box-shadow:0 4px 14px 0 rgba(2, 132, 199, 0.4);">
           Diagnosticar mis vulnerabilidades (ISO 31000)
         </a>
       </div>
@@ -108,7 +108,7 @@ const templates: Record<string, { subject: string | ((nombre: string, empresa?: 
       </div>
 
       <div style="text-align:center;margin:32px 0 16px;">
-        <a href="https://globalservices-ven.com/consultoria" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;box-shadow:0 4px 14px 0 rgba(2, 132, 199, 0.4);">
+        <a href="https://cssg-global.com/consultoria" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;box-shadow:0 4px 14px 0 rgba(2, 132, 199, 0.4);">
           Agendar Sesión de Consulta Gratuita
         </a>
       </div>
@@ -148,7 +148,7 @@ const templates: Record<string, { subject: string | ((nombre: string, empresa?: 
       </p>
 
       <div style="text-align:center;margin:32px 0 16px;">
-        <a href="https://globalservices-ven.com/analisis-riesgo" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;box-shadow:0 4px 14px 0 rgba(2, 132, 199, 0.4);">
+        <a href="https://cssg-global.com/analisis-riesgo" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;box-shadow:0 4px 14px 0 rgba(2, 132, 199, 0.4);">
           Evaluar mis vulnerabilidades de forma gratuita
         </a>
       </div>
@@ -660,7 +660,7 @@ const sequenceTemplates: Record<string, { subject: string | ((nombre: string, em
         que debe evaluar antes de contratar o cambiar de empresa de seguridad:
       </p>
       <div style="text-align:center;">
-        <a href="https://globalservices-ven.com/blog/como-elegir-empresa-seguridad-privada-venezuela" style="display:inline-block;background-color:#0EA5E9;color:#FFFFFF;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
+        <a href="https://cssg-global.com/blog/como-elegir-empresa-seguridad-privada-venezuela" style="display:inline-block;background-color:#0EA5E9;color:#FFFFFF;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
           Leer la guía completa
         </a>
       </div>
@@ -679,7 +679,7 @@ const sequenceTemplates: Record<string, { subject: string | ((nombre: string, em
         su seguridad está en las mejores manos.
       </p>
       <div style="text-align:center;">
-        <a href="https://globalservices-ven.com/consultoria" style="display:inline-block;background-color:#0EA5E9;color:#FFFFFF;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
+        <a href="https://cssg-global.com/consultoria" style="display:inline-block;background-color:#0EA5E9;color:#FFFFFF;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
           Agendar consulta gratuita
         </a>
       </div>
@@ -707,7 +707,7 @@ const sequenceTemplates: Record<string, { subject: string | ((nombre: string, em
         ¿Necesita ayuda implementando estas mejoras? Nuestro equipo puede guiarle.
       </p>
       <div style="text-align:center;">
-        <a href="https://globalservices-ven.com/consultoria" style="display:inline-block;background-color:#0EA5E9;color:#FFFFFF;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
+        <a href="https://cssg-global.com/consultoria" style="display:inline-block;background-color:#0EA5E9;color:#FFFFFF;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
           Solicitar consultoría gratuita
         </a>
       </div>
@@ -730,7 +730,7 @@ const sequenceTemplates: Record<string, { subject: string | ((nombre: string, em
         ¿Le gustaría saber cómo podemos aplicar este nivel de protección a su organización?
       </p>
       <div style="text-align:center;">
-        <a href="https://globalservices-ven.com/quienes-somos" style="display:inline-block;background-color:#0EA5E9;color:#FFFFFF;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
+        <a href="https://cssg-global.com/quienes-somos" style="display:inline-block;background-color:#0EA5E9;color:#FFFFFF;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
           Conocer nuestra historia
         </a>
       </div>
@@ -750,7 +750,7 @@ const sequenceTemplates: Record<string, { subject: string | ((nombre: string, em
         <p style="color:#9CA3AF;font-size:13px;margin:0;">Válida por 30 días desde este correo</p>
       </div>
       <div style="text-align:center;margin-top:20px;">
-        <a href="https://globalservices-ven.com/consultoria" style="display:inline-block;background-color:#10B981;color:#FFFFFF;padding:14px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:15px;">
+        <a href="https://cssg-global.com/consultoria" style="display:inline-block;background-color:#10B981;color:#FFFFFF;padding:14px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:15px;">
           Agendar mi auditoría
         </a>
       </div>
@@ -773,7 +773,7 @@ const sequenceTemplates: Record<string, { subject: string | ((nombre: string, em
         en la seguridad privada:
       </p>
       <div style="text-align:center;">
-        <a href="https://globalservices-ven.com/blog/iso-9001-seguridad-privada-importancia" style="display:inline-block;background-color:#0EA5E9;color:#FFFFFF;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
+        <a href="https://cssg-global.com/blog/iso-9001-seguridad-privada-importancia" style="display:inline-block;background-color:#0EA5E9;color:#FFFFFF;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
           Leer artículo
         </a>
       </div>
@@ -814,7 +814,7 @@ const sequenceTemplates: Record<string, { subject: string | ((nombre: string, em
         en Caracas</strong> — y las soluciones concretas para cada uno.
       </p>
       <div style="text-align:center;">
-        <a href="https://globalservices-ven.com/blog/5-errores-seguridad-corporativa" style="display:inline-block;background-color:#0EA5E9;color:#FFFFFF;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
+        <a href="https://cssg-global.com/blog/5-errores-seguridad-corporativa" style="display:inline-block;background-color:#0EA5E9;color:#FFFFFF;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
           Leer los 5 errores
         </a>
       </div>
@@ -834,7 +834,7 @@ const sequenceTemplates: Record<string, { subject: string | ((nombre: string, em
         un informe PDF profesional en minutos:
       </p>
       <div style="text-align:center;">
-        <a href="https://globalservices-ven.com/analisis-riesgo" style="display:inline-block;background-color:#0EA5E9;color:#FFFFFF;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
+        <a href="https://cssg-global.com/analisis-riesgo" style="display:inline-block;background-color:#0EA5E9;color:#FFFFFF;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
           Iniciar análisis gratuito
         </a>
       </div>

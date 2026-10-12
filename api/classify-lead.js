@@ -11,7 +11,7 @@
  * Configuración del webhook en Supabase:
  *   Dashboard → Database → Webhooks → New Webhook
  *   Table: leads | Event: INSERT
- *   URL: https://globalservices-ven.com/api/classify-lead
+ *   URL: https://cssg-global.com/api/classify-lead
  *   HTTP Header: Authorization: Bearer <CRON_SECRET>
  */
 

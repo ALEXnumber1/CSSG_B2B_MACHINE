@@ -34,7 +34,7 @@ function baseTemplate(content) {
 <body style="margin:0;padding:0;background-color:#F8FAFC;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;">
   <div style="max-width:600px;margin:0 auto;padding:40px 24px;">
     <div style="text-align:center;margin-bottom:32px;">
-      <img src="https://globalservices-ven.com/logo.png" alt="CSSG" style="width:120px;height:auto;" />
+      <img src="https://cssg-global.com/logo.png" alt="CSSG" style="width:120px;height:auto;" />
       <p style="color:#64748B;font-size:9px;letter-spacing:1px;text-transform:uppercase;margin-top:4px;">RIF: J-29782024-8</p>
     </div>
     <div style="background-color:#FFFFFF;border:1px solid #E2E8F0;border-radius:16px;padding:32px;margin-bottom:24px;">
@@ -44,7 +44,7 @@ function baseTemplate(content) {
       <p style="color:#475569;font-size:12px;margin:0;font-weight:600;">Company Of Security and Service Global</p>
       <p style="color:#64748B;font-size:11px;margin:4px 0 0;">Caracas, Venezuela · ISO 9001 · +17 años de experiencia</p>
       <p style="color:#64748B;font-size:10px;margin:16px 0 0;">
-        <a href="https://globalservices-ven.com" style="color:#0284C7;text-decoration:none;font-weight:600;">globalservices-ven.com</a>
+        <a href="https://cssg-global.com" style="color:#0284C7;text-decoration:none;font-weight:600;">globalservices-ven.com</a>
       </p>
     </div>
   </div>

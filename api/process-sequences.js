@@ -63,7 +63,7 @@ function baseTemplate(content) {
 <body style="margin:0;padding:0;background-color:#F8FAFC;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;">
   <div style="max-width:600px;margin:0 auto;padding:40px 24px;">
     <div style="text-align:center;margin-bottom:32px;">
-      <img src="https://globalservices-ven.com/logo.png" alt="CSSG" style="width:120px;height:auto;" />
+      <img src="https://cssg-global.com/logo.png" alt="CSSG" style="width:120px;height:auto;" />
       <p style="color:#64748B;font-size:9px;letter-spacing:1px;text-transform:uppercase;margin-top:4px;">RIF: J-29782024-8</p>
     </div>
     <div style="background-color:#FFFFFF;border:1px solid #E2E8F0;border-radius:16px;padding:32px;margin-bottom:24px;">
@@ -73,7 +73,7 @@ function baseTemplate(content) {
       <p style="color:#475569;font-size:12px;margin:0;font-weight:600;">Company Of Security and Service Global</p>
       <p style="color:#64748B;font-size:11px;margin:4px 0 0;">Caracas, Venezuela · ISO 9001 · +17 años de experiencia</p>
       <p style="color:#64748B;font-size:10px;margin:16px 0 0;">
-        <a href="https://globalservices-ven.com" style="color:#0284C7;text-decoration:none;font-weight:600;">globalservices-ven.com</a>
+        <a href="https://cssg-global.com" style="color:#0284C7;text-decoration:none;font-weight:600;">globalservices-ven.com</a>
       </p>
     </div>
   </div>
@@ -96,7 +96,7 @@ const EMAIL_TEMPLATES = {
       <p style="color:#334155;font-size:15px;line-height:1.7;">Hemos recibido la información de su solicitud${empresa ? ` en representación de <strong>${empresa}</strong>` : ''}.</p>
       <p style="color:#334155;font-size:15px;line-height:1.7;">Un Especialista Senior revisará sus requerimientos y le contactará en las próximas 24 horas hábiles.</p>
       <div style="text-align:center;margin:32px 0;">
-        <a href="https://globalservices-ven.com/analisis-riesgo" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;">
+        <a href="https://cssg-global.com/analisis-riesgo" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;">
           Diagnosticar mis vulnerabilidades (ISO 31000)
         </a>
       </div>
@@ -108,7 +108,7 @@ const EMAIL_TEMPLATES = {
       <h2 style="color:#0F172A;font-size:22px;margin:0 0 16px;">Hola ${nombre},</h2>
       <p style="color:#334155;font-size:15px;line-height:1.7;">El <strong>60% de las empresas en Venezuela</strong> cambia de proveedor de seguridad en los primeros 12 meses. ¿La razón? Rotación de personal, falta de supervisión y reportes que nunca llegan.</p>
       <div style="text-align:center;margin:24px 0;">
-        <a href="https://globalservices-ven.com/blog/como-elegir-empresa-seguridad-privada-venezuela" style="display:inline-block;background-color:#0EA5E9;color:#FFFFFF;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:600;">Leer la guía completa</a>
+        <a href="https://cssg-global.com/blog/como-elegir-empresa-seguridad-privada-venezuela" style="display:inline-block;background-color:#0EA5E9;color:#FFFFFF;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:600;">Leer la guía completa</a>
       </div>
     `),
   },
@@ -118,7 +118,7 @@ const EMAIL_TEMPLATES = {
       <h2 style="color:#0F172A;font-size:22px;margin:0 0 16px;">${nombre}, un último paso.</h2>
       <p style="color:#334155;font-size:15px;line-height:1.7;">Con <strong>+17 años protegiendo embajadas del G7</strong> sin un solo incidente, su seguridad está en las mejores manos.</p>
       <div style="text-align:center;margin:24px 0;">
-        <a href="https://globalservices-ven.com/consultoria" style="display:inline-block;background-color:#0EA5E9;color:#FFFFFF;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:600;">Agendar consulta gratuita</a>
+        <a href="https://cssg-global.com/consultoria" style="display:inline-block;background-color:#0EA5E9;color:#FFFFFF;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:600;">Agendar consulta gratuita</a>
       </div>
     `),
   },
@@ -130,7 +130,7 @@ const EMAIL_TEMPLATES = {
       <p style="color:#334155;font-size:15px;line-height:1.7;">El informe preliminar de vulnerabilidades${empresa ? ` para <strong>${empresa}</strong>` : ''} ha sido generado.</p>
       <p style="color:#334155;font-size:15px;line-height:1.7;">Agende una sesión gratuita de 15 minutos para interpretar los resultados y conocer cómo reducir hasta un 40% sus costos actuales en seguridad.</p>
       <div style="text-align:center;margin:32px 0;">
-        <a href="https://globalservices-ven.com/consultoria" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;">Agendar Sesión Gratuita</a>
+        <a href="https://cssg-global.com/consultoria" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;">Agendar Sesión Gratuita</a>
       </div>
     `),
   },
@@ -145,7 +145,7 @@ const EMAIL_TEMPLATES = {
         <li><strong>Actualizar protocolos:</strong> Plan de emergencia con simulacros</li>
       </ol>
       <div style="text-align:center;margin:24px 0;">
-        <a href="https://globalservices-ven.com/consultoria" style="display:inline-block;background-color:#0EA5E9;color:#FFFFFF;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:600;">Solicitar consultoría gratuita</a>
+        <a href="https://cssg-global.com/consultoria" style="display:inline-block;background-color:#0EA5E9;color:#FFFFFF;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:600;">Solicitar consultoría gratuita</a>
       </div>
     `),
   },
@@ -156,7 +156,7 @@ const EMAIL_TEMPLATES = {
       <p style="color:#334155;font-size:15px;line-height:1.7;"><strong>+17 años. Cero incidentes.</strong> Protegiendo delegaciones diplomáticas del G7 en Venezuela.</p>
       <p style="color:#334155;font-size:15px;line-height:1.7;"><strong>Cero rotación de personal.</strong> Pagamos los mejores salarios del sector — los mismos oficiales protegen la misma instalación durante años.</p>
       <div style="text-align:center;margin:24px 0;">
-        <a href="https://globalservices-ven.com/quienes-somos" style="display:inline-block;background-color:#0EA5E9;color:#FFFFFF;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:600;">Conocer nuestra historia</a>
+        <a href="https://cssg-global.com/quienes-somos" style="display:inline-block;background-color:#0EA5E9;color:#FFFFFF;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:600;">Conocer nuestra historia</a>
       </div>
     `),
   },
@@ -169,7 +169,7 @@ const EMAIL_TEMPLATES = {
         <p style="color:#64748B;font-size:13px;margin:0;">Válida por 30 días desde este correo</p>
       </div>
       <div style="text-align:center;margin-top:20px;">
-        <a href="https://globalservices-ven.com/consultoria" style="display:inline-block;background-color:#10B981;color:#FFFFFF;padding:14px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:15px;">Agendar mi auditoría</a>
+        <a href="https://cssg-global.com/consultoria" style="display:inline-block;background-color:#10B981;color:#FFFFFF;padding:14px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:15px;">Agendar mi auditoría</a>
       </div>
     `),
   },
@@ -188,7 +188,7 @@ const EMAIL_TEMPLATES = {
       <h2 style="color:#0F172A;font-size:22px;margin:0 0 16px;">Hola ${nombre},</h2>
       <p style="color:#334155;font-size:15px;line-height:1.7;">Nuestra tasa de éxito del <strong>80% en licitaciones y proyectos</strong> se debe a que cada propuesta está respaldada por nuestra certificación ISO 9001:2015.</p>
       <div style="text-align:center;margin:24px 0;">
-        <a href="https://globalservices-ven.com/blog/iso-9001-seguridad-privada-importancia" style="display:inline-block;background-color:#0EA5E9;color:#FFFFFF;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:600;">Leer artículo</a>
+        <a href="https://cssg-global.com/blog/iso-9001-seguridad-privada-importancia" style="display:inline-block;background-color:#0EA5E9;color:#FFFFFF;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:600;">Leer artículo</a>
       </div>
     `),
   },
@@ -209,7 +209,7 @@ const EMAIL_TEMPLATES = {
       <h2 style="color:#0F172A;font-size:24px;margin:0 0 16px;">Hola ${nombre},</h2>
       <p style="color:#334155;font-size:15px;line-height:1.7;">Gracias por solicitar el <strong>Informe de Seguridad Venezuela 2026</strong>. Este reporte evalúa las 6 dimensiones PESTEL que impactan el panorama corporativo de seguridad en el país.</p>
       <div style="text-align:center;margin:32px 0;">
-        <a href="https://globalservices-ven.com/analisis-riesgo" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;">Evaluar mis vulnerabilidades</a>
+        <a href="https://cssg-global.com/analisis-riesgo" style="display:inline-block;background-color:#0284C7;color:#FFFFFF;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;">Evaluar mis vulnerabilidades</a>
       </div>
     `),
   },
@@ -219,7 +219,7 @@ const EMAIL_TEMPLATES = {
       <h2 style="color:#0F172A;font-size:22px;margin:0 0 16px;">Hola ${nombre},</h2>
       <p style="color:#334155;font-size:15px;line-height:1.7;"><strong>5 errores que vemos en el 70% de las empresas que auditamos en Caracas</strong> — y las soluciones concretas para cada uno.</p>
       <div style="text-align:center;margin:24px 0;">
-        <a href="https://globalservices-ven.com/blog/5-errores-seguridad-corporativa" style="display:inline-block;background-color:#0EA5E9;color:#FFFFFF;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:600;">Leer los 5 errores</a>
+        <a href="https://cssg-global.com/blog/5-errores-seguridad-corporativa" style="display:inline-block;background-color:#0EA5E9;color:#FFFFFF;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:600;">Leer los 5 errores</a>
       </div>
     `),
   },
@@ -229,7 +229,7 @@ const EMAIL_TEMPLATES = {
       <h2 style="color:#0F172A;font-size:22px;margin:0 0 16px;">${nombre}, dé el siguiente paso.</h2>
       <p style="color:#334155;font-size:15px;line-height:1.7;">El Informe PESTEL le dio visión macro. Ahora evalúe su organización específicamente — 8 vectores críticos, informe PDF profesional en minutos:</p>
       <div style="text-align:center;margin:24px 0;">
-        <a href="https://globalservices-ven.com/analisis-riesgo" style="display:inline-block;background-color:#0EA5E9;color:#FFFFFF;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:600;">Iniciar análisis gratuito</a>
+        <a href="https://cssg-global.com/analisis-riesgo" style="display:inline-block;background-color:#0EA5E9;color:#FFFFFF;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:600;">Iniciar análisis gratuito</a>
       </div>
     `),
   },

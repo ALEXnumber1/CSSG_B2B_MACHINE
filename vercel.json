@@ -2,6 +2,28 @@
   "cleanUrls": true,
   "redirects": [
     {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "globalservices-ven.com"
+        }
+      ],
+      "destination": "https://cssg-global.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.globalservices-ven.com"
+        }
+      ],
+      "destination": "https://cssg-global.com/:path*",
+      "permanent": true
+    },
+    {
       "source": "/consultoria/escudo-diplom%C3%A1tico",
       "destination": "/consultoria/escudo-diplomatico",
       "permanent": true
