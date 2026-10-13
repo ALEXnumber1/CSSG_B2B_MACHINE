@@ -52,7 +52,8 @@ SEO alias routes (`/consultoria-seguridad-caracas`, `/auditoria-seguridad-iso-31
 - `supabase.ts` — single Supabase client; env vars `VITE_SUPABASE_URL` / `VITE_SUPABASE_ANON_KEY` with hardcoded fallbacks so the site loads without `.env`
 - `email.ts` — email templates + calls to `/api/mailer`; `FROM_EMAIL` is `operaciones@cssg-global.com`. The Resend key lives only on the server
 - `sequences.ts` — multi-step email nurturing sequences (riesgo, consultoria, escudo flows)
-- `agent-intelligence.ts` — stub for an agentic LLM layer (lead scoring, auto-responder); not yet wired to a live LLM API
+- `agent-intelligence.ts` — client for `/api/agent` (Gemini lead scoring, drafts); only works with an admin session
+- `leads.ts` — `saveLead()` / `insertLead()` / `registerSequence()`, the only way the site writes leads (via `/api/lead`)
 
 ### PDF System (`src/lib/pdf/`)
 All PDFs are generated in the browser with `@react-pdf/renderer`; there is no server-side PDF endpoint.
@@ -150,7 +151,7 @@ The site loads without them (hardcoded fallbacks in `supabase.ts`). Never put a 
 
 Server (`api/` handlers, read via `process.env`): `RESEND_API_KEY`, `SUPABASE_SERVICE_ROLE_KEY`, `GEMINI_API_KEY`, `CRON_SECRET`, optional `WEBHOOK_SECRET` and `GEMINI_MODEL`.
 
-**Internal endpoints** (`/api/agent`, `/api/launch-sequence`, `/api/process-sequences`) authorize through `api/_auth.js`. They accept either `CRON_SECRET` (machine calls) or the Admin's Supabase session token, and only for emails listed in `ADMIN_EMAILS` (a var in `wrangler.jsonc`). The frontend sends that session token through `adminAuthHeader()` in `src/lib/supabase.ts`. Supabase public sign-up is open, so never authorize on "is signed in" alone. In production they are Worker secrets (see Deployment). Without `RESEND_API_KEY`, emails fail silently; without `GEMINI_API_KEY`, lead scoring returns `null`.
+**Internal endpoints** (`/api/agent`, `/api/launch-sequence`, `/api/process-sequences`) authorize through `api/_auth.js`. They accept either `CRON_SECRET` (machine calls) or the Admin's Supabase session token, and only for emails listed in `ADMIN_EMAILS` (a var in `wrangler.jsonc`). The frontend sends that session token through `adminAuthHeader()` in `src/lib/supabase.ts`. Never authorize on "is signed in" alone (public sign-up is disabled today, but that is a dashboard setting anyone can flip back). In production they are Worker secrets (see Deployment). Without `RESEND_API_KEY`, emails fail silently; without `GEMINI_API_KEY`, lead scoring returns `null`.
 
 ---
 
@@ -158,4 +159,4 @@ Server (`api/` handlers, read via `process.env`): `RESEND_API_KEY`, `SUPABASE_SE
 
 - **White papers have no page numbers.** Their `contentPage` style carries the `lineHeight`. Moving it to a wrapper View, as the PESTEL does, restores the numbers but changes pagination: BCP goes from 11 to 12 pages and leaves orphaned table headers. Re-flow those pages by hand before adding page numbers back
 - **`notfound.tsx`** filename is lowercase — always import as `'./pages/notfound'` (the Linux CI build is case-sensitive)
-- **Leftover Vercel projects** (`cssg-b2b`, `cssg-b2b-machine`, `cssg-b2-b-machine`, `cssg-b2-b-machine-9vda`, `cssg-providers`) still build every push to `main`. None of them serves production any more
+- **Vercel only serves `globalservices-ven.com`**, as a 308 redirect to cssg-global.com: the host-conditioned `redirects` in `vercel.json`, deployed by the one remaining Vercel project, `cssg-b2b-machine`. Its GitHub webhook sometimes stalls; redeploy by hand. `postbuild.js` must keep skipping redirects that have a `has` condition when it writes Cloudflare's `_redirects`: copying them once sent every cssg-global.com page into a redirect loop
