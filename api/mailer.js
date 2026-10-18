@@ -304,7 +304,7 @@ export default async function handler(req, res) {
               <p style="color:#94a3b8;font-size:12px;font-weight:700;margin:0 0 4px;letter-spacing:0.05em;">CSSG — Company Of Security And Service Global C.A.</p>
               <p style="color:#64748b;font-size:11px;margin:0 0 4px;">Calle la Joya, Edif. Cosmos, Piso 8, Ofic. 8B · Chacao, Caracas, Venezuela</p>
               <p style="color:#64748b;font-size:11px;margin:0 0 16px;">
-                <a href="tel:+584241782091" style="color:#0EA5E9;text-decoration:none;">+58 0424 178 2091</a>
+                <a href="tel:+584143174373" style="color:#0EA5E9;text-decoration:none;">+58 414 317 4373</a>
                 &nbsp;·&nbsp;
                 <a href="mailto:gerencia@globalservices-ven.com" style="color:#0EA5E9;text-decoration:none;">gerencia@globalservices-ven.com</a>
                 &nbsp;·&nbsp;
@@ -486,7 +486,7 @@ export default async function handler(req, res) {
               <p style="color:#94a3b8;font-size:12px;font-weight:700;margin:0 0 4px;letter-spacing:0.05em;">CSSG — Company Of Security And Service Global C.A.</p>
               <p style="color:#64748b;font-size:11px;margin:0 0 4px;">Calle la Joya, Edif. Cosmos, Piso 8, Ofic. 8B · Chacao, Caracas, Venezuela</p>
               <p style="color:#64748b;font-size:11px;margin:0 0 16px;">
-                <a href="tel:+584241782091" style="color:#0EA5E9;text-decoration:none;">+58 0424 178 2091</a>
+                <a href="tel:+584143174373" style="color:#0EA5E9;text-decoration:none;">+58 414 317 4373</a>
                 &nbsp;·&nbsp;
                 <a href="mailto:gerencia@globalservices-ven.com" style="color:#0EA5E9;text-decoration:none;">gerencia@globalservices-ven.com</a>
                 &nbsp;·&nbsp;

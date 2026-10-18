@@ -608,7 +608,7 @@ export default function EscudoDiplomatico() {
             Servicio exclusivo de protección diplomática para el sector corporativo privado.
           </p>
           <p className="text-xs mb-6" style={{ color: '#444' }}>
-            globalservices.ven@gmail.com | Asistencia 24/7: 0424-1782091
+            globalservices.ven@gmail.com | Asistencia 24/7: 0414-3174373
           </p>
           <p className="text-[10px] uppercase tracking-widest" style={{ color: '#333' }}>
             © {year} Consultoría en Seguridad y Servicios Generales C.A. Todos los derechos reservados.

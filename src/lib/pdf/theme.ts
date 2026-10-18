@@ -76,7 +76,7 @@ export const CORPORATE = {
   legalName: 'Company Of Security And Service Global C.A.',
   rif: 'J-29782024-8',
   address: 'Calle la Joya, Edif. Cosmos, Piso 8, Ofic. 8B, Chacao, Caracas',
-  phone: '+58 424-178-2091',
+  phone: '+58 414-317-4373',
   email: 'gerencia@globalservices-ven.com',
   website: 'cssg-global.com',
   iso: 'ISO 9001:2015',

@@ -241,7 +241,7 @@ const EMAIL_TEMPLATES = {
       <p style="color:#334155;font-size:15px;line-height:1.7;">Hemos recibido su solicitud para el servicio exclusivo de <strong>Escudo Diplomático</strong>${empresa ? ` en representación de <strong>${empresa}</strong>` : ''}.</p>
       <p style="color:#334155;font-size:15px;line-height:1.7;">Nuestro Comité de Evaluación revisará los datos de forma confidencial. Un Consultor Especialista Senior le contactará en 12-24 horas.</p>
       <div style="text-align:center;margin:32px 0;">
-        <a href="tel:+5804241782091" style="display:inline-block;background-color:#D4AF37;color:#FFFFFF;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;">Llamar a Central Operativa B2B</a>
+        <a href="tel:+584143174373" style="display:inline-block;background-color:#D4AF37;color:#FFFFFF;padding:16px 36px;border-radius:8px;text-decoration:none;font-weight:700;font-size:16px;">Llamar a Central Operativa B2B</a>
       </div>
     `),
   },

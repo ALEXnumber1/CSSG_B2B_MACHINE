@@ -10,9 +10,9 @@ export default function Location() {
       city: 'Caracas',
       name: t('location.office_name') || 'Headquarters - Torre de Control',
       address: t('location.office_address') || 'Calle la Joya, entre Av. Francisco de Miranda y Libertador, Edificio Cosmos, Piso 8, Oficina 8B, Chacao, Caracas 1060.',
-      phone: '+584241782091',
-      phoneDisplay: '+58 424-178-2091',
-      mobile: '+584241782091',
+      phone: '+584143174373',
+      phoneDisplay: '+58 414-317-4373',
+      mobile: '+584143174373',
       email: 'gerencia@globalservices-ven.com',
       hours: '24/7 Monitoring & Response',
       mapsUrl: 'https://maps.google.com/?q=Edificio+Cosmos+Chacao+Caracas'

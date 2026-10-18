@@ -673,7 +673,7 @@ export const WhitePaperDueDiligence = () => (
           <View style={S.ctaBox}>
             <Text style={S.ctaLabel}>Contacto</Text>
             <Text style={S.ctaText}>
-              gerencia@globalservices-ven.com  ·  +58 424-178-2091{'\n'}
+              gerencia@globalservices-ven.com  ·  +58 414-317-4373{'\n'}
               cssg-global.com  ·  Caracas, Venezuela{'\n\n'}
               Disponibles para consultas en español e inglés. Canal seguro y confidencialidad garantizada.
             </Text>
