@@ -65,5 +65,10 @@ export function CecomIntelWordmark({ className = '' }: { className?: string }) {
   );
 }
 
+/** JSON-LD rendered with the page, so prerendered HTML carries it (and "<" can never close the tag). */
+export function JsonLd({ data }: { data: object }) {
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, '\\u003c') }} />;
+}
+
 export const CECOM_INTEL_FONTS =
   'https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,700;1,500&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap';

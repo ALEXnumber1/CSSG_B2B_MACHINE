@@ -1101,8 +1101,7 @@ export default function RiskAnalysis() {
                "@type": "SoftwareApplication",
                "name": "CSSG Risk Analyzer",
                "applicationCategory": "BusinessApplication",
-               "offers": { "@type": "Offer", "price": "0" },
-               "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "127" }
+               "offers": { "@type": "Offer", "price": "0" }
              })}
            </script>
         </div>

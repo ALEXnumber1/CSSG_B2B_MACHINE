@@ -17,12 +17,12 @@ export type Interest = 'sample' | 'essential' | 'professional' | 'tailored' | 'a
 
 const en = {
   meta: {
-    title: 'CECOM-Intel | CSSG Global — Risk analysis and daily risk bulletin for Venezuela',
-    description: 'CECOM-Intel is CSSG Global’s risk analysis unit in Caracas: daily risk bulletin at 06:30, real-time alerts and tailored assessments of cities, routes and sites in Venezuela. Request a free sample.',
+    title: 'Venezuela GSOC & Security Risk Analysis | CECOM-Intel by CSSG Global',
+    description: 'CECOM-Intel is the risk analysis unit of CSSG’s in-country GSOC in Caracas: daily risk bulletin at 06:30, real-time alerts, journey management and tailored assessments for companies operating in Venezuela.',
   },
   nav: { what: 'What it is', patrol: 'Patrol', scope: 'Scope', how: 'How we work', plans: 'Plans', cta: 'Sample bulletin', langLabel: 'Language' },
   hero: {
-    eyebrow: 'CECOM RISK ANALYSIS UNIT · CSSG',
+    eyebrow: 'Venezuela’s in-country GSOC and security risk analysis unit · CSSG',
     lead: 'CSSG Global’s risk analysis layer. Validated information on Venezuela for our operations and for you: every security decision starts with an analysis, not an assumption.',
     ctaSample: 'Request a sample bulletin',
     ctaPlans: 'See plans',
@@ -31,14 +31,14 @@ const en = {
   },
   creds: [
     { value: '06:30', label: 'Daily bulletin, every day (Venezuela time)' },
-    { value: '24/7', label: 'CECOM active with nationwide coverage' },
+    { value: '24/7', label: 'CECOM (GSOC) active with nationwide coverage' },
     { value: '17 years', label: 'CSSG operating track record' },
     { value: 'ISO 9001', label: 'And Cyber Essentials certified' },
   ],
   what: {
     eyebrow: 'WHAT CECOM-INTEL IS',
     title: 'CSSG’s risk analysis layer',
-    p1: 'CECOM-Intel is CSSG Global’s risk analysis unit. It works with independent judgment and supplies validated information to all of our operations and directly to our clients.',
+    p1: 'CECOM-Intel is the risk analysis unit of CECOM, CSSG Global’s Security Operations Center (GSOC) in Caracas. It works with independent judgment and supplies validated information and situational awareness to all of our operations and directly to our clients.',
     p2: 'Every security decision we make starts with a prior analysis, not an assumption.',
   },
   patrol: {
@@ -148,6 +148,24 @@ const en = {
     err: 'We could not send your request. Please try again or write to gerencia@globalservices-ven.com.',
     freeMail: 'Tip: a corporate email helps us verify and prioritize your request.',
   },
+  guides: {
+    eyebrow: 'FIELD GUIDES',
+    title: 'Security in Venezuela, explained',
+    note: 'Sourced, dated guides for companies and travelers. Reviewed monthly.',
+    read: 'Read the guide',
+  },
+  faq: {
+    eyebrow: 'FREQUENTLY ASKED QUESTIONS',
+    title: 'Questions from international security teams',
+    items: [
+      { q: 'Is it safe to travel to Venezuela for business in 2026?', a: 'Business travel to Caracas is possible with planning, but the environment remains high-risk. The U.S. advisory is Level 3, “Reconsider Travel” (27 June 2026), and the UK advises against all travel to the border and mining regions. The main exposures are the airport transfer, movements after dark and crime; a pre-trip assessment, vetted transport and a 24/7 operations center reduce them.', link: { href: '/cecom-intel/venezuela-security-outlook-2026', label: 'Venezuela security outlook 2026' } },
+      { q: 'What is a GSOC, and what does CECOM do?', a: 'A Global Security Operations Center (GSOC) monitors risks around the clock and coordinates the response to incidents. CECOM is CSSG’s GSOC in Caracas: it follows patrols and movements in real time and, through CECOM-Intel, produces the daily risk bulletin, alerts and assessments that support every decision.' },
+      { q: 'Can you support a company or risk firm that has no team in Venezuela?', a: 'Yes. We work as the in-country partner of international risk, protection and travel-risk firms: you keep the client and the relationship; we provide the eyes on the ground and the response capacity, under your standard, in English and in the formats your team already uses.', link: { href: '/cecom-intel/doing-business-in-venezuela-security-guide', label: 'Doing business in Venezuela: security guide' } },
+      { q: 'What sources and methods do you use?', a: 'Open sources registered in an approved list (OSINT) and field reports from our officers on post and our professional network, all graded with the Admiralty code. Risk is assessed under ISO 31000 and an ESRM approach, with conclusions first. Every report is verified and signed by an analyst.' },
+      { q: 'Do you provide physical protection outside Caracas?', a: 'Our analysis covers the whole country. Physical response with our own personnel covers the Capital District and Miranda state; elsewhere we coordinate with authorized partners and tell you which services are delivered by whom.', link: { href: '/cecom-intel/executive-travel-venezuela-journey-management', label: 'Executive travel to Venezuela' } },
+      { q: 'How quickly do you respond to a request?', a: 'Within 24 hours, even if only to confirm receipt and the delivery time.' },
+    ],
+  },
   resources: {
     eyebrow: 'RELATED RESOURCES',
     note: 'Free CSSG tools and publications (in Spanish).',
@@ -164,12 +182,12 @@ const en = {
 
 const es: typeof en = {
   meta: {
-    title: 'CECOM-Intel | CSSG Global — Análisis de riesgo y boletín diario de riesgo en Venezuela',
+    title: 'Centro de Comando y Análisis de Riesgo en Venezuela | CECOM-Intel by CSSG',
     description: 'CECOM-Intel es la unidad de análisis de riesgo de CSSG Global en Caracas: boletín diario de riesgo a las 06:30, alertas en tiempo real y evaluaciones a la medida de ciudades, rutas y sedes en Venezuela. Solicite una muestra gratuita.',
   },
   nav: { what: 'Qué es', patrol: 'Patrullaje', scope: 'Alcance', how: 'Cómo trabajamos', plans: 'Planes', cta: 'Boletín de muestra', langLabel: 'Idioma' },
   hero: {
-    eyebrow: 'UNIDAD DE ANÁLISIS DE RIESGO DEL CECOM · CSSG',
+    eyebrow: 'Centro de comando y análisis de riesgo de seguridad en Venezuela · CSSG',
     lead: 'La capa de análisis de riesgo de CSSG Global. Información validada sobre Venezuela para nuestras operaciones y para usted: cada decisión de seguridad parte de un análisis, no de una suposición.',
     ctaSample: 'Solicitar boletín de muestra',
     ctaPlans: 'Ver planes',
@@ -185,7 +203,7 @@ const es: typeof en = {
   what: {
     eyebrow: 'QUÉ ES CECOM-INTEL',
     title: 'La capa de análisis de riesgo de CSSG',
-    p1: 'CECOM-Intel es la unidad de análisis de riesgo de CSSG Global. Opera con independencia de criterio y abastece de información validada a todas nuestras operaciones y directamente a nuestros clientes.',
+    p1: 'CECOM-Intel es la unidad de análisis de riesgo del CECOM, el centro de operaciones de seguridad de CSSG Global en Caracas. Opera con independencia de criterio y abastece de información validada a todas nuestras operaciones y directamente a nuestros clientes.',
     p2: 'Cada decisión de seguridad que tomamos parte de un análisis previo, no de una suposición.',
   },
   patrol: {
@@ -294,6 +312,24 @@ const es: typeof en = {
     ok: (email: string) => `Solicitud recibida. Un analista de CSSG le contactará en menos de 24 horas en ${email}.`,
     err: 'No pudimos enviar su solicitud. Intente de nuevo o escriba a gerencia@globalservices-ven.com.',
     freeMail: 'Sugerencia: un correo corporativo nos ayuda a verificar y priorizar su solicitud.',
+  },
+  guides: {
+    eyebrow: 'GUÍAS',
+    title: 'La seguridad en Venezuela, explicada',
+    note: 'Guías con fuentes y fecha para empresas y viajeros (en inglés). Se revisan cada mes.',
+    read: 'Leer la guía (en inglés)',
+  },
+  faq: {
+    eyebrow: 'PREGUNTAS FRECUENTES',
+    title: 'Lo que preguntan los equipos de seguridad',
+    items: [
+      { q: '¿Es seguro viajar a Venezuela por negocios en 2026?', a: 'Es posible viajar a Caracas por negocios con planificación, pero el entorno sigue siendo de riesgo alto. Estados Unidos mantiene el nivel 3, «Reconsider Travel» (27 de junio de 2026), y el Reino Unido desaconseja todo viaje a las zonas fronterizas y mineras. Las mayores exposiciones son el traslado desde el aeropuerto, los movimientos de noche y la delincuencia; una evaluación previa, transporte verificado y un centro de operaciones 24/7 las reducen.', link: { href: '/cecom-intel/venezuela-security-outlook-2026', label: 'Guía: seguridad en Venezuela 2026 (en inglés)' } },
+      { q: '¿Qué es el CECOM?', a: 'Es el Centro de Comando de CSSG en Caracas: un centro de operaciones de seguridad que vigila riesgos las 24 horas, sigue patrullas y desplazamientos en tiempo real y coordina la respuesta. CECOM-Intel es su unidad de análisis de riesgo: produce el boletín diario, las alertas y las evaluaciones.' },
+      { q: '¿Pueden apoyar a una empresa o firma de riesgo que no tiene equipo en Venezuela?', a: 'Sí. Trabajamos como socio local de firmas internacionales de riesgo, protección y viajes: usted conserva al cliente y la relación; nosotros somos sus ojos y su capacidad de respuesta en Venezuela, bajo su estándar, en inglés y en los formatos que su equipo ya usa.', link: { href: '/cecom-intel/doing-business-in-venezuela-security-guide', label: 'Guía: hacer negocios en Venezuela (en inglés)' } },
+      { q: '¿Qué fuentes y métodos usan?', a: 'Fuentes abiertas registradas en una lista aprobada (OSINT) y reportes de campo de nuestros oficiales en puesto y de nuestra red profesional, calificados con el código Admiralty. El riesgo se evalúa según ISO 31000 y el enfoque ESRM, con la conclusión primero. Cada informe lo verifica y firma un analista.' },
+      { q: '¿Ofrecen protección física fuera de Caracas?', a: 'El análisis cubre todo el país. La respuesta física con personal propio cubre el Distrito Capital y el estado Miranda; en el resto coordinamos con aliados autorizados y le indicamos qué servicio presta cada quien.', link: { href: '/cecom-intel/executive-travel-venezuela-journey-management', label: 'Guía: viajes ejecutivos a Venezuela (en inglés)' } },
+      { q: '¿En cuánto tiempo responden?', a: 'En menos de 24 horas, aunque sea para confirmar la recepción y el plazo de entrega.' },
+    ],
   },
   resources: {
     eyebrow: 'RECURSOS RELACIONADOS',

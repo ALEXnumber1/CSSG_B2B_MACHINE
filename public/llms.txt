@@ -39,6 +39,15 @@
 - [ShieldTrace PSIM](https://cssg-global.com/tecnologia): CCTV con IA, control biométrico, GPS en tiempo real y drones autónomos.
 - [Informes PESTEL](https://cssg-global.com/informes): Análisis de seguridad en Venezuela 2026. PDF gratuito.
 
+## CECOM-Intel — Venezuela's in-country GSOC (English)
+
+- [CECOM-Intel | CSSG Global](https://cssg-global.com/cecom-intel): Risk analysis unit of CECOM, CSSG's Security Operations Center (GSOC) in Caracas. Daily risk bulletin at 06:30 (Venezuela time) with cited sources graded on the Admiralty code, real-time alerts, journey management, and tailored assessments of cities, routes, hotels and sites. Free sample bulletin on request; response within 24 hours. Spanish version: https://cssg-global.com/cecom-intel/es
+- In-country partner for international risk, protection and travel-risk firms without a presence in Venezuela: the partner keeps the client and the relationship; CSSG provides eyes on the ground and response capacity under the partner's standard, in English.
+- Coverage: analysis nationwide; physical response with CSSG's own personnel in the Capital District and Miranda state; elsewhere through authorized partners. Invoicing in USD through Company of Security and Service Global LLC (Miami).
+- [Is it safe to travel to Venezuela in 2026?](https://cssg-global.com/cecom-intel/venezuela-security-outlook-2026): Security outlook for business travelers, with current U.S. and UK advisories (reviewed October 2026).
+- [Doing business in Venezuela in 2026: security guide](https://cssg-global.com/cecom-intel/doing-business-in-venezuela-security-guide): Operating environment, sanctions context, risk areas and how to choose a licensed local security partner.
+- [Executive travel to Venezuela](https://cssg-global.com/cecom-intel/executive-travel-venezuela-journey-management): Airport arrival at Maiquetía, vetted transfers and journey management.
+
 ## Servicios de Consultoría
 
 - [Evaluación de Riesgos](https://cssg-global.com/consultoria/evaluacion-de-riesgos-de-seguridad): ESRM e ISO 31000.

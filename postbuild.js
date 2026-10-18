@@ -83,7 +83,7 @@ const routes = [
     title: 'Diagnóstico de Vulnerabilidades Corporativas Gratuito | FMEA ISO 31000 | CSSG',
     description: 'Evalúe el nivel de vulnerabilidad de su organización en 8 minutos. Metodología FMEA aplicada a 4 pilares: Perímetro, Accesos, Procedimientos e Inteligencia. Sin costo.',
     image: 'https://cssg-global.com/risk_analysis_cta.webp',
-    jsonld: { "@context": "https://schema.org", "@type": "SoftwareApplication", "name": "CSSG Risk Analyzer — Análisis de Riesgo ISO 31000", "description": "Herramienta gratuita de autodiagnóstico de seguridad corporativa. Metodología FMEA + ISO 31000:2018. Evalúa 4 pilares: Perímetro, Accesos, Procedimientos e Inteligencia.", "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "127" }, "author": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" } }
+    jsonld: { "@context": "https://schema.org", "@type": "SoftwareApplication", "name": "CSSG Risk Analyzer — Análisis de Riesgo ISO 31000", "description": "Herramienta gratuita de autodiagnóstico de seguridad corporativa. Metodología FMEA + ISO 31000:2018. Evalúa 4 pilares: Perímetro, Accesos, Procedimientos e Inteligencia.", "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "author": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" } }
   },
   {
     path: 'quienes-somos',
@@ -684,14 +684,7 @@ const routes = [
       "@context": "https://schema.org",
       "@type": "Organization",
       "name": "CSSG — Company Of Security And Service Global",
-      "url": "https://cssg-global.com",
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "5.0",
-        "bestRating": "5",
-        "worstRating": "1",
-        "ratingCount": "1"
-      }
+      "url": "https://cssg-global.com"
     }
   },
   {
@@ -819,11 +812,44 @@ const routes = [
   },
   // CECOM-Intel sub-brand: English is the default version, Spanish lives under /es.
   {
+    path: 'cecom-intel/venezuela-security-outlook-2026',
+    lang: 'en',
+    title: "Is It Safe to Travel to Venezuela in 2026? Business Security Outlook | CECOM-Intel",
+    description: "Current U.S. and UK advisories, the main risks for business travelers in Caracas and the higher-risk regions of Venezuela, and the practical measures that reduce exposure. Reviewed October 2026.",
+    image: 'https://cssg-global.com/cecom-intel/og-cecom-intel.jpg',
+    ogImageAlt: 'CECOM-Intel by CSSG — Know, then decide.',
+    ogImageWidth: 1200,
+    ogImageHeight: 630,
+    preloadFont: 'https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,700;1,500&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap'
+  },
+  {
+    path: 'cecom-intel/doing-business-in-venezuela-security-guide',
+    lang: 'en',
+    title: "Doing Business in Venezuela 2026: Security Guide for International Companies | CECOM-Intel",
+    description: "Security and duty-of-care considerations for companies entering or returning to Venezuela in 2026: the operating environment, sanctions context, risk areas and how to choose a licensed local security partner.",
+    image: 'https://cssg-global.com/cecom-intel/og-cecom-intel.jpg',
+    ogImageAlt: 'CECOM-Intel by CSSG — Know, then decide.',
+    ogImageWidth: 1200,
+    ogImageHeight: 630,
+    preloadFont: 'https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,700;1,500&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap'
+  },
+  {
+    path: 'cecom-intel/executive-travel-venezuela-journey-management',
+    lang: 'en',
+    title: "Executive Travel to Venezuela: Airport Transfers & Journey Management | CECOM-Intel",
+    description: "How to plan an executive trip to Caracas in 2026: pre-trip assessment, arrival at Maiquetía, vetted transfers, journey management, daily risk updates and limits of physical response outside Caracas.",
+    image: 'https://cssg-global.com/cecom-intel/og-cecom-intel.jpg',
+    ogImageAlt: 'CECOM-Intel by CSSG — Know, then decide.',
+    ogImageWidth: 1200,
+    ogImageHeight: 630,
+    preloadFont: 'https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,700;1,500&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap'
+  },
+  {
     path: 'cecom-intel',
     lang: 'en',
     alternates: { en: 'cecom-intel', es: 'cecom-intel/es' },
-    title: 'CECOM-Intel | CSSG Global — Risk Analysis & Daily Risk Bulletin for Venezuela',
-    description: 'CECOM-Intel is CSSG Global’s risk analysis unit in Caracas: daily risk bulletin at 06:30, real-time alerts and tailored assessments of cities, routes and sites in Venezuela. Request a free sample.',
+    title: 'Venezuela GSOC & Security Risk Analysis | CECOM-Intel by CSSG Global',
+    description: 'CECOM-Intel is the risk analysis unit of CSSG’s in-country GSOC in Caracas: daily risk bulletin at 06:30, real-time alerts, journey management and tailored assessments for companies operating in Venezuela.',
     image: 'https://cssg-global.com/cecom-intel/og-cecom-intel.jpg',
     ogImageAlt: 'CECOM-Intel by CSSG — Know, then decide.',
     ogImageWidth: 1200,
@@ -835,7 +861,7 @@ const routes = [
     path: 'cecom-intel/es',
     lang: 'es',
     alternates: { en: 'cecom-intel', es: 'cecom-intel/es' },
-    title: 'CECOM-Intel | CSSG Global — Análisis de Riesgo y Boletín Diario de Riesgo en Venezuela',
+    title: 'Centro de Comando y Análisis de Riesgo en Venezuela | CECOM-Intel by CSSG',
     description: 'CECOM-Intel es la unidad de análisis de riesgo de CSSG Global en Caracas: boletín diario de riesgo a las 06:30, alertas en tiempo real y evaluaciones a la medida de ciudades, rutas y sedes. Solicite una muestra gratuita.',
     image: 'https://cssg-global.com/cecom-intel/og-cecom-intel.jpg',
     ogImageAlt: 'CECOM-Intel by CSSG — Know, then decide.',

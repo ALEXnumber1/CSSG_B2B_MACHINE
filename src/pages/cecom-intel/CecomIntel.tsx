@@ -1,9 +1,10 @@
 import { useEffect, useState, type FormEvent, type ReactNode } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { CecomIntelMap, CecomIntelWordmark, CECOM_INTEL_FONTS } from '../../components/cecom-intel/CecomIntelMark';
+import { CecomIntelMap, CecomIntelWordmark, CECOM_INTEL_FONTS, JsonLd } from '../../components/cecom-intel/CecomIntelMark';
 import { saveLead } from '../../lib/leads';
 import { sendLeadNotification } from '../../lib/email';
 import { CONTENT, PATHS, PRICES, type Interest, type Lang } from './content';
+import { GUIDES } from './guides';
 import '../../styles/cecom-intel.css';
 
 const FREE_EMAIL_DOMAINS = ['gmail.com', 'hotmail.com', 'outlook.com', 'yahoo.com', 'live.com', 'icloud.com'];
@@ -114,6 +115,12 @@ export default function CecomIntel({ lang }: { lang: Lang }) {
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       <link rel="stylesheet" href={CECOM_INTEL_FONTS} />
+      <JsonLd data={{
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        inLanguage: lang,
+        mainEntity: t.faq.items.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+      }} />
 
       {/* 1 · Sub-brand menu */}
       <nav className="ci-subnav" aria-label="CECOM-Intel">
@@ -143,8 +150,8 @@ export default function CecomIntel({ lang }: { lang: Lang }) {
       <header id="top" className="ci-hero">
         <div className="ci-hero__inner">
           <div className="ci-hero__copy">
-            <div className="ci-eyebrow">{t.hero.eyebrow}</div>
-            <h1>Know, then decide.</h1>
+            <h1 className="ci-eyebrow">{t.hero.eyebrow}</h1>
+            <p className="ci-hero__motto">Know, then decide.</p>
             <p className="ci-hero__lead">{t.hero.lead}</p>
             <div className="ci-hero__ctas">
               <a href="#muestra" className="ci-btn ci-btn--gold" onClick={() => pickInterest('sample', 'hero')}>{t.hero.ctaSample}</a>
@@ -376,6 +383,46 @@ export default function CecomIntel({ lang }: { lang: Lang }) {
               </>
             )}
           </form>
+        </div>
+      </section>
+
+      {/* Field guides */}
+      <section id="guias" className="ci-section">
+        <div className="ci-stack">
+          <div className="ci-head">
+            <div className="ci-eyebrow">{t.guides.eyebrow}</div>
+            <h2 className="ci-h2">{t.guides.title}</h2>
+            <p className="ci-p">{t.guides.note}</p>
+          </div>
+          <div className="ci-grid-3">
+            {GUIDES.map(g => (
+              <div key={g.slug} className="ci-card">
+                <div className="ci-method__label" style={{ fontSize: 12 }}>{g.eyebrow}</div>
+                <div className="ci-card__title">{g.title}</div>
+                <p className="ci-p" style={{ flexGrow: 1 }}>{g.description}</p>
+                <Link to={`/cecom-intel/${g.slug}`} hrefLang="en">{t.guides.read} →</Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ (mirrored as FAQPage structured data in postbuild.js) */}
+      <section id="preguntas" className="ci-section ci-alt">
+        <div className="ci-wrap ci-split">
+          <div className="ci-head">
+            <div className="ci-eyebrow">{t.faq.eyebrow}</div>
+            <h2 className="ci-h2">{t.faq.title}</h2>
+          </div>
+          <div className="ci-col ci-faq">
+            {t.faq.items.map(f => (
+              <details key={f.q}>
+                <summary>{f.q}</summary>
+                <p className="ci-p ci-p--body">{f.a}</p>
+                {'link' in f && f.link && <p className="ci-p" style={{ marginTop: 10 }}><Link to={f.link.href}>{f.link.label} →</Link></p>}
+              </details>
+            ))}
+          </div>
         </div>
       </section>
 
