@@ -57,6 +57,7 @@ function fuente_label(fuente) {
     lp_consultoria_riesgos: 'Evaluación de Riesgos de Seguridad',
     lp_corporate_security_en: 'Corporate Security Consulting (EN)',
     lp_diplomatic_security_en: 'Diplomatic Security (EN)',
+    cecom_intel: 'CECOM-Intel',
   };
   return map[fuente] || fuente.replace(/_/g, ' ');
 }

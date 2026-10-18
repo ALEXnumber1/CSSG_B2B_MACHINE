@@ -39,6 +39,7 @@ const resources = {
         quienes_somos: 'Quiénes Somos',
         consultoria: 'Consultoría',
         tecnologia: 'Tecnología',
+        cecom_intel: 'CECOM‑Intel', // non-breaking hyphen: never splits in the menu
         informes: 'Informes',
         riesgos: 'Análisis de Riesgos',
         portal: 'Portal RRHH / Oficiales',
@@ -448,6 +449,7 @@ const resources = {
         quienes_somos: 'About Us',
         consultoria: 'Consulting',
         tecnologia: 'Technology',
+        cecom_intel: 'CECOM‑Intel', // non-breaking hyphen: never splits in the menu
         informes: 'Reports',
         riesgos: 'Risk Analysis',
         portal: 'HR Portal / Officers',

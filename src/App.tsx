@@ -60,6 +60,9 @@ const CertificacionesConsultoria = lazyWithPreload(() => import('./pages/consult
 const AsesoriaLegal = lazyWithPreload(() => import('./pages/consultoria/AsesoriaLegal'))
 const SecureLanding = lazyWithPreload(() => import('./pages/consultoria/SecureLanding'))
 
+// CECOM-Intel sub-brand (English default, Spanish under /es)
+const CecomIntel = lazyWithPreload(() => import('./pages/cecom-intel/CecomIntel'))
+
 // White Papers
 const WPRiesgos = lazyWithPreload(() => import('./pages/white-papers/WPRiesgos'))
 const WPDueDiligence = lazyWithPreload(() => import('./pages/white-papers/WPDueDiligence'))
@@ -99,6 +102,8 @@ const standaloneRoutes = (
 const mainRoutes = (
   <>
     <Route path="/" element={<Home />} />
+    <Route path="/cecom-intel" element={<CecomIntel lang="en" />} />
+    <Route path="/cecom-intel/es" element={<CecomIntel lang="es" />} />
     <Route path="/quienes-somos" element={<QuienesSomos />} />
     <Route path="/consultoria" element={<Consultoria />} />
     <Route path="/consultoria-seguridad-caracas" element={<Consultoria />} />

@@ -11,6 +11,7 @@ const navLinks = [
   { to: '/quienes-somos', tKey: 'nav.quienes_somos', external: false },
   { to: '/consultoria', tKey: 'nav.consultoria', external: false },
   { to: '/tecnologia', tKey: 'nav.tecnologia', external: false },
+  { to: '/cecom-intel', tKey: 'nav.cecom_intel', external: false },
   { to: '/blog', tKey: 'nav.blog', external: false },
 ];
 
@@ -29,6 +30,10 @@ export default function Navbar() {
   const [resourcesOpen, setResourcesOpen] = useState(false);
   const location = useLocation();
   const { t, i18n } = useTranslation();
+
+  // CECOM-Intel is English-first; Spanish-language visitors go to its Spanish version.
+  const resolveTo = (to: string) => (to === '/cecom-intel' && !i18n.language.startsWith('en') ? '/cecom-intel/es' : to);
+  const isActive = (to: string) => (to === '/cecom-intel' ? location.pathname.startsWith(to) : location.pathname === to);
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
@@ -63,9 +68,9 @@ export default function Navbar() {
             {navLinks.map((link) => (
               <Link
                 key={link.to}
-                to={link.to}
-                className={`px-4 py-2 rounded-lg transition-colors ${
-                  location.pathname === link.to 
+                to={resolveTo(link.to)}
+                className={`px-3 2xl:px-4 py-2 rounded-lg transition-colors ${
+                  isActive(link.to) 
                     ? 'text-sky-400 bg-sky-500/10' 
                     : 'hover:text-sky-400 hover:bg-white/5'
                 }`}
@@ -135,13 +140,13 @@ export default function Navbar() {
                 onClick={() => changeLanguage('en')}
                 className={`flex items-center gap-2 px-3 py-1.5 rounded-md transition-all text-xs font-medium ${i18n.language.startsWith('en') ? 'bg-sky-500/20 text-sky-400' : 'text-gray-400 hover:text-white'}`}
               >
-                <img src="https://flagcdn.com/us.svg" alt="Miami" className="w-4 h-3 object-cover rounded-[2px]" /> <span className="inline">Miami</span>
+                <img src="https://flagcdn.com/us.svg" alt="Miami" className="w-4 h-3 object-cover rounded-[2px]" /> <span className="hidden 2xl:inline">Miami</span>
               </button>
               <button 
                 onClick={() => changeLanguage('es')}
                 className={`flex items-center gap-2 px-3 py-1.5 rounded-md transition-all text-xs font-medium ${i18n.language.startsWith('es') ? 'bg-sky-500/20 text-sky-400' : 'text-gray-400 hover:text-white'}`}
               >
-                <img src="https://flagcdn.com/ve.svg" alt="Venezuela" className="w-4 h-3 object-cover rounded-[2px]" /> <span className="inline">Venezuela</span>
+                <img src="https://flagcdn.com/ve.svg" alt="Venezuela" className="w-4 h-3 object-cover rounded-[2px]" /> <span className="hidden 2xl:inline">Venezuela</span>
               </button>
             </div>
 
@@ -213,10 +218,10 @@ export default function Navbar() {
                   ) : (
                     <Link
                       key={link.to}
-                      to={link.to!}
+                      to={resolveTo(link.to!)}
                       onClick={() => setMobileOpen(false)}
                       className={`px-4 py-3 rounded-xl text-base font-bold transition-colors ${
-                        location.pathname === link.to 
+                        isActive(link.to!) 
                           ? 'bg-sky-500/20 text-sky-300 border border-sky-500/20 shadow-[0_0_15px_rgba(14,165,233,0.15)]' 
                           : 'text-gray-200 hover:text-sky-400 hover:bg-white/5'
                       }`}

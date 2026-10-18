@@ -73,7 +73,7 @@ async function renderRoute(browser, origin, route) {
   page.on('pageerror', e => errors.push(e.message));
   await page.setViewport({ width: 1366, height: 900 });
 
-  const lang = route.path.startsWith('en/') ? 'en' : 'es';
+  const lang = route.lang || (route.path.startsWith('en/') ? 'en' : 'es');
   // Deterministic first-visit state: language fixed per route, cookie banner and exit-intent
   // CTA suppressed (they only appear after mount, so hydration stays consistent either way).
   await page.evaluateOnNewDocument(l => {

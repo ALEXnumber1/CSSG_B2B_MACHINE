@@ -7,6 +7,7 @@ import MarketComparison from '../sections/MarketComparison'
 import ConsultingAndTech from '../sections/ConsultingAndTech'
 import CertificationsAndTraining from '../sections/CertificationsAndTraining'
 import StrategicCTA from '../sections/StrategicCTA'
+import CecomIntelPromo from '../sections/CecomIntelPromo'
 import MethodologyVSL from '../sections/MethodologyVSL'
 import Location from '../sections/Location'
 import ContactForm from '../sections/ContactForm'
@@ -34,6 +35,7 @@ export default function Home() {
       <Location />
       <TrustSignals />
       <StrategicCTA />
+      <CecomIntelPromo />
       <PreventionServices />
       
       {/* Ocultamos en móviles para reducir la sobrecarga visual y optimizar la venta B2B */}

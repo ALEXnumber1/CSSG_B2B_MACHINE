@@ -816,6 +816,33 @@ const routes = [
     ogImageAlt: 'Armored SUV convoy and motorcycle escort — CSSG executive protection for U.S. investors traveling to Venezuela',
     ogImageWidth: 1200,
     ogImageHeight: 630
+  },
+  // CECOM-Intel sub-brand: English is the default version, Spanish lives under /es.
+  {
+    path: 'cecom-intel',
+    lang: 'en',
+    alternates: { en: 'cecom-intel', es: 'cecom-intel/es' },
+    title: 'CECOM-Intel | CSSG Global — Risk Analysis & Daily Risk Bulletin for Venezuela',
+    description: 'CECOM-Intel is CSSG Global’s risk analysis unit in Caracas: daily risk bulletin at 06:30, real-time alerts and tailored assessments of cities, routes and sites in Venezuela. Request a free sample.',
+    image: 'https://cssg-global.com/cecom-intel/og-cecom-intel.jpg',
+    ogImageAlt: 'CECOM-Intel by CSSG — Know, then decide.',
+    ogImageWidth: 1200,
+    ogImageHeight: 630,
+    preloadFont: 'https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,700;1,500&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap',
+    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "CECOM-Intel | CSSG Global", "serviceType": "Security risk analysis", "description": "Risk analysis unit of CSSG Global's Command Center (CECOM) in Caracas: daily risk bulletin, real-time alerts and tailored assessments of cities, routes and sites in Venezuela.", "provider": { "@type": "Organization", "name": "CSSG — Company Of Security And Service Global", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" }, "inLanguage": "en" }
+  },
+  {
+    path: 'cecom-intel/es',
+    lang: 'es',
+    alternates: { en: 'cecom-intel', es: 'cecom-intel/es' },
+    title: 'CECOM-Intel | CSSG Global — Análisis de Riesgo y Boletín Diario de Riesgo en Venezuela',
+    description: 'CECOM-Intel es la unidad de análisis de riesgo de CSSG Global en Caracas: boletín diario de riesgo a las 06:30, alertas en tiempo real y evaluaciones a la medida de ciudades, rutas y sedes. Solicite una muestra gratuita.',
+    image: 'https://cssg-global.com/cecom-intel/og-cecom-intel.jpg',
+    ogImageAlt: 'CECOM-Intel by CSSG — Know, then decide.',
+    ogImageWidth: 1200,
+    ogImageHeight: 630,
+    preloadFont: 'https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,700;1,500&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap',
+    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "CECOM-Intel | CSSG Global", "serviceType": "Análisis de riesgo de seguridad", "description": "Unidad de análisis de riesgo del Centro de Comando (CECOM) de CSSG Global en Caracas: boletín diario de riesgo, alertas en tiempo real y evaluaciones a la medida de ciudades, rutas y sedes en Venezuela.", "provider": { "@type": "Organization", "name": "CSSG — Company Of Security And Service Global", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" }, "inLanguage": "es" }
   }
 ];
 
@@ -903,7 +930,7 @@ routes.forEach(route => {
   const title = escapeAttr(route.title);
   const description = escapeAttr(route.description);
 
-  if (route.path.startsWith('en/')) {
+  if (route.path.startsWith('en/') || route.lang === 'en') {
     newHtml = newHtml.replace(/<html lang="es">/, '<html lang="en">');
     newHtml = newHtml.replace(/<meta property="og:locale" content="es_VE" \/>/, '<meta property="og:locale" content="en_US" />');
   }
@@ -1027,6 +1054,12 @@ routes.forEach(route => {
   }
 
   newHtml = stripHreflang(stripUnneededPreloads(newHtml, route.path));
+  // Pages with real language versions get their own hreflang set (x-default = English).
+  if (route.alternates) {
+    const tags = Object.entries(route.alternates).map(([l, p]) => `<link rel="alternate" hreflang="${l}" href="${SITE_URL}/${p}" />`);
+    if (route.alternates.en) tags.push(`<link rel="alternate" hreflang="x-default" href="${SITE_URL}/${route.alternates.en}" />`);
+    newHtml = newHtml.replace(/<\/head>/, () => `${tags.join('\n  ')}\n  </head>`);
+  }
 
   const routeDir = path.join(distDir, route.path);
   if (!fs.existsSync(routeDir)) {
