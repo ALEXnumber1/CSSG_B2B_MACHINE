@@ -61,7 +61,9 @@ function Counter({ to, suffix = '', decimals = 0 }: { to: number; suffix?: strin
     return () => controls.stop();
   }, [inView, to, suffix, decimals]);
 
-  return <span ref={ref}>0{suffix}</span>;
+  // Render the final figure: it is what prerendered HTML and crawlers see. The count-up from 0
+  // only starts once a visitor scrolls the counter into view.
+  return <span ref={ref}>{to.toFixed(decimals)}{suffix}</span>;
 }
 
 const stats = [

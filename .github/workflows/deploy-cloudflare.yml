@@ -53,6 +53,11 @@ jobs:
             exit 1
           fi
 
+      # Compare each page with the live one *before* deploying, so IndexNow only gets real changes.
+      - name: Detect changed pages for IndexNow
+        run: node scripts/indexnow.mjs diff
+        continue-on-error: true
+
       - name: Deploy to Cloudflare
         run: npx wrangler deploy
         env:
@@ -79,3 +84,9 @@ jobs:
             npx wrangler rollback -y --message "Auto-rollback: smoke test failed for ${GITHUB_SHA}"
             exit 1
           fi
+
+      # Tell Bing (and ChatGPT search, which uses Bing's index) which pages changed. Runs only after
+      # the smoke test passed; a failure here never fails the deploy.
+      - name: Notify search engines via IndexNow
+        run: node scripts/indexnow.mjs submit
+        continue-on-error: true

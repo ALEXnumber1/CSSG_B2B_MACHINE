@@ -7,7 +7,9 @@ function Counter({ from, to, duration = 2 }: { from: number; to: number; duratio
   const inView = useInView(ref, { once: true });
   const motionValue = useMotionValue(from);
   const springValue = useSpring(motionValue, { duration: duration * 1000 });
-  const [displayValue, setDisplayValue] = useState(from);
+  // Show the final figure until the count-up runs, so no crawler or snapshot ever reads the
+  // starting value ("150 incidents").
+  const [displayValue, setDisplayValue] = useState(to);
 
   useEffect(() => {
     if (inView) {

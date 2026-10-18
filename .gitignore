@@ -35,3 +35,6 @@ scratch/
 !.dev.vars.example
 .env*
 !.env.example
+
+# IndexNow: changed URLs computed during deploy
+indexnow-urls.txt

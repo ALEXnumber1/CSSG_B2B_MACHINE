@@ -65,11 +65,13 @@ function Counter({ to, suffix = '', decimals = 0 }: { to: number; suffix?: strin
     return () => controls.stop();
   }, [inView, to, suffix, decimals]);
 
-  return <span ref={ref}>0{suffix}</span>;
+  // Render the final figure: it is what prerendered HTML and crawlers see. The count-up from 0
+  // only starts once a visitor scrolls the counter into view.
+  return <span ref={ref}>{to.toFixed(decimals)}{suffix}</span>;
 }
 
 const stats = [
-  { to: 17, suffix: '+', label: 'Years serving G7 embassies and corporations without incident' },
+  { to: 17, suffix: '+', label: 'Years without incident, serving corporations and G7 embassies' },
   { to: 1, suffix: ' of few', label: 'ISO 9001-certified security firms in Venezuela' },
   { to: 24, suffix: '/7', label: 'Command center (CECOM) oversight' },
   { to: 12, suffix: 'h', label: 'Response time to a qualified inquiry' },
