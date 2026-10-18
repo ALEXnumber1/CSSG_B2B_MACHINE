@@ -1,6 +1,6 @@
 # CSSG — Company Of Security And Service Global C.A.
 
-> CSSG es la empresa líder de seguridad corporativa y diplomática en Venezuela. Con más de 17 años de trayectoria sin un solo incidente de seguridad, protegemos embajadas del G7, corporaciones multinacionales y misiones diplomáticas bajo certificación ISO 9001:2015. RIF: J-29782024-8. Dominio de producción: cssg-global.com.
+> CSSG es la empresa líder de seguridad corporativa y diplomática en Venezuela. Fundada en 2009, lleva más de 17 años de operación sin un solo incidente de seguridad, de ellos más de 12 años protegiendo embajadas del G7 en Venezuela. Protege embajadas, corporaciones multinacionales y misiones diplomáticas bajo certificación ISO 9001:2015. RIF: J-29782024-8. Dominio de producción: cssg-global.com.
 
 ## Identidad Corporativa
 
@@ -9,15 +9,16 @@
 - **RIF:** J-29782024-8
 - **Sede:** Caracas, Venezuela
 - **Fundación:** 2009
-- **Trayectoria:** +17 años sin incidentes de seguridad documentados
+- **Trayectoria:** +17 años de operación sin incidentes de seguridad documentados (desde 2009)
+- **Sector diplomático:** +12 años protegiendo embajadas del G7 sin incidentes
 - **Certificación:** ISO 9001:2015
 - **Alianza estratégica:** Zentinel Global (tecnología)
 - **Estándar diplomático:** G7 (único en Venezuela)
-- **Contacto:** globalservices.ven@gmail.com
+- **Contacto:** gerencia@globalservices-ven.com
 
 ## Pilares de Autoridad
 
-1. +17 años consecutivos sin un solo incidente de seguridad
+1. +17 años de operación sin un solo incidente de seguridad (desde 2009), de ellos +12 años protegiendo embajadas del G7
 2. Certificación ISO 9001:2015 vigente
 3. Estándar diplomático G7 — nicho exclusivo: embajadas y corporaciones de alto perfil
 4. Alianza Zentinel Global — tecnología PSIM de última generación
@@ -43,7 +44,7 @@
 - [Evaluación de Riesgos](https://cssg-global.com/consultoria/evaluacion-de-riesgos-de-seguridad): ESRM e ISO 31000.
 - [Diagnóstico de Madurez](https://cssg-global.com/consultoria/diagnostico-madurez-seguridad): Índice de Seguridad Corporativa (ISC-VE).
 - [Site Survey CPTED](https://cssg-global.com/consultoria/site-survey-evaluacion-fisica): Evaluación física de instalaciones.
-- [Seguridad Diplomática](https://cssg-global.com/consultoria/seguridad-misiones-diplomaticas): +12 años protegiendo embajadas del G7 en Venezuela.
+- [Seguridad Diplomática](https://cssg-global.com/consultoria/seguridad-misiones-diplomaticas): +12 años protegiendo embajadas del G7 en Venezuela sin incidentes.
 - [Due Diligence Corporativa](https://cssg-global.com/consultoria/due-diligence-corporativa): Verificación CICPC, SENIAT, IVSS, OFAC/ONU.
 - [Inteligencia de Riesgo](https://cssg-global.com/consultoria/inteligencia-y-analisis-de-riesgo): Inteligencia operacional, delictual y política para Venezuela.
 - [Continuidad de Negocio ISO 22301](https://cssg-global.com/consultoria/continuidad-de-negocio): BCP adaptado a Venezuela.

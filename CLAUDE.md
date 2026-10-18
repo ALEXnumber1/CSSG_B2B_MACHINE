@@ -128,7 +128,7 @@ This is a **"Luxury Tech"** dark-mode brand. Violating the visual identity is a 
 ## Business Context (for copywriting and features)
 
 The 5 authority pillars that must appear in all commercial copy:
-1. **+12 years without a single security incident** — primary trust anchor
+1. **+17 years without a single security incident** (founded 2009), **+12 of them protecting G7 embassies** — primary trust anchor. Never say "17 years protecting embassies": 17 is the company, 12 is the diplomatic sector
 2. **ISO 9001:2015 certification** — quality guarantee
 3. **Diplomatic/G7 standard** — exclusive niche (embassies, high-value corps)
 4. **Zentinel Global alliance** — strategic tech partner

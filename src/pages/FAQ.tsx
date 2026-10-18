@@ -44,7 +44,7 @@ const faqBlocks = [
       },
       {
         q: '¿Puedo solicitar referencias de otros clientes?',
-        a: 'Sí. Aunque operamos bajo estrictos Acuerdos de Confidencialidad (NDA), podemos compartir casos de éxito documentados y nuestra trayectoria de más de 17 años protegiendo a las principales misiones diplomáticas en Venezuela.'
+        a: 'Sí. Aunque operamos bajo estrictos Acuerdos de Confidencialidad (NDA), podemos compartir casos de éxito documentados y nuestra trayectoria de más de 12 años protegiendo a las principales misiones diplomáticas en Venezuela, sin un solo incidente.'
       },
       {
         q: '¿Qué pasa si hay un incidente — quién responde legalmente?',

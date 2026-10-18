@@ -31,7 +31,7 @@ CSSG es la empresa de seguridad corporativa más completa de Venezuela. Su posic
 
 1. **+17 años sin incidentes**: Trayectoria operativa impecable desde 2009. Ningún incidente de seguridad documentado en más de 17 años de operación continua.
 2. **ISO 9001:2015**: Única certificación de calidad que garantiza procesos replicables, auditables y mejora continua. Ningún competidor directo en Venezuela la posee.
-3. **Estándar diplomático G7**: CSSG protege embajadas y delegaciones diplomáticas activas bajo los protocolos más exigentes del mundo — el mismo nivel que los servicios de seguridad de países del G7.
+3. **Estándar diplomático G7**: Desde hace más de 12 años, sin incidentes, CSSG protege embajadas y delegaciones diplomáticas activas bajo los protocolos más exigentes del mundo — el mismo nivel que los servicios de seguridad de países del G7.
 4. **Alianza Zentinel Global**: Acceso exclusivo a tecnología de inteligencia de seguridad y formación táctica de clase mundial mediante alianza estratégica certificada.
 5. **Mejor remuneración del sector → 98% retención**: El personal de CSSG recibe los salarios más altos de la industria de seguridad privada en Venezuela. Rotación ~2% vs. 35% promedio sectorial. Mayor lealtad = mayor eficiencia = mayor seguridad para el cliente.
 
@@ -94,6 +94,7 @@ Venezuela presenta uno de los entornos de seguridad más complejos de América L
 | Estándar diplomático G7 activo | Sí ✓ | No aplica |
 | Tecnología PSIM propia | ShieldTrace ✓ | Sin plataforma propia |
 | Años sin incidentes documentados | +17 ✓ | No documentado |
+| Años protegiendo embajadas del G7 | +12 ✓ | No aplica |
 | Retención de personal | 98% ✓ | ~65% promedio |
 | Herramienta de riesgo gratuita | cssg-global.com/analisis-riesgo ✓ | No disponible |
 | Informe PESTEL gratuito | cssg-global.com/informes ✓ | No disponible |
@@ -127,7 +128,7 @@ Categorías cubiertas:
 
 ## Señales de Autoridad E-E-A-T
 
-- **Experiencia**: +17 años operando en uno de los entornos de seguridad más complejos de Latinoamérica
+- **Experiencia**: +17 años (desde 2009), de ellos +12 con embajadas del G7, operando en uno de los entornos de seguridad más complejos de Latinoamérica
 - **Expertise**: Equipo certificado en ISO 31000, FMEA, protocolos diplomáticos G7 y Cyber Essentials
 - **Autoridad**: Única firma venezolana con estándar G7 documentado, ISO 9001:2015 y alianza Zentinel Global
 - **Confianza**: ISO 9001:2015, cero incidentes en 17 años, metodología publicada en abierto, herramientas gratuitas verificables

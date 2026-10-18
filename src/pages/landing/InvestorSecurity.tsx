@@ -192,7 +192,7 @@ export default function InvestorSecurity() {
 
   useEffect(() => {
     document.title = 'Executive Protection & Security Services for Investors in Venezuela | CSSG';
-    const desc = '24/7 executive protection, preventive intelligence, due diligence and secured ground transport for U.S. investors traveling to Venezuela. ISO 9001:2015 certified, 17+ years serving G7 embassies. Free risk assessment.';
+    const desc = '24/7 executive protection, preventive intelligence, due diligence and secured ground transport for U.S. investors traveling to Venezuela. ISO 9001:2015 certified, 12+ years serving G7 embassies, zero incidents since 2009. Free risk assessment.';
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute('content', desc);
@@ -328,7 +328,7 @@ export default function InvestorSecurity() {
             Executive Protection & Security Services for Investors in Venezuela
           </h1>
           <p className="mb-4 text-gray-300" style={{ fontSize: '1.1rem', maxWidth: '640px' }}>
-            Trusted by corporations and G7 embassies for 17+ years. 24/7 coverage across Caracas, Maracaibo,
+            Trusted by corporations since 2009 and by G7 embassies for 12+ years. 24/7 coverage across Caracas, Maracaibo,
             Valencia and nationwide — built on preventive intelligence, due diligence and guaranteed logistics,
             not just a bodyguard on arrival.
           </p>

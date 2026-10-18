@@ -689,7 +689,7 @@ export const WhitePaperDueDiligence = () => (
             {' '}es una firma venezolana de seguridad corporativa y diplomática domiciliada en Caracas con 17 años de operación continua. Certificada ISO 9001:2015 (Cert. 580181) por LL-C y Cyber Essentials. Miembro Corporativo IFPO — International Foundation for Protection Officers.
           </Text>
           <View style={{ marginBottom: 12 }}>
-            <Li>+17 años sin un solo incidente de seguridad en entornos corporativos y diplomáticos</Li>
+            <Li>+17 años sin un solo incidente de seguridad, 12 de ellos en entornos diplomáticos</Li>
             <Li>Clientela que incluye misiones diplomáticas del G7 en Venezuela</Li>
             <Li>Personal con la mayor remuneración del sector en Venezuela — rotación casi nula — lealtad garantizada</Li>
             <Li>Único socio local domiciliado en Venezuela con certificaciones internacionales auditables</Li>

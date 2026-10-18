@@ -116,7 +116,7 @@ const EMAIL_TEMPLATES = {
     subject: 'Su consulta gratuita con un experto le espera — CSSG',
     html: (nombre) => baseTemplate(`
       <h2 style="color:#0F172A;font-size:22px;margin:0 0 16px;">${nombre}, un último paso.</h2>
-      <p style="color:#334155;font-size:15px;line-height:1.7;">Con <strong>+17 años protegiendo embajadas del G7</strong> sin un solo incidente, su seguridad está en las mejores manos.</p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;">Con <strong>17 años sin un solo incidente</strong>, 12 de ellos protegiendo embajadas del G7, su seguridad está en las mejores manos.</p>
       <div style="text-align:center;margin:24px 0;">
         <a href="https://cssg-global.com/consultoria" style="display:inline-block;background-color:#0EA5E9;color:#FFFFFF;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:600;">Agendar consulta gratuita</a>
       </div>
@@ -153,7 +153,7 @@ const EMAIL_TEMPLATES = {
     subject: 'Caso de éxito: cómo protegemos embajadas del G7 — CSSG',
     html: (nombre) => baseTemplate(`
       <h2 style="color:#0F172A;font-size:22px;margin:0 0 16px;">Hola ${nombre},</h2>
-      <p style="color:#334155;font-size:15px;line-height:1.7;"><strong>+17 años. Cero incidentes.</strong> Protegiendo delegaciones diplomáticas del G7 en Venezuela.</p>
+      <p style="color:#334155;font-size:15px;line-height:1.7;"><strong>17 años. Cero incidentes.</strong> Los últimos 12, protegiendo delegaciones diplomáticas del G7 en Venezuela.</p>
       <p style="color:#334155;font-size:15px;line-height:1.7;"><strong>Cero rotación de personal.</strong> Pagamos los mejores salarios del sector — los mismos oficiales protegen la misma instalación durante años.</p>
       <div style="text-align:center;margin:24px 0;">
         <a href="https://cssg-global.com/quienes-somos" style="display:inline-block;background-color:#0EA5E9;color:#FFFFFF;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:600;">Conocer nuestra historia</a>

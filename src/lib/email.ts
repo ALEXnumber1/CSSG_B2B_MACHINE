@@ -76,7 +76,7 @@ const templates: Record<string, { subject: string | ((nombre: string, empresa?: 
       </div>
 
       <p style="color:#1E293B;font-size:15px;line-height:1.7;margin:0 0 24px;font-weight:600;">
-        ¿Por qué confiar en CSSG? Nuestra tasa de éxito es simple: Más de 17 años de experiencia y Cero Incidentes protegiendo embajadas del G7 y corporaciones internacionales en Venezuela.
+        ¿Por qué confiar en CSSG? Nuestro historial habla por sí solo: 17 años de operación sin un solo incidente, protegiendo corporaciones internacionales y, desde hace 12 años, embajadas del G7 en Venezuela.
       </p>
 
       <div style="text-align:center;margin:32px 0 16px;">
@@ -675,7 +675,7 @@ const sequenceTemplates: Record<string, { subject: string | ((nombre: string, em
         las necesidades específicas de su organización.
       </p>
       <p style="color:#9CA3AF;font-size:14px;line-height:1.7;margin:0 0 24px;">
-        Con <strong style="color:#10B981;">+17 años protegiendo embajadas del G7</strong> sin un solo incidente, 
+        Con <strong style="color:#10B981;">17 años sin un solo incidente</strong>, 12 de ellos protegiendo embajadas del G7, 
         su seguridad está en las mejores manos.
       </p>
       <div style="text-align:center;">

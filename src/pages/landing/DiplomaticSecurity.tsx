@@ -135,7 +135,7 @@ const FAQS = [
   },
   {
     q: 'What makes CSSG different from a general executive protection firm?',
-    a: 'CSSG has operated diplomatic security details for embassies and missions in Venezuela for 17+ years without a single registered incident, under G7 standard and protocols aligned with the Vienna Convention — not a general close-protection background applied to a diplomatic context.',
+    a: 'CSSG has operated diplomatic security details for embassies and missions in Venezuela for 12+ years without a single registered incident (zero incidents company-wide since 2009), under G7 standard and protocols aligned with the Vienna Convention — not a general close-protection background applied to a diplomatic context.',
   },
   {
     q: 'Do you coordinate with our own mission security office or host-government authorities?',
@@ -151,7 +151,7 @@ const FAQS = [
   },
   {
     q: 'Why do you limit the number of diplomatic and executive engagements you take on?',
-    a: 'Zero incidents in 17+ years is a function of capacity and vetting, not luck. We would rather decline an engagement than dilute the oversight our standard requires.',
+    a: 'Zero incidents in 17 years of operation, 12 of them on diplomatic details, is a function of capacity and vetting, not luck. We would rather decline an engagement than dilute the oversight our standard requires.',
   },
   {
     q: 'What happens to my information?',
@@ -176,7 +176,7 @@ export default function DiplomaticSecurity() {
 
   useEffect(() => {
     document.title = 'Diplomatic Security Services in Venezuela | G7 Standard | CSSG';
-    const desc = 'Diplomatic security service for embassies, missions and executive families in Venezuela. 17+ years without incident, G7 standard, Vienna Convention protocol. Request a confidential briefing — CSSG.';
+    const desc = 'Diplomatic security service for embassies, missions and executive families in Venezuela. 12+ years protecting embassies without incident, G7 standard, Vienna Convention protocol. Request a confidential briefing — CSSG.';
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute('content', desc);
@@ -324,7 +324,7 @@ export default function DiplomaticSecurity() {
           </div>
           <h1 className="mb-6" style={{ fontFamily: SERIF, fontWeight: 600, fontSize: 'clamp(2.1rem, 4.6vw, 3.5rem)', lineHeight: 1.18, textShadow: '0 2px 30px rgba(0,0,0,.5)' }}>
             Most security firms have never protected a diplomat.
-            <br />CSSG has — for 17 years, without incident.
+            <br />CSSG has — for 12 years, without incident.
           </h1>
           <p className="mb-4 text-gray-300" style={{ fontSize: '1.1rem', maxWidth: '620px' }}>
             <strong className="text-white">Escudo Diplomático</strong> is CSSG's diplomatic security service, built on G7 standard

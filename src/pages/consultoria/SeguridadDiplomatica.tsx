@@ -8,7 +8,7 @@ const CONTENT = {
     badge: 'Misiones Diplomáticas · Convención de Viena · G7',
     title: 'Seguridad para Misiones Diplomáticas',
     subtitle: 'El estándar que exigen los gobiernos del G7 en Venezuela',
-    intro: 'Protegemos embajadas, cancillerías, consulados y misiones internacionales con los estándares operacionales que exigen los gobiernos del G7. Más de 17 años sin incidentes en entornos diplomáticos en Venezuela nos posicionan como el socio local de confianza para misiones que no pueden permitirse errores.',
+    intro: 'Protegemos embajadas, cancillerías, consulados y misiones internacionales con los estándares operacionales que exigen los gobiernos del G7. Más de 12 años sin incidentes en entornos diplomáticos en Venezuela, dentro de 17 años de operación sin un solo incidente, nos posicionan como el socio local de confianza para misiones que no pueden permitirse errores.',
     faqs: [
       {
         q: '¿Qué estándares rigen la seguridad de misiones diplomáticas?',
@@ -16,7 +16,7 @@ const CONTENT = {
       },
       {
         q: '¿Por qué confían en CSSG los gobiernos del G7 en Venezuela?',
-        a: 'Porque llevamos más de 17 años protegiendo misiones diplomáticas en Venezuela sin un solo incidente de seguridad. Nuestro personal está formado bajo estándares internacionales, verificado por CICPC y certificado bajo ISO 9001:2015. Hemos superado auditorías de seguridad de gobiernos de Europa y América del Norte.',
+        a: 'Porque llevamos más de 12 años protegiendo misiones diplomáticas en Venezuela sin un solo incidente de seguridad, y 17 años sin incidentes como empresa. Nuestro personal está formado bajo estándares internacionales, verificado por CICPC y certificado bajo ISO 9001:2015. Hemos superado auditorías de seguridad de gobiernos de Europa y América del Norte.',
       },
       {
         q: '¿Qué implica la consultoría de seguridad vs. el servicio operativo?',
@@ -33,7 +33,7 @@ const CONTENT = {
     ],
     trustLabel: 'Credencial G7',
     trustQuote: '"Si los gobiernos del Reino Unido y Canadá confían en CSSG para proteger a su personal y sus instalaciones en Venezuela, su organización también puede."',
-    trustSub: '+17 años · 0 incidentes en entornos diplomáticos',
+    trustSub: '+12 años en entornos diplomáticos · 0 incidentes desde 2009',
     scopeTitle: 'Alcance de la consultoría diplomática',
     scope: [
       { t: 'Evaluación de amenaza del entorno', d: 'Análisis del riesgo político, delictivo y geopolítico del entorno venezolano para la misión.' },
@@ -44,7 +44,7 @@ const CONTENT = {
     whyTitle: 'Por qué no compete en precio',
     whyText: 'En seguridad diplomática, el eje de decisión no es el costo — es la confianza irreplicable. Un proveedor que no ha operado en entornos diplomáticos en Venezuela, que no conoce los protocolos del G7 y que no tiene el historial de cero incidentes, no es una opción, independientemente del precio.',
     whyItems: [
-      '+17 años de historial documentado en entornos diplomáticos en Venezuela',
+      '+12 años de historial documentado en entornos diplomáticos en Venezuela',
       'Personal verificado por CICPC con solvencias tributarias (SENIAT/IVSS/INPSASEL)',
       'Certificación ISO 9001:2015 y Cyber Essentials — ambos auditables',
       'Protocolos alineados con estándares del G7: UK FCO, Canadian GAC',
@@ -62,7 +62,7 @@ const CONTENT = {
     badge: 'Diplomatic Missions · Vienna Convention · G7',
     title: 'Security for Diplomatic Missions',
     subtitle: 'The standard required by G7 governments in Venezuela',
-    intro: 'We protect embassies, chancelleries, consulates and international missions to the operational standards required by G7 governments. Over 17 years without a single incident in diplomatic environments in Venezuela position us as the trusted local partner for missions that cannot afford mistakes.',
+    intro: 'We protect embassies, chancelleries, consulates and international missions to the operational standards required by G7 governments. Over 12 years without a single incident in diplomatic environments in Venezuela, within 17 years of incident-free operation, position us as the trusted local partner for missions that cannot afford mistakes.',
     faqs: [
       {
         q: 'What standards govern the security of diplomatic missions?',
@@ -70,7 +70,7 @@ const CONTENT = {
       },
       {
         q: 'Why do G7 governments in Venezuela trust CSSG?',
-        a: 'Because we have spent over 17 years protecting diplomatic missions in Venezuela without a single security incident. Our staff is trained to international standards, verified by CICPC and certified under ISO 9001:2015. We have passed security audits from governments in Europe and North America.',
+        a: 'Because we have spent over 12 years protecting diplomatic missions in Venezuela without a single security incident, and 17 years incident-free as a company. Our staff is trained to international standards, verified by CICPC and certified under ISO 9001:2015. We have passed security audits from governments in Europe and North America.',
       },
       {
         q: 'What does security consulting imply vs. the operational service?',
@@ -87,7 +87,7 @@ const CONTENT = {
     ],
     trustLabel: 'G7 Credential',
     trustQuote: '"If the governments of the United Kingdom and Canada trust CSSG to protect their personnel and facilities in Venezuela, your organization can too."',
-    trustSub: '+17 years · 0 incidents in diplomatic environments',
+    trustSub: '+12 years in diplomatic environments · 0 incidents since 2009',
     scopeTitle: 'Scope of diplomatic consulting',
     scope: [
       { t: 'Environment threat assessment', d: 'Analysis of the political, criminal and geopolitical risk of the Venezuelan environment for the mission.' },
@@ -98,7 +98,7 @@ const CONTENT = {
     whyTitle: 'Why it does not compete on price',
     whyText: 'In diplomatic security, the decision axis is not cost — it is irreplicable trust. A provider that has not operated in diplomatic environments in Venezuela, does not know G7 protocols and does not have a zero-incident track record is not an option, regardless of price.',
     whyItems: [
-      '+17 years of documented track record in diplomatic environments in Venezuela',
+      '+12 years of documented track record in diplomatic environments in Venezuela',
       'Staff verified by CICPC with tax compliance certificates (SENIAT/IVSS/INPSASEL)',
       'ISO 9001:2015 and Cyber Essentials certification — both auditable',
       'Protocols aligned with G7 standards: UK FCO, Canadian GAC',

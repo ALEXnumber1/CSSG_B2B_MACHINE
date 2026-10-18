@@ -780,7 +780,7 @@ const routes = [
   {
     path: 'en/diplomatic-security',
     title: 'Diplomatic Security Services in Venezuela | G7 Standard | CSSG',
-    description: 'Diplomatic security service for embassies, missions and executive families in Venezuela. 17+ years without incident, G7 standard, Vienna Convention protocol. Request a confidential briefing — CSSG.',
+    description: 'Diplomatic security service for embassies, missions and executive families in Venezuela. 12+ years protecting embassies without incident, G7 standard, Vienna Convention protocol. Request a confidential briefing — CSSG.',
     image: 'https://cssg-global.com/ESCOLTA.jpg',
     preloadHero: true,
     preloadFont: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap',
@@ -796,7 +796,7 @@ const routes = [
   {
     path: 'en/executive-protection-venezuela-investors',
     title: 'Executive Protection & Security Services for Investors in Venezuela | CSSG',
-    description: '24/7 executive protection, preventive intelligence, due diligence and secured ground transport for U.S. investors traveling to Venezuela. ISO 9001:2015 certified, 17+ years serving G7 embassies. Free risk assessment.',
+    description: '24/7 executive protection, preventive intelligence, due diligence and secured ground transport for U.S. investors traveling to Venezuela. ISO 9001:2015 certified, 12+ years serving G7 embassies, zero incidents since 2009. Free risk assessment.',
     image: 'https://cssg-global.com/svc_custodia.webp',
     preloadHero: true,
     preloadFont: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap',

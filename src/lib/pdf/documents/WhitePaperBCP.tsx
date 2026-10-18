@@ -790,7 +790,7 @@ export const WhitePaperBCP = () => (
         {/* Credential pills */}
         <View style={styles.coverPillRow}>
           <View style={styles.coverPill}>
-            <Text style={styles.coverPillText}>+12 Anos sin incidentes</Text>
+            <Text style={styles.coverPillText}>0 incidentes desde 2009</Text>
           </View>
           <View style={styles.coverPill}>
             <Text style={styles.coverPillText}>ISO 9001:2015</Text>

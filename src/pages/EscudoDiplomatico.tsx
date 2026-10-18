@@ -250,7 +250,7 @@ export default function EscudoDiplomatico() {
             </p>
           </blockquote>
           <p className="text-[15px] leading-[1.8]" style={{ color: '#b0b0b0' }}>
-            <strong className="text-white">NO SE PREOCUPE.</strong> En CSSG tenemos 17 años operando en las sombras con embajadas y clientes de altísima criticidad. Para contrarrestar esta amenaza de frente, hemos diseñado y abierto al sector privado nuestro protocolo definitivo.
+            <strong className="text-white">NO SE PREOCUPE.</strong> En CSSG tenemos 17 años operando en las sombras para clientes de altísima criticidad, 12 de ellos junto a embajadas del G7. Para contrarrestar esta amenaza de frente, hemos diseñado y abierto al sector privado nuestro protocolo definitivo.
           </p>
         </motion.div>
       </section>

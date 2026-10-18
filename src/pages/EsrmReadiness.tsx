@@ -67,7 +67,7 @@ const diferenciadores = [
   'Gestión de riesgo bajo ISO 31000',
   'Seguridad de cadena de suministro bajo ISO 28000',
   'Alineación a ANSI/ASIS PSC.1, OSAC y DSS',
-  '17 años sin incidentes en embajadas y misiones diplomáticas',
+  '12 años sin incidentes en embajadas y misiones diplomáticas',
   'Centro de control operativo con PSIM',
   'Novedades críticas con primer escalamiento en máximo 5 minutos',
   'Supervisor dedicado por sitio',
