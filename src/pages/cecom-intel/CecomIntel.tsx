@@ -1,8 +1,6 @@
 import { useEffect, useState, type FormEvent, type ReactNode } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { CecomIntelMap, CecomIntelWordmark, CECOM_INTEL_FONTS, JsonLd } from '../../components/cecom-intel/CecomIntelMark';
-import { saveLead } from '../../lib/leads';
-import { sendLeadNotification } from '../../lib/email';
+import { CecomIntelMap, CecomIntelWordmark, JsonLd, useCecomIntelFonts } from '../../components/cecom-intel/CecomIntelMark';
 import { CONTENT, PATHS, PRICES, type Interest, type Lang } from './content';
 import { GUIDES } from './guides';
 import '../../styles/cecom-intel.css';
@@ -51,6 +49,7 @@ function PatrolGraphic({ site, caption, label }: { site: string; caption: string
 export default function CecomIntel({ lang }: { lang: Lang }) {
   const t = CONTENT[lang];
   const location = useLocation();
+  useCecomIntelFonts();
 
   const [form, setForm] = useState({ nombre: '', empresa: '', correo: '', interest: 'sample' as Interest, weekly: true });
   const [status, setStatus] = useState<'idle' | 'sending' | 'ok' | 'error'>('idle');
@@ -79,6 +78,8 @@ export default function CecomIntel({ lang }: { lang: Lang }) {
     const interestLabel = CONTENT.es.sample.interests[form.interest];
     const mensaje = `[CECOM-Intel ${lang.toUpperCase()}] Interés: ${interestLabel} | Boletín semanal gratuito: ${form.weekly ? 'sí' : 'no'}`;
     try {
+      // Loaded on submit: the email templates are ~85 KB the page doesn't need to render.
+      const [{ saveLead }, { sendLeadNotification }] = await Promise.all([import('../../lib/leads'), import('../../lib/email')]);
       await saveLead({
         nombre: form.nombre,
         correo: form.correo,
@@ -112,9 +113,6 @@ export default function CecomIntel({ lang }: { lang: Lang }) {
 
   return (
     <div className="ci-zone pt-20">
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      <link rel="stylesheet" href={CECOM_INTEL_FONTS} />
       <JsonLd data={{
         '@context': 'https://schema.org',
         '@type': 'FAQPage',
@@ -443,7 +441,7 @@ export default function CecomIntel({ lang }: { lang: Lang }) {
       <div className="ci-footer">
         <div className="ci-footer__inner">
           <div className="ci-footer__org">
-            <img src="/cecom-intel/cssg-eagle.webp" alt="CSSG" width="230" height="196" loading="lazy" />
+            <img src="/cecom-intel/cssg-eagle-120.webp" alt="CSSG" width="120" height="102" loading="lazy" />
             <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
               <div style={{ fontWeight: 600, fontSize: 15 }}>Company of Security and Service Global, C.A.</div>
               <div className="ci-note">{t.footer.address}</div>

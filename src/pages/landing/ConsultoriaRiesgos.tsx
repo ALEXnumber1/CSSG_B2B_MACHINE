@@ -503,21 +503,6 @@ export default function ConsultoriaRiesgos() {
         </div>
       </section>
 
-      {/* ═══ 7. TESTIMONIO ═══ */}
-      <section className="relative px-6 py-20 overflow-hidden" style={{ background: SLATE, borderTop: `1px solid ${BORDER}` }}>
-        <div className="absolute inset-0" style={{ backgroundImage: GRID_BG }} />
-        <motion.div className="relative max-w-3xl mx-auto text-center" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-          <blockquote style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(1.2rem, 2.6vw, 1.6rem)', lineHeight: 1.5 }}>
-            <span style={{ color: GOLD, fontSize: '3rem', lineHeight: 0, verticalAlign: '-0.4rem' }}>&ldquo;</span>
-            Por fin pude mostrarle a mi junta directiva un número, no una opinión. La matriz de riesgo bajo metodología ASIS cambió por completo la conversación con la directiva regional.
-          </blockquote>
-          <cite className="block mt-6 not-italic text-sm" style={{ color: ICE }}>
-            — Directora de Riesgo y Compliance, grupo financiero en Caracas
-            <span className="block text-xs mt-1" style={{ color: MUTED }}>(identidad reservada por protocolo de confidencialidad)</span>
-          </cite>
-        </motion.div>
-      </section>
-
       {/* ═══ 8. FAQ ═══ */}
       <section className="relative px-6" style={{ paddingTop: '96px', paddingBottom: '96px' }}>
         <div className="max-w-3xl mx-auto relative">

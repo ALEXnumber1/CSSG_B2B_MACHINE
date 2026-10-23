@@ -27,14 +27,21 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks(id) {
-          if (id.includes('@react-pdf')) return 'vendor-pdf';
-          if (id.includes('@splinetool')) return 'vendor-spline';
-          if (id.includes('three') || id.includes('@react-three')) return 'vendor-three';
-          if (id.includes('@supabase')) return 'vendor-supabase';
-          if (id.includes('framer-motion')) return 'vendor-framer';
-          if (id.includes('i18next') || id.includes('react-i18next')) return 'vendor-i18n';
-          if (id.includes('react-dom') || id.includes('react-router')) return 'vendor-react';
+        // Higher priority captures first. Each group also pulls in its modules' dependencies, so
+        // vendor-shims must win over vendor-pdf: buffer/tslib are shared by the entry (Buffer
+        // polyfill in main.tsx), Supabase and react-pdf. Inside vendor-pdf they made EVERY page
+        // download and run the ~1.4 MB PDF bundle.
+        codeSplitting: {
+          groups: [
+            { name: 'vendor-shims', test: /node_modules[\\/](buffer|base64-js|ieee754|tslib)[\\/]/, priority: 90 },
+            { name: 'vendor-react', test: /node_modules[\\/](react|react-dom|scheduler|react-router|react-router-dom|cookie|set-cookie-parser)[\\/]/, priority: 80 },
+            { name: 'vendor-pdf', test: /@react-pdf/, priority: 70 },
+            { name: 'vendor-spline', test: /@splinetool/, priority: 60 },
+            { name: 'vendor-three', test: /three/, priority: 50 },
+            { name: 'vendor-supabase', test: /@supabase/, priority: 40 },
+            { name: 'vendor-framer', test: /framer-motion/, priority: 30 },
+            { name: 'vendor-i18n', test: /i18next/, priority: 20 },
+          ],
         },
       },
     },

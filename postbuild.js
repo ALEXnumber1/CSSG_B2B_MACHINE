@@ -16,6 +16,12 @@ if (!fs.existsSync(indexHtmlPath)) {
 
 const originalHtml = fs.readFileSync(indexHtmlPath, 'utf8');
 
+const CECOM_INTEL_CSS = fs.readdirSync(path.join(distDir, 'assets')).find(f => /^cecom-intel-.*\.css$/.test(f));
+if (!CECOM_INTEL_CSS) {
+  console.error('No cecom-intel-*.css in dist/assets: the CECOM-Intel pages would paint unstyled.');
+  process.exit(1);
+}
+
 // Vite's default modulePreload injects a <link rel="modulepreload"> for every chunk reachable
 // from the entry's dynamic-import graph — since App.tsx lazy-loads ~80 routes from one module,
 // that means EVERY generated page (including lead-gen landings that only need a form + Supabase)
@@ -94,6 +100,7 @@ const routes = [
   },
   {
     path: 'tecnologia',
+    alternates: { en: 'en/technology', es: 'tecnologia' },
     title: 'ShieldTrace PSIM — Seguridad Corporativa Predictiva para Venezuela | CSSG',
     description: 'CCTV analítico con IA, control de acceso biométrico, GPS en tiempo real y drones autónomos en un dashboard único. Potencie el desempeño de su equipo de vigilancia física en Venezuela.',
     image: 'https://cssg-global.com/shieldtrace_tablet_dashboard_1777552473752.webp',
@@ -114,6 +121,7 @@ const routes = [
   },
   {
     path: 'consultoria/escudo-diplomatico',
+    alternates: { en: 'en/diplomatic-security', es: 'consultoria/escudo-diplomatico' },
     title: 'Protección Ejecutiva Bajo Estándar Diplomático G7 | Escudo Diplomático | CSSG',
     description: 'El único esquema de seguridad privada en Venezuela diseñado bajo estándares G7. Evaluación personalizada, protocolo 24/7 y confidencialidad absoluta. Briefing confidencial de 10 minutos.',
     image: 'https://cssg-global.com/seo_escudo.jpg',
@@ -689,6 +697,7 @@ const routes = [
   },
   {
     path: 'en/technology',
+    alternates: { en: 'en/technology', es: 'tecnologia' },
     title: 'Shieldtrace PSIM — Integrated Security Platform | CSSG | Caracas · Miami',
     description: 'Shieldtrace PSIM unifies AI-powered CCTV analytics, real-time GPS tracking, biometric access control and autonomous drones in one dashboard. Enterprise security technology in Venezuela.',
     image: 'https://cssg-global.com/shieldtrace_tablet_dashboard_1777552473752.webp',
@@ -696,6 +705,7 @@ const routes = [
   },
   {
     path: 'consultoria/secure-landing',
+    alternates: { en: 'en/executive-protection-venezuela-investors', es: 'consultoria/secure-landing' },
     title: 'Llegada y Seguridad Ejecutiva en Venezuela | CSSG Secure Landing™',
     description: 'Programa estructurado de seguridad para ejecutivos e inversores extranjeros que llegan a Venezuela: briefing pre-viaje, llegada protegida, residencia fortificada y protección continua 24/7.',
     image: 'https://cssg-global.com/consulting_b2b.webp',
@@ -761,7 +771,7 @@ const routes = [
     image: 'https://cssg-global.com/svc_ejecutivos.webp',
     preloadHero: true,
     preloadFont: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap',
-    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Corporate Security Services & Security Consulting", "description": "Corporate security consulting and private security contractor due diligence for multinational companies operating in Venezuela, referenced to ISO 31000:2018 and ASIS ORM.1:2017.", "provider": { "@type": "Organization", "name": "CSSG — Company Of Security And Service Global", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" }, "inLanguage": "en" }
+    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Corporate Security Services & Security Consulting", "description": "Corporate security consulting and private security contractor due diligence for multinational companies operating in Venezuela, referenced to ISO 31000:2018 and ASIS ORM.1:2017.", "provider": { "@type": "Organization", "name": "CSSG — Company Of Security And Service Global", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" }, "audience": { "@type": "BusinessAudience", "audienceType": "Chief Security Officers, Global Security Directors, Travel Risk and Duty of Care Managers", "geographicArea": [{ "@type": "Country", "name": "United States" }, { "@type": "Country", "name": "United Kingdom" }, { "@type": "Place", "name": "Europe" }] }, "inLanguage": "en" }
   },
   {
     path: 'en/corporate-security-consulting/thank-you',
@@ -772,12 +782,13 @@ const routes = [
   },
   {
     path: 'en/diplomatic-security',
+    alternates: { en: 'en/diplomatic-security', es: 'consultoria/escudo-diplomatico' },
     title: 'Diplomatic Security Services in Venezuela | G7 Standard | CSSG',
     description: 'Diplomatic security service for embassies, missions and executive families in Venezuela. 12+ years protecting embassies without incident, G7 standard, Vienna Convention protocol. Request a confidential briefing — CSSG.',
     image: 'https://cssg-global.com/ESCOLTA.jpg',
     preloadHero: true,
     preloadFont: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap',
-    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Diplomatic Security Services", "description": "Diplomatic security service (Escudo Diplomático) for embassies, diplomatic missions and executive families in Venezuela, operating under G7 standard and protocols aligned with the Vienna Convention.", "provider": { "@type": "Organization", "name": "CSSG — Company Of Security And Service Global", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" }, "inLanguage": "en" }
+    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Diplomatic Security Services", "description": "Diplomatic security service (Escudo Diplomático) for embassies, diplomatic missions and executive families in Venezuela, operating under G7 standard and protocols aligned with the Vienna Convention.", "provider": { "@type": "Organization", "name": "CSSG — Company Of Security And Service Global", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" }, "audience": { "@type": "BusinessAudience", "audienceType": "Embassies, diplomatic missions, international organizations and executive families", "geographicArea": [{ "@type": "Country", "name": "United States" }, { "@type": "Country", "name": "United Kingdom" }, { "@type": "Place", "name": "Europe" }] }, "inLanguage": "en" }
   },
   {
     path: 'en/diplomatic-security/thank-you',
@@ -788,8 +799,9 @@ const routes = [
   },
   {
     path: 'en/executive-protection-venezuela-investors',
+    alternates: { en: 'en/executive-protection-venezuela-investors', es: 'consultoria/secure-landing' },
     title: 'Executive Protection & Security Services for Investors in Venezuela | CSSG',
-    description: '24/7 executive protection, preventive intelligence, due diligence and secured ground transport for U.S. investors traveling to Venezuela. ISO 9001:2015 certified, 12+ years serving G7 embassies, zero incidents since 2009. Free risk assessment.',
+    description: '24/7 executive protection, preventive intelligence, due diligence and secured ground transport for investors from the U.S., UK and Europe traveling to Venezuela. ISO 9001:2015 certified, 12+ years serving G7 embassies, zero incidents since 2009. Free risk assessment.',
     image: 'https://cssg-global.com/svc_custodia.webp',
     preloadHero: true,
     preloadFont: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap',
@@ -797,7 +809,7 @@ const routes = [
     ogImageAlt: 'Armored SUV convoy and motorcycle escort — CSSG executive protection for U.S. investors traveling to Venezuela',
     ogImageWidth: 1200,
     ogImageHeight: 630,
-    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Executive Protection & Security Services for Investors", "description": "Executive protection, preventive intelligence, due diligence and vetting, and secured ground logistics for U.S. investors and executives traveling to Venezuela for energy, mining, infrastructure and trade opportunities.", "provider": { "@type": "Organization", "name": "CSSG — Company Of Security And Service Global", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" }, "inLanguage": "en" }
+    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Executive Protection & Security Services for Investors", "description": "Executive protection, preventive intelligence, due diligence and vetting, and secured ground logistics for investors and executives from the U.S., UK and Europe traveling to Venezuela for energy, mining, infrastructure and trade opportunities.", "provider": { "@type": "Organization", "name": "CSSG — Company Of Security And Service Global", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" }, "audience": { "@type": "BusinessAudience", "audienceType": "Investors, family offices and C-level executives", "geographicArea": [{ "@type": "Country", "name": "United States" }, { "@type": "Country", "name": "United Kingdom" }, { "@type": "Place", "name": "Europe" }] }, "inLanguage": "en" }
   },
   {
     path: 'en/executive-protection-venezuela-investors/thank-you',
@@ -1009,6 +1021,25 @@ routes.forEach(route => {
     const heroPath = route.image.replace(/^https?:\/\/[^/]+/, '');
     newHtml = newHtml.replace(/<link rel="preload" as="image" href="\/foto-hero\.webp" fetchpriority="high">\n?/i, '');
     newHtml = newHtml.replace(/<\/head>/, `<link rel="preload" as="image" href="${heroPath}" fetchpriority="high" />\n  </head>`);
+  }
+
+  // CECOM-Intel: its stylesheet is the lazy route's CSS chunk, which the browser only found after the
+  // JS ran, so the prerendered page painted unstyled and then jumped (CLS ~0.47), and the hero
+  // background (the LCP element) was discovered seconds late. Link both straight from the HTML, and
+  // drop the home page's hero preload and decorative fonts, which these pages never use.
+  if (route.path.startsWith('cecom-intel')) {
+    newHtml = newHtml
+      .replace(/<link rel="preload" as="image" href="\/foto-hero\.webp" fetchpriority="high">\n?/i, '')
+      .replace(/\s*<!-- Fonts: solo decorativas[^>]*-->/, '')
+      .replace(/\s*<link rel="(?:preload|stylesheet)"[^>]*family=Caveat[^>]*>/g, '');
+    const tags = [`<link rel="stylesheet" href="/assets/${CECOM_INTEL_CSS}" />`];
+    if (route.path === 'cecom-intel' || route.path === 'cecom-intel/es') {
+      tags.push(
+        '<link rel="preload" as="image" href="/cecom-intel/hero-city-960.webp" media="(max-width: 900px)" fetchpriority="high" />',
+        '<link rel="preload" as="image" href="/cecom-intel/hero-city.webp" media="(min-width: 901px)" fetchpriority="high" />',
+      );
+    }
+    newHtml = newHtml.replace(/<\/head>/, () => `${tags.join('\n  ')}\n  </head>`);
   }
 
   // Preload the landing pages' own Google Fonts stylesheet (Playfair Display + Inter) so the

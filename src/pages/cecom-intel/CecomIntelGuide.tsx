@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { CecomIntelWordmark, CECOM_INTEL_FONTS, JsonLd } from '../../components/cecom-intel/CecomIntelMark';
+import { CecomIntelWordmark, JsonLd, useCecomIntelFonts } from '../../components/cecom-intel/CecomIntelMark';
 import { GUIDES, REVIEWED, guideBySlug } from './guides';
 import '../../styles/cecom-intel.css';
 
@@ -8,6 +8,7 @@ import '../../styles/cecom-intel.css';
 export default function CecomIntelGuide({ slug }: { slug: string }) {
   const g = guideBySlug(slug);
   const others = GUIDES.filter(o => o.slug !== slug);
+  useCecomIntelFonts();
 
   useEffect(() => {
     document.title = g.metaTitle;
@@ -17,9 +18,6 @@ export default function CecomIntelGuide({ slug }: { slug: string }) {
 
   return (
     <div className="ci-zone pt-20">
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      <link rel="stylesheet" href={CECOM_INTEL_FONTS} />
       <JsonLd data={{
         '@context': 'https://schema.org',
         '@type': 'Article',

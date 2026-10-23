@@ -1,13 +1,16 @@
 import { BrowserRouter, Routes, Route, Link, useLocation, createRoutesFromChildren, matchRoutes } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Suspense } from 'react'
+import { Suspense, lazy } from 'react'
 import Navbar from './components/Navbar'
-import FloatingCTA from './components/FloatingCTA'
-import TacticalChat from './components/TacticalChat'
 import ScrollToTop from './components/ScrollToTop'
 import CookieConsent from './components/CookieConsent'
-import FeedbackButton from './components/FeedbackButton'
+
+// Floating widgets load after the page: statically they put Supabase, the email templates and the
+// audit modal into the entry bundle of every page.
+const FloatingCTA = lazy(() => import('./components/FloatingCTA'))
+const TacticalChat = lazy(() => import('./components/TacticalChat'))
+const FeedbackButton = lazy(() => import('./components/FeedbackButton'))
 import { EXTERNAL_LINKS } from './lib/externalLinks'
 import { lazyWithPreload, type PreloadableComponent } from './lib/lazyWithPreload'
 
@@ -211,7 +214,9 @@ function AppContent() {
 
         <Navbar />
 
-        <AnimatePresence mode="wait">
+        {/* initial={false}: the prerendered page is already visible; fading it in from 0 on load
+            flashed it and pushed LCP back. Language switches still animate. */}
+        <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={i18n.language}
             initial={{ opacity: 0 }}
@@ -231,7 +236,7 @@ function AppContent() {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
                   <div className="md:col-span-1">
                     <div className="flex items-center gap-4 mb-8">
-                      <img src="/logo.webp" alt="CSSG Logo" className="h-20 w-20 object-contain drop-shadow-[0_0_20px_rgba(234,179,8,0.2)]" />
+                      <img src="/logo-160.webp" alt="CSSG Logo" className="h-20 w-20 object-contain drop-shadow-[0_0_20px_rgba(234,179,8,0.2)]" />
                       <div>
                         <h4 className="text-white font-black leading-none uppercase tracking-tighter text-2xl">CSSG</h4>
                         <div className="flex flex-col mt-1">
@@ -295,10 +300,20 @@ function AppContent() {
                   </div>
                 </div>
 
+                {/* English pages for buyers in the U.S., UK and Europe: linked from every page so search
+                    engines weigh them as part of the site, not as orphaned landings. */}
+                <nav aria-label="International clients" lang="en" className="py-8 border-t border-white/5 flex flex-wrap justify-center items-center gap-x-6 gap-y-3 text-xs">
+                  <span className="text-white font-bold uppercase tracking-widest">International clients · English</span>
+                  <Link to="/en/corporate-security-consulting" className="hover:text-sky-400 transition-colors">Corporate security consulting</Link>
+                  <Link to="/en/executive-protection-venezuela-investors" className="hover:text-sky-400 transition-colors">Executive protection for investors</Link>
+                  <Link to="/en/diplomatic-security" className="hover:text-sky-400 transition-colors">Diplomatic security</Link>
+                  <Link to="/cecom-intel" className="hover:text-sky-400 transition-colors">CECOM-Intel risk analysis</Link>
+                </nav>
+
                 {/* Certification badges */}
                 <div className="py-10 border-t border-white/5 flex flex-wrap justify-center items-center gap-8">
                   <div className="flex flex-col items-center gap-2">
-                    <img src="/iso-9001-badge.webp" alt="ISO 9001:2015 Certified Company" className="h-20 w-auto opacity-70 hover:opacity-100 transition-opacity" loading="lazy" />
+                    <img src="/iso-9001-badge.webp" alt="ISO 9001:2015 Certified Company" className="h-20 w-auto opacity-70 hover:opacity-100 transition-opacity" loading="lazy" width="158" height="80" />
                     <span className="text-[9px] text-sky-400 font-bold uppercase tracking-widest">ISO 9001:2015</span>
                   </div>
                   <div className="flex flex-col items-center gap-2">
@@ -344,9 +359,11 @@ function AppContent() {
           </motion.div>
         </AnimatePresence>
       </div>
-      <FloatingCTA />
-      <TacticalChat />
-      <FeedbackButton />
+      <Suspense fallback={null}>
+        <FloatingCTA />
+        <TacticalChat />
+        <FeedbackButton />
+      </Suspense>
       <CookieConsent />
 
       <div className="lg:hidden fixed bottom-0 left-0 right-0 z-[100] bg-[#0B0B0F]/95 backdrop-blur-md border-t border-white/10 p-4 flex items-center justify-between shadow-[0_-10px_30px_rgba(0,0,0,0.5)]">

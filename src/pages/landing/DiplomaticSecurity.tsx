@@ -10,6 +10,7 @@ import { insertLead } from '../../lib/leads';
 import { sendLeadNotification } from '../../lib/email';
 import { startSequence } from '../../lib/sequences';
 import CookieConsent from '../../components/CookieConsent';
+import EnglishPagesNav from '../../components/EnglishPagesNav';
 
 // ─────────────────────────────────────────────────────────────
 // LP4 — DIPLOMATIC SECURITY (EN)
@@ -596,6 +597,7 @@ export default function DiplomaticSecurity() {
 
       {/* ═══ FOOTER ═══ */}
       <footer className="relative py-10 px-4 text-center border-t" style={{ borderColor: BORDER }}>
+        <EnglishPagesNav current="/en/diplomatic-security" accent={GOLD} />
         <img src="/logo.webp" alt="CSSG" className="h-10 w-10 object-contain mx-auto mb-3" />
         <p className="font-semibold mb-2" style={{ color: GOLD }}>CSSG GLOBAL</p>
         <p className="text-xs text-gray-500">Corporate & Diplomatic Security · 17+ years serving without incident</p>

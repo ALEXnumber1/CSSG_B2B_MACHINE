@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion, useInView, animate } from 'framer-motion';
 import type { Variants } from 'framer-motion';
 import {
@@ -10,6 +10,7 @@ import { insertLead } from '../../lib/leads';
 import { sendLeadNotification } from '../../lib/email';
 import { startSequence } from '../../lib/sequences';
 import CookieConsent from '../../components/CookieConsent';
+import EnglishPagesNav from '../../components/EnglishPagesNav';
 
 // ─────────────────────────────────────────────────────────────
 // LP5 — EXECUTIVE PROTECTION FOR INVESTORS (EN)
@@ -19,7 +20,7 @@ import CookieConsent from '../../components/CookieConsent';
 // Service-presentation page, no downloadable lead magnet — captures
 // the lead into a consultative email sequence with a direct
 // calendar-booking CTA.
-// Primary persona: U.S. C-level executives, COOs and corporate
+// Primary persona: U.S., UK and European C-level executives, COOs and corporate
 // security heads evaluating or executing investment trips to
 // Venezuela (energy, mining, infrastructure, trade) who need
 // pre-travel intelligence, due diligence/vetting and secured ground
@@ -194,7 +195,7 @@ export default function InvestorSecurity() {
 
   useEffect(() => {
     document.title = 'Executive Protection & Security Services for Investors in Venezuela | CSSG';
-    const desc = '24/7 executive protection, preventive intelligence, due diligence and secured ground transport for U.S. investors traveling to Venezuela. ISO 9001:2015 certified, 12+ years serving G7 embassies, zero incidents since 2009. Free risk assessment.';
+    const desc = '24/7 executive protection, preventive intelligence, due diligence and secured ground transport for investors from the U.S., UK and Europe traveling to Venezuela. ISO 9001:2015 certified, 12+ years serving G7 embassies, zero incidents since 2009. Free risk assessment.';
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute('content', desc);
@@ -323,7 +324,7 @@ export default function InvestorSecurity() {
           <div className="flex items-center gap-3 mb-6">
             <Award className="w-4 h-4" style={{ color: GOLD }} />
             <p className="uppercase font-semibold text-xs" style={{ color: GOLD, letterSpacing: '.2em' }}>
-              For U.S. investors and executives traveling to Venezuela
+              For investors and executives from the U.S., UK and Europe traveling to Venezuela
             </p>
           </div>
           <h1 className="mb-6" style={{ fontFamily: SERIF, fontWeight: 600, fontSize: 'clamp(2.1rem, 4.6vw, 3.5rem)', lineHeight: 1.18, textShadow: '0 2px 30px rgba(0,0,0,.5)' }}>
@@ -353,20 +354,24 @@ export default function InvestorSecurity() {
         </motion.div>
       </header>
 
-      {/* ═══ 2. WHY U.S. INVESTORS NEED PROFESSIONAL SECURITY ═══ */}
+      {/* ═══ 2. WHY INTERNATIONAL INVESTORS NEED PROFESSIONAL SECURITY ═══ */}
       <section className="relative py-20 px-4 sm:px-6" style={{ borderBottom: `1px solid ${BORDER}` }}>
         <div className="max-w-3xl mx-auto">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
             <p className="text-xs uppercase font-semibold mb-3 text-center" style={{ color: GOLD, letterSpacing: '.18em' }}>The problem</p>
             <h2 className="text-center mb-8" style={{ fontFamily: SERIF, fontWeight: 600, fontSize: 'clamp(1.7rem, 3.2vw, 2.3rem)' }}>
-              Why U.S. investors need professional security in Venezuela
+              Why international investors need professional security in Venezuela
             </h2>
             <p className="text-gray-300 text-sm sm:text-base leading-relaxed mb-4">
-              Venezuela remains classified under the U.S. State Department's highest-risk travel advisory tier —
-              citing crime, kidnapping and wrongful-detention risk, and warning that consular assistance for
-              U.S. citizens is severely limited on the ground. For an executive evaluating an energy, mining,
-              infrastructure or trade opportunity, that means the standard duty-of-care playbook — a hotel car
-              and a driver — does not hold up.
+              The U.S. State Department rates Venezuela Level 3, “Reconsider Travel” (June 2026), with
+              Do Not Travel zones along the Colombian border and in several states, and the UK Foreign Office
+              advises against all travel to the border and mining regions. Crime, kidnapping and wrongful
+              detention remain the main exposures, and consular support on the ground is limited. For an
+              executive evaluating an energy, mining, infrastructure or trade opportunity, that means the standard
+              duty-of-care playbook — a hotel car and a driver — does not hold up.{' '}
+              <Link to="/cecom-intel/venezuela-security-outlook-2026" className="underline underline-offset-4 decoration-gray-600 hover:text-white">
+                Read the 2026 security outlook
+              </Link>.
             </p>
             <p className="text-gray-400 text-sm sm:text-base leading-relaxed">
               Most firms respond to that gap by adding a bodyguard. That solves the wrong problem. What an
@@ -604,27 +609,6 @@ export default function InvestorSecurity() {
         </div>
       </section>
 
-      {/* ═══ 8. TESTIMONIAL ═══ */}
-      <section className="relative py-20 px-4 sm:px-6 overflow-hidden" style={{ borderTop: `1px solid ${BORDER}`, borderBottom: `1px solid ${BORDER}` }}>
-        <div className="absolute inset-0" style={{
-          backgroundImage: "url('/cssg-emblem.webp')",
-          backgroundSize: '200px auto', backgroundPosition: 'center', backgroundRepeat: 'no-repeat',
-          opacity: 0.16,
-        }} />
-        <div className="absolute inset-0" style={{ background: 'rgba(11,11,15,0.35)' }} />
-        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="relative max-w-3xl mx-auto text-center">
-          <blockquote style={{ fontFamily: SERIF, fontSize: 'clamp(1.2rem, 2.6vw, 1.6rem)', lineHeight: 1.5 }}>
-            <span style={{ color: GOLD, fontSize: '3rem', lineHeight: 0, verticalAlign: '-0.4rem' }}>&ldquo;</span>
-            CSSG had a risk briefing and a vetting report on our local partner ready before our team ever
-            boarded the flight. Every meeting, every route, was already accounted for.
-          </blockquote>
-          <cite className="block mt-6 not-italic text-sm text-gray-400">
-            — Corporate Security Director, U.S. energy company evaluating a Venezuela investment
-            <span className="block text-xs mt-1 text-gray-600">(identity withheld under confidentiality protocol)</span>
-          </cite>
-        </motion.div>
-      </section>
-
       {/* ═══ 9. FAQ ═══ */}
       <section className="relative py-24 px-4 sm:px-6">
         <div className="max-w-3xl mx-auto">
@@ -664,6 +648,7 @@ export default function InvestorSecurity() {
 
       {/* ═══ FOOTER ═══ */}
       <footer className="relative py-10 px-4 text-center border-t" style={{ borderColor: BORDER }}>
+        <EnglishPagesNav current="/en/executive-protection-venezuela-investors" accent={GOLD} />
         <img src="/logo.webp" alt="CSSG" className="h-10 w-10 object-contain mx-auto mb-3" />
         <p className="font-semibold mb-2" style={{ color: GOLD }}>CSSG GLOBAL</p>
         <p className="text-xs text-gray-500">Corporate & Diplomatic Security · 17+ years serving without incident</p>

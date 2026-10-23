@@ -1,4 +1,4 @@
-import { useId } from 'react';
+import { useEffect, useId } from 'react';
 
 // Approved CECOM-Intel artwork: line map of Latin America with a magnifier over Venezuela.
 // Path data copied verbatim from the approved design (420 × 490 viewBox). Do not redraw.
@@ -58,7 +58,7 @@ export function CecomIntelWordmark({ className = '' }: { className?: string }) {
         <span className="ci-wordmark__intel">-intel</span>
       </span>
       <span className="ci-wordmark__by" aria-hidden="true">
-        <img src="/cecom-intel/cssg-eagle.webp" alt="" width="230" height="196" />
+        <img src="/cecom-intel/cssg-eagle-120.webp" alt="" width="120" height="102" />
         <span>by CSSG</span>
       </span>
     </span>
@@ -72,3 +72,19 @@ export function JsonLd({ data }: { data: object }) {
 
 export const CECOM_INTEL_FONTS =
   'https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,700;1,500&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap';
+
+/**
+ * Loads the sub-brand fonts after client-side navigation. Prerendered pages already get a
+ * non-blocking link from postbuild.js; a <link> rendered in the tree would end up in the
+ * prerendered body as a render-blocking stylesheet.
+ */
+// eslint-disable-next-line react-refresh/only-export-components -- shared with the pages that use the mark
+export function useCecomIntelFonts() {
+  useEffect(() => {
+    if (document.querySelector(`link[href="${CECOM_INTEL_FONTS}"]`)) return;
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = CECOM_INTEL_FONTS;
+    document.head.appendChild(link);
+  }, []);
+}
