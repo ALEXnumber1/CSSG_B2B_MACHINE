@@ -2,14 +2,7 @@
 <html lang="es"> 
   <head>
     <meta charset="UTF-8" />
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-N3V99TCX');</script>
-    <!-- End Google Tag Manager -->
-    <link rel="icon" type="image/png" href="/favicon.png?v=3" />
+    <link rel="icon" type="image/png" href="/favicon.png?v=4" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Empresa de Seguridad Corporativa y Diplomática en Venezuela | CSSG</title>
     
@@ -225,12 +218,27 @@
     <!-- Analytics: cargados con defer para no bloquear el hilo principal (TBT) -->
     <script src="https://analytics.ahrefs.com/analytics.js" data-key="cf9PRSw3h2ra1yulIXraKg" defer></script>
     <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "3cdec0bbd461407cae739628520e5503"}'></script>
-    <script defer src="https://www.googletagmanager.com/gtag/js?id=G-SX7DBHT2Z6"></script>
+    <!-- Google Tag Manager + GA4 (~470 KB): the dataLayer and gtag() exist from the start, so nothing
+         is lost, but the scripts load after the page (on the first interaction, or 3 s after load). -->
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-SX7DBHT2Z6', { send_page_view: false });
+      dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+      (function () {
+        var loaded = false, events = ['pointerdown', 'keydown', 'scroll', 'touchstart'];
+        function load() {
+          if (loaded) return;
+          loaded = true;
+          events.forEach(function (e) { removeEventListener(e, load); });
+          ['https://www.googletagmanager.com/gtm.js?id=GTM-N3V99TCX', 'https://www.googletagmanager.com/gtag/js?id=G-SX7DBHT2Z6'].forEach(function (src) {
+            var s = document.createElement('script'); s.async = true; s.src = src; document.head.appendChild(s);
+          });
+        }
+        events.forEach(function (e) { addEventListener(e, load, { once: true, passive: true }); });
+        addEventListener('load', function () { setTimeout(load, 3000); });
+      })();
     </script>
   </head>
   <body>

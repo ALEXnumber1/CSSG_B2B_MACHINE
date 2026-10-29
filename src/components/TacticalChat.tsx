@@ -2,8 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MessageSquare, X, Send, Shield, Zap, User } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { saveLead } from '../lib/leads';
-import { sendChatAlert, sendLeadNotification } from '../lib/email';
+
+// Lead helpers load on the visitor's first message, not with every page (the chat is site-wide).
+const loadLeadLibs = () => Promise.all([import('../lib/leads'), import('../lib/email')]);
 
 interface Message {
   id: string;
@@ -67,7 +68,7 @@ const TacticalChat: React.FC = () => {
     // Alerta a gerencia al primer mensaje del visitante (una vez por conversación)
     if (!alertSentRef.current) {
       alertSentRef.current = true;
-      sendChatAlert(currentInput);
+      void loadLeadLibs().then(([, { sendChatAlert }]) => sendChatAlert(currentInput));
     }
 
     // Lead Qualification Logic
@@ -88,6 +89,7 @@ const TacticalChat: React.FC = () => {
       setStep(4);
       sendBotMessage(t('chat.final'));
       
+      const [{ saveLead }, { sendLeadNotification }] = await loadLeadLibs();
       // Ficha completa del lead a gerencia (fire-and-forget)
       void sendLeadNotification({
         nombre: leadData.name,
@@ -139,7 +141,7 @@ const TacticalChat: React.FC = () => {
                 className="bg-[#0D0F16]/90 backdrop-blur-xl border border-sky-500/30 p-3 rounded-2xl shadow-2xl flex items-center gap-3 min-w-[200px]"
               >
                 <div className="w-10 h-10 rounded-full overflow-hidden border border-sky-500/30 shrink-0 shadow-lg">
-                  <img src="/guard_avatar.webp" alt="Oficial Rivas" className="w-full h-full object-cover" />
+                  <img src="/guard_avatar-96.webp" alt="Oficial Rivas" className="w-full h-full object-cover" />
                 </div>
                 <div className="flex flex-col pr-2">
                   <span className="text-[9px] font-black text-sky-400 uppercase tracking-widest leading-none mb-1">{t('chat.agent_name')}</span>
@@ -172,7 +174,7 @@ const TacticalChat: React.FC = () => {
             <div className="p-4 bg-sky-900/20 border-b border-sky-500/20 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full border border-sky-500/20 flex items-center justify-center overflow-hidden shrink-0">
-                  <img src="/guard_avatar.webp" alt="Consultor CSSG" className="w-full h-full object-cover" />
+                  <img src="/guard_avatar-96.webp" alt="Consultor CSSG" className="w-full h-full object-cover" />
                 </div>
                 <div>
                   <h4 className="text-white font-bold text-xs uppercase tracking-widest">{t('chat.header_title')}</h4>
@@ -201,7 +203,7 @@ const TacticalChat: React.FC = () => {
                 >
                   <div className={`max-w-[80%] flex gap-3 ${msg.type === 'user' ? 'flex-row-reverse' : ''}`}>
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 border overflow-hidden ${msg.type === 'user' ? 'bg-indigo-500/10 border-indigo-500/20' : 'bg-sky-500/10 border-sky-500/20'}`}>
-                      {msg.type === 'user' ? <User size={14} className="text-indigo-400" /> : <img src="/guard_avatar.webp" alt="Agente" className="w-full h-full object-cover" />}
+                      {msg.type === 'user' ? <User size={14} className="text-indigo-400" /> : <img src="/guard_avatar-96.webp" alt="Agente" className="w-full h-full object-cover" />}
                     </div>
                     <div className={`flex flex-col gap-1 ${msg.type === 'user' ? 'items-end' : 'items-start'}`}>
                       {msg.type === 'bot' && (

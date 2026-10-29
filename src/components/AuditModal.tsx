@@ -2,10 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Mail, User, Phone, Calendar, Building, CheckCircle2 } from 'lucide-react';
 import { useState } from 'react';
 import { createPortal } from 'react-dom';
-import { saveLead } from '../lib/leads';
 import { useTranslation } from 'react-i18next';
-import { startSequence } from '../lib/sequences';
-import { sendLeadNotification } from '../lib/email';
 
 interface AuditModalProps {
   isOpen: boolean;
@@ -36,6 +33,11 @@ export default function AuditModal({ isOpen, onClose }: AuditModalProps) {
     if (formData.phone.length > 8) baremoScore += 20;
 
     try {
+      // Loaded on submit: Supabase and the email templates would otherwise ship with every page,
+      // since the floating CTA mounts this modal site-wide.
+      const [{ saveLead }, { startSequence }, { sendLeadNotification }] = await Promise.all([
+        import('../lib/leads'), import('../lib/sequences'), import('../lib/email'),
+      ]);
       const leadId = await saveLead({
         nombre: formData.name,
         correo: formData.email,
