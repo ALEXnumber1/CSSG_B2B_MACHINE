@@ -78,7 +78,7 @@ const en = {
   analyst: {
     eyebrow: 'SIGNED BY AN ANALYST',
     title: 'Every report has a name behind it',
-    text: 'CECOM-Intel is led by its director and lead analyst, who signs off the 06:30 bulletin and every assessment. The method is public: sources graded on the Admiralty code and risk scored under ISO 31000.',
+    text: 'CECOM-Intel is led by a lawyer with more than 25 years in state, corporate and asset security, a doctorate in Citizen Security and a seat on the board of ASIS International’s Venezuela Chapter. He signs off the 06:30 bulletin and every assessment.',
     analysts: 'Meet the analysts',
     methodology: 'Read the methodology',
   },
@@ -271,7 +271,7 @@ const es: typeof en = {
   analyst: {
     eyebrow: 'FIRMADO POR UN ANALISTA',
     title: 'Cada informe tiene un nombre detrás',
-    text: 'CECOM-Intel lo dirige su director y analista principal, que firma el boletín de las 06:30 y cada evaluación. El método es público: fuentes calificadas con el código Admiralty y riesgo evaluado según ISO 31000.',
+    text: 'CECOM-Intel lo dirige un abogado con más de 25 años en seguridad de Estado, corporativa y patrimonial, doctor en Seguridad Ciudadana y miembro de la Junta Directiva del Capítulo Venezuela de ASIS International. Firma el boletín de las 06:30 y cada evaluación.',
     analysts: 'Conocer a los analistas',
     methodology: 'Leer la metodología',
   },

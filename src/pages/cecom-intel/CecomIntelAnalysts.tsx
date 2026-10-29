@@ -8,21 +8,25 @@ import '../../styles/cecom-intel.css';
 const COPY = {
   en: {
     title: 'CECOM-Intel Analysts: Venezuela Security Risk',
-    description: 'The analysts who sign every CECOM-Intel bulletin and assessment on Venezuela, led by Guillermo Amitesarove, Director and Lead Analyst of the CSSG unit.',
+    description: 'CECOM-Intel is led by Dr. Guillermo Amitesarove, lawyer with 25+ years in security and board member of ASIS International Venezuela. Profile and credentials.',
     eyebrow: 'ANALYSTS',
     h1: 'The people who sign our reports',
     lead: 'Every bulletin, alert and assessment from CECOM-Intel is reviewed and signed by an analyst. They work with the CECOM operators and the CSSG officers on post in Venezuela.',
-    focus: 'Responsibilities',
+    focus: 'Areas of expertise',
+    education: 'Education',
+    affiliations: 'Professional affiliations',
     contact: 'Talk to an analyst',
     method: 'How we work',
   },
   es: {
     title: 'Analistas de CECOM-Intel: riesgo de seguridad en Venezuela',
-    description: 'Los analistas que firman cada boletín y evaluación de CECOM-Intel sobre Venezuela, dirigidos por Guillermo Amitesarove, director y analista principal.',
+    description: 'CECOM-Intel lo dirige el Dr. Guillermo Amitesarove, abogado con más de 25 años en seguridad y directivo de ASIS International Venezuela. Perfil y credenciales.',
     eyebrow: 'ANALISTAS',
     h1: 'Quienes firman nuestros informes',
     lead: 'Un analista revisa y firma cada boletín, alerta y evaluación de CECOM-Intel. Los analistas trabajan con los operadores del CECOM y con los oficiales de CSSG en puesto en Venezuela.',
-    focus: 'Responsabilidades',
+    focus: 'Áreas de experiencia',
+    education: 'Formación académica',
+    affiliations: 'Afiliaciones gremiales',
     contact: 'Hablar con un analista',
     method: 'Cómo trabajamos',
   },
@@ -61,17 +65,25 @@ export default function CecomIntelAnalysts({ lang }: { lang: Lang }) {
         <div className="ci-guide__wrap" style={{ gap: 32 }}>
           {ANALYSTS.map(a => (
             <article key={a.id} id={a.id} className="ci-card ci-profile">
-              <div className="ci-profile__mono" aria-hidden="true">{initials(a.name)}</div>
+              {a.photo
+                ? <img className="ci-profile__photo" src={a.photo} alt={a.name} width="160" height="160" />
+                : <div className="ci-profile__mono" aria-hidden="true">{initials(a.name)}</div>}
               <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-                <h2 className="ci-h2" style={{ fontSize: 'clamp(24px, 2.2vw, 32px)' }}>{a.name}</h2>
+                <h2 className="ci-h2" style={{ fontSize: 'clamp(24px, 2.2vw, 32px)' }}>{a.honorific ? `${a.honorific} ${a.name}` : a.name}</h2>
                 <div className="ci-method__label" style={{ fontSize: 12 }}>{a.role[lang]}</div>
                 {a.bio?.[lang].map(p => <p key={p.slice(0, 40)} className="ci-p ci-p--body">{p}</p>)}
-                <div className="ci-eyebrow" style={{ fontSize: 12 }}>{t.focus}</div>
-                <ul className="ci-list">
-                  {a.focus[lang].map(f => (
-                    <li key={f} style={{ padding: '10px 0' }}><span className="ci-dash" aria-hidden="true">—</span><p className="ci-p ci-p--body">{f}</p></li>
+                {([[t.focus, a.focus[lang]], [t.education, a.education?.[lang]], [t.affiliations, a.affiliations?.[lang]]] as [string, string[] | undefined][])
+                  .filter(([, items]) => items?.length)
+                  .map(([label, items]) => (
+                    <div key={label} style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+                      <div className="ci-eyebrow" style={{ fontSize: 12, marginTop: 10 }}>{label}</div>
+                      <ul className="ci-list">
+                        {items!.map(f => (
+                          <li key={f} style={{ padding: '10px 0' }}><span className="ci-dash" aria-hidden="true">—</span><p className="ci-p ci-p--body">{f}</p></li>
+                        ))}
+                      </ul>
+                    </div>
                   ))}
-                </ul>
               </div>
             </article>
           ))}

@@ -345,3 +345,6 @@
 @media (max-width: 560px) { .ci-profile { grid-template-columns: 1fr; } }
 .ci-field textarea { min-height: 120px; box-sizing: border-box; padding: 12px 16px; border-radius: 8px; border: 1px solid var(--ci-border-input); background: var(--ci-surface-deep); color: var(--ci-text); font-family: var(--ci-sans); font-size: 16px; width: 100%; resize: vertical; }
 .ci-field textarea:focus { border-color: var(--ci-gold); outline: none; }
+.ci-profile { grid-template-columns: 160px 1fr; }
+.ci-profile__photo { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; border: 2px solid var(--ci-gold); }
+@media (max-width: 560px) { .ci-profile { grid-template-columns: 1fr; } .ci-profile__photo { width: 128px; height: 128px; } }
