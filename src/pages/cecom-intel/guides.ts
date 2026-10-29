@@ -28,8 +28,8 @@ export const GUIDES: Guide[] = [
   {
     slug: 'venezuela-security-outlook-2026',
     title: 'Is it safe to travel to Venezuela in 2026? A security outlook for business travelers',
-    metaTitle: 'Is It Safe to Travel to Venezuela in 2026? Business Security Outlook | CECOM-Intel',
-    description: 'Current U.S. and UK advisories, the main risks for business travelers in Caracas and the higher-risk regions of Venezuela, and the practical measures that reduce exposure. Reviewed October 2026.',
+    metaTitle: 'Is It Safe to Travel to Venezuela in 2026? | CECOM-Intel',
+    description: 'U.S. and UK advisories, the main risks for business travelers in Caracas, the higher-risk regions and the measures that reduce exposure. Reviewed October 2026.',
     eyebrow: 'SECURITY OUTLOOK · VENEZUELA 2026',
     bottomLine: 'Business travel to Caracas is possible in 2026 with planning, but Venezuela remains a high-risk environment that can change quickly. The U.S. rates the country Level 3, “Reconsider Travel”, and the UK advises against all travel to the border and mining regions. Consular support is limited, so travelers need a plan that does not depend on their embassy.',
     sections: [
@@ -84,8 +84,8 @@ export const GUIDES: Guide[] = [
   {
     slug: 'doing-business-in-venezuela-security-guide',
     title: 'Doing business in Venezuela in 2026: a security guide for international companies',
-    metaTitle: 'Doing Business in Venezuela 2026: Security Guide for International Companies | CECOM-Intel',
-    description: 'Security and duty-of-care considerations for companies entering or returning to Venezuela in 2026: the operating environment, sanctions context, risk areas and how to choose a licensed local security partner.',
+    metaTitle: 'Doing Business in Venezuela 2026: Security Guide',
+    description: 'Security for companies entering Venezuela in 2026: the operating environment, sanctions context, risk areas and how to choose a licensed local security partner.',
     eyebrow: 'SECURITY GUIDE · INTERNATIONAL COMPANIES',
     bottomLine: 'Commercial engagement with Venezuela is reopening, but security remains each company’s own responsibility. In January 2026 the U.S. Secretary of Energy said Washington would not provide on-the-ground security for oil companies operating in the country. Companies need a security program, a licensed local partner and continuous risk monitoring before they commit people and assets.',
     sections: [
@@ -148,8 +148,8 @@ export const GUIDES: Guide[] = [
   {
     slug: 'executive-travel-venezuela-journey-management',
     title: 'Executive travel to Venezuela: airport arrival, transfers and journey management',
-    metaTitle: 'Executive Travel to Venezuela: Airport Transfers & Journey Management | CECOM-Intel',
-    description: 'How to plan an executive trip to Caracas in 2026: pre-trip assessment, arrival at Maiquetía, vetted transfers, journey management, daily risk updates and limits of physical response outside Caracas.',
+    metaTitle: 'Executive Travel to Venezuela: Journey Management',
+    description: 'Planning an executive trip to Caracas in 2026: pre-trip assessment, arrival at Maiquetía, vetted transfers, journey management and a daily risk bulletin.',
     eyebrow: 'EXECUTIVE TRAVEL · JOURNEY MANAGEMENT',
     bottomLine: 'The moments of highest exposure on an executive trip to Venezuela are the arrival, the airport transfer and any movement after dark. Each should be planned before departure, with a vetted team, a defined route and a 24/7 operations center following the journey.',
     sections: [

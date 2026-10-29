@@ -66,6 +66,9 @@ const SecureLanding = lazyWithPreload(() => import('./pages/consultoria/SecureLa
 // CECOM-Intel sub-brand (English default, Spanish under /es)
 const CecomIntel = lazyWithPreload(() => import('./pages/cecom-intel/CecomIntel'))
 const CecomIntelGuide = lazyWithPreload(() => import('./pages/cecom-intel/CecomIntelGuide'))
+const CecomIntelPartners = lazyWithPreload(() => import('./pages/cecom-intel/CecomIntelPartners'))
+const CecomIntelMethodology = lazyWithPreload(() => import('./pages/cecom-intel/CecomIntelMethodology'))
+const CecomIntelAnalysts = lazyWithPreload(() => import('./pages/cecom-intel/CecomIntelAnalysts'))
 
 // White Papers
 const WPRiesgos = lazyWithPreload(() => import('./pages/white-papers/WPRiesgos'))
@@ -108,6 +111,12 @@ const mainRoutes = (
     <Route path="/" element={<Home />} />
     <Route path="/cecom-intel" element={<CecomIntel lang="en" />} />
     <Route path="/cecom-intel/es" element={<CecomIntel lang="es" />} />
+    <Route path="/cecom-intel/partners" element={<CecomIntelPartners lang="en" />} />
+    <Route path="/cecom-intel/es/socios" element={<CecomIntelPartners lang="es" />} />
+    <Route path="/cecom-intel/methodology" element={<CecomIntelMethodology lang="en" />} />
+    <Route path="/cecom-intel/es/metodologia" element={<CecomIntelMethodology lang="es" />} />
+    <Route path="/cecom-intel/analysts" element={<CecomIntelAnalysts lang="en" />} />
+    <Route path="/cecom-intel/es/analistas" element={<CecomIntelAnalysts lang="es" />} />
     <Route path="/cecom-intel/venezuela-security-outlook-2026" element={<CecomIntelGuide slug="venezuela-security-outlook-2026" />} />
     <Route path="/cecom-intel/doing-business-in-venezuela-security-guide" element={<CecomIntelGuide slug="doing-business-in-venezuela-security-guide" />} />
     <Route path="/cecom-intel/executive-travel-venezuela-journey-management" element={<CecomIntelGuide slug="executive-travel-venezuela-journey-management" />} />

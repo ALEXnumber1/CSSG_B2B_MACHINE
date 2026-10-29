@@ -320,3 +320,28 @@
 /* Hero: the keyword-bearing H1 is set as the eyebrow; the motto keeps the display style. */
 .ci-hero h1.ci-eyebrow { margin: 0; font-family: var(--ci-mono); font-style: normal; font-weight: 500; font-size: 13px; line-height: 1.6; letter-spacing: 0.24em; color: var(--ci-gold); }
 .ci-hero__motto { margin: 0; font-family: var(--ci-serif-italic); font-style: italic; font-weight: 500; font-size: clamp(56px, 6.1vw, 88px); line-height: 1; color: var(--ci-text); }
+
+/* Status strip, risk calendar (src/data/cecom/status.ts) */
+.ci-status { border-bottom: 1px solid var(--ci-border); background: var(--ci-surface-deep); }
+.ci-status__inner { max-width: 1280px; margin: 0 auto; padding: 10px var(--ci-pad-x); display: flex; flex-wrap: wrap; gap: 6px 24px; font-family: var(--ci-mono); font-size: 13px; letter-spacing: .06em; color: var(--ci-text-muted); }
+.ci-status__lvl { font-weight: 500; color: var(--ci-gold-light); }
+.ci-status__lvl--low, .ci-status__lvl--moderate { color: #34D399; }
+.ci-status__lvl--high, .ci-status__lvl--critical { color: #F87171; }
+.ci-calendar li { padding: 14px 0; }
+.ci-calendar__date { flex: none; width: 72px; font-family: var(--ci-mono); font-size: 14px; color: var(--ci-gold); text-transform: uppercase; }
+
+/* Sub-pages: partners, methodology, analysts */
+.ci-subnav__anchors a[aria-current='page'] { color: var(--ci-gold-light); }
+.ci-table-wrap { overflow-x: auto; border: 1px solid var(--ci-border); border-radius: 8px; }
+.ci-table { width: 100%; min-width: 560px; border-collapse: collapse; font-size: 15px; }
+.ci-table th, .ci-table td { text-align: left; vertical-align: top; padding: 12px 16px; border-bottom: 1px solid var(--ci-border); color: var(--ci-text-body); }
+.ci-table thead th { font-family: var(--ci-mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--ci-text-muted); background: var(--ci-surface); }
+.ci-table tbody th { color: var(--ci-text); font-weight: 600; white-space: nowrap; }
+.ci-table tbody tr:last-child > * { border-bottom: 0; }
+.ci-code { font-family: var(--ci-mono); color: var(--ci-gold); }
+.ci-formula { font-family: var(--ci-mono); font-size: clamp(16px, 1.6vw, 20px); color: var(--ci-text); border-left: 2px solid var(--ci-gold); padding: 8px 0 8px 18px; }
+.ci-profile { display: grid; grid-template-columns: 96px 1fr; gap: 24px; align-items: start; }
+.ci-profile__mono { width: 96px; height: 96px; border-radius: 50%; border: 1px solid var(--ci-gold); display: grid; place-items: center; font-family: var(--ci-serif-display); font-size: 30px; color: var(--ci-gold-light); background: var(--ci-surface); }
+@media (max-width: 560px) { .ci-profile { grid-template-columns: 1fr; } }
+.ci-field textarea { min-height: 120px; box-sizing: border-box; padding: 12px 16px; border-radius: 8px; border: 1px solid var(--ci-border-input); background: var(--ci-surface-deep); color: var(--ci-text); font-family: var(--ci-sans); font-size: 16px; width: 100%; resize: vertical; }
+.ci-field textarea:focus { border-color: var(--ci-gold); outline: none; }

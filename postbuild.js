@@ -48,6 +48,16 @@ function stripUnneededPreloads(html, routePath) {
 // app doesn't support), which is wrong for any route — strip them from all generated pages.
 const stripHreflang = html => html.replace(/\s*<!-- Hreflang:[^>]*-->/, '').replace(/\s*<link rel="alternate" hreflang="[^"]*" href="[^"]*" \/>/g, '');
 
+const CECOM_INTEL_FONT = 'https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,700;1,500&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap';
+const cecomIntelRoute = route => ({
+  image: 'https://cssg-global.com/cecom-intel/og-cecom-intel.jpg',
+  ogImageAlt: 'CECOM-Intel by CSSG — Venezuela, from the ground.',
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
+  preloadFont: CECOM_INTEL_FONT,
+  ...route,
+});
+
 const routes = [
   {
     path: 'consultoria-seguridad-caracas',
@@ -823,65 +833,25 @@ const routes = [
     ogImageHeight: 630
   },
   // CECOM-Intel sub-brand: English is the default version, Spanish lives under /es.
-  {
-    path: 'cecom-intel/venezuela-security-outlook-2026',
-    lang: 'en',
-    title: "Is It Safe to Travel to Venezuela in 2026? Business Security Outlook | CECOM-Intel",
-    description: "Current U.S. and UK advisories, the main risks for business travelers in Caracas and the higher-risk regions of Venezuela, and the practical measures that reduce exposure. Reviewed October 2026.",
-    image: 'https://cssg-global.com/cecom-intel/og-cecom-intel.jpg',
-    ogImageAlt: 'CECOM-Intel by CSSG — Know, then decide.',
-    ogImageWidth: 1200,
-    ogImageHeight: 630,
-    preloadFont: 'https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,700;1,500&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap'
-  },
-  {
-    path: 'cecom-intel/doing-business-in-venezuela-security-guide',
-    lang: 'en',
-    title: "Doing Business in Venezuela 2026: Security Guide for International Companies | CECOM-Intel",
-    description: "Security and duty-of-care considerations for companies entering or returning to Venezuela in 2026: the operating environment, sanctions context, risk areas and how to choose a licensed local security partner.",
-    image: 'https://cssg-global.com/cecom-intel/og-cecom-intel.jpg',
-    ogImageAlt: 'CECOM-Intel by CSSG — Know, then decide.',
-    ogImageWidth: 1200,
-    ogImageHeight: 630,
-    preloadFont: 'https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,700;1,500&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap'
-  },
-  {
-    path: 'cecom-intel/executive-travel-venezuela-journey-management',
-    lang: 'en',
-    title: "Executive Travel to Venezuela: Airport Transfers & Journey Management | CECOM-Intel",
-    description: "How to plan an executive trip to Caracas in 2026: pre-trip assessment, arrival at Maiquetía, vetted transfers, journey management, daily risk updates and limits of physical response outside Caracas.",
-    image: 'https://cssg-global.com/cecom-intel/og-cecom-intel.jpg',
-    ogImageAlt: 'CECOM-Intel by CSSG — Know, then decide.',
-    ogImageWidth: 1200,
-    ogImageHeight: 630,
-    preloadFont: 'https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,700;1,500&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap'
-  },
-  {
-    path: 'cecom-intel',
-    lang: 'en',
-    alternates: { en: 'cecom-intel', es: 'cecom-intel/es' },
-    title: 'Venezuela GSOC & Security Risk Analysis | CECOM-Intel by CSSG Global',
-    description: 'CECOM-Intel is the risk analysis unit of CSSG’s in-country GSOC in Caracas: daily risk bulletin at 06:30, real-time alerts, journey management and tailored assessments for companies operating in Venezuela.',
-    image: 'https://cssg-global.com/cecom-intel/og-cecom-intel.jpg',
-    ogImageAlt: 'CECOM-Intel by CSSG — Know, then decide.',
-    ogImageWidth: 1200,
-    ogImageHeight: 630,
-    preloadFont: 'https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,700;1,500&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap',
-    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "CECOM-Intel | CSSG Global", "serviceType": "Security risk analysis", "description": "Risk analysis unit of CSSG Global's Command Center (CECOM) in Caracas: daily risk bulletin, real-time alerts and tailored assessments of cities, routes and sites in Venezuela.", "provider": { "@type": "Organization", "name": "CSSG — Company Of Security And Service Global", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" }, "inLanguage": "en" }
-  },
-  {
-    path: 'cecom-intel/es',
-    lang: 'es',
-    alternates: { en: 'cecom-intel', es: 'cecom-intel/es' },
-    title: 'Centro de Comando y Análisis de Riesgo en Venezuela | CECOM-Intel by CSSG',
-    description: 'CECOM-Intel es la unidad de análisis de riesgo de CSSG Global en Caracas: boletín diario de riesgo a las 06:30, alertas en tiempo real y evaluaciones a la medida de ciudades, rutas y sedes. Solicite una muestra gratuita.',
-    image: 'https://cssg-global.com/cecom-intel/og-cecom-intel.jpg',
-    ogImageAlt: 'CECOM-Intel by CSSG — Know, then decide.',
-    ogImageWidth: 1200,
-    ogImageHeight: 630,
-    preloadFont: 'https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,700;1,500&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@500&display=swap',
-    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "CECOM-Intel | CSSG Global", "serviceType": "Análisis de riesgo de seguridad", "description": "Unidad de análisis de riesgo del Centro de Comando (CECOM) de CSSG Global en Caracas: boletín diario de riesgo, alertas en tiempo real y evaluaciones a la medida de ciudades, rutas y sedes en Venezuela.", "provider": { "@type": "Organization", "name": "CSSG — Company Of Security And Service Global", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" }, "inLanguage": "es" }
-  }
+  // Titles and descriptions must match the pages' own copy (src/pages/cecom-intel/*.ts).
+  // The guides exist only in English, so their hreflang set is en + x-default.
+  ...[
+    ['venezuela-security-outlook-2026', 'Is It Safe to Travel to Venezuela in 2026? | CECOM-Intel', 'U.S. and UK advisories, the main risks for business travelers in Caracas, the higher-risk regions and the measures that reduce exposure. Reviewed October 2026.'],
+    ['doing-business-in-venezuela-security-guide', 'Doing Business in Venezuela 2026: Security Guide', 'Security for companies entering Venezuela in 2026: the operating environment, sanctions context, risk areas and how to choose a licensed local security partner.'],
+    ['executive-travel-venezuela-journey-management', 'Executive Travel to Venezuela: Journey Management', 'Planning an executive trip to Caracas in 2026: pre-trip assessment, arrival at Maiquetía, vetted transfers, journey management and a daily risk bulletin.'],
+  ].map(([slug, title, description]) => cecomIntelRoute({
+    path: `cecom-intel/${slug}`, lang: 'en', alternates: { en: `cecom-intel/${slug}` }, lastmod: '2026-10-18', title, description,
+  })),
+  ...[
+    { en: 'cecom-intel', es: 'cecom-intel/es', titles: ['Venezuela Security Risk Analysis & GSOC | CECOM-Intel', 'Análisis de riesgo de seguridad en Venezuela | CECOM-Intel'], descriptions: ['Venezuela, from the ground: a 06:30 daily risk bulletin, alerts and assessments from CSSG’s GSOC in Caracas, the in-country partner of global security firms.', 'Venezuela, desde dentro: boletín de riesgo a las 06:30, alertas y evaluaciones desde el centro de comando de CSSG en Caracas. Pida un boletín de muestra.'] },
+    { en: 'cecom-intel/partners', es: 'cecom-intel/es/socios', titles: ['In-Country Security Partner in Venezuela | CECOM-Intel', 'Socio local de seguridad en Venezuela | CECOM-Intel'], descriptions: ['CSSG is the in-country partner of global security firms, insurers and travel-risk companies in Venezuela: GSOC 24/7, protection, transfers, English reports.', 'CSSG es el socio local de firmas globales de seguridad, aseguradoras y empresas de viajes en Venezuela: centro de comando 24/7, protección e informes en inglés.'] },
+    { en: 'cecom-intel/methodology', es: 'cecom-intel/es/metodologia', titles: ['Methodology and Editorial Standards | CECOM-Intel', 'Metodología y estándares editoriales | CECOM-Intel'], descriptions: ['How CECOM-Intel works: OSINT, HUMINT and SOCMINT sources graded on the Admiralty code, FMEA risk scoring under ISO 31000, analyst sign-off and corrections.', 'Cómo trabaja CECOM-Intel: fuentes OSINT, HUMINT y SOCMINT con código Admiralty, riesgo FMEA según ISO 31000, firma de un analista y política de correcciones.'] },
+    { en: 'cecom-intel/analysts', es: 'cecom-intel/es/analistas', titles: ['CECOM-Intel Analysts: Venezuela Security Risk', 'Analistas de CECOM-Intel: riesgo de seguridad en Venezuela'], descriptions: ['The analysts who sign every CECOM-Intel bulletin and assessment on Venezuela, led by Guillermo Amitesarove, Director and Lead Analyst of the CSSG unit.', 'Los analistas que firman cada boletín y evaluación de CECOM-Intel sobre Venezuela, dirigidos por Guillermo Amitesarove, director y analista principal.'] },
+  ].flatMap(pair => ['en', 'es'].map((lang, i) => cecomIntelRoute({
+    path: pair[lang], lang, alternates: { en: pair.en, es: pair.es }, lastmod: '2026-10-29', title: pair.titles[i], description: pair.descriptions[i],
+    // The unit's Service schema (the FAQ and the rest are rendered by the page itself).
+    jsonld: pair.en === 'cecom-intel' ? { "@context": "https://schema.org", "@type": "Service", "name": "CECOM-Intel | CSSG Global", "serviceType": lang === 'en' ? "Security risk analysis" : "Análisis de riesgo de seguridad", "description": pair.descriptions[i], "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "Company Of Security And Service Global C.A.", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" }, "inLanguage": lang } : undefined,
+  }))),
 ];
 
 const SITE_URL = 'https://cssg-global.com';

@@ -1,40 +1,87 @@
 // Copy for /cecom-intel (English, default) and /cecom-intel/es (Spanish).
 // Editorial rules for this page: the brand is "CECOM-Intel | CSSG Global"; the words
 // "inteligencia"/"intelligence" are not used except in "artificial intelligence" (AI notice).
-// Prices are not defined yet: they render as "on request" until set in PRICES.
+// HUMINT and SOCMINT are used only as the names of source layers. Prices left as null render
+// as "on request" until set in PRICES.
+
+import type { Level } from '../../data/cecom/status';
 
 export type Lang = 'en' | 'es';
 
 /** Monthly prices in USD. null = not published yet ("pricing on request"). */
 export const PRICES: { essential: number | null; professional: number | null } = {
-  essential: null,
+  essential: 500,
   professional: null,
 };
 
 export const PATHS: Record<Lang, string> = { en: '/cecom-intel', es: '/cecom-intel/es' };
 
-export type Interest = 'sample' | 'essential' | 'professional' | 'tailored' | 'analyst' | 'duty_of_care';
+/** Sub-pages and their language pairs. */
+export const PAGES = {
+  partners: { en: '/cecom-intel/partners', es: '/cecom-intel/es/socios' },
+  methodology: { en: '/cecom-intel/methodology', es: '/cecom-intel/es/metodologia' },
+  analysts: { en: '/cecom-intel/analysts', es: '/cecom-intel/es/analistas' },
+} satisfies Record<string, Record<Lang, string>>;
+
+export type Interest = 'sample' | 'essential' | 'professional' | 'tailored' | 'analyst' | 'partner' | 'duty_of_care';
 
 const en = {
   meta: {
-    title: 'Venezuela GSOC & Security Risk Analysis | CECOM-Intel by CSSG Global',
-    description: 'CECOM-Intel is the risk analysis unit of CSSG’s in-country GSOC in Caracas: daily risk bulletin at 06:30, real-time alerts, journey management and tailored assessments for companies operating in Venezuela.',
+    title: 'Venezuela Security Risk Analysis & GSOC | CECOM-Intel',
+    description: 'Venezuela, from the ground: a 06:30 daily risk bulletin, alerts and assessments from CSSG’s GSOC in Caracas, the in-country partner of global security firms.',
   },
-  nav: { what: 'What it is', patrol: 'Patrol', scope: 'Scope', how: 'How we work', plans: 'Plans', cta: 'Sample bulletin', langLabel: 'Language' },
+  nav: { topics: 'Coverage', paths: 'Who it serves', how: 'How we work', plans: 'Plans', partners: 'Partners', cta: 'Sample bulletin', langLabel: 'Language' },
   hero: {
     eyebrow: 'Venezuela’s in-country GSOC and security risk analysis unit · CSSG',
-    lead: 'CSSG Global’s risk analysis layer. Validated information on Venezuela for our operations and for you: every security decision starts with an analysis, not an assumption.',
-    ctaSample: 'Request a sample bulletin',
-    ctaPlans: 'See plans',
-    coverage: 'VENEZUELA · NATIONWIDE COVERAGE 24/7',
+    motto: 'Venezuela, from the ground.',
+    lead: 'Risk analysis verified on the ground every morning at 06:30, for companies operating in Venezuela and for the global security firms that protect them.',
+    ctaSample: 'Get the weekly briefing',
+    ctaPartner: 'Partner with us',
+    coverage: 'NATIONWIDE ANALYSIS 24/7 · OWN PHYSICAL RESPONSE IN CARACAS AND MIRANDA',
     mapLabel: 'Line map of Latin America with Venezuela highlighted under a magnifying glass',
   },
   creds: [
     { value: '06:30', label: 'Daily bulletin, every day (Venezuela time)' },
-    { value: '24/7', label: 'CECOM (GSOC) active with nationwide coverage' },
-    { value: '17 years', label: 'CSSG operating track record' },
-    { value: 'ISO 9001', label: 'And Cyber Essentials certified' },
+    { value: '24/7', label: 'CECOM (GSOC) monitoring, nationwide analysis' },
+    { value: '17 years', label: 'Without a security incident, 12 of them protecting G7 embassies' },
+    { value: 'ISO 9001', label: 'and Cyber Essentials certified' },
   ],
+  status: {
+    level: 'National level',
+    updated: 'Reviewed',
+    levels: { low: 'LOW', moderate: 'MODERATE', elevated: 'ELEVATED', high: 'HIGH', critical: 'CRITICAL' } as Record<Level, string>,
+  },
+  week: { eyebrow: 'THIS WEEK', title: 'This week in 3 points', impact: 'What it means for your operation' },
+  calendar: { eyebrow: 'RISK CALENDAR', title: 'The next 30 days' },
+  topics: {
+    eyebrow: 'WHAT WE COVER',
+    title: 'Five areas, one question: can you operate today?',
+    lead: 'Every topic is read for its operational impact on people, sites and movements. We do not publish political opinion.',
+    items: [
+      { title: 'Politics and transition', text: 'Institutional decisions, protests and security-force deployments, and what they change for operations on the ground.', href: '/cecom-intel/venezuela-security-outlook-2026', link: 'Security outlook 2026' },
+      { title: 'Sanctions and energy', text: 'OFAC general licenses and energy-sector activity, translated into security consequences. Never legal advice.', href: '/cecom-intel/doing-business-in-venezuela-security-guide', link: 'Doing business in Venezuela' },
+      { title: 'Crime', text: 'Robbery, express kidnapping, extortion and carjacking patterns by area and time of day.' },
+      { title: 'Infrastructure and natural hazards', text: 'Power, water, fuel, roads, ports and airports, including the aftermath of the June 2026 earthquakes.' },
+      { title: 'Travel', text: 'Airport arrival, transfers, checkpoints and movements between cities.', href: '/cecom-intel/executive-travel-venezuela-journey-management', link: 'Executive travel guide' },
+    ] as { title: string; text: string; href?: string; link?: string }[],
+  },
+  paths: {
+    eyebrow: 'WHO IT SERVES',
+    title: 'Three ways to work with us',
+    proof: 'Since 2009 we have protected G7 diplomatic missions and multinationals in Venezuela.',
+    cards: [
+      { title: 'Companies and missions in Venezuela', text: 'Daily bulletin, alerts and assessments for your sites, staff and routes, plus CSSG protection when the analysis calls for action.', href: '#planes', link: 'See plans' },
+      { title: 'Global firms and insurers', text: 'Your in-country partner: eyes on the ground, response capacity and reports in English, under your standard. You keep the client.', href: '/cecom-intel/partners', link: 'Partner program' },
+      { title: 'Corporate travelers', text: 'Pre-trip assessment, airport arrival at Maiquetía, vetted transfers and journey management followed by the CECOM.', href: '/cecom-intel/executive-travel-venezuela-journey-management', link: 'Executive travel' },
+    ],
+  },
+  analyst: {
+    eyebrow: 'SIGNED BY AN ANALYST',
+    title: 'Every report has a name behind it',
+    text: 'CECOM-Intel is led by its director and lead analyst, who signs off the 06:30 bulletin and every assessment. The method is public: sources graded on the Admiralty code and risk scored under ISO 31000.',
+    analysts: 'Meet the analysts',
+    methodology: 'Read the methodology',
+  },
   what: {
     eyebrow: 'WHAT CECOM-INTEL IS',
     title: 'CSSG’s risk analysis layer',
@@ -90,22 +137,12 @@ const en = {
     title: 'Verifiable sources, human judgment',
     items: [
       { label: 'OSINT', text: 'Predetermined, verifiable open sources, graded with the Admiralty code.' },
-      { label: 'FIELD REPORTING', text: 'Field reports from our officers on post and from our professional network, handled ethically and within the law.' },
-      { label: 'NATIONAL NETWORK', text: 'Operational presence from Caracas to the rest of the country.' },
+      { label: 'HUMINT', text: 'Field reports from our officers on post and from our professional network, handled ethically and within the law.' },
+      { label: 'SOCMINT', text: 'Public social media and messaging channels, where events surface first, verified before they are reported.' },
       { label: 'ETHICS FIRST', text: 'Legitimate information and protected confidentiality for clients and sources.' },
     ],
     aiQuote: 'We use artificial intelligence; it does not use us.',
     aiText: 'AI helps us process and organize large volumes of information. The judgment, verification and sign-off of every report always belong to our analysts.',
-  },
-  who: {
-    eyebrow: 'WHO IT IS FOR',
-    title: 'For those who cannot decide blind',
-    proof: 'Since 2009 we have protected G7 diplomatic missions and multinationals in Venezuela.',
-    cards: [
-      { title: 'Diplomatic missions', text: 'Staff safety, movements across the country and mission continuity.', href: '/en/diplomatic-security', link: 'Diplomatic security' },
-      { title: 'Multinationals', text: 'Operational continuity, site protection and assessment of logistics routes.', href: '/en/corporate-security-consulting', link: 'Corporate security' },
-      { title: 'Investors and executives', text: 'Reliable context before traveling, setting up or committing capital in Venezuela.', href: '/en/executive-protection-venezuela-investors', link: 'Executive protection' },
-    ],
   },
   plans: {
     eyebrow: 'PLANS',
@@ -117,7 +154,7 @@ const en = {
     onRequest: 'Pricing on request',
     monthly: 'Monthly subscription',
     quote: 'On request',
-    essential: { name: 'Essential Bulletin', items: ['Daily risk bulletin at 06:30', 'Cited and graded sources', 'One recipient'], cta: 'Subscribe' },
+    essential: { name: 'Essential Bulletin', items: ['Daily risk bulletin at 06:30', 'OSINT, HUMINT and SOCMINT layers', 'Cited sources graded on the Admiralty code', 'One recipient'], cta: 'Subscribe' },
     professional: { name: 'Professional Bulletin', items: ['Everything in Essential', 'Real-time risk alerts', 'Multiple recipients in your organization'], cta: 'Subscribe' },
     tailored: { name: 'Tailored Assessment', items: ['City, route, site or local partner reports', 'Dedicated coverage for visits and events', 'Direct line to the CECOM 24/7'], cta: 'Talk to an analyst' },
     billing: 'Prices in U.S. dollars. Invoiced by Company of Security and Service Global LLC (Miami).',
@@ -137,6 +174,7 @@ const en = {
       professional: 'Professional Bulletin',
       tailored: 'A tailored assessment',
       analyst: 'Talking to an analyst',
+      partner: 'A partnership (global firms and insurers)',
       duty_of_care: 'Duty of Care (on request)',
     } as Record<Interest, string>,
     weekly: 'Also subscribe me to the free weekly country bulletin (English and Spanish).',
@@ -182,24 +220,61 @@ const en = {
 
 const es: typeof en = {
   meta: {
-    title: 'Centro de Comando y Análisis de Riesgo en Venezuela | CECOM-Intel by CSSG',
-    description: 'CECOM-Intel es la unidad de análisis de riesgo de CSSG Global en Caracas: boletín diario de riesgo a las 06:30, alertas en tiempo real y evaluaciones a la medida de ciudades, rutas y sedes en Venezuela. Solicite una muestra gratuita.',
+    title: 'Análisis de riesgo de seguridad en Venezuela | CECOM-Intel',
+    description: 'Venezuela, desde dentro: boletín de riesgo a las 06:30, alertas y evaluaciones desde el centro de comando de CSSG en Caracas. Pida un boletín de muestra.',
   },
-  nav: { what: 'Qué es', patrol: 'Patrullaje', scope: 'Alcance', how: 'Cómo trabajamos', plans: 'Planes', cta: 'Boletín de muestra', langLabel: 'Idioma' },
+  nav: { topics: 'Cobertura', paths: 'Para quién', how: 'Cómo trabajamos', plans: 'Planes', partners: 'Socios', cta: 'Boletín de muestra', langLabel: 'Idioma' },
   hero: {
     eyebrow: 'Centro de comando y análisis de riesgo de seguridad en Venezuela · CSSG',
-    lead: 'La capa de análisis de riesgo de CSSG Global. Información validada sobre Venezuela para nuestras operaciones y para usted: cada decisión de seguridad parte de un análisis, no de una suposición.',
-    ctaSample: 'Solicitar boletín de muestra',
-    ctaPlans: 'Ver planes',
-    coverage: 'VENEZUELA · COBERTURA NACIONAL 24/7',
+    motto: 'Venezuela, desde dentro.',
+    lead: 'Análisis de riesgo verificado en el terreno cada mañana a las 06:30, para las empresas que operan en Venezuela y para las firmas globales de seguridad que las protegen.',
+    ctaSample: 'Recibir el briefing semanal',
+    ctaPartner: 'Programa de socios',
+    coverage: 'ANÁLISIS NACIONAL 24/7 · RESPUESTA FÍSICA PROPIA EN CARACAS Y MIRANDA',
     mapLabel: 'Mapa lineal de Latinoamérica con Venezuela destacada bajo una lupa',
   },
   creds: [
     { value: '06:30', label: 'Boletín diario, todos los días' },
-    { value: '24/7', label: 'CECOM activo con cobertura nacional' },
-    { value: '17 años', label: 'Trayectoria operativa de CSSG' },
-    { value: 'ISO 9001', label: 'Y Cyber Essentials certificados' },
+    { value: '24/7', label: 'Monitoreo del CECOM, análisis nacional' },
+    { value: '17 años', label: 'Sin incidentes de seguridad, 12 de ellos protegiendo embajadas del G7' },
+    { value: 'ISO 9001', label: 'y Cyber Essentials certificados' },
   ],
+  status: {
+    level: 'Nivel nacional',
+    updated: 'Revisado',
+    levels: { low: 'BAJO', moderate: 'MODERADO', elevated: 'ELEVADO', high: 'ALTO', critical: 'CRÍTICO' },
+  },
+  week: { eyebrow: 'ESTA SEMANA', title: 'Esta semana en 3 puntos', impact: 'Qué significa para su operación' },
+  calendar: { eyebrow: 'CALENDARIO DE RIESGO', title: 'Los próximos 30 días' },
+  topics: {
+    eyebrow: 'QUÉ CUBRIMOS',
+    title: 'Cinco áreas, una pregunta: ¿puede operar hoy?',
+    lead: 'Cada tema se analiza por su impacto operativo en personas, sedes y desplazamientos. No publicamos opinión política.',
+    items: [
+      { title: 'Política y transición', text: 'Decisiones institucionales, protestas y despliegues de cuerpos de seguridad, y lo que cambian para la operación en el terreno.', href: '/cecom-intel/venezuela-security-outlook-2026', link: 'Panorama de seguridad 2026 (en inglés)' },
+      { title: 'Sanciones y energía', text: 'Licencias generales de la OFAC y actividad del sector energético, traducidas a consecuencias de seguridad. Nunca asesoría legal.', href: '/cecom-intel/doing-business-in-venezuela-security-guide', link: 'Hacer negocios en Venezuela (en inglés)' },
+      { title: 'Delincuencia', text: 'Patrones de robo, secuestro exprés, extorsión y robo de vehículos por zona y franja horaria.' },
+      { title: 'Infraestructura y desastres', text: 'Electricidad, agua, combustible, vías, puertos y aeropuertos, incluidas las secuelas de los sismos de junio de 2026.' },
+      { title: 'Viajes', text: 'Llegada al aeropuerto, traslados, puntos de control y desplazamientos entre ciudades.', href: '/cecom-intel/executive-travel-venezuela-journey-management', link: 'Guía de viajes ejecutivos (en inglés)' },
+    ],
+  },
+  paths: {
+    eyebrow: 'PARA QUIÉN',
+    title: 'Tres formas de trabajar con nosotros',
+    proof: 'Desde 2009 protegemos misiones diplomáticas del G7 y multinacionales en Venezuela.',
+    cards: [
+      { title: 'Empresas y misiones en Venezuela', text: 'Boletín diario, alertas y evaluaciones para sus sedes, su personal y sus rutas, y la protección de CSSG cuando el análisis pide acción.', href: '#planes', link: 'Ver planes' },
+      { title: 'Firmas globales y aseguradoras', text: 'Su socio local: ojos en el terreno, capacidad de respuesta e informes en inglés, bajo su estándar. El cliente sigue siendo suyo.', href: '/cecom-intel/es/socios', link: 'Programa de socios' },
+      { title: 'Viajeros corporativos', text: 'Evaluación previa al viaje, llegada a Maiquetía, traslados verificados y gestión de desplazamientos seguida por el CECOM.', href: '/cecom-intel/executive-travel-venezuela-journey-management', link: 'Viajes ejecutivos (en inglés)' },
+    ],
+  },
+  analyst: {
+    eyebrow: 'FIRMADO POR UN ANALISTA',
+    title: 'Cada informe tiene un nombre detrás',
+    text: 'CECOM-Intel lo dirige su director y analista principal, que firma el boletín de las 06:30 y cada evaluación. El método es público: fuentes calificadas con el código Admiralty y riesgo evaluado según ISO 31000.',
+    analysts: 'Conocer a los analistas',
+    methodology: 'Leer la metodología',
+  },
   what: {
     eyebrow: 'QUÉ ES CECOM-INTEL',
     title: 'La capa de análisis de riesgo de CSSG',
@@ -255,22 +330,12 @@ const es: typeof en = {
     title: 'Fuentes verificables, criterio humano',
     items: [
       { label: 'OSINT', text: 'Fuentes abiertas predeterminadas, verificables y calificadas con el código Admiralty.' },
-      { label: 'REPORTES DE CAMPO', text: 'Reportes de campo de nuestros oficiales en puesto y de nuestra red profesional, gestionados con criterios éticos y dentro de la ley.' },
-      { label: 'RED NACIONAL', text: 'Presencia operativa desde Caracas hacia el resto del país.' },
+      { label: 'HUMINT', text: 'Reportes de campo de nuestros oficiales en puesto y de nuestra red profesional, gestionados con criterios éticos y dentro de la ley.' },
+      { label: 'SOCMINT', text: 'Redes sociales y canales de mensajería públicos, donde los hechos aparecen primero, verificados antes de reportarlos.' },
       { label: 'ÉTICA PRIMERO', text: 'Información legítima y confidencialidad protegida para clientes y fuentes.' },
     ],
     aiQuote: 'Usamos la inteligencia artificial; ella no nos usa a nosotros.',
     aiText: 'La IA nos ayuda a procesar y ordenar grandes volúmenes de información. El juicio, la verificación y la firma de cada informe son siempre de nuestros analistas.',
-  },
-  who: {
-    eyebrow: 'PARA QUIÉN',
-    title: 'Para quienes no pueden decidir a ciegas',
-    proof: 'Desde 2009 protegemos misiones diplomáticas del G7 y multinacionales en Venezuela.',
-    cards: [
-      { title: 'Misiones diplomáticas', text: 'Seguridad del personal, movimientos al interior del país y continuidad de la misión.', href: '/consultoria/escudo-diplomatico', link: 'Escudo Diplomático' },
-      { title: 'Multinacionales', text: 'Continuidad operativa, protección de sedes y evaluación de rutas logísticas.', href: '/consultoria', link: 'Consultoría corporativa' },
-      { title: 'Inversores y ejecutivos', text: 'Contexto confiable antes de viajar, instalarse o comprometer capital en Venezuela.', href: '/consultoria/proteccion-ejecutiva-analisis-amenazas', link: 'Protección ejecutiva' },
-    ],
   },
   plans: {
     eyebrow: 'PLANES',
@@ -282,7 +347,7 @@ const es: typeof en = {
     onRequest: 'Precio a consultar',
     monthly: 'Suscripción mensual',
     quote: 'A consultar',
-    essential: { name: 'Boletín Esencial', items: ['Boletín diario de riesgo a las 06:30', 'Fuentes citadas y calificadas', 'Un destinatario'], cta: 'Suscribirse' },
+    essential: { name: 'Boletín Esencial', items: ['Boletín diario de riesgo a las 06:30', 'Capas OSINT, HUMINT y SOCMINT', 'Fuentes citadas y calificadas con el código Admiralty', 'Un destinatario'], cta: 'Suscribirse' },
     professional: { name: 'Boletín Profesional', items: ['Todo lo del plan Esencial', 'Alertas de riesgo en tiempo real', 'Varios destinatarios en su organización'], cta: 'Suscribirse' },
     tailored: { name: 'Análisis a la medida', items: ['Informes de ciudad, ruta, sede o socio local', 'Cobertura dedicada para visitas y eventos', 'Enlace directo con el CECOM 24/7'], cta: 'Hablar con un analista' },
     billing: 'Precios en dólares estadounidenses. Facturación desde Company of Security and Service Global LLC (Miami).',
@@ -302,6 +367,7 @@ const es: typeof en = {
       professional: 'Boletín Profesional',
       tailored: 'Un análisis a la medida',
       analyst: 'Hablar con un analista',
+      partner: 'Una alianza (firmas globales y aseguradoras)',
       duty_of_care: 'Duty of Care (a solicitud)',
     },
     weekly: 'Suscribirme también al boletín semanal gratuito a nivel país (en español e inglés).',
