@@ -1,9 +1,26 @@
 import { useEffect, useState, type FormEvent, type ReactNode } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { CecomIntelMap, CecomIntelWordmark, JsonLd, useCecomIntelFonts } from '../../components/cecom-intel/CecomIntelMark';
-import { CONTENT, PATHS, PRICES, type Interest, type Lang } from './content';
+import { CONTENT, PAGES, PATHS, PRICES, type Interest, type Lang } from './content';
 import { GUIDES } from './guides';
+import { LEAD_ANALYST } from './analysts';
+import { CiFooter } from './shell';
+import { STATUS } from '../../data/cecom/status';
 import '../../styles/cecom-intel.css';
+
+const HOUR = 3600_000;
+const STRIP_MAX_AGE = 48 * HOUR;
+const WEEK_MAX_AGE = 8 * 24 * HOUR;
+const CALENDAR_DAYS = 30;
+
+/**
+ * The time the page mounted, or null while prerendering: the static HTML is built once, so the
+ * time-dependent status blocks must not be baked into it (crawlers would read a stale picture).
+ */
+function useNow() {
+  const [now] = useState(() => ((window as { __PRERENDER__?: boolean }).__PRERENDER__ ? null : Date.now()));
+  return now;
+}
 
 const FREE_EMAIL_DOMAINS = ['gmail.com', 'hotmail.com', 'outlook.com', 'yahoo.com', 'live.com', 'icloud.com'];
 
@@ -49,7 +66,17 @@ function PatrolGraphic({ site, caption, label }: { site: string; caption: string
 export default function CecomIntel({ lang }: { lang: Lang }) {
   const t = CONTENT[lang];
   const location = useLocation();
+  const now = useNow();
   useCecomIntelFonts();
+
+  const age = now !== null && STATUS.updatedAt ? now - Date.parse(STATUS.updatedAt) : Infinity;
+  const showStrip = age < STRIP_MAX_AGE && STATUS.level !== null;
+  const showWeek = age < WEEK_MAX_AGE && STATUS.week.length > 0;
+  const today = now === null ? null : new Date(now).toISOString().slice(0, 10);
+  const horizon = now === null ? null : new Date(now + CALENDAR_DAYS * 24 * HOUR).toISOString().slice(0, 10);
+  const events = today && horizon ? STATUS.calendar.filter(e => e.date >= today && e.date <= horizon).sort((a, b) => a.date.localeCompare(b.date)) : [];
+  const fmtDate = (iso: string, opts: Intl.DateTimeFormatOptions) =>
+    new Date(iso.length === 10 ? `${iso}T12:00:00-04:00` : iso).toLocaleDateString(lang === 'es' ? 'es-VE' : 'en-GB', { timeZone: 'America/Caracas', ...opts });
 
   const [form, setForm] = useState({ nombre: '', empresa: '', correo: '', interest: 'sample' as Interest, weekly: true });
   const [status, setStatus] = useState<'idle' | 'sending' | 'ok' | 'error'>('idle');
@@ -126,11 +153,11 @@ export default function CecomIntel({ lang }: { lang: Lang }) {
           <a href="#top" className="ci-wordmark-link" style={{ textDecoration: 'none' }}><CecomIntelWordmark /></a>
           <div className="ci-subnav__links">
             <div className="ci-subnav__anchors">
-              <a href="#que-es">{t.nav.what}</a>
-              <a href="#patrullaje">{t.nav.patrol}</a>
-              <a href="#alcance">{t.nav.scope}</a>
+              <a href="#temas">{t.nav.topics}</a>
+              <a href="#para-quien">{t.nav.paths}</a>
               <a href="#como-trabajamos">{t.nav.how}</a>
               <a href="#planes">{t.nav.plans}</a>
+              <Link to={PAGES.partners[lang]}>{t.nav.partners}</Link>
             </div>
             <div className="ci-lang" role="group" aria-label={t.nav.langLabel}>
               {(['en', 'es'] as Lang[]).map(l => (
@@ -144,16 +171,26 @@ export default function CecomIntel({ lang }: { lang: Lang }) {
         </div>
       </nav>
 
+      {/* Status strip (src/data/cecom/status.ts; hidden when older than 48 h) */}
+      {showStrip && STATUS.updatedAt && STATUS.level && (
+        <div className="ci-status" role="status">
+          <div className="ci-status__inner">
+            <span>06:30 VET · {fmtDate(STATUS.updatedAt, { day: '2-digit', month: 'short', year: 'numeric' })}</span>
+            <span>{t.status.level}: <strong className={`ci-status__lvl ci-status__lvl--${STATUS.level}`}>{t.status.levels[STATUS.level]}</strong></span>
+          </div>
+        </div>
+      )}
+
       {/* 2 · Hero */}
       <header id="top" className="ci-hero">
         <div className="ci-hero__inner">
           <div className="ci-hero__copy">
             <h1 className="ci-eyebrow">{t.hero.eyebrow}</h1>
-            <p className="ci-hero__motto">Know, then decide.</p>
+            <p className="ci-hero__motto">{t.hero.motto}</p>
             <p className="ci-hero__lead">{t.hero.lead}</p>
             <div className="ci-hero__ctas">
-              <a href="#muestra" className="ci-btn ci-btn--gold" onClick={() => pickInterest('sample', 'hero')}>{t.hero.ctaSample}</a>
-              <a href="#planes" className="ci-btn ci-btn--ghost">{t.hero.ctaPlans}</a>
+              <a href="#muestra" className="ci-btn ci-btn--gold" onClick={() => { pickInterest('sample', 'hero'); setForm(f => ({ ...f, weekly: true })); }}>{t.hero.ctaSample}</a>
+              <Link to={PAGES.partners[lang]} className="ci-btn ci-btn--ghost" onClick={() => track('select_plan', { plan: 'partner', source: 'hero', page_language: lang })}>{t.hero.ctaPartner}</Link>
             </div>
             <div className="ci-hero__coverage">{t.hero.coverage}</div>
           </div>
@@ -170,6 +207,87 @@ export default function CecomIntel({ lang }: { lang: Lang }) {
               <div className="ci-cred__label">{c.label}</div>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* This week in 3 points + risk calendar (src/data/cecom/status.ts; hidden when stale or empty) */}
+      {(showWeek || events.length > 0) && (
+        <section id="esta-semana" className="ci-section">
+          <div className="ci-stack">
+            {showWeek && (
+              <>
+                <div className="ci-head">
+                  <div className="ci-eyebrow">{t.week.eyebrow}</div>
+                  <h2 className="ci-h2">{t.week.title}</h2>
+                </div>
+                <div className="ci-grid-3">
+                  {STATUS.week.slice(0, 3).map(w => (
+                    <div key={w[lang].title} className="ci-card">
+                      <div className="ci-card__title">{w[lang].title}</div>
+                      <div className="ci-method__label" style={{ fontSize: 12 }}>{t.week.impact}</div>
+                      <p className="ci-p">{w[lang].impact}</p>
+                    </div>
+                  ))}
+                </div>
+              </>
+            )}
+            {events.length > 0 && (
+              <>
+                <div className="ci-head" style={{ marginTop: showWeek ? 24 : 0 }}>
+                  <div className="ci-eyebrow">{t.calendar.eyebrow}</div>
+                  <h2 className="ci-h2">{t.calendar.title}</h2>
+                </div>
+                <ul className="ci-list ci-calendar">
+                  {events.map(e => (
+                    <li key={`${e.date}${e.en}`}>
+                      <time dateTime={e.date} className="ci-calendar__date">{fmtDate(e.date, { day: '2-digit', month: 'short' })}</time>
+                      <p className="ci-p ci-p--body">{e[lang]}</p>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
+          </div>
+        </section>
+      )}
+
+      {/* Topics */}
+      <section id="temas" className="ci-section ci-alt">
+        <div className="ci-stack">
+          <div className="ci-head" style={{ maxWidth: 860 }}>
+            <div className="ci-eyebrow">{t.topics.eyebrow}</div>
+            <h2 className="ci-h2">{t.topics.title}</h2>
+            <p className="ci-p">{t.topics.lead}</p>
+          </div>
+          <div className="ci-grid-3">
+            {t.topics.items.map(i => (
+              <div key={i.title} className="ci-card">
+                <div className="ci-card__title">{i.title}</div>
+                <p className="ci-p" style={{ flexGrow: 1 }}>{i.text}</p>
+                {i.href && <Link to={i.href} hrefLang="en">{i.link} →</Link>}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Three paths */}
+      <section id="para-quien" className="ci-section">
+        <div className="ci-stack">
+          <div className="ci-head">
+            <div className="ci-eyebrow">{t.paths.eyebrow}</div>
+            <h2 className="ci-h2">{t.paths.title}</h2>
+            <p className="ci-p ci-p--body">{t.paths.proof}</p>
+          </div>
+          <div className="ci-grid-3">
+            {t.paths.cards.map(c => (
+              <div key={c.title} className="ci-audience">
+                <div className="ci-audience__title">{c.title}</div>
+                <p className="ci-p">{c.text}</p>
+                {c.href.startsWith('#') ? <a href={c.href}>{c.link} →</a> : <Link to={c.href}>{c.link} →</Link>}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -280,22 +398,23 @@ export default function CecomIntel({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      {/* 9 · Who it is for */}
-      <section id="para-quien" className="ci-section">
-        <div className="ci-stack">
+      {/* 9 · Analyst and methodology */}
+      <section id="analistas" className="ci-section">
+        <div className="ci-wrap ci-split">
           <div className="ci-head">
-            <div className="ci-eyebrow">{t.who.eyebrow}</div>
-            <h2 className="ci-h2">{t.who.title}</h2>
-            <p className="ci-p ci-p--body">{t.who.proof}</p>
+            <div className="ci-eyebrow">{t.analyst.eyebrow}</div>
+            <h2 className="ci-h2">{t.analyst.title}</h2>
           </div>
-          <div className="ci-grid-3">
-            {t.who.cards.map(c => (
-              <div key={c.title} className="ci-audience">
-                <div className="ci-audience__title">{c.title}</div>
-                <p className="ci-p">{c.text}</p>
-                <Link to={c.href}>{c.link} →</Link>
+          <div className="ci-col">
+            <div className="ci-card">
+              <div className="ci-card__title">{LEAD_ANALYST.name}</div>
+              <div className="ci-method__label" style={{ fontSize: 12 }}>{LEAD_ANALYST.role[lang]}</div>
+              <p className="ci-p">{t.analyst.text}</p>
+              <div className="ci-hero__ctas">
+                <Link to={PAGES.analysts[lang]}>{t.analyst.analysts} →</Link>
+                <Link to={PAGES.methodology[lang]}>{t.analyst.methodology} →</Link>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
@@ -437,22 +556,8 @@ export default function CecomIntel({ lang }: { lang: Lang }) {
         </div>
       </section>
 
-      {/* 12 · Institutional strip (the global CSSG footer follows) */}
-      <div className="ci-footer">
-        <div className="ci-footer__inner">
-          <div className="ci-footer__org">
-            <img src="/cecom-intel/cssg-eagle-120.webp" alt="CSSG" width="120" height="102" loading="lazy" />
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-              <div style={{ fontWeight: 600, fontSize: 15 }}>Company of Security and Service Global, C.A.</div>
-              <div className="ci-note">{t.footer.address}</div>
-            </div>
-          </div>
-          <div className="ci-footer__right">
-            <a href="mailto:gerencia@globalservices-ven.com">gerencia@globalservices-ven.com</a>
-            <div className="ci-note">ISO 9001:2015 · Cyber Essentials · © {new Date().getFullYear()} CSSG Global</div>
-          </div>
-        </div>
-      </div>
+      {/* 12 · Institutional strip (the global CSSG footer, with the copyright line, follows) */}
+      <CiFooter lang={lang} />
 
     </div>
   );

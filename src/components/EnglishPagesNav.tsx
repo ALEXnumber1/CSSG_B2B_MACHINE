@@ -8,6 +8,7 @@ const PAGES = [
   { href: '/en/executive-protection-venezuela-investors', label: 'Executive protection for investors' },
   { href: '/en/diplomatic-security', label: 'Diplomatic security' },
   { href: '/cecom-intel', label: 'CECOM-Intel: in-country GSOC' },
+  { href: '/cecom-intel/partners', label: 'In-country partner program' },
 ];
 
 // Guides for travel risk and duty-of-care managers.

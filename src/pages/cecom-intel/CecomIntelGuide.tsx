@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { CecomIntelWordmark, JsonLd, useCecomIntelFonts } from '../../components/cecom-intel/CecomIntelMark';
 import { GUIDES, REVIEWED, guideBySlug } from './guides';
+import { LEAD_ANALYST, personSchema } from './analysts';
+import { PAGES } from './content';
 import '../../styles/cecom-intel.css';
 
 /** English field guide published by CECOM-Intel (prerendered; see postbuild.js). */
@@ -28,7 +30,7 @@ export default function CecomIntelGuide({ slug }: { slug: string }) {
         dateModified: REVIEWED.iso,
         mainEntityOfPage: `https://cssg-global.com/cecom-intel/${g.slug}`,
         image: 'https://cssg-global.com/cecom-intel/og-cecom-intel.jpg',
-        author: { '@type': 'Organization', '@id': 'https://cssg-global.com/cecom-intel#unit', name: 'CECOM-Intel', url: 'https://cssg-global.com/cecom-intel' },
+        author: personSchema(LEAD_ANALYST),
         publisher: { '@type': 'Organization', '@id': 'https://cssg-global.com/#organization', name: 'CSSG — Company Of Security And Service Global', logo: { '@type': 'ImageObject', url: 'https://cssg-global.com/logo_full.png' } },
         about: { '@type': 'Country', name: 'Venezuela' },
         citation: g.sources.map(s => s.url),
@@ -38,7 +40,11 @@ export default function CecomIntelGuide({ slug }: { slug: string }) {
         <div className="ci-subnav__inner">
           <Link to="/cecom-intel" style={{ textDecoration: 'none' }}><CecomIntelWordmark /></Link>
           <div className="ci-subnav__links">
-            <Link to="/cecom-intel#planes" className="ci-subnav__anchors">Plans</Link>
+            <div className="ci-subnav__anchors">
+              <Link to="/cecom-intel#planes">Plans</Link>
+              <Link to={PAGES.partners.en}>Partners</Link>
+              <Link to={PAGES.methodology.en}>Methodology</Link>
+            </div>
             <Link to="/cecom-intel#muestra" className="ci-btn ci-btn--gold">Sample bulletin</Link>
           </div>
         </div>
@@ -50,7 +56,7 @@ export default function CecomIntelGuide({ slug }: { slug: string }) {
             <p className="ci-eyebrow">{g.eyebrow}</p>
             <h1 className="ci-guide__title">{g.title}</h1>
             <p className="ci-note">
-              CECOM-Intel | CSSG Global · Last reviewed <time dateTime={REVIEWED.iso}>{REVIEWED.label}</time>
+              By <Link to={`${PAGES.analysts.en}#${LEAD_ANALYST.id}`} rel="author">{LEAD_ANALYST.name}</Link>, {LEAD_ANALYST.role.en} · Last reviewed <time dateTime={REVIEWED.iso}>{REVIEWED.label}</time>
             </p>
             <div className="ci-guide__bluf">
               <p className="ci-method__label">BOTTOM LINE</p>
