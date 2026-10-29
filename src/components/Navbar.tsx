@@ -41,9 +41,9 @@ export default function Navbar() {
 
   return (
     <>
-      <motion.nav 
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
+      {/* No entrance animation: the prerendered HTML captured its opacity-0 start, so the bar
+          stayed invisible until the JS loaded. */}
+      <motion.nav
         className="fixed top-0 w-full z-50 bg-[#0B0B0F]/80 backdrop-blur-md border-b border-[#333345]"
       >
 
@@ -56,7 +56,7 @@ export default function Navbar() {
             />
             <div className="hidden sm:block">
               <div className="text-white font-black leading-none tracking-tight text-xl">CSSG</div>
-              <div className="flex flex-col mt-0.5">
+              <div className="flex flex-col mt-0.5 lg:hidden 2xl:flex">
                 <p className="text-[10px] text-sky-400 font-mono tracking-[0.1em] uppercase whitespace-nowrap font-bold leading-none">Company Of Security And Service Global C.A.</p>
                 <p className="text-[8px] text-gray-500 font-mono tracking-widest uppercase leading-none mt-1">RIF: J-29782024-8</p>
               </div>
@@ -64,12 +64,12 @@ export default function Navbar() {
           </Link>
           
           {/* Desktop Menu */}
-          <div className="hidden xl:flex gap-1 text-sm font-medium text-gray-300 items-center">
+          <div className="hidden lg:flex gap-1 text-sm font-medium text-gray-300 items-center">
             {navLinks.map((link) => (
               <Link
                 key={link.to}
                 to={resolveTo(link.to)}
-                className={`px-3 2xl:px-4 py-2 rounded-lg transition-colors ${
+                className={`px-2.5 xl:px-3 2xl:px-4 py-2 rounded-lg transition-colors whitespace-nowrap ${
                   isActive(link.to) 
                     ? 'text-sky-400 bg-sky-500/10' 
                     : 'hover:text-sky-400 hover:bg-white/5'
@@ -86,7 +86,7 @@ export default function Navbar() {
               onMouseLeave={() => setResourcesOpen(false)}
             >
               <button 
-                className={`px-4 py-2 rounded-lg transition-colors flex items-center gap-1 cursor-pointer ${
+                className={`px-2.5 xl:px-4 py-2 rounded-lg transition-colors flex items-center gap-1 cursor-pointer whitespace-nowrap ${
                   resourceLinks.some(l => l.to === location.pathname)
                     ? 'text-sky-400 bg-sky-500/10'
                     : 'hover:text-sky-400 hover:bg-white/5'
@@ -135,7 +135,7 @@ export default function Navbar() {
               </AnimatePresence>
             </div>
 
-            <div className="flex items-center bg-black/40 border border-white/10 rounded-lg p-1 ml-4">
+            <div className="flex items-center bg-black/40 border border-white/10 rounded-lg p-1 ml-2 xl:ml-4">
               <button 
                 onClick={() => changeLanguage('en')}
                 className={`flex items-center gap-2 px-3 py-1.5 rounded-md transition-all text-xs font-medium ${i18n.language.startsWith('en') ? 'bg-sky-500/20 text-sky-400' : 'text-gray-400 hover:text-white'}`}
@@ -158,7 +158,7 @@ export default function Navbar() {
                   document.getElementById('contacto')?.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
-              className="ml-4 px-6 py-2.5 bg-sky-500 text-white rounded-lg hover:bg-sky-400 transition-all shadow-[0_0_15px_rgba(14,165,233,0.3)] text-sm font-semibold whitespace-nowrap"
+              className="hidden xl:block ml-4 px-6 py-2.5 bg-sky-500 text-white rounded-lg hover:bg-sky-400 transition-all shadow-[0_0_15px_rgba(14,165,233,0.3)] text-sm font-semibold whitespace-nowrap"
             >
               {t('nav.contactar')}
             </a>
@@ -166,7 +166,7 @@ export default function Navbar() {
 
           {/* Mobile Hamburger */}
           <button 
-            className="xl:hidden text-white p-2 hover:bg-white/5 rounded-lg transition-colors"
+            className="lg:hidden text-white p-2 hover:bg-white/5 rounded-lg transition-colors"
             onClick={() => setMobileOpen(!mobileOpen)}
           >
             {mobileOpen ? <X /> : <Menu />}
@@ -181,7 +181,7 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'tween', duration: 0.3 }}
-              className="fixed inset-0 z-[60] bg-[#07080a] pt-6 pb-12 px-6 flex flex-col overflow-y-auto xl:hidden"
+              className="fixed inset-0 z-[60] bg-[#07080a] pt-6 pb-12 px-6 flex flex-col overflow-y-auto lg:hidden"
             >
               {/* Top Row with Logo and Close Button */}
               <div className="flex items-center justify-between mb-6">
