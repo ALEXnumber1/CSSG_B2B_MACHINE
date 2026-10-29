@@ -41,6 +41,12 @@ function stripUnneededPreloads(html, routePath) {
   if (!PDF_ROUTES.has(routePath)) {
     out = out.replace(/<link rel="modulepreload"[^>]*href="\/assets\/vendor-pdf-[^"]*\.js"[^>]*>\n?/gi, '');
   }
+  // Every page ships prerendered, so first paint needs only the HTML, the CSS and the hero image.
+  // At default priority ~300 KB of JS chunks split the bandwidth with the stylesheet: on a slow
+  // mobile connection the CSS took 1.5 s instead of ~0.3 s. The JS still starts at once, just behind.
+  out = out
+    .replace(/<link rel="modulepreload"(?![^>]*fetchpriority)/g, '<link rel="modulepreload" fetchpriority="low"')
+    .replace(/<script type="module"(?![^>]*fetchpriority)([^>]*src="\/assets\/index-)/g, '<script type="module" fetchpriority="low"$1');
   return out;
 }
 
