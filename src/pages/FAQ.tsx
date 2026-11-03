@@ -1,5 +1,5 @@
 import { useState, useMemo } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import {
   ChevronDown, Search, Shield, Cpu, Award, Users,
   Scale, TrendingUp, Clock, Wrench, FileCheck, Globe,
@@ -20,11 +20,11 @@ const faqBlocks = [
       },
       {
         q: '¿Qué certificaciones debe tener una empresa de seguridad privada?',
-        a: 'Debe contar con los permisos vigentes del Ministerio del Interior (DAEX). Además, para nivel corporativo, en CSSG contamos con certificaciones internacionales como ISO 9001:2015 y Cyber Essentials (Reino Unido).'
+        a: 'Debe contar con la autorización vigente de DIGESERVISP (Dirección General de Servicios de Seguridad Privada, Ministerio del Interior). Además, para nivel corporativo, en CSSG contamos con certificaciones internacionales como ISO 9001:2015 y Cyber Essentials (Reino Unido).'
       },
       {
         q: '¿Cómo verifico si una empresa de seguridad está autorizada legalmente?',
-        a: 'Solicitando sus credenciales vigentes ante la Dirección General de Armas y Explosivos (DAEX) y el Ministerio del Poder Popular para Relaciones Interiores, Justicia y Paz, las cuales CSSG mantiene en estricto cumplimiento.'
+        a: 'Solicitando su autorización vigente de DIGESERVISP, el ente del Ministerio del Poder Popular para Relaciones Interiores, Justicia y Paz que autoriza la actividad de seguridad privada, y verificando qué tipo de servicio y qué zona cubre. CSSG cuenta con autorización de DIGESERVISP para seguridad privada sin armas.'
       },
       {
         q: '¿Cuánto tiempo tarda en desplegarse un servicio de seguridad?',
@@ -260,7 +260,7 @@ const faqBlocks = [
       },
       {
         q: '¿La empresa cuenta con autorización vigente del Ministerio del Interior?',
-        a: 'Sí, operamos bajo el estricto cumplimiento de la Dirección General de Armas y Explosivos (DAEX) y el órgano rector.'
+        a: 'Sí. CSSG cuenta con autorización vigente de DIGESERVISP para seguridad privada sin armas.'
       },
       {
         q: '¿Tienen póliza de responsabilidad civil activa?',
@@ -568,8 +568,16 @@ export default function FAQ() {
 
   const totalQuestions = allItems.length;
 
+  // FAQPage schema built from the questions on this page, so the markup always matches what is shown.
+  const faqSchema = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: allItems.map(i => ({ '@type': 'Question', name: i.q, acceptedAnswer: { '@type': 'Answer', text: i.a } })),
+  }).replace(/</g, '\\u003c');
+
   return (
     <div className="flex-1 bg-[#0B0B0F] pt-24 pb-20">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqSchema }} />
       {/* Hero */}
       <section className="container mx-auto px-6 max-w-4xl text-center mb-16">
         <motion.div
@@ -824,6 +832,7 @@ function FAQItem({
     >
       <button
         onClick={onToggle}
+        aria-expanded={isOpen}
         className="w-full flex items-start justify-between gap-4 p-5 text-left"
       >
         <div className="flex-1">
@@ -843,21 +852,20 @@ function FAQItem({
         </motion.div>
       </button>
 
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25, ease: 'easeInOut' }}
-          >
-            <div className="px-5 pb-5 pt-0">
-              <div className="h-px bg-white/5 mb-4" />
-              <p className="text-gray-400 text-sm leading-relaxed">{answer}</p>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Always in the DOM, only collapsed: the prerendered HTML must carry the answers the
+          FAQPage schema declares. */}
+      <motion.div
+        initial={false}
+        animate={isOpen ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
+        transition={{ duration: 0.25, ease: 'easeInOut' }}
+        className="overflow-hidden"
+        aria-hidden={!isOpen}
+      >
+        <div className="px-5 pb-5 pt-0">
+          <div className="h-px bg-white/5 mb-4" />
+          <p className="text-gray-400 text-sm leading-relaxed">{answer}</p>
+        </div>
+      </motion.div>
     </div>
   );
 }
