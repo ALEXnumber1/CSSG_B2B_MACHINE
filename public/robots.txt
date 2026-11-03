@@ -1,16 +1,47 @@
+# A crawler obeys only the most specific group that names it. Every bot listed here shares
+# this one group, so the private paths below stay closed to all of them, not just to "*".
+
+# Search engines
+User-agent: Googlebot
+User-agent: Bingbot
+User-agent: DuckDuckBot
+User-agent: YandexBot
+User-agent: Applebot
+User-agent: Slurp
+# OpenAI / ChatGPT
+User-agent: GPTBot
+User-agent: ChatGPT-User
+User-agent: OAI-SearchBot
+# Anthropic / Claude
+User-agent: ClaudeBot
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+User-agent: anthropic-ai
+# Perplexity
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+# Google AI (Gemini)
+User-agent: Google-Extended
+# Meta AI
+User-agent: Meta-ExternalAgent
+User-agent: Meta-ExternalFetcher
+# Others
+User-agent: cohere-ai
+User-agent: Diffbot
+User-agent: CCBot
+User-agent: ia_archiver
+# Everyone else
 User-agent: *
 Allow: /
 
-# Rutas internas / portales privados (no indexar)
+# Private portals (not indexed)
 Disallow: /admin
-Disallow: /admin/
 Disallow: /intranet
-Disallow: /intranet/
 Disallow: /portal-rrhh
-Disallow: /portal-rrhh/
 Disallow: /streaming
-Disallow: /streaming/
 Disallow: /spa-shell
+
+# Post-conversion pages
 Disallow: /esrm-readiness/gracias
 Disallow: /empresa-de-seguridad/gracias
 Disallow: /consultoria-y-analisis-de-riesgos/gracias
@@ -18,83 +49,11 @@ Disallow: /en/corporate-security-consulting/thank-you
 Disallow: /en/diplomatic-security/thank-you
 Disallow: /en/executive-protection-venezuela-investors/thank-you
 
-# Endpoints internos
+# Internal endpoints
 Disallow: /api/
 
-# SEO Sitemap
 Sitemap: https://cssg-global.com/sitemap.xml
 
-# GEO — Standard Search Bots
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-User-agent: DuckDuckBot
-Allow: /
-
-User-agent: YandexBot
-Allow: /
-
-User-agent: Applebot
-Allow: /
-
-User-agent: Slurp
-Allow: /
-
-# GEO — OpenAI / ChatGPT
-User-agent: GPTBot
-Allow: /
-
-User-agent: ChatGPT-User
-Allow: /
-
-User-agent: OAI-SearchBot
-Allow: /
-
-# GEO — Anthropic / Claude
-User-agent: ClaudeBot
-Allow: /
-
-User-agent: anthropic-ai
-Allow: /
-
-# GEO — Perplexity
-User-agent: PerplexityBot
-Allow: /
-
-# GEO — Google AI (Gemini / Bard)
-User-agent: Google-Extended
-Allow: /
-
-User-agent: Gemini
-Allow: /
-
-# GEO — Meta AI
-User-agent: Meta-ExternalAgent
-Allow: /
-
-User-agent: Meta-ExternalFetcher
-Allow: /
-
-# GEO — Cohere
-User-agent: cohere-ai
-Allow: /
-
-# GEO — Diffbot
-User-agent: Diffbot
-Allow: /
-
-# GEO — Common Crawl (dataset training)
-User-agent: CCBot
-Allow: /
-
-User-agent: ia_archiver
-Allow: /
-
-# LLM Context Files
+# LLM context files
 # https://cssg-global.com/llms.txt
 # https://cssg-global.com/llms-full.txt
-
-Host: cssg-global.com

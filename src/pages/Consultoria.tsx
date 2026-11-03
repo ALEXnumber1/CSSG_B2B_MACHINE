@@ -58,6 +58,7 @@ const familyServiceHrefs = [
     '/consultoria/secure-landing#l2',
     '/consultoria/secure-landing#l3',
     '/consultoria/secure-landing#l4',
+    '/consultoria/traslados-seguros-venezuela',
   ],
 ];
 

@@ -1,4 +1,4 @@
-import { motion, AnimatePresence, useInView } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useState, useRef } from 'react';
 import { ChevronRight, ArrowLeft, ShieldCheck, CheckCircle2, ArrowRight, ChevronDown } from 'lucide-react';
@@ -20,6 +20,8 @@ interface Props {
   faqs: FAQ[];
   related?: RelatedService[];
   accentColor?: 'sky' | 'indigo' | 'violet' | 'emerald' | 'amber';
+  /** Fixes the language on URLs that have one (/en/*); otherwise the visitor's language applies. */
+  lang?: 'es' | 'en';
 }
 
 const accent = {
@@ -54,9 +56,10 @@ function FadeIn({ children, delay = 0, className = '' }: { children: React.React
 }
 
 export default function ConsultoriaServiceLayout({
-  breadcrumb, badge, title, subtitle, intro, children, faqs, related = [], accentColor = 'sky',
+  breadcrumb, badge, title, subtitle, intro, children, faqs, related = [], accentColor = 'sky', lang,
 }: Props) {
-  const { t } = useTranslation('consultoria_hub');
+  const { t: tDetected, i18n } = useTranslation('consultoria_hub');
+  const t = lang ? i18n.getFixedT(lang, 'consultoria_hub') : tDetected;
   const [activeQ, setActiveQ] = useState<number | null>(null);
   const [nombre, setNombre] = useState('');
   const [correo, setCorreo] = useState('');
@@ -198,28 +201,33 @@ export default function ConsultoriaServiceLayout({
                   className={`rounded-2xl border transition-all duration-300 ${activeQ === i ? `${col.border} bg-white/[0.04] shadow-lg ${col.glow}` : 'border-white/[0.06] bg-white/[0.02] hover:border-white/[0.10]'}`}
                 >
                   <button type="button" onClick={() => setActiveQ(activeQ === i ? null : i)}
+                    aria-expanded={activeQ === i} aria-controls={`faq-answer-${i}`}
                     className="w-full px-6 py-5 flex items-center justify-between text-left gap-4">
                     <span className="font-bold text-white text-sm md:text-base leading-snug">{faq.q}</span>
                     <motion.div animate={{ rotate: activeQ === i ? 180 : 0 }} transition={{ duration: 0.3 }}>
                       <ChevronDown className={`w-4 h-4 ${col.text} shrink-0`} />
                     </motion.div>
                   </button>
-                  <AnimatePresence>
-                    {activeQ === i && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                        className="overflow-hidden"
-                      >
-                        <p className="px-6 pb-5 text-gray-400 text-sm leading-relaxed">{faq.a}</p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                  {/* Always in the DOM, only collapsed: the prerendered HTML must carry the answers
+                      the FAQPage schema below declares. */}
+                  <motion.div
+                    id={`faq-answer-${i}`}
+                    initial={false}
+                    animate={activeQ === i ? { height: 'auto', opacity: 1 } : { height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                    className="overflow-hidden"
+                    aria-hidden={activeQ !== i}
+                  >
+                    <p className="px-6 pb-5 text-gray-400 text-sm leading-relaxed">{faq.a}</p>
+                  </motion.div>
                 </motion.div>
               ))}
             </div>
+            <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
+              '@context': 'https://schema.org',
+              '@type': 'FAQPage',
+              mainEntity: faqs.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+            }).replace(/</g, '\\u003c') }} />
           </FadeIn>
         )}
 

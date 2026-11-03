@@ -8,7 +8,7 @@ const CONTENT = {
     breadcrumb: 'Due Diligence Corporativa',
     badge: 'CICPC · SENIAT · IVSS · OSINT',
     title: 'Due Diligence Corporativa en Venezuela',
-    subtitle: 'Verificación de personas y empresas — tres niveles de profundidad',
+    subtitle: 'Verificación de personas, empresas y terceros — tres niveles de profundidad',
     intro: 'Verificamos el perfil real de personas y empresas en Venezuela — antes de contratar, asociar o invertir. Cruzamos fuentes judiciales (CICPC), tributarias (SENIAT, IVSS, INPSASEL), registrales y de inteligencia abierta para construir un cuadro de riesgo objetivo. Presentamos los hallazgos mediante escritura por inducción: evidencias que llevan al cliente a su propia conclusión.',
     faqs: [
       {
@@ -30,6 +30,10 @@ const CONTENT = {
       {
         q: '¿Cuánto tiempo toma y qué información necesitan para iniciar?',
         a: 'Depende del nivel contratado: entre 2 y 15 días hábiles. Para iniciar necesitamos nombre completo y número de cédula (o RIF para empresas). Toda comunicación ocurre por canales seguros acordados con el cliente.',
+      },
+      {
+        q: '¿La due diligence sustituye la revisión legal o la auditoría financiera?',
+        a: 'No. CSSG verifica antecedentes, integridad, reputación y vínculos de personas y empresas. La valoración jurídica de contratos y la auditoría contable o financiera corresponden a sus asesores legales y financieros; nuestro informe les entrega los hechos verificados para esa evaluación.',
       },
     ],
     levelsTitle: 'Tres niveles de investigación',
@@ -74,6 +78,7 @@ const CONTENT = {
       'Selección de socios comerciales o joint ventures',
       'Due diligence pre-adquisición o pre-inversión en Venezuela',
       'Verificación de proveedores para contratos de alto valor',
+      'Due diligence de integridad y reputación de terceros antes de una alianza o contrato',
       'Investigación de posibles conflictos de interés en la organización',
     ],
     ctaWhitePaperLabel: 'White Paper Gratuito',
@@ -84,13 +89,14 @@ const CONTENT = {
       { label: 'Inteligencia y Análisis', href: '/consultoria/inteligencia-y-analisis-de-riesgo' },
       { label: 'Insider Threat', href: '/consultoria/amenaza-interna-insider-threat' },
       { label: 'Auditoría de Cumplimiento', href: '/consultoria/auditoria-de-cumplimiento' },
+      { label: 'CECOM-Intel: análisis de riesgo', href: '/cecom-intel/es' },
     ],
   },
   en: {
-    breadcrumb: 'Corporate Due Diligence',
+    breadcrumb: 'Due Diligence',
     badge: 'CICPC · SENIAT · IVSS · OSINT',
-    title: 'Corporate Due Diligence in Venezuela',
-    subtitle: 'Verification of individuals and companies — three levels of depth',
+    title: 'Due Diligence in Venezuela',
+    subtitle: 'Business, third-party and integrity due diligence — three levels of depth',
     intro: 'We verify the real profile of individuals and companies in Venezuela — before hiring, partnering or investing. We cross-reference judicial (CICPC), tax (SENIAT, IVSS, INPSASEL), registral and open-source intelligence to build an objective risk picture. Findings are presented using inductive writing: evidence that leads the client to their own conclusion.',
     faqs: [
       {
@@ -112,6 +118,10 @@ const CONTENT = {
       {
         q: 'How long does it take and what information do you need to start?',
         a: 'Depends on the level contracted: between 2 and 15 business days. To start we need full name and ID number (or RIF for companies). All communication takes place through secure channels agreed with the client.',
+      },
+      {
+        q: 'Does due diligence replace legal review or a financial audit?',
+        a: 'No. CSSG verifies the background, integrity, reputation and connections of individuals and companies. The legal assessment of contracts and the accounting or financial audit belong to your legal and financial advisers; our report gives them the verified facts for that assessment.',
       },
     ],
     levelsTitle: 'Three levels of investigation',
@@ -156,23 +166,25 @@ const CONTENT = {
       'Selection of business partners or joint ventures',
       'Pre-acquisition or pre-investment due diligence in Venezuela',
       'Supplier verification for high-value contracts',
+      'Integrity and reputational due diligence on third parties before a partnership or contract',
       'Investigation of potential conflicts of interest within the organization',
     ],
     ctaWhitePaperLabel: 'Free White Paper',
     ctaWhitePaperTitle: 'Corporate Due Diligence in Venezuela: Investigation Protocol 2026',
-    ctaWhitePaperDesc: 'Complete protocol covering CICPC, SENIAT, IVSS, OSINT sources and inductive writing methodology for the Venezuelan context.',
+    ctaWhitePaperDesc: 'Complete protocol covering CICPC, SENIAT, IVSS, OSINT sources and inductive writing methodology for the Venezuelan context. The document is in Spanish.',
     ctaWhitePaperBtn: 'Download Free',
     related: [
-      { label: 'Intelligence & Analysis', href: '/consultoria/inteligencia-y-analisis-de-riesgo' },
-      { label: 'Insider Threat', href: '/consultoria/amenaza-interna-insider-threat' },
-      { label: 'Compliance Audit', href: '/consultoria/auditoria-de-cumplimiento' },
+      { label: 'CECOM-Intel risk analysis', href: '/cecom-intel' },
+      { label: 'Secure airport transfers', href: '/en/secure-airport-transfers-venezuela' },
+      { label: 'Corporate security consulting', href: '/en/corporate-security-consulting' },
     ],
   },
 };
 
-export default function DueDiligence() {
+// lang is set on /en/due-diligence-venezuela; the Spanish URL follows the visitor's language.
+export default function DueDiligence({ lang }: { lang?: 'es' | 'en' }) {
   const { i18n } = useTranslation();
-  const c = i18n.language.startsWith('en') ? CONTENT.en : CONTENT.es;
+  const c = (lang ?? (i18n.language.startsWith('en') ? 'en' : 'es')) === 'en' ? CONTENT.en : CONTENT.es;
 
   return (
     <ConsultoriaServiceLayout
@@ -184,6 +196,7 @@ export default function DueDiligence() {
       faqs={c.faqs}
       accentColor="violet"
       related={c.related}
+      lang={lang}
     >
       <div className="mb-12">
         <h2 className="text-2xl font-black text-white mb-6">{c.levelsTitle}</h2>

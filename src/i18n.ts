@@ -2,6 +2,9 @@ import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
+// A new key on purpose: the old 'i18nextLng' also held languages detected from the browser.
+const LANG_CHOICE_KEY = 'cssg_lang';
+
 import esQuienes from './locales/es/quienes.json';
 import enQuienes from './locales/en/quienes.json';
 import esConsultoria from './locales/es/consultoria.json';
@@ -865,10 +868,28 @@ i18n
     interpolation: {
       escapeValue: false,
     },
+    // The URL decides the language (<html lang> of the prerendered page), not the browser: crawlers
+    // render with an English navigator, which used to repaint Spanish URLs in English. Only a language
+    // the visitor picks with the toggle is remembered, and it then wins on every page.
     detection: {
-      order: ['localStorage', 'navigator'],
-      caches: ['localStorage'],
+      order: ['localStorage', 'htmlTag'],
+      lookupLocalStorage: LANG_CHOICE_KEY,
+      caches: [],
     }
   });
+
+/** Language a route is written in: /en/* and CECOM-Intel (except its /es section) are English. */
+export const routeLanguage = (pathname: string) =>
+  pathname.startsWith('/en/') || (pathname.startsWith('/cecom-intel') && !pathname.startsWith('/cecom-intel/es')) ? 'en' : 'es';
+
+export const hasLanguageChoice = () => {
+  try { return !!localStorage.getItem(LANG_CHOICE_KEY); } catch { return false; }
+};
+
+/** The language toggle: switches and remembers the visitor's choice. */
+export const chooseLanguage = (lng: 'es' | 'en') => {
+  try { localStorage.setItem(LANG_CHOICE_KEY, lng); } catch { /* private mode: applies to this visit only */ }
+  i18n.changeLanguage(lng);
+};
 
 export default i18n;

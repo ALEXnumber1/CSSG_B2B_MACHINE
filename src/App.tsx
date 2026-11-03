@@ -1,7 +1,8 @@
 import { BrowserRouter, Routes, Route, Link, useLocation, createRoutesFromChildren, matchRoutes } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Suspense, lazy } from 'react'
+import { Suspense, lazy, useEffect } from 'react'
+import { routeLanguage, hasLanguageChoice } from './i18n'
 import Navbar from './components/Navbar'
 import ScrollToTop from './components/ScrollToTop'
 import CookieConsent from './components/CookieConsent'
@@ -62,6 +63,7 @@ const CasosExito = lazyWithPreload(() => import('./pages/consultoria/CasosExito'
 const CertificacionesConsultoria = lazyWithPreload(() => import('./pages/consultoria/Certificaciones'))
 const AsesoriaLegal = lazyWithPreload(() => import('./pages/consultoria/AsesoriaLegal'))
 const SecureLanding = lazyWithPreload(() => import('./pages/consultoria/SecureLanding'))
+const TrasladosSeguros = lazyWithPreload(() => import('./pages/consultoria/TrasladosSeguros'))
 
 // CECOM-Intel sub-brand (English default, Spanish under /es)
 const CecomIntel = lazyWithPreload(() => import('./pages/cecom-intel/CecomIntel'))
@@ -169,6 +171,9 @@ const mainRoutes = (
     <Route path="/certificaciones-seguridad-corporativa-venezuela" element={<CertificacionesConsultoria />} />
     <Route path="/consultoria/asesoria-legal-rrhh-seguridad" element={<AsesoriaLegal />} />
     <Route path="/consultoria/secure-landing" element={<SecureLanding />} />
+    <Route path="/consultoria/traslados-seguros-venezuela" element={<TrasladosSeguros />} />
+    <Route path="/en/secure-airport-transfers-venezuela" element={<TrasladosSeguros lang="en" />} />
+    <Route path="/en/due-diligence-venezuela" element={<DueDiligence lang="en" />} />
     {/* White Papers */}
     <Route path="/white-papers/guia-evaluacion-riesgos-seguridad-venezuela" element={<WPRiesgos />} />
     <Route path="/white-papers/due-diligence-corporativa-venezuela" element={<WPDueDiligence />} />
@@ -199,6 +204,14 @@ function AppContent() {
   const { t, i18n } = useTranslation();
   const year = new Date().getFullYear();
   const location = useLocation();
+
+  // Navigating between an English and a Spanish URL follows the URL's language, unless the
+  // visitor picked one with the toggle.
+  useEffect(() => {
+    const lng = routeLanguage(location.pathname);
+    if (!hasLanguageChoice() && !i18n.language.startsWith(lng)) i18n.changeLanguage(lng);
+  }, [location.pathname, i18n]);
+
   const isStandaloneLanding = location.pathname === '/consultoria/escudo-diplomatico' || location.pathname.startsWith('/esrm-readiness') || location.pathname.startsWith('/empresa-de-seguridad') || location.pathname.startsWith('/consultoria-y-analisis-de-riesgos') || location.pathname.startsWith('/en/corporate-security-consulting') || location.pathname.startsWith('/en/diplomatic-security') || location.pathname.startsWith('/en/executive-protection-venezuela-investors');
 
   if (isStandaloneLanding) {

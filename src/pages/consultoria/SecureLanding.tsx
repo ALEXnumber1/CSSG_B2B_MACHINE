@@ -64,6 +64,7 @@ const CONTENT = {
       { q: '¿Con quién trataré?', a: 'Con un líder de programa CSSG de principio a fin, respaldado por nuestro centro de comando. Nunca será transferido a un subcontratista anónimo.' },
     ],
     related: [
+      { label: 'Traslados Seguros y Recepción en Maiquetía', href: '/consultoria/traslados-seguros-venezuela' },
       { label: 'Seguridad para Misiones Diplomáticas', href: '/consultoria/seguridad-misiones-diplomaticas' },
       { label: 'Evaluación de Residencias y Cancillerías', href: '/consultoria/evaluacion-residencias-cancillerias' },
       { label: 'Protección Ejecutiva', href: '/consultoria/proteccion-ejecutiva-analisis-amenazas' },
@@ -109,6 +110,7 @@ const CONTENT = {
       { q: 'Who will I be dealing with?', a: 'One CSSG program lead, end to end, backed by our command center. You will never be handed off to an anonymous subcontractor.' },
     ],
     related: [
+      { label: 'Secure Airport Transfers', href: '/en/secure-airport-transfers-venezuela' },
       { label: 'Security for Diplomatic Missions', href: '/consultoria/seguridad-misiones-diplomaticas' },
       { label: 'Residences & Chancery Assessment', href: '/consultoria/evaluacion-residencias-cancillerias' },
       { label: 'Executive Protection', href: '/consultoria/proteccion-ejecutiva-analisis-amenazas' },

@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { chooseLanguage } from '../i18n';
 
 
 
@@ -35,9 +36,7 @@ export default function Navbar() {
   const resolveTo = (to: string) => (to === '/cecom-intel' && !i18n.language.startsWith('en') ? '/cecom-intel/es' : to);
   const isActive = (to: string) => (to === '/cecom-intel' ? location.pathname.startsWith(to) : location.pathname === to);
 
-  const changeLanguage = (lng: string) => {
-    i18n.changeLanguage(lng);
-  };
+  const changeLanguage = (lng: 'es' | 'en') => chooseLanguage(lng);
 
   return (
     <>
@@ -47,8 +46,8 @@ export default function Navbar() {
         className="fixed top-0 w-full z-50 bg-[#0B0B0F]/80 backdrop-blur-md border-b border-[#333345]"
       >
 
-        <div className="container mx-auto px-6 h-20 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-4 cursor-pointer" onClick={() => setMobileOpen(false)}>
+        <div className="container mx-auto px-6 h-20 flex items-center justify-between gap-6">
+          <Link to="/" className="flex shrink-0 items-center gap-4 cursor-pointer" onClick={() => setMobileOpen(false)}>
             <img 
               src="/logo-160.webp"
               alt="CSSG Logo"
@@ -56,7 +55,7 @@ export default function Navbar() {
             />
             <div className="hidden sm:block">
               <div className="text-white font-black leading-none tracking-tight text-xl">CSSG</div>
-              <div className="flex flex-col mt-0.5 lg:hidden 2xl:flex">
+              <div className="flex flex-col mt-0.5 lg:hidden min-[1600px]:flex">
                 <p className="text-[10px] text-sky-400 font-mono tracking-[0.1em] uppercase whitespace-nowrap font-bold leading-none">Company Of Security And Service Global C.A.</p>
                 <p className="text-[8px] text-gray-500 font-mono tracking-widest uppercase leading-none mt-1">RIF: J-29782024-8</p>
               </div>
@@ -137,16 +136,16 @@ export default function Navbar() {
 
             <div className="flex items-center bg-black/40 border border-white/10 rounded-lg p-1 ml-2 xl:ml-4">
               <button 
-                onClick={() => changeLanguage('en')}
+                onClick={() => changeLanguage('en')} aria-label="English" aria-pressed={i18n.language.startsWith('en')}
                 className={`flex items-center gap-2 px-3 py-1.5 rounded-md transition-all text-xs font-medium ${i18n.language.startsWith('en') ? 'bg-sky-500/20 text-sky-400' : 'text-gray-400 hover:text-white'}`}
               >
-                <img src="https://flagcdn.com/us.svg" alt="Miami" className="w-4 h-3 shrink-0 object-cover rounded-[2px]" /> <span className="hidden 2xl:inline">Miami</span>
+                <img src="https://flagcdn.com/us.svg" alt="" className="w-4 h-3 shrink-0 object-cover rounded-[2px]" /> <span className="hidden 2xl:inline">Miami</span>
               </button>
               <button 
-                onClick={() => changeLanguage('es')}
+                onClick={() => changeLanguage('es')} aria-label="Español" aria-pressed={i18n.language.startsWith('es')}
                 className={`flex items-center gap-2 px-3 py-1.5 rounded-md transition-all text-xs font-medium ${i18n.language.startsWith('es') ? 'bg-sky-500/20 text-sky-400' : 'text-gray-400 hover:text-white'}`}
               >
-                <img src="https://flagcdn.com/ve.svg" alt="Venezuela" className="w-4 h-3 shrink-0 object-cover rounded-[2px]" /> <span className="hidden 2xl:inline">Venezuela</span>
+                <img src="https://flagcdn.com/ve.svg" alt="" className="w-4 h-3 shrink-0 object-cover rounded-[2px]" /> <span className="hidden 2xl:inline">Venezuela</span>
               </button>
             </div>
 
@@ -241,11 +240,11 @@ export default function Navbar() {
                 </div>
 
                 <div className="grid grid-cols-2 gap-3 p-1 bg-black/60 border border-white/10 rounded-xl">
-                  <button onClick={() => { changeLanguage('en'); setMobileOpen(false); }} className={`flex items-center justify-center gap-2 py-3 rounded-lg text-sm font-bold transition-colors ${i18n.language.startsWith('en') ? 'bg-sky-500/20 text-sky-300' : 'text-gray-400'}`}>
-                    <img src="https://flagcdn.com/us.svg" alt="Miami" className="w-5 h-3.5 object-cover rounded-sm" /> Miami
+                  <button onClick={() => { changeLanguage('en'); setMobileOpen(false); }} aria-label="English" aria-pressed={i18n.language.startsWith('en')} className={`flex items-center justify-center gap-2 py-3 rounded-lg text-sm font-bold transition-colors ${i18n.language.startsWith('en') ? 'bg-sky-500/20 text-sky-300' : 'text-gray-400'}`}>
+                    <img src="https://flagcdn.com/us.svg" alt="" className="w-5 h-3.5 object-cover rounded-sm" /> Miami
                   </button>
-                  <button onClick={() => { changeLanguage('es'); setMobileOpen(false); }} className={`flex items-center justify-center gap-2 py-3 rounded-lg text-sm font-bold transition-colors ${i18n.language.startsWith('es') ? 'bg-sky-500/20 text-sky-300' : 'text-gray-400'}`}>
-                    <img src="https://flagcdn.com/ve.svg" alt="Venezuela" className="w-5 h-3.5 object-cover rounded-sm" /> Venezuela
+                  <button onClick={() => { changeLanguage('es'); setMobileOpen(false); }} aria-label="Español" aria-pressed={i18n.language.startsWith('es')} className={`flex items-center justify-center gap-2 py-3 rounded-lg text-sm font-bold transition-colors ${i18n.language.startsWith('es') ? 'bg-sky-500/20 text-sky-300' : 'text-gray-400'}`}>
+                    <img src="https://flagcdn.com/ve.svg" alt="" className="w-5 h-3.5 object-cover rounded-sm" /> Venezuela
                   </button>
                 </div>
                 <a 
