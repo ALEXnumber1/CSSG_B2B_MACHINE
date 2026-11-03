@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { chooseLanguage } from '../i18n';
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Shield, AlertTriangle, Lock, Eye, EyeOff, Radio, ChevronRight, X as XIcon, Check, Sparkles, ConciergeBell, Plane } from 'lucide-react';
@@ -132,16 +133,16 @@ export default function EscudoDiplomatico() {
             {/* Language Toggle */}
             <div className="flex items-center bg-black/40 border border-white/10 rounded-lg p-1 hidden sm:flex">
               <button 
-                onClick={() => i18n.changeLanguage('en')}
+                onClick={() => chooseLanguage('en')} aria-label="English" aria-pressed={i18n.language.startsWith('en')}
                 className={`flex items-center gap-2 px-3 py-1 text-xs font-medium rounded-md transition-all ${i18n.language.startsWith('en') ? 'bg-sky-500/20 text-sky-400' : 'text-gray-400 hover:text-white'}`}
               >
-                <img src="https://flagcdn.com/us.svg" alt="Miami" className="w-4 h-3 object-cover rounded-[2px]" /> Miami
+                <img src="https://flagcdn.com/us.svg" alt="" className="w-4 h-3 object-cover rounded-[2px]" /> Miami
               </button>
               <button 
-                onClick={() => i18n.changeLanguage('es')}
+                onClick={() => chooseLanguage('es')} aria-label="Español" aria-pressed={i18n.language.startsWith('es')}
                 className={`flex items-center gap-2 px-3 py-1 text-xs font-medium rounded-md transition-all ${i18n.language.startsWith('es') ? 'bg-sky-500/20 text-sky-400' : 'text-gray-400 hover:text-white'}`}
               >
-                <img src="https://flagcdn.com/ve.svg" alt="Venezuela" className="w-4 h-3 object-cover rounded-[2px]" /> Venezuela
+                <img src="https://flagcdn.com/ve.svg" alt="" className="w-4 h-3 object-cover rounded-[2px]" /> Venezuela
               </button>
             </div>
             

@@ -67,45 +67,45 @@ const cecomIntelRoute = route => ({
 const routes = [
   {
     path: 'consultoria-seguridad-caracas',
-    title: 'Consultoría de Seguridad en Caracas | CSSG | Caracas · Miami',
+    title: 'Consultoría de Seguridad en Caracas | CSSG',
     description: 'Diagnóstico integral de seguridad y protección ejecutiva en Caracas. Expertos en resguardo corporativo con +17 años sin incidentes.',
     image: 'https://cssg-global.com/images/seo-caracas.png',
-    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Consultoría de Seguridad Corporativa en Caracas", "description": "Diagnóstico integral de seguridad y protección ejecutiva en Caracas, Venezuela. Bajo norma ISO 9001:2015.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "areaServed": { "@type": "City", "name": "Caracas", "addressCountry": "VE" }, "serviceType": "Consultoría de Seguridad Corporativa" }
+    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Consultoría de Seguridad Corporativa en Caracas", "description": "Diagnóstico integral de seguridad y protección ejecutiva en Caracas, Venezuela. Bajo norma ISO 9001:2015.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "areaServed": { "@type": "City", "name": "Caracas", "addressCountry": "VE" }, "serviceType": "Consultoría de Seguridad Corporativa" }
   },
   {
     path: 'consultoria',
-    title: 'Consultoría de Seguridad Corporativa en Venezuela | Diagnóstico Gratuito | CSSG',
+    title: 'Consultoría de Seguridad Corporativa en Venezuela | CSSG',
     description: 'Diagnóstico de vulnerabilidades, auditorías ISO 31000 y diseño de esquemas de protección para corporaciones y misiones diplomáticas en Venezuela. +17 años. Primera sesión sin costo.',
     image: 'https://cssg-global.com/consultoria_card.webp',
-    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Consultoría Integral de Seguridad Corporativa", "description": "Diagnóstico integral, diseño de esquemas de seguridad y optimización de costos bajo norma ISO 9001:2015. +17 años de experiencia en Venezuela.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "hasOfferCatalog": { "@type": "OfferCatalog", "name": "Servicios de Consultoría", "itemListElement": [ { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Diagnóstico de Vulnerabilidades" } }, { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Optimización de Costos Operativos" } }, { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Implementación ISO 9001:2015" } } ] } }
+    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Consultoría Integral de Seguridad Corporativa", "description": "Diagnóstico integral, diseño de esquemas de seguridad y optimización de costos bajo norma ISO 9001:2015. +17 años de experiencia en Venezuela.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "hasOfferCatalog": { "@type": "OfferCatalog", "name": "Servicios de Consultoría", "itemListElement": [ { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Diagnóstico de Vulnerabilidades" } }, { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Optimización de Costos Operativos" } }, { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Implementación ISO 9001:2015" } } ] } }
   },
   {
     path: 'auditoria-seguridad-iso-31000',
-    title: 'Auditoría de Seguridad ISO 31000 | CSSG | Caracas · Miami',
+    title: 'Auditoría de Seguridad ISO 31000 | CSSG',
     description: 'Análisis y gestión de riesgos corporativos bajo la normativa internacional ISO 31000. Protege los activos críticos de tu empresa.',
     image: 'https://cssg-global.com/images/seo-iso31000.png',
-    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Auditoría de Seguridad ISO 31000", "description": "Análisis FMEA y gestión de riesgos corporativos bajo ISO 31000:2018 y ASIS ORM.1:2017.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "serviceType": "Auditoría de Seguridad" }
+    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Auditoría de Seguridad ISO 31000", "description": "Análisis FMEA y gestión de riesgos corporativos bajo ISO 31000:2018 y ASIS ORM.1:2017.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "serviceType": "Auditoría de Seguridad" }
   },
   {
     path: 'analisis-riesgos-corporativos-venezuela',
-    title: 'Análisis de Riesgos Corporativos en Venezuela | CSSG | Caracas · Miami',
+    title: 'Análisis de Riesgos Corporativos en Venezuela | CSSG',
     description: 'Evaluación FMEA y diagnósticos de vulnerabilidad para empresas en Venezuela. Evita incidentes con inteligencia preventiva.',
     image: 'https://cssg-global.com/images/seo-riesgos.png',
-    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Análisis de Riesgos Corporativos en Venezuela", "description": "Evaluación FMEA y diagnósticos de vulnerabilidad para empresas operando en Venezuela.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" } }
+    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Análisis de Riesgos Corporativos en Venezuela", "description": "Evaluación FMEA y diagnósticos de vulnerabilidad para empresas operando en Venezuela.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" } }
   },
   {
     path: 'optimizacion-costos-seguridad',
-    title: 'Optimización de Costos de Seguridad | CSSG | Caracas · Miami',
+    title: 'Optimización de Costos de Seguridad | CSSG',
     description: 'Reduzca los costos operativos de su esquema de seguridad sin comprometer la calidad mediante integración de tecnología PSIM.',
     image: 'https://cssg-global.com/images/seo-costos.png',
-    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Optimización de Costos de Seguridad Privada", "description": "Reducción de costos operativos de seguridad mediante ShieldTrace PSIM, análisis FMEA y rediseño de esquemas.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" } }
+    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Optimización de Costos de Seguridad Privada", "description": "Reducción de costos operativos de seguridad mediante ShieldTrace PSIM, análisis FMEA y rediseño de esquemas.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" } }
   },
   {
     path: 'analisis-riesgo',
     title: 'Diagnóstico de Vulnerabilidades Corporativas Gratuito | FMEA ISO 31000 | CSSG',
     description: 'Evalúe el nivel de vulnerabilidad de su organización en 8 minutos. Metodología FMEA aplicada a 4 pilares: Perímetro, Accesos, Procedimientos e Inteligencia. Sin costo.',
     image: 'https://cssg-global.com/risk_analysis_cta.webp',
-    jsonld: { "@context": "https://schema.org", "@type": "SoftwareApplication", "name": "CSSG Risk Analyzer — Análisis de Riesgo ISO 31000", "description": "Herramienta gratuita de autodiagnóstico de seguridad corporativa. Metodología FMEA + ISO 31000:2018. Evalúa 4 pilares: Perímetro, Accesos, Procedimientos e Inteligencia.", "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "author": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" } }
+    jsonld: { "@context": "https://schema.org", "@type": "SoftwareApplication", "name": "CSSG Risk Analyzer — Análisis de Riesgo ISO 31000", "description": "Herramienta gratuita de autodiagnóstico de seguridad corporativa. Metodología FMEA + ISO 31000:2018. Evalúa 4 pilares: Perímetro, Accesos, Procedimientos e Inteligencia.", "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "author": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" } }
   },
   {
     path: 'quienes-somos',
@@ -120,39 +120,38 @@ const routes = [
     title: 'ShieldTrace PSIM — Seguridad Corporativa Predictiva para Venezuela | CSSG',
     description: 'CCTV analítico con IA, control de acceso biométrico, GPS en tiempo real y drones autónomos en un dashboard único. Potencie el desempeño de su equipo de vigilancia física en Venezuela.',
     image: 'https://cssg-global.com/shieldtrace_tablet_dashboard_1777552473752.webp',
-    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "ShieldTrace PSIM — Plataforma de Seguridad Integrada", "description": "Plataforma de integración de seguridad física (PSIM) con CCTV analítico con IA, GPS en tiempo real, control de acceso biométrico y drones autónomos.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "serviceType": "Plataforma PSIM de Seguridad Física", "areaServed": { "@type": "Country", "name": "Venezuela" }, "url": "https://cssg-global.com/tecnologia" }
+    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "ShieldTrace PSIM — Plataforma de Seguridad Integrada", "description": "Plataforma de integración de seguridad física (PSIM) con CCTV analítico con IA, GPS en tiempo real, control de acceso biométrico y drones autónomos.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "serviceType": "Plataforma PSIM de Seguridad Física", "areaServed": { "@type": "Country", "name": "Venezuela" }, "url": "https://cssg-global.com/tecnologia" }
   },
   {
     path: 'licitaciones',
-    title: 'Licitaciones y Proyectos de Seguridad | CSSG | Caracas · Miami',
+    title: 'Licitaciones y Proyectos de Seguridad | CSSG',
     description: 'Participamos en licitaciones de alto nivel para embajadas y corporaciones internacionales. Calidad garantizada.',
     image: 'https://cssg-global.com/svc_licitaciones.webp',
-    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Licitaciones de Seguridad Corporativa y Diplomática", "description": "CSSG participa en licitaciones para embajadas, corporaciones internacionales e infraestructura crítica en Venezuela. Tasa de éxito: 80%.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" } }
+    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Licitaciones de Seguridad Corporativa y Diplomática", "description": "CSSG participa en licitaciones para embajadas, corporaciones internacionales e infraestructura crítica en Venezuela. Tasa de éxito: 80%.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" } }
   },
   {
     path: 'partners',
-    title: 'Nuestros Partners y Alianzas Globales | CSSG | Caracas · Miami',
+    title: 'Nuestros Partners y Alianzas Globales | CSSG',
     description: 'Colaboramos con empresas líderes mundiales en tecnología de seguridad para ofrecer las mejores soluciones en Venezuela.',
     image: 'https://cssg-global.com/zentinel_logo.jpg'
   },
   {
     path: 'consultoria/escudo-diplomatico',
-    alternates: { en: 'en/diplomatic-security', es: 'consultoria/escudo-diplomatico' },
     title: 'Protección Ejecutiva Bajo Estándar Diplomático G7 | Escudo Diplomático | CSSG',
     description: 'El único esquema de seguridad privada en Venezuela diseñado bajo estándares G7. Evaluación personalizada, protocolo 24/7 y confidencialidad absoluta. Briefing confidencial de 10 minutos.',
     image: 'https://cssg-global.com/seo_escudo.jpg',
-    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Escudo Diplomático — Protección VIP Elite", "description": "Servicio exclusivo de protección a personalidades VIP, dignatarios y misiones diplomáticas bajo estándar G7. Esquemas personalizados 24/7.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "serviceType": "Protección Ejecutiva VIP", "audience": { "@type": "Audience", "audienceType": "Diplomáticos, Ejecutivos de Alto Perfil, Embajadas" } }
+    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Escudo Diplomático — Protección VIP Elite", "description": "Servicio exclusivo de protección a personalidades VIP, dignatarios y misiones diplomáticas bajo estándar G7. Esquemas personalizados 24/7.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "serviceType": "Protección Ejecutiva VIP", "audience": { "@type": "Audience", "audienceType": "Diplomáticos, Ejecutivos de Alto Perfil, Embajadas" } }
   },
   {
     path: 'informes',
-    title: 'Informe de Seguridad PESTEL Venezuela 2026 | CSSG | Caracas · Miami',
+    title: 'Informe de Seguridad PESTEL Venezuela 2026 | CSSG',
     description: 'Descargue gratis el análisis PESTEL del panorama de seguridad en Venezuela 2026. Validado por especialistas humanos y optimizado con IA.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
-    jsonld: { "@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Generador de Informes PESTEL — CSSG", "description": "Herramienta gratuita de generación de informes PESTEL de seguridad para Venezuela 2026. PDF personalizado con análisis táctico.", "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "author": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" } }
+    jsonld: { "@context": "https://schema.org", "@type": "SoftwareApplication", "name": "Generador de Informes PESTEL — CSSG", "description": "Herramienta gratuita de generación de informes PESTEL de seguridad para Venezuela 2026. PDF personalizado con análisis táctico.", "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "author": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" } }
   },
   {
     path: 'blog',
-    title: 'Blog de Seguridad e Inteligencia Predictiva | CSSG | Caracas · Miami',
+    title: 'Blog de Seguridad e Inteligencia Predictiva | CSSG',
     description: 'Artículos de análisis, tendencias de seguridad y recomendaciones de expertos en protección corporativa.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
     jsonld: [
@@ -165,7 +164,7 @@ const routes = [
     title: 'Inteligencia de Amenazas en Venezuela: Guía para Operaciones Corporativas y Diplomáticas | CSSG',
     description: 'Inteligencia de Amenazas en Venezuela: anticipe riesgos físicos y digitales con OSINT, alertas tempranas y TIaaS para directivos y diplomáticos.',
     image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80',
-    jsonld: { "@context": "https://schema.org", "@type": "Article", "headline": "Inteligencia de Amenazas en Venezuela: Cómo Proteger Operaciones Corporativas y Diplomáticas", "description": "Panorama de amenazas físico-digitales en Venezuela, actores relevantes y cómo la inteligencia de amenazas (TIaaS) protege operaciones corporativas y diplomáticas.", "keywords": "Inteligencia de Amenazas, Ciberseguridad, Seguridad Corporativa, OSINT, TIaaS, Venezuela", "datePublished": "2026-07-14", "dateModified": "2026-07-14", "author": { "@type": "Person", "name": "Alexander Briceño", "affiliation": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" } }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "image": { "@type": "ImageObject", "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80", "description": "Centro de operaciones de inteligencia de amenazas monitoreando datos globales en tiempo real — CSSG Venezuela" }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/inteligencia-amenazas-venezuela" } }
+    jsonld: { "@context": "https://schema.org", "@type": "Article", "headline": "Inteligencia de Amenazas en Venezuela: Cómo Proteger Operaciones Corporativas y Diplomáticas", "description": "Panorama de amenazas físico-digitales en Venezuela, actores relevantes y cómo la inteligencia de amenazas (TIaaS) protege operaciones corporativas y diplomáticas.", "keywords": "Inteligencia de Amenazas, Ciberseguridad, Seguridad Corporativa, OSINT, TIaaS, Venezuela", "datePublished": "2026-07-14", "dateModified": "2026-07-14", "author": { "@type": "Person", "name": "Alexander Briceño", "affiliation": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" } }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "image": { "@type": "ImageObject", "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80", "description": "Centro de operaciones de inteligencia de amenazas monitoreando datos globales en tiempo real — CSSG Venezuela" }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/inteligencia-amenazas-venezuela" } }
   },
   {
     path: 'blog/executive-security-venezuela',
@@ -173,7 +172,7 @@ const routes = [
     description: 'Venezuela is reopening to foreign capital. The preventive, non-armed, ISO 9001 security architecture investors and diplomats need to enter and operate safely in 2026.',
     image: 'https://cssg-global.com/business_security_1.png',
     jsonld: [
-      { "@context": "https://schema.org", "@type": "Article", "headline": "Executive Security in Venezuela: A Duty-of-Care Framework for Investors and Diplomats", "description": "Venezuela is reopening to foreign capital. The preventive, non-armed, documented security architecture investors and diplomats need to enter and operate safely.", "keywords": "executive security Venezuela, corporate security Venezuela, duty of care Venezuela, travel risk management Venezuela, security company Venezuela for foreign investors", "datePublished": "2026-08-09", "dateModified": "2026-08-09", "inLanguage": "en", "author": { "@type": "Person", "name": "Alexander Briceño", "honorificPrefix": "MBA", "jobTitle": "CEO", "affiliation": { "@type": "Organization", "name": "CSSG Global", "url": "https://cssg-global.com" } }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "image": { "@type": "ImageObject", "url": "https://cssg-global.com/business_security_1.png", "description": "Executive security in Venezuela — CSSG Global corporate protection for investors and diplomats" }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/executive-security-venezuela" } },
+      { "@context": "https://schema.org", "@type": "Article", "headline": "Executive Security in Venezuela: A Duty-of-Care Framework for Investors and Diplomats", "description": "Venezuela is reopening to foreign capital. The preventive, non-armed, documented security architecture investors and diplomats need to enter and operate safely.", "keywords": "executive security Venezuela, corporate security Venezuela, duty of care Venezuela, travel risk management Venezuela, security company Venezuela for foreign investors", "datePublished": "2026-08-09", "dateModified": "2026-08-09", "inLanguage": "en", "author": { "@type": "Person", "name": "Alexander Briceño", "honorificPrefix": "MBA", "jobTitle": "CEO", "affiliation": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" } }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "image": { "@type": "ImageObject", "url": "https://cssg-global.com/business_security_1.png", "description": "Executive security in Venezuela — CSSG Global corporate protection for investors and diplomats" }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/executive-security-venezuela" } },
       { "@context": "https://schema.org", "@type": "FAQPage", "inLanguage": "en", "mainEntity": [
         { "@type": "Question", "name": "Is it safe to travel to Venezuela for business in 2026?", "acceptedAnswer": { "@type": "Answer", "text": "Conditions have improved but remain high-risk. In March 2026 the U.S. Department of State moved Venezuela from Level 4 (Do Not Travel) to Level 3 (Reconsider Travel). Business travel is feasible with a documented security architecture covering arrival, movement, residence and continuity — not without one." } },
         { "@type": "Question", "name": "Do I need a security provider to travel to Caracas as an executive?", "acceptedAnswer": { "@type": "Answer", "text": "For executives, investors and diplomats, yes. The airport, intercity routes and residence selection are the highest-exposure points, and travel outside Caracas can require special authorization. A structured provider replaces improvisation with a governed, documented process and a single point of accountability." } },
@@ -184,17 +183,17 @@ const routes = [
   },
   {
     path: 'blog/como-elegir-empresa-seguridad-privada-venezuela',
-    title: 'Cómo elegir una empresa de seguridad privada en Venezuela | CSSG | Caracas · Miami',
+    title: 'Cómo elegir una empresa de seguridad privada en Venezuela | CSSG',
     description: 'Guía práctica para seleccionar una empresa de seguridad corporativa en Venezuela. Criterios clave: certificaciones, experiencia, tecnología y respaldo legal.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
-    jsonld: { "@context": "https://schema.org", "@type": "Article", "headline": "Cómo elegir una empresa de seguridad privada en Venezuela", "description": "Guía práctica para seleccionar una empresa de seguridad corporativa en Venezuela.", "datePublished": "2026-04-12", "dateModified": "2026-04-12", "author": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/como-elegir-empresa-seguridad-privada-venezuela" } }
+    jsonld: { "@context": "https://schema.org", "@type": "Article", "headline": "Cómo elegir una empresa de seguridad privada en Venezuela", "description": "Guía práctica para seleccionar una empresa de seguridad corporativa en Venezuela.", "datePublished": "2026-04-12", "dateModified": "2026-04-12", "author": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/como-elegir-empresa-seguridad-privada-venezuela" } }
   },
   {
     path: 'blog/seguridad-corporativa-caracas-guia-completa',
-    title: 'Seguridad Corporativa en Caracas: Guía Completa 2026 | CSSG | Caracas · Miami',
+    title: 'Seguridad Corporativa en Caracas: Guía Completa 2026 | CSSG',
     description: 'Todo lo que necesitas saber sobre seguridad corporativa en Caracas. Protocolos, tecnología y estrategias para proteger tu empresa en Venezuela.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
-    jsonld: { "@context": "https://schema.org", "@type": "Article", "headline": "Seguridad Corporativa en Caracas: Guía Completa 2026", "description": "Todo lo que necesitas saber sobre seguridad corporativa en Caracas.", "datePublished": "2026-03-20", "dateModified": "2026-03-20", "author": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/seguridad-corporativa-caracas-guia-completa" } }
+    jsonld: { "@context": "https://schema.org", "@type": "Article", "headline": "Seguridad Corporativa en Caracas: Guía Completa 2026", "description": "Todo lo que necesitas saber sobre seguridad corporativa en Caracas.", "datePublished": "2026-03-20", "dateModified": "2026-03-20", "author": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/seguridad-corporativa-caracas-guia-completa" } }
   },
   {
     path: 'blog/resiliencia-corporativa-venezuela',
@@ -202,7 +201,7 @@ const routes = [
     description: 'Cómo construir un plan de continuidad ISO 22301 en Venezuela: MTPD, RTO, BCP y enfoque all-hazards. Guía de CSSG para riesgo sísmico, geopolítico e infraestructural.',
     image: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1200&q=80',
     jsonld: [
-      { "@context": "https://schema.org", "@type": ["Article", "BlogPosting"], "headline": "Resiliencia corporativa en entornos de riesgo extremo: la arquitectura que decide quién sigue operando", "description": "Cómo construir un plan de continuidad corporativo en Venezuela bajo ISO 31000, ISO 22301 e ISO 22361. MTPD, RTO, BCP y enfoque all-hazards explicados.", "keywords": ["resiliencia corporativa Venezuela", "ISO 22301 Venezuela", "plan continuidad negocio Venezuela", "MTPD RTO BCP", "ISO 31000 gestión riesgos Venezuela", "all-hazards Venezuela", "ISO 22361 gestión crisis", "continuidad negocio diplomática"], "wordCount": 1900, "datePublished": "2026-06-26", "dateModified": "2026-06-26", "author": { "@type": "Organization", "name": "CSSG — Risk Advisory", "url": "https://cssg-global.com" }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "image": { "@type": "ImageObject", "url": "https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1200&q=80" }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/resiliencia-corporativa-venezuela" }, "about": [{ "@type": "Thing", "name": "Resiliencia corporativa" }, { "@type": "Thing", "name": "ISO 22301:2019" }, { "@type": "Thing", "name": "Continuidad del negocio" }, { "@type": "Place", "name": "Venezuela" }], "mentions": [{ "@type": "Thing", "name": "ISO 31000:2018" }, { "@type": "Thing", "name": "ISO 22301:2019" }, { "@type": "Thing", "name": "ISO 22361:2022" }, { "@type": "Thing", "name": "NFPA 1660" }, { "@type": "Thing", "name": "ASIS ORM.1:2017" }, { "@type": "Thing", "name": "MTPD" }, { "@type": "Thing", "name": "RTO" }] },
+      { "@context": "https://schema.org", "@type": ["Article", "BlogPosting"], "headline": "Resiliencia corporativa en entornos de riesgo extremo: la arquitectura que decide quién sigue operando", "description": "Cómo construir un plan de continuidad corporativo en Venezuela bajo ISO 31000, ISO 22301 e ISO 22361. MTPD, RTO, BCP y enfoque all-hazards explicados.", "keywords": ["resiliencia corporativa Venezuela", "ISO 22301 Venezuela", "plan continuidad negocio Venezuela", "MTPD RTO BCP", "ISO 31000 gestión riesgos Venezuela", "all-hazards Venezuela", "ISO 22361 gestión crisis", "continuidad negocio diplomática"], "wordCount": 1900, "datePublished": "2026-06-26", "dateModified": "2026-06-26", "author": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "image": { "@type": "ImageObject", "url": "https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1200&q=80" }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/resiliencia-corporativa-venezuela" }, "about": [{ "@type": "Thing", "name": "Resiliencia corporativa" }, { "@type": "Thing", "name": "ISO 22301:2019" }, { "@type": "Thing", "name": "Continuidad del negocio" }, { "@type": "Place", "name": "Venezuela" }], "mentions": [{ "@type": "Thing", "name": "ISO 31000:2018" }, { "@type": "Thing", "name": "ISO 22301:2019" }, { "@type": "Thing", "name": "ISO 22361:2022" }, { "@type": "Thing", "name": "NFPA 1660" }, { "@type": "Thing", "name": "ASIS ORM.1:2017" }, { "@type": "Thing", "name": "MTPD" }, { "@type": "Thing", "name": "RTO" }] },
       { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
         { "@type": "Question", "name": "¿Qué son el MTPD y el RTO en continuidad de negocio?", "acceptedAnswer": { "@type": "Answer", "text": "El MTPD (Período Máximo Tolerable de Interrupción) es el tiempo máximo que un proceso crítico puede estar detenido antes de que el daño sea irreversible. El RTO (Tiempo Objetivo de Recuperación) es el plazo para reactivarlo a capacidad mínima aceptable. Ambas cifras las produce el Análisis de Impacto al Negocio (BIA) de la ISO 22301:2019. Sin estas cifras por proceso crítico, no existe un plan de continuidad: existe una intención." } },
         { "@type": "Question", "name": "¿Cuál es la diferencia entre un incidente y una crisis en gestión de riesgos?", "acceptedAnswer": { "@type": "Answer", "text": "Un incidente es predecible, acotado y se gestiona con procedimientos existentes. Una crisis es extraordinaria, impredecible, sistémica y puede amenazar la existencia de la organización. La diferencia no es de magnitud sino de naturaleza. Los incidentes se responden con protocolos; las crisis requieren liderazgo estratégico y estructuras de mando construidas antes del evento. La ISO 22361:2022 codifica la gestión de crisis como disciplina independiente." } },
@@ -217,47 +216,47 @@ const routes = [
   },
   {
     path: 'blog/sueldo-minimo-vigilantes-venezuela',
-    title: 'Sueldo Mínimo de Vigilantes en Venezuela 2026 | CSSG | Caracas · Miami',
+    title: 'Sueldo Mínimo de Vigilantes en Venezuela 2026 | CSSG',
     description: 'Conoce el sueldo mínimo legal de vigilantes y guardias de seguridad en Venezuela 2026. Análisis salarial del sector de seguridad privada.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
-    jsonld: { "@context": "https://schema.org", "@type": "Article", "headline": "Sueldo Mínimo de Vigilantes en Venezuela 2026", "description": "Análisis salarial del sector de seguridad privada en Venezuela.", "datePublished": "2026-05-01", "dateModified": "2026-05-01", "author": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/sueldo-minimo-vigilantes-venezuela" } }
+    jsonld: { "@context": "https://schema.org", "@type": "Article", "headline": "Sueldo Mínimo de Vigilantes en Venezuela 2026", "description": "Análisis salarial del sector de seguridad privada en Venezuela.", "datePublished": "2026-05-01", "dateModified": "2026-05-01", "author": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/sueldo-minimo-vigilantes-venezuela" } }
   },
   {
     path: 'blog/rrhh-socio-critico-seguridad',
-    title: 'RRHH como Socio Crítico en la Seguridad Corporativa | CSSG | Caracas · Miami',
+    title: 'RRHH como Socio Crítico en la Seguridad Corporativa | CSSG',
     description: 'Cómo el departamento de Recursos Humanos es clave para una estrategia de seguridad corporativa efectiva en Venezuela.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
-    jsonld: { "@context": "https://schema.org", "@type": "Article", "headline": "RRHH como Socio Crítico en la Seguridad Corporativa", "description": "El rol estratégico de Recursos Humanos en la seguridad corporativa.", "datePublished": "2026-04-26", "dateModified": "2026-04-26", "author": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/rrhh-socio-critico-seguridad" } }
+    jsonld: { "@context": "https://schema.org", "@type": "Article", "headline": "RRHH como Socio Crítico en la Seguridad Corporativa", "description": "El rol estratégico de Recursos Humanos en la seguridad corporativa.", "datePublished": "2026-04-26", "dateModified": "2026-04-26", "author": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/rrhh-socio-critico-seguridad" } }
   },
   {
     path: 'blog/5-errores-seguridad-corporativa',
-    title: '5 Errores Críticos en Seguridad Corporativa que Debes Evitar | CSSG | Caracas · Miami',
+    title: '5 Errores Críticos en Seguridad Corporativa que Debes Evitar | CSSG',
     description: 'Los 5 errores más comunes en seguridad corporativa en Venezuela y cómo evitarlos para proteger tu empresa de amenazas reales.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
-    jsonld: { "@context": "https://schema.org", "@type": "Article", "headline": "5 Errores Críticos en Seguridad Corporativa que Debes Evitar", "description": "Los 5 errores más comunes en seguridad corporativa en Venezuela.", "datePublished": "2026-04-05", "dateModified": "2026-04-05", "author": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/5-errores-seguridad-corporativa" } }
+    jsonld: { "@context": "https://schema.org", "@type": "Article", "headline": "5 Errores Críticos en Seguridad Corporativa que Debes Evitar", "description": "Los 5 errores más comunes en seguridad corporativa en Venezuela.", "datePublished": "2026-04-05", "dateModified": "2026-04-05", "author": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/5-errores-seguridad-corporativa" } }
   },
   {
     path: 'blog/iso-9001-seguridad-privada-importancia',
-    title: 'Por qué ISO 9001 es Clave en la Seguridad Privada | CSSG | Caracas · Miami',
+    title: 'Por qué ISO 9001 es Clave en la Seguridad Privada | CSSG',
     description: 'Descubre por qué la certificación ISO 9001:2015 es fundamental para garantizar calidad y confiabilidad en una empresa de seguridad privada.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
-    jsonld: { "@context": "https://schema.org", "@type": "Article", "headline": "Por qué ISO 9001 es Clave en la Seguridad Privada", "description": "La importancia de la certificación ISO 9001:2015 en seguridad privada.", "datePublished": "2026-03-28", "dateModified": "2026-03-28", "author": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/iso-9001-seguridad-privada-importancia" } }
+    jsonld: { "@context": "https://schema.org", "@type": "Article", "headline": "Por qué ISO 9001 es Clave en la Seguridad Privada", "description": "La importancia de la certificación ISO 9001:2015 en seguridad privada.", "datePublished": "2026-03-28", "dateModified": "2026-03-28", "author": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/iso-9001-seguridad-privada-importancia" } }
   },
   {
     path: 'blog/analisis-pestel-seguridad-venezuela',
-    title: 'Análisis PESTEL de Seguridad en Venezuela 2026 | CSSG | Caracas · Miami',
+    title: 'Análisis PESTEL de Seguridad en Venezuela 2026 | CSSG',
     description: 'Análisis completo de los factores Políticos, Económicos, Sociales, Tecnológicos, Ecológicos y Legales que impactan la seguridad en Venezuela.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
-    jsonld: { "@context": "https://schema.org", "@type": "Article", "headline": "Análisis PESTEL de Seguridad en Venezuela 2026", "description": "Factores PESTEL que impactan la seguridad corporativa en Venezuela.", "datePublished": "2026-03-15", "dateModified": "2026-03-15", "author": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/analisis-pestel-seguridad-venezuela" } }
+    jsonld: { "@context": "https://schema.org", "@type": "Article", "headline": "Análisis PESTEL de Seguridad en Venezuela 2026", "description": "Factores PESTEL que impactan la seguridad corporativa en Venezuela.", "datePublished": "2026-03-15", "dateModified": "2026-03-15", "author": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/analisis-pestel-seguridad-venezuela" } }
   },
   // --- Risk Advisory Services sub-pages ---
   {
     path: 'consultoria/evaluacion-de-riesgos-de-seguridad',
-    title: 'Evaluación de Riesgos de Seguridad | CSSG | Caracas · Miami',
-    description: 'Evaluación de riesgos de seguridad bajo metodología ESRM e ISO 31000. Identificamos vulnerabilidades reales en su organización antes de que se conviertan en incidentes.',
+    title: 'Evaluación de Riesgos de Seguridad en Venezuela | CSSG',
+    description: 'Evaluación de riesgos de seguridad para empresas en Venezuela, bajo ESRM e ISO 31000: activos críticos, matriz FMEA, informe de vulnerabilidades y hoja de ruta de 90 días.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
     jsonld: [
-      { "@context": "https://schema.org", "@type": "Service", "name": "Evaluación de Riesgos de Seguridad", "description": "Servicio de evaluación de riesgos corporativos bajo ESRM e ISO 31000. Identificación de vulnerabilidades y plan de acción.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" } },
+      { "@context": "https://schema.org", "@type": "Service", "name": "Evaluación de Riesgos de Seguridad", "description": "Servicio de evaluación de riesgos corporativos bajo ESRM e ISO 31000. Identificación de vulnerabilidades y plan de acción.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" } },
       { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
         { "@type": "Question", "name": "¿Qué metodología usa CSSG para la evaluación de riesgos de seguridad?", "acceptedAnswer": { "@type": "Answer", "text": "CSSG aplica la metodología ESRM (Enterprise Security Risk Management) del ASIS Internacional, complementada con ISO 31000:2018. Se evalúan vectores de probabilidad e impacto mediante fórmula FMEA, produciendo un índice de riesgo cuantificado con plan de acción priorizado." } },
         { "@type": "Question", "name": "¿Cuánto tiempo tarda una evaluación de riesgos de seguridad con CSSG?", "acceptedAnswer": { "@type": "Answer", "text": "Una evaluación estándar toma entre 3 y 7 días hábiles: 1-2 días de levantamiento in-situ, 2-3 días de análisis y redacción del informe, y 1 día de presentación ejecutiva. Evaluaciones urgentes pueden entregarse en 48-72 horas." } },
@@ -269,11 +268,11 @@ const routes = [
   },
   {
     path: 'consultoria/diagnostico-madurez-seguridad',
-    title: 'Diagnóstico de Madurez en Seguridad | CSSG | Caracas · Miami',
+    title: 'Diagnóstico de Madurez en Seguridad | CSSG',
     description: 'Evalúe el nivel de madurez de seguridad de su organización en 5 niveles. Obtenga su Índice de Seguridad Corporativa de Venezuela.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
     jsonld: [
-      { "@context": "https://schema.org", "@type": "Service", "name": "Diagnóstico de Madurez en Seguridad", "description": "Evaluación del nivel de madurez organizacional en seguridad. Índice de Seguridad Corporativa de Venezuela.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" } },
+      { "@context": "https://schema.org", "@type": "Service", "name": "Diagnóstico de Madurez en Seguridad", "description": "Evaluación del nivel de madurez organizacional en seguridad. Índice de Seguridad Corporativa de Venezuela.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" } },
       { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
         { "@type": "Question", "name": "¿Qué es el diagnóstico de madurez en seguridad?", "acceptedAnswer": { "@type": "Answer", "text": "Es una evaluación estructurada que ubica a la organización en uno de 5 niveles de madurez de seguridad: Inicial, Reactivo, Definido, Gestionado y Optimizado. El resultado es el Índice de Seguridad Corporativa (ISC-VE), una métrica comparable sectorialmente." } },
         { "@type": "Question", "name": "¿En qué se diferencia el diagnóstico de madurez de una auditoría de riesgos?", "acceptedAnswer": { "@type": "Answer", "text": "La auditoría de riesgos identifica vulnerabilidades específicas; el diagnóstico de madurez evalúa la capacidad organizacional para gestionar la seguridad de forma sostenida. Son complementarios: la madurez indica el 'cómo' y la auditoría revela el 'qué'." } },
@@ -284,11 +283,11 @@ const routes = [
   },
   {
     path: 'consultoria/site-survey-evaluacion-fisica',
-    title: 'Site Survey de Seguridad Física | CSSG | Caracas · Miami',
+    title: 'Site Survey de Seguridad Física | CSSG',
     description: 'Evaluación física de instalaciones bajo metodología CPTED. Detectamos vulnerabilidades en perímetro, accesos, iluminación y flujo de personas.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
     jsonld: [
-      { "@context": "https://schema.org", "@type": "Service", "name": "Site Survey de Seguridad Física", "description": "Evaluación CPTED de instalaciones. Detección de vulnerabilidades físicas y recomendaciones de mitigación.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" } },
+      { "@context": "https://schema.org", "@type": "Service", "name": "Site Survey de Seguridad Física", "description": "Evaluación CPTED de instalaciones. Detección de vulnerabilidades físicas y recomendaciones de mitigación.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" } },
       { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
         { "@type": "Question", "name": "¿Qué es un site survey de seguridad física bajo metodología CPTED?", "acceptedAnswer": { "@type": "Answer", "text": "CPTED (Crime Prevention Through Environmental Design) es una metodología que evalúa cómo el diseño del entorno físico facilita o dificulta actos delictivos. El site survey analiza perímetro, iluminación, control de accesos, visibilidad y flujos de personas para diseñar contramedidas preventivas." } },
         { "@type": "Question", "name": "¿Qué tipos de instalaciones evalúa CSSG en un site survey?", "acceptedAnswer": { "@type": "Answer", "text": "CSSG realiza site surveys en sedes corporativas, embajadas y cancillerías, residencias ejecutivas, almacenes e industrias, centros de datos y cualquier instalación que requiera evaluación sistemática de vulnerabilidades físicas." } },
@@ -299,11 +298,11 @@ const routes = [
   },
   {
     path: 'consultoria/auditoria-de-cumplimiento',
-    title: 'Auditoría de Cumplimiento en Seguridad | CSSG | Caracas · Miami',
+    title: 'Auditoría de Cumplimiento en Seguridad | CSSG',
     description: 'Auditoría de cumplimiento bajo DIGESERVISP, ISO 9001:2015, ISO 31000 y ASIS ORM.1. Identifique brechas antes de que lo haga una auditoría externa.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
     jsonld: [
-      { "@context": "https://schema.org", "@type": "Service", "name": "Auditoría de Cumplimiento en Seguridad", "description": "Auditoría de cumplimiento DIGESERVISP, ISO 9001:2015, ISO 31000 y ASIS ORM.1.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" } },
+      { "@context": "https://schema.org", "@type": "Service", "name": "Auditoría de Cumplimiento en Seguridad", "description": "Auditoría de cumplimiento DIGESERVISP, ISO 9001:2015, ISO 31000 y ASIS ORM.1.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" } },
       { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
         { "@type": "Question", "name": "¿Qué normas cubre la auditoría de cumplimiento de seguridad de CSSG?", "acceptedAnswer": { "@type": "Answer", "text": "La auditoría cubre DIGESERVISP (regulación venezolana obligatoria), ISO 9001:2015 (gestión de calidad), ISO 31000 (gestión de riesgos) y ASIS ORM.1:2017 (estándar de gestión de riesgos de seguridad organizacional). El informe identifica brechas con prioridad alta, media y baja." } },
         { "@type": "Question", "name": "¿Con qué frecuencia debe realizarse una auditoría de cumplimiento?", "acceptedAnswer": { "@type": "Answer", "text": "Se recomienda auditoría anual para mantenimiento de certificaciones, y revisión semestral para organizaciones en sectores de alta criticidad como diplomático, financiero o industrial. CSSG también ofrece auditorías puntuales ante cambios operacionales significativos." } },
@@ -314,11 +313,12 @@ const routes = [
   },
   {
     path: 'consultoria/seguridad-misiones-diplomaticas',
-    title: 'Seguridad para Embajadas y Misiones Diplomáticas | CSSG | Caracas · Miami',
+    alternates: { en: 'en/diplomatic-security', es: 'consultoria/seguridad-misiones-diplomaticas' },
+    title: 'Seguridad Diplomática y para Embajadas en Venezuela | CSSG',
     description: 'Servicios de seguridad para embajadas, cancillerías y misiones diplomáticas en Venezuela bajo estándar G7. Más de 12 años sin incidentes.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
     jsonld: [
-      { "@context": "https://schema.org", "@type": "Service", "name": "Seguridad para Misiones Diplomáticas", "description": "Seguridad para embajadas y cancillerías en Venezuela bajo estándar G7. ISO 9001:2015. +12 años sin incidentes.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" } },
+      { "@context": "https://schema.org", "@type": "Service", "name": "Seguridad para Misiones Diplomáticas", "description": "Seguridad para embajadas y cancillerías en Venezuela bajo estándar G7. ISO 9001:2015. +12 años sin incidentes.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" } },
       { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
         { "@type": "Question", "name": "¿Qué estándares aplica CSSG para la seguridad de misiones diplomáticas?", "acceptedAnswer": { "@type": "Answer", "text": "CSSG opera bajo el estándar G7 para protección diplomática, complementado con protocolos de la Convención de Viena sobre Relaciones Diplomáticas. Los esquemas incluyen personal certificado, comunicaciones encriptadas, coordinación con agregados de seguridad y protocolos de evacuación." } },
         { "@type": "Question", "name": "¿Qué diferencia a CSSG de otras empresas en seguridad diplomática en Venezuela?", "acceptedAnswer": { "@type": "Answer", "text": "CSSG lleva más de 12 años protegiendo misiones del G7 en Venezuela sin ningún incidente documentado. Es la única empresa venezolana con certificación ISO 9001:2015 activa, plataforma tecnológica ShieldTrace PSIM y personal con los salarios más altos del sector, garantizando rotación mínima." } },
@@ -329,11 +329,11 @@ const routes = [
   },
   {
     path: 'consultoria/evaluacion-residencias-cancillerias',
-    title: 'Evaluación de Seguridad para Residencias y Cancillerías | CSSG | Caracas · Miami',
+    title: 'Evaluación de Seguridad para Residencias y Cancillerías | CSSG',
     description: 'Evaluación de seguridad física para residencias de diplomáticos y cancillerías en Venezuela. Protocolo de confidencialidad total.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
     jsonld: [
-      { "@context": "https://schema.org", "@type": "Service", "name": "Evaluación de Residencias y Cancillerías", "description": "Evaluación de seguridad para residencias diplomáticas y cancillerías en Venezuela.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" } },
+      { "@context": "https://schema.org", "@type": "Service", "name": "Evaluación de Residencias y Cancillerías", "description": "Evaluación de seguridad para residencias diplomáticas y cancillerías en Venezuela.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" } },
       { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
         { "@type": "Question", "name": "¿Qué aspectos cubre la evaluación de seguridad para residencias diplomáticas?", "acceptedAnswer": { "@type": "Answer", "text": "La evaluación cubre perímetro físico y accesos, sistemas de alarma e iluminación, procedimientos de personal doméstico y visitantes, planes de evacuación, comunicaciones de emergencia y coordinación con la misión diplomática. Se entrega bajo protocolo de confidencialidad total." } },
         { "@type": "Question", "name": "¿CSSG garantiza confidencialidad en las evaluaciones de cancillerías?", "acceptedAnswer": { "@type": "Answer", "text": "Absolutamente. Todos los informes de evaluación de cancillerías y residencias diplomáticas son tratados bajo protocolo de máxima confidencialidad. CSSG firma acuerdos NDA específicos con cada misión y los documentos se transmiten únicamente por canales encriptados." } },
@@ -344,11 +344,13 @@ const routes = [
   },
   {
     path: 'consultoria/due-diligence-corporativa',
-    title: 'Due Diligence Corporativa Venezuela | CSSG | Caracas · Miami',
-    description: 'Due diligence corporativa en Venezuela: verificación de antecedentes, CICPC, SENIAT, IVSS e investigación de socios. Resultados en 2-15 días hábiles.',
+    alternates: { en: 'en/due-diligence-venezuela', es: 'consultoria/due-diligence-corporativa' },
+    lastmod: '2026-11-03',
+    title: 'Due Diligence y Debida Diligencia en Venezuela | CSSG',
+    description: 'Due diligence de personas, empresas, socios y proveedores en Venezuela: antecedentes, fuentes judiciales, tributarias y registrales, y reputación. Resultados en 2-15 días hábiles.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
     jsonld: [
-      { "@context": "https://schema.org", "@type": "Service", "name": "Due Diligence Corporativa Venezuela", "description": "Investigación y verificación de personas naturales y jurídicas en Venezuela. CICPC, SENIAT, IVSS, OSINT.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" } },
+      { "@context": "https://schema.org", "@type": "Service", "name": "Due Diligence Corporativa Venezuela", "description": "Investigación y verificación de personas naturales y jurídicas en Venezuela. CICPC, SENIAT, IVSS, OSINT.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" } },
       { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
         { "@type": "Question", "name": "¿Qué fuentes utiliza CSSG para la due diligence corporativa en Venezuela?", "acceptedAnswer": { "@type": "Answer", "text": "CSSG consulta CICPC (antecedentes penales), SENIAT (situación tributaria), IVSS (historial laboral), SUNDDE, SAREN (registros mercantiles), listas OFAC/ONU de sanciones internacionales y fuentes OSINT especializadas. Los resultados se entregan en 2-15 días hábiles según la profundidad requerida." } },
         { "@type": "Question", "name": "¿Para qué casos es necesaria una due diligence corporativa en Venezuela?", "acceptedAnswer": { "@type": "Answer", "text": "Es recomendable antes de contratar socios comerciales locales, incorporar personal directivo, adjudicar contratos de alto valor, establecer joint ventures o ante denuncias de actividades irregulares internas. Especialmente crítica en el contexto venezolano por la complejidad regulatoria." } },
@@ -359,11 +361,11 @@ const routes = [
   },
   {
     path: 'consultoria/inteligencia-y-analisis-de-riesgo',
-    title: 'Inteligencia y Análisis de Riesgo Venezuela | CSSG | Caracas · Miami',
+    title: 'Inteligencia y Análisis de Riesgo en Venezuela | CSSG',
     description: 'Análisis de riesgo político-operacional, delictivo y geopolítico en Venezuela. Inteligencia accionable para la toma de decisiones ejecutivas.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
     jsonld: [
-      { "@context": "https://schema.org", "@type": "Service", "name": "Inteligencia y Análisis de Riesgo", "description": "Análisis de riesgo político, delictivo y geopolítico en Venezuela para organizaciones corporativas.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" } },
+      { "@context": "https://schema.org", "@type": "Service", "name": "Inteligencia y Análisis de Riesgo", "description": "Análisis de riesgo político, delictivo y geopolítico en Venezuela para organizaciones corporativas.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" } },
       { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
         { "@type": "Question", "name": "¿Qué tipo de inteligencia produce CSSG para sus clientes corporativos?", "acceptedAnswer": { "@type": "Answer", "text": "CSSG produce inteligencia operacional (estado de seguridad en zonas operativas), inteligencia delictual (tendencias de criminalidad local y regional), inteligencia política (riesgo regulatorio y social) e inteligencia competitiva (análisis de entorno de negocio). Todos los informes son accionables para la toma de decisiones ejecutivas." } },
         { "@type": "Question", "name": "¿Con qué frecuencia se actualizan los informes de inteligencia de riesgo?", "acceptedAnswer": { "@type": "Answer", "text": "CSSG ofrece informes puntuales bajo demanda, suscripciones semanales de briefing de riesgo y alertas tempranas en tiempo real ante eventos críticos. La frecuencia se define según las necesidades operacionales del cliente y la volatilidad de la zona geográfica." } },
@@ -374,11 +376,11 @@ const routes = [
   },
   {
     path: 'consultoria/amenaza-interna-insider-threat',
-    title: 'Insider Threat — Amenaza Interna Corporativa | CSSG | Caracas · Miami',
+    title: 'Insider Threat — Amenaza Interna Corporativa | CSSG',
     description: 'Detección y mitigación de amenazas internas (insider threat) en organizaciones venezolanas. Análisis de vectores: captado, negligente y ex-empleado.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
     jsonld: [
-      { "@context": "https://schema.org", "@type": "Service", "name": "Gestión de Amenaza Interna (Insider Threat)", "description": "Detección y mitigación de insider threat en empresas venezolanas. Análisis de personal y controles internos.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" } },
+      { "@context": "https://schema.org", "@type": "Service", "name": "Gestión de Amenaza Interna (Insider Threat)", "description": "Detección y mitigación de insider threat en empresas venezolanas. Análisis de personal y controles internos.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" } },
       { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
         { "@type": "Question", "name": "¿Qué es el insider threat y por qué es crítico en Venezuela?", "acceptedAnswer": { "@type": "Answer", "text": "El insider threat es la amenaza que representa el personal interno de una organización: empleados captados por terceros, trabajadores negligentes o ex-empleados con acceso residual. En Venezuela es especialmente crítico por la presión económica sobre el personal y la dificultad de verificación de antecedentes." } },
         { "@type": "Question", "name": "¿Cómo detecta CSSG indicadores de amenaza interna?", "acceptedAnswer": { "@type": "Answer", "text": "CSSG implementa programas de monitoreo conductual, análisis de patrones de acceso, entrevistas estructuradas y revisión de controles de información sensible. No se trata de vigilancia masiva, sino de indicadores objetivos de comportamiento anómalo correlacionados con factores de riesgo conocidos." } },
@@ -389,11 +391,11 @@ const routes = [
   },
   {
     path: 'consultoria/continuidad-de-negocio',
-    title: 'Continuidad de Negocio Venezuela | ISO 22301 | CSSG | Caracas · Miami',
+    title: 'Continuidad de Negocio Venezuela | ISO 22301 | CSSG',
     description: 'Planes de continuidad de negocio para Venezuela: cortes eléctricos, disturbios, escasez y crisis. Metodología ISO 22301:2019.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
     jsonld: [
-      { "@context": "https://schema.org", "@type": "Service", "name": "Continuidad de Negocio Venezuela", "description": "BCP bajo ISO 22301:2019 adaptado a Venezuela: cortes eléctricos, disturbios, escasez operativa.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" } },
+      { "@context": "https://schema.org", "@type": "Service", "name": "Continuidad de Negocio Venezuela", "description": "BCP bajo ISO 22301:2019 adaptado a Venezuela: cortes eléctricos, disturbios, escasez operativa.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" } },
       { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
         { "@type": "Question", "name": "¿Qué escenarios cubre un plan de continuidad de negocio para Venezuela?", "acceptedAnswer": { "@type": "Answer", "text": "El BCP para Venezuela cubre escenarios específicos del entorno local: cortes eléctricos prolongados, fallas de conectividad, escasez de suministros críticos, disturbios civiles, contingencias sanitarias y pérdida de personal clave. El plan define tiempos de recuperación (RTO) y niveles mínimos de servicio (RPO) para cada escenario." } },
         { "@type": "Question", "name": "¿Cuánto tiempo lleva desarrollar un plan de continuidad de negocio?", "acceptedAnswer": { "@type": "Answer", "text": "Un BCP completo bajo ISO 22301:2019 toma entre 4 y 8 semanas: análisis de impacto al negocio (BIA), identificación de procesos críticos, diseño de estrategias de recuperación, documentación del plan y simulacro de validación. CSSG ofrece también planes de emergencia acelerados en 2 semanas para necesidades urgentes." } },
@@ -404,11 +406,11 @@ const routes = [
   },
   {
     path: 'consultoria/gestion-de-crisis-y-respuesta',
-    title: 'Gestión de Crisis Empresarial | CSSG | Caracas · Miami',
+    title: 'Gestión de Crisis Empresarial | CSSG',
     description: 'Diseño e implementación de sistemas de gestión de crisis corporativa. Simulacros tabletop, CECOM y protocolos de comunicación bajo presión.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
     jsonld: [
-      { "@context": "https://schema.org", "@type": "Service", "name": "Gestión de Crisis Empresarial", "description": "Sistemas de gestión de crisis: CECOM, protocolos de respuesta, simulacros tabletop.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" } },
+      { "@context": "https://schema.org", "@type": "Service", "name": "Gestión de Crisis Empresarial", "description": "Sistemas de gestión de crisis: CECOM, protocolos de respuesta, simulacros tabletop.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" } },
       { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
         { "@type": "Question", "name": "¿Qué es un simulacro tabletop y cómo lo conduce CSSG?", "acceptedAnswer": { "@type": "Answer", "text": "Un simulacro tabletop es un ejercicio de escritorio donde el equipo directivo enfrenta un escenario de crisis simulado sin activación de recursos reales. CSSG conduce el ejercicio con facilitadores expertos, presenta inyecciones de complejidad progresiva y evalúa la calidad de las decisiones del equipo bajo presión." } },
         { "@type": "Question", "name": "¿Cómo se integra el CECOM de CSSG en la gestión de crisis corporativa?", "acceptedAnswer": { "@type": "Answer", "text": "El CECOM (Centro de Mando 24/7) actúa como núcleo de coordinación durante una crisis: recibe alertas de los sistemas ShieldTrace, coordina los recursos de respuesta, mantiene comunicaciones con el equipo directivo del cliente y registra la cronología del incidente para análisis posterior." } },
@@ -419,11 +421,11 @@ const routes = [
   },
   {
     path: 'consultoria/proteccion-ejecutiva-analisis-amenazas',
-    title: 'Protección Ejecutiva y Análisis de Amenazas | CSSG | Caracas · Miami',
+    title: 'Protección Ejecutiva y Análisis de Amenazas | CSSG',
     description: 'Consultoría de protección ejecutiva: análisis de perfil de amenaza, ajuste del esquema de seguridad personal y coordinación con Escudo Diplomático.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
     jsonld: [
-      { "@context": "https://schema.org", "@type": "Service", "name": "Protección Ejecutiva — Consultoría", "description": "Análisis de amenaza y diseño de esquema de protección personal para ejecutivos en Venezuela.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" } },
+      { "@context": "https://schema.org", "@type": "Service", "name": "Protección Ejecutiva — Consultoría", "description": "Análisis de amenaza y diseño de esquema de protección personal para ejecutivos en Venezuela.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" } },
       { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
         { "@type": "Question", "name": "¿Qué es el análisis de perfil de amenaza para ejecutivos?", "acceptedAnswer": { "@type": "Answer", "text": "Es una evaluación estructurada que determina el nivel de exposición personal de un ejecutivo: visibilidad pública, viajes frecuentes, valor como objetivo (económico, político, reputacional), vulnerabilidades del entorno doméstico y hábitos de seguridad digital. El resultado calibra el esquema de protección al nivel de riesgo real." } },
         { "@type": "Question", "name": "¿Cuándo es recomendable contratar protección ejecutiva en Venezuela?", "acceptedAnswer": { "@type": "Answer", "text": "Se recomienda ante: amenazas documentadas o percibidas, incremento del perfil público del ejecutivo, viajes a zonas de alta criminalidad, situaciones de conflicto empresarial de alto riesgo o como medida preventiva para directivos de empresas en sectores sensibles como minería, finanzas o salud." } },
@@ -434,11 +436,11 @@ const routes = [
   },
   {
     path: 'consultoria/tecnologia/monitoreo-tiempo-real',
-    title: 'Monitoreo de Seguridad en Tiempo Real | CSSG | Caracas · Miami',
+    title: 'Monitoreo de Seguridad en Tiempo Real | CSSG',
     description: 'Capacidad de monitoreo centralizado 24/7 para instalaciones corporativas en Venezuela. Redundancias ante cortes eléctricos y fallas de conectividad.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
     jsonld: [
-      { "@context": "https://schema.org", "@type": "Service", "name": "Monitoreo de Seguridad en Tiempo Real", "description": "Plataforma de monitoreo centralizado 24/7 con redundancias para el entorno venezolano.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" } },
+      { "@context": "https://schema.org", "@type": "Service", "name": "Monitoreo de Seguridad en Tiempo Real", "description": "Plataforma de monitoreo centralizado 24/7 con redundancias para el entorno venezolano.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" } },
       { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
         { "@type": "Question", "name": "¿Cómo garantiza CSSG la continuidad del monitoreo ante cortes eléctricos en Venezuela?", "acceptedAnswer": { "@type": "Answer", "text": "ShieldTrace PSIM opera con redundancias diseñadas para el entorno venezolano: UPS de larga duración, conectividad dual (fibra + LTE/satellite failover), servidores locales en modo stand-alone y protocolos de activación manual del CECOM ante pérdida de señal. El sistema mantiene operatividad hasta 8 horas sin energía externa." } },
         { "@type": "Question", "name": "¿Qué tipos de sensores y dispositivos soporta el monitoreo en tiempo real de CSSG?", "acceptedAnswer": { "@type": "Answer", "text": "ShieldTrace integra: cámaras IP con analítica de video (detección de intrusos, conteo de personas, reconocimiento de placas), sensores de perímetro (PIR, barreras de microondas), lectores biométricos de acceso, GPS vehicular, drones autónomos de patrullaje y radios encriptadas del personal." } },
@@ -449,11 +451,11 @@ const routes = [
   },
   {
     path: 'consultoria/tecnologia/centro-de-mando-cecom',
-    title: 'Centro de Mando CECOM | CSSG | Caracas · Miami',
+    title: 'Centro de Mando CECOM | CSSG',
     description: 'El único Centro de Mando operativo 24/7 disponible a empresas en Venezuela. Gestión de incidentes en tiempo real con capacidad de coordinación táctica.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
     jsonld: [
-      { "@context": "https://schema.org", "@type": "Service", "name": "Centro de Mando CECOM", "description": "Centro de Mando corporativo 24/7. Coordinación táctica de incidentes de seguridad en Venezuela.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" } },
+      { "@context": "https://schema.org", "@type": "Service", "name": "Centro de Mando CECOM", "description": "Centro de Mando corporativo 24/7. Coordinación táctica de incidentes de seguridad en Venezuela.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" } },
       { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
         { "@type": "Question", "name": "¿Qué es el CECOM y qué lo diferencia de un simple centro de monitoreo?", "acceptedAnswer": { "@type": "Answer", "text": "El CECOM (Centro de Comando y Control) de CSSG no es solo monitoreo pasivo: es un centro de coordinación táctica activa con capacidad de despacho de recursos de respuesta, comunicación en tiempo real con personal de campo, gestión de incidentes con cronología auditada y escalamiento automático a servicios de emergencia." } },
         { "@type": "Question", "name": "¿El CECOM de CSSG está disponible para empresas externas?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. El CECOM está disponible como servicio para clientes corporativos que deseen una extensión de su capacidad de seguridad sin la inversión de un centro propio. Se opera bajo contrato de servicio con SLAs de respuesta definidos y acceso dedicado al dashboard ShieldTrace." } },
@@ -464,11 +466,11 @@ const routes = [
   },
   {
     path: 'consultoria/tecnologia/scoring-de-seguridad',
-    title: 'Scoring de Seguridad Corporativa | CSSG | Caracas · Miami',
+    title: 'Scoring de Seguridad Corporativa | CSSG',
     description: 'Índice de seguridad corporativa cuantificado: 4 pilares, fórmula FMEA y benchmark sectorial. Mida su nivel de seguridad con rigor metodológico.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
     jsonld: [
-      { "@context": "https://schema.org", "@type": "Service", "name": "Scoring de Seguridad Corporativa", "description": "Índice de seguridad cuantificado bajo FMEA. 4 pilares: Perímetro, Accesos, Procedimientos, Inteligencia.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" } },
+      { "@context": "https://schema.org", "@type": "Service", "name": "Scoring de Seguridad Corporativa", "description": "Índice de seguridad cuantificado bajo FMEA. 4 pilares: Perímetro, Accesos, Procedimientos, Inteligencia.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" } },
       { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
         { "@type": "Question", "name": "¿Cómo se calcula el scoring de seguridad corporativa de CSSG?", "acceptedAnswer": { "@type": "Answer", "text": "El índice se calcula sobre 4 pilares: Perímetro físico, Control de accesos, Procedimientos operativos e Inteligencia situacional. Cada pilar se evalúa con indicadores cuantificables. La puntuación final aplica la fórmula FMEA: Índice = (Probabilidad × 0.4) + (Impacto × 0.6), produciendo un score de 0 a 100." } },
         { "@type": "Question", "name": "¿Para qué sirve el scoring de seguridad en la toma de decisiones?", "acceptedAnswer": { "@type": "Answer", "text": "El score convierte la gestión de seguridad en un KPI comparable y trazable. Permite priorizar inversiones, justificar presupuestos ante la junta directiva, hacer benchmark sectorial y medir la mejora de la postura de seguridad a lo largo del tiempo con evidencia objetiva." } },
@@ -479,11 +481,11 @@ const routes = [
   },
   {
     path: 'consultoria/capacitacion/formacion-personal-seguridad',
-    title: 'Formación de Personal de Seguridad DIGESERVISP | CSSG | Caracas · Miami',
+    title: 'Formación de Personal de Seguridad DIGESERVISP | CSSG',
     description: 'Programa de formación habilitado DIGESERVISP de 120 horas para personal de seguridad privada en Venezuela. Presencial, e-learning o mixto.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
     jsonld: [
-      { "@context": "https://schema.org", "@type": "Service", "name": "Formación de Personal de Seguridad — 120h DIGESERVISP", "description": "Programa de 120 horas habilitado por DIGESERVISP para seguridad privada en Venezuela.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" } },
+      { "@context": "https://schema.org", "@type": "Service", "name": "Formación de Personal de Seguridad — 120h DIGESERVISP", "description": "Programa de 120 horas habilitado por DIGESERVISP para seguridad privada en Venezuela.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" } },
       { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
         { "@type": "Question", "name": "¿El programa de formación de CSSG está habilitado por DIGESERVISP?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. CSSG cuenta con habilitación DIGESERVISP para formación de personal de seguridad privada. El programa de 120 horas cumple con todos los requisitos reglamentarios y otorga certificación oficial reconocida por las autoridades venezolanas de seguridad privada." } },
         { "@type": "Question", "name": "¿Cuáles son los módulos del programa de formación de seguridad?", "acceptedAnswer": { "@type": "Answer", "text": "El programa cubre: Marco legal de la seguridad privada en Venezuela, Uso proporcional de la fuerza, Primeros auxilios tácticos, CCTV y analítica forense, Derechos humanos y ética, Defensa personal y control de intrusos, Protección de activos críticos e Inteligencia y contrainteligencia básica." } },
@@ -494,11 +496,11 @@ const routes = [
   },
   {
     path: 'consultoria/capacitacion/respuesta-crisis-equipos',
-    title: 'Formación en Respuesta a Crisis para Equipos | CSSG | Caracas · Miami',
+    title: 'Formación en Respuesta a Crisis para Equipos | CSSG',
     description: 'Formación corporativa en gestión de crisis para equipos: simulacros tabletop, talleres de roles y validación del plan de crisis.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
     jsonld: [
-      { "@context": "https://schema.org", "@type": "Service", "name": "Formación en Respuesta a Crisis para Equipos", "description": "Talleres y simulacros tabletop para equipos corporativos. Validación del plan de crisis.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" } },
+      { "@context": "https://schema.org", "@type": "Service", "name": "Formación en Respuesta a Crisis para Equipos", "description": "Talleres y simulacros tabletop para equipos corporativos. Validación del plan de crisis.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" } },
       { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
         { "@type": "Question", "name": "¿Qué aprende un equipo directivo en el taller de respuesta a crisis de CSSG?", "acceptedAnswer": { "@type": "Answer", "text": "El taller desarrolla: reconocimiento temprano de señales de crisis, activación del protocolo de gestión, comunicación bajo presión (interna, con medios y con autoridades), toma de decisiones con información incompleta y coordinación entre áreas. Se trabaja con escenarios reales calibrados al contexto venezolano." } },
         { "@type": "Question", "name": "¿Cuántas personas pueden participar en el taller de respuesta a crisis?", "acceptedAnswer": { "@type": "Answer", "text": "El formato óptimo es de 8-15 personas del equipo de gestión de crisis: CEO, CFO, CISO, responsable de operaciones, comunicaciones y seguridad. CSSG también ofrece talleres ampliados para hasta 30 personas en formato mixto con grupos de trabajo diferenciados por rol." } },
@@ -509,11 +511,11 @@ const routes = [
   },
   {
     path: 'consultoria/capacitacion/concienciacion-ejecutiva',
-    title: 'Concienciación Ejecutiva en Seguridad | Duty of Care | CSSG | Caracas · Miami',
+    title: 'Concienciación Ejecutiva en Seguridad | Duty of Care | CSSG',
     description: 'Programa de concienciación de seguridad para directivos: autoprotección, duty of care, seguridad digital y seguridad residencial. Taller de 4 horas.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
     jsonld: [
-      { "@context": "https://schema.org", "@type": "Service", "name": "Concienciación Ejecutiva en Seguridad", "description": "Formación de directivos en autoprotección, seguridad digital y duty of care en Venezuela.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" } },
+      { "@context": "https://schema.org", "@type": "Service", "name": "Concienciación Ejecutiva en Seguridad", "description": "Formación de directivos en autoprotección, seguridad digital y duty of care en Venezuela.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" } },
       { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
         { "@type": "Question", "name": "¿Qué temas cubre el programa de concienciación ejecutiva de seguridad?", "acceptedAnswer": { "@type": "Answer", "text": "El programa cubre: autoprotección personal y en vehículo, seguridad digital básica (phishing, contraseñas, redes), seguridad residencial, reconocimiento de seguimientos y vigilancia, protocolo ante secuestro express y concepto de duty of care para directivos con equipos a cargo." } },
         { "@type": "Question", "name": "¿Qué es el duty of care y por qué es relevante para directivos en Venezuela?", "acceptedAnswer": { "@type": "Answer", "text": "Duty of care es la obligación legal y ética de los empleadores de garantizar la seguridad de su personal. En Venezuela, implica evaluar los riesgos para empleados en zonas críticas, proveer formación de seguridad, establecer protocolos de viaje y contar con planes de evacuación actualizados." } },
@@ -524,7 +526,7 @@ const routes = [
   },
   {
     path: 'consultoria/casos-de-exito',
-    title: 'Casos de Éxito en Seguridad Corporativa | CSSG | Caracas · Miami',
+    title: 'Casos de Éxito en Seguridad Corporativa | CSSG',
     description: 'Resultados reales de proyectos de seguridad corporativa y diplomática en Venezuela. Sectores: diplomático, manufactura, due diligence y salud.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
     jsonld: [
@@ -566,14 +568,14 @@ const routes = [
     title: 'ISO 9001 Empresa de Seguridad en Venezuela — Certificado N° 580181 | CSSG',
     description: 'CSSG es la única empresa de seguridad en Venezuela con ISO 9001:2015 N° 580181 verificable por terceros. Auditorías periódicas por LL-C. Requisito para licitaciones G7 y diplomáticas.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
-    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Seguridad Corporativa Certificada ISO 9001 — Venezuela", "description": "Servicios de seguridad corporativa y diplomática certificados ISO 9001:2015 N° 580181 en Venezuela.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "areaServed": "Venezuela", "hasCredential": { "@type": "EducationalOccupationalCredential", "name": "ISO 9001:2015", "identifier": "N° 580181" } }
+    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Seguridad Corporativa Certificada ISO 9001 — Venezuela", "description": "Servicios de seguridad corporativa y diplomática certificados ISO 9001:2015 N° 580181 en Venezuela.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "areaServed": "Venezuela", "hasCredential": { "@type": "EducationalOccupationalCredential", "name": "ISO 9001:2015", "identifier": "N° 580181" } }
   },
   {
     path: 'certificaciones-seguridad-corporativa-venezuela',
     title: 'Certificaciones de Seguridad Corporativa en Venezuela | ISO 9001 · Cyber Essentials | CSSG',
     description: 'Empresa de seguridad corporativa certificada en Venezuela: ISO 9001:2015, Cyber Essentials NCSC, ESRM, ISO 31000, ISO 22301. Verificables por auditoría independiente.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
-    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Certificaciones de Seguridad Corporativa Venezuela", "description": "CSSG opera con ISO 9001:2015, Cyber Essentials NCSC y credencial DIGESERVISP. Marcos ESRM, ISO 31000 e ISO 22301.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" } }
+    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Certificaciones de Seguridad Corporativa Venezuela", "description": "CSSG opera con ISO 9001:2015, Cyber Essentials NCSC y credencial DIGESERVISP. Marcos ESRM, ISO 31000 e ISO 22301.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" } }
   },
   {
     path: 'consultoria/asesoria-legal-rrhh-seguridad',
@@ -581,7 +583,7 @@ const routes = [
     description: 'Consultoría legal especializada en derecho laboral LOTTT para empresas de seguridad privada, protocolos DDHH, uso proporcional de la fuerza y compliance DIGESERVISP en Venezuela.',
     image: 'https://cssg-global.com/consulting_b2b.webp',
     jsonld: [
-      { "@context": "https://schema.org", "@type": "Service", "name": "Asesoría Legal en Seguridad: RRHH y Derechos Humanos", "description": "Consultoría jurídica especializada en derecho laboral de seguridad privada, protocolos DDHH y compliance regulatorio para Venezuela.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" } },
+      { "@context": "https://schema.org", "@type": "Service", "name": "Asesoría Legal en Seguridad: RRHH y Derechos Humanos", "description": "Consultoría jurídica especializada en derecho laboral de seguridad privada, protocolos DDHH y compliance regulatorio para Venezuela.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" } },
       { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
         { "@type": "Question", "name": "¿Qué obligaciones laborales tiene una empresa de seguridad privada en Venezuela bajo la LOTTT?", "acceptedAnswer": { "@type": "Answer", "text": "Las empresas de seguridad privada en Venezuela deben cumplir la LOTTT en jornada laboral, beneficios sociales, utilidades, vacaciones y cesta ticket. El personal operativo requiere contrato formalizado, afiliación IVSS/INPSASEL y registro ante DIGESERVISP." } },
         { "@type": "Question", "name": "¿Los protocolos de derechos humanos son obligatorios para empresas de seguridad privada en Venezuela?", "acceptedAnswer": { "@type": "Answer", "text": "Sí. Venezuela es signataria de la Convención Americana sobre Derechos Humanos y los Principios de la ONU sobre Empresas y DDHH aplican a operadores privados. Un protocolo de uso proporcional de la fuerza documentado es exigido además por normas ESRM y por clientes del G7." } },
@@ -597,7 +599,7 @@ const routes = [
     description: 'Descargue gratis la guía definitiva de evaluación de riesgos de seguridad empresarial en Venezuela. Metodología ESRM, ISO 31000:2018 y FMEA aplicados al contexto venezolano.',
     image: 'https://cssg-global.com/consultoria_card.webp',
     jsonld: [
-      { "@context": "https://schema.org", "@type": "Service", "name": "Evaluación de Riesgos de Seguridad Corporativa en Venezuela", "description": "Guía metodológica ESRM + ISO 31000:2018 + FMEA para la evaluación de riesgos de seguridad en empresas venezolanas. Elaborada por CSSG con +17 años de operaciones en Venezuela.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "serviceType": "Evaluación de Riesgos de Seguridad", "areaServed": { "@type": "Country", "name": "Venezuela" } },
+      { "@context": "https://schema.org", "@type": "Service", "name": "Evaluación de Riesgos de Seguridad Corporativa en Venezuela", "description": "Guía metodológica ESRM + ISO 31000:2018 + FMEA para la evaluación de riesgos de seguridad en empresas venezolanas. Elaborada por CSSG con +17 años de operaciones en Venezuela.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "serviceType": "Evaluación de Riesgos de Seguridad", "areaServed": { "@type": "Country", "name": "Venezuela" } },
       { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
         { "@type": "Question", "name": "¿Qué es la evaluación de riesgos de seguridad corporativa en Venezuela?", "acceptedAnswer": { "@type": "Answer", "text": "Es el proceso sistemático de identificar, cuantificar y priorizar las amenazas que afectan los activos críticos de una organización en el contexto venezolano. Aplica el marco ESRM de ASIS International y la norma ISO 31000:2018, produciendo un Índice de Seguridad Corporativa (ISC-VE) que permite tomar decisiones de inversión en seguridad con criterio objetivo." } },
         { "@type": "Question", "name": "¿Cómo se calcula el índice de riesgo FMEA en seguridad corporativa?", "acceptedAnswer": { "@type": "Answer", "text": "La fórmula FMEA aplicada por CSSG es: Índice de Riesgo = (Probabilidad × 0.4) + (Impacto × 0.6). La ponderación mayor al impacto refleja que en seguridad corporativa, el daño potencial de un incidente es más relevante que su probabilidad aislada. El resultado es un score de 0 a 100 que clasifica el nivel de riesgo en cuatro categorías: Óptimo, Moderado, Elevado y Crítico." } },
@@ -612,7 +614,7 @@ const routes = [
     description: 'Descargue gratis el protocolo completo de due diligence corporativa en Venezuela. Verificación CICPC, SENIAT, IVSS, OSINT y metodología de escritura por inducción.',
     image: 'https://cssg-global.com/consultoria_card.webp',
     jsonld: [
-      { "@context": "https://schema.org", "@type": "Service", "name": "Due Diligence Corporativa Venezuela", "description": "Protocolo completo de investigación y verificación de personas naturales y jurídicas en Venezuela. Fuentes CICPC, SENIAT, IVSS, SAREN y OSINT. Elaborado por CSSG con +1.200 investigaciones completadas.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "serviceType": "Due Diligence Corporativa", "areaServed": { "@type": "Country", "name": "Venezuela" } },
+      { "@context": "https://schema.org", "@type": "Service", "name": "Due Diligence Corporativa Venezuela", "description": "Protocolo completo de investigación y verificación de personas naturales y jurídicas en Venezuela. Fuentes CICPC, SENIAT, IVSS, SAREN y OSINT. Elaborado por CSSG con +1.200 investigaciones completadas.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "serviceType": "Due Diligence Corporativa", "areaServed": { "@type": "Country", "name": "Venezuela" } },
       { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
         { "@type": "Question", "name": "¿Qué fuentes se consultan en una due diligence corporativa en Venezuela?", "acceptedAnswer": { "@type": "Answer", "text": "Una due diligence corporativa completa en Venezuela consulta: CICPC (antecedentes penales y causas abiertas), SENIAT (situación tributaria y solvencias), IVSS (historial laboral y obligaciones parafiscales), SAREN (registros mercantiles y societarios), listas OFAC/ONU/UE de sanciones internacionales, y fuentes OSINT especializadas en el contexto venezolano incluyendo medios judiciales y redes sociales." } },
         { "@type": "Question", "name": "¿Qué es la 'escritura por inducción' en due diligence corporativa?", "acceptedAnswer": { "@type": "Answer", "text": "Es una metodología de redacción de informes que presenta los hallazgos como evidencias que conducen al lector a la conclusión, sin formular acusaciones directas. Es especialmente importante en Venezuela por el contexto legalmente sensible: un informe que documenta el patrón de evidencias es más sólido jurídicamente que uno que emite juicios explícitos sobre el investigado." } },
@@ -627,7 +629,7 @@ const routes = [
     description: 'Descargue gratis la guía completa de Plan de Continuidad de Negocio (BCP) para Venezuela. ISO 22301:2019 adaptado a cortes eléctricos, disturbios y escasez operativa.',
     image: 'https://cssg-global.com/consultoria_card.webp',
     jsonld: [
-      { "@context": "https://schema.org", "@type": "Service", "name": "Plan de Continuidad de Negocio Venezuela", "description": "Guía metodológica ISO 22301:2019 para diseñar e implementar un BCP calibrado a los escenarios venezolanos: cortes eléctricos, disturbios, escasez y crisis de seguridad. Basada en +80 BCPs implementados por CSSG en Venezuela.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "serviceType": "Plan de Continuidad de Negocio", "areaServed": { "@type": "Country", "name": "Venezuela" } },
+      { "@context": "https://schema.org", "@type": "Service", "name": "Plan de Continuidad de Negocio Venezuela", "description": "Guía metodológica ISO 22301:2019 para diseñar e implementar un BCP calibrado a los escenarios venezolanos: cortes eléctricos, disturbios, escasez y crisis de seguridad. Basada en +80 BCPs implementados por CSSG en Venezuela.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "serviceType": "Plan de Continuidad de Negocio", "areaServed": { "@type": "Country", "name": "Venezuela" } },
       { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
         { "@type": "Question", "name": "¿Por qué es crítico tener un Plan de Continuidad de Negocio en Venezuela?", "acceptedAnswer": { "@type": "Answer", "text": "Venezuela presenta un perfil de disrupción único: cortes eléctricos que promedian 4-12 horas diarias en zonas industriales, volatilidad político-social que puede generar disturbios operacionales en horas, escasez crónica de suministros críticos, y degradación de la infraestructura de comunicaciones. Sin un BCP funcional, cada interrupción se convierte en una crisis improvisada con impacto sobre ingresos, clientes y personal." } },
         { "@type": "Question", "name": "¿Qué cubre el BIA (Business Impact Analysis) en el contexto venezolano?", "acceptedAnswer": { "@type": "Answer", "text": "El BIA en Venezuela debe identificar los procesos críticos de la organización y asignarles RTO (tiempo máximo tolerable de interrupción) y RPO (punto máximo de pérdida de datos aceptable) calibrados al entorno local. Procesos como facturación, comunicaciones con clientes y acceso a instalaciones tienen RTOs de 2-8 horas ante cortes eléctricos, y el plan de continuidad debe diseñarse con soluciones específicas para ese plazo." } },
@@ -640,38 +642,38 @@ const routes = [
   // --- End Risk Advisory Services ---
   {
     path: 'admin',
-    title: 'Panel de Administración | CSSG | Caracas · Miami',
+    title: 'Panel de Administración | CSSG',
     description: 'Acceso administrativo para la gestión de leads, postulaciones y contenidos de CSSG.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg'
   },
   {
     path: 'portal-rrhh',
-    title: 'Portal de Empleo y RRHH | CSSG | Caracas · Miami',
+    title: 'Portal de Empleo y RRHH | CSSG',
     description: 'Únete a nuestro equipo táctico y de seguridad. Envía tu postulación a través de nuestro portal de reclutamiento.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
     jsonld: { "@context": "https://schema.org", "@type": "JobPosting", "title": "Oficial de Seguridad — CSSG Venezuela", "description": "CSSG busca oficiales de seguridad comprometidos. Ofrecemos los salarios más competitivos del sector, formación continua y estabilidad laboral.", "hiringOrganization": { "@type": "Organization", "name": "CSSG", "sameAs": "https://cssg-global.com" }, "jobLocation": { "@type": "Place", "address": { "@type": "PostalAddress", "addressLocality": "Caracas", "addressCountry": "VE" } }, "employmentType": "FULL_TIME" }
   },
   {
     path: 'quejas',
-    title: 'Línea de Quejas y Denuncias | CSSG | Caracas · Miami',
+    title: 'Línea de Quejas y Denuncias | CSSG',
     description: 'Canal de comunicación seguro y confidencial para quejas, reclamos o sugerencias.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg'
   },
   {
     path: 'intranet',
-    title: 'Intranet Corporativa | CSSG | Caracas · Miami',
+    title: 'Intranet Corporativa | CSSG',
     description: 'Acceso exclusivo para empleados y oficiales activos de CSSG.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg'
   },
   {
     path: 'politica-privacidad',
-    title: 'Política de Privacidad | CSSG | Caracas · Miami',
+    title: 'Política de Privacidad | CSSG',
     description: 'Lea los términos de privacidad y protección de datos confidenciales de CSSG.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg'
   },
   {
     path: 'terminos-condiciones',
-    title: 'Términos y Condiciones de Uso | CSSG | Caracas · Miami',
+    title: 'Términos y Condiciones de Uso | CSSG',
     description: 'Términos de servicio y condiciones de uso del portal web de CSSG.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg'
   },
@@ -714,10 +716,10 @@ const routes = [
   {
     path: 'en/technology',
     alternates: { en: 'en/technology', es: 'tecnologia' },
-    title: 'Shieldtrace PSIM — Integrated Security Platform | CSSG | Caracas · Miami',
+    title: 'Shieldtrace PSIM — Integrated Security Platform | CSSG',
     description: 'Shieldtrace PSIM unifies AI-powered CCTV analytics, real-time GPS tracking, biometric access control and autonomous drones in one dashboard. Enterprise security technology in Venezuela.',
     image: 'https://cssg-global.com/shieldtrace_tablet_dashboard_1777552473752.webp',
-    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Shieldtrace PSIM — Integrated Physical Security Management", "description": "Physical security integration platform (PSIM) combining AI-powered CCTV analytics, real-time GPS, biometric access control and autonomous drones for corporate security in Venezuela.", "provider": { "@type": "Organization", "name": "CSSG — Company Of Security And Service Global", "url": "https://cssg-global.com" }, "serviceType": "Physical Security Integration Platform", "areaServed": [{ "@type": "Country", "name": "Venezuela" }, { "@type": "City", "name": "Miami" }], "url": "https://cssg-global.com/en/technology", "inLanguage": "en" }
+    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Shieldtrace PSIM — Integrated Physical Security Management", "description": "Physical security integration platform (PSIM) combining AI-powered CCTV analytics, real-time GPS, biometric access control and autonomous drones for corporate security in Venezuela.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "serviceType": "Physical Security Integration Platform", "areaServed": [{ "@type": "Country", "name": "Venezuela" }, { "@type": "City", "name": "Miami" }], "url": "https://cssg-global.com/en/technology", "inLanguage": "en" }
   },
   {
     path: 'consultoria/secure-landing',
@@ -726,7 +728,7 @@ const routes = [
     description: 'Programa estructurado de seguridad para ejecutivos e inversores extranjeros que llegan a Venezuela: briefing pre-viaje, llegada protegida, residencia fortificada y protección continua 24/7.',
     image: 'https://cssg-global.com/consulting_b2b.webp',
     jsonld: [
-      { "@context": "https://schema.org", "@type": "Service", "name": "CSSG Secure Landing™", "description": "Programa de seguridad de cuatro niveles para ejecutivos e inversores extranjeros que llegan, se establecen y operan en Venezuela.", "provider": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" } },
+      { "@context": "https://schema.org", "@type": "Service", "name": "CSSG Secure Landing™", "description": "Programa de seguridad de cuatro niveles para ejecutivos e inversores extranjeros que llegan, se establecen y operan en Venezuela.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" } },
       { "@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
         { "@type": "Question", "name": "¿Es seguro viajar a Venezuela por negocios?", "acceptedAnswer": { "@type": "Answer", "text": "El riesgo es real, pero gestionable con criterio local, planificación y ejecución disciplinada. Eso es lo que el programa estructura, nivel por nivel." } },
         { "@type": "Question", "name": "¿Necesito el programa completo?", "acceptedAnswer": { "@type": "Answer", "text": "No. La mayoría inicia en el Nivel 1 o 2 para un primer viaje exploratorio. El programa crece solo cuando crece su presencia en el país." } },
@@ -740,7 +742,7 @@ const routes = [
     title: 'Empresa de Seguridad Certificada ISO 9001 — Registro de Proveedores | CSSG Global',
     description: 'Empresa de seguridad certificada ISO 9001 y Cyber Essentials, alineada a ISO 18788, ISO 31000, ISO 28000 y ANSI/ASIS PSC.1. Auditoría de seguridad física, gestión de riesgos y evidencia operativa lista para su registro de proveedores.',
     image: 'https://cssg-global.com/consulting_b2b.webp',
-    jsonld: { "@context": "https://schema.org", "@type": "ProfessionalService", "name": "CSSG Global — Registro de Proveedores y Compliance de Seguridad", "description": "Empresa de seguridad certificada ISO 9001 y Cyber Essentials, con gestión de riesgos ISO 31000, operaciones alineadas a ISO 18788 y auditoría de seguridad física lista para procesos de registro de proveedores y licitación.", "provider": { "@type": "Organization", "name": "CSSG — Company Of Security And Service Global", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" }, "audience": { "@type": "Audience", "audienceType": "Overseas Security Managers, Regional Security Managers, Procurement" } }
+    jsonld: { "@context": "https://schema.org", "@type": "ProfessionalService", "name": "CSSG Global — Registro de Proveedores y Compliance de Seguridad", "description": "Empresa de seguridad certificada ISO 9001 y Cyber Essentials, con gestión de riesgos ISO 31000, operaciones alineadas a ISO 18788 y auditoría de seguridad física lista para procesos de registro de proveedores y licitación.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" }, "audience": { "@type": "Audience", "audienceType": "Overseas Security Managers, Regional Security Managers, Procurement" } }
   },
   {
     path: 'esrm-readiness/gracias',
@@ -750,12 +752,13 @@ const routes = [
   },
   {
     path: 'empresa-de-seguridad',
+    alternates: { en: 'en/corporate-security-consulting', es: 'empresa-de-seguridad' },
     title: 'Auditoría de Contratación de Seguridad Privada para Empresas | CSSG',
     description: 'Solicite una auditoría de su esquema de seguridad privada o de su proveedor actual de guardias de seguridad. 21 criterios de contratación aplicados por un consultor senior de CSSG, ISO 9001:2015.',
     image: 'https://cssg-global.com/ana-hero-premium.webp',
     preloadHero: true,
     preloadFont: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700;900&display=swap',
-    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Auditoría de Contratación de Seguridad Privada", "description": "Auditoría de esquemas de vigilancia y contratos de seguridad privada para empresas, referenciada a 21 criterios de legalidad, contratación y operación.", "provider": { "@type": "Organization", "name": "CSSG — Company Of Security And Service Global", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" } }
+    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Auditoría de Contratación de Seguridad Privada", "description": "Auditoría de esquemas de vigilancia y contratos de seguridad privada para empresas, referenciada a 21 criterios de legalidad, contratación y operación.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" } }
   },
   {
     path: 'empresa-de-seguridad/gracias',
@@ -771,7 +774,7 @@ const routes = [
     image: 'https://cssg-global.com/svc_auditoria.webp',
     preloadHero: true,
     preloadFont: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap',
-    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Evaluación de Riesgos de Seguridad", "description": "Evaluación de riesgos de seguridad bajo metodología FMEA e ISO 31000:2018, con matriz de riesgo y auditoría de seguridad física (CPTED).", "provider": { "@type": "Organization", "name": "CSSG — Company Of Security And Service Global", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" } }
+    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Evaluación de Riesgos de Seguridad", "description": "Evaluación de riesgos de seguridad bajo metodología FMEA e ISO 31000:2018, con matriz de riesgo y auditoría de seguridad física (CPTED).", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" } }
   },
   {
     path: 'consultoria-y-analisis-de-riesgos/gracias',
@@ -782,12 +785,13 @@ const routes = [
   },
   {
     path: 'en/corporate-security-consulting',
+    alternates: { en: 'en/corporate-security-consulting', es: 'empresa-de-seguridad' },
     title: 'Corporate Security Services & Security Consulting in Venezuela | CSSG',
     description: 'Corporate security services, security consulting and private protection for multinational companies in Venezuela. Vet private security contractor companies with our ISO 31000 methodology. Request a confidential assessment — CSSG, 17+ years without incident.',
     image: 'https://cssg-global.com/svc_ejecutivos.webp',
     preloadHero: true,
     preloadFont: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap',
-    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Corporate Security Services & Security Consulting", "description": "Corporate security consulting and private security contractor due diligence for multinational companies operating in Venezuela, referenced to ISO 31000:2018 and ASIS ORM.1:2017.", "provider": { "@type": "Organization", "name": "CSSG — Company Of Security And Service Global", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" }, "audience": { "@type": "BusinessAudience", "audienceType": "Chief Security Officers, Global Security Directors, Travel Risk and Duty of Care Managers", "geographicArea": [{ "@type": "Country", "name": "United States" }, { "@type": "Country", "name": "United Kingdom" }, { "@type": "Place", "name": "Europe" }] }, "inLanguage": "en" }
+    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Corporate Security Services & Security Consulting", "description": "Corporate security consulting and private security contractor due diligence for multinational companies operating in Venezuela, referenced to ISO 31000:2018 and ASIS ORM.1:2017.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" }, "audience": { "@type": "BusinessAudience", "audienceType": "Chief Security Officers, Global Security Directors, Travel Risk and Duty of Care Managers", "geographicArea": [{ "@type": "Country", "name": "United States" }, { "@type": "Country", "name": "United Kingdom" }, { "@type": "Place", "name": "Europe" }] }, "inLanguage": "en" }
   },
   {
     path: 'en/corporate-security-consulting/thank-you',
@@ -798,13 +802,13 @@ const routes = [
   },
   {
     path: 'en/diplomatic-security',
-    alternates: { en: 'en/diplomatic-security', es: 'consultoria/escudo-diplomatico' },
+    alternates: { en: 'en/diplomatic-security', es: 'consultoria/seguridad-misiones-diplomaticas' },
     title: 'Diplomatic Security Services in Venezuela | G7 Standard | CSSG',
     description: 'Diplomatic security service for embassies, missions and executive families in Venezuela. 12+ years protecting embassies without incident, G7 standard, Vienna Convention protocol. Request a confidential briefing — CSSG.',
     image: 'https://cssg-global.com/ESCOLTA.jpg',
     preloadHero: true,
     preloadFont: 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@300;400;500;600;700&display=swap',
-    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Diplomatic Security Services", "description": "Diplomatic security service (Escudo Diplomático) for embassies, diplomatic missions and executive families in Venezuela, operating under G7 standard and protocols aligned with the Vienna Convention.", "provider": { "@type": "Organization", "name": "CSSG — Company Of Security And Service Global", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" }, "audience": { "@type": "BusinessAudience", "audienceType": "Embassies, diplomatic missions, international organizations and executive families", "geographicArea": [{ "@type": "Country", "name": "United States" }, { "@type": "Country", "name": "United Kingdom" }, { "@type": "Place", "name": "Europe" }] }, "inLanguage": "en" }
+    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Diplomatic Security Services", "description": "Diplomatic security service (Escudo Diplomático) for embassies, diplomatic missions and executive families in Venezuela, operating under G7 standard and protocols aligned with the Vienna Convention.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" }, "audience": { "@type": "BusinessAudience", "audienceType": "Embassies, diplomatic missions, international organizations and executive families", "geographicArea": [{ "@type": "Country", "name": "United States" }, { "@type": "Country", "name": "United Kingdom" }, { "@type": "Place", "name": "Europe" }] }, "inLanguage": "en" }
   },
   {
     path: 'en/diplomatic-security/thank-you',
@@ -825,7 +829,7 @@ const routes = [
     ogImageAlt: 'Armored SUV convoy and motorcycle escort — CSSG executive protection for U.S. investors traveling to Venezuela',
     ogImageWidth: 1200,
     ogImageHeight: 630,
-    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Executive Protection & Security Services for Investors", "description": "Executive protection, preventive intelligence, due diligence and vetting, and secured ground logistics for investors and executives from the U.S., UK and Europe traveling to Venezuela for energy, mining, infrastructure and trade opportunities.", "provider": { "@type": "Organization", "name": "CSSG — Company Of Security And Service Global", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" }, "audience": { "@type": "BusinessAudience", "audienceType": "Investors, family offices and C-level executives", "geographicArea": [{ "@type": "Country", "name": "United States" }, { "@type": "Country", "name": "United Kingdom" }, { "@type": "Place", "name": "Europe" }] }, "inLanguage": "en" }
+    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Executive Protection & Security Services for Investors", "description": "Executive protection, preventive intelligence, due diligence and vetting, and secured ground logistics for investors and executives from the U.S., UK and Europe traveling to Venezuela for energy, mining, infrastructure and trade opportunities.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" }, "audience": { "@type": "BusinessAudience", "audienceType": "Investors, family offices and C-level executives", "geographicArea": [{ "@type": "Country", "name": "United States" }, { "@type": "Country", "name": "United Kingdom" }, { "@type": "Place", "name": "Europe" }] }, "inLanguage": "en" }
   },
   {
     path: 'en/executive-protection-venezuela-investors/thank-you',
@@ -837,6 +841,37 @@ const routes = [
     ogImageAlt: 'Armored SUV convoy and motorcycle escort — CSSG executive protection for U.S. investors traveling to Venezuela',
     ogImageWidth: 1200,
     ogImageHeight: 630
+  },
+  // Secure transfers (new page, ES + EN) and the English URL of the due diligence page. Both render
+  // ConsultoriaServiceLayout with a fixed language; scope confirmed by the owner on 2026-11-03.
+  {
+    path: 'consultoria/traslados-seguros-venezuela',
+    alternates: { en: 'en/secure-airport-transfers-venezuela', es: 'consultoria/traslados-seguros-venezuela' },
+    lastmod: '2026-11-03',
+    title: 'Traslados Seguros y Recepción en Maiquetía | CSSG',
+    description: 'Recepción en el aeropuerto de Maiquetía, traslados ejecutivos y blindados a Caracas y journey management 24/7 desde nuestro centro de comando. Cobertura en toda Venezuela.',
+    image: 'https://cssg-global.com/svc_custodia.webp',
+    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Traslados seguros y recepción en Maiquetía", "serviceType": "Traslados ejecutivos y journey management", "description": "Recepción en el Aeropuerto Internacional de Maiquetía, traslados en vehículos ejecutivos o blindados con conductores evaluados, estudio de rutas y seguimiento 24/7 desde el CECOM. Cobertura nacional.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" }, "inLanguage": "es", "url": "https://cssg-global.com/consultoria/traslados-seguros-venezuela" }
+  },
+  {
+    path: 'en/secure-airport-transfers-venezuela',
+    lang: 'en',
+    alternates: { en: 'en/secure-airport-transfers-venezuela', es: 'consultoria/traslados-seguros-venezuela' },
+    lastmod: '2026-11-03',
+    title: 'Secure Airport Transfers & Meet and Greet in Venezuela | CSSG',
+    description: 'Meet and greet at Maiquetía airport, executive and armored transfers to Caracas, and 24/7 journey management from our command center. Coverage across Venezuela.',
+    image: 'https://cssg-global.com/svc_custodia.webp',
+    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Secure airport transfers and meet and greet in Venezuela", "serviceType": "Executive transportation and journey management", "description": "Meet and greet at Maiquetía International Airport, executive or armored vehicles with vetted drivers, route assessment and 24/7 journey management from CECOM. Nationwide coverage.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" }, "inLanguage": "en", "url": "https://cssg-global.com/en/secure-airport-transfers-venezuela" }
+  },
+  {
+    path: 'en/due-diligence-venezuela',
+    lang: 'en',
+    alternates: { en: 'en/due-diligence-venezuela', es: 'consultoria/due-diligence-corporativa' },
+    lastmod: '2026-11-03',
+    title: 'Due Diligence in Venezuela: Third-Party & Integrity | CSSG',
+    description: 'Business, third-party and integrity due diligence in Venezuela: individuals, companies, partners and suppliers checked against judicial, tax, registry and open sources. 2-15 business days.',
+    image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
+    jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Due diligence in Venezuela", "serviceType": "Third-party and integrity due diligence", "description": "Background, integrity and reputational checks on individuals and companies in Venezuela, in three levels of depth, using judicial (CICPC), tax (SENIAT, IVSS, INPSASEL), registry and open sources.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" }, "inLanguage": "en", "url": "https://cssg-global.com/en/due-diligence-venezuela" }
   },
   // CECOM-Intel sub-brand: English is the default version, Spanish lives under /es.
   // Titles and descriptions must match the pages' own copy (src/pages/cecom-intel/*.ts).
@@ -872,6 +907,11 @@ const CANONICAL_ALIASES = {
   'iso-9001-empresa-seguridad-venezuela': 'consultoria/certificaciones',
   'certificaciones-seguridad-corporativa-venezuela': 'consultoria/certificaciones',
 };
+
+// Pages rendered by ConsultoriaServiceLayout: it shows a Home / Consultoría / page trail and emits
+// the FAQPage schema from its own visible FAQ.
+const usesServiceLayout = p => (p.startsWith('consultoria/') && p !== 'consultoria/escudo-diplomatico')
+  || p === 'en/secure-airport-transfers-venezuela' || p === 'en/due-diligence-venezuela';
 
 // Private portals and post-conversion pages: reachable, but never indexed nor listed in the sitemap.
 const isNoindex = p => p === 'admin' || p === 'intranet' || /\/(gracias|thank-you)$/.test(p);
@@ -1026,56 +1066,33 @@ routes.forEach(route => {
     newHtml = newHtml.replace(/<\/head>/, `${fontTags}\n  </head>`);
   }
 
-  // Inject per-route JSON-LD schema (supports single object or array)
+  // Inject per-route JSON-LD schema (supports single object or array). Breadcrumbs are built below,
+  // and the consulting pages render their FAQPage from the FAQ they show (ConsultoriaServiceLayout):
+  // the hand-written copies here had drifted from the visible answers.
   if (route.jsonld) {
-    const schemas = Array.isArray(route.jsonld) ? route.jsonld : [route.jsonld];
+    const schemas = (Array.isArray(route.jsonld) ? route.jsonld : [route.jsonld])
+      .filter(s => s['@type'] !== 'BreadcrumbList' && !(usesServiceLayout(route.path) && s['@type'] === 'FAQPage'));
     const jsonldTags = schemas
       .map(s => `<script type="application/ld+json">\n    ${JSON.stringify(s, null, 2)}\n    </script>`)
       .join('\n  ');
-    newHtml = newHtml.replace(/<\/head>/, `${jsonldTags}\n  </head>`);
+    if (jsonldTags) newHtml = newHtml.replace(/<\/head>/, () => `${jsonldTags}\n  </head>`);
   }
 
-  // Inject BreadcrumbList for all routes
-  const breadcrumbParts = route.path.split('/').filter(Boolean);
-  const breadcrumbItems = [
-    { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://cssg-global.com/" }
-  ];
-  let accumPath = 'https://cssg-global.com';
-  breadcrumbParts.forEach((part, idx) => {
-    accumPath += '/' + part;
-    const labels = {
-      'consultoria': 'Consultoría', 'tecnologia': 'Tecnología', 'quienes-somos': 'Quiénes Somos',
-      'analisis-riesgo': 'Análisis de Riesgo', 'informes': 'Informes PESTEL', 'blog': 'Blog',
-      'licitaciones': 'Licitaciones', 'partners': 'Partners', 'portal-rrhh': 'Portal RRHH',
-      'quejas': 'Quejas', 'escudo-diplomatico': 'Escudo Diplomático',
-      'preguntas-frecuentes': 'Preguntas Frecuentes', 'testimonios': 'Opiniones', 'en': 'EN', 'technology': 'Technology',
-      'consultoria-seguridad-caracas': 'Consultoría Seguridad Caracas',
-      'auditoria-seguridad-iso-31000': 'Auditoría ISO 31000',
-      'analisis-riesgos-corporativos-venezuela': 'Análisis de Riesgos Venezuela',
-      'optimizacion-costos-seguridad': 'Optimización de Costos',
-      'iso-9001-empresa-seguridad-venezuela': 'ISO 9001 Seguridad Venezuela',
-      'certificaciones-seguridad-corporativa-venezuela': 'Certificaciones Seguridad Corporativa',
-      'politica-privacidad': 'Política de Privacidad', 'terminos-condiciones': 'Términos y Condiciones',
-      'white-papers': 'White Papers',
-      'guia-evaluacion-riesgos-seguridad-venezuela': 'Guía Evaluación de Riesgos',
-      'due-diligence-corporativa-venezuela': 'Due Diligence Corporativa Venezuela',
-      'plan-continuidad-negocio-venezuela': 'Plan Continuidad de Negocio Venezuela'
-    };
-    breadcrumbItems.push({
-      "@type": "ListItem",
-      "position": idx + 2,
-      "name": labels[part] || part,
-      "item": accumPath
-    });
-  });
-  if (breadcrumbParts.length > 0) {
+  // BreadcrumbList only where the page shows that trail (Home / Consultoría / page), so the markup
+  // matches what visitors see and never lists a URL that doesn't exist.
+  if (usesServiceLayout(route.path) || route.path.startsWith('white-papers/')) {
+    const en = route.lang === 'en' || route.path.startsWith('en/');
     const breadcrumbSchema = {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
-      "itemListElement": breadcrumbItems
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": en ? "Home" : "Inicio", "item": `${SITE_URL}/` },
+        { "@type": "ListItem", "position": 2, "name": en ? "Risk Advisory Services" : "Consultoría", "item": `${SITE_URL}/consultoria` },
+        { "@type": "ListItem", "position": 3, "name": route.title.split('|')[0].trim(), "item": `${SITE_URL}/${route.canonicalPath}` },
+      ],
     };
     const breadcrumbTag = `<script type="application/ld+json">\n    ${JSON.stringify(breadcrumbSchema, null, 2)}\n    </script>`;
-    newHtml = newHtml.replace(/<\/head>/, `${breadcrumbTag}\n  </head>`);
+    newHtml = newHtml.replace(/<\/head>/, () => `${breadcrumbTag}\n  </head>`);
   }
 
   // BlogPost.tsx reads this to render the article on first paint instead of a loading state.
@@ -1143,9 +1160,10 @@ fs.writeFileSync(path.join(distDir, '.assetsignore'), '*.gz\n*.br\n');
 console.log('[SEO Generation] Created _headers, _redirects and .assetsignore for Cloudflare');
 
 // ─── sitemap.xml — single source of truth: the same route list used above ───
-const today = new Date().toISOString().slice(0, 10);
+// lastmod only where a route records a real change date (route.lastmod, a post's publication date):
+// stamping every URL with the build date told crawlers that 57 unchanged pages had just been edited.
 const sitemapEntries = [
-  { loc: `${SITE_URL}/`, lastmod: today, changefreq: 'weekly', priority: '1.0' },
+  { loc: `${SITE_URL}/`, changefreq: 'weekly', priority: '1.0' },
   ...routes
     .filter(r => !r.noindex && r.canonicalPath === r.path && !SITEMAP_EXCLUDE.has(r.path))
     .map(r => {
@@ -1153,7 +1171,7 @@ const sitemapEntries = [
       const isBlogPost = r.path.startsWith('blog/');
       return {
         loc: `${SITE_URL}/${r.path}`,
-        lastmod: r.lastmod || (r.jsonld && !Array.isArray(r.jsonld) && r.jsonld.datePublished) || today,
+        lastmod: r.lastmod || (r.jsonld && !Array.isArray(r.jsonld) && r.jsonld.datePublished) || undefined,
         changefreq: isBlogPost ? 'monthly' : depth === 1 ? 'weekly' : 'monthly',
         priority: isBlogPost ? '0.7' : depth === 1 ? '0.9' : '0.8',
       };
@@ -1163,8 +1181,8 @@ const sitemapXml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${sitemapEntries.map(e => `  <url>
     <loc>${e.loc}</loc>
-    <lastmod>${e.lastmod}</lastmod>
-    <changefreq>${e.changefreq}</changefreq>
+${e.lastmod ? `    <lastmod>${e.lastmod}</lastmod>
+` : ''}    <changefreq>${e.changefreq}</changefreq>
     <priority>${e.priority}</priority>
   </url>`).join('\n')}
 </urlset>

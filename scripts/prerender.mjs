@@ -73,17 +73,15 @@ async function renderRoute(browser, origin, route) {
   page.on('pageerror', e => errors.push(e.message));
   await page.setViewport({ width: 1366, height: 900 });
 
-  const lang = route.lang || (route.path.startsWith('en/') ? 'en' : 'es');
-  // Deterministic first-visit state: language fixed per route, cookie banner and exit-intent
-  // CTA suppressed (they only appear after mount, so hydration stays consistent either way).
-  await page.evaluateOnNewDocument(l => {
+  // Deterministic first-visit state: no language choice stored (the page's <html lang> decides), cookie
+  // banner and exit-intent CTA suppressed (they only appear after mount, so hydration stays consistent).
+  await page.evaluateOnNewDocument(() => {
     try {
-      localStorage.setItem('i18nextLng', l);
       localStorage.setItem('cssg_cookie_consent', 'declined');
       localStorage.setItem('cssg_cta_exit_seen', 'true');
     } catch { /* ignore */ }
     window.__PRERENDER__ = true;
-  }, lang);
+  });
 
   await page.setRequestInterception(true);
   page.on('request', req => {
