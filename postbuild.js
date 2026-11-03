@@ -655,7 +655,7 @@ const routes = [
   {
     path: 'preguntas-frecuentes',
     title: 'Preguntas Frecuentes sobre Seguridad Corporativa | CSSG | Caracas',
-    description: 'Respuestas a las 95 preguntas más frecuentes sobre seguridad privada, contratos, tecnología, certificaciones y protección ejecutiva en Venezuela. Resuelva sus dudas antes de contratar.',
+    description: 'Respuestas a las 94 preguntas más frecuentes sobre seguridad privada, contratos, tecnología, certificaciones y protección ejecutiva en Venezuela. Resuelva sus dudas antes de contratar.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
     // FAQPage is rendered by the page itself from its visible questions (FAQ.tsx).
   },

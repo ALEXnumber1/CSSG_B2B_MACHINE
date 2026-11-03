@@ -31,10 +31,6 @@ const faqBlocks = [
         a: 'Una vez finalizada la auditoría y aprobada la propuesta comercial, CSSG tiene la capacidad táctica para desplegar operaciones y tecnología (ShieldTrace) en tiempos ágiles, adaptados a la urgencia del cliente.'
       },
       {
-        q: '¿Qué diferencia hay entre seguridad armada y seguridad desarmada?',
-        a: 'La seguridad armada está reservada para infraestructuras críticas y transporte de valores bajo estricto marco legal. La desarmada se enfoca en control de accesos, monitoreo y prevención, a menudo potenciada con tecnología y equipos de respuesta rápida.'
-      },
-      {
         q: '¿Cómo capacitan al personal de seguridad?',
         a: 'Nuestro personal se forma continuamente en Zentinel Global, nuestra propia academia, recibiendo entrenamiento en tácticas preventivas, derechos humanos, primeros auxilios y protocolos diplomáticos.'
       },
