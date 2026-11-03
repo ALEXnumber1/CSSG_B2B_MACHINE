@@ -24,7 +24,7 @@ const faqBlocks = [
       },
       {
         q: '¿Cómo verifico si una empresa de seguridad está autorizada legalmente?',
-        a: 'Solicitando su autorización vigente de DIGESERVISP, el ente del Ministerio del Poder Popular para Relaciones Interiores, Justicia y Paz que autoriza la actividad de seguridad privada, y verificando qué tipo de servicio y qué zona cubre. CSSG cuenta con autorización de DIGESERVISP para seguridad privada sin armas.'
+        a: 'Solicitando su autorización vigente de DIGESERVISP, el ente del Ministerio del Poder Popular para Relaciones Interiores, Justicia y Paz que autoriza la actividad de seguridad privada, y verificando qué tipo de servicio y qué zona cubre.'
       },
       {
         q: '¿Cuánto tiempo tarda en desplegarse un servicio de seguridad?',
@@ -260,7 +260,7 @@ const faqBlocks = [
       },
       {
         q: '¿La empresa cuenta con autorización vigente del Ministerio del Interior?',
-        a: 'Sí. CSSG cuenta con autorización vigente de DIGESERVISP para seguridad privada sin armas.'
+        a: 'Sí. CSSG cuenta con autorización vigente de DIGESERVISP.'
       },
       {
         q: '¿Tienen póliza de responsabilidad civil activa?',
