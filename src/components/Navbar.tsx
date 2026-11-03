@@ -46,8 +46,8 @@ export default function Navbar() {
         className="fixed top-0 w-full z-50 bg-[#0B0B0F]/80 backdrop-blur-md border-b border-[#333345]"
       >
 
-        <div className="container mx-auto px-6 h-20 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-4 cursor-pointer" onClick={() => setMobileOpen(false)}>
+        <div className="container mx-auto px-6 h-20 flex items-center justify-between gap-6">
+          <Link to="/" className="flex shrink-0 items-center gap-4 cursor-pointer" onClick={() => setMobileOpen(false)}>
             <img 
               src="/logo-160.webp"
               alt="CSSG Logo"
@@ -55,7 +55,7 @@ export default function Navbar() {
             />
             <div className="hidden sm:block">
               <div className="text-white font-black leading-none tracking-tight text-xl">CSSG</div>
-              <div className="flex flex-col mt-0.5 lg:hidden 2xl:flex">
+              <div className="flex flex-col mt-0.5 lg:hidden min-[1600px]:flex">
                 <p className="text-[10px] text-sky-400 font-mono tracking-[0.1em] uppercase whitespace-nowrap font-bold leading-none">Company Of Security And Service Global C.A.</p>
                 <p className="text-[8px] text-gray-500 font-mono tracking-widest uppercase leading-none mt-1">RIF: J-29782024-8</p>
               </div>
