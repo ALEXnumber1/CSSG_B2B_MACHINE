@@ -151,6 +151,7 @@ const resources = {
         zen_badge_sub: 'Lista de Asistencia · Foto In Situ · Hash SHA-256',
         zen_title: 'Academia de Formación',
         zen_subtitle: 'E-learning especializado en capacitaciones de tecnología y seguridad',
+        zen_cta: 'Quiero saber más',
         btn_zen: 'Ver Programas Zentinel'
       },
       cta: {
@@ -561,6 +562,7 @@ const resources = {
         zen_badge_sub: 'Attendance List · On-Site Photo · SHA-256 Hash',
         zen_title: 'Training Academy',
         zen_subtitle: 'Specialized E-learning in technology and security training',
+        zen_cta: 'I want to know more',
         btn_zen: 'View Zentinel Programs'
       },
       cta: {
