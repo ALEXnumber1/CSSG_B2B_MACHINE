@@ -871,8 +871,9 @@ const CANONICAL_ALIASES = {
 const usesServiceLayout = p => (p.startsWith('consultoria/') && p !== 'consultoria/escudo-diplomatico')
   || p === 'en/secure-airport-transfers-venezuela' || p === 'en/due-diligence-venezuela';
 
-// Private portals and post-conversion pages: reachable, but never indexed nor listed in the sitemap.
-const isNoindex = p => p === 'admin' || p === 'intranet' || /\/(gracias|thank-you)$/.test(p);
+// Private portals, post-conversion pages and /quejas (must be public, but is for internal use):
+// reachable, but never indexed nor listed in the sitemap.
+const isNoindex = p => p === 'admin' || p === 'intranet' || p === 'quejas' || /\/(gracias|thank-you)$/.test(p);
 
 // Disallowed in robots.txt, so keep them out of the sitemap too (conflicting signals otherwise).
 const SITEMAP_EXCLUDE = new Set(['portal-rrhh']);
