@@ -1,5 +1,5 @@
 import { motion, type Variants } from 'framer-motion';
-import { Award, ShieldCheck, BookOpen, Activity, Users, Eye, TrendingUp, MessageSquare, MapPin, ShieldAlert } from 'lucide-react';
+import { Award, ShieldCheck, BookOpen, Activity, Users, Eye, TrendingUp, MessageSquare, MapPin, ShieldAlert, ArrowRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
 export default function CertificationsAndTraining() {
@@ -150,6 +150,17 @@ export default function CertificationsAndTraining() {
                   </motion.div>
                 ))}
               </div>
+
+              {/* Acceso al sitio de la academia: Zentinel Global by CSSG */}
+              <a
+                href="https://zentinel.cssg-global.com"
+                target="_blank"
+                rel="noopener"
+                className="mt-8 inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-500/10 border border-emerald-500/40 text-emerald-300 text-sm font-bold uppercase tracking-widest hover:bg-emerald-500/20 hover:border-emerald-400 hover:text-white transition-all"
+              >
+                {t('cert.zen_cta')}
+                <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              </a>
             </div>
           </motion.div>
         </div>
