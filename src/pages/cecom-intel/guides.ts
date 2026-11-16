@@ -16,13 +16,31 @@ export interface Guide {
   bottomLine: string;
   sections: GuideSection[];
   sources: { label: string; url: string; note: string }[];
+  /** Defaults to the first batch's dates (REVIEWED, published 2026-10-18). */
+  published?: string;
+  reviewed?: { iso: string; label: string };
+  /** Replaces the default "sample bulletin" call to action. Hrefs may point outside the SPA. */
+  cta?: { text: string; primary: { label: string; href: string }; secondary: { label: string; href: string } };
 }
+
+const REVIEWED_NOV = { iso: '2026-11-17', label: '17 November 2026' };
+const CTA_SECURE_GROUND = {
+  text: 'Planning a trip or a delegation to Venezuela? Book a free 30-minute briefing with a senior CSSG specialist, in English.',
+  primary: { label: 'Book a 30-minute briefing', href: '/secure-ground#book' },
+  secondary: { label: 'About Secure Ground', href: '/secure-ground' },
+};
 
 const SRC_US = { label: 'U.S. Department of State — Venezuela Travel Advisory', url: 'https://travel.state.gov/en/international-travel/travel-advisories/venezuela.html', note: 'Level 3, issued 27 June 2026' };
 const SRC_UK = { label: 'UK FCDO — Foreign travel advice: Venezuela', url: 'https://www.gov.uk/foreign-travel-advice/venezuela', note: 'Updated 14 October 2026' };
 const SRC_UK_SEC = { label: 'UK FCDO — Venezuela: safety and security', url: 'https://www.gov.uk/foreign-travel-advice/venezuela/safety-and-security', note: 'Checked 18 October 2026' };
 const SRC_OFAC = { label: 'U.S. Treasury OFAC — Recent actions', url: 'https://ofac.treasury.gov/recent-actions', note: 'GL 60A issued 16 October 2026' };
-const SRC_WRIGHT = { label: 'World Oil — U.S. won’t provide security for oil operations in Venezuela', url: 'https://worldoil.com/news/2026/1/22/u-s-won-t-provide-security-for-oil-operations-in-venezuela-says-wright', note: '22 January 2026' };
+const SRC_US_EMBASSY = { label: 'U.S. Embassy Caracas — Travel Advisory: Venezuela', url: 'https://ve.usembassy.gov/travel-advisory-travel-advisory-venezuela/', note: 'Level 3 with Level 4 areas, issued 27 June 2026' };
+const SRC_ICOC = { label: 'ICoCA — International Code of Conduct for Private Security Service Providers', url: 'https://icoca.ch/wp-content/uploads/2024/08/INTERNATIONAL-CODE-OF-CONDUCT_Amended_2024.pdf', note: 'Amended 2024' };
+const SRC_CE = { label: 'UK NCSC — Cyber Essentials', url: 'https://www.ncsc.gov.uk/cyberessentials/overview', note: 'Scheme overview' };
+const SRC_TLP = { label: 'FIRST — Traffic Light Protocol (TLP) 2.0', url: 'https://www.first.org/tlp/', note: 'Information-sharing standard' };
+const SRC_VEW_DATES = { label: 'Zawya — Venezuela Energy Week moves to February 2027', url: 'https://www.zawya.com/en/press-release/africa-press-releases/venezuela-energy-week-moves-to-february-2027-as-global-investment-engagement-expands-425218', note: 'Organizer’s release, 2026' };
+const SRC_VEW_PARTICIPANTS = { label: 'APO Group — Venezuela Energy Week 2027 brings global operators to Caracas', url: 'https://africa.com/apo/venezuela-energy-week-2027-brings-global-operators-to-caracas', note: '10 November 2026' };
+const SRC_WRIGHT ={ label: 'World Oil — U.S. won’t provide security for oil operations in Venezuela', url: 'https://worldoil.com/news/2026/1/22/u-s-won-t-provide-security-for-oil-operations-in-venezuela-says-wright', note: '22 January 2026' };
 
 export const GUIDES: Guide[] = [
   {
@@ -202,6 +220,236 @@ export const GUIDES: Guide[] = [
       },
     ],
     sources: [SRC_UK, SRC_UK_SEC, SRC_US],
+  },
+  {
+    slug: 'how-to-vet-security-partner-venezuela',
+    published: REVIEWED_NOV.iso,
+    reviewed: REVIEWED_NOV,
+    title: 'How to vet an in-country security partner in Venezuela: a due-diligence checklist',
+    metaTitle: 'How to Vet a Security Partner in Venezuela | CECOM-Intel',
+    description: 'Due-diligence checklist for choosing a local security partner in Venezuela: licence, documents, own staff vs partners, operations and red flags.',
+    eyebrow: 'DUE DILIGENCE · IN-COUNTRY PARTNERS',
+    bottomLine: 'A local partner in Venezuela carries your name on the ground, so vet it like any critical supplier. Before the first job, check four things: its DIGESERVISP authorization and the territory it covers, which services it delivers with its own staff and which through partners, how it reports to your operations center, and the documents behind every claim.',
+    sections: [
+      {
+        h2: 'Licence and legal standing',
+        bullets: [
+          'Private security companies operate under an authorization from DIGESERVISP, part of the Ministry of Interior, Justice and Peace. Ask for the document and check the geographic scope it covers.',
+          'Ask whether the authorization covers armed or unarmed services. Armed services need a separate weapons authorization; never assume a provider holds one.',
+          'Commercial registration and tax ID (RIF) in the company’s legal name, matching the entity that will sign and invoice.',
+          'If invoicing comes from abroad, confirm the foreign entity and its relationship to the local licence holder.',
+        ],
+      },
+      {
+        h2: 'Documents to request',
+        paragraphs: ['A serious provider shares these under a non-disclosure agreement within a few days:'],
+        bullets: [
+          'Commercial registration and RIF.',
+          'DIGESERVISP authorization, with its scope.',
+          'Insurance policies and their limits.',
+          'Quality certification, such as ISO 9001, with the certificate number and the issuing body.',
+          'Information-security certification, such as Cyber Essentials or ISO/IEC 27001.',
+          'Human-rights and anti-corruption policies.',
+          'Two or three references you can call.',
+        ],
+      },
+      {
+        h2: 'Own staff or partners: ask for the map',
+        paragraphs: [
+          'Most Venezuelan providers cover part of the country with their own staff and the rest through local partners. That is normal; hiding it is not. Ask for a written map, city by city: which service is delivered by whom, who vetted that partner, and who answers to you when something goes wrong.',
+        ],
+      },
+      {
+        h2: 'Operations to test before you sign',
+        bullets: [
+          'The 24/7 operations center: call it at night on a test day and time the answer.',
+          'Live tracking: what your own team will see, and how.',
+          'A written escalation protocol, with response times.',
+          'Drivers: how they are vetted, trained and paid. Low turnover is a security control.',
+          'Vehicles: who owns them, how they are maintained, and whether armored vehicles are available.',
+          'Reporting: in English, in your formats, and how soon after an incident.',
+        ],
+      },
+      {
+        h2: 'Information security and conduct',
+        bullets: [
+          'Who sees traveller names and itineraries, where that data is stored and for how long.',
+          'How reports are classified: the Traffic Light Protocol (TLP) is a common standard.',
+          'Who can access dashcam footage and location data.',
+          'Conduct standards: the International Code of Conduct for Private Security Service Providers is a useful reference, whether or not the provider is a member of its association.',
+        ],
+      },
+      {
+        h2: 'Questions for the first call',
+        bullets: [
+          'Which of our cities would you cover with your own staff, and which through partners?',
+          'Can we see a recent incident report, redacted?',
+          'How do you vet a driver, and how does their pay compare with the market?',
+          'Who in your team speaks to our operations center at night, and in which language?',
+          'What will you not do?',
+        ],
+      },
+      {
+        h2: 'Red flags',
+        bullets: [
+          'Nationwide coverage “with our own people” and no evidence.',
+          'Armed services offered without the authorization to show for them.',
+          'No written escalation protocol.',
+          'Cash-only payment, or an invoicing entity that does not match the licence holder.',
+          'No references, or no documents even under NDA.',
+          'The same firm auditing your security and selling you the guards.',
+        ],
+      },
+      {
+        h2: 'Where CSSG fits',
+        paragraphs: [
+          'CSSG has operated in Venezuela since 2009 and holds DIGESERVISP authorization for unarmed private security in the Capital District and Miranda state. Elsewhere it works with vetted local partners coordinated live by its CECOM, and says which service each one delivers. It is ISO 9001:2015 (certificate 580181) and Cyber Essentials certified, shares its due-diligence pack under NDA, reports in English and invoices in USD through Company of Security and Service Global LLC (Miami).',
+        ],
+      },
+    ],
+    sources: [SRC_ICOC, SRC_CE, SRC_TLP, SRC_US],
+    cta: {
+      text: 'Vetting CSSG as your in-country partner? Request our due-diligence pack, shared under NDA. We reply within 24 hours.',
+      primary: { label: 'Request the due-diligence pack', href: '/cecom-intel/partners' },
+      secondary: { label: 'About Secure Ground', href: '/secure-ground' },
+    },
+  },
+  {
+    slug: 'venezuela-energy-week-2027-security',
+    published: REVIEWED_NOV.iso,
+    reviewed: REVIEWED_NOV,
+    title: 'Venezuela Energy Week 2027: a security plan for delegations',
+    metaTitle: 'Venezuela Energy Week 2027: Security Plan | CECOM-Intel',
+    description: 'Attending Venezuela Energy Week in Caracas, 22–25 Feb 2027? How to plan arrival at Maiquetía, transfers, hotel and venue movements and daily updates.',
+    eyebrow: 'EVENT SECURITY · CARACAS · FEBRUARY 2027',
+    bottomLine: 'Venezuela Energy Week brings international operators, investors and service companies to Caracas from 22 to 25 February 2027. A delegation is most exposed where it is most visible: at the airport, on the road to Caracas, and arriving at or leaving the venue and evening events. Plan those movements before booking flights.',
+    sections: [
+      {
+        h2: 'The event',
+        bullets: [
+          'Dates: 22–25 February 2027, in Caracas. It was first planned for 26–29 October 2026.',
+          'Organizer: Energy Capital & Power, with the official support of the Ministry of Hydrocarbons and PDVSA.',
+          'Announced participants include Chevron, Shell, bp (Gold Sponsor) and Qatar’s UCC Holding, according to the organizer’s release of 10 November 2026.',
+        ],
+      },
+      {
+        h2: 'Where a delegation is exposed',
+        bullets: [
+          'Arrival: Maiquetía resumed commercial operations on 1 September 2026 with limited capacity. Travelers have been targeted in the terminals, the car park and on the road to Caracas, particularly at night.',
+          'Visibility: sponsor lists, delegate badges and branded vehicles tell anyone watching who is senior and where they will be.',
+          'Routine: the same hotel-to-venue route at the same time every day.',
+          'Evening events and dinners, which mean movements after dark.',
+          'Group size: a large group is slower to move and harder to keep low-profile.',
+          'Protests or road closures near official venues.',
+        ],
+      },
+      {
+        h2: 'Before you travel',
+        bullets: [
+          'Read the current U.S. and UK advisories; both changed several times in 2026.',
+          'Assess the hotel, the venue, the routes between them and an alternate for each.',
+          'Arrive in daylight and be met inside the terminal by a named, pre-identified team.',
+          'Carry the identification local authorities require, with copies held by your operations center.',
+          'Confirm medical and evacuation cover in writing.',
+          'Agree a communications plan and a check-in schedule.',
+          'Keep a low profile: badges off outside the venue, unbranded vehicles.',
+        ],
+      },
+      {
+        h2: 'During the event',
+        bullets: [
+          'A sourced risk bulletin every morning, with what changed overnight.',
+          'Vary departure times and, where possible, routes.',
+          'Use a drop-off and pick-up point agreed in advance with the venue.',
+          'No movement after dark without a plan and a vehicle that is tracked.',
+          'Alerts on protests, closures or incidents near the delegation.',
+          'One point of contact who knows where every member of the delegation is.',
+        ],
+      },
+      {
+        h2: 'After the event',
+        bullets: [
+          'Plan the departure transfer with the same care as the arrival.',
+          'Follow-up meetings often happen in the days after the event: assess them too.',
+          'Ask for a trip report, with what to change for the next visit.',
+        ],
+      },
+      {
+        h2: 'How CSSG supports delegations',
+        paragraphs: [
+          'Secure Ground, CSSG’s executive travel security service, plans each delegation’s arrival, hotel and venue movements before the trip and follows every movement live from its CECOM command center in Caracas. Caracas is covered by CSSG’s own unarmed teams. The delegation receives a daily risk bulletin at 06:30 (Venezuela time) and a report after the event.',
+        ],
+      },
+    ],
+    sources: [SRC_VEW_DATES, SRC_VEW_PARTICIPANTS, SRC_US, SRC_UK],
+    cta: CTA_SECURE_GROUND,
+  },
+  {
+    slug: 'venezuela-travel-advisory-by-state',
+    published: REVIEWED_NOV.iso,
+    reviewed: REVIEWED_NOV,
+    title: 'Venezuela travel advisory by state: what Level 3 and Level 4 mean for your team',
+    metaTitle: 'Venezuela Travel Advisory by State (2026) | CECOM-Intel',
+    description: 'Which Venezuelan states the U.S. rates Level 4 and where the UK advises against travel, as of November 2026, and what each means for a business trip.',
+    eyebrow: 'TRAVEL ADVISORIES · BY STATE',
+    bottomLine: 'The U.S. rates Venezuela Level 3, “Reconsider Travel”, but six states or parts of states and the border with Colombia are Level 4, “Do Not Travel”. The UK advises against all travel near every land border, to Amazonas and to mining municipalities in Bolívar, and against all but essential travel to the rest of the country, Caracas included. Business trips are possible with planning; trips to the listed areas need a specific assessment, and often the answer is not to go.',
+    sections: [
+      {
+        h2: 'United States: the Level 4 areas',
+        paragraphs: ['The country has been Level 3 since 19 March 2026, when it was lowered from Level 4; the advisory was reissued on 27 June 2026. These areas remain Level 4, “Do Not Travel”:'],
+        bullets: [
+          'The border region with Colombia (about 20 miles, 32 km, deep): crime, kidnapping and terrorism.',
+          'Amazonas: terrorism.',
+          'Apure: terrorism.',
+          'Aragua, outside Maracay: crime and kidnapping.',
+          'Bolívar, rural areas: crime and kidnapping.',
+          'Guárico: crime and kidnapping.',
+          'Táchira: crime and terrorism.',
+        ],
+      },
+      {
+        h2: 'United Kingdom: the FCDO’s advice',
+        paragraphs: ['Updated 14 October 2026 and still current on 16 November 2026. The FCDO advises against all travel to:'],
+        bullets: [
+          'Within 40 km (25 miles) of the borders with Colombia, Brazil and Guyana.',
+          'Amazonas state.',
+          'In Bolívar: all of Cedeño, Piar, Roscio, El Callao and Sifontes municipalities; the northern part of Sucre municipality, from the Orinoco river to 80 km south of the Troncal 19 road; and the northern part of Raúl Leoni municipality, north of the Paragua river.',
+          'Delta Amacuro, south of the Orinoco river.',
+          'It advises against all but essential travel to the rest of Venezuela, including Zulia state, Maracaibo and the eastern shore of Lake Maracaibo.',
+        ],
+      },
+      {
+        h2: 'Where the two governments differ',
+        paragraphs: [
+          'The U.S. names Apure, Aragua outside Maracay and Guárico as Level 4; the UK does not single them out but already covers them under “all but essential”. The UK draws its strictest zones by distance from every land border and municipality by municipality in Bolívar. Companies that follow UK duty-of-care practice should treat any trip to Venezuela, Caracas included, as essential travel with a written justification and plan.',
+        ],
+      },
+      {
+        h2: 'What this means for a business trip',
+        bullets: [
+          'Caracas and Miranda (U.S. Level 3; UK all but essential): business travel is possible with a pre-trip assessment, vetted transport and a 24/7 operations center following each movement.',
+          'Zulia and Maracaibo (U.S. Level 3 outside the Colombian border zone; UK all but essential): plan as a higher-risk trip and check whether any site lies within the border zones.',
+          'Level 4 areas and FCDO “all travel” areas: most corporate travel policies prohibit them. Where a visit cannot be avoided, it needs senior approval, a specific assessment, a specialist team and an evacuation plan.',
+          'Insurance: travelling against government advice can invalidate travel and medical cover. Check the policy before booking.',
+        ],
+      },
+      {
+        h2: 'Keeping up with changes',
+        bullets: [
+          'The U.S. advisory changed level in March 2026 and was reissued in June 2026, after the 24 June earthquakes.',
+          'Register for the U.S. Smart Traveler Enrollment Program (STEP) or the FCDO’s email alerts.',
+          'Read a sourced daily update during any trip, not only the advisory.',
+        ],
+      },
+      {
+        h2: 'How CSSG helps',
+        paragraphs: [
+          'CECOM-Intel, the risk analysis unit of CSSG’s CECOM command center in Caracas, assesses routes and sites in any state and publishes a daily risk bulletin at 06:30 (Venezuela time). Physical support comes from CSSG’s own unarmed teams in Caracas and Miranda and from vetted local partners elsewhere. When the right recommendation is not to go, we say so.',
+        ],
+      },
+    ],
+    sources: [SRC_US_EMBASSY, SRC_UK, SRC_US],
+    cta: CTA_SECURE_GROUND,
   },
 ];
 

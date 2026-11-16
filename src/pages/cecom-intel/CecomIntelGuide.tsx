@@ -10,6 +10,7 @@ import '../../styles/cecom-intel.css';
 export default function CecomIntelGuide({ slug }: { slug: string }) {
   const g = guideBySlug(slug);
   const others = GUIDES.filter(o => o.slug !== slug);
+  const reviewed = g.reviewed ?? REVIEWED;
   useCecomIntelFonts();
 
   useEffect(() => {
@@ -26,8 +27,8 @@ export default function CecomIntelGuide({ slug }: { slug: string }) {
         headline: g.title,
         description: g.description,
         inLanguage: 'en',
-        datePublished: '2026-10-18',
-        dateModified: REVIEWED.iso,
+        datePublished: g.published ?? '2026-10-18',
+        dateModified: reviewed.iso,
         mainEntityOfPage: `https://cssg-global.com/cecom-intel/${g.slug}`,
         image: 'https://cssg-global.com/cecom-intel/og-cecom-intel.jpg',
         author: personSchema(LEAD_ANALYST),
@@ -56,7 +57,7 @@ export default function CecomIntelGuide({ slug }: { slug: string }) {
             <p className="ci-eyebrow">{g.eyebrow}</p>
             <h1 className="ci-guide__title">{g.title}</h1>
             <p className="ci-note">
-              By <Link to={`${PAGES.analysts.en}#${LEAD_ANALYST.id}`} rel="author">{LEAD_ANALYST.name}</Link>, {LEAD_ANALYST.role.en} · Last reviewed <time dateTime={REVIEWED.iso}>{REVIEWED.label}</time>
+              By <Link to={`${PAGES.analysts.en}#${LEAD_ANALYST.id}`} rel="author">{LEAD_ANALYST.name}</Link>, {LEAD_ANALYST.role.en} · Last reviewed <time dateTime={reviewed.iso}>{reviewed.label}</time>
             </p>
             <div className="ci-guide__bluf">
               <p className="ci-method__label">BOTTOM LINE</p>
@@ -81,14 +82,26 @@ export default function CecomIntelGuide({ slug }: { slug: string }) {
               </section>
             ))}
 
-            <aside className="ci-ai" aria-label="Sample bulletin">
-              <p className="ci-eyebrow">KNOW, THEN DECIDE.</p>
-              <p className="ci-p ci-p--lead">Receive a free sample edition of our country-level risk bulletin. We will contact you within 24 hours.</p>
-              <div className="ci-hero__ctas">
-                <Link to="/cecom-intel#muestra" className="ci-btn ci-btn--gold">Request a sample bulletin</Link>
-                <Link to="/cecom-intel" className="ci-btn ci-btn--ghost">About CECOM-Intel</Link>
-              </div>
-            </aside>
+            {g.cta ? (
+              <aside className="ci-ai" aria-label="Next step">
+                <p className="ci-eyebrow">KNOW, THEN DECIDE.</p>
+                <p className="ci-p ci-p--lead">{g.cta.text}</p>
+                <div className="ci-hero__ctas">
+                  {/* Plain anchors: /secure-ground is a static page outside the SPA router. */}
+                  <a href={g.cta.primary.href} className="ci-btn ci-btn--gold">{g.cta.primary.label}</a>
+                  <a href={g.cta.secondary.href} className="ci-btn ci-btn--ghost">{g.cta.secondary.label}</a>
+                </div>
+              </aside>
+            ) : (
+              <aside className="ci-ai" aria-label="Sample bulletin">
+                <p className="ci-eyebrow">KNOW, THEN DECIDE.</p>
+                <p className="ci-p ci-p--lead">Receive a free sample edition of our country-level risk bulletin. We will contact you within 24 hours.</p>
+                <div className="ci-hero__ctas">
+                  <Link to="/cecom-intel#muestra" className="ci-btn ci-btn--gold">Request a sample bulletin</Link>
+                  <Link to="/cecom-intel" className="ci-btn ci-btn--ghost">About CECOM-Intel</Link>
+                </div>
+              </aside>
+            )}
 
             <section aria-labelledby="ci-sources">
               <h2 id="ci-sources" className="ci-guide__h2">Sources</h2>

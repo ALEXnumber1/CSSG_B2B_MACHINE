@@ -838,8 +838,11 @@ const routes = [
     ['venezuela-security-outlook-2026', 'Is It Safe to Travel to Venezuela in 2026? | CECOM-Intel', 'U.S. and UK advisories, the main risks for business travelers in Caracas, the higher-risk regions and the measures that reduce exposure. Reviewed October 2026.'],
     ['doing-business-in-venezuela-security-guide', 'Doing Business in Venezuela 2026: Security Guide', 'Security for companies entering Venezuela in 2026: the operating environment, sanctions context, risk areas and how to choose a licensed local security partner.'],
     ['executive-travel-venezuela-journey-management', 'Executive Travel to Venezuela: Journey Management', 'Planning an executive trip to Caracas in 2026: pre-trip assessment, arrival at Maiquetía, vetted transfers, journey management and a daily risk bulletin.'],
-  ].map(([slug, title, description]) => cecomIntelRoute({
-    path: `cecom-intel/${slug}`, lang: 'en', alternates: { en: `cecom-intel/${slug}` }, lastmod: '2026-10-18', title, description,
+    ['how-to-vet-security-partner-venezuela', 'How to Vet a Security Partner in Venezuela | CECOM-Intel', 'Due-diligence checklist for choosing a local security partner in Venezuela: licence, documents, own staff vs partners, operations and red flags.', '2026-11-17'],
+    ['venezuela-energy-week-2027-security', 'Venezuela Energy Week 2027: Security Plan | CECOM-Intel', 'Attending Venezuela Energy Week in Caracas, 22–25 Feb 2027? How to plan arrival at Maiquetía, transfers, hotel and venue movements and daily updates.', '2026-11-17'],
+    ['venezuela-travel-advisory-by-state', 'Venezuela Travel Advisory by State (2026) | CECOM-Intel', 'Which Venezuelan states the U.S. rates Level 4 and where the UK advises against travel, as of November 2026, and what each means for a business trip.', '2026-11-17'],
+  ].map(([slug, title, description, lastmod = '2026-10-18']) => cecomIntelRoute({
+    path: `cecom-intel/${slug}`, lang: 'en', alternates: { en: `cecom-intel/${slug}` }, lastmod, title, description,
   })),
   ...[
     { en: 'cecom-intel', es: 'cecom-intel/es', titles: ['Venezuela Security Risk Analysis & GSOC | CECOM-Intel', 'Análisis de riesgo de seguridad en Venezuela | CECOM-Intel'], descriptions: ['Venezuela, from the ground: a 06:30 daily risk bulletin, alerts and assessments from CSSG’s GSOC in Caracas, the in-country partner of global security firms.', 'Venezuela, desde dentro: boletín de riesgo a las 06:30, alertas y evaluaciones desde el centro de comando de CSSG en Caracas. Pida un boletín de muestra.'] },
