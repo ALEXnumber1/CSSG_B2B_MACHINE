@@ -12,7 +12,7 @@
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY || process.env.VITE_RESEND_API_KEY;
 const FROM_EMAIL = 'CSSG <operaciones@cssg-global.com>';
-const NOTIFY_EMAIL = 'globalservices.ven@gmail.com';
+const NOTIFY_EMAIL = ['gerencia@globalservices-ven.com', 'globalservices.ven@gmail.com'];
 
 const rateLimitMap = new Map();
 const RATE_LIMIT_WINDOW_MS = 60_000;
@@ -58,6 +58,7 @@ function fuente_label(fuente) {
     lp_corporate_security_en: 'Corporate Security Consulting (EN)',
     lp_diplomatic_security_en: 'Diplomatic Security (EN)',
     cecom_intel: 'CECOM-Intel',
+    secure_ground: 'Secure Ground (EN)',
   };
   return map[fuente] || fuente.replace(/_/g, ' ');
 }
@@ -98,6 +99,36 @@ export default async function handler(req, res) {
         ? `URGENTE — CITA ESCUDO DIPLOMÁTICO: ${safeNombre}`
         : `NUEVO LEAD: ${safeNombre} (${safeFuente.toUpperCase()})`;
 
+      const isEnglishReply = ['lp_corporate_security_en', 'lp_diplomatic_security_en', 'secure_ground'].includes(safeFuente);
+      const englishReplySubject = 'Re: Your Secure Ground briefing request — CSSG Global';
+      const englishReplyBody = `Dear ${safeNombre},
+
+Thank you for reaching out about Secure Ground.
+
+I would be glad to walk you through how we support teams travelling to Venezuela. Would one of these 30-minute slots work for you?
+
+- [Day, date] at [time] Caracas time (UTC-4)
+- [Day, date] at [time] Caracas time (UTC-4)
+
+I will send a video link as soon as you confirm. If neither suits you, just reply with a time that works on your side.
+
+To make the most of the call, it helps to know roughly who is travelling, which cities and on what dates.
+
+Best regards,
+
+Alexander Briceño
+Director General | CSSG Global
+Caracas | Miami
++58 414 317 4373 · gerencia@globalservices-ven.com
+cssg-global.com
+ISO 9001:2015 · Cyber Essentials`;
+      const replyHref = isEnglishReply
+        ? `mailto:${safeEmail}?subject=${encodeURIComponent(englishReplySubject)}&body=${encodeURIComponent(englishReplyBody)}`
+        : `mailto:${safeEmail}?subject=Re: Su solicitud — CSSG`;
+      const whatsappText = isEnglishReply
+        ? `Hello ${safeNombre}, this is Alexander Briceño from CSSG Global, following up on your Secure Ground briefing request.`
+        : `Hola ${safeNombre}, le contacto de CSSG.`;
+
       /* 1. Notificación al admin */
       const adminRes = await callResend({
         from: FROM_EMAIL,
@@ -136,8 +167,8 @@ export default async function handler(req, res) {
       </table>
     </div>
     <div style="display:flex;gap:10px;margin-bottom:24px;">
-      <a href="mailto:${safeEmail}?subject=Re: Su solicitud — CSSG" style="flex:1;text-align:center;background:${accentColor};color:#000;padding:12px;border-radius:8px;text-decoration:none;font-weight:700;font-size:13px;">Responder por Email</a>
-      ${safeTelefono ? `<a href="https://wa.me/${safeTelefono.replace(/[^0-9]/g,'')}?text=Hola+${encodeURIComponent(safeNombre)}%2C+le+contacto+de+CSSG." style="flex:1;text-align:center;background:#25D366;color:#fff;padding:12px;border-radius:8px;text-decoration:none;font-weight:700;font-size:13px;">WhatsApp</a>` : ''}
+      <a href="${replyHref}" style="flex:1;text-align:center;background:${accentColor};color:#000;padding:12px;border-radius:8px;text-decoration:none;font-weight:700;font-size:13px;">${isEnglishReply ? 'Responder en inglés' : 'Responder por Email'}</a>
+      ${safeTelefono ? `<a href="https://wa.me/${safeTelefono.replace(/[^0-9]/g,'')}?text=${encodeURIComponent(whatsappText)}" style="flex:1;text-align:center;background:#25D366;color:#fff;padding:12px;border-radius:8px;text-decoration:none;font-weight:700;font-size:13px;">WhatsApp</a>` : ''}
     </div>
     <p style="color:#333;font-size:11px;text-align:center;margin:0;">Sistema B2B · CSSG · cssg-global.com</p>
   </div>
@@ -167,12 +198,13 @@ export default async function handler(req, res) {
         lp_consultoria_riesgos: `Su solicitud fue registrada — un consultor le contacta en menos de 12h | CSSG Global`,
         lp_corporate_security_en: `Your Corporate Security Assessment request was received | CSSG Global`,
         lp_diplomatic_security_en: `Your request was received — CSSG Global`,
+        secure_ground: `Your 30-minute Secure Ground briefing request was received | CSSG Global`,
         default:            `Su expediente fue asignado a Consultoría Senior | CSSG Global`,
       };
       const welcomeSubject = welcomeSubjects[safeFuente] || welcomeSubjects.default;
 
       // Fuentes cuyo lead es de habla inglesa — reciben la bienvenida inmediata en inglés
-      const englishFuentes = ['lp_corporate_security_en', 'lp_diplomatic_security_en'];
+      const englishFuentes = ['lp_corporate_security_en', 'lp_diplomatic_security_en', 'secure_ground'];
       const isEnglishLead = englishFuentes.includes(safeFuente);
 
       const englishWelcomeHtml = `<!DOCTYPE html>
