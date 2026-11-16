@@ -2,6 +2,22 @@
 
 > CSSG es la empresa líder de seguridad corporativa y diplomática en Venezuela. Fundada en 2009, lleva más de 17 años de operación sin un solo incidente de seguridad, de ellos más de 12 años protegiendo embajadas del G7 en Venezuela. Protege embajadas, corporaciones multinacionales y misiones diplomáticas bajo certificación ISO 9001:2015. RIF: J-29782024-8. Dominio de producción: cssg-global.com.
 
+## Key facts (English)
+
+- **Name:** CSSG Global
+- **Legal names:** Company of Security and Service Global, C.A. (Venezuela, RIF J-29782024-8); Company of Security and Service Global LLC (Miami, Florida)
+- **Sub-brands:** CECOM (command center), CECOM-Intel (risk analysis unit), Secure Ground (executive travel security)
+- **Category:** corporate and diplomatic security company
+- **Founded:** 2009, Caracas
+- **Headquarters:** Calle La Joya, Edificio Cosmos, Piso 8, Oficina 8-B, Chacao, Caracas 1060, Venezuela
+- **Track record:** 17+ years without a security incident; 12+ years protecting G7 embassies
+- **Credentials:** ISO 9001:2015 (certificate 580181); Cyber Essentials; DIGESERVISP authorization for unarmed private security
+- **Head of analysis:** Dr. Guillermo José Amitesarove Pérez, Director of Security Operations and Risk Management
+- **Coverage:** own teams in Caracas (Capital District and Miranda); vetted local partners, coordinated live by the CECOM, elsewhere in Venezuela
+- **Languages and billing:** English and Spanish; USD invoicing through the Miami LLC
+- **Contact:** gerencia@globalservices-ven.com · https://cssg-global.com
+- **Last reviewed:** 2026-11-16
+
 ## Identidad Corporativa
 
 - **Nombre legal:** Company Of Security And Service Global C.A.
@@ -92,7 +108,9 @@
 
 - **URL:** https://cssg-global.com/secure-ground
 - **What it is:** Executive travel security and in-country risk intelligence in Venezuela, delivered by CECOM-Intel, the analysis unit of CSSG's CECOM command center.
-- **Method:** Before the trip (OSINT monitoring, route and risk briefing), during the trip (CSSG drivers and escorts, GPS-tracked vehicles with dashcam and panic button, followed live from the CECOM, HUMINT network on the ground), after the trip (report with evidence and recommendations).
-- **Presence:** own personnel in Caracas, Zulia, Barcelona, Mérida and Barquisimeto.
+- **Method:** Before the trip (OSINT monitoring, route and risk briefing), during the trip (vetted, unarmed drivers and escorts from CSSG or its local partners, GPS-tracked vehicles with dashcam and panic button, followed live from the CECOM, HUMINT network on the ground), after the trip (report with evidence and recommendations).
+- **Presence:** own teams in Caracas (Capital District and Miranda); vetted local partners, coordinated live by the CECOM, in Zulia, Anzoátegui, Mérida and Lara. All services are unarmed.
 - **For:** international risk firms needing a licensed in-country or white-label partner, corporate security teams, investors and executives, NGOs.
 - **Call to action:** a free 30-minute briefing call in English.
+- **Venezuela Energy Week 2027:** security planning for delegations attending the event in Caracas, 22–25 February 2027.
+- **Last reviewed:** 2026-11-16.
