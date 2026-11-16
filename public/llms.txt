@@ -87,3 +87,12 @@
 ## Sitemap
 
 - https://cssg-global.com/sitemap.xml
+
+## Secure Ground (English, for international buyers)
+
+- **URL:** https://cssg-global.com/secure-ground
+- **What it is:** Executive travel security and in-country risk intelligence in Venezuela, delivered by CECOM-Intel, the analysis unit of CSSG's CECOM command center.
+- **Method:** Before the trip (OSINT monitoring, route and risk briefing), during the trip (CSSG drivers and escorts, GPS-tracked vehicles with dashcam and panic button, followed live from the CECOM, HUMINT network on the ground), after the trip (report with evidence and recommendations).
+- **Presence:** own personnel in Caracas, Zulia, Barcelona, Mérida and Barquisimeto.
+- **For:** international risk firms needing a licensed in-country or white-label partner, corporate security teams, investors and executives, NGOs.
+- **Call to action:** a free 30-minute briefing call in English.

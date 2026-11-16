@@ -1122,6 +1122,8 @@ console.log('[SEO Generation] Created _headers, _redirects and .assetsignore for
 // stamping every URL with the build date told crawlers that 57 unchanged pages had just been edited.
 const sitemapEntries = [
   { loc: `${SITE_URL}/`, changefreq: 'weekly', priority: '1.0' },
+  // Static standalone landings served from public/ (not React routes)
+  { loc: `${SITE_URL}/secure-ground`, lastmod: '2026-11-16', changefreq: 'monthly', priority: '0.9' },
   ...routes
     .filter(r => !r.noindex && r.canonicalPath === r.path && !SITEMAP_EXCLUDE.has(r.path))
     .map(r => {
