@@ -251,7 +251,50 @@ footer b{color:var(--text)}
 .rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none}.hero .bg{animation:none}}
 .sticky-cta{position:fixed;right:20px;bottom:20px;z-index:60;display:none}
-@media(max-width:700px){.sticky-cta{display:block;left:16px;right:16px}.sticky-cta .btn{width:100%;justify-content:center}}
+@media(max-width:700px){.sticky-cta{display:block;left:16px;right:16px;bottom:16px;opacity:0;transform:translateY(120%);pointer-events:none;transition:opacity .3s ease,transform .3s ease}.sticky-cta.show{opacity:1;transform:none;pointer-events:auto}.sticky-cta .btn{width:100%;justify-content:center}}
+/* polish */
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:2px solid var(--gold2);outline-offset:3px}
+.phase,.cap,.aud div,.tech{transition:transform .25s ease,border-color .25s ease,background .25s ease}
+@media(hover:hover){.phase:hover,.cap:hover,.aud div:hover{transform:translateY(-3px);background:#1F1E23}.tech:hover{border-color:var(--gold)}.tech.panic:hover{border-color:var(--red)}}
+.form-msg.ok,.form-msg.err{padding:14px 16px;border-radius:4px;border:1px solid}
+.form-msg.ok{background:rgba(201,162,74,.1);border-color:rgba(201,162,74,.5)}
+.form-msg.err{background:rgba(210,69,47,.1);border-color:rgba(210,69,47,.5);color:#F0B3A8}
+/* mobile */
+@media(max-width:600px){
+  body{font-size:17px}
+  section{padding:76px 0}
+  .wrap{padding:0 20px}
+  .nav .wrap{height:58px}
+  .nav .btn{display:none}
+  .brand{font-size:14px;letter-spacing:.04em}
+  .hero{min-height:auto;padding:72px 0 56px}
+  .hero::after{background:linear-gradient(180deg,rgba(14,14,16,.9) 0%,rgba(14,14,16,.82) 55%,rgba(14,14,16,.95) 100%)}
+  .hero .kicker{font-size:11.5px;letter-spacing:.16em}
+  .lead{font-size:18px}
+  .hero .ctas{flex-direction:column;margin:28px 0 14px}
+  .hero .ctas .btn{width:100%;justify-content:center}
+  .trust{display:grid;grid-template-columns:1fr 1fr;gap:14px 18px;margin-top:36px;font-size:14px}
+  .level{font-size:110px}.level small{font-size:42px}
+  .qs p{font-size:18px;padding:16px 20px}
+  .stats{gap:28px 18px}
+  .stat .v{font-size:34px}
+  .phase,.cap{padding:26px 22px}
+  summary{font-size:18px}
+  form{padding:22px}
+  .row2{grid-template-columns:1fr;gap:0}
+  .feature{margin-top:64px}
+}
+@media(max-width:700px){
+  .compare table,.compare tbody,.compare tr,.compare td{display:block;width:100%}
+  .compare thead{display:none}
+  .compare tr{background:var(--panel);margin-bottom:12px;border-radius:4px;overflow:hidden}
+  .compare td{border:0;padding:6px 18px}
+  .compare td:first-child{padding-top:16px;color:var(--gold2);font-size:17px}
+  .compare td.n::before,.compare td.y::before{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:2px;font-family:Inter,sans-serif;font-weight:600}
+  .compare td.n::before{content:"Without";color:#6E685C}
+  .compare td.y::before{content:"With CECOM-Intel";color:var(--gold)}
+  .compare td.y{padding-bottom:16px;margin-top:6px}
+}
 </style>
 </head>
 <body>
@@ -286,7 +329,7 @@ footer b{color:var(--text)}
       <span><b>12+ years</b> protecting G7 embassies</span>
       <span><b>ISO 9001:2015</b> certified</span>
       <span><b>Cyber Essentials</b> certified</span>
-            <span><b>Caracas | Miami</b></span>
+      <span><b>Caracas | Miami</b></span>
     </div>
   </div>
 </header>
@@ -416,7 +459,7 @@ footer b{color:var(--text)}
       <p class="kicker">The difference</p>
       <h2>Operating without and with CECOM-Intel</h2>
     </div>
-    <div class="rv" style="overflow-x:auto">
+    <div class="rv compare" style="overflow-x:auto">
       <table>
         <thead><tr><th></th><th>Without</th><th class="y">With CECOM-Intel</th></tr></thead>
         <tbody>
@@ -441,7 +484,7 @@ footer b{color:var(--text)}
     <div class="stats">
       <div class="stat rv"><div class="v">17</div><p>years operating in Venezuela</p></div>
       <div class="stat rv"><div class="v">ISO 9001</div><p>2015 certified quality management system</p></div>
-      <div class="stat rv"><div class="v">Cyber Ess.</div><p>Cyber Essentials certified information security</p></div>
+      <div class="stat rv"><div class="v">5</div><p>regions with our own people on the ground</p></div>
       <div class="stat rv"><div class="v">G7</div><p>diplomatic missions served</p></div>
     </div>
   </div>
@@ -520,12 +563,17 @@ document.querySelectorAll('.js-book').forEach(function(a){ if (BOOKING_URL) { a.
 document.querySelectorAll('[data-intent="sample"]').forEach(function(a){ a.addEventListener('click', function(){ var s=document.getElementById('f-need'); if(s) s.value='A sample briefing'; }); });
 var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }); }, {threshold:.12});
 document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+// Mobile sticky CTA: only after the hero, and hidden while the booking form is on screen
+(function(){ var cta=document.querySelector('.sticky-cta'), hero=document.querySelector('.hero'), book=document.getElementById('book'); if(!cta||!hero||!book) return;
+  var pastHero=false, atBook=false; function upd(){ cta.classList.toggle('show', pastHero && !atBook); }
+  new IntersectionObserver(function(es){ pastHero=!es[0].isIntersecting; upd(); }).observe(hero);
+  new IntersectionObserver(function(es){ atBook=es[0].isIntersecting; upd(); }).observe(book); })();
 function utm(){ try { var q=new URLSearchParams(location.search), o=[]; ['utm_source','utm_medium','utm_campaign','utm_content'].forEach(function(k){ if(q.get(k)) o.push(k+'='+q.get(k)); }); return o.join(' · '); } catch(e){ return ''; } }
 document.getElementById('leadForm').addEventListener('submit', async function(ev){
   ev.preventDefault();
   var f = ev.target, msg = document.getElementById('formMsg'), btn = f.querySelector('button');
-  msg.style.display='block';
-  if (!f.name.value || !f.company.value || !/.+@.+\..+/.test(f.email.value)) { msg.textContent='Please add your name, company and a valid work email.'; return; }
+  msg.style.display='block'; msg.className='form-msg';
+  if (!f.name.value || !f.company.value || !/.+@.+\..+/.test(f.email.value)) { msg.className='form-msg err'; msg.textContent='Please add your name, company and a valid work email.'; return; }
   btn.disabled = true; msg.textContent = 'Sending...';
   var detail = '[SECURE GROUND - EN] Need: '+f.need.value+' | Dates: '+(f.when.value||'-')+' | Details: '+(f.msg.value||'-')+(utm()?' | '+utm():'');
   var ok = false;
@@ -540,7 +588,8 @@ document.getElementById('leadForm').addEventListener('submit', async function(ev
     ok = ok || m.ok;
   } catch(e) {}
   try { (window.dataLayer=window.dataLayer||[]).push({event:'generate_lead', form:'secure_ground', need:f.need.value}); } catch(e) {}
-  if (ok) { msg.innerHTML = 'Thank you. A CSSG specialist will reply within 24 hours to schedule your 30-minute briefing.'; f.reset(); }
+  msg.className = ok ? 'form-msg ok' : 'form-msg err';
+  if (ok) { msg.innerHTML ='Thank you. A CSSG specialist will reply within 24 hours to schedule your 30-minute briefing.'; f.reset(); }
   else { msg.innerHTML = 'We could not send the form. Please write to <b>gerencia@globalservices-ven.com</b> or WhatsApp <b>+58 414 317 4373</b>.'; }
   btn.disabled = false;
 });

@@ -198,7 +198,7 @@ ISO 9001:2015 · Cyber Essentials`;
         lp_consultoria_riesgos: `Su solicitud fue registrada — un consultor le contacta en menos de 12h | CSSG Global`,
         lp_corporate_security_en: `Your Corporate Security Assessment request was received | CSSG Global`,
         lp_diplomatic_security_en: `Your request was received — CSSG Global`,
-        secure_ground: `Your 30-minute Secure Ground briefing request was received | CSSG Global`,
+        secure_ground: `Man on the Ground Venezuela`,
         default:            `Su expediente fue asignado a Consultoría Senior | CSSG Global`,
       };
       const welcomeSubject = welcomeSubjects[safeFuente] || welcomeSubjects.default;
