@@ -680,7 +680,29 @@ document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
   var pastHero=false, atBook=false; function upd(){ cta.classList.toggle('show', pastHero && !atBook); }
   new IntersectionObserver(function(es){ pastHero=!es[0].isIntersecting; upd(); }).observe(hero);
   new IntersectionObserver(function(es){ atBook=es[0].isIntersecting; upd(); }).observe(book); })();
-function utm(){ try { var q=new URLSearchParams(location.search), o=[]; ['utm_source','utm_medium','utm_campaign','utm_content'].forEach(function(k){ if(q.get(k)) o.push(k+'='+q.get(k)); }); return o.join(' · '); } catch(e){ return ''; } }
+// W-2: campaign parameters and click IDs. Saved on landing so they survive navigation before the form is sent.
+var UTM_KEYS = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term','gclid','li_fat_id'];
+(function(){ try { var q=new URLSearchParams(location.search), saved={}, any=false;
+  UTM_KEYS.forEach(function(k){ var v=q.get(k); if(v){ saved[k]=v.slice(0,200); any=true; } });
+  if (any) sessionStorage.setItem('sg_utm', JSON.stringify(saved)); } catch(e){} })();
+function utm(){ try { var q=new URLSearchParams(location.search), s={}, o=[];
+  try { s = JSON.parse(sessionStorage.getItem('sg_utm') || '{}') || {}; } catch(e){ s = {}; }
+  UTM_KEYS.forEach(function(k){ var v=q.get(k) || s[k]; if(v) o.push(k+'='+v); }); return o.join(' · '); } catch(e){ return ''; } }
+// W-1 + W-7: one conversion event per type and session, sent only after a successful submission.
+// Only the conversion type goes to the dataLayer: never name, email, company, dates or cities.
+function sgConversion(need){
+  var map = {
+    'A 30-minute briefing call':         'briefing_requested',
+    'A sample briefing':                 'sample_requested',
+    'An in-country partner for my firm': 'partner_form_submitted',
+    'Security for an upcoming trip':     'trip_request_submitted'
+  };
+  var ev = map[need] || 'briefing_requested';
+  try { if (sessionStorage.getItem('sg_conv_'+ev)) return; } catch(e){}
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({ event: ev, sg_form: 'secure_ground', sg_intent: ev });
+  try { sessionStorage.setItem('sg_conv_'+ev, '1'); } catch(e){}
+}
 document.getElementById('leadForm').addEventListener('submit', async function(ev){
   ev.preventDefault();
   var f = ev.target, msg = document.getElementById('formMsg'), btn = f.querySelector('button');
@@ -699,11 +721,9 @@ document.getElementById('leadForm').addEventListener('submit', async function(ev
       body: JSON.stringify({ type:'lead', nombre:f.name.value, email:f.email.value, empresa:f.company.value, cargo:f.need.value, fuente:'secure_ground' }) });
     ok = ok || m.ok;
   } catch(e) {}
-  try { (window.dataLayer=window.dataLayer||[]).push({event:'generate_lead', form:'secure_ground', need:f.need.value}); } catch(e) {}
   msg.className = ok ? 'form-msg ok' : 'form-msg err';
-  if (ok) { msg.innerHTML ='Thank you. A CSSG specialist will reply within 24 hours to schedule your 30-minute briefing.'; f.reset(); }
-  else { msg.innerHTML = 'We could not send the form. Please write to <b>gerencia@globalservices-ven.com</b> or WhatsApp <b>+58 414 317 4373</b>.'; }
-  btn.disabled = false;
+  if (ok) { try { sgConversion(f.need.value); } catch(e) {} msg.innerHTML ='Thank you. A CSSG specialist will reply within 24 hours to schedule your 30-minute briefing.'; f.reset(); }
+  else { msg.innerHTML = 'We could not send the form. Please write to <b>gerencia@globalservices-ven.com</b> or WhatsApp <b>+58 414 317 4373</b>.'; btn.disabled = false; }
 });
 </script>
 </body>
