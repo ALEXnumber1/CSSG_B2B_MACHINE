@@ -80,11 +80,13 @@ const MethodologyVSL: React.FC = () => {
                     aria-label="Reproducir video CSSG Tactical Operations"
                   >
                     <img
-                      src={`https://img.youtube.com/vi/${VIDEO_ID}/maxresdefault.jpg`}
+                      src="/vsl-cover.webp"
                       alt="CSSG Tactical Operations — ver video"
+                      width="960"
+                      height="540"
                       className="w-full h-full object-cover grayscale-[30%] group-hover/play:grayscale-0 transition-all duration-700"
                       loading="lazy"
-                      onError={(e) => { e.currentTarget.src = `https://img.youtube.com/vi/${VIDEO_ID}/hqdefault.jpg`; }}
+                      decoding="async"
                     />
                     <div className="absolute inset-0 bg-black/30 group-hover/play:bg-black/10 transition-all duration-300" />
                     <div className="absolute inset-0 flex items-center justify-center">

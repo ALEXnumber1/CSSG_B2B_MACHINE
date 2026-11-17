@@ -1,9 +1,23 @@
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { MapPin, Phone, Mail, ExternalLink } from 'lucide-react';
 
 export default function Location() {
   const { t } = useTranslation();
+  // Google Maps pulls ~400 KB of JS, so the iframe only mounts when the map is about to scroll into view.
+  const mapRef = useRef<HTMLDivElement>(null);
+  const [showMap, setShowMap] = useState(false);
+
+  useEffect(() => {
+    const el = mapRef.current;
+    if (!el) return;
+    const io = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { setShowMap(true); io.disconnect(); }
+    }, { rootMargin: '300px' });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   const offices = [
     {
@@ -103,14 +117,15 @@ export default function Location() {
               viewport={{ once: true }}
               className="w-full h-full bg-white/[0.02] border border-white/5 rounded-3xl overflow-hidden relative group"
             >
-              <div className="absolute inset-0 bg-[#0A0C12]">
-                <iframe 
+              <div ref={mapRef} className="absolute inset-0 bg-[#0A0C12]">
+                {showMap && <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3923.18123456789!2d-66.853123456789!3d10.490123456789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c2a588b5e67909b%3A0x8849b6b772096781!2sEdificio+Cosmos!5e0!3m2!1ses!2sve!4v1714360000000!5m2!1ses!2sve"
                   className="w-full h-full border-0 grayscale invert opacity-50 contrast-125 group-hover:opacity-80 transition-opacity duration-700"
                   allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                ></iframe>
+                  title="Mapa de la oficina CSSG en Chacao, Caracas"
+                />}
                 
                 <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-[#0A0C12] via-transparent to-transparent opacity-60" />
                 <div className="absolute inset-0 pointer-events-none border-[20px] border-[#0A0C12]" />
@@ -153,7 +168,9 @@ export default function Location() {
                 </div>
               </div>
               
-              <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent via-sky-500/5 to-transparent h-20 w-full animate-scan" style={{ top: '-100%' }} />
+              <div className="absolute inset-0 pointer-events-none animate-scan">
+                <div className="h-20 w-full bg-gradient-to-b from-transparent via-sky-500/5 to-transparent" />
+              </div>
             </motion.div>
           </div>
 
@@ -162,8 +179,8 @@ export default function Location() {
       
       <style dangerouslySetInnerHTML={{ __html: `
         @keyframes scan {
-          0% { top: -100%; }
-          100% { top: 200%; }
+          0% { transform: translateY(-100%); }
+          100% { transform: translateY(200%); }
         }
         .animate-scan {
           animation: scan 4s linear infinite;
