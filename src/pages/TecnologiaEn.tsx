@@ -1147,7 +1147,7 @@ export default function TecnologiaEn() {
                   <div className="flex flex-col gap-2 p-4 rounded-2xl bg-white/5 border border-white/10">
                     <Phone className="w-6 h-6 text-sky-400 mb-2" />
                     <span className="text-[10px] text-gray-500 font-bold uppercase tracking-widest">Line</span>
-                    <span className="text-white font-bold">+58 212 953-CSSG</span>
+                    <span className="text-white font-bold">+58 414 317 4373</span>
                   </div>
                 </div>
               </div>

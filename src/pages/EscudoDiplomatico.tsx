@@ -33,7 +33,7 @@ export default function EscudoDiplomatico() {
   const [errorMsg, setErrorMsg] = useState('');
 
   useEffect(() => {
-    document.title = "SERVICIO DE PROTECCION A PERSONALIDADES DE ELITE | CSSG";
+    document.title = "Escudo Diplomático: Protección Ejecutiva Estándar G7 | CSSG";
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute("content", "Servicio exclusivo de protección a personalidades de élite. Conformamos esquemas de seguridad a un nivel diplomático.");
@@ -126,7 +126,7 @@ export default function EscudoDiplomatico() {
             <img src="/logo.webp" alt="CSSG" className="h-10 w-10 object-contain" />
             <div className="hidden sm:block">
               <p className="text-white font-bold text-sm tracking-tight">CSSG</p>
-              <p className="text-[9px] tracking-wider uppercase" style={{ color: GOLD }}>Consultoría en Seguridad y Servicios Generales</p>
+              <p className="text-[9px] tracking-wider uppercase" style={{ color: GOLD }}>Company Of Security And Service Global</p>
             </div>
           </div>
           <div className="flex items-center gap-3">
@@ -175,7 +175,7 @@ export default function EscudoDiplomatico() {
             Escudo Diplomático — Estándares G7
           </span>
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-black text-white leading-[1.1] tracking-tight mb-6" style={{ fontFamily: "'Cinzel', serif" }}>
-            CONFORMA TU ESQUEMA DE SEGURIDAD A UN NIVEL{' '}
+            LLEVE SU ESQUEMA DE SEGURIDAD A UN NIVEL{' '}
             <span className="bg-clip-text text-transparent bg-gradient-to-r" style={{ backgroundImage: `linear-gradient(135deg, ${GOLD}, #f5e6a3, ${GOLD})` }}>
               DIPLOMÁTICO.
             </span>
@@ -609,10 +609,10 @@ export default function EscudoDiplomatico() {
             Servicio exclusivo de protección diplomática para el sector corporativo privado.
           </p>
           <p className="text-xs mb-6" style={{ color: '#444' }}>
-            globalservices.ven@gmail.com | Asistencia 24/7: 0414-3174373
+            gerencia@globalservices-ven.com | Asistencia 24/7: +58 414 317 4373
           </p>
           <p className="text-[10px] uppercase tracking-widest" style={{ color: '#333' }}>
-            © {year} Consultoría en Seguridad y Servicios Generales C.A. Todos los derechos reservados.
+            © {year} Company Of Security And Service Global C.A. · RIF J-29782024-8. Todos los derechos reservados.
           </p>
         </div>
       </footer>

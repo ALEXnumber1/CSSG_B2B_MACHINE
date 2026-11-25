@@ -63,6 +63,41 @@ function PatrolGraphic({ site, caption, label }: { site: string; caption: string
   );
 }
 
+// YouTube video of the unit. VideoObject JSON-LD needs the real upload date (and ideally the
+// duration, ISO 8601 such as PT2M18S): until uploadDate is filled in, the schema is left out.
+const VIDEO = {
+  id: '3eSSX2GAeGY',
+  name: 'CECOM-intel · Live Risk Map of Venezuela | CSSG Global',
+  uploadDate: '2026-11-25T08:44:00-08:00',
+  duration: 'PT1M38S',
+};
+
+/** Thumbnail first; the YouTube player (~1 MB) loads only when the visitor presses play. */
+function VideoFacade({ label }: { label: string }) {
+  const [playing, setPlaying] = useState(false);
+  if (playing) {
+    return (
+      <iframe
+        className="ci-video__frame"
+        src={`https://www.youtube.com/embed/${VIDEO.id}?autoplay=1&rel=0`}
+        title={VIDEO.name}
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerPolicy="strict-origin-when-cross-origin"
+        allowFullScreen
+      />
+    );
+  }
+  return (
+    <button type="button" className="ci-video__facade" aria-label={label}
+      onClick={() => { setPlaying(true); track('video_start', { video: VIDEO.id }); }}>
+      <img src={`https://i.ytimg.com/vi/${VIDEO.id}/hqdefault.jpg`} alt="" loading="lazy" width={480} height={360} />
+      <span className="ci-video__play" aria-hidden="true">
+        <svg viewBox="0 0 68 48" width="68" height="48"><rect width="68" height="48" rx="12" fill="#0A0A0A" fillOpacity="0.85" stroke="#D4AF37" /><path d="M27 15l18 9-18 9z" fill="#D4AF37" /></svg>
+      </span>
+    </button>
+  );
+}
+
 export default function CecomIntel({ lang }: { lang: Lang }) {
   const t = CONTENT[lang];
   const location = useLocation();
@@ -301,6 +336,35 @@ export default function CecomIntel({ lang }: { lang: Lang }) {
           <div className="ci-col">
             <p className="ci-p ci-p--lead">{t.what.p1}</p>
             <p className="ci-p ci-p--lead">{t.what.p2}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Video */}
+      <section id="video" className="ci-section ci-alt">
+        {VIDEO.uploadDate && (
+          <JsonLd data={{
+            '@context': 'https://schema.org',
+            '@type': 'VideoObject',
+            name: VIDEO.name,
+            description: t.video.lead,
+            thumbnailUrl: `https://i.ytimg.com/vi/${VIDEO.id}/hqdefault.jpg`,
+            uploadDate: VIDEO.uploadDate,
+            ...(VIDEO.duration ? { duration: VIDEO.duration } : {}),
+            embedUrl: `https://www.youtube.com/embed/${VIDEO.id}`,
+            contentUrl: `https://www.youtube.com/watch?v=${VIDEO.id}`,
+            inLanguage: 'en',
+            publisher: { '@id': 'https://cssg-global.com/#organization' },
+          }} />
+        )}
+        <div className="ci-wrap ci-split">
+          <div className="ci-head">
+            <div className="ci-eyebrow">{t.video.eyebrow}</div>
+            <h2 className="ci-h2">{t.video.title}</h2>
+            <p className="ci-p">{t.video.lead}</p>
+          </div>
+          <div className="ci-col">
+            <div className="ci-video"><VideoFacade label={t.video.play} /></div>
           </div>
         </div>
       </section>

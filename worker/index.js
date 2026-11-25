@@ -12,6 +12,9 @@ const SHELL_ROUTES = new Set(['/streaming']);
 // Permanent redirects carried over from vercel.json (keys are decoded pathnames).
 const REDIRECTS = new Map([
   ['/consultoria/escudo-diplomático', '/consultoria/escudo-diplomatico'],
+  // Duplicate blog posts merged into the stronger one (2026-11-25). Keep postbuild.js RETIRED_BLOG_SLUGS in sync.
+  ['/blog/como-elegir-empresa-seguridad-privada-venezuela', '/blog/mejor-empresa-seguridad-privada-venezuela'],
+  ['/blog/rrhh-el-socio-critico-del-gerente-de-seguridad', '/blog/rrhh-socio-critico-seguridad'],
 ]);
 
 // Security headers for every response, as vercel.json set them. Update the CSP allowlist when adding

@@ -660,7 +660,7 @@ const sequenceTemplates: Record<string, { subject: string | ((nombre: string, em
         que debe evaluar antes de contratar o cambiar de empresa de seguridad:
       </p>
       <div style="text-align:center;">
-        <a href="https://cssg-global.com/blog/como-elegir-empresa-seguridad-privada-venezuela" style="display:inline-block;background-color:#0EA5E9;color:#FFFFFF;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
+        <a href="https://cssg-global.com/blog/mejor-empresa-seguridad-privada-venezuela" style="display:inline-block;background-color:#0EA5E9;color:#FFFFFF;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:600;font-size:14px;">
           Leer la guía completa
         </a>
       </div>

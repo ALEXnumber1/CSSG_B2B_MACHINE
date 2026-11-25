@@ -108,7 +108,7 @@ const EMAIL_TEMPLATES = {
       <h2 style="color:#0F172A;font-size:22px;margin:0 0 16px;">Hola ${nombre},</h2>
       <p style="color:#334155;font-size:15px;line-height:1.7;">El <strong>60% de las empresas en Venezuela</strong> cambia de proveedor de seguridad en los primeros 12 meses. ¿La razón? Rotación de personal, falta de supervisión y reportes que nunca llegan.</p>
       <div style="text-align:center;margin:24px 0;">
-        <a href="https://cssg-global.com/blog/como-elegir-empresa-seguridad-privada-venezuela" style="display:inline-block;background-color:#0EA5E9;color:#FFFFFF;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:600;">Leer la guía completa</a>
+        <a href="https://cssg-global.com/blog/mejor-empresa-seguridad-privada-venezuela" style="display:inline-block;background-color:#0EA5E9;color:#FFFFFF;padding:12px 32px;border-radius:8px;text-decoration:none;font-weight:600;">Leer la guía completa</a>
       </div>
     `),
   },

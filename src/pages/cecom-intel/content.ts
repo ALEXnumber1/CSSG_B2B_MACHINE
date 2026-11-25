@@ -88,6 +88,12 @@ const en = {
     p1: 'CECOM-Intel is the risk analysis unit of CECOM, CSSG Global’s Security Operations Center (GSOC) in Caracas. It works with independent judgment and supplies validated information and situational awareness to all of our operations and directly to our clients.',
     p2: 'Every security decision we make starts with a prior analysis, not an assumption.',
   },
+  video: {
+    eyebrow: 'VIDEO',
+    title: 'The live risk map of Venezuela',
+    lead: 'How CECOM-Intel, the analysis unit of CSSG Global’s command center in Caracas, follows risk across Venezuela in real time.',
+    play: 'Play the video: CECOM-Intel · Live Risk Map of Venezuela',
+  },
   patrol: {
     eyebrow: 'EXTERIOR PATROL',
     title: 'Insecurity is outside. We are there too.',
@@ -280,6 +286,12 @@ const es: typeof en = {
     title: 'La capa de análisis de riesgo de CSSG',
     p1: 'CECOM-Intel es la unidad de análisis de riesgo del CECOM, el centro de operaciones de seguridad de CSSG Global en Caracas. Opera con independencia de criterio y abastece de información validada a todas nuestras operaciones y directamente a nuestros clientes.',
     p2: 'Cada decisión de seguridad que tomamos parte de un análisis previo, no de una suposición.',
+  },
+  video: {
+    eyebrow: 'VIDEO',
+    title: 'El mapa de riesgo de Venezuela en vivo',
+    lead: 'Cómo CECOM-Intel, la unidad de análisis del centro de mando de CSSG Global en Caracas, sigue el riesgo en toda Venezuela en tiempo real. Video en inglés.',
+    play: 'Reproducir el video: CECOM-Intel · Mapa de riesgo de Venezuela en vivo',
   },
   patrol: {
     eyebrow: 'PATRULLAJE EXTERIOR',

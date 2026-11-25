@@ -32,7 +32,7 @@ export default function EmpresaSeguridadGracias() {
       navigate('/empresa-de-seguridad', { replace: true });
       return;
     }
-    document.title = state.duplicate ? 'Ya tenemos tus datos | CSSG Global' : 'Solicitud recibida | CSSG Global';
+    document.title = state.duplicate ? 'Ya tenemos sus datos | CSSG Global' : 'Solicitud recibida | CSSG Global';
     let meta = document.querySelector('meta[name="robots"]');
     if (!meta) {
       meta = document.createElement('meta');
@@ -73,7 +73,7 @@ export default function EmpresaSeguridadGracias() {
           </div>
 
           <h1 className="mb-4 tracking-tight" style={{ fontFamily: "'Playfair Display', serif", fontSize: 'clamp(1.6rem, 3.4vw, 2.1rem)' }}>
-            {state.duplicate ? 'Ya tenemos tus datos' : `Gracias${firstName ? `, ${firstName}` : ''}. Su solicitud fue recibida.`}
+            {state.duplicate ? 'Ya tenemos sus datos' : `Gracias${firstName ? `, ${firstName}` : ''}. Su solicitud fue recibida.`}
           </h1>
 
           <p className="text-gray-400">

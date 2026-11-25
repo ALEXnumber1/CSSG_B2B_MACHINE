@@ -194,7 +194,7 @@ export default function InvestorSecurity() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   useEffect(() => {
-    document.title = 'Executive Protection & Security Services for Investors in Venezuela | CSSG';
+    document.title = 'Executive Protection for Investors in Venezuela | CSSG';
     const desc = '24/7 executive protection, preventive intelligence, due diligence and secured ground transport for investors from the U.S., UK and Europe traveling to Venezuela. ISO 9001:2015 certified, 12+ years serving G7 embassies, zero incidents since 2009. Free risk assessment.';
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {

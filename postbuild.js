@@ -82,14 +82,14 @@ const routes = [
   {
     path: 'auditoria-seguridad-iso-31000',
     title: 'Auditoría de Seguridad ISO 31000 | CSSG',
-    description: 'Análisis y gestión de riesgos corporativos bajo la normativa internacional ISO 31000. Protege los activos críticos de tu empresa.',
+    description: 'Análisis y gestión de riesgos corporativos bajo la normativa internacional ISO 31000. Proteja los activos críticos de su empresa.',
     image: 'https://cssg-global.com/images/seo-iso31000.png',
     jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Auditoría de Seguridad ISO 31000", "description": "Análisis FMEA y gestión de riesgos corporativos bajo ISO 31000:2018 y ASIS ORM.1:2017.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "serviceType": "Auditoría de Seguridad" }
   },
   {
     path: 'analisis-riesgos-corporativos-venezuela',
     title: 'Análisis de Riesgos Corporativos en Venezuela | CSSG',
-    description: 'Evaluación FMEA y diagnósticos de vulnerabilidad para empresas en Venezuela. Evita incidentes con inteligencia preventiva.',
+    description: 'Evaluación FMEA y diagnósticos de vulnerabilidad para empresas en Venezuela. Evite incidentes con inteligencia preventiva.',
     image: 'https://cssg-global.com/images/seo-riesgos.png',
     jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Análisis de Riesgos Corporativos en Venezuela", "description": "Evaluación FMEA y diagnósticos de vulnerabilidad para empresas operando en Venezuela.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "areaServed": { "@type": "Country", "name": "Venezuela" } }
   },
@@ -102,7 +102,7 @@ const routes = [
   },
   {
     path: 'analisis-riesgo',
-    title: 'Diagnóstico de Vulnerabilidades Corporativas Gratuito | FMEA ISO 31000 | CSSG',
+    title: 'Diagnóstico Gratuito de Vulnerabilidades (FMEA) | CSSG',
     description: 'Evalúe el nivel de vulnerabilidad de su organización en 8 minutos. Metodología FMEA aplicada a 4 pilares: Perímetro, Accesos, Procedimientos e Inteligencia. Sin costo.',
     image: 'https://cssg-global.com/risk_analysis_cta.webp',
     jsonld: { "@context": "https://schema.org", "@type": "SoftwareApplication", "name": "CSSG Risk Analyzer — Análisis de Riesgo ISO 31000", "description": "Herramienta gratuita de autodiagnóstico de seguridad corporativa. Metodología FMEA + ISO 31000:2018. Evalúa 4 pilares: Perímetro, Accesos, Procedimientos e Inteligencia.", "applicationCategory": "BusinessApplication", "operatingSystem": "Web", "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }, "author": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" } }
@@ -117,7 +117,7 @@ const routes = [
   {
     path: 'tecnologia',
     alternates: { en: 'en/technology', es: 'tecnologia' },
-    title: 'ShieldTrace PSIM — Seguridad Corporativa Predictiva para Venezuela | CSSG',
+    title: 'ShieldTrace PSIM: Seguridad Predictiva en Venezuela | CSSG',
     description: 'CCTV analítico con IA, control de acceso biométrico, GPS en tiempo real y drones autónomos en un dashboard único. Potencie el desempeño de su equipo de vigilancia física en Venezuela.',
     image: 'https://cssg-global.com/shieldtrace_tablet_dashboard_1777552473752.webp',
     jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "ShieldTrace PSIM — Plataforma de Seguridad Integrada", "description": "Plataforma de integración de seguridad física (PSIM) con CCTV analítico con IA, GPS en tiempo real, control de acceso biométrico y drones autónomos.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "serviceType": "Plataforma PSIM de Seguridad Física", "areaServed": { "@type": "Country", "name": "Venezuela" }, "url": "https://cssg-global.com/tecnologia" }
@@ -137,7 +137,7 @@ const routes = [
   },
   {
     path: 'consultoria/escudo-diplomatico',
-    title: 'Protección Ejecutiva Bajo Estándar Diplomático G7 | Escudo Diplomático | CSSG',
+    title: 'Escudo Diplomático: Protección Ejecutiva Estándar G7 | CSSG',
     description: 'El único esquema de seguridad privada en Venezuela diseñado bajo estándares G7. Evaluación personalizada, protocolo 24/7 y confidencialidad absoluta. Briefing confidencial de 10 minutos.',
     image: 'https://cssg-global.com/seo_escudo.jpg',
     jsonld: { "@context": "https://schema.org", "@type": "Service", "name": "Escudo Diplomático — Protección VIP Elite", "description": "Servicio exclusivo de protección a personalidades VIP, dignatarios y misiones diplomáticas bajo estándar G7. Esquemas personalizados 24/7.", "provider": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "serviceType": "Protección Ejecutiva VIP", "audience": { "@type": "Audience", "audienceType": "Diplomáticos, Ejecutivos de Alto Perfil, Embajadas" } }
@@ -155,39 +155,32 @@ const routes = [
     description: 'Artículos de análisis, tendencias de seguridad y recomendaciones de expertos en protección corporativa.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
     jsonld: [
-      { "@context": "https://schema.org", "@type": "Blog", "name": "Blog de Inteligencia de Seguridad — CSSG", "description": "Análisis, tendencias y recomendaciones de expertos en seguridad corporativa y diplomática en Venezuela.", "url": "https://cssg-global.com/blog", "publisher": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "blogPost": [ { "@type": "BlogPosting", "headline": "Cómo elegir una empresa de seguridad privada en Venezuela", "url": "https://cssg-global.com/blog/como-elegir-empresa-seguridad-privada-venezuela", "datePublished": "2026-04-12" }, { "@type": "BlogPosting", "headline": "Seguridad Corporativa en Caracas: Guía Completa 2026", "url": "https://cssg-global.com/blog/seguridad-corporativa-caracas-guia-completa", "datePublished": "2026-03-20" }, { "@type": "BlogPosting", "headline": "Sueldo Mínimo de Vigilantes en Venezuela 2026", "url": "https://cssg-global.com/blog/sueldo-minimo-vigilantes-venezuela", "datePublished": "2026-05-01" }, { "@type": "BlogPosting", "headline": "RRHH como Socio Crítico en la Seguridad Corporativa", "url": "https://cssg-global.com/blog/rrhh-socio-critico-seguridad", "datePublished": "2026-04-26" }, { "@type": "BlogPosting", "headline": "5 Errores Críticos en Seguridad Corporativa que Debes Evitar", "url": "https://cssg-global.com/blog/5-errores-seguridad-corporativa", "datePublished": "2026-04-05" }, { "@type": "BlogPosting", "headline": "Por qué ISO 9001 es Clave en la Seguridad Privada", "url": "https://cssg-global.com/blog/iso-9001-seguridad-privada-importancia", "datePublished": "2026-03-28" }, { "@type": "BlogPosting", "headline": "Análisis PESTEL de Seguridad en Venezuela 2026", "url": "https://cssg-global.com/blog/analisis-pestel-seguridad-venezuela", "datePublished": "2026-03-15" } ] },
-      { "@context": "https://schema.org", "@type": "ItemList", "name": "Artículos de Inteligencia de Seguridad — CSSG", "url": "https://cssg-global.com/blog", "numberOfItems": 7, "itemListElement": [ { "@type": "ListItem", "position": 1, "url": "https://cssg-global.com/blog/como-elegir-empresa-seguridad-privada-venezuela", "name": "Cómo elegir una empresa de seguridad privada en Venezuela" }, { "@type": "ListItem", "position": 2, "url": "https://cssg-global.com/blog/sueldo-minimo-vigilantes-venezuela", "name": "Sueldo Mínimo de Vigilantes en Venezuela 2026" }, { "@type": "ListItem", "position": 3, "url": "https://cssg-global.com/blog/rrhh-socio-critico-seguridad", "name": "RRHH como Socio Crítico en la Seguridad Corporativa" }, { "@type": "ListItem", "position": 4, "url": "https://cssg-global.com/blog/5-errores-seguridad-corporativa", "name": "5 Errores Críticos en Seguridad Corporativa que Debes Evitar" }, { "@type": "ListItem", "position": 5, "url": "https://cssg-global.com/blog/seguridad-corporativa-caracas-guia-completa", "name": "Seguridad Corporativa en Caracas: Guía Completa 2026" }, { "@type": "ListItem", "position": 6, "url": "https://cssg-global.com/blog/iso-9001-seguridad-privada-importancia", "name": "Por qué ISO 9001 es Clave en la Seguridad Privada" }, { "@type": "ListItem", "position": 7, "url": "https://cssg-global.com/blog/analisis-pestel-seguridad-venezuela", "name": "Análisis PESTEL de Seguridad en Venezuela 2026" } ] }
+      { "@context": "https://schema.org", "@type": "Blog", "name": "Blog de Inteligencia de Seguridad — CSSG", "description": "Análisis, tendencias y recomendaciones de expertos en seguridad corporativa y diplomática en Venezuela.", "url": "https://cssg-global.com/blog", "publisher": { "@type": "Organization", "name": "CSSG", "url": "https://cssg-global.com", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "blogPost": [ { "@type": "BlogPosting", "headline": "Cómo elegir la mejor empresa de seguridad privada en Venezuela", "url": "https://cssg-global.com/blog/mejor-empresa-seguridad-privada-venezuela", "datePublished": "2026-05-22" }, { "@type": "BlogPosting", "headline": "Seguridad Corporativa en Caracas: Guía Completa 2026", "url": "https://cssg-global.com/blog/seguridad-corporativa-caracas-guia-completa", "datePublished": "2026-03-20" }, { "@type": "BlogPosting", "headline": "Sueldo Mínimo de Vigilantes en Venezuela 2026", "url": "https://cssg-global.com/blog/sueldo-minimo-vigilantes-venezuela", "datePublished": "2026-05-01" }, { "@type": "BlogPosting", "headline": "RRHH como Socio Crítico en la Seguridad Corporativa", "url": "https://cssg-global.com/blog/rrhh-socio-critico-seguridad", "datePublished": "2026-04-26" }, { "@type": "BlogPosting", "headline": "5 Errores Críticos en Seguridad Corporativa que Debe Evitar", "url": "https://cssg-global.com/blog/5-errores-seguridad-corporativa", "datePublished": "2026-04-05" }, { "@type": "BlogPosting", "headline": "Por qué ISO 9001 es Clave en la Seguridad Privada", "url": "https://cssg-global.com/blog/iso-9001-seguridad-privada-importancia", "datePublished": "2026-03-28" }, { "@type": "BlogPosting", "headline": "Análisis PESTEL de Seguridad en Venezuela 2026", "url": "https://cssg-global.com/blog/analisis-pestel-seguridad-venezuela", "datePublished": "2026-03-15" } ] },
+      { "@context": "https://schema.org", "@type": "ItemList", "name": "Artículos de Inteligencia de Seguridad — CSSG", "url": "https://cssg-global.com/blog", "numberOfItems": 7, "itemListElement": [ { "@type": "ListItem", "position": 1, "url": "https://cssg-global.com/blog/mejor-empresa-seguridad-privada-venezuela", "name": "Cómo elegir la mejor empresa de seguridad privada en Venezuela" }, { "@type": "ListItem", "position": 2, "url": "https://cssg-global.com/blog/sueldo-minimo-vigilantes-venezuela", "name": "Sueldo Mínimo de Vigilantes en Venezuela 2026" }, { "@type": "ListItem", "position": 3, "url": "https://cssg-global.com/blog/rrhh-socio-critico-seguridad", "name": "RRHH como Socio Crítico en la Seguridad Corporativa" }, { "@type": "ListItem", "position": 4, "url": "https://cssg-global.com/blog/5-errores-seguridad-corporativa", "name": "5 Errores Críticos en Seguridad Corporativa que Debe Evitar" }, { "@type": "ListItem", "position": 5, "url": "https://cssg-global.com/blog/seguridad-corporativa-caracas-guia-completa", "name": "Seguridad Corporativa en Caracas: Guía Completa 2026" }, { "@type": "ListItem", "position": 6, "url": "https://cssg-global.com/blog/iso-9001-seguridad-privada-importancia", "name": "Por qué ISO 9001 es Clave en la Seguridad Privada" }, { "@type": "ListItem", "position": 7, "url": "https://cssg-global.com/blog/analisis-pestel-seguridad-venezuela", "name": "Análisis PESTEL de Seguridad en Venezuela 2026" } ] }
     ]
   },
   {
     path: 'blog/inteligencia-amenazas-venezuela',
-    title: 'Inteligencia de Amenazas en Venezuela: Guía para Operaciones Corporativas y Diplomáticas | CSSG',
+    title: 'Inteligencia de Amenazas en Venezuela: Guía 2026 | CSSG',
     description: 'Inteligencia de Amenazas en Venezuela: anticipe riesgos físicos y digitales con OSINT, alertas tempranas y TIaaS para directivos y diplomáticos.',
     image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80',
     jsonld: { "@context": "https://schema.org", "@type": "Article", "headline": "Inteligencia de Amenazas en Venezuela: Cómo Proteger Operaciones Corporativas y Diplomáticas", "description": "Panorama de amenazas físico-digitales en Venezuela, actores relevantes y cómo la inteligencia de amenazas (TIaaS) protege operaciones corporativas y diplomáticas.", "keywords": "Inteligencia de Amenazas, Ciberseguridad, Seguridad Corporativa, OSINT, TIaaS, Venezuela", "datePublished": "2026-07-14", "dateModified": "2026-07-14", "author": { "@type": "Person", "name": "Alexander Briceño", "affiliation": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" } }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "image": { "@type": "ImageObject", "url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80", "description": "Centro de operaciones de inteligencia de amenazas monitoreando datos globales en tiempo real — CSSG Venezuela" }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/inteligencia-amenazas-venezuela" } }
   },
   {
     path: 'blog/executive-security-venezuela',
-    title: 'Executive Security in Venezuela: Duty-of-Care for Investors & Diplomats | CSSG',
-    description: 'Venezuela is reopening to foreign capital. The preventive, non-armed, ISO 9001 security architecture investors and diplomats need to enter and operate safely in 2026.',
+    title: 'Seguridad Ejecutiva en Venezuela para Inversionistas | CSSG',
+    description: 'Venezuela se reabre al capital extranjero. La arquitectura de seguridad preventiva, no armada e ISO 9001 que inversionistas y diplomáticos necesitan para operar en 2026.',
     image: 'https://cssg-global.com/business_security_1.png',
     jsonld: [
-      { "@context": "https://schema.org", "@type": "Article", "headline": "Executive Security in Venezuela: A Duty-of-Care Framework for Investors and Diplomats", "description": "Venezuela is reopening to foreign capital. The preventive, non-armed, documented security architecture investors and diplomats need to enter and operate safely.", "keywords": "executive security Venezuela, corporate security Venezuela, duty of care Venezuela, travel risk management Venezuela, security company Venezuela for foreign investors", "datePublished": "2026-08-09", "dateModified": "2026-08-09", "inLanguage": "en", "author": { "@type": "Person", "name": "Alexander Briceño", "honorificPrefix": "MBA", "jobTitle": "CEO", "affiliation": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" } }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "image": { "@type": "ImageObject", "url": "https://cssg-global.com/business_security_1.png", "description": "Executive security in Venezuela — CSSG Global corporate protection for investors and diplomats" }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/executive-security-venezuela" } }
+      { "@context": "https://schema.org", "@type": "Article", "headline": "Seguridad ejecutiva en Venezuela: del viaje de riesgo al aterrizaje seguro para inversionistas y empresas extranjeras", "description": "Venezuela se reabre al capital extranjero. La arquitectura de seguridad preventiva, no armada y documentada que inversionistas y diplomáticos necesitan para entrar y operar con seguridad.", "keywords": "seguridad ejecutiva Venezuela, seguridad corporativa Venezuela, duty of care Venezuela, gestión de riesgos de viaje Venezuela, empresa de seguridad para inversionistas extranjeros", "datePublished": "2026-08-09", "dateModified": "2026-11-25", "inLanguage": "es", "author": { "@type": "Person", "name": "Alexander Briceño", "honorificPrefix": "MBA", "jobTitle": "CEO", "affiliation": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" } }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "image": { "@type": "ImageObject", "url": "https://cssg-global.com/business_security_1.png", "description": "Seguridad ejecutiva en Venezuela — protección corporativa de CSSG Global para inversionistas y diplomáticos" }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/executive-security-venezuela" } }
     ]
-  },
-  {
-    path: 'blog/como-elegir-empresa-seguridad-privada-venezuela',
-    title: 'Cómo elegir una empresa de seguridad privada en Venezuela | CSSG',
-    description: 'Guía práctica para seleccionar una empresa de seguridad corporativa en Venezuela. Criterios clave: certificaciones, experiencia, tecnología y respaldo legal.',
-    image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
-    jsonld: { "@context": "https://schema.org", "@type": "Article", "headline": "Cómo elegir una empresa de seguridad privada en Venezuela", "description": "Guía práctica para seleccionar una empresa de seguridad corporativa en Venezuela.", "datePublished": "2026-04-12", "dateModified": "2026-04-12", "author": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/como-elegir-empresa-seguridad-privada-venezuela" } }
   },
   {
     path: 'blog/seguridad-corporativa-caracas-guia-completa',
     title: 'Seguridad Corporativa en Caracas: Guía Completa 2026 | CSSG',
-    description: 'Todo lo que necesitas saber sobre seguridad corporativa en Caracas. Protocolos, tecnología y estrategias para proteger tu empresa en Venezuela.',
+    description: 'Lo que necesita saber sobre seguridad corporativa en Caracas: protocolos, tecnología y estrategias para proteger su empresa en Venezuela.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
-    jsonld: { "@context": "https://schema.org", "@type": "Article", "headline": "Seguridad Corporativa en Caracas: Guía Completa 2026", "description": "Todo lo que necesitas saber sobre seguridad corporativa en Caracas.", "datePublished": "2026-03-20", "dateModified": "2026-03-20", "author": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/seguridad-corporativa-caracas-guia-completa" } }
+    jsonld: { "@context": "https://schema.org", "@type": "Article", "headline": "Seguridad Corporativa en Caracas: Guía Completa 2026", "description": "Lo que necesita saber sobre seguridad corporativa en Caracas.", "datePublished": "2026-03-20", "dateModified": "2026-03-20", "author": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/seguridad-corporativa-caracas-guia-completa" } }
   },
   {
     path: 'blog/resiliencia-corporativa-venezuela',
@@ -204,7 +197,7 @@ const routes = [
   {
     path: 'blog/sueldo-minimo-vigilantes-venezuela',
     title: 'Sueldo Mínimo de Vigilantes en Venezuela 2026 | CSSG',
-    description: 'Conoce el sueldo mínimo legal de vigilantes y guardias de seguridad en Venezuela 2026. Análisis salarial del sector de seguridad privada.',
+    description: 'Sueldo mínimo legal de vigilantes y guardias de seguridad en Venezuela 2026. Análisis salarial del sector de seguridad privada.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
     jsonld: { "@context": "https://schema.org", "@type": "Article", "headline": "Sueldo Mínimo de Vigilantes en Venezuela 2026", "description": "Análisis salarial del sector de seguridad privada en Venezuela.", "datePublished": "2026-05-01", "dateModified": "2026-05-01", "author": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/sueldo-minimo-vigilantes-venezuela" } }
   },
@@ -217,15 +210,15 @@ const routes = [
   },
   {
     path: 'blog/5-errores-seguridad-corporativa',
-    title: '5 Errores Críticos en Seguridad Corporativa que Debes Evitar | CSSG',
-    description: 'Los 5 errores más comunes en seguridad corporativa en Venezuela y cómo evitarlos para proteger tu empresa de amenazas reales.',
+    title: '5 Errores de Seguridad Corporativa que Debe Evitar | CSSG',
+    description: 'Los 5 errores más comunes en seguridad corporativa en Venezuela y cómo evitarlos para proteger su empresa de amenazas reales.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
-    jsonld: { "@context": "https://schema.org", "@type": "Article", "headline": "5 Errores Críticos en Seguridad Corporativa que Debes Evitar", "description": "Los 5 errores más comunes en seguridad corporativa en Venezuela.", "datePublished": "2026-04-05", "dateModified": "2026-04-05", "author": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/5-errores-seguridad-corporativa" } }
+    jsonld: { "@context": "https://schema.org", "@type": "Article", "headline": "5 Errores Críticos en Seguridad Corporativa que Debe Evitar", "description": "Los 5 errores más comunes en seguridad corporativa en Venezuela.", "datePublished": "2026-04-05", "dateModified": "2026-04-05", "author": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/5-errores-seguridad-corporativa" } }
   },
   {
     path: 'blog/iso-9001-seguridad-privada-importancia',
     title: 'Por qué ISO 9001 es Clave en la Seguridad Privada | CSSG',
-    description: 'Descubre por qué la certificación ISO 9001:2015 es fundamental para garantizar calidad y confiabilidad en una empresa de seguridad privada.',
+    description: 'Por qué la certificación ISO 9001:2015 es fundamental para garantizar calidad y confiabilidad en una empresa de seguridad privada.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
     jsonld: { "@context": "https://schema.org", "@type": "Article", "headline": "Por qué ISO 9001 es Clave en la Seguridad Privada", "description": "La importancia de la certificación ISO 9001:2015 en seguridad privada.", "datePublished": "2026-03-28", "dateModified": "2026-03-28", "author": { "@type": "Organization", "@id": "https://cssg-global.com/#organization", "name": "CSSG", "url": "https://cssg-global.com" }, "publisher": { "@type": "Organization", "name": "CSSG", "logo": { "@type": "ImageObject", "url": "https://cssg-global.com/logo.png" } }, "mainEntityOfPage": { "@type": "WebPage", "@id": "https://cssg-global.com/blog/iso-9001-seguridad-privada-importancia" } }
   },
@@ -528,7 +521,7 @@ const routes = [
   },
   {
     path: 'consultoria/certificaciones',
-    title: 'Empresa de Seguridad Certificada ISO 9001 en Venezuela — N° 580181 | CSSG',
+    title: 'Empresa de Seguridad Certificada ISO 9001 en Venezuela | CSSG',
     description: 'Empresa de seguridad con ISO 9001:2015 N° 580181 (LL-C) y Cyber Essentials NCSC. Marcos ESRM, ISO 31000, ISO 22301 y ASIS ORM.1. Certificaciones verificables por terceros · Venezuela.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
     jsonld: [
@@ -566,7 +559,7 @@ const routes = [
   },
   {
     path: 'consultoria/asesoria-legal-rrhh-seguridad',
-    title: 'Asesoría Legal en Seguridad: RRHH y Derechos Humanos en Venezuela | CSSG',
+    title: 'Asesoría Legal de RRHH y DD. HH. en Seguridad | CSSG',
     description: 'Consultoría legal especializada en derecho laboral LOTTT para empresas de seguridad privada, protocolos DDHH, uso proporcional de la fuerza y compliance DIGESERVISP en Venezuela.',
     image: 'https://cssg-global.com/consulting_b2b.webp',
     jsonld: [
@@ -582,7 +575,7 @@ const routes = [
   // --- White Papers ---
   {
     path: 'white-papers/guia-evaluacion-riesgos-seguridad-venezuela',
-    title: 'Guía de Evaluación de Riesgos de Seguridad Corporativa en Venezuela 2026 | CSSG',
+    title: 'White Paper: Evaluación de Riesgos en Venezuela 2026 | CSSG',
     description: 'Descargue gratis la guía definitiva de evaluación de riesgos de seguridad empresarial en Venezuela. Metodología ESRM, ISO 31000:2018 y FMEA aplicados al contexto venezolano.',
     image: 'https://cssg-global.com/consultoria_card.webp',
     jsonld: [
@@ -593,7 +586,7 @@ const routes = [
   },
   {
     path: 'white-papers/due-diligence-corporativa-venezuela',
-    title: 'Due Diligence Corporativa en Venezuela: Protocolo de Investigación 2026 | CSSG',
+    title: 'White Paper: Due Diligence Corporativa en Venezuela | CSSG',
     description: 'Descargue gratis el protocolo completo de due diligence corporativa en Venezuela. Verificación CICPC, SENIAT, IVSS, OSINT y metodología de escritura por inducción.',
     image: 'https://cssg-global.com/consultoria_card.webp',
     jsonld: [
@@ -604,7 +597,7 @@ const routes = [
   },
   {
     path: 'white-papers/plan-continuidad-negocio-venezuela',
-    title: 'Plan de Continuidad de Negocio en Venezuela: Guía ISO 22301:2019 | CSSG',
+    title: 'White Paper: Continuidad de Negocio ISO 22301 | CSSG',
     description: 'Descargue gratis la guía completa de Plan de Continuidad de Negocio (BCP) para Venezuela. ISO 22301:2019 adaptado a cortes eléctricos, disturbios y escasez operativa.',
     image: 'https://cssg-global.com/consultoria_card.webp',
     jsonld: [
@@ -624,7 +617,7 @@ const routes = [
   {
     path: 'portal-rrhh',
     title: 'Portal de Empleo y RRHH | CSSG',
-    description: 'Únete a nuestro equipo táctico y de seguridad. Envía tu postulación a través de nuestro portal de reclutamiento.',
+    description: 'Forme parte de nuestro equipo de seguridad. Envíe su postulación a través de nuestro portal de reclutamiento.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
     jsonld: { "@context": "https://schema.org", "@type": "JobPosting", "title": "Oficial de Seguridad — CSSG Venezuela", "description": "CSSG busca oficiales de seguridad comprometidos. Ofrecemos los salarios más competitivos del sector, formación continua y estabilidad laboral.", "hiringOrganization": { "@type": "Organization", "name": "CSSG", "sameAs": "https://cssg-global.com" }, "jobLocation": { "@type": "Place", "address": { "@type": "PostalAddress", "addressLocality": "Caracas", "addressCountry": "VE" } }, "employmentType": "FULL_TIME" }
   },
@@ -654,15 +647,15 @@ const routes = [
   },
   {
     path: 'preguntas-frecuentes',
-    title: 'Preguntas Frecuentes sobre Seguridad Corporativa | CSSG | Caracas',
+    title: 'Preguntas Frecuentes sobre Seguridad Corporativa | CSSG',
     description: 'Respuestas a las 94 preguntas más frecuentes sobre seguridad privada, contratos, tecnología, certificaciones y protección ejecutiva en Venezuela. Resuelva sus dudas antes de contratar.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
     // FAQPage is rendered by the page itself from its visible questions (FAQ.tsx).
   },
   {
     path: 'testimonios',
-    title: 'Opiniones y Testimonios de Clientes | CSSG | Seguridad Corporativa Venezuela',
-    description: 'Lee las opiniones verificadas de clientes, colaboradores y usuarios de CSSG. Comparte tu experiencia con la empresa de seguridad corporativa líder de Venezuela.',
+    title: 'Testimonios de Clientes de Seguridad Corporativa | CSSG',
+    description: 'Opiniones de clientes, colaboradores y usuarios de CSSG, empresa de seguridad corporativa y diplomática en Venezuela. Comparta su experiencia.',
     image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
     jsonld: {
       "@context": "https://schema.org",
@@ -727,7 +720,7 @@ const routes = [
   },
   {
     path: 'consultoria-y-analisis-de-riesgos',
-    title: 'Evaluación de Riesgos de Seguridad y Consultoría de Seguridad | Metodología ISO 31000 | CSSG',
+    title: 'Consultoría y Análisis de Riesgos de Seguridad | CSSG',
     description: 'Solicite una evaluación de riesgos de seguridad bajo metodología FMEA e ISO 31000: diagnóstico de seguridad, auditoría de seguridad física y matriz de gestión de riesgos. Por CSSG, +17 años sin incidentes.',
     image: 'https://cssg-global.com/svc_auditoria.webp',
     preloadHero: true,
@@ -744,7 +737,7 @@ const routes = [
   {
     path: 'en/corporate-security-consulting',
     alternates: { en: 'en/corporate-security-consulting', es: 'empresa-de-seguridad' },
-    title: 'Corporate Security Services & Security Consulting in Venezuela | CSSG',
+    title: 'Corporate Security Consulting in Venezuela | CSSG',
     description: 'Corporate security services, security consulting and private protection for multinational companies in Venezuela. Vet private security contractor companies with our ISO 31000 methodology. Request a confidential assessment — CSSG, 17+ years without incident.',
     image: 'https://cssg-global.com/svc_ejecutivos.webp',
     preloadHero: true,
@@ -778,7 +771,7 @@ const routes = [
   {
     path: 'en/executive-protection-venezuela-investors',
     alternates: { en: 'en/executive-protection-venezuela-investors', es: 'consultoria/secure-landing' },
-    title: 'Executive Protection & Security Services for Investors in Venezuela | CSSG',
+    title: 'Executive Protection for Investors in Venezuela | CSSG',
     description: '24/7 executive protection, preventive intelligence, due diligence and secured ground transport for investors from the U.S., UK and Europe traveling to Venezuela. ISO 9001:2015 certified, 12+ years serving G7 embassies, zero incidents since 2009. Free risk assessment.',
     image: 'https://cssg-global.com/svc_custodia.webp',
     preloadHero: true,
@@ -913,7 +906,21 @@ async function fetchDbBlogPosts() {
   }
 }
 
-const dbPosts = await fetchDbBlogPosts();
+// Posts merged into another one: worker/index.js REDIRECTS sends them there with a 301, so they must
+// not get their own HTML nor a sitemap entry. Keep both lists in sync.
+const RETIRED_BLOG_SLUGS = new Set([
+  'como-elegir-empresa-seguridad-privada-venezuela',
+  'rrhh-el-socio-critico-del-gerente-de-seguridad',
+]);
+// <title> and meta description for Supabase posts whose own title/excerpt run past what Google shows
+// (~60 / ~160 characters). The visible H1 keeps the post's full title.
+const DB_POST_SEO = {
+  'mejor-empresa-seguridad-privada-venezuela': {
+    title: 'Cómo Elegir la Mejor Empresa de Seguridad en Venezuela | CSSG',
+    description: '7 criterios verificables para elegir empresa de seguridad privada en Venezuela: DIGESERVISP, ISO 9001, rotación, historial de incidencias y más.',
+  },
+};
+const dbPosts = (await fetchDbBlogPosts()).filter(post => !RETIRED_BLOG_SLUGS.has(post.slug));
 for (const post of dbPosts) {
   const p = `blog/${post.slug}`;
   if (routesByPath.has(p)) {
@@ -923,8 +930,8 @@ for (const post of dbPosts) {
   const image = post.image_url || post.image || 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg';
   const route = {
     path: p,
-    title: `${post.title} | CSSG`,
-    description: post.excerpt || post.title,
+    title: DB_POST_SEO[post.slug]?.title || `${post.title} | CSSG`,
+    description: DB_POST_SEO[post.slug]?.description || post.excerpt || post.title,
     image: image.startsWith('http') ? image : `${SITE_URL}${image.startsWith('/') ? '' : '/'}${image}`,
     lastmod: post.created_at?.slice(0, 10),
     dbRow: post,

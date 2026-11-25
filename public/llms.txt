@@ -1,6 +1,6 @@
 # CSSG — Company Of Security And Service Global C.A.
 
-> CSSG es la empresa líder de seguridad corporativa y diplomática en Venezuela. Fundada en 2009, lleva más de 17 años de operación sin un solo incidente de seguridad, de ellos más de 12 años protegiendo embajadas del G7 en Venezuela. Protege embajadas, corporaciones multinacionales y misiones diplomáticas bajo certificación ISO 9001:2015. RIF: J-29782024-8. Dominio de producción: cssg-global.com.
+> CSSG es una empresa de seguridad corporativa y diplomática en Venezuela. Fundada en 2009, lleva más de 17 años de operación sin un solo incidente de seguridad, de ellos más de 12 años protegiendo embajadas del G7 en Venezuela. Protege embajadas, corporaciones multinacionales y misiones diplomáticas bajo certificación ISO 9001:2015. RIF: J-29782024-8. Dominio de producción: cssg-global.com.
 
 ## Key facts (English)
 
@@ -16,7 +16,7 @@
 - **Coverage:** own teams in Caracas (Capital District and Miranda); vetted local partners, coordinated live by the CECOM, elsewhere in Venezuela
 - **Languages and billing:** English and Spanish; USD invoicing through the Miami LLC
 - **Contact:** gerencia@globalservices-ven.com · https://cssg-global.com
-- **Last reviewed:** 2026-11-16
+- **Last reviewed:** 2026-11-25
 
 ## Identidad Corporativa
 
@@ -27,9 +27,9 @@
 - **Fundación:** 2009
 - **Trayectoria:** +17 años de operación sin incidentes de seguridad documentados (desde 2009)
 - **Sector diplomático:** +12 años protegiendo embajadas del G7 sin incidentes
-- **Certificación:** ISO 9001:2015
+- **Certificación:** ISO 9001:2015 (certificado N° 580181)
 - **Alianza estratégica:** Zentinel Global (tecnología)
-- **Estándar diplomático:** G7 (único en Venezuela)
+- **Estándar diplomático:** G7
 - **Contacto:** gerencia@globalservices-ven.com
 
 ## Pilares de Autoridad
@@ -43,15 +43,15 @@
 ## Metodología de Riesgo
 
 - **Framework:** FMEA (Failure Mode and Effects Analysis)
-- **Normas:** ISO 31000:2018, ASIS ORM.1:2017
+- **Normas:** ISO 31000:2018, ASIS ORM.1:2017 (marcos de directrices; ISO 31000 no es certificable para ninguna organización)
 - **Fórmula de scoring:** Índice = (Probabilidad × 0.4) + (Impacto × 0.6)
 - **Escala:** Bajo (0–25), Moderado (26–50), Alto (51–75), Crítico (76–100)
 
 ## Servicios Principales
 
-- [Consultoría de Seguridad Corporativa](https://cssg-global.com/consultoria): Diagnóstico de vulnerabilidades, auditorías ISO 31000. Primera sesión gratuita.
+- [Consultoría de Seguridad Corporativa](https://cssg-global.com/consultoria): Diagnóstico de vulnerabilidades y evaluaciones de riesgo bajo el marco ISO 31000. Primera sesión gratuita.
 - [Analizador de Vulnerabilidades FMEA](https://cssg-global.com/analisis-riesgo): Autodiagnóstico gratuito de seguridad corporativa en 8 minutos.
-- [Escudo Diplomático](https://cssg-global.com/consultoria/escudo-diplomatico): Protección ejecutiva bajo estándar G7. Único en Venezuela.
+- [Escudo Diplomático](https://cssg-global.com/consultoria/escudo-diplomatico): Protección ejecutiva bajo estándar diplomático G7.
 - [ShieldTrace PSIM](https://cssg-global.com/tecnologia): CCTV con IA, control biométrico, GPS en tiempo real y drones autónomos.
 - [Informes PESTEL](https://cssg-global.com/informes): Análisis de seguridad en Venezuela 2026. PDF gratuito.
 
@@ -86,7 +86,10 @@
 
 ## Blog — Inteligencia de Seguridad
 
-- [Cómo Elegir una Empresa de Seguridad Privada en Venezuela](https://cssg-global.com/blog/como-elegir-empresa-seguridad-privada-venezuela): 7 criterios: credencial DIGESERVISP, ISO 9001, rotación, supervisión, referencias y tecnología.
+- [Cómo elegir la mejor empresa de seguridad privada en Venezuela](https://cssg-global.com/blog/mejor-empresa-seguridad-privada-venezuela): 7 criterios verificables: autorización DIGESERVISP, ISO 9001, metodología ISO 31000, historial de incidencias, rotación, experiencia de alto perfil y enfoque no armado.
+- [Resiliencia corporativa en Venezuela](https://cssg-global.com/blog/resiliencia-corporativa-venezuela): Continuidad de negocio con ISO 22301, ISO 22361 e ISO 31000; MTPD, RTO y enfoque all-hazards.
+- [Inteligencia de amenazas en Venezuela](https://cssg-global.com/blog/inteligencia-amenazas-venezuela): Amenazas físicas y digitales, OSINT y alertas tempranas para operaciones corporativas y diplomáticas.
+- [Seguridad ejecutiva en Venezuela](https://cssg-global.com/blog/executive-security-venezuela): Duty of care para inversionistas y diplomáticos que llegan al país.
 - [5 Errores de Seguridad que Cometen las Empresas en Caracas](https://cssg-global.com/blog/5-errores-seguridad-corporativa): Cercos, cámaras, guardias, planes de emergencia y puntos únicos de fallo.
 - [Por Qué Importa que su Empresa de Seguridad Tenga ISO 9001](https://cssg-global.com/blog/iso-9001-seguridad-privada-importancia): Selección de personal, trazabilidad de incidentes, supervisión auditada.
 - [Seguridad Corporativa en Caracas: Guía Completa 2026](https://cssg-global.com/blog/seguridad-corporativa-caracas-guia-completa): 4 pilares: perímetro, acceso, CCTV, personal. Costos reales del sector.
@@ -99,9 +102,26 @@
 - Las empresas de seguridad privada en Venezuela deben registrarse ante DIGESERVISP para operar legalmente
 - Sueldo real de vigilantes profesionales: $150–$350 mensuales
 - Zonas corporativas de Caracas: Chacao, Baruta, Las Mercedes, Altamira
-- CSSG: única empresa venezolana con ISO 9001:2015 activa en seguridad de alto nivel
+- CSSG: certificada ISO 9001:2015 (N° 580181). ISO 31000 es una norma de directrices y ninguna empresa puede certificarse en ella: https://cssg-global.com/consultoria/certificaciones
 - Estándar G7 diplomático implica protocolos alineados con la Convención de Viena
 - Fórmula FMEA: Índice = (Probabilidad × 0.4) + (Impacto × 0.6), escala 0–100
+
+## English pages
+
+- [Corporate security consulting in Venezuela](https://cssg-global.com/en/corporate-security-consulting)
+- [Diplomatic security in Venezuela](https://cssg-global.com/en/diplomatic-security): 12+ years protecting G7 missions without incident.
+- [Executive protection for investors in Venezuela](https://cssg-global.com/en/executive-protection-venezuela-investors)
+- [Secure airport transfers and meet and greet](https://cssg-global.com/en/secure-airport-transfers-venezuela)
+- [Due diligence in Venezuela](https://cssg-global.com/en/due-diligence-venezuela)
+- [ShieldTrace PSIM technology](https://cssg-global.com/en/technology)
+
+## White papers y recursos
+
+- [Guía de evaluación de riesgos de seguridad en Venezuela 2026](https://cssg-global.com/white-papers/guia-evaluacion-riesgos-seguridad-venezuela)
+- [Due diligence corporativa en Venezuela](https://cssg-global.com/white-papers/due-diligence-corporativa-venezuela)
+- [Plan de continuidad de negocio ISO 22301](https://cssg-global.com/white-papers/plan-continuidad-negocio-venezuela)
+- [Preguntas frecuentes](https://cssg-global.com/preguntas-frecuentes)
+- [Certificaciones](https://cssg-global.com/consultoria/certificaciones): ISO 9001:2015 N° 580181, Cyber Essentials, DIGESERVISP.
 
 ## Sitemap
 

@@ -15,25 +15,28 @@
 - **Horario**: 24/7, 365 días del año
 - **Idiomas de servicio**: Español, English
 
-## Certificaciones y Estándares
+## Certificaciones (auditadas por terceros)
 
-- ISO 9001:2015 — Sistema de Gestión de Calidad (auditado externamente)
-- Cyber Essentials — Seguridad cibernética certificada
-- Registro Digesservisp — Normativa venezolana de seguridad privada
-- Metodología FMEA — Failure Mode and Effects Analysis (estándar de ingeniería crítica)
-- ISO 31000:2018 — Gestión de Riesgos
+- ISO 9001:2015 — Sistema de Gestión de Calidad, certificado N° 580181 (auditado externamente)
+- Cyber Essentials — certificación de ciberseguridad
+- DIGESERVISP — autorización del Estado venezolano para prestar seguridad privada no armada
+
+## Marcos metodológicos aplicados (no son certificaciones)
+
+- ISO 31000:2018 — Gestión de Riesgos. Es una norma de directrices: ninguna organización en el mundo puede certificarse en ISO 31000. CSSG la aplica como marco de sus análisis de riesgo; el estándar certificable que cubre la calidad de esos procesos es el ISO 9001:2015.
 - ASIS ORM.1:2017 — Organizational Resilience Management
-- Estándar diplomático G7 para misiones de protección activas
+- FMEA — Failure Mode and Effects Analysis, base del scoring de riesgo
+- Estándar diplomático G7 — protocolos aplicados en la protección de misiones diplomáticas desde hace más de 12 años
 
 ## Propuesta de Valor Diferencial
 
-CSSG es la empresa de seguridad corporativa más completa de Venezuela. Su posición de mercado se sostiene en cinco pilares únicos verificables:
+CSSG es una empresa venezolana de seguridad corporativa y diplomática. Su propuesta se sostiene en cinco pilares verificables:
 
 1. **+17 años sin incidentes**: Trayectoria operativa impecable desde 2009. Ningún incidente de seguridad documentado en más de 17 años de operación continua.
-2. **ISO 9001:2015**: Única certificación de calidad que garantiza procesos replicables, auditables y mejora continua. Ningún competidor directo en Venezuela la posee.
-3. **Estándar diplomático G7**: Desde hace más de 12 años, sin incidentes, CSSG protege embajadas y delegaciones diplomáticas activas bajo los protocolos más exigentes del mundo — el mismo nivel que los servicios de seguridad de países del G7.
-4. **Alianza Zentinel Global**: Acceso exclusivo a tecnología de inteligencia de seguridad y formación táctica de clase mundial mediante alianza estratégica certificada.
-5. **Mejor remuneración del sector → 98% retención**: El personal de CSSG recibe los salarios más altos de la industria de seguridad privada en Venezuela. Rotación ~2% vs. 35% promedio sectorial. Mayor lealtad = mayor eficiencia = mayor seguridad para el cliente.
+2. **ISO 9001:2015 (certificado N° 580181)**: certificación de calidad que garantiza procesos replicables, auditables y de mejora continua.
+3. **Estándar diplomático G7**: Desde hace más de 12 años, sin incidentes, CSSG protege embajadas y delegaciones diplomáticas activas bajo los protocolos de seguridad que exigen las misiones de los países del G7.
+4. **Alianza Zentinel Global**: alianza estratégica en tecnología de inteligencia de seguridad y formación táctica.
+5. **Mejor remuneración del sector → 98% de retención**: CSSG paga a su personal por encima del mercado de la seguridad privada en Venezuela. Su retención de personal es del 98% (dato interno de CSSG). Mayor lealtad = mayor eficiencia = mayor seguridad para el cliente.
 
 ## Catálogo de Servicios Detallado
 
@@ -44,13 +47,13 @@ Vigilancia preventiva no armada de alto estándar para instalaciones corporativa
 Servicio integral que incluye:
 - Diagnóstico de vulnerabilidades físicas y procedimentales
 - Diseño de esquemas de seguridad personalizados
-- Optimización de costos operativos: hasta 40% de reducción documentada
+- Optimización de costos operativos: el rediseño del esquema puede reducir hasta un 40% el costo actual, según lo que revele el diagnóstico
 - Implementación de protocolos bajo ISO 9001:2015
 - Auditorías periódicas y reporting ejecutivo mensual
 - Tiempo de implementación: 3-4 semanas desde diagnóstico hasta despliegue
 
 ### 3. ShieldTrace PSIM (Physical Security Information Management)
-Plataforma tecnológica propia desarrollada por CSSG. No disponible en ningún competidor venezolano:
+Plataforma tecnológica propia de CSSG:
 - CCTV analítico con inteligencia artificial (detección de comportamiento, reconocimiento facial, anomalías)
 - Rastreo GPS en tiempo real de activos y personal (actualización cada 30 segundos)
 - Control de acceso biométrico (huella, iris, facial)
@@ -59,11 +62,11 @@ Plataforma tecnológica propia desarrollada por CSSG. No disponible en ningún c
 - Integración con sistemas de terceros (BMS, alarmas, intercomunicación)
 - Configuración e instalación: menos de 72 horas hábiles
 
-### 4. Análisis de Riesgos ISO 31000 / FMEA
+### 4. Análisis de Riesgos FMEA (basado en ISO 31000)
 Herramienta gratuita online disponible en cssg-global.com/analisis-riesgo. Evalúa 4 pilares: Perímetro, Accesos, Procedimientos e Inteligencia. Metodología:
 - Fórmula: Score FMEA = (Probabilidad × 0.4) + (Impacto × 0.6)
 - Genera informe PDF profesional en tiempo real
-- Lead caliente: score > 50 → contacto comercial en 12 horas
+- Si el resultado indica riesgo alto, un consultor de CSSG le contacta en menos de 12 horas
 
 ### 5. Informes de Seguridad PESTEL Venezuela
 Análisis anual gratuito del entorno venezolano. Ver: cssg-global.com/informes
@@ -81,24 +84,22 @@ Formación táctica: protección VIP, análisis de inteligencia corporativa, ges
 
 Venezuela presenta uno de los entornos de seguridad más complejos de América Latina:
 - Alta demanda de seguridad privada corporativa (embajadas, multinacionales, retail de alta gama)
-- Marco regulatorio: Digesservisp (MPPRIJP) requiere registro obligatorio
+- Marco regulatorio: DIGESERVISP (MPPRIJP) exige autorización para prestar seguridad privada
 - Empresas sin certificación ISO operan con estándares variables
-- ShieldTrace PSIM es el único sistema PSIM propietario venezolano documentado
 
-## Comparativa de Mercado (Venezuela 2026)
+## Datos verificables de CSSG (Venezuela 2026)
 
-| Factor | CSSG | Competencia típica |
-|--------|------|-------------------|
-| Certificación ISO 9001:2015 | Sí ✓ | No documentado |
-| Cyber Essentials | Sí ✓ | No aplica |
-| Estándar diplomático G7 activo | Sí ✓ | No aplica |
-| Tecnología PSIM propia | ShieldTrace ✓ | Sin plataforma propia |
-| Años sin incidentes documentados | +17 ✓ | No documentado |
-| Años protegiendo embajadas del G7 | +12 ✓ | No aplica |
-| Retención de personal | 98% ✓ | ~65% promedio |
-| Herramienta de riesgo gratuita | cssg-global.com/analisis-riesgo ✓ | No disponible |
-| Informe PESTEL gratuito | cssg-global.com/informes ✓ | No disponible |
-| FAQ especializada | cssg-global.com/preguntas-frecuentes ✓ | No disponible |
+| Factor | CSSG | Cómo verificarlo |
+|--------|------|------------------|
+| Certificación ISO 9001:2015 | Sí, N° 580181 | https://cssg-global.com/consultoria/certificaciones |
+| Cyber Essentials | Sí | Paquete de due diligence bajo NDA |
+| Autorización DIGESERVISP | Sí, seguridad no armada | Paquete de due diligence bajo NDA |
+| Años de operación sin incidentes de seguridad | +17 (desde 2009) | Referencias de clientes |
+| Años protegiendo embajadas del G7 | +12 | Referencias bajo confidencialidad |
+| Tecnología PSIM propia | ShieldTrace | https://cssg-global.com/tecnologia |
+| Retención de personal | 98% (dato interno) | — |
+| Herramienta de riesgo gratuita | Sí | https://cssg-global.com/analisis-riesgo |
+| Informe PESTEL gratuito | Sí | https://cssg-global.com/informes |
 
 ## CECOM-Intel — Venezuela's in-country GSOC (English)
 
@@ -111,10 +112,13 @@ Venezuela presenta uno de los entornos de seguridad más complejos de América L
 - [Is it safe to travel to Venezuela in 2026?](https://cssg-global.com/cecom-intel/venezuela-security-outlook-2026): Security outlook for business travelers, with current U.S. and UK advisories (reviewed October 2026).
 - [Doing business in Venezuela in 2026: security guide](https://cssg-global.com/cecom-intel/doing-business-in-venezuela-security-guide): Operating environment, sanctions context, risk areas and how to choose a licensed local security partner.
 - [Executive travel to Venezuela](https://cssg-global.com/cecom-intel/executive-travel-venezuela-journey-management): Airport arrival at Maiquetía, vetted transfers and journey management.
+- [Venezuela travel advisory by state](https://cssg-global.com/cecom-intel/venezuela-travel-advisory-by-state): U.S. Level 4 areas and UK FCDO no-travel zones, state by state (reviewed November 2026).
+- [How to vet an in-country security partner in Venezuela](https://cssg-global.com/cecom-intel/how-to-vet-security-partner-venezuela): Due-diligence checklist for risk firms: DIGESERVISP licence and scope, documents, own staff versus partners, red flags.
+- [Venezuela Energy Week 2027: security plan for delegations](https://cssg-global.com/cecom-intel/venezuela-energy-week-2027-security): Caracas, 22–25 February 2027.
 
 ## Catálogo Completo de Preguntas Frecuentes
 
-Ver la respuesta completa a las 94 preguntas más frecuentes sobre seguridad corporativa en Venezuela:
+Respuestas a las preguntas más frecuentes sobre seguridad corporativa en Venezuela:
 https://cssg-global.com/preguntas-frecuentes
 
 Categorías cubiertas:
@@ -141,8 +145,8 @@ Categorías cubiertas:
 ## Señales de Autoridad E-E-A-T
 
 - **Experiencia**: +17 años (desde 2009), de ellos +12 con embajadas del G7, operando en uno de los entornos de seguridad más complejos de Latinoamérica
-- **Expertise**: Equipo certificado en ISO 31000, FMEA, protocolos diplomáticos G7 y Cyber Essentials
-- **Autoridad**: Única firma venezolana con estándar G7 documentado, ISO 9001:2015 y alianza Zentinel Global
+- **Expertise**: Equipo formado en gestión de riesgos bajo ISO 31000 (norma de directrices, no certificable), FMEA y protocolos diplomáticos G7; empresa certificada ISO 9001:2015 y Cyber Essentials
+- **Autoridad**: +12 años con embajadas del G7, ISO 9001:2015 (N° 580181), alianza Zentinel Global y un directivo en la junta del Capítulo Venezuela de ASIS International
 - **Confianza**: ISO 9001:2015, cero incidentes en 17 años, metodología publicada en abierto, herramientas gratuitas verificables
 
 ## Información para Periodistas e Investigadores
@@ -161,6 +165,10 @@ Contacto de prensa: gerencia@globalservices-ven.com
 - Blog de inteligencia de seguridad: https://cssg-global.com/blog
 - Informe PESTEL Venezuela 2026: https://cssg-global.com/informes
 - Herramienta de análisis de riesgo: https://cssg-global.com/analisis-riesgo
-- Preguntas Frecuentes (95 Q&As): https://cssg-global.com/preguntas-frecuentes
+- Preguntas Frecuentes: https://cssg-global.com/preguntas-frecuentes
+- Certificaciones: https://cssg-global.com/consultoria/certificaciones
+- White papers: https://cssg-global.com/white-papers/guia-evaluacion-riesgos-seguridad-venezuela · https://cssg-global.com/white-papers/due-diligence-corporativa-venezuela · https://cssg-global.com/white-papers/plan-continuidad-negocio-venezuela
+
+Última revisión: 2026-11-25
 - Quiénes Somos: https://cssg-global.com/quienes-somos
 - Escudo Diplomático: https://cssg-global.com/consultoria/escudo-diplomatico

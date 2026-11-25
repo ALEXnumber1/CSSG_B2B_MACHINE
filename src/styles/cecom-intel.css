@@ -348,3 +348,13 @@
 .ci-profile { grid-template-columns: 160px 1fr; }
 .ci-profile__photo { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; border: 2px solid var(--ci-gold); }
 @media (max-width: 560px) { .ci-profile { grid-template-columns: 1fr; } .ci-profile__photo { width: 128px; height: 128px; } }
+
+/* Video (click-to-load YouTube) */
+.ci-video { position: relative; width: 100%; aspect-ratio: 16 / 9; border: 1px solid #2A2A2A; border-radius: 16px; overflow: hidden; background: #0A0A0A; }
+.ci-video__facade { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; cursor: pointer; background: none; }
+.ci-video__facade img { width: 100%; height: 100%; object-fit: cover; opacity: 0.85; transition: opacity 0.2s ease; }
+.ci-video__facade:hover img, .ci-video__facade:focus-visible img { opacity: 1; }
+.ci-video__facade:focus-visible { outline: 2px solid #D4AF37; outline-offset: -4px; }
+.ci-video__play { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); transition: transform 0.2s ease; }
+.ci-video__facade:hover .ci-video__play { transform: translate(-50%, -50%) scale(1.08); }
+.ci-video__frame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }

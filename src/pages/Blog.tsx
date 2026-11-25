@@ -43,16 +43,6 @@ export const getBlogPosts = (t: any): BlogEntry[] => [
     image: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?auto=format&fit=crop&w=1200&q=80',
   },
   {
-    slug: 'como-elegir-empresa-seguridad-privada-venezuela',
-    title: t('posts.como-elegir-empresa-seguridad-privada-venezuela.title'),
-    excerpt: t('posts.como-elegir-empresa-seguridad-privada-venezuela.excerpt'),
-    date: '2026-04-12',
-    readTime: '8 min',
-    category: t('categories.Guía Práctica'),
-    categoryColor: 'text-sky-400 bg-sky-500/10',
-    image: 'https://images.unsplash.com/photo-1521791136064-7986c2923216?auto=format&fit=crop&w=1200&q=80',
-  },
-  {
     slug: '5-errores-seguridad-corporativa',
     title: t('posts.5-errores-seguridad-corporativa.title'),
     excerpt: t('posts.5-errores-seguridad-corporativa.excerpt'),
@@ -128,7 +118,9 @@ export default function Blog() {
           .order('created_at', { ascending: false });
         
         if (!error && data) {
-          const formatted = data.map(p => ({
+          // Merged into another post (301 in worker/index.js REDIRECTS)
+          const retired = new Set(['rrhh-el-socio-critico-del-gerente-de-seguridad']);
+          const formatted = data.filter(p => !retired.has(p.slug)).map(p => ({
             slug: p.slug,
             title: p.title,
             excerpt: p.excerpt,

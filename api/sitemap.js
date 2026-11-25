@@ -73,7 +73,6 @@ export default async function handler(req, res) {
   ];
 
   const hardcodedBlogPosts = [
-    { slug: 'como-elegir-empresa-seguridad-privada-venezuela', lastmod: '2026-04-12' },
     { slug: 'seguridad-corporativa-caracas-guia-completa',     lastmod: '2026-03-20' },
     { slug: 'sueldo-minimo-vigilantes-venezuela',              lastmod: '2026-05-01' },
     { slug: 'rrhh-socio-critico-seguridad',                    lastmod: '2026-04-26' },

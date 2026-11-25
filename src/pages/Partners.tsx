@@ -72,7 +72,7 @@ export default function Partners() {
             <span className="text-[10px] font-bold text-emerald-300 uppercase tracking-[0.2em]">Alianzas Estratégicas</span>
           </div>
           <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tighter">
-            Conviértete en <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-sky-400">Partner de CSSG</span>
+            Sea <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-sky-400">Partner de CSSG</span>
           </h1>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto leading-relaxed">
             Expandamos juntos el estándar de seguridad en la región. Únete a nuestra red de aliados tecnológicos y consultores de élite.

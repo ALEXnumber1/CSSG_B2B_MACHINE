@@ -151,7 +151,7 @@ export default function CorporateSecurity() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   useEffect(() => {
-    document.title = 'Corporate Security Services & Security Consulting in Venezuela | CSSG';
+    document.title = 'Corporate Security Consulting in Venezuela | CSSG';
     const desc = 'Corporate security services, security consulting and private protection for multinational companies in Venezuela. Vet private security contractor companies with our ISO 31000 methodology. Request a confidential assessment — CSSG, 17+ years without incident.';
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
