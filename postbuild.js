@@ -665,6 +665,17 @@ const routes = [
     }
   },
   {
+    // English home for international buyers (src/pages/EnglishHome.tsx). FAQ text must match EN_HOME_FAQS there.
+    path: 'en',
+    lang: 'en',
+    alternates: { en: 'en', es: '' },
+    lastmod: '2026-11-25',
+    title: 'Security Company in Venezuela for International Firms | CSSG',
+    description: 'Executive protection, secure airport transfers, risk analysis and corporate security in Venezuela, directly and in English. ISO 9001:2015, since 2009.',
+    image: 'https://cssg-global.com/cssg-seguridad-corporativa-diplomatica.jpg',
+    jsonld: [{"@context": "https://schema.org", "@type": "WebPage", "@id": "https://cssg-global.com/en#webpage", "url": "https://cssg-global.com/en", "name": "Security Company in Venezuela for International Firms | CSSG", "inLanguage": "en", "about": {"@id": "https://cssg-global.com/#organization"}, "audience": {"@type": "BusinessAudience", "audienceType": "International companies, investors, executives and diplomatic missions operating in Venezuela"}}, {"@context": "https://schema.org", "@type": "FAQPage", "inLanguage": "en", "mainEntity": [{"@type": "Question", "name": "Is it safe to travel to Venezuela for business in 2026?", "acceptedAnswer": {"@type": "Answer", "text": "Business travel to Caracas is possible in 2026 with planning, but Venezuela remains a high-risk environment. The U.S. rates the country Level 3, “Reconsider Travel” (27 June 2026), and the UK advises against all travel to the border and mining regions. Consular support is limited, so plan a daylight arrival, a vetted airport transfer and a 24/7 operations center that follows the trip."}}, {"@type": "Question", "name": "Do I need a licensed security company in Venezuela?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Private security companies in Venezuela need authorization from DIGESERVISP, under the Ministry of Interior, Justice and Peace. Ask any provider for its authorization and the geographic scope it covers. CSSG holds DIGESERVISP authorization for unarmed private security."}}, {"@type": "Question", "name": "Are CSSG’s protection teams armed?", "acceptedAnswer": {"@type": "Answer", "text": "No. All CSSG services are unarmed. Protection relies on planning, vetted personnel, low-profile movements and live follow-up from our command center."}}, {"@type": "Question", "name": "Which areas of Venezuela do you cover?", "acceptedAnswer": {"@type": "Answer", "text": "Our own teams operate in Caracas (Capital District and Miranda state). Elsewhere in Venezuela, including Zulia, Anzoátegui, Mérida and Lara, we work with vetted local partners coordinated live by the CECOM. Risk analysis covers the whole country."}}, {"@type": "Question", "name": "Can you invoice in U.S. dollars?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Invoicing in U.S. dollars is available through Company of Security and Service Global LLC, our Miami company."}}, {"@type": "Question", "name": "How quickly can you respond to a request?", "acceptedAnswer": {"@type": "Answer", "text": "We reply to any request within 24 hours. A free 30-minute briefing in English with a senior specialist is the usual first step."}}]}],
+  },
+  {
     path: 'en/technology',
     alternates: { en: 'en/technology', es: 'tecnologia' },
     title: 'Shieldtrace PSIM — Integrated Security Platform | CSSG',
@@ -1092,7 +1103,9 @@ routes.forEach(route => {
 // routes loop above, so it needs the same modulepreload cleanup applied directly. Home.tsx
 // doesn't render or generate PDFs, so it gets the same treatment as every other non-PDF route.
 const homeHtml = stripHreflang(stripUnneededPreloads(originalHtml, ''));
-fs.writeFileSync(indexHtmlPath, homeHtml);
+// The Spanish home and the English home (/en) are language versions of each other.
+const homeHreflang = ['es', '', 'en', 'en', 'x-default', 'en'].reduce((tags, v, i, a) => i % 2 ? tags : [...tags, `<link rel="alternate" hreflang="${v}" href="${SITE_URL}/${a[i + 1]}" />`], []);
+fs.writeFileSync(indexHtmlPath, homeHtml.replace(/<\/head>/, () => `${homeHreflang.join('\n  ')}\n  </head>`));
 console.log('[SEO Generation] Stripped unneeded modulepreload from root /');
 
 // Empty SPA shell (never prerendered): Vercel's catch-all rewrite and /api/blog use it for URLs

@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 // visitors and search engines on to the rest instead of being a dead end. Each landing hides itself.
 
 const PAGES = [
+  { href: '/en', label: 'CSSG Global: security in Venezuela' },
+  { href: '/secure-ground', label: 'Secure Ground: executive travel security' },
   { href: '/en/corporate-security-consulting', label: 'Corporate security consulting' },
   { href: '/en/executive-protection-venezuela-investors', label: 'Executive protection for investors' },
   { href: '/en/diplomatic-security', label: 'Diplomatic security' },

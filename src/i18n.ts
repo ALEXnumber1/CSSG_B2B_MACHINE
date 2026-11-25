@@ -882,7 +882,7 @@ i18n
 
 /** Language a route is written in: /en/* and CECOM-Intel (except its /es section) are English. */
 export const routeLanguage = (pathname: string) =>
-  pathname.startsWith('/en/') || (pathname.startsWith('/cecom-intel') && !pathname.startsWith('/cecom-intel/es')) ? 'en' : 'es';
+  pathname === '/en' || pathname.startsWith('/en/') || (pathname.startsWith('/cecom-intel') && !pathname.startsWith('/cecom-intel/es')) ? 'en' : 'es';
 
 export const hasLanguageChoice = () => {
   try { return !!localStorage.getItem(LANG_CHOICE_KEY); } catch { return false; }

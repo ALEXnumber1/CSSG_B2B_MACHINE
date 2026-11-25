@@ -26,6 +26,7 @@ const EsrmReadiness = lazyWithPreload(() => import('./pages/EsrmReadiness'))
 const EsrmReadinessGracias = lazyWithPreload(() => import('./pages/EsrmReadinessGracias'))
 const Tecnologia = lazyWithPreload(() => import('./pages/Tecnologia'))
 const TecnologiaEn = lazyWithPreload(() => import('./pages/TecnologiaEn'))
+const EnglishHome = lazyWithPreload(() => import('./pages/EnglishHome'))
 const StreamingMeeting = lazyWithPreload(() => import('./pages/StreamingMeeting'))
 const NotFound = lazyWithPreload(() => import('./pages/notfound'))
 const Informes = lazyWithPreload(() => import('./pages/Informes'))
@@ -133,6 +134,7 @@ const mainRoutes = (
     <Route path="/optimizacion-costos-seguridad" element={<Consultoria />} />
     <Route path="/consultoria/escudo-diplomatico" element={<EscudoDiplomatico />} />
     <Route path="/tecnologia" element={<Tecnologia />} />
+    <Route path="/en" element={<EnglishHome />} />
     <Route path="/en/technology" element={<TecnologiaEn />} />
     <Route path="/streaming" element={<StreamingMeeting />} />
     <Route path="/informes" element={<Informes />} />
