@@ -151,7 +151,7 @@ export default function ConsultoriaRiesgos() {
 
   useEffect(() => {
     document.title = 'Consultoría y Análisis de Riesgos de Seguridad | CSSG';
-    const desc = 'Solicite una evaluación de riesgos de seguridad bajo metodología FMEA e ISO 31000: diagnóstico de seguridad, auditoría de seguridad física y matriz de gestión de riesgos. Por CSSG, +17 años sin incidentes.';
+    const desc = 'Evaluación de riesgos de seguridad con FMEA e ISO 31000: diagnóstico, auditoría de seguridad física y matriz de riesgos. CSSG, +17 años sin incidentes.';
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute('content', desc);

@@ -179,7 +179,7 @@ export default function DiplomaticSecurity() {
 
   useEffect(() => {
     document.title = 'Diplomatic Security Services in Venezuela | G7 Standard | CSSG';
-    const desc = 'Diplomatic security service for embassies, missions and executive families in Venezuela. 12+ years protecting embassies without incident, G7 standard, Vienna Convention protocol. Request a confidential briefing — CSSG.';
+    const desc = 'Diplomatic security for embassies, missions and their families in Venezuela: 12+ years protecting G7 embassies without incident. Confidential briefing.';
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute('content', desc);

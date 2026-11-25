@@ -129,7 +129,7 @@ export default function EmpresaSeguridad() {
 
   useEffect(() => {
     document.title = 'Empresa de Seguridad Privada para Empresas | Auditoría de Contratación | CSSG';
-    const desc = 'Solicite una auditoría de su esquema de seguridad privada o de su proveedor actual de guardias de seguridad. 21 criterios de contratación aplicados por un consultor senior de CSSG, ISO 9001:2015.';
+    const desc = 'Auditoría de su esquema de seguridad privada o de su proveedor de guardias: 21 criterios de contratación aplicados por un consultor senior de CSSG.';
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
       metaDescription.setAttribute('content', desc);
