@@ -113,6 +113,8 @@ Venezuela presenta uno de los entornos de seguridad más complejos de América L
 - [Doing business in Venezuela in 2026: security guide](https://cssg-global.com/cecom-intel/doing-business-in-venezuela-security-guide): Operating environment, sanctions context, risk areas and how to choose a licensed local security partner.
 - [Executive travel to Venezuela](https://cssg-global.com/cecom-intel/executive-travel-venezuela-journey-management): Airport arrival at Maiquetía, vetted transfers and journey management.
 - [Venezuela travel advisory by state](https://cssg-global.com/cecom-intel/venezuela-travel-advisory-by-state): U.S. Level 4 areas and UK FCDO no-travel zones, state by state (reviewed November 2026).
+- [Business travel to Venezuela from the UK](https://cssg-global.com/cecom-intel/venezuela-business-travel-from-uk): FCDO advice, the business visa for British citizens, insurance, UK sanctions scope and a trip security plan (reviewed 27 November 2026).
+- [Business travel to Venezuela from the U.S.](https://cssg-global.com/cecom-intel/venezuela-business-travel-from-us): State Department Level 3 and Level 4 areas, U.S. Embassy Caracas emergency-only services, OFAC general licenses and a trip security plan (reviewed 27 November 2026).
 - [How to vet an in-country security partner in Venezuela](https://cssg-global.com/cecom-intel/how-to-vet-security-partner-venezuela): Due-diligence checklist for risk firms: DIGESERVISP licence and scope, documents, own staff versus partners, red flags.
 - [Venezuela Energy Week 2027: security plan for delegations](https://cssg-global.com/cecom-intel/venezuela-energy-week-2027-security): Caracas, 22–25 February 2027.
 
@@ -169,6 +171,6 @@ Contacto de prensa: gerencia@globalservices-ven.com
 - Certificaciones: https://cssg-global.com/consultoria/certificaciones
 - White papers: https://cssg-global.com/white-papers/guia-evaluacion-riesgos-seguridad-venezuela · https://cssg-global.com/white-papers/due-diligence-corporativa-venezuela · https://cssg-global.com/white-papers/plan-continuidad-negocio-venezuela
 
-Última revisión: 2026-11-25
+Última revisión: 2026-11-27
 - Quiénes Somos: https://cssg-global.com/quienes-somos
 - Escudo Diplomático: https://cssg-global.com/consultoria/escudo-diplomatico

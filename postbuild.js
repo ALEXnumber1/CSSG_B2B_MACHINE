@@ -840,11 +840,13 @@ const routes = [
   // The guides exist only in English, so their hreflang set is en + x-default.
   ...[
     ['venezuela-security-outlook-2026', 'Is It Safe to Travel to Venezuela in 2026? | CECOM-Intel', 'U.S. and UK advisories, the main risks for business travelers in Caracas, the higher-risk regions and the measures that reduce exposure. Reviewed October 2026.'],
-    ['doing-business-in-venezuela-security-guide', 'Doing Business in Venezuela 2026: Security Guide', 'Security for companies entering Venezuela in 2026: the operating environment, sanctions context, risk areas and how to choose a licensed local security partner.'],
+    ['doing-business-in-venezuela-security-guide', 'Doing Business in Venezuela 2026: Security Guide', 'Security for companies entering Venezuela in 2026: the operating environment, sanctions context, risk areas and how to choose a licensed local security partner.', '2026-11-27'],
     ['executive-travel-venezuela-journey-management', 'Executive Travel to Venezuela: Journey Management', 'Planning an executive trip to Caracas in 2026: pre-trip assessment, arrival at Maiquetía, vetted transfers, journey management and a daily risk bulletin.'],
     ['how-to-vet-security-partner-venezuela', 'How to Vet a Security Partner in Venezuela | CECOM-Intel', 'Due-diligence checklist for choosing a local security partner in Venezuela: licence, documents, own staff vs partners, operations and red flags.', '2026-11-17'],
     ['venezuela-energy-week-2027-security', 'Venezuela Energy Week 2027: Security Plan | CECOM-Intel', 'Attending Venezuela Energy Week in Caracas, 22–25 Feb 2027? How to plan arrival at Maiquetía, transfers, hotel and venue movements and daily updates.', '2026-11-17'],
     ['venezuela-travel-advisory-by-state', 'Venezuela Travel Advisory by State (2026) | CECOM-Intel', 'Which Venezuelan states the U.S. rates Level 4 and where the UK advises against travel, as of November 2026, and what each means for a business trip.', '2026-11-17'],
+    ['venezuela-business-travel-from-uk', 'Venezuela Business Travel from the UK (2026) | CECOM-Intel', 'For UK companies sending staff to Venezuela: FCDO advice, the business visa, insurance, UK sanctions and how to plan a safe trip to Caracas. November 2026.', '2026-11-27'],
+    ['venezuela-business-travel-from-us', 'Venezuela Business Travel from the U.S. (2026) | CECOM-Intel', 'For U.S. companies sending staff to Venezuela: the State Department advisory, embassy support, OFAC licenses and how to plan a safe trip to Caracas.', '2026-11-27'],
   ].map(([slug, title, description, lastmod = '2026-10-18']) => cecomIntelRoute({
     path: `cecom-intel/${slug}`, lang: 'en', alternates: { en: `cecom-intel/${slug}` }, lastmod, title, description,
   })),

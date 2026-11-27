@@ -126,6 +126,8 @@ const mainRoutes = (
     <Route path="/cecom-intel/how-to-vet-security-partner-venezuela" element={<CecomIntelGuide slug="how-to-vet-security-partner-venezuela" />} />
     <Route path="/cecom-intel/venezuela-energy-week-2027-security" element={<CecomIntelGuide slug="venezuela-energy-week-2027-security" />} />
     <Route path="/cecom-intel/venezuela-travel-advisory-by-state" element={<CecomIntelGuide slug="venezuela-travel-advisory-by-state" />} />
+    <Route path="/cecom-intel/venezuela-business-travel-from-uk" element={<CecomIntelGuide slug="venezuela-business-travel-from-uk" />} />
+    <Route path="/cecom-intel/venezuela-business-travel-from-us" element={<CecomIntelGuide slug="venezuela-business-travel-from-us" />} />
     <Route path="/quienes-somos" element={<QuienesSomos />} />
     <Route path="/consultoria" element={<Consultoria />} />
     <Route path="/consultoria-seguridad-caracas" element={<Consultoria />} />

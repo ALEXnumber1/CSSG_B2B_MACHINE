@@ -7,6 +7,7 @@
 export const REVIEWED = { iso: '2026-10-18', label: '18 October 2026' };
 
 export interface GuideSection { h2: string; paragraphs?: string[]; bullets?: string[] }
+export interface GuideFaq { q: string; a: string }
 export interface Guide {
   slug: string;
   title: string;
@@ -21,9 +22,12 @@ export interface Guide {
   reviewed?: { iso: string; label: string };
   /** Replaces the default "sample bulletin" call to action. Hrefs may point outside the SPA. */
   cta?: { text: string; primary: { label: string; href: string }; secondary: { label: string; href: string } };
+  /** Short question-and-answer pairs, shown on the page and emitted as FAQPage schema. */
+  faqs?: GuideFaq[];
 }
 
 const REVIEWED_NOV = { iso: '2026-11-17', label: '17 November 2026' };
+const REVIEWED_NOV_27 = { iso: '2026-11-27', label: '27 November 2026' };
 const CTA_SECURE_GROUND = {
   text: 'Planning a trip or a delegation to Venezuela? Book a free 30-minute briefing with a senior CSSG specialist, in English.',
   primary: { label: 'Book a 30-minute briefing', href: '/secure-ground#book' },
@@ -33,8 +37,11 @@ const CTA_SECURE_GROUND = {
 const SRC_US = { label: 'U.S. Department of State — Venezuela Travel Advisory', url: 'https://travel.state.gov/en/international-travel/travel-advisories/venezuela.html', note: 'Level 3, issued 27 June 2026' };
 const SRC_UK = { label: 'UK FCDO — Foreign travel advice: Venezuela', url: 'https://www.gov.uk/foreign-travel-advice/venezuela', note: 'Updated 14 October 2026' };
 const SRC_UK_SEC = { label: 'UK FCDO — Venezuela: safety and security', url: 'https://www.gov.uk/foreign-travel-advice/venezuela/safety-and-security', note: 'Checked 18 October 2026' };
-const SRC_OFAC = { label: 'U.S. Treasury OFAC — Recent actions', url: 'https://ofac.treasury.gov/recent-actions', note: 'GL 60A issued 16 October 2026' };
 const SRC_US_EMBASSY = { label: 'U.S. Embassy Caracas — Travel Advisory: Venezuela', url: 'https://ve.usembassy.gov/travel-advisory-travel-advisory-venezuela/', note: 'Level 3 with Level 4 areas, issued 27 June 2026' };
+const SRC_UK_ENTRY = { label: 'UK FCDO — Venezuela: entry requirements', url: 'https://www.gov.uk/foreign-travel-advice/venezuela/entry-requirements', note: 'Updated 18 November 2026; checked 27 November 2026' };
+const SRC_UK_HELP = { label: 'UK FCDO — Venezuela: getting help', url: 'https://www.gov.uk/foreign-travel-advice/venezuela/getting-help', note: 'Checked 27 November 2026' };
+const SRC_UK_SANCTIONS = { label: 'UK Government — Venezuela sanctions: guidance', url: 'https://www.gov.uk/government/collections/uk-sanctions-on-venezuela', note: 'Updated 1 May 2026' };
+const SRC_OFAC_VEN = { label: 'U.S. Treasury OFAC — Venezuela-related sanctions', url: 'https://ofac.treasury.gov/sanctions-programs-and-country-information/venezuela-related-sanctions', note: 'GL 5AA issued 4 November 2026; checked 27 November 2026' };
 const SRC_ICOC = { label: 'ICoCA — International Code of Conduct for Private Security Service Providers', url: 'https://icoca.ch/wp-content/uploads/2024/08/INTERNATIONAL-CODE-OF-CONDUCT_Amended_2024.pdf', note: 'Amended 2024' };
 const SRC_CE = { label: 'UK NCSC — Cyber Essentials', url: 'https://www.ncsc.gov.uk/cyberessentials/overview', note: 'Scheme overview' };
 const SRC_TLP = { label: 'FIRST — Traffic Light Protocol (TLP) 2.0', url: 'https://www.first.org/tlp/', note: 'Information-sharing standard' };
@@ -119,7 +126,7 @@ export const GUIDES: Guide[] = [
       {
         h2: 'Sanctions context (not legal advice)',
         paragraphs: [
-          'Many activities are authorized through OFAC general licenses, which can be amended, delayed or revoked. In 2026 OFAC has repeatedly adjusted the Venezuela program: for example, General License 5Z (16 September 2026) delayed the effectiveness of General License 5 until 5 November 2026, and General License 60A (16 October 2026) authorizes earthquake-relief transactions. Companies should obtain advice from sanctions counsel; security findings complement, and never replace, that advice.',
+          'Many activities are authorized through OFAC general licenses, which can be amended, delayed or revoked. In 2026 OFAC has repeatedly adjusted the Venezuela program: for example, General License 62 (21 August 2026) covers contingent contracts for investment in the telecommunications sector, General License 60A (16 October 2026) authorizes earthquake-relief transactions and General License 5AA (4 November 2026) concerns the PdVSA 2020 bond. Companies should obtain advice from sanctions counsel; security findings complement, and never replace, that advice.',
         ],
       },
       {
@@ -157,11 +164,24 @@ export const GUIDES: Guide[] = [
       {
         h2: 'Where CSSG fits',
         paragraphs: [
-          'CSSG has operated in Venezuela since 2009 and protects G7 diplomatic missions and multinationals. It is ISO 9001:2015 and Cyber Essentials certified and holds DIGESERVISP authorization for unarmed private security in the Capital District and Miranda state. Its CECOM, the company’s in-country GSOC, provides daily risk bulletins, journey management and 24/7 monitoring. For international risk and protection firms without a presence in Venezuela, CSSG works as the in-country partner: you keep the client and the relationship; we provide the eyes on the ground and the response capacity, under your standard. Invoicing is available through Company of Security and Service Global LLC (Miami).',
+          'CSSG has operated in Venezuela since 2009 without a single security incident, more than 12 of those years protecting G7 diplomatic missions. It is ISO 9001:2015 and Cyber Essentials certified and holds DIGESERVISP authorization for unarmed private security in the Capital District and Miranda state.',
+          'Companies entering the country contract CSSG directly: one provider and one contract, in English, from the first risk assessment to site security with its own unarmed teams, journey management and 24/7 monitoring from CECOM, its in-country GSOC in Caracas. Outside Caracas and Miranda, CSSG coordinates vetted local partners live from CECOM and states which service each one delivers. Reports come in English and invoicing in USD through Company of Security and Service Global LLC (Miami).',
+          'International risk and protection firms without a presence in Venezuela can also work with CSSG as their in-country partner.',
         ],
       },
     ],
-    sources: [SRC_WRIGHT, SRC_US, SRC_UK, SRC_OFAC],
+    sources: [SRC_WRIGHT, SRC_US, SRC_UK, SRC_OFAC_VEN],
+    reviewed: REVIEWED_NOV_27,
+    cta: {
+      text: 'Entering Venezuela? Book a free 30-minute briefing in English with a senior CSSG specialist: your sites, your people and the first steps of a security program.',
+      primary: { label: 'Book a 30-minute briefing', href: '/secure-ground#book' },
+      secondary: { label: 'CSSG in Venezuela', href: '/en' },
+    },
+    faqs: [
+      { q: 'Do international companies need a local security provider in Venezuela?', a: 'In practice, yes. Security is each company’s own responsibility: in January 2026 the U.S. Secretary of Energy said Washington would not provide on-the-ground security for oil companies. A licensed local provider supplies the people, the response capacity and the knowledge of the terrain.' },
+      { q: 'Which licence does a private security company need in Venezuela?', a: 'An authorization from DIGESERVISP, part of the Ministry of Interior, Justice and Peace. Check the territory it covers and whether it is for armed or unarmed services.' },
+      { q: 'Can a security company in Venezuela invoice in U.S. dollars?', a: 'Some can. CSSG invoices in USD through Company of Security and Service Global LLC, its Miami company.' },
+    ],
   },
   {
     slug: 'executive-travel-venezuela-journey-management',
@@ -450,6 +470,149 @@ export const GUIDES: Guide[] = [
     ],
     sources: [SRC_US_EMBASSY, SRC_UK, SRC_US],
     cta: CTA_SECURE_GROUND,
+  },
+  {
+    slug: 'venezuela-business-travel-from-uk',
+    published: REVIEWED_NOV_27.iso,
+    reviewed: REVIEWED_NOV_27,
+    title: 'Travelling to Venezuela from the UK on business: FCDO advice, visas and security in 2026',
+    metaTitle: 'Venezuela Business Travel from the UK (2026) | CECOM-Intel',
+    description: 'For UK companies sending staff to Venezuela: FCDO advice, the business visa, insurance, UK sanctions and how to plan a safe trip to Caracas. November 2026.',
+    eyebrow: 'FROM THE UK · BUSINESS TRAVEL · 2026',
+    bottomLine: 'UK companies can send staff to Caracas on business, but the FCDO advises against all but essential travel to most of Venezuela, Caracas included, and against all travel to the border and mining areas. A business trip needs a visa before departure, and travel insurance can be invalidated by travelling against FCDO advice. Treat every trip as essential travel: a written justification, a pre-trip assessment and a local team that answers to you.',
+    sections: [
+      {
+        h2: 'What the FCDO advises',
+        paragraphs: ['The FCDO’s advice was last updated on 18 November 2026 and was still current on 27 November 2026. It advises against all travel to:'],
+        bullets: [
+          'Within 40 km of the borders with Colombia, Brazil and Guyana.',
+          'Amazonas state.',
+          'The Orinoco Mining Arc in Bolívar and several named municipalities of that state.',
+          'Delta Amacuro, south of the Orinoco river.',
+          'It advises against all but essential travel to the rest of Venezuela, including Caracas, Zulia state, Maracaibo and the eastern shore of Lake Maracaibo.',
+        ],
+      },
+      {
+        h2: 'Entry requirements for British citizens',
+        bullets: [
+          'Business trips need a visa before you travel. The FCDO counts any work, paid or unpaid, as non-tourist travel.',
+          'The visa-free tourist card, up to 90 days on arrival by air, is for tourism only.',
+          'Your passport must be valid for at least 6 months after the date you plan to leave Venezuela.',
+          'On arrival you may be asked for proof of accommodation or a notarised invitation letter, proof of funds and a return or onward ticket.',
+          'Vaping devices are illegal in Venezuela, including those without nicotine.',
+          'Declare goods worth more than US$1,000, and cash or travellers’ cheques of US$10,000 or more.',
+          'Rules change: confirm them with Venezuela’s authorities before booking.',
+        ],
+      },
+      {
+        h2: 'Insurance and duty of care',
+        paragraphs: [
+          'The FCDO warns that travel insurance could be invalidated if you travel against its advice. Because Caracas falls under “all but essential travel”, ask your insurer in writing whether the policy covers the itinerary, medical evacuation and, if you hold one, kidnap and ransom cover. Companies that follow UK duty-of-care practice document why each trip is essential and what controls are in place before it is approved.',
+        ],
+      },
+      {
+        h2: 'Consular help',
+        bullets: [
+          'For UK government help, the FCDO lists +58 (0) 212 263 8411 from Venezuela and +44 (0) 20 7008 5000 from the UK (24 hours).',
+          'Emergency services in Venezuela: 911.',
+          'Consular help in Venezuela is limited: build a plan that does not depend on it.',
+        ],
+      },
+      {
+        h2: 'UK sanctions (not legal advice)',
+        paragraphs: [
+          'According to the UK government’s guidance (updated 1 May 2026), the UK’s Venezuela regime is limited in scope: asset freezes, travel bans and director disqualification for designated persons, plus restrictions on military goods, internal repression goods and interception and monitoring goods, technology and services. Security equipment you plan to ship, such as radios, surveillance or monitoring systems, may fall under these restrictions, so check before exporting. If a deal involves U.S. persons, U.S.-origin goods or U.S. dollar payments, U.S. OFAC rules may also apply. Take advice from sanctions counsel.',
+        ],
+      },
+      {
+        h2: 'A security plan for the trip',
+        bullets: [
+          'A pre-trip assessment of the hotel, meeting venues, routes and timings.',
+          'Arrival in daylight. Maiquetía resumed commercial flights on 1 September 2026 with limited capacity, so check schedules early.',
+          'A named, pre-identified team waiting inside the terminal; never an unbooked taxi.',
+          'Vetted drivers and vehicles, approved routes and no movements after dark without a plan.',
+          'A check-in schedule with a 24/7 operations center, and an evacuation plan.',
+          'A sourced risk bulletin every morning of the trip.',
+        ],
+      },
+      {
+        h2: 'How CSSG supports UK companies',
+        paragraphs: [
+          'CSSG delivers the service directly, under one contract in English: pre-trip assessment, meet and greet at Maiquetía, vetted transfers, its own unarmed teams in Caracas and Miranda, and every movement followed live from CECOM, its command center in Caracas. CSSG has operated since 2009 without a single security incident, more than 12 of those years protecting G7 diplomatic missions. It holds ISO 9001:2015 and Cyber Essentials, the UK government-backed cyber security scheme. Reports follow your formats, and invoicing is in USD through Company of Security and Service Global LLC (Miami).',
+        ],
+      },
+    ],
+    sources: [SRC_UK, SRC_UK_ENTRY, SRC_UK_HELP, SRC_UK_SANCTIONS, SRC_CE],
+    cta: CTA_SECURE_GROUND,
+    faqs: [
+      { q: 'Is it safe to travel to Caracas from the UK on business?', a: 'Business trips to Caracas are possible with planning, but the FCDO advises against all but essential travel to most of Venezuela, Caracas included. Plan each trip as essential travel, with a pre-trip assessment, vetted transport and a 24/7 operations center.' },
+      { q: 'Do British citizens need a visa to visit Venezuela on business?', a: 'Yes. According to the FCDO, any trip that is not tourism, including unpaid work, needs a visa before travelling. The visa-free tourist card is for tourism only.' },
+      { q: 'Will my travel insurance cover a trip to Venezuela?', a: 'Check in writing. The FCDO warns that travel insurance could be invalidated if you travel against its advice, and Caracas falls under “all but essential travel”.' },
+      { q: 'Are there UK sanctions on doing business in Venezuela?', a: 'The UK regime is limited to designated persons and to military, internal repression and interception and monitoring goods and services. U.S. rules may also apply to some deals. Take advice from sanctions counsel.' },
+    ],
+  },
+  {
+    slug: 'venezuela-business-travel-from-us',
+    published: REVIEWED_NOV_27.iso,
+    reviewed: REVIEWED_NOV_27,
+    title: 'Traveling to Venezuela from the U.S. on business: advisory, embassy and security in 2026',
+    metaTitle: 'Venezuela Business Travel from the U.S. (2026) | CECOM-Intel',
+    description: 'For U.S. companies sending staff to Venezuela: the State Department advisory, embassy support, OFAC licenses and how to plan a safe trip to Caracas.',
+    eyebrow: 'FROM THE U.S. · BUSINESS TRAVEL · 2026',
+    bottomLine: 'U.S. companies can send staff to Caracas on business, but the State Department rates Venezuela Level 3, “Reconsider Travel”, with Level 4 areas on the Colombian border and in several states. The U.S. Embassy in Caracas reopened in March 2026 but offers emergency services to U.S. citizens only. Plan the trip so it does not depend on embassy support, and check the OFAC general licenses behind any deal.',
+    sections: [
+      {
+        h2: 'What the State Department advises',
+        paragraphs: ['Venezuela has been Level 3 since 19 March 2026, when it was lowered from Level 4; the advisory was reissued on 27 June 2026. It cites crime, kidnapping, terrorism and poor health infrastructure. These areas remain Level 4, “Do Not Travel”:'],
+        bullets: [
+          'The border region with Colombia.',
+          'Amazonas and Apure: terrorism.',
+          'Aragua outside Maracay, rural Bolívar and Guárico: crime and kidnapping.',
+          'Táchira: crime and terrorism.',
+        ],
+      },
+      {
+        h2: 'Embassy and consular support',
+        bullets: [
+          'The U.S. Embassy in Caracas resumed operations in March 2026. Its Consular Section provides emergency services to U.S. citizens only.',
+          'Visa services for Venezuelans are handled by the U.S. Embassy in Bogotá.',
+          'Enroll every traveler in the Smart Traveler Enrollment Program (STEP) to receive alerts.',
+          'Confirm Venezuela’s current entry requirements, including the visa for the purpose of your trip, before booking.',
+        ],
+      },
+      {
+        h2: 'Sanctions and licenses (not legal advice)',
+        paragraphs: [
+          'Most business with Venezuela runs through OFAC general licenses, which change often. Recent examples: General License 62 (21 August 2026) covers contingent contracts for investment in the telecommunications sector, General License 60A (16 October 2026) authorizes earthquake-relief transactions and General License 5AA (4 November 2026) concerns the PdVSA 2020 bond. Check the current text with sanctions counsel before committing people or money.',
+          'Security stays with the company: in January 2026 the U.S. Secretary of Energy said Washington would not provide on-the-ground security for oil companies operating in Venezuela.',
+        ],
+      },
+      {
+        h2: 'A security plan for the trip',
+        bullets: [
+          'A pre-trip assessment of the hotel, meeting venues, routes and timings.',
+          'Arrival in daylight. Maiquetía resumed commercial flights on 1 September 2026 with limited capacity, so check schedules early.',
+          'A named, pre-identified team waiting inside the terminal; never an unbooked taxi.',
+          'Vetted drivers and vehicles, approved routes and no movements after dark without a plan.',
+          'A check-in schedule with a 24/7 operations center, and medical and evacuation cover confirmed in writing.',
+          'A sourced risk bulletin every morning of the trip.',
+        ],
+      },
+      {
+        h2: 'How CSSG supports U.S. companies',
+        paragraphs: [
+          'CSSG delivers the service directly, under one contract in English: pre-trip assessment, meet and greet at Maiquetía, vetted transfers, its own unarmed teams in Caracas and Miranda, and every movement followed live from CECOM, its command center in Caracas. CSSG has operated since 2009 without a single security incident, more than 12 of those years protecting G7 diplomatic missions, and is ISO 9001:2015 certified. U.S. procurement teams contract and pay in USD through Company of Security and Service Global LLC, CSSG’s company in Miami.',
+        ],
+      },
+    ],
+    sources: [SRC_US, SRC_US_EMBASSY, SRC_OFAC_VEN, SRC_WRIGHT],
+    cta: CTA_SECURE_GROUND,
+    faqs: [
+      { q: 'Can U.S. citizens travel to Venezuela on business in 2026?', a: 'Yes, with planning. The State Department rates Venezuela Level 3, “Reconsider Travel”, and several areas Level 4, “Do Not Travel”. Business trips to Caracas need a pre-trip assessment, vetted transport and a 24/7 operations center.' },
+      { q: 'Is the U.S. Embassy in Caracas open?', a: 'It resumed operations in March 2026, but its Consular Section provides emergency services to U.S. citizens only. Visa services are handled in Bogotá.' },
+      { q: 'Do U.S. companies need an OFAC license to do business in Venezuela?', a: 'Many activities are authorized by OFAC general licenses, which change often; others need a specific license. Take advice from sanctions counsel.' },
+      { q: 'Can I hire a Venezuelan security company through a U.S. entity?', a: 'CSSG contracts and invoices in USD through Company of Security and Service Global LLC, its company in Miami.' },
+    ],
   },
 ];
 

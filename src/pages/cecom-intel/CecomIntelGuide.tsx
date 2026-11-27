@@ -36,6 +36,14 @@ export default function CecomIntelGuide({ slug }: { slug: string }) {
         about: { '@type': 'Country', name: 'Venezuela' },
         citation: g.sources.map(s => s.url),
       }} />
+      {g.faqs && (
+        <JsonLd data={{
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          inLanguage: 'en',
+          mainEntity: g.faqs.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+        }} />
+      )}
 
       <nav className="ci-subnav" aria-label="CECOM-Intel">
         <div className="ci-subnav__inner">
@@ -81,6 +89,18 @@ export default function CecomIntelGuide({ slug }: { slug: string }) {
                 )}
               </section>
             ))}
+
+            {g.faqs && (
+              <section aria-labelledby="ci-faq">
+                <h2 id="ci-faq" className="ci-guide__h2">Frequently asked questions</h2>
+                {g.faqs.map(f => (
+                  <div key={f.q}>
+                    <h3 className="ci-p ci-p--lead" style={{ fontWeight: 600, marginBottom: 4 }}>{f.q}</h3>
+                    <p className="ci-p ci-p--body">{f.a}</p>
+                  </div>
+                ))}
+              </section>
+            )}
 
             {g.cta ? (
               <aside className="ci-ai" aria-label="Next step">

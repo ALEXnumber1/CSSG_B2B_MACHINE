@@ -16,6 +16,8 @@ const PAGES = [
 // Guides for travel risk and duty-of-care managers.
 const GUIDES = [
   { href: '/cecom-intel/venezuela-security-outlook-2026', label: 'Is it safe to travel to Venezuela in 2026?' },
+  { href: '/cecom-intel/venezuela-business-travel-from-uk', label: 'Business travel to Venezuela from the UK' },
+  { href: '/cecom-intel/venezuela-business-travel-from-us', label: 'Business travel to Venezuela from the U.S.' },
   { href: '/cecom-intel/doing-business-in-venezuela-security-guide', label: 'Doing business in Venezuela: security guide' },
   { href: '/cecom-intel/executive-travel-venezuela-journey-management', label: 'Executive travel & journey management' },
   { href: '/cecom-intel/venezuela-travel-advisory-by-state', label: 'Venezuela travel advisory by state' },
